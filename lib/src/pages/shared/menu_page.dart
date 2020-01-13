@@ -46,7 +46,7 @@ class MenuPage extends StatelessWidget {
                   SizedBox(height: 30.0),
                   _buildRow(Icons.home, "Greco"),//1
                   _buildDivider(),
-                  _buildRow(Icons.home, "Reservar"),//+
+                  _buildRow(Icons.add, "Reservar"),//+
                   _buildDivider(),
                   _buildRow(Icons.assignment_late, "Atenciones"),//2
                   _buildDivider(),

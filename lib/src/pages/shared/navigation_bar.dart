@@ -19,15 +19,15 @@ class NavigationBar extends StatelessWidget {
       child: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.adjust),
+            icon: Icon(Icons.pets),
             title: Text('Mis mascotas'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.album),
+            icon: Icon(Icons.home),
             title: Text('Greco')
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.album),
+            icon: Icon(Icons.assignment_late),
             title: Text('Atenciones')
           ),
         ],
