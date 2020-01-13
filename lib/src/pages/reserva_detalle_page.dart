@@ -222,12 +222,12 @@ class ReservaDetallePage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: NavigationBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.add),
-        backgroundColor: colorSec,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){},
+      //   child: Icon(Icons.add),
+      //   backgroundColor: colorSec,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
     );
   }

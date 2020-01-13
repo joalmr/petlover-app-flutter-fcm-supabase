@@ -125,7 +125,7 @@ class HomePage extends StatelessWidget {
         child: Icon(Icons.add),
         backgroundColor: colorSec,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 

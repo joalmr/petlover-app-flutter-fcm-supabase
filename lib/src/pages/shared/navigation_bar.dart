@@ -20,11 +20,15 @@ class NavigationBar extends StatelessWidget {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.adjust),
-            title: Text('Menu 3'),
+            title: Text('Mis mascotas'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.album),
             title: Text('Greco')
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.album),
+            title: Text('Menu 2')
           ),
         ],
       ),
