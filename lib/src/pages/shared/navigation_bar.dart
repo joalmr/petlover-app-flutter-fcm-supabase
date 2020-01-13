@@ -28,7 +28,7 @@ class NavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.album),
-            title: Text('Menu 2')
+            title: Text('Atenciones')
           ),
         ],
       ),

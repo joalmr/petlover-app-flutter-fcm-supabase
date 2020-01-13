@@ -44,20 +44,21 @@ class MenuPage extends StatelessWidget {
                         fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 30.0),
-                  _buildRow(Icons.home, "Inicio"),//1
+                  _buildRow(Icons.home, "Greco"),//1
                   _buildDivider(),
                   _buildRow(Icons.home, "Reservar"),//+
                   _buildDivider(),
-                  _buildRow(Icons.home, "Menu 2"),//2
+                  _buildRow(Icons.assignment_late, "Atenciones"),//2
                   _buildDivider(),
-                  _buildRow(Icons.settings, "Mis mascotas"),//3
+                  _buildRow(Icons.pets, "Mis mascotas"),//3
                   _buildDivider(),
                   _buildRow(Icons.person_pin, "Mi perfil"),
-                  _buildDivider(),
                   // _buildRow(Icons.notifications, "Notificaciones", showBadge: true, cantidad: '8'),
                   // _buildDivider(),
                   // _buildRow(Icons.email, "Compartir mascota"),
                   // _buildDivider(),
+                  _buildDivider(),
+                  _buildRow(Icons.person_pin, "Cerrar sesión"),
                 ],
               ),
             ),
