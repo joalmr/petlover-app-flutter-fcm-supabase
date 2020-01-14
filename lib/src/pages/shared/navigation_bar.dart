@@ -18,6 +18,7 @@ class NavigationBar extends StatelessWidget {
       //shape: const CircularNotchedRectangle(),        
       child: BottomNavigationBar(
         iconSize: 26.0,
+        fixedColor: colorMain ,
         unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -26,8 +27,8 @@ class NavigationBar extends StatelessWidget {
             
             activeIcon: Column(
               children: <Widget>[
-                Icon(Icons.pets,color: colorMain,),
-                Text('Mis mascotas',style: TextStyle(color: colorMain),),
+                Icon(Icons.pets,),
+                Text('Mascotas',style: TextStyle(color: colorMain),),
               ],
             ),
           ),
@@ -36,8 +37,8 @@ class NavigationBar extends StatelessWidget {
             title: sinTexto,
             activeIcon: Column(
               children: <Widget>[
-                Icon(Icons.pets,color: colorMain,),
-                Text('Mis mascotas',style: TextStyle(color: colorMain),),
+                Icon(Icons.pets,),
+                Text('Mascotas',style: TextStyle(color: colorMain),),
               ],
             )
           ),
@@ -46,7 +47,7 @@ class NavigationBar extends StatelessWidget {
             title: sinTexto,
             activeIcon: Column(
               children: <Widget>[
-                Icon(Icons.pets,color: colorMain,),
+                Icon(Icons.pets,),
                 Text('Greco',style: TextStyle(color: colorMain),),
               ],
             )
@@ -56,7 +57,7 @@ class NavigationBar extends StatelessWidget {
             title: sinTexto,
             activeIcon: Column(
               children: <Widget>[
-                Icon(Icons.pets,color: colorMain,),
+                Icon(Icons.pets,),
                 Text('Atenciones',style: TextStyle(color: colorMain),),
               ],
             )
@@ -66,7 +67,7 @@ class NavigationBar extends StatelessWidget {
             title: sinTexto,
             activeIcon: Column(
               children: <Widget>[
-                Icon(Icons.pets,color: colorMain,),
+                Icon(Icons.pets,),
                 Text('Atenciones',style: TextStyle(color: colorMain),),
               ],
             )

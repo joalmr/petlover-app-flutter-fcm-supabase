@@ -1,22 +1,24 @@
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
+import 'package:proypet/src/pages/shared/card_swiper.dart';
 import '../../main.dart';
 import 'shared/navigation_bar.dart';
 
 final List vets = [
   {
-    'image':'images/vet_prueba.jpg',
+    'image':['images/vet_prueba.jpg','images/imagesvet.jpg'],
     'title':'Vet prueba 1',
     'logo':'images/veterinaria.png'
   },
   {
-    'image':'images/vet_prueba.jpg',
+    'image':['images/imagesvet.jpg','images/vet_prueba.jpg'],
     'title':'Vet prueba 2',
     'logo':'images/veterinaria2.png'
   },
   {
-    'image':'images/vet_prueba.jpg',
+    'image':['images/vet_prueba.jpg','images/imagesvet.jpg'],
     'title':'Vet prueba 3',
     'logo':'images/veterinaria3.png'
   },
@@ -99,16 +101,9 @@ class ReservaPage extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  Container(
-                    height: 145.0,
-                    width: double.infinity,
-                    child: Image.asset(
-                      vet['image'],
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  _swiperVets(vet['image']),
                   Positioned(
-                    bottom: 20.0,
+                    bottom: 5.0,
                     right: 10.0,
                     child: Container(
                       padding: EdgeInsets.all(8.0),
@@ -159,4 +154,7 @@ class ReservaPage extends StatelessWidget {
     );
   }
 
+  Widget _swiperVets(imagen){
+    return CardSwiper(imagenes : imagen);    
+  }
 }
