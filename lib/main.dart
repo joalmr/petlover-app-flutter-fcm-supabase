@@ -7,6 +7,7 @@ void main() => runApp(MyApp());
 
 final colorMain = Colors.green;
 final colorSec = Color.fromRGBO(125, 35, 75, 1);
+final shapeBtn = RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0));
 
 
 class MyApp extends StatelessWidget {

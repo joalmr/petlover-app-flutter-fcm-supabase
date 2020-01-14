@@ -15,7 +15,7 @@ class ReservaDetallePage extends StatelessWidget {
             foregroundDecoration: BoxDecoration(
               color: Colors.black26
             ),
-            height: 350,
+            height: 550,
             width: double.infinity,
             child: Image.asset(image, fit: BoxFit.cover)),
           SingleChildScrollView(
@@ -23,35 +23,16 @@ class ReservaDetallePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 250),
+                const SizedBox(height: 450),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal:16.0),
+                  padding: const EdgeInsets.symmetric(horizontal:22.0),
                   child: Text(
                     "Vet Prueba",
                     style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight: FontWeight.bold),
                   ),
                 ),
-                Row(
-                  children: <Widget>[
-                    const SizedBox(width: 16.0),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8.0,
-                        horizontal: 16.0,
-                      ),
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(20.0)),
-                      child: Text(
-                        "4.18/200 reviews",
-                        style: TextStyle(color: Colors.white, fontSize: 13.0),
-                      ),
-                    ),
-                    Spacer(),
-                  ],
-                ),
                 Container(
-                  padding: const EdgeInsets.all(32.0),
+                  padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 22.0),
                   color: Colors.white,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,80 +82,30 @@ class ReservaDetallePage extends StatelessWidget {
                           Column(
                             children: <Widget>[
                               CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: AssetImage('images/veterinaria.png'),
-                              )
+                                radius: 30.0,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.5),
+                                  child: Image(
+                                    image: AssetImage('images/veterinaria.png'),
+                                  ),
+                                ),
+                                backgroundColor: colorSec,
+                              ),
                             ],
                           )
                         ],
                       ),
-                      const SizedBox(height: 30.0),
-                      SizedBox(
-                        width: double.infinity,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                          color: colorMain,
-                          textColor: Colors.white,
-                          child: Text("Reservar atención", style: TextStyle(
-                            fontWeight: FontWeight.normal
-                          ),),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16.0,
-                            horizontal: 32.0,
-                          ),
-                          onPressed: () => modal.mainBottomSheet(context),
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-
+                      const SizedBox(height: 25.0),
                       //scroll horizontal
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: _servicios(),
                       ),
-
-
-                      SizedBox(height: 30.0),
+                      SizedBox(height: 25.0),
                       Text("Descripción".toUpperCase(), style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 14.0
                       ),),
-                      const SizedBox(height: 10.0),
-                      Text(
-                          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.0
-                          ),),
-                      const SizedBox(height: 10.0),
-                      Text(
-                          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.0
-                          ),),
-                      const SizedBox(height: 10.0),
-                      Text(
-                          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.0
-                          ),),
-                      const SizedBox(height: 10.0),
-                      Text(
-                          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.0
-                          ),),
-                      const SizedBox(height: 10.0),
-                      Text(
-                          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.0
-                          ),),
-                      const SizedBox(height: 10.0),
-                      Text(
-                          "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 14.0
-                          ),),
                       const SizedBox(height: 10.0),
                       Text(
                           "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
@@ -221,7 +152,74 @@ class ReservaDetallePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBar(),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Row(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                Container(
+                  height:42.0,
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0, 0, 0),
+                    child: Center(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Text('4.18',
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.grey),
+                              ),
+                              Icon(Icons.star,color: Colors.grey,size: 24.0,),
+                            ],
+                          ),
+                          Text('200 reviews',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0, color: colorSec),)
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                ],
+              ),
+              Spacer(),
+              RaisedButton(
+                shape: shapeBtn,
+                color: colorSec,
+                textColor: Colors.white,
+                child: Text('Reservar ahora',style: TextStyle(
+                  fontWeight: FontWeight.normal
+                ),),
+                elevation: 15.0,
+                padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 32.0),
+                onPressed: (){
+                  modal.mainBottomSheet(context);
+                },
+              )
+            ],
+          ),
+        ),
+        // child: Row(
+        //   children: <Widget>[
+        //     Text('Hola'),
+        //     Spacer(),
+        //     RaisedButton(
+        //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        //         color: colorSec,
+        //         textColor: Colors.white,
+        //         child: Text("Reservar", style: TextStyle(
+        //           fontWeight: FontWeight.normal
+        //         ),),
+        //         padding: const EdgeInsets.symmetric(
+        //           vertical: 16.0,
+        //           horizontal: 32.0,
+        //         ),
+        //         onPressed: (){},
+        //       )
+        //   ],
+        // ),
+
+      ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: (){},
       //   child: Icon(Icons.add),

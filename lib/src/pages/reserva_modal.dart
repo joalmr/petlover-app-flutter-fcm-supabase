@@ -55,7 +55,7 @@ class _ModalData extends State<ModalData> {
               Text('Fecha'),
               SizedBox(height: 50.0,),
               RaisedButton(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                shape: shapeBtn,
                 color: colorSec,
                 textColor: Colors.white,
                 child: Text("Reservar", style: TextStyle(

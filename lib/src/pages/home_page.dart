@@ -186,6 +186,13 @@ class HomePage extends StatelessWidget {
             Spacer(),
             IconButton(
               color: Colors.white,
+              icon: Icon(Icons.notifications),
+              onPressed: (){
+
+              },
+            ),
+            IconButton(
+              color: Colors.white,
               icon: Icon(Icons.menu),
               onPressed: () {
                 _key.currentState.openDrawer();
