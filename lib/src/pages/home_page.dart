@@ -109,9 +109,6 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                
-                
               ],
             ),
           )
@@ -134,7 +131,7 @@ class HomePage extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(250, 240, 240, 1.0),
+        //color: Color.fromRGBO(250, 240, 240, 1.0),
       ),
     );
 

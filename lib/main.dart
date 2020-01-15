@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Proypet',
       debugShowCheckedModeBanner: false,
       routes: getRoutes(),
-      initialRoute: '/',
+      initialRoute: 'login',
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
           builder: (BuildContext context)=>HomePage(), //cuando falle

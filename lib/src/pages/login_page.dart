@@ -1,19 +1,251 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/main.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginSevenPageState createState() => _LoginSevenPageState();
+}
+
+class _LoginSevenPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 15.0,
-        leading: Image.asset('images/icon/proypet.png'),
-        title: Text('Proypet'),
-      ),
-      body: Center(
-        child: Container(
-          child: Text('Hello World'),
-        ),
+      backgroundColor: Colors.white,
+      body: ListView(
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              ClipPath(
+                clipper: WaveClipper2(),
+                child: Container(
+                  child: Column(),
+                  width: double.infinity,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.green[100]
+                      //gradient: LinearGradient(colors: [Color(0x22ff3a5a), Color(0x22fe494d)])
+                  ),
+                ),
+              ),
+              ClipPath(
+                clipper: WaveClipper3(),
+                child: Container(
+                  child: Column(),
+                  width: double.infinity,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.green[200]
+                      //gradient: LinearGradient(colors: [Color(0x44ff3a5a), Color(0x44fe494d)])
+                  ),
+                ),
+              ),
+              ClipPath(
+                clipper: WaveClipper1(),
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Image(
+                        image: AssetImage('images/proypet.png'),
+                        height:120,
+                        width: 120,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Proypet".toUpperCase(),
+                        style: TextStyle(
+                            color: Color.fromRGBO(89, 74, 70, 0.75),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 22),
+                      ),
+                    ],
+                  ),
+                  width: double.infinity,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [colorMain, colorMain[400]])
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                onChanged: (String value){},
+                cursorColor: colorMain,
+                decoration: InputDecoration(
+                    hintText: "Email",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.email,
+                        color: colorMain,
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                obscureText: true,
+                onChanged: (String value){},
+                cursorColor: colorMain,
+                decoration: InputDecoration(
+                    hintText: "Contraseña",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.lock,
+                        color: colorMain,
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(100)),
+                    color: colorMain),
+                child: FlatButton(
+                  child: Text(
+                    "Ingresar",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                ),
+              )),
+              SizedBox(height: 20,),
+          Center(
+            child: Text("Olvidó contraseña ?".toUpperCase(), style: TextStyle(color:colorMain,fontSize: 12 ,fontWeight: FontWeight.w700),),
+          ),
+          SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("No tienes una cuenta ? ", style: TextStyle(color:Colors.black,fontSize: 12 ,fontWeight: FontWeight.normal),),
+              Text("Regístrate ", style: TextStyle(color:colorMain, fontWeight: FontWeight.w500,fontSize: 12, decoration: TextDecoration.underline )),
+
+            ],
+          )
+        ],
       ),
     );
+  }
+}
+
+class WaveClipper1 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
+
+    var firstEndPoint = Offset(size.width * 0.6, size.height - 29 - 50);
+    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondEndPoint = Offset(size.width, size.height - 60);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class WaveClipper2 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
+
+    var firstEndPoint = Offset(size.width * .7, size.height - 40);
+    var firstControlPoint = Offset(size.width * .25, size.height);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondEndPoint = Offset(size.width, size.height - 45);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class WaveClipper3 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
+
+    var firstEndPoint = Offset(size.width * 0.6, size.height - 15 - 50);
+    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondEndPoint = Offset(size.width, size.height - 40);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 30);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

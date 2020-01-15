@@ -75,19 +75,13 @@ class ReservaPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: NavigationBar(),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: (){},
-      //   child: Icon(Icons.add),
-      //   backgroundColor: colorSec,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
   Widget _buildVets(BuildContext context, int index){
     var vet = vets[index % vets.length];
     return Container(
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
       child: InkWell(
         onTap: ()=>Navigator.push(context, MaterialPageRoute(
           builder: (_)=>ReservaDetallePage(),
@@ -95,7 +89,7 @@ class ReservaPage extends StatelessWidget {
         child: Material(
           elevation: 5.0,
           borderRadius: BorderRadius.circular(5.0),
-          color: Colors.white,
+          //color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -141,7 +135,7 @@ class ReservaPage extends StatelessWidget {
                         Icon(Icons.star, color: Colors.green,),
                         Icon(Icons.star_border, color: Colors.green,),
                         SizedBox(width: 5.0,),
-                        Text('(220 reviews)', style: TextStyle(color: Colors.grey),)
+                        Text('(220)', style: TextStyle(color: Colors.grey),)
                       ],
                     )
                   ],
