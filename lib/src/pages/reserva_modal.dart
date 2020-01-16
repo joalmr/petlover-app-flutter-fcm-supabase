@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../main.dart';
+import 'package:proypet/src/pages/shared/text_field.dart';
 
 class ModalDataReserva extends StatefulWidget {
   @override
@@ -26,19 +26,20 @@ class _ModalData extends State<ModalDataReserva> {
           SizedBox(height: 10.0,),
           Text('Fecha'),
           SizedBox(height: 50.0,),
-          RaisedButton(
-            shape: shapeBtn,
-            color: colorSec,
-            textColor: Colors.white,
-            child: Text("Reservar", style: TextStyle(
-              fontWeight: FontWeight.normal
-            ),),
-            padding: const EdgeInsets.symmetric(
-              vertical: 16.0,
-              horizontal: 32.0,
-            ),
-            onPressed: (){},
-          )
+          FormControl().buttonSec('Reservar', (){}),
+          // RaisedButton(
+          //   shape: shapeBtn,
+          //   color: colorSec,
+          //   textColor: Colors.white,
+          //   child: Text("Reservar", style: TextStyle(
+          //     fontWeight: FontWeight.normal
+          //   ),),
+          //   padding: const EdgeInsets.symmetric(
+          //     vertical: 16.0,
+          //     horizontal: 32.0,
+          //   ),
+          //   onPressed: (){},
+          // )
         ],
       ),
     );

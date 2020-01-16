@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginSevenPageState createState() => _LoginSevenPageState();
-}
 
-class _LoginSevenPageState extends State<LoginPage> {
+class WaveClipper extends StatelessWidget {
+  final num _alto;
+  final num _numxy;
+  WaveClipper(this._alto, this._numxy);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        children: <Widget>[
-          Stack(
+    return Stack(
             children: <Widget>[
               ClipPath(
                 clipper: WaveClipper2(),
                 child: Container(
                   child: Column(),
                   width: double.infinity,
-                  height: 300,
+                  height: _alto,
                   decoration: BoxDecoration(
                     color: Colors.green[100]
-                      //gradient: LinearGradient(colors: [Color(0x22ff3a5a), Color(0x22fe494d)])
                   ),
                 ),
               ),
@@ -32,10 +26,9 @@ class _LoginSevenPageState extends State<LoginPage> {
                 child: Container(
                   child: Column(),
                   width: double.infinity,
-                  height: 300,
+                  height: _alto,
                   decoration: BoxDecoration(
                     color: Colors.green[200]
-                      //gradient: LinearGradient(colors: [Color(0x44ff3a5a), Color(0x44fe494d)])
                   ),
                 ),
               ),
@@ -49,14 +42,14 @@ class _LoginSevenPageState extends State<LoginPage> {
                       ),
                       Image(
                         image: AssetImage('images/proypet.png'),
-                        height:120,
-                        width: 120,
+                        height: _numxy,
+                        width: _numxy,
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        "Proypet".toUpperCase(),
+                        'Proypet'.toUpperCase(),
                         style: TextStyle(
                             color: Color.fromRGBO(89, 74, 70, 0.75),
                             fontWeight: FontWeight.w700,
@@ -65,109 +58,18 @@ class _LoginSevenPageState extends State<LoginPage> {
                     ],
                   ),
                   width: double.infinity,
-                  height: 300,
+                  height: _alto,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [colorMain, colorMain[400]])
                   ),
                 ),
               ),
             ],
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
-            child: Material(
-              elevation: 2.0,
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              child: TextField(
-                onChanged: (String value){},
-                cursorColor: colorMain,
-                decoration: InputDecoration(
-                    hintText: "Email",
-                    prefixIcon: Material(
-                      elevation: 0,
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      child: Icon(
-                        Icons.email,
-                        color: colorMain,
-                      ),
-                    ),
-                    border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
-            child: Material(
-              elevation: 2.0,
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              child: TextField(
-                obscureText: true,
-                onChanged: (String value){},
-                cursorColor: colorMain,
-                decoration: InputDecoration(
-                    hintText: "Contraseña",
-                    prefixIcon: Material(
-                      elevation: 0,
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                      child: Icon(
-                        Icons.lock,
-                        color: colorMain,
-                      ),
-                    ),
-                    border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    color: colorMain),
-                child: FlatButton(
-                  child: Text(
-                    "Ingresar",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18),
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                ),
-              )),
-              SizedBox(height: 20,),
-          Center(
-            child: Text("Olvidó contraseña ?".toUpperCase(), style: TextStyle(color:colorMain,fontSize: 12 ,fontWeight: FontWeight.w700),),
-          ),
-          SizedBox(height: 40,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("No tienes una cuenta ? ", style: TextStyle(color:Colors.black,fontSize: 12 ,fontWeight: FontWeight.normal),),
-              Text("Regístrate ", style: TextStyle(color:colorMain, fontWeight: FontWeight.w500,fontSize: 12, decoration: TextDecoration.underline )),
-
-            ],
-          )
-        ],
-      ),
-    );
+          );
   }
 }
+
+
 
 class WaveClipper1 extends CustomClipper<Path> {
   @override

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/reserva_modal.dart';
 // import 'package:proypet/src/pages/reserva_modal.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
+import 'package:proypet/src/pages/shared/text_field.dart';
 import '../../main.dart';
 
 class ReservaDetallePage extends StatelessWidget {
@@ -194,19 +196,18 @@ class ReservaDetallePage extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              RaisedButton(
-                shape: shapeBtn,
-                color: colorSec,
-                textColor: Colors.white,
-                child: Text('Reservar ahora',style: TextStyle(
-                  fontWeight: FontWeight.normal
-                ),),
-                elevation: 15.0,
-                padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 32.0),
-                onPressed: (){
-                  modal.mainModal(context);
-                },
-              )
+              FormControl().buttonSec('Reservar ahora', ()=>modal.mainModal(context,ModalDataReserva()) ),
+              // RaisedButton(
+              //   shape: shapeBtn,
+              //   color: colorSec,
+              //   textColor: Colors.white,
+              //   child: Text('Reservar ahora',style: TextStyle(
+              //     fontWeight: FontWeight.normal
+              //   ),),
+              //   elevation: 15.0,
+              //   padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 32.0),
+              //   onPressed: ()=>modal.mainModal(context,ModalDataReserva()),
+              // )
             ],
           ),
         ),
