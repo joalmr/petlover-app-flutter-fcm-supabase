@@ -50,7 +50,6 @@ class _ModalData extends State<ModalDataReserva> {
   Widget _crearDropDown(){
     return Material(
       child: DropdownButton(
-
         icon: Icon(Icons.keyboard_arrow_down),
         isExpanded: true,
         value: _opcionSeleccionada,

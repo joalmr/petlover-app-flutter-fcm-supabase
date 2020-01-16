@@ -22,6 +22,8 @@ final List vets = [
   },
 ];
 
+final _shape = BorderRadius.circular(100.0);
+
 class ReservaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ReservaPage extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            expandedHeight: 180.0,
+            expandedHeight: 165.0,
             backgroundColor: colorMain,
             floating: true,
             flexibleSpace: ListView(
@@ -44,17 +46,22 @@ class ReservaPage extends StatelessWidget {
                   )
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-                  padding: EdgeInsets.all(5.0),
+                  margin: EdgeInsets.symmetric(horizontal: 32.0,vertical: 15.0),
+                  padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(40.0)
+                    borderRadius: BorderRadius.circular(100.0),
                   ),
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Ingrese veterinaria',
                       border: InputBorder.none,
-                      icon: IconButton(onPressed: (){}, icon: Icon(Icons.search),)
+                      suffixIcon: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(100.0),
+                        ),
+                        child: IconButton(onPressed: (){}, icon: Icon(Icons.search),color: colorMain,tooltip: 'Buscar'))
                     ),
                   ),
                 )
