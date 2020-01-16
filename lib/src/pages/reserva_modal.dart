@@ -27,19 +27,6 @@ class _ModalData extends State<ModalDataReserva> {
           Text('Fecha'),
           SizedBox(height: 50.0,),
           FormControl().buttonSec('Reservar', (){}),
-          // RaisedButton(
-          //   shape: shapeBtn,
-          //   color: colorSec,
-          //   textColor: Colors.white,
-          //   child: Text("Reservar", style: TextStyle(
-          //     fontWeight: FontWeight.normal
-          //   ),),
-          //   padding: const EdgeInsets.symmetric(
-          //     vertical: 16.0,
-          //     horizontal: 32.0,
-          //   ),
-          //   onPressed: (){},
-          // )
         ],
       ),
     );

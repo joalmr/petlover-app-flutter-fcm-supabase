@@ -15,7 +15,6 @@ class NavigationBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.pets,),
             title: sinTexto,
-            
             activeIcon: Column(
               children: <Widget>[
                 Icon(Icons.pets,),
