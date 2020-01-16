@@ -1,5 +1,9 @@
+//import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/text_field.dart';
+import 'package:proypet/src/pages/shared/form_control.dart';
+
+//final _shape = BorderRadius.circular(100.0);
 
 class ModalDataReserva extends StatefulWidget {
   @override
@@ -44,14 +48,19 @@ class _ModalData extends State<ModalDataReserva> {
   }
 
   Widget _crearDropDown(){
-    return DropdownButton(
-      value: _opcionSeleccionada,
-      items: getOpcionesDropdown(),
-      onChanged: (opt){
-        setState(() {
-          _opcionSeleccionada=opt;
-        });
-      },
+    return Material(
+      child: DropdownButton(
+
+        icon: Icon(Icons.keyboard_arrow_down),
+        isExpanded: true,
+        value: _opcionSeleccionada,
+        items: getOpcionesDropdown(),
+        onChanged: (opt){
+          setState(() {
+            _opcionSeleccionada=opt;
+          });
+        },
+      ),
     );
   }
 }

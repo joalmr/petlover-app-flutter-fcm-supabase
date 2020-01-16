@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/text_field.dart';
+import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
 class SingupPage extends StatelessWidget {
