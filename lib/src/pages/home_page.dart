@@ -123,6 +123,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: colorSec,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      
     );
   }
 

@@ -22,7 +22,7 @@ final List vets = [
   },
 ];
 
-final _shape = BorderRadius.circular(100.0);
+//final _shape = BorderRadius.circular(100.0);
 
 class ReservaPage extends StatelessWidget {
   @override
