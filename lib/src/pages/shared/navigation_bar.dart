@@ -39,7 +39,7 @@ class NavigationBar extends StatelessWidget {
             title: Text('Atenciones',style: TextStyle(fontSize: 12.0)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment_late,),
+            icon: Icon(Icons.notifications,),
             title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
           ),
         ],
