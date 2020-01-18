@@ -74,4 +74,25 @@ class FormControl {
         ),
     );
   }
+
+  Widget buttonTer(_text,_funtion){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+      child: RaisedButton(
+          shape: _shapeB,
+          color: Colors.grey[300],
+          elevation: 2.0,
+          textColor: Colors.white,
+          child: Text(_text, 
+            style: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.normal
+            ),
+          ),
+          padding: EdgeInsets.symmetric(vertical: 14.0,horizontal: 32.0),
+          onPressed: _funtion,
+        ),
+    );
+  }
+
 }

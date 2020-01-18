@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 import '../../main.dart';
@@ -19,7 +20,7 @@ class MascotasPage extends StatelessWidget {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-            expandedHeight: 82.5,
+            expandedHeight: 165.0,
             backgroundColor: colorMain,
             floating: true,
             flexibleSpace: ListView(
@@ -32,6 +33,11 @@ class MascotasPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0
                   )
+                ),
+                SizedBox(height: 25.0,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: FormControl().buttonTer('Nueva mascota', (){}),
                 ),
               ],
             ),

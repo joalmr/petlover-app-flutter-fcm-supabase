@@ -46,10 +46,10 @@ class _NavigationBarState extends State<NavigationBar> {
           height: 50.0,
           width: 50.0,
           decoration: BoxDecoration(
-            color: colorMain,
+            color: colorSec,
             borderRadius: BorderRadius.circular(100.0),
           ),
-          child: Icon(Icons.search,color: Colors.white,),
+          child: Icon(Icons.search,color: colorMain),
         ),
       ),
       BottomNavigationBarItem(
