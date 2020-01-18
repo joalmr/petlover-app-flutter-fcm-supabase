@@ -74,12 +74,12 @@ class ReservaPage extends StatelessWidget {
               (BuildContext context, int index){
                 return _buildVets(context,index);
               },
-              childCount: 3
+              childCount: vets.length
             ),
           )
         ],
       ),
-      bottomNavigationBar: NavigationBar(),
+      //bottomNavigationBar: NavigationBar(),
     );
   }
 

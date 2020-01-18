@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,7 +21,10 @@ class _LoginSevenPageState extends State<LoginPage> {
           SizedBox(height: 20),
           FormControl().textfield('Contraseña', Icons.lock, true),
           SizedBox(height: 25.0),
-          FormControl().buttonPri('Ingresar', ()=>Navigator.pushNamed(context,'/')),
+          FormControl().buttonPri('Ingresar', ()=>Navigator.push(
+            context,MaterialPageRoute(
+              builder: (context) => NavigationBar()
+          ))),
           SizedBox(height: 20.0),
           Center(
             child: FlatButton(

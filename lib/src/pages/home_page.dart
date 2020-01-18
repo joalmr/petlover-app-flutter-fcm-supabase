@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/menu_page.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 import '../../main.dart';
 
@@ -114,15 +113,15 @@ class HomePage extends StatelessWidget {
           )
         ],        
       ),
-      bottomNavigationBar: NavigationBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context, 'reserva');
-        },
-        child: Icon(Icons.add),
-        backgroundColor: colorSec,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      // bottomNavigationBar: NavigationBar(),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     Navigator.pushNamed(context, 'reserva');
+      //   },
+      //   child: Icon(Icons.add),
+      //   backgroundColor: colorSec,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       
     );
   }
@@ -184,10 +183,8 @@ class HomePage extends StatelessWidget {
             Spacer(),
             IconButton(
               color: Colors.white,
-              icon: Icon(Icons.notifications),
-              onPressed: (){
-
-              },
+              icon: Icon(Icons.notifications_active),
+              onPressed: (){},
             ),
             IconButton(
               color: Colors.white,
