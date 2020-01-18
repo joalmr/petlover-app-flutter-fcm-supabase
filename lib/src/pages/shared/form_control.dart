@@ -74,7 +74,7 @@ class FormControl {
         ),
     );
   }
-
+//
   Widget buttonTer(_text,_funtion){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0.0),
