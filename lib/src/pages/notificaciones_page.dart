@@ -4,6 +4,7 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
+final List imagen2 = ['images/royal1.jpg','images/elegante1.jpg'];
 class NotificacionesPage extends StatelessWidget {
 
   @override
@@ -22,7 +23,15 @@ class NotificacionesPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: _swiperOtros(imagen),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: _swiperOtros(imagen2),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: _swiperOtros(imagen),
+            ),
           ],
         ),
       ),
