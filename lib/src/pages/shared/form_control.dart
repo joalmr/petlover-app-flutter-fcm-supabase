@@ -10,26 +10,52 @@ class FormControl {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Material(
-        elevation: 2.0,
+        elevation: 0.0,
         borderRadius: _shape,
+        color: Colors.grey[200],
         child: TextField(
           obscureText: _obscuretext,
           onChanged: (String value){},
           cursorColor: colorMain,
           decoration: InputDecoration(
-              hintText: _hinttext,
-              hintStyle: TextStyle(fontSize: 14.0),
-              prefixIcon: Material(
-                //elevation: 0.0,
-                borderRadius: _shape,
-                child: Icon(
-                  _icon,
-                  color: colorMain,
-                ),
+            hintText: _hinttext,
+            hintStyle: TextStyle(fontSize: 14.0),
+            prefixIcon: Material(
+              //elevation: 0.0,
+              borderRadius: _shape,
+              color: Colors.grey[200],
+              child: Icon(
+                _icon,
+                color: colorMain,
               ),
-              border: InputBorder.none,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)),
+            ),
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget textfieldBtn(_hinttext, _icon, _funtion){
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 32.0,vertical: 15.0),
+      padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(100.0),
+      ),
+      child: TextField(
+        cursorColor: colorMain,
+        decoration: InputDecoration(
+          hintText: _hinttext,
+          border: InputBorder.none,
+          suffixIcon: Container(
+            decoration: BoxDecoration(
+              color: colorMain,
+              borderRadius: BorderRadius.circular(100.0),
+            ),
+            child: IconButton(onPressed: _funtion, icon: _icon,color: Colors.grey[200],tooltip: 'Buscar'))
         ),
       ),
     );
@@ -60,7 +86,7 @@ class FormControl {
       padding: const EdgeInsets.symmetric(horizontal: 0.0),
       child: RaisedButton(
           shape: _shapeB,
-          color: colorSec,
+          color: colorMain,//colorSec,
           elevation: 2.0,
           textColor: Colors.white,
           child: Text(_text, 

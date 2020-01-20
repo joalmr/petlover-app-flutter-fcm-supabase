@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
+import 'package:proypet/src/pages/shared/form_control.dart';
 import '../../main.dart';
-import 'shared/navigation_bar.dart';
 
 final List vets = [
   {
@@ -28,47 +29,23 @@ class ReservaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorMain,
+        leading: leadingH,
+        title: titleH,
+        actions: actionsH,
+        elevation: 0,
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: 165.0,
-            backgroundColor: colorMain,
-            floating: true,
-            flexibleSpace: ListView(
+          SliverToBoxAdapter(
+            child: Column(
               children: <Widget>[
-                SizedBox(height: 35.0,),
-                Text('Establecimientos veterinarios', 
-                  textAlign: TextAlign.center, 
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0
-                  )
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 32.0,vertical: 15.0),
-                  padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(100.0),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Ingrese veterinaria',
-                      border: InputBorder.none,
-                      suffixIcon: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(100.0),
-                        ),
-                        child: IconButton(onPressed: (){}, icon: Icon(Icons.search),color: colorMain,tooltip: 'Buscar'))
-                    ),
-                  ),
-                )
+                SizedBox(height: 10.0,),
+                FormControl().textfieldBtn('Ingrese veterinaria..',Icon(Icons.search),(){})
               ],
             ),
           ),
-          SliverToBoxAdapter(child: SizedBox(height: 10.0,),),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index){
@@ -76,7 +53,7 @@ class ReservaPage extends StatelessWidget {
               },
               childCount: vets.length
             ),
-          )
+          ),
         ],
       ),
       //bottomNavigationBar: NavigationBar(),
@@ -92,8 +69,8 @@ class ReservaPage extends StatelessWidget {
           builder: (_)=>ReservaDetallePage(),
         )),
         child: Material(
-          elevation: 5.0,
-          borderRadius: BorderRadius.circular(5.0),
+          //elevation: 5.0,
+          //borderRadius: BorderRadius.circular(5.0),
           //color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +78,7 @@ class ReservaPage extends StatelessWidget {
               Stack(
                 children: <Widget>[
                   _swiperVets(vet['image']),
-                  Positioned(
+                  Positioned(//logo
                     bottom: 5.0,
                     right: 10.0,
                     child: Container(
@@ -109,7 +86,7 @@ class ReservaPage extends StatelessWidget {
                       //color: Colors.white,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(40.0),
+                        borderRadius: BorderRadius.circular(50.0),
                       ),
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
@@ -120,7 +97,7 @@ class ReservaPage extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -128,17 +105,17 @@ class ReservaPage extends StatelessWidget {
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold
                     ),),
-                    SizedBox(height: 5.0,),
-                    Text('Pequeña descripción'),
-                    SizedBox(height: 10.0,),
+                    SizedBox(height: 2.5,),
+                    Text('Pequeña descripción',maxLines: 1,),
+                    SizedBox(height: 2.5,),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Icon(Icons.star, color: Colors.green,),
-                        Icon(Icons.star, color: Colors.green,),
-                        Icon(Icons.star, color: Colors.green,),
-                        Icon(Icons.star, color: Colors.green,),
-                        Icon(Icons.star_border, color: Colors.green,),
+                        Icon(Icons.star, color: colorMain,),
+                        Icon(Icons.star, color: colorMain,),
+                        Icon(Icons.star, color: colorMain,),
+                        Icon(Icons.star, color: colorMain,),
+                        Icon(Icons.star_border, color: colorMain,),
                         SizedBox(width: 5.0,),
                         Text('(220)', style: TextStyle(color: Colors.grey),)
                       ],
@@ -154,6 +131,6 @@ class ReservaPage extends StatelessWidget {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen);    
+    return CardSwiper(imagenes : imagen,autoplay1: false);    
   }
 }

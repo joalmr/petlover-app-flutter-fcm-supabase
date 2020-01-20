@@ -1,11 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/main.dart';
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/pages/shared/card_swiper.dart';
 
+final List imagen = ['images/elegante1.jpg','images/rayal1.jpg'];
 class NotificacionesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Notificaciones'))
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorMain,
+        leading: leadingH,
+        title: titleH,
+        actions: actionsH,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10.0),
+              child: _swiperOtros(imagen)
+            )
+          ],
+        ),
+      ),
     );
+  }
+
+  Widget _swiperOtros(imagen){
+    return CardSwiper(imagenes : imagen,autoplay1: true);    
   }
 }

@@ -1,6 +1,7 @@
 //import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
 
 //final _shape = BorderRadius.circular(100.0);
@@ -16,7 +17,7 @@ class _ModalData extends State<ModalDataReserva> {
     {'cod':'2','nombre':'Pirulin',},
     {'cod':'3','nombre':'Tito',},
   ];
-  String _opcionSeleccionada='1';
+  //String _opcionSeleccionada='1';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _ModalData extends State<ModalDataReserva> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text('Mascota'),
-          _crearDropDown(),
+          DdlControl2(lista: _mascota),
           SizedBox(height: 10.0,),
           Text('Fecha'),
           SizedBox(height: 50.0,),
@@ -36,30 +37,30 @@ class _ModalData extends State<ModalDataReserva> {
     );
   }
 
-  List<DropdownMenuItem<String>> getOpcionesDropdown(){
-    List<DropdownMenuItem<String>> lista = new List();
-    _mascota.forEach((_mascota){
-      lista.add(DropdownMenuItem(
-        child: Text(_mascota['nombre']),
-        value: _mascota['cod'],
-      ));
-    });
-    return lista;
-  }
+  // List<DropdownMenuItem<String>> getOpcionesDropdown(){
+  //   List<DropdownMenuItem<String>> lista = new List();
+  //   _mascota.forEach((_mascota){
+  //     lista.add(DropdownMenuItem(
+  //       child: Text(_mascota['nombre']),
+  //       value: _mascota['cod'],
+  //     ));
+  //   });
+  //   return lista;
+  // }
 
-  Widget _crearDropDown(){
-    return Material(
-      child: DropdownButton(
-        icon: Icon(Icons.keyboard_arrow_down),
-        isExpanded: true,
-        value: _opcionSeleccionada,
-        items: getOpcionesDropdown(),
-        onChanged: (opt){
-          setState(() {
-            _opcionSeleccionada=opt;
-          });
-        },
-      ),
-    );
-  }
+  // Widget _crearDropDown(){
+  //   return Material(
+  //     child: DropdownButton(
+  //       icon: Icon(Icons.keyboard_arrow_down),
+  //       isExpanded: true,
+  //       value: _opcionSeleccionada,
+  //       items: getOpcionesDropdown(),
+  //       onChanged: (opt){
+  //         setState(() {
+  //           _opcionSeleccionada=opt;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
 }

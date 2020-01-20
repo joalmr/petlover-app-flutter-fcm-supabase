@@ -15,7 +15,7 @@ class ReservaDetallePage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
             SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 0.0,bottom: 0.0),
+              //padding: const EdgeInsets.only(top: 0.0,bottom: 0.0),
               child: Column(                
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -101,7 +101,7 @@ class ReservaDetallePage extends StatelessWidget {
                                       image: AssetImage('images/veterinaria.png'),
                                     ),
                                   ),
-                                  backgroundColor: colorSec,
+                                  backgroundColor: Colors.grey[200],
                                 ),
                               ],
                             )
@@ -248,6 +248,6 @@ class ReservaDetallePage extends StatelessWidget {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen);    
+    return CardSwiper(imagenes : imagen,autoplay1: false,);    
   }
 }

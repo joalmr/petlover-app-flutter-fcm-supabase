@@ -28,44 +28,28 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Mascotas',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.assignment_late,),
+        icon: Icon(Icons.assignment,),
         title: Text('Atenciones',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-        icon: Container(
-          height: 50.0,
-          width: 50.0,
-          decoration: BoxDecoration(
-            color: colorSec,
-            borderRadius: BorderRadius.circular(100.0),
-          ),
-          child: Icon(Icons.search,color: Colors.white70,),
-        ),
-        title: Text('',style: TextStyle(fontSize: 0.0)),
-        activeIcon: Container(
-          height: 50.0,
-          width: 50.0,
-          decoration: BoxDecoration(
-            color: colorSec,
-            borderRadius: BorderRadius.circular(100.0),
-          ),
-          child: Icon(Icons.search,color: colorMain),
-        ),
+        icon: Icon(Icons.search,),
+        title: Text('Veterinarias',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.pets,),
         title: Text('Greco',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-            icon: Icon(Icons.notifications,),
-            title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
+            icon: Icon(Icons.info,),
+            title: Text('Otros',style: TextStyle(fontSize: 12.0)),
           ),
     ];
-    assert(_kTabPages.length == _kBottmonNavBarItems.length);
+
+    //assert(_kTabPages.length == _kBottmonNavBarItems.length);
     final bottomNavBar = BottomNavigationBar(
       iconSize: 28.0,
       selectedItemColor: colorMain,
-      unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
+      unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),//Colors.grey[300],
       items: _kBottmonNavBarItems,
       currentIndex: _currentTabIndex,
       type: BottomNavigationBarType.fixed,
