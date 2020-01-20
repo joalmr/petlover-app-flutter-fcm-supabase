@@ -54,6 +54,9 @@ class ReservaPage extends StatelessWidget {
               childCount: vets.length
             ),
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(height: 50.0),
+          ),
         ],
       ),
       //bottomNavigationBar: NavigationBar(),
@@ -63,7 +66,7 @@ class ReservaPage extends StatelessWidget {
   Widget _buildVets(BuildContext context, int index){
     var vet = vets[index % vets.length];
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
+      margin: EdgeInsets.symmetric(vertical: 7.5,horizontal: 20.0),
       child: InkWell(
         onTap: ()=>Navigator.push(context, MaterialPageRoute(
           builder: (_)=>ReservaDetallePage(),

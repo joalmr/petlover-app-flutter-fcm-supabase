@@ -3,7 +3,7 @@ import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 
-final List imagen = ['images/elegante1.jpg','images/rayal1.jpg'];
+final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
 class NotificacionesPage extends StatelessWidget {
 
   @override
@@ -19,9 +19,9 @@ class NotificacionesPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.0),
-              child: _swiperOtros(imagen)
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: _swiperOtros(imagen),
             )
           ],
         ),
