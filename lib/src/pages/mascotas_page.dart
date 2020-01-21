@@ -72,7 +72,7 @@ Widget _buildMascotas(BuildContext context, int index){
     padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
     decoration: BoxDecoration(
       color: Colors.grey[100],
-      borderRadius: BorderRadius.circular(5.0),
+      borderRadius: BorderRadius.circular(10.0),
     ),
     child: Row(
       children: <Widget>[

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
+import 'package:proypet/src/pages/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
@@ -9,17 +10,17 @@ final List vets = [
   {
     'image':['images/vet_prueba.jpg','images/imagesvet.jpg'],
     'title':'Vet prueba 1',
-    'logo':'images/veterinaria.png'
+    'logo':'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
   },
   {
     'image':['images/imagesvet.jpg','images/vet_prueba.jpg'],
     'title':'Vet prueba 2',
-    'logo':'images/veterinaria2.png'
+    'logo':'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
   },
   {
     'image':['images/vet_prueba.jpg','images/imagesvet.jpg'],
     'title':'Vet prueba 3',
-    'logo':'images/veterinaria3.png'
+    'logo':'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
   },
 ];
 
@@ -60,6 +61,14 @@ class ReservaPage extends StatelessWidget {
         ],
       ),
       //bottomNavigationBar: NavigationBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+          builder: (_)=>ReservaMapaPage(),
+        )),
+        child: Icon(Icons.location_on),
+        backgroundColor: colorMain,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );
   }
 
@@ -93,7 +102,7 @@ class ReservaPage extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
-                        backgroundImage: AssetImage(vet['logo']),
+                        backgroundImage: NetworkImage(vet['logo']),
                       ),
                     ),
                   ),

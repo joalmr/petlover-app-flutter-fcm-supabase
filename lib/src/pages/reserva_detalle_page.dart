@@ -95,13 +95,14 @@ class ReservaDetallePage extends StatelessWidget {
                               children: <Widget>[//logo
                                 CircleAvatar(
                                   radius: 25.0,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(7.0),
-                                    child: Image(
-                                      image: AssetImage('images/veterinaria.png'),
-                                    ),
-                                  ),
+                                  // child: Padding(
+                                  //   padding: const EdgeInsets.all(7.0),
+                                  //   child: Image(
+                                  //     image: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                  //   ),
+                                  // ),
                                   backgroundColor: Colors.grey[200],
+                                  backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
                                 ),
                               ],
                             )
