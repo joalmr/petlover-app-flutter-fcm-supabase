@@ -29,6 +29,45 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       ..addListener(_onScroll);
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Establecimientos'),
+        elevation: 0.0,
+      ),
+      body: Stack(
+        children: <Widget>[
+          Container(
+              height: double.infinity,//MediaQuery.of(context).size.height,
+              width: double.infinity,//MediaQuery.of(context).size.width,
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(-12.013286, -77.101933), zoom: 12.0),
+                markers: Set.from(allMarkers),
+                onMapCreated: mapCreated,
+              ),
+            ),
+            Positioned(
+              bottom: 20.0,
+              child: Container(
+                height: 200.0,
+                width: MediaQuery.of(context).size.width,
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: vetLocales.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _vetShopList(index);
+                  },
+                ),
+              ),
+            )         
+        ],
+      ),
+    );
+  }
+
   void _onScroll() {
     if (_pageController.page.toInt() != prevPage) {
       prevPage = _pageController.page.toInt();
@@ -36,7 +75,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
     }
   }
 
-  _coffeeShopList(index) {
+  _vetShopList(index) {
     return AnimatedBuilder(
       animation: _pageController,
       builder: (BuildContext context, Widget widget) {
@@ -121,46 +160,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
           ])),
     );
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Establecimientos'),
-        elevation: 0.0,
-      ),
-      body: Stack(
-        children: <Widget>[
-          Container(
-              height: double.infinity,//MediaQuery.of(context).size.height,
-              width: double.infinity,//MediaQuery.of(context).size.width,
-              child: GoogleMap(
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(-12.013286, -77.101933), zoom: 12.0),
-                markers: Set.from(allMarkers),
-                onMapCreated: mapCreated,
-              ),
-            ),
-            Positioned(
-              bottom: 20.0,
-              child: Container(
-                height: 200.0,
-                width: MediaQuery.of(context).size.width,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: vetLocales.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _coffeeShopList(index);
-                  },
-                ),
-              ),
-            )         
-        ],
-      ),
-    );
-  }
-
+///////////////////////////////////////
   void mapCreated(controller){
     setState(() {
       _controller = controller;

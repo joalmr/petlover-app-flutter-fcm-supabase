@@ -148,6 +148,6 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperPublicidad(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: true);    
+    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 10.0,);    
   }
 }

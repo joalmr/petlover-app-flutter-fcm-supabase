@@ -5,8 +5,9 @@ import 'package:proypet/main.dart';
 class CardSwiper extends StatelessWidget {
   final List<dynamic> imagenes;
   final bool autoplay1;
+  final double radius;
 
-  CardSwiper({@required this.imagenes,this.autoplay1});
+  CardSwiper({@required this.imagenes,this.autoplay1,this.radius});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CardSwiper extends StatelessWidget {
         itemBuilder: (BuildContext context, int index){
           return Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(radius),
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(imagenes[index])

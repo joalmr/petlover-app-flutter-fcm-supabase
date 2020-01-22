@@ -58,9 +58,10 @@ class ReservaDetallePage extends StatelessWidget {
                                 children: <Widget>[
                                   Row(//estrellas
                                     children: <Widget>[
-                                      Icon(
-                                        Icons.star,
+                                      IconButton(
+                                        icon: Icon(Icons.star),
                                         color: colorMain,
+                                        onPressed: ()=>Navigator.pushNamed(context,'ejemplo'),
                                       ),
                                       Icon(
                                         Icons.star,
@@ -166,37 +167,33 @@ class ReservaDetallePage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
+        color: colorMain,
+        child: 
+        Padding(
+          padding: EdgeInsets.all(0.0),
           child: Row(
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                Container(
-                  height:42.0,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0, 0, 0),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Text('4.18',
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0, color: Colors.grey),
-                              ),
-                              Icon(Icons.star,color: Colors.grey,size: 24.0,),
-                            ],
-                          ),
-                          Text('200 calif.',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0, color: colorSec),)
-                        ],
-                      ),
+              FlatButton(
+                onPressed: ()=>modal.mainModal(context,ModalDataReserva()),
+                child: Container(
+                  height: 70.0,
+                  width: MediaQuery.of(context).size.width-40.0,
+                  //padding: EdgeInsets.only(top: 0.0),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.3), size: 11.0),
+                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.5), size: 12.0),
+                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.7), size: 13.0),
+                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.9), size: 14.0),
+                        Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
+                      ],
                     ),
-                  ),
+                  )
                 ),
-                ],
-              ),
-              Spacer(),
-              FormControl().buttonSec('Reservar ahora', ()=>modal.mainModal(context,ModalDataReserva()) ),
+              )
+              //FormControl().buttonSec('Reservar ahora', ()=>modal.mainModal(context,ModalDataReserva()) ),
             ],
           ),
         ),
@@ -239,16 +236,12 @@ class ReservaDetallePage extends StatelessWidget {
           height: 30,
           width: 30,
         ),
-        // CircleAvatar(
-        //   backgroundColor: colorMain,
-        //   backgroundImage: AssetImage(imagen),
-        // ),
         Text(nombre,style: TextStyle(fontWeight: FontWeight.bold),)
       ],
     );
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: false,);    
+    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 10.0);    
   }
 }
