@@ -12,193 +12,197 @@ class ReservaDetallePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Modal modal = new Modal();
     return Scaffold(
+      
       body: Stack(
-        children: <Widget>[
-            SingleChildScrollView(
-              //padding: const EdgeInsets.only(top: 0.0,bottom: 0.0),
-              child: Column(                
-                crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            color: colorMain,
+          ),
+          Positioned(
+            bottom: 0.0,
+            height: 100.0,
+            child: FlatButton(
+              onPressed: ()=>modal.mainModal(context,ModalDataReserva()),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(top: 35.0),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.3), size: 11.0),
+                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.5), size: 12.0),
+                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.7), size: 13.0),
+                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.9), size: 14.0),
+                      Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
+                    ],
+                  ),
+                )
+              ),
+            ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 65.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
+              color: Colors.white
+            ),
+            child: SingleChildScrollView(
+              child: Column(
                 children: <Widget>[
                   Container(
-                    height: 265,
+                    height: 325.0,
                     width: double.infinity,
                     child: _swiperVets(vets)
                   ),
-                  const SizedBox(height: 5),
+                  SizedBox(height: 5.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                    child: Text('Veterinaria'.toUpperCase(),
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 10.0,
-                        fontWeight: FontWeight.bold,
-                        
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width - 0.0,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Icon(Icons.location_on, size: 12.0, color: Colors.grey),
+                                  Text('1 km de distancia',
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: Colors.grey
+                                  ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 2.0),
+                              Text('Abc home',
+                              style: TextStyle(
+                                fontSize: 25.0,
+                                fontWeight: FontWeight.w600
+                              )
+                              )
+                            ],
+                          ),
+                          Container(
+                            height: 45.0,
+                            width: 45.0,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(100.0),
+                              image: DecorationImage(
+                                image: AssetImage('images/veterinaria3.png'),
+                                fit: BoxFit.cover
+                              )
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal:22.0),
-                    child: Text(
-                      "Vet Prueba",
-                      style: TextStyle( fontSize: 26.0, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 22.0),
-                    //color: Colors.white,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(//estrellas
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(//estrellas
-                                    children: <Widget>[
-                                      IconButton(
-                                        icon: Icon(Icons.star),
-                                        color: colorMain,
-                                        onPressed: ()=>Navigator.pushNamed(context,'ejemplo'),
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: colorMain,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: colorMain,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: colorMain,
-                                      ),
-                                      Icon(
-                                        Icons.star_border,
-                                        color: colorMain,
-                                      ),
-                                    ],
-                                  ),
-                                  Text.rich(TextSpan(children: [
-                                    WidgetSpan(
-                                      child: Icon(Icons.location_on, size: 16.0, color: Colors.grey,)
-                                    ),
-                                    TextSpan(
-                                      text: "1 km de distancia"
-                                    ),
-                                  ]), style: TextStyle(color: Colors.grey, fontSize: 12.0),)
-                                ],
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Row(
+                    children: <Widget>[
+                      Text('Recomendación',
+                          style: TextStyle(
+                              fontSize: 15.0,
+                              color: Color(0xFF6A6A6A),
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(width: 15.0),
+                      Stack(
+                        children: <Widget>[
+                          Container(height: 40.0, width: 100.0),
+                          Positioned(
+                            left: 10.0,
+                            child: Container(
+                              height: 40.0,
+                              width: 40.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: colorMain //Color(0xFFFE7050)
+                              ),
+                              child: Center(
+                                child: Text('+1.2k',
+                                  style: TextStyle(
+                                    fontSize: 12.0, color: Colors.white
+                                  )
+                                ),
                               ),
                             ),
-                            Column(
-                              children: <Widget>[//logo
-                                CircleAvatar(
-                                  radius: 25.0,
-                                  // child: Padding(
-                                  //   padding: const EdgeInsets.all(7.0),
-                                  //   child: Image(
-                                  //     image: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
-                                  //   ),
-                                  // ),
-                                  backgroundColor: Colors.grey[200],
-                                  backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
-                                ),
-                              ],
-                            )
+                          ),
+                          Row(
+                            children: <Widget>[
+                              SizedBox(width: 55.0),
+                              Container(
+                                height: 40.0,
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    color: Colors.black.withOpacity(0.2)),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Icon(Icons.star, color: Colors.white, size: 12.0),
+                                      SizedBox(width: 5.0),
+                                      Text('4.3',style: TextStyle(color: Colors.white))
+                                    ],
+                                  ),
+                                )
+                              )
                           ],
                         ),
-                        const SizedBox(height: 25.0),
-                        //scroll horizontal
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: _servicios(),
-                        ),
-                        SizedBox(height: 25.0),
-                        Text("Descripción".toUpperCase(), style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.0
-                        ),),
-                        const SizedBox(height: 10.0),
-                        Text(
-                            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14.0
-                            ),),
-                        const SizedBox(height: 10.0),
-                        Text(
-                            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14.0
-                            ),),
-                        const SizedBox(height: 10.0),
-                        Text(
-                            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14.0
-                            ),),
-                        const SizedBox(height: 10.0),
-                        Text(
-                            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?", textAlign: TextAlign.justify, style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 14.0
-                            ),),
-                      ],
+                        ],
+                      ),
+                    ],
+                ),
+                  ),
+                
+                  SizedBox(height: 20.0),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                    //margin: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: _servicios(),
                     ),
                   ),
-                ],
+                  
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[  
+                        Text('Descripción',
+                          style: TextStyle(
+                              fontSize: 15.0,
+                              color: Color(0xFF6A6A6A),
+                              fontWeight: FontWeight.w600)),  
+                        SizedBox(height: 10.0,),
+                        // Text('Descripción',style: TextStyle(fontWeight: FontWeight.bold,),textAlign: TextAlign.left,),                    
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                      ],
+                    )
+                  ),
+                                  ],
               ),
             ),
-            Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              centerTitle: true,
-              title: Text("",style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal
-              ),),
-            ),
           ),
-        ],
+        ]
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: colorMain,
-        child: 
-        Padding(
-          padding: EdgeInsets.all(0.0),
-          child: Row(
-            children: <Widget>[
-              FlatButton(
-                onPressed: ()=>modal.mainModal(context,ModalDataReserva()),
-                child: Container(
-                  height: 70.0,
-                  width: MediaQuery.of(context).size.width-40.0,
-                  //padding: EdgeInsets.only(top: 0.0),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.3), size: 11.0),
-                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.5), size: 12.0),
-                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.7), size: 13.0),
-                        Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.9), size: 14.0),
-                        Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
-                      ],
-                    ),
-                  )
-                ),
-              )
-              //FormControl().buttonSec('Reservar ahora', ()=>modal.mainModal(context,ModalDataReserva()) ),
-            ],
-          ),
-        ),
-      ),
-
     );
   }
 
