@@ -172,7 +172,7 @@ class ReservaDetallePage extends StatelessWidget {
                   SizedBox(height: 20.0),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5.0),
-                    //margin: EdgeInsets.symmetric(horizontal: 10.0),
+                    alignment: Alignment.topLeft,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: _servicios(),
@@ -221,6 +221,8 @@ class ReservaDetallePage extends StatelessWidget {
 
   Widget _servicios(){
     return Row(
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         //servicios()
         _icoServicio('images/veterinaria2.png','Servicio 1'),

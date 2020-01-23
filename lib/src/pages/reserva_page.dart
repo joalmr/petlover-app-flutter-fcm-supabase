@@ -77,7 +77,7 @@ class ReservaPage extends StatelessWidget {
   Widget _buildVets(BuildContext context, int index){
     var vet = vetLocales[index % vetLocales.length];
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 9.5,horizontal: 20.0),
+      margin: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
       child: InkWell(
         onTap: ()=>Navigator.push(context, MaterialPageRoute(
           builder: (_)=>ReservaDetallePage(),
