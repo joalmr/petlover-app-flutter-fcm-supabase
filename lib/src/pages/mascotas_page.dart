@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/mascotas_editar_page.dart';
+import 'package:proypet/src/pages/model/mascota_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
 
@@ -65,7 +66,7 @@ class MascotasPage extends StatelessWidget {
 }
 
 Widget _buildMascotas(BuildContext context, int index){
-  var mascota = mascotas[index % mascotas.length];
+  var mascota = mascotaList[index % mascotaList.length];
   return Container(
     height: 110.0,
     margin: EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
@@ -83,7 +84,7 @@ Widget _buildMascotas(BuildContext context, int index){
             shape: BoxShape.circle,
             image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(mascota['foto'])
+                image: AssetImage(mascota.foto)
             )
           )
         ),
@@ -97,7 +98,7 @@ Widget _buildMascotas(BuildContext context, int index){
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      mascota['nombre'],
+                      mascota.nombre,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -107,7 +108,7 @@ Widget _buildMascotas(BuildContext context, int index){
                     ),
                     const Padding(padding: EdgeInsets.only(bottom: 2.0)),
                     Text(
-                      mascota['raza'],
+                      mascota.raza,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -117,7 +118,7 @@ Widget _buildMascotas(BuildContext context, int index){
                     ),
                     const Padding(padding: EdgeInsets.only(bottom: 2.0)),
                     Text(
-                      mascota['edad'],
+                      mascota.edad,
                       style: const TextStyle(
                         fontSize: 12.0,
                         color: Colors.black87,

@@ -14,17 +14,17 @@ class Vet {
   
 
   Vet({
-      this.idvet,
-      this.nombre,
-      this.estrellas,
-      this.votantes,
-      this.direccion,
-      this.distancia,
-      this.descripcion,
-      this.locationCoords,
-      this.imagen,
-      this.logo
-      });
+    this.idvet,
+    this.nombre,
+    this.estrellas,
+    this.votantes,
+    this.direccion,
+    this.distancia,
+    this.descripcion,
+    this.locationCoords,
+    this.imagen,
+    this.logo
+  });
 }
 
 final List<Vet> vetLocales = [
