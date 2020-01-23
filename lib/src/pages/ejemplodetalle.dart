@@ -463,6 +463,6 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 0.0);    
+    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 0.0,height1: 145.0,);    
   }
 }

@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
                 miCard(),
                 SizedBox(height: 15.0,),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
                   child: _swiperPublicidad(publicidad),
                 ),
               ],
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
     return Card(
       elevation: 4.0,
       color: Colors.white,
-      margin: EdgeInsets.all(16.0),
+      margin: EdgeInsets.symmetric(horizontal: 22.0,vertical: 16.0),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -148,6 +148,6 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperPublicidad(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 10.0,);    
+    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 5.0,height1: 145.0);    
   }
 }

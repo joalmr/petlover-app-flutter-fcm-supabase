@@ -6,13 +6,14 @@ class CardSwiper extends StatelessWidget {
   final List<dynamic> imagenes;
   final bool autoplay1;
   final double radius;
+  final double height1;
 
-  CardSwiper({@required this.imagenes,this.autoplay1,this.radius});
+  CardSwiper({@required this.imagenes,this.autoplay1,this.radius,this.height1});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 145.0,
+      height: height1,
       width: double.infinity,
       child: Swiper(
         autoplay: autoplay1,

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_modal.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
-import 'package:proypet/src/pages/shared/form_control.dart';
+
 import '../../main.dart';
 
 class ReservaDetallePage extends StatelessWidget {
   //final String image = "images/vet_prueba.jpg";
-  final List vets = ['images/vet_prueba.jpg','images/imagesvet.jpg'];
+  // final List vets = ['images/vet_prueba.jpg','images/imagesvet.jpg'];
   @override
   Widget build(BuildContext context) {
     Modal modal = new Modal();
@@ -55,11 +56,11 @@ class ReservaDetallePage extends StatelessWidget {
                   Container(
                     height: 325.0,
                     width: double.infinity,
-                    child: _swiperVets(vets)
+                    child: _swiperVets(vetLocales[1].imagen)
                   ),
                   SizedBox(height: 5.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width - 0.0,
                       child: Row(
@@ -71,7 +72,7 @@ class ReservaDetallePage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Icon(Icons.location_on, size: 12.0, color: Colors.grey),
-                                  Text('1 km de distancia',
+                                  Text(vetLocales[1].distancia+' de distancia',
                                   style: TextStyle(
                                     fontSize: 12.0,
                                     color: Colors.grey
@@ -80,7 +81,7 @@ class ReservaDetallePage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 2.0),
-                              Text('Abc home',
+                              Text(vetLocales[1].nombre,
                               style: TextStyle(
                                 fontSize: 25.0,
                                 fontWeight: FontWeight.w600
@@ -95,7 +96,7 @@ class ReservaDetallePage extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(100.0),
                               image: DecorationImage(
-                                image: AssetImage('images/veterinaria3.png'),
+                                image: NetworkImage(vetLocales[1].logo),
                                 fit: BoxFit.cover
                               )
                             ),
@@ -105,7 +106,7 @@ class ReservaDetallePage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: const EdgeInsets.only(left: 22.0),
                     child: Row(
                     children: <Widget>[
                       Text('Recomendación',
@@ -127,7 +128,7 @@ class ReservaDetallePage extends StatelessWidget {
                                 color: colorMain //Color(0xFFFE7050)
                               ),
                               child: Center(
-                                child: Text('+1.2k',
+                                child: Text(vetLocales[1].votantes,
                                   style: TextStyle(
                                     fontSize: 12.0, color: Colors.white
                                   )
@@ -150,7 +151,7 @@ class ReservaDetallePage extends StatelessWidget {
                                     children: <Widget>[
                                       Icon(Icons.star, color: Colors.white, size: 12.0),
                                       SizedBox(width: 5.0),
-                                      Text('4.3',style: TextStyle(color: Colors.white))
+                                      Text(vetLocales[1].estrellas,style: TextStyle(color: Colors.white))
                                     ],
                                   ),
                                 )
@@ -165,7 +166,7 @@ class ReservaDetallePage extends StatelessWidget {
                 
                   SizedBox(height: 20.0),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                    padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5.0),
                     //margin: EdgeInsets.symmetric(horizontal: 10.0),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -174,7 +175,7 @@ class ReservaDetallePage extends StatelessWidget {
                   ),
                   
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+                    padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -185,15 +186,8 @@ class ReservaDetallePage extends StatelessWidget {
                               color: Color(0xFF6A6A6A),
                               fontWeight: FontWeight.w600)),  
                         SizedBox(height: 10.0,),
-                        // Text('Descripción',style: TextStyle(fontWeight: FontWeight.bold,),textAlign: TextAlign.left,),                    
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
-                        Text('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?'),
+                        Text(vetLocales[1].descripcion,
+                          style: TextStyle(),textAlign: TextAlign.justify,),
                       ],
                     )
                   ),
@@ -246,6 +240,6 @@ class ReservaDetallePage extends StatelessWidget {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 10.0);    
+    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 0.0,height1: 145.0);    
   }
 }

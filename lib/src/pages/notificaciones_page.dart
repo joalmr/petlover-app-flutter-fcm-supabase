@@ -39,6 +39,6 @@ class NotificacionesPage extends StatelessWidget {
   }
 
   Widget _swiperOtros(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 10.0);    
+    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 10.0,height1: 145.0);    
   }
 }

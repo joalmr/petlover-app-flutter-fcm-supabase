@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
-import 'package:proypet/src/pages/vet_model.dart';
+
 
 class ReservaMapaPage extends StatefulWidget {
   @override
@@ -14,6 +15,15 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   PageController _pageController;
   int prevPage;
   
+  nombreVet(index){
+    if(vetLocales[index].nombre.length>30){
+      return vetLocales[index].nombre.substring(0,29);
+    }
+    else{
+      return vetLocales[index].nombre;
+    }
+  }
+
   @override
   void initState() {
     //implement initState
@@ -127,7 +137,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                                       bottomLeft: Radius.circular(10.0),
                                       topLeft: Radius.circular(10.0)),
                                   image: DecorationImage(
-                                      image: NetworkImage(vetLocales[index].imagen),
+                                      image: NetworkImage(vetLocales[index].logo),
                                       fit: BoxFit.cover))),
                           SizedBox(width: 5.0),
                           Column(
@@ -135,7 +145,8 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  vetLocales[index].nombre,
+                                  //vetLocales[index].nombre,
+                                  nombreVet(index),
                                   style: TextStyle(
                                       fontSize: 12.5,
                                       fontWeight: FontWeight.bold),
