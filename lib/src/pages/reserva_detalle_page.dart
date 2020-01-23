@@ -172,7 +172,7 @@ class ReservaDetallePage extends StatelessWidget {
                   SizedBox(height: 20.0),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5.0),
-                    alignment: Alignment.topLeft,
+                    //alignment: Alignment.topLeft,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: _servicios(),
