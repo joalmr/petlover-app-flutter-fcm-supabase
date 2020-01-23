@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_modal.dart';
@@ -13,7 +15,10 @@ class ReservaDetallePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Modal modal = new Modal();
     return Scaffold(
-      
+      // appBar: AppBar(
+      //   backgroundColor: Colors.black.withOpacity(0.2),
+      //   elevation: 0.0,
+      // ),
       body: Stack(
         children: [
           Container(
@@ -193,6 +198,20 @@ class ReservaDetallePage extends StatelessWidget {
                   ),
                                   ],
               ),
+            ),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
+              title: Text("",style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.normal
+              ),),
             ),
           ),
         ]
