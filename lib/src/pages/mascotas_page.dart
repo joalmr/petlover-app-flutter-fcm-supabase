@@ -29,29 +29,28 @@ class MascotasPage extends StatelessWidget {
         elevation: 0,
       ),
       body: CustomScrollView(
-          slivers: <Widget>[
-            SliverToBoxAdapter(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 15.0,),
-                  FormControl().buttonSec('Agregar mascota',()=>Navigator.push(context, MaterialPageRoute(
-                    builder: (_)=>MascotaAgregarPage(),
-                  ))),
-                  SizedBox(height: 10.0,),
-                ],
-              ),
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 15.0,),
+                FormControl().buttonSec('Agregar mascota',()=>Navigator.push(context, MaterialPageRoute(
+                  builder: (_)=>MascotaAgregarPage(),
+                ))),
+                SizedBox(height: 10.0,),
+              ],
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index){
-                  return _buildMascotas(context,index);
-                },
-                childCount: mascotas.length
-              ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index){
+                return _buildMascotas(context,index);
+              },
+              childCount: mascotas.length
             ),
-          ],
-        ),
-      
+          ),
+        ],
+      ),
     );
     
   }

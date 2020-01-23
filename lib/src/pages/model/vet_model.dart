@@ -11,6 +11,8 @@ class Vet {
   LatLng locationCoords;
   List<String> imagen;
   String logo;
+  List<String> servicio;
+  List<String> imagenServicio;
   
 
   Vet({
@@ -23,8 +25,17 @@ class Vet {
     this.descripcion,
     this.locationCoords,
     this.imagen,
-    this.logo
+    this.logo,
+    this.servicio,
+    this.imagenServicio
   });
+}
+
+class Servicio {
+  String servicio;
+  String imagenServicio;
+
+  Servicio(List<String> servicio, List<String> imagenServicio);
 }
 
 final List<Vet> vetLocales = [
@@ -39,7 +50,9 @@ final List<Vet> vetLocales = [
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
       locationCoords: LatLng(-12.009395, -77.105314),
       imagen: ['images/vet_prueba.jpg','images/imagesvet.jpg'],
-      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
+      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG',
+      servicio: ['Servicio 1','Servicio 3'],
+      imagenServicio: ['images/veterinaria2.png','images/veterinaria3.png']
       ),
   Vet(
       idvet:2,
@@ -52,7 +65,9 @@ final List<Vet> vetLocales = [
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
       locationCoords: LatLng(-12.008109, -77.102396),
       imagen: ['images/vet_prueba.jpg','images/imagesvet.jpg'],
-      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_81.JPEG'
+      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_81.JPEG',
+      servicio: ['Servicio 1','Servicio 2','Servicio 3','Servicio 1','Servicio 2','Servicio 3','Servicio 1','Servicio 2','Servicio 3','Servicio 1','Servicio 2','Servicio 3'],
+      imagenServicio: ['images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png','images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png','images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png','images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png']
       ),
   Vet(
       idvet:3,
@@ -65,7 +80,9 @@ final List<Vet> vetLocales = [
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
       locationCoords: LatLng(-12.053141, -77.085230),
       imagen: ['images/vet_prueba.jpg','images/imagesvet.jpg'],
-      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_82.JPG'
+      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_82.JPG',
+      servicio: ['Servicio 1','Servicio 2','Servicio 3'],
+      imagenServicio: ['images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png']
       ),
   Vet(
       idvet:4,
@@ -78,7 +95,9 @@ final List<Vet> vetLocales = [
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
       locationCoords: LatLng(-12.072574, -77.164833),
       imagen: ['images/vet_prueba.jpg','images/imagesvet.jpg'],
-      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2.PNG'
+      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2.PNG',
+      servicio: ['Servicio 1','Servicio 2','Servicio 3'],
+      imagenServicio: ['images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png']
       ),
   Vet(
       idvet:5,
@@ -91,7 +110,9 @@ final List<Vet> vetLocales = [
           'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
       locationCoords: LatLng(-12.074524, -77.163759),
       imagen: ['images/vet_prueba.jpg','images/imagesvet.jpg'],
-      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2096.PNG'
+      logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2096.PNG',
+      servicio: ['Servicio 1','Servicio 2','Servicio 3'],
+      imagenServicio: ['images/veterinaria2.png','images/veterinaria3.png','images/veterinaria.png']
       )
 ];
 

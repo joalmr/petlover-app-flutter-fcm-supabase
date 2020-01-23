@@ -203,28 +203,38 @@ class ReservaDetallePage extends StatelessWidget {
   Widget _servicios(){
     return Row(
       children: <Widget>[
+        //servicios()
         _icoServicio('images/veterinaria2.png','Servicio 1'),
         SizedBox(width: 10.0,),
         _icoServicio('images/veterinaria2.png','Servicio 2'),
         SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 3'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 4'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 5'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 6'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 7'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 8'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 9'),
-        SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 3'),
+        // SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 4'),
+        // SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 5'),
+        // SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 6'),
+        // SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 7'),
+        // SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 8'),
+        // SizedBox(width: 10.0,),
+        // _icoServicio('images/veterinaria2.png','Servicio 9'),
+        // SizedBox(width: 10.0,),
       ],
     );
     
   }
+
+  // servicios(){
+  //   //List<Servicio> servicioList = new List();
+  //   vetLocales.forEach((element) {
+  //     return _icoServicio(element.imagenServicio,element.servicio);
+  //     //SizedBox(width: 10.0,);
+  //   });
+  //   //return servicioList;
+  // }
 
   Widget _icoServicio(imagen,nombre){
     return Column(
