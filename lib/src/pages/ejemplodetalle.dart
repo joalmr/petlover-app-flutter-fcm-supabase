@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
-import 'package:proypet/src/pages/home_page.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 
