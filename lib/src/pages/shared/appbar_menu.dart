@@ -26,7 +26,7 @@ final titleH = Column(
           );
 final actionsH = <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications_active),
+            icon: Icon(Icons.widgets),
             onPressed: (){},
           )
         ];

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
+import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 
@@ -11,9 +12,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: _key,
-      // drawer: MenuPage(),
-      //appBar: Header(),
       appBar: AppBar(
         backgroundColor: colorMain,
         leading: leadingH,
@@ -21,24 +19,58 @@ class HomePage extends StatelessWidget {
         actions: actionsH,
         elevation: 0,
       ),
-      body: ListView(
-        children: <Widget>[
-          //Header(),
-          SingleChildScrollView(
+      body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 25.0,),
-                miCard(),
+                // SizedBox(height: 25.0,),
+                // miCard(),
+                SizedBox(height: 5.0,),
+                Material(
+                  child: Stack(
+                    children: <Widget>[
+                      Hero(
+                        tag: 'images/greco.png',
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('images/greco.png'),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(100)
+                          ),
+                          height: 165.0,
+                          width: 165.0,
+                        )
+                      )
+                    ],
+                  ),
+                )
+                ,
                 SizedBox(height: 15.0,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                  child: _swiperPublicidad(publicidad),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Text('43'),
+                    Text('44'),
+                    Text('45'),
+                  ],
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                //   child: _swiperPublicidad(publicidad),
+                // ),
               ],
             ),
           ),
-        ],
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+          builder: (_)=>MascotasPage(),
+        )),
+        child: Icon(Icons.add),
+        backgroundColor: colorMain,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
       // body: Stack(
       //   children: <Widget>[
       //     //_fondo(),
@@ -147,7 +179,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _swiperPublicidad(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 5.0,height1: 145.0);    
-  }
+  // Widget _swiperPublicidad(imagen){
+  //   return CardSwiper(imagenes : imagen,autoplay1: true,radius: 5.0,height1: 145.0);    
+  // }
 }

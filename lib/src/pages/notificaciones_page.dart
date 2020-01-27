@@ -21,15 +21,15 @@ class NotificacionesPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(22.0),
               child: _swiperOtros(imagen),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(22.0),
               child: _swiperOtros(imagen2),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(22.0),
               child: _swiperOtros(imagen),
             ),
           ],
@@ -39,6 +39,6 @@ class NotificacionesPage extends StatelessWidget {
   }
 
   Widget _swiperOtros(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 10.0,height1: 145.0);    
+    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 5.0,height1: 145.0);    
   }
 }

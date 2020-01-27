@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones_page.dart';
 import 'package:proypet/src/pages/home_page.dart';
-import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/reserva_page.dart';
 import '../../../main.dart';
@@ -16,32 +15,32 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context){
     final _kTabPages = <Widget>[
-      MascotasPage(),
-      AtencionesPage(),
-      ReservaPage(),
+      NotificacionesPage(), 
       HomePage(),
-      NotificacionesPage(),      
+      ReservaPage(),
+      AtencionesPage(),
+      AtencionesPage(),
     ];
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        icon: Icon(Icons.list,),
-        title: Text('Mascotas',style: TextStyle(fontSize: 12.0)),
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.assignment,),
-        title: Text('Atenciones',style: TextStyle(fontSize: 12.0)),
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.search,),
-        title: Text('Veterinarias',style: TextStyle(fontSize: 12.0)),
+        icon: Icon(Icons.notifications_active,),
+        title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.pets,),
         title: Text('Greco',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-            icon: Icon(Icons.info,),
-            title: Text('Otros',style: TextStyle(fontSize: 12.0)),
+        icon: Icon(Icons.search,),
+        title: Text('Veterinarias',style: TextStyle(fontSize: 12.0)),
+      ),      
+      BottomNavigationBarItem(
+        icon: Icon(Icons.info,),
+        title: Text('Destacados',style: TextStyle(fontSize: 12.0)),
+      ),
+      BottomNavigationBarItem(
+            icon: Icon(Icons.monetization_on,),
+            title: Text('Recompensas',style: TextStyle(fontSize: 12.0)),
           ),
     ];
 

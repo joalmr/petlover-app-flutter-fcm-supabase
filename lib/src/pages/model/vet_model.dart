@@ -62,7 +62,7 @@ final List<Vet> vetLocales = [
       direccion: 'Abc 1234',
       distancia: '1.3 km',
       descripcion:
-          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
+          'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi',
       locationCoords: LatLng(-12.008109, -77.102396),
       imagen: ['images/vet_prueba.jpg','images/imagesvet.jpg'],
       logo:'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_81.JPEG',

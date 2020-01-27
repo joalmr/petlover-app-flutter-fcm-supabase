@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/header.dart';
+import 'package:proypet/src/pages/shared/_header.dart';
 
 class PaginasPrincipalesPage extends StatelessWidget {
   // final Widget datosWidget;

@@ -15,10 +15,6 @@ class ReservaDetallePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Modal modal = new Modal();
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.black.withOpacity(0.2),
-      //   elevation: 0.0,
-      // ),
       body: Stack(
         children: [
           Container(
@@ -77,7 +73,7 @@ class ReservaDetallePage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Icon(Icons.location_on, size: 12.0, color: Colors.grey),
-                                  Text(vetLocales[1].distancia+' de distancia',
+                                  Text(vetLocales[1].distancia+' [ Paseo los franciscanos 529 ] ',
                                   style: TextStyle(
                                     fontSize: 12.0,
                                     color: Colors.grey
@@ -95,8 +91,8 @@ class ReservaDetallePage extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            height: 45.0,
-                            width: 45.0,
+                            height: 65.0,
+                            width: 65.0,
                             decoration: BoxDecoration(
                               color: Colors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(100.0),
@@ -179,6 +175,9 @@ class ReservaDetallePage extends StatelessWidget {
                     ),
                   ),
                   
+                  SizedBox(height: 20.0),
+                  
+
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 15.0),
                     child: Column(
@@ -229,20 +228,18 @@ class ReservaDetallePage extends StatelessWidget {
         SizedBox(width: 10.0,),
         _icoServicio('images/veterinaria2.png','Servicio 2'),
         SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 3'),
-        // SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 4'),
-        // SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 5'),
-        // SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 6'),
-        // SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 7'),
-        // SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 8'),
-        // SizedBox(width: 10.0,),
-        // _icoServicio('images/veterinaria2.png','Servicio 9'),
-        // SizedBox(width: 10.0,),
+        _icoServicio('images/veterinaria2.png','Servicio 1'),
+        SizedBox(width: 10.0,),
+        _icoServicio('images/veterinaria2.png','Servicio 2'),
+        SizedBox(width: 10.0,),
+        _icoServicio('images/veterinaria2.png','Servicio 1'),
+        SizedBox(width: 10.0,),
+        _icoServicio('images/veterinaria2.png','Servicio 2'),
+        SizedBox(width: 10.0,),
+        _icoServicio('images/veterinaria2.png','Servicio 1'),
+        SizedBox(width: 10.0,),
+        _icoServicio('images/veterinaria2.png','Servicio 2'),
+        SizedBox(width: 10.0,),
       ],
     );
     
@@ -260,12 +257,27 @@ class ReservaDetallePage extends StatelessWidget {
   Widget _icoServicio(imagen,nombre){
     return Column(
       children: <Widget>[
-        Image(
-          image: AssetImage(imagen),
-          height: 30,
-          width: 30,
+        SizedBox(height: 5,),
+        Container(
+          height: 32,
+          width: 32,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.white,
+            boxShadow:[ 
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 3.0,
+                spreadRadius: 2.0
+            )],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Image(image: AssetImage(imagen)),
+          ) //Icon(Icons.pets, color: colorMain,),
         ),
-        Text(nombre,style: TextStyle(fontWeight: FontWeight.bold),)
+        SizedBox(height: 5),
+        Text(nombre,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 10.0),)
       ],
     );
   }

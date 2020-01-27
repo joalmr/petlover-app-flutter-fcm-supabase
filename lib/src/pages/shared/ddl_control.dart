@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 
-final _shape = BorderRadius.circular(100.0);
+final _shape = BorderRadius.circular(10.0);
 
 class DdlControl extends StatefulWidget {
   final lista;

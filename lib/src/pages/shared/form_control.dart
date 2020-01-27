@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 
-final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0));
-final _shape = BorderRadius.circular(100.0);
+final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
+final _shape = BorderRadius.circular(10.0);
 
 class FormControl {
   
@@ -39,11 +39,11 @@ class FormControl {
 
   Widget textfieldBtn(_hinttext, _icon, _funtion){
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 32.0,vertical: 15.0),
+      margin: EdgeInsets.symmetric(horizontal: 22.0,vertical: 8.0),
       padding: EdgeInsets.fromLTRB(15.0, 0, 0, 0),
       decoration: BoxDecoration(
         color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(100.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: TextField(
         cursorColor: colorMain,
@@ -51,11 +51,11 @@ class FormControl {
           hintText: _hinttext,
           border: InputBorder.none,
           suffixIcon: Container(
-            decoration: BoxDecoration(
-              color: colorMain,
-              borderRadius: BorderRadius.circular(100.0),
-            ),
-            child: IconButton(onPressed: _funtion, icon: _icon,color: Colors.grey[200],tooltip: 'Buscar'))
+            // decoration: BoxDecoration(
+            //   color: colorMain,
+            //   borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(30),topRight: Radius.circular(10),bottomRight: Radius.circular(10)),
+            // ),
+            child: IconButton(onPressed: _funtion, icon: _icon,color: colorMain,tooltip: 'Buscar'))
         ),
       ),
     );

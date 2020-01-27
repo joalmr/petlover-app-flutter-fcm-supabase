@@ -31,7 +31,7 @@ class Header extends StatelessWidget {
             Spacer(),
             IconButton(
               color: Colors.white,
-              icon: Icon(Icons.notifications_active),
+              icon: Icon(Icons.widgets),
               onPressed: (){},
             ),
           ],
