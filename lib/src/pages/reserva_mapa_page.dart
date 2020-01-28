@@ -34,7 +34,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
   bool mapToggle = false;
   var currentLocation;
-
+  //-12.013286, -77.101933
   @override
   void initState() {
     //implement initState
@@ -90,9 +90,14 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                 markers: Set.from(allMarkers),
                 onMapCreated: mapCreated,
               ) : Center(
-                child: Text('Cargando.. espere un momento',
-                  style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.normal)
-                ),
+                child: CircularProgressIndicator(
+                  value: 0.25,
+                  backgroundColor: Colors.grey,
+                  valueColor: AlwaysStoppedAnimation<Color>(colorMain),
+                )
+                // Text('Cargando.. espere un momento',
+                //   style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.normal)
+                // ),
               )
             ),
             Positioned(
