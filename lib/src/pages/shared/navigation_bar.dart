@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones_page.dart';
 import 'package:proypet/src/pages/home_page.dart';
 import 'package:proypet/src/pages/notificaciones_page.dart';
-import 'package:proypet/src/pages/reserva_page.dart';
+import 'package:proypet/src/pages/reserva_mapa_page.dart';
+//import 'package:proypet/src/pages/reserva_page.dart';
 import '../../../main.dart';
 
 class NavigationBar extends StatefulWidget {
@@ -17,7 +18,7 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kTabPages = <Widget>[
       NotificacionesPage(), 
       HomePage(),
-      ReservaPage(),
+      ReservaMapaPage(),//ReservaPage(),
       AtencionesPage(),
       AtencionesPage(),
     ];

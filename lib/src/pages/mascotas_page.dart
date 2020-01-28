@@ -19,13 +19,14 @@ class MascotasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: _key,
-      // drawer: MenuPage(),
       appBar: AppBar(
         backgroundColor: colorMain,
-        leading: leadingH,
-        title: titleH,
-        actions: actionsH,
+        title: Text('Mis mascotas',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.normal
+          ),
+        ),
         elevation: 0,
       ),
       body: CustomScrollView(

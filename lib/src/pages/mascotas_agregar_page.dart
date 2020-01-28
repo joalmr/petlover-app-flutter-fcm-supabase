@@ -20,11 +20,10 @@ class MascotaAgregarPage extends StatelessWidget {
                   AppBar(
                     backgroundColor: colorMain,
                     elevation: 0,
-                    centerTitle: true,
                     title: Text("Agregar mascota",style: 
                       TextStyle(
                         fontSize: 16.0,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.normal
                       ),
                     ),
                   ),

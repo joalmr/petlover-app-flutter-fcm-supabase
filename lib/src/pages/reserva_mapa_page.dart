@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:location/location.dart';
+import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
+import 'package:proypet/src/pages/reserva_page.dart';
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/pages/shared/filtros_mapa.dart';
 
 
 class ReservaMapaPage extends StatefulWidget {
@@ -10,6 +16,8 @@ class ReservaMapaPage extends StatefulWidget {
 }
 
 class _ReservaMapaPageState extends State<ReservaMapaPage> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+
   GoogleMapController _controller;
   List<Marker> allMarkers = [];
   PageController _pageController;
@@ -24,10 +32,20 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
     }
   }
 
+  bool mapToggle = false;
+  var currentLocation;
+
   @override
   void initState() {
     //implement initState
     super.initState();
+    Geolocator().getCurrentPosition().then((currloc){
+      setState(() {
+        currentLocation = currloc;
+        mapToggle = true;
+      });
+    });
+
     vetLocales.forEach((element) {
       allMarkers.add(Marker(
           markerId: MarkerId(element.nombre),
@@ -35,46 +53,72 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
           infoWindow: InfoWindow(title: element.nombre, snippet: element.direccion),
           position: element.locationCoords, ));
     });
-    _pageController = PageController(initialPage: 1, viewportFraction: 0.8)
+    _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
+      endDrawer: FiltrosMapa(),
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Establecimientos'),
-        elevation: 0.0,
+        backgroundColor: colorMain,
+        leading: leadingH,
+        title: titleH,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: (){ _key.currentState.openEndDrawer(); },
+          )
+        ],
+        elevation: 0,
       ),
       body: Stack(
         children: <Widget>[
           Container(
               height: double.infinity,//MediaQuery.of(context).size.height,
               width: double.infinity,//MediaQuery.of(context).size.width,
-              child: GoogleMap(
+              child: mapToggle ? GoogleMap(
+                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
+                compassEnabled: true,
+                rotateGesturesEnabled: true,
+                mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
-                    target: LatLng(-12.013286, -77.101933), zoom: 12.0),
+                  target: LatLng(currentLocation.latitude, currentLocation.longitude), zoom: 16.0),
                 markers: Set.from(allMarkers),
                 onMapCreated: mapCreated,
-              ),
+              ) : Center(
+                child: Text('Cargando.. espere un momento',
+                  style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.normal)
+                ),
+              )
             ),
             Positioned(
               bottom: 20.0,
               child: Container(
                 height: 200.0,
                 width: MediaQuery.of(context).size.width,
-                child: PageView.builder(
+                child: mapToggle ? PageView.builder(
                   controller: _pageController,
                   itemCount: vetLocales.length,
                   itemBuilder: (BuildContext context, int index) {
                     return _vetShopList(index);
                   },
-                ),
+                ) : null
               ),
             )         
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+          builder: (_)=>ReservaPage(),
+        )),
+        child: Icon(Icons.list),
+        backgroundColor: colorMain,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );
   }
 
@@ -161,6 +205,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                                   width: 170.0,
                                   child: Text(
                                     vetLocales[index].descripcion,
+                                    maxLines: 3,
                                     style: TextStyle(
                                         fontSize: 11.0,
                                         fontWeight: FontWeight.w300),

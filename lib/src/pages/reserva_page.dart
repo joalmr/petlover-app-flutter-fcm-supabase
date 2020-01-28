@@ -1,76 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
-import 'package:proypet/src/pages/reserva_mapa_page.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
+import 'package:proypet/src/pages/shared/filtros_mapa.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
-
 import '../../main.dart';
 
-// final List vets = [
-//   {
-//     'image':['images/vet_prueba.jpg','images/imagesvet.jpg'],
-//     'title':'Pirulino pirulin, pirulin pimpom, la unica camisa y el unico pantalon',
-//     'logo':'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
-//   },
-//   {
-//     'image':['images/imagesvet.jpg','images/vet_prueba.jpg'],
-//     'title':'Vet prueba 2',
-//     'logo':'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
-//   },
-//   {
-//     'image':['images/vet_prueba.jpg','images/imagesvet.jpg'],
-//     'title':'Vet prueba 3',
-//     'logo':'https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'
-//   },
-// ];
-
-//final _shape = BorderRadius.circular(100.0);
-
 class ReservaPage extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
+      endDrawer: FiltrosMapa(),
       appBar: AppBar(
         backgroundColor: colorMain,
-        leading: leadingH,
-        title: titleH,
-        actions: actionsH,
+        title: Text('Establecimientos',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.normal
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: (){ _key.currentState.openEndDrawer(); },
+          )
+        ],
         elevation: 0,
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 10.0,),
-                FormControl().textfieldBtn('Ingrese veterinaria..',Icon(Icons.search),(){})
-              ],
-            ),
+      body: Stack(
+        children: <Widget>[
+          // Container(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          // ),
+          // Positioned(
+          //   top: -350.0,
+          //   left: -120.0,
+          //   child: Transform.rotate(
+          //     angle: 15,
+          //     child: Container(
+          //       height: 500.0,
+          //       width: 800.0,
+          //       decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(1200.0),
+          //         color: colorMain,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          CustomScrollView(
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 20.0,),
+                    FormControl().textfieldBtn('Ingrese veterinaria..',Icon(Icons.search),(){})
+                  ],
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index){
+                    return _buildVets(context,index);
+                  },
+                  childCount: vetLocales.length
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: SizedBox(height: 20.0),
+              ),
+            ],
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index){
-                return _buildVets(context,index);
-              },
-              childCount: vetLocales.length
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 50.0),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   right: 0,
+          //   child: AppBar(
+          //     backgroundColor: colorMain.withOpacity(0.7),
+          //     elevation: 0,
+          //     centerTitle: true,
+          //     title: Text("",style: TextStyle(
+          //       fontSize: 16.0,
+          //       fontWeight: FontWeight.normal
+          //     ),),
+          //     actions: <Widget>[
+          //       IconButton(
+          //         icon: Icon(Icons.filter_list),
+          //         onPressed: (){ _key.currentState.openEndDrawer(); },
+          //       )
+          //     ],
+          //   ),
+          // ),
         ],
       ),
-      //bottomNavigationBar: NavigationBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-          builder: (_)=>ReservaMapaPage(),
-        )),
-        child: Icon(Icons.location_on),
-        backgroundColor: colorMain,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );
   }
 
@@ -96,7 +121,7 @@ class ReservaPage extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       //color: Colors.white,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.white.withOpacity(0.4),
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       child: CircleAvatar(
@@ -109,33 +134,34 @@ class ReservaPage extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
+                color: Colors.white.withOpacity(0.4),
                 child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(vet.distancia+' de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
+                        Row(
+                          //crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(vet.distancia+' de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
-                                Row(
-                                  //crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: <Widget>[
-                                    Icon(Icons.star, color: colorMain, size: 12.0),
-                                    SizedBox(width: 0.5),
-                                    Text(vet.estrellas+' ('+vet.votantes+')',style: TextStyle(fontSize: 12.0,color: Colors.grey[600],fontWeight: FontWeight.w400))
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Text(vet.nombre,style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.grey[700],
-                                fontWeight: FontWeight.w400
-                              ),
-                              maxLines: 1,
-                            ),
+                            Icon(Icons.star, color: colorMain, size: 12.0),
+                            SizedBox(width: 0.5),
+                            Text(vet.estrellas+' ('+vet.votantes+')',style: TextStyle(fontSize: 12.0,color: Colors.grey[600],fontWeight: FontWeight.w400))
                           ],
                         ),
+                      ],
+                    ),
+                    Text(vet.nombre,style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.grey[700],
+                        fontWeight: FontWeight.w400
+                      ),
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
               )
             ],
           ),
@@ -148,32 +174,3 @@ class ReservaPage extends StatelessWidget {
     return CardSwiper(imagenes : imagen,autoplay1: false,radius: 5.0,height1: 175.0);    
   }
 }
-
-// Positioned(
-//   top: -100.0,
-//   right: -70.0,
-//   height: 132.0,
-//   width: 150.0,
-//   child: Container(
-//     decoration: BoxDecoration(
-//       color: Colors.white.withOpacity(0.7),
-//       borderRadius: BorderRadius.circular(100.0),
-//     ),
-//     child: Stack(
-//       children: <Widget>[
-//         Positioned(
-//           bottom: 10.0,
-//           left: 32.0,
-//           child: Row(
-//             crossAxisAlignment: CrossAxisAlignment.end,
-//             children: <Widget>[
-//               Icon(Icons.star, color: colorMain, size: 14.0),
-//               SizedBox(width: 2.5),
-//               Text('4.3',style: TextStyle(fontSize: 14.0,color: colorMain,fontWeight: FontWeight.bold))
-//             ],
-//           ),
-//         ),
-//       ],
-//     ),
-//   ),
-// )

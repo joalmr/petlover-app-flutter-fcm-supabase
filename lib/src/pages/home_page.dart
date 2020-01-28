@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/card_swiper.dart';
+//import 'package:proypet/src/pages/shared/card_swiper.dart';
 
 final List publicidad = ['images/elegante1.jpg','images/royal1.jpg'];
 class HomePage extends StatelessWidget {

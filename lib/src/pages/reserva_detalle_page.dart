@@ -9,8 +9,7 @@ import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import '../../main.dart';
 
 class ReservaDetallePage extends StatelessWidget {
-  //final String image = "images/vet_prueba.jpg";
-  // final List vets = ['images/vet_prueba.jpg','images/imagesvet.jpg'];
+
   @override
   Widget build(BuildContext context) {
     Modal modal = new Modal();
