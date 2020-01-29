@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Proypet',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,      
       routes: getRoutes(),
       initialRoute: 'login',
       onGenerateRoute: (RouteSettings settings){

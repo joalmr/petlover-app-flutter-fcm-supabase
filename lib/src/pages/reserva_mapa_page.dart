@@ -89,15 +89,21 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                   target: LatLng(currentLocation.latitude, currentLocation.longitude), zoom: 16.0),
                 markers: Set.from(allMarkers),
                 onMapCreated: mapCreated,
-              ) : Center(
-                child: CircularProgressIndicator(
-                  value: 0.25,
-                  backgroundColor: Colors.grey,
-                  valueColor: AlwaysStoppedAnimation<Color>(colorMain),
-                )
-                // Text('Cargando.. espere un momento',
-                //   style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.normal)
-                // ),
+              ) : Container(
+                color: Colors.white,
+                child: Center(
+                  child: Image.asset('images/dog_loading.gif',
+                    height: 145.0,
+                    width: 145.0,)                  
+                ),
+                // CircularProgressIndicator(
+                  //   value: 0.25,
+                  //   backgroundColor: Colors.grey,
+                  //   valueColor: AlwaysStoppedAnimation<Color>(colorMain),
+                  // )
+                  // Text('Cargando.. espere un momento',
+                  //   style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.normal)
+                  // ),
               )
             ),
             Positioned(

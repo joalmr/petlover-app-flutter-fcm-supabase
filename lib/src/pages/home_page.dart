@@ -22,39 +22,148 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                // SizedBox(height: 25.0,),
-                // miCard(),
                 SizedBox(height: 5.0,),
-                Material(
-                  child: Stack(
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('images/greco.png'),
+                        fit: BoxFit.cover),
+                    borderRadius: BorderRadius.circular(100)
+                  ),
+                  height: 165.0,
+                  width: 165.0,
+                ),
+                SizedBox(height: 15.0,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                  child: Column(
                     children: <Widget>[
-                      Hero(
-                        tag: 'images/greco.png',
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/greco.png'),
-                                fit: BoxFit.cover),
-                            borderRadius: BorderRadius.circular(100)
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            //color: Colors.grey.shade300,
+                            //padding: EdgeInsets.all(3.0),
+                            height: 125.0,
+                            width: (MediaQuery.of(context).size.width/3)-10,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            
                           ),
-                          height: 165.0,
-                          width: 165.0,
-                        )
+                          SizedBox(width: 4.0),
+                          Column(
+                            children: <Widget>[
+                              Container(
+                                height: 80.0,
+                                width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width/3))-50,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                              SizedBox(height: 5.0,),
+                              Container(
+                                height: 40.0,
+                                width: (MediaQuery.of(context).size.width - (MediaQuery.of(context).size.width/3))-50,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                            ],
+                          ),                      
+                        ],
+                      ),
+                      SizedBox(height: 20.0,),
+                      Row(
+                        children: <Widget>[
+                          Text('Qué estás buscando?',style: TextStyle(fontWeight: FontWeight.w300,fontSize: 20.0,color: Colors.grey[700]),),
+                        ],
+                      ),
+                      SingleChildScrollView(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: <Widget>[
+                            InkWell(
+                              onTap: (){},
+                              child: Column(
+                                children: <Widget>[                                
+                                  Image(
+                                    image: AssetImage('images/veterinaria.png'),
+                                    height: 85.0,
+                                    width: 85.0,
+                                  ),
+                                  Text('Dato 1')
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 40.0,),
+                            InkWell(
+                              onTap: (){},
+                              child: Column(
+                                children: <Widget>[                                
+                                  Image(
+                                    image: AssetImage('images/veterinaria.png'),
+                                    height: 85.0,
+                                    width: 85.0,
+                                  ),
+                                  Text('Dato 2')
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 40.0,),
+                            InkWell(
+                              onTap: (){},
+                              child: Column(
+                                children: <Widget>[                                
+                                  Image(
+                                    image: AssetImage('images/veterinaria.png'),
+                                    height: 85.0,
+                                    width: 85.0,
+                                  ),
+                                  Text('Dato 3')
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 40.0,),
+                            InkWell(
+                              onTap: (){},
+                              child: Column(
+                                children: <Widget>[                                
+                                  Image(
+                                    image: AssetImage('images/veterinaria.png'),
+                                    height: 85.0,
+                                    width: 85.0,
+                                  ),
+                                  Text('Dato 4')
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 40.0,),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Material(
+                            child: Stack(
+                              children: <Widget>[
+                                Image.asset('images/dog_ok.gif',height: 200,width: 200,)
+                              ],
+                            ),
+                          ),
+                        ],
                       )
                     ],
                   ),
-                )
-                ,
-                SizedBox(height: 15.0,),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text('43'),
-                    Text('44'),
-                    Text('45'),
-                  ],
                 ),
+                
                 // Padding(
                 //   padding: const EdgeInsets.symmetric(horizontal: 22.0),
                 //   child: _swiperPublicidad(publicidad),
@@ -63,14 +172,14 @@ class HomePage extends StatelessWidget {
             ),
           ),
       
-      floatingActionButton: FloatingActionButton(
-        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-          builder: (_)=>MascotasPage(),
-        )),
-        child: Icon(Icons.add),
-        backgroundColor: colorMain,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+      //     builder: (_)=>MascotasPage(),
+      //   )),
+      //   child: Icon(Icons.add),
+      //   backgroundColor: colorMain,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
       // body: Stack(
       //   children: <Widget>[
       //     //_fondo(),
