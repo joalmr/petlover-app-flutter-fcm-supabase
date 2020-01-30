@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/auth/forgot_page.dart';
 import 'package:proypet/src/pages/auth/login_page.dart';
 import 'package:proypet/src/pages/auth/singup_page.dart';
-import 'package:proypet/src/pages/ejemplodetalle.dart';
+import 'package:proypet/src/pages/ejemplo.dart';
 import 'package:proypet/src/pages/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/menu_page.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
@@ -15,7 +15,8 @@ Map<String,WidgetBuilder> getRoutes(){
     'menu'        : (BuildContext context)=>MenuPage(),
     'nav'         : (BuildContext context)=>NavigationBar(),
     'mapa' : (BuildContext context)=>ReservaMapaPage(),
-    'ejemplo' : (BuildContext context)=>DetailPage(),
+    'ejemplo' : (BuildContext context)=>HomeScreen(),
+    // 'ejemplo' : (BuildContext context)=>DetailPage(),
     // 'home'           : (BuildContext context)=>HomePage(),//home
     // 'reserva'     : (BuildContext context)=>ReservaPage(),
     // 'mascotas'    :(BuildContext context)=>MascotasPage(),

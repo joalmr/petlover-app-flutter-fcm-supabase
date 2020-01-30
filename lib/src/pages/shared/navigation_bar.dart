@@ -12,7 +12,7 @@ class NavigationBar extends StatefulWidget {
 }
 
 class _NavigationBarState extends State<NavigationBar> {
-  int _currentTabIndex = 2;
+  int _currentTabIndex = 1;
   @override
   Widget build(BuildContext context){
     final _kTabPages = <Widget>[

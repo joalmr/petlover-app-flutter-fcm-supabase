@@ -41,7 +41,7 @@ class Servicio {
 final List<Vet> vetLocales = [
   Vet(
       idvet:1,
-      nombre: 'Pirulino pirulin, pirulin pimpom, la unica camisa y el unico pantalon',
+      nombre: 'Veterinaria pirulino pirulin, pirulin pimpom, Veterinaria',
       estrellas: '4.1',
       votantes: '+1.2K',
       direccion: 'Abc 1234',

@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Proypet',
+      theme: ThemeData( 
+        primarySwatch: colorMain
+      ),
       debugShowCheckedModeBanner: false,      
       routes: getRoutes(),
       initialRoute: 'login',

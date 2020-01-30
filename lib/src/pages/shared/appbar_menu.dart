@@ -2,6 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/model/mascota_model.dart';
 
+final leadingProypet = Container(
+    margin: EdgeInsets.all(10.0),
+    //padding: EdgeInsets.symmetric(horizontal: 10.0),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: Colors.white,
+    ),
+    child: CircleAvatar(
+      backgroundColor: Colors.white,      
+      backgroundImage: AssetImage('images/proypet.png'),
+      //child: Image.asset('images/greco.png'),
+      //radius: 40.0,
+    ),
+  );
 final leadingH = Container(
     margin: EdgeInsets.all(2.5),
     //padding: EdgeInsets.symmetric(horizontal: 10.0),
