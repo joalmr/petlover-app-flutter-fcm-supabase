@@ -246,7 +246,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 15.0),
             Row(
               children: <Widget>[
                 Expanded(
@@ -265,9 +265,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(
-              height: 30,
-            ),
+            Divider(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
