@@ -86,7 +86,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                 rotateGesturesEnabled: true,
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
-                  target: LatLng(currentLocation.latitude, currentLocation.longitude), zoom: 16.0),
+                  target: vetLocales[0].locationCoords, zoom: 16.0),
                 markers: Set.from(allMarkers),
                 onMapCreated: mapCreated,
               ) : Container(

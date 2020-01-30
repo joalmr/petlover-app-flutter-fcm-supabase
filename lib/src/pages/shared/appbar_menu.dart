@@ -7,10 +7,10 @@ final leadingProypet = Container(
     //padding: EdgeInsets.symmetric(horizontal: 10.0),
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      color: Colors.white,
+      color: Colors.transparent,
     ),
     child: CircleAvatar(
-      backgroundColor: Colors.white,      
+      backgroundColor: Colors.transparent,      
       backgroundImage: AssetImage('images/proypet.png'),
       //child: Image.asset('images/greco.png'),
       //radius: 40.0,
