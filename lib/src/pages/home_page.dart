@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black87),
         elevation: 0,
-        leading: leadingProypet,
+        //leading: leadingProypet,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.settings),
