@@ -28,7 +28,7 @@ class _LoginSevenPageState extends State<LoginPage> {
           SizedBox(height: 20.0),
           Center(
             child: FlatButton(
-              onPressed: ()=>Navigator.pushNamed(context,'olvidopass'),
+              onPressed: ()=>Navigator.pushReplacementNamed(context,'olvidopass'),
               child: Text("Olvidó contraseña ?".toUpperCase(), 
                 style: TextStyle(
                   color:colorMain,
