@@ -3,6 +3,7 @@ import 'package:proypet/src/pages/atenciones_page.dart';
 import 'package:proypet/src/pages/home_page.dart';
 import 'package:proypet/src/pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/reserva_mapa_page.dart';
+import 'package:proypet/src/pages/reserva_page.dart';
 //import 'package:proypet/src/pages/reserva_page.dart';
 import '../../../main.dart';
 
@@ -18,7 +19,7 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kTabPages = <Widget>[
       NotificacionesPage(), 
       HomePage(),
-      ReservaMapaPage(),//ReservaPage(),
+      ReservaPage(),//ReservaPage(),
       AtencionesPage(),
       AtencionesPage(),
     ];

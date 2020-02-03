@@ -9,6 +9,9 @@ import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import '../../main.dart';
 
 class ReservaDetallePage extends StatelessWidget {
+  final int idvet;
+
+  ReservaDetallePage({@required this.idvet});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class ReservaDetallePage extends StatelessWidget {
                   Container(
                     height: 325.0,
                     width: double.infinity,
-                    child: _swiperVets(vetLocales[1].imagen)
+                    child: _swiperVets(vetLocales[idvet].imagen)
                   ),
                   SizedBox(height: 5.0),
                   Padding(
@@ -72,7 +75,7 @@ class ReservaDetallePage extends StatelessWidget {
                               Row(
                                 children: <Widget>[
                                   Icon(Icons.location_on, size: 12.0, color: Colors.grey),
-                                  Text(vetLocales[1].distancia+' [ Paseo los franciscanos 529 ] ',
+                                  Text(vetLocales[idvet].distancia+' [ Paseo los franciscanos 529 ] ',
                                   style: TextStyle(
                                     fontSize: 12.0,
                                     color: Colors.grey
@@ -81,11 +84,12 @@ class ReservaDetallePage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: 2.0),
-                              Text(vetLocales[1].nombre,
-                              style: TextStyle(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.w600
-                              )
+                              Text(nombreVet(idvet),
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w600
+                                )
                               )
                             ],
                           ),
@@ -96,7 +100,7 @@ class ReservaDetallePage extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(100.0),
                               image: DecorationImage(
-                                image: NetworkImage(vetLocales[1].logo),
+                                image: NetworkImage(vetLocales[idvet].logo),
                                 fit: BoxFit.cover
                               )
                             ),
@@ -128,7 +132,7 @@ class ReservaDetallePage extends StatelessWidget {
                                 color: colorMain //Color(0xFFFE7050)
                               ),
                               child: Center(
-                                child: Text(vetLocales[1].votantes,
+                                child: Text(vetLocales[idvet].votantes,
                                   style: TextStyle(
                                     fontSize: 12.0, color: Colors.white
                                   )
@@ -151,7 +155,7 @@ class ReservaDetallePage extends StatelessWidget {
                                     children: <Widget>[
                                       Icon(Icons.star, color: Colors.white, size: 12.0),
                                       SizedBox(width: 5.0),
-                                      Text(vetLocales[1].estrellas,style: TextStyle(color: Colors.white))
+                                      Text(vetLocales[idvet].estrellas,style: TextStyle(color: Colors.white))
                                     ],
                                   ),
                                 )
@@ -189,7 +193,7 @@ class ReservaDetallePage extends StatelessWidget {
                               color: Color(0xFF6A6A6A),
                               fontWeight: FontWeight.w600)),  
                         SizedBox(height: 10.0,),
-                        Text(vetLocales[1].descripcion,
+                        Text(vetLocales[idvet].descripcion,
                           style: TextStyle(),textAlign: TextAlign.justify,),
                       ],
                     )
@@ -284,4 +288,14 @@ class ReservaDetallePage extends StatelessWidget {
   Widget _swiperVets(imagen){
     return CardSwiper(imagenes : imagen,autoplay1: false,radius: 0.0,height1: 145.0);    
   }
+
+  nombreVet(index){
+    if(vetLocales[index].nombre.length>30){
+      return vetLocales[index].nombre.substring(0,30);
+    }
+    else{
+      return vetLocales[index].nombre;
+    }
+  }
+
 }

@@ -14,7 +14,7 @@ class AtencionesPage extends StatelessWidget {
         elevation: 0,
       ),
       body: Center(
-        child: Text('Atenciones'),
+        child: Text('Etc'),
       ),
     );
   }

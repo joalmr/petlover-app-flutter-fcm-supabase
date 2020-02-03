@@ -21,14 +21,15 @@ class _LoginSevenPageState extends State<LoginPage> {
           SizedBox(height: 20),
           FormControl().textfield('Contraseña', Icons.lock, true),
           SizedBox(height: 25.0),
-          FormControl().buttonPri('Ingresar', ()=>Navigator.push(
+          //pushReplacementNamed
+          FormControl().buttonPri('Ingresar', ()=>Navigator.pushReplacement(
             context,MaterialPageRoute(
               builder: (context) => NavigationBar()
           ))),
           SizedBox(height: 20.0),
           Center(
             child: FlatButton(
-              onPressed: ()=>Navigator.pushReplacementNamed(context,'olvidopass'),
+              onPressed: ()=>Navigator.pushNamed(context,'olvidopass'),
               child: Text("Olvidó contraseña ?".toUpperCase(), 
                 style: TextStyle(
                   color:colorMain,

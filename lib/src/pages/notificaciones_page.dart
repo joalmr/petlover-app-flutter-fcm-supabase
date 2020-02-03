@@ -17,28 +17,11 @@ class NotificacionesPage extends StatelessWidget {
         actions: actionsH,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: _swiperOtros(imagen),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: _swiperOtros(imagen2),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(22.0),
-              child: _swiperOtros(imagen),
-            ),
-          ],
+      body: Container(
+        child: Center(
+          child: Text('Etc'),
         ),
       ),
     );
-  }
-
-  Widget _swiperOtros(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: true,radius: 5.0,height1: 145.0);    
   }
 }

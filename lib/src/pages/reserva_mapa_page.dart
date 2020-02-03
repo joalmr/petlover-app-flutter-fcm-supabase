@@ -5,8 +5,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
-import 'package:proypet/src/pages/reserva_page.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/filtros_mapa.dart';
 
 
@@ -48,10 +46,13 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
     vetLocales.forEach((element) {
       allMarkers.add(Marker(
-          markerId: MarkerId(element.nombre),
-          draggable: false,
-          infoWindow: InfoWindow(title: element.nombre, snippet: element.direccion),
-          position: element.locationCoords, ));
+        onTap: ()=>Navigator.push(context, MaterialPageRoute(
+          builder: (_)=>ReservaDetallePage(idvet: (element.idvet-1)),
+        )),
+        markerId: MarkerId(element.nombre),
+        draggable: false,
+        infoWindow: InfoWindow(title: element.nombre, snippet: element.direccion),
+        position: element.locationCoords, ));
     });
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
@@ -64,8 +65,12 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       endDrawer: FiltrosMapa(),
       appBar: AppBar(
         backgroundColor: colorMain,
-        leading: leadingH,
-        title: titleH,
+        title: Text('Establecimientos',
+          style: TextStyle(
+            fontSize: 16.0,
+            fontWeight: FontWeight.normal
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.filter_list),
@@ -74,6 +79,18 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
         ],
         elevation: 0,
       ),
+      // appBar: AppBar(
+      //   backgroundColor: colorMain,
+      //   leading: leadingH,
+      //   title: titleH,
+      //   actions: <Widget>[
+      //     IconButton(
+      //       icon: Icon(Icons.filter_list),
+      //       onPressed: (){ _key.currentState.openEndDrawer(); },
+      //     )
+      //   ],
+      //   elevation: 0,
+      // ),
       body: Stack(
         children: <Widget>[
           Container(
@@ -122,14 +139,14 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
             )         
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-          builder: (_)=>ReservaPage(),
-        )),
-        child: Icon(Icons.list),
-        backgroundColor: colorMain,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+      //     builder: (_)=>ReservaPage(),
+      //   )),
+      //   child: Icon(Icons.list),
+      //   backgroundColor: colorMain,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );
   }
 
@@ -159,7 +176,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       },
       child: InkWell(
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(),
+            builder: (_)=>ReservaDetallePage(idvet: index),
           )),
           child: Stack(children: [
             Center(
