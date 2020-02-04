@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones_page.dart';
 import 'package:proypet/src/pages/home_page.dart';
 import 'package:proypet/src/pages/notificaciones_page.dart';
-import 'package:proypet/src/pages/reserva_mapa_page.dart';
+//import 'package:proypet/src/pages/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/reserva_page.dart';
 //import 'package:proypet/src/pages/reserva_page.dart';
 import '../../../main.dart';
 
 class NavigationBar extends StatefulWidget {
+  final int currentTabIndex;
+  NavigationBar({@required this.currentTabIndex});
+
   @override
-  _NavigationBarState createState() => _NavigationBarState() ;
+  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: currentTabIndex) ;
 }
 
 class _NavigationBarState extends State<NavigationBar> {
-  int _currentTabIndex = 1;
+
+  int currentTabIndex;
+  _NavigationBarState({this.currentTabIndex});
+
   @override
   Widget build(BuildContext context){
     final _kTabPages = <Widget>[
@@ -52,17 +58,17 @@ class _NavigationBarState extends State<NavigationBar> {
       selectedItemColor: colorMain,
       unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),//Colors.grey[300],
       items: _kBottmonNavBarItems,
-      currentIndex: _currentTabIndex,
+      currentIndex: currentTabIndex,
       type: BottomNavigationBarType.fixed,
       onTap: (int index) {
         setState(() {
-          _currentTabIndex = index;
+          currentTabIndex = index;
         });
       },
     );
 
     return Scaffold(
-      body: _kTabPages[_currentTabIndex],
+      body: _kTabPages[currentTabIndex],
       bottomNavigationBar: bottomNavBar,
     );
 

@@ -24,7 +24,7 @@ class _LoginSevenPageState extends State<LoginPage> {
           //pushReplacementNamed
           FormControl().buttonPri('Ingresar', ()=>Navigator.pushReplacement(
             context,MaterialPageRoute(
-              builder: (context) => NavigationBar()
+              builder: (context) => NavigationBar(currentTabIndex: 1,)
           ))),
           SizedBox(height: 20.0),
           Center(

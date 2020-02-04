@@ -28,18 +28,18 @@ final List<Mascota> mascotaList = [
   Mascota(
     idMascota: 2,
     nombre: 'Perikito pimpim',
-    raza: 'Bulldog frances',
+    raza: 'Braco',
     edad: '5 años 3 meses',
-    foto: 'images/greco.png',
-    peso: '12.45'
+    foto: 'images/perro2.jpg',
+    peso: '14.65'
   ),
   Mascota(
-    idMascota: 2,
+    idMascota: 3,
     nombre: 'Perrin',
-    raza: 'Bulldog ingles',
+    raza: 'Perro peruano',
     edad: '2 años',
-    foto: 'images/greco.png',
-    peso: '12.45'
+    foto: 'images/perro3.png',
+    peso: '10.25'
   ),
 
 ];
