@@ -196,7 +196,7 @@ class MascotaDetallePage extends StatelessWidget {
             child: Container(
               height: 390.0,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text('Historial',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22.0),),
               ),
             ),
@@ -204,52 +204,825 @@ class MascotaDetallePage extends StatelessWidget {
           Positioned(
             bottom: 0,
             child: Container(
-              height: 360,
+              height: 355,
               width: MediaQuery.of(context).size.width,
               child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   children: <Widget>[
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
-                      Text('data data data data data data data data data '),
+                      Column(
+                      children: <Widget>[
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Divider(height: 20.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage('https://beta.proypet.com/Uploads/Imagenes/Logo/LOGO_2095.PNG'),
+                                    radius: 25.0,
+                                  ),
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Veterinaria prueba',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 17.0,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                      Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  "10/01/19",
+                                  style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "17:00",
+                                  style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                       
                     ],
                   
