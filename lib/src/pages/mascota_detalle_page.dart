@@ -14,92 +14,253 @@ class MascotaDetallePage extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            color: colorMain,
-          ),
-          Positioned(
-            bottom: 0.0,
-            height: 100.0,
-            child: FlatButton(
-              onPressed: (){},
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(top: 35.0),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      
-                    ],
-                  ),
-                )
-              ),
-            ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height - 65.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
-              color: Colors.white
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: 300.0,
-                    width: double.infinity,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        //borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(mascotaList[idmascota].foto)
-                        )
-                      ),
-                    )
+            height: 450.0,
+            child: Stack(
+              children: <Widget>[
+                Image(
+                  image: AssetImage(mascotaList[idmascota].foto),
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 300.0,                  
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    height: 200.0,
+                    width: MediaQuery.of(context).size.width,
+                    foregroundDecoration: BoxDecoration(
+                      color: colorMain,
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
                   ),
-                  SizedBox(height: 5.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width - 0.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    height: 195.0,
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(vertical: 15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              SizedBox(height: 2.0),
-                              Text(mascotaList[idmascota].nombre,
-                              style: TextStyle(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.w600
-                              )
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(mascotaList[idmascota].nombre,
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white
+                                    )
+                                  ),
+                                  Text(mascotaList[idmascota].raza,
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white
+                                    )
+                                  )
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  Icon(Icons.cake,color: Colors.white,size: 28.0,),
+                                  Column(
+                                    children: <Widget>[
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(mascotaList[idmascota].edad.split(' ')[0],style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 18.0)),
+                                          Text(mascotaList[idmascota].edad.split(' ')[1] ,style: TextStyle(color: Colors.white)),
+                                        ],
+                                      ),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(mascotaList[idmascota].edad.split(' ')[2],style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+                                          Text(mascotaList[idmascota].edad.split(' ')[3] ,style: TextStyle(color: Colors.white)),
+                                        ],
+                                      )
+                                      
+                                      //Text(mascotaList[idmascota].edad.split(' ')[2]+' '+mascotaList[idmascota].edad.split(' ')[3] ,style: TextStyle(color: Colors.white))
+                                    ],
+                                  )
+                                  
+                                ],
                               )
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 15.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Container(
+                              height: 90.0,
+                              width: 65.0,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(width: 2.0, color: Colors.white)
+                              ),
+                              padding: EdgeInsets.all(5.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.pets,color: Colors.white),
+                                  Center(child: Text('data',style: TextStyle(color: Colors.white)))
+                                ],
+                              )  ,
+                            ),
+                            Container(
+                              height: 90.0,
+                              width: 65.0,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(width: 2.0, color: Colors.white)
+                              ),
+                              padding: EdgeInsets.all(5.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.pets,color: Colors.white),
+                                  Center(child: Text('data',style: TextStyle(color: Colors.white)))
+                                ],
+                              )  ,
+                            ),
+                            Container(
+                              height: 90.0,
+                              width: 65.0,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(width: 2.0, color: Colors.white)
+                              ),
+                              padding: EdgeInsets.all(5.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.pets,color: Colors.white),
+                                  Center(child: Text('data',style: TextStyle(color: Colors.white)))
+                                ],
+                              )  ,
+                            ),
+                            Container(
+                              height: 90.0,
+                              width: 65.0,
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(width: 2.0, color: Colors.white)
+                              ),
+                              padding: EdgeInsets.all(5.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.pets,color: Colors.white),
+                                  Center(child: Text('data',style: TextStyle(color: Colors.white)))
+                                ],
+                              )  ,
+                            ),
+                            
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                
-                  SizedBox(height: 20.0),
+                ),
+              ],
+            ),
+          ),
 
-                  // Container(
-                  //   padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5.0),
-                  //   //alignment: Alignment.topLeft,
-                  //   child: SingleChildScrollView(
-                  //     scrollDirection: Axis.horizontal,
-                  //     child: ,
-                  //   ),
-                  // ),
-                  
-                  SizedBox(height: 20.0),
-                  
-                                  ],
+          Positioned(
+            bottom: 0,
+            child: Container(
+              height: 390.0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Text('Historial',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22.0),),
               ),
             ),
           ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              height: 360,
+              width: MediaQuery.of(context).size.width,
+              child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  children: <Widget>[
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      Text('data data data data data data data data data '),
+                      
+                    ],
+                  
+                  // child: Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   mainAxisAlignment: MainAxisAlignment.start,
+                  //   )
+                ),
+            ),
+          ),
+          //
           Positioned(
             top: 0,
             left: 0,
@@ -113,7 +274,8 @@ class MascotaDetallePage extends StatelessWidget {
                 fontWeight: FontWeight.normal
               ),),
             ),
-          ),
+          )
+
         ]
       ),
     );

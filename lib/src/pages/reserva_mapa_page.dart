@@ -79,18 +79,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
         ],
         elevation: 0,
       ),
-      // appBar: AppBar(
-      //   backgroundColor: colorMain,
-      //   leading: leadingH,
-      //   title: titleH,
-      //   actions: <Widget>[
-      //     IconButton(
-      //       icon: Icon(Icons.filter_list),
-      //       onPressed: (){ _key.currentState.openEndDrawer(); },
-      //     )
-      //   ],
-      //   elevation: 0,
-      // ),
+      
       body: Stack(
         children: <Widget>[
           Container(
@@ -113,14 +102,6 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                     height: 145.0,
                     width: 145.0,)                  
                 ),
-                // CircularProgressIndicator(
-                  //   value: 0.25,
-                  //   backgroundColor: Colors.grey,
-                  //   valueColor: AlwaysStoppedAnimation<Color>(colorMain),
-                  // )
-                  // Text('Cargando.. espere un momento',
-                  //   style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.normal)
-                  // ),
               )
             ),
             Positioned(
@@ -139,14 +120,6 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
             )         
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-      //     builder: (_)=>ReservaPage(),
-      //   )),
-      //   child: Icon(Icons.list),
-      //   backgroundColor: colorMain,
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
     );
   }
 
