@@ -27,6 +27,8 @@ class MascotaDetallePage extends StatelessWidget {
                 ),
                 Positioned(
                   bottom: 0,
+                  left: 5.0,
+                  right: 5.0,
                   child: Container(
                     height: 200.0,
                     width: MediaQuery.of(context).size.width,
