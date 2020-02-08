@@ -16,12 +16,36 @@ class Mascota{
   });
 }
 
+calculateAge(DateTime birthDate) {
+  DateTime currentDate = DateTime.now();
+  String resp;
+  int age = currentDate.year - birthDate.year;
+  int month1 = currentDate.month;
+  int month2 = birthDate.month;
+  if (month2 > month1) {
+    age--;
+    month2=month2-month1;
+  } else if (month1 == month2) {
+    int day1 = currentDate.day;
+    int day2 = birthDate.day;
+    if (day2 > day1) {
+      age--;
+    }
+  }
+  String rAnio=' años';
+  String rMes=' meses';
+  if(age==1){ rAnio=' año';}
+  if(month2==1){rMes=' mes';}
+  resp = age.toString()+ rAnio +' '+ month2.toString()+rMes;
+  return resp;
+}
+//.now().add(new Duration(days: -700))
 final List<Mascota> mascotaList = [
   Mascota(
     idMascota: 1,
     nombre: 'Greco',
     raza: 'Cocker spaniel',
-    edad: '4 años 1 mes',
+    edad: calculateAge(DateTime.parse('2015-12-15')).toString(),
     foto: 'images/greco.png',
     peso: '12.45'
   ),
@@ -29,7 +53,7 @@ final List<Mascota> mascotaList = [
     idMascota: 2,
     nombre: 'Perikito pimpim',
     raza: 'Braco',
-    edad: '5 años 3 meses',
+    edad: calculateAge(DateTime.parse('2020-01-01')).toString(),
     foto: 'images/perro2.jpg',
     peso: '14.65'
   ),
@@ -41,5 +65,13 @@ final List<Mascota> mascotaList = [
     foto: 'images/perro3.png',
     peso: '10.25'
   ),
+  Mascota(
+    idMascota: 4,
+    nombre: 'Chulin',
+    raza: 'Perro peruano',
+    edad: '2 años',
+    foto: 'images/perro3.png',
+    peso: '10.25'
+  )
 
 ];

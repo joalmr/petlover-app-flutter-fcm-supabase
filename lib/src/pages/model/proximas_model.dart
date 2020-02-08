@@ -1,5 +1,5 @@
 class Proxima{
-  int idProxima;
+  int idProxima;//idreserva
   String fotoMascota;
   String nombreVet;
   String direccionVet;

@@ -3,8 +3,6 @@ import 'package:proypet/src/pages/auth/forgot_page.dart';
 import 'package:proypet/src/pages/auth/login_page.dart';
 import 'package:proypet/src/pages/auth/singup_page.dart';
 import 'package:proypet/src/pages/ejemplo.dart';
-import 'package:proypet/src/pages/mascota_detalle_page.dart';
-import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/menu_page.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
@@ -15,7 +13,7 @@ Map<String,WidgetBuilder> getRoutes(){
     'registro'    : (BuildContext context)=>SingupPage(),
     'olvidopass'  : (BuildContext context)=>ForgotPage(),
     'menu'        : (BuildContext context)=>MenuPage(),
-    'nav'         : (BuildContext context)=>NavigationBar(),
+    'nav'         : (BuildContext context)=>NavigationBar(currentTabIndex: 1),
     'mapa' : (BuildContext context)=>ReservaMapaPage(),
     'ejemplo' : (BuildContext context)=>HomeScreen(),
     //'mascotadetalle'    :(BuildContext context)=>MascotaDetallePage(),

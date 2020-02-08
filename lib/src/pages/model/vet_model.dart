@@ -14,7 +14,6 @@ class Vet {
   List<String> servicio;
   List<String> imagenServicio;
   
-
   Vet({
     this.idvet,
     this.nombre,
@@ -34,7 +33,6 @@ class Vet {
 class Servicio {
   String servicio;
   String imagenServicio;
-
   Servicio(List<String> servicio, List<String> imagenServicio);
 }
 

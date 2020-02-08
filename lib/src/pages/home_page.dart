@@ -4,9 +4,7 @@ import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/model/mascota_model.dart';
-import 'package:proypet/src/pages/model/proximas_model.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
-import 'package:proypet/src/pages/reserva_page.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 final List publicidad = ['images/elegante1.jpg','images/royal1.jpg'];
@@ -60,6 +58,7 @@ class HomePage extends StatelessWidget {
                   child: Stack(
                     children: <Widget>[
                       Swiper(
+                        itemCount: mascotaList.length,
                         itemBuilder: (BuildContext context, int index){
                           return Stack(
                             children: <Widget>[
@@ -88,7 +87,7 @@ class HomePage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      mascotaList[index].nombre,
+                                      mascotaList[index].nombre+' '+index.toString()+' '+mascotaList.length.toString(),
                                       style: TextStyle(
                                         fontSize: 22,
                                         fontWeight: FontWeight.bold,
@@ -168,8 +167,7 @@ class HomePage extends StatelessWidget {
                           );
                         },
                         viewportFraction: 0.79,
-                        scale: 0.77,
-                        itemCount: mascotaList.length,
+                        scale: 0.77,                        
                         loop: false,
                       ),
                       Positioned(
