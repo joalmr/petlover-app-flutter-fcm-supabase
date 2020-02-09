@@ -1,3 +1,12 @@
+class DdlMascota{
+  int idMascota;
+  String nombre;
+  DdlMascota({
+    this.idMascota,
+    this.nombre
+  });
+}
+
 class Mascota{
   int idMascota;
   String nombre;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:proypet/main.dart';
+import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
@@ -156,7 +157,7 @@ class _Data extends State<DataReserva> {
       context: context, 
       initialDate: new DateTime.now(), 
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
-      lastDate: new DateTime(DateTime.now().year+1),
+      lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
     );
 
     if(picked!=null){
