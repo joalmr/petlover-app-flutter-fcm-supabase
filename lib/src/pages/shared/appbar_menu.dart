@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
-import 'package:proypet/src/pages/model/mascota_model.dart';
+import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
 
 final leadingProypet = Container(
     margin: EdgeInsets.all(10.0),

@@ -6,6 +6,7 @@ class Modal{
   mainModal(BuildContext context, _funtion){
     showModalBottomSheet(
       context: context,
+      isDismissible: false,
       builder: (BuildContext context){
         return SingleChildScrollView(
           child: Column(

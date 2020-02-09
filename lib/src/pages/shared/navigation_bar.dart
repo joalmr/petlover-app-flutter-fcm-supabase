@@ -36,7 +36,7 @@ class _NavigationBarState extends State<NavigationBar> {
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.pets,),
-        title: Text('Greco',style: TextStyle(fontSize: 12.0)),
+        title: Text('Inicio',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.search,),

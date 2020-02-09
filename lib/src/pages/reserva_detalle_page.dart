@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
-import 'package:proypet/src/pages/reserva_modal.dart';
+import 'package:proypet/src/pages/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 
@@ -27,7 +27,7 @@ class ReservaDetallePage extends StatelessWidget {
             bottom: 0.0,
             height: 100.0,
             child: FlatButton(
-              onPressed: ()=>modal.mainModal(context,ModalDataReserva()),
+              onPressed: ()=>modal.mainModal(context,DataReserva()),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.only(top: 35.0),

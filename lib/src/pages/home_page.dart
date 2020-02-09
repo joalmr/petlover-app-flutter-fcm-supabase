@@ -3,7 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascotas_page.dart';
-import 'package:proypet/src/pages/model/mascota_model.dart';
+import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      mascotaList[index].nombre+' '+index.toString()+' '+mascotaList.length.toString(),
+                                      mascotaList[index].nombre,
                                       style: TextStyle(
                                         fontSize: 22,
                                         fontWeight: FontWeight.bold,
@@ -335,7 +335,7 @@ class HomePage extends StatelessWidget {
                                         width: 120.0,
                                         height: 100.0,
                                         child: Center(
-                                          child: Text('Desparacitación',style: TextStyle(color: Colors.white)),
+                                          child: Text('Desparasitación',style: TextStyle(color: Colors.white)),
                                         ),
                                       )
                                     ],
