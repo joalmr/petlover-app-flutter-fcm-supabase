@@ -17,7 +17,7 @@ class _LoginSevenPageState extends State<LoginPage> {
         children: <Widget>[
           WaveClipper(300.0,120.0),
           SizedBox(height: 30.0),
-          FormControl().textfield('Email', Icons.mail, false),
+          FormControl().textfield('Email', Icons.alternate_email, false),
           SizedBox(height: 20),
           FormControl().textfield('Contraseña', Icons.lock, true),
           SizedBox(height: 25.0),

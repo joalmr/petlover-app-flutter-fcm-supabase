@@ -40,7 +40,7 @@ final List<Mascota> mascotaList = [
     raza: 'Perro peruano',
     edad: calculateAge(DateTime.parse('2020-02-03')).toString(),
     foto: 'images/perro3.png',
-    peso: '10.25'
+    peso: '6.25'
   ),
   Mascota(
     idMascota: 4,
@@ -48,7 +48,7 @@ final List<Mascota> mascotaList = [
     raza: 'Perro peruano',
     edad: calculateAge(DateTime.parse('2019-02-15')).toString(),
     foto: 'images/perro3.png',
-    peso: '10.25'
+    peso: '8.35'
   ),
   Mascota(
     idMascota: 4,

@@ -46,10 +46,42 @@ class _Data extends State<DataReserva> {
           SizedBox(height: 10.0,),
           Text('Hora'),
           _crearHora(context),
+          // MaterialButton(
+          //   child: Text("Cupertino"),
+          //   color: Colors.greenAccent,
+          //   onPressed: () {
+          //     showModalBottomSheet(
+          //       context: context,
+          //       builder: (BuildContext builder) {
+          //         return Container(
+          //             height: MediaQuery.of(context).copyWith().size.height / 3,
+          //             child: time());
+          //       }
+          //     );
+          //   },
+          // ),
           SizedBox(height: 10.0,),
+          // MaterialButton(
+          //   child: Text(
+          //     "Cupertino date Picker",
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   color: Colors.redAccent,
+          //   onPressed: () {
+          //     showModalBottomSheet(
+          //       context: context,
+          //       builder: (BuildContext builder) {
+          //         return Container(
+          //           height:MediaQuery.of(context).copyWith().size.height/3,
+          //           child: datetime()
+          //         );
+          //       }
+          //     );
+          //   },
+          // ),
           Text('Atención'),
           DdlControl2(lista: _atencion),
-          SizedBox(height: 50.0,),
+          SizedBox(height: 20.0,),
           FormControl().buttonSec('Reservar', (){
             showDialog(
               barrierDismissible: false,
@@ -63,7 +95,7 @@ class _Data extends State<DataReserva> {
                     FlatButton(
                       child: new Text("Ir a inicio"),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,MaterialPageRoute(
                             builder: (context) => NavigationBar(currentTabIndex: 1,)
                         ));
@@ -73,15 +105,13 @@ class _Data extends State<DataReserva> {
                 );
               }
             );   
-          }),
+          }),          
+          SizedBox(height: 5.0),
           FlatButton(
-            child: new Text("Cancelar"),
+            child: new Text("Cancelar",style: TextStyle(color: colorMain)),
             onPressed: () {
-              Navigator.push(
-                context,MaterialPageRoute(
-                  builder: (context) => NavigationBar(currentTabIndex: 1,)
-              ));
-            },
+              Navigator.of(context).pop();
+            },            
           ),
         ],
       ),
@@ -101,7 +131,6 @@ class _Data extends State<DataReserva> {
           FocusScope.of(context).requestFocus(new FocusNode());
           _selectDate(context);
         },
-        // onChanged: (String value){},
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Fecha de atención',
@@ -149,9 +178,28 @@ class _Data extends State<DataReserva> {
         controller: _inputHoraController,
         onTap: (){
           FocusScope.of(context).requestFocus(new FocusNode());
-          _selectHour(context);
+          showModalBottomSheet(
+            context: context,
+            builder: (BuildContext builder) {
+              return Container(
+                height: MediaQuery.of(context).copyWith().size.height / 3,
+                color: Colors.white,
+                child: Column(
+                  children: <Widget>[
+                    _time(),
+                    FlatButton(
+                      child: new Text("Cerrar",style: TextStyle(color: colorMain)),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },            
+                    ),
+                  ],
+                )
+              );
+            }
+          );
+          //_selectHour(context);
         },
-        // onChanged: (String value){},
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Hora de atención',
@@ -170,23 +218,58 @@ class _Data extends State<DataReserva> {
       ),
     );
   }
-   _selectHour(BuildContext context) async {
-    TimeOfDay pickedHora = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-      builder: (BuildContext context, Widget child) {
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
-          child: child,
-        );
+  //  _selectHour(BuildContext context) async {
+  //   TimeOfDay pickedHora = await showTimePicker(
+  //     context: context,
+  //     initialTime: TimeOfDay.now(),
+  //     builder: (BuildContext context, Widget child) {
+  //       return MediaQuery(
+  //         data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+  //         child: child,
+  //       );
+  //     },
+  //   );
+
+  //   if(pickedHora!=null){
+  //     setState(() {
+  //       _hora= pickedHora.format(context); //f.format(pickedHora);
+  //       _inputHoraController.text = _hora;
+  //     });
+  //   }
+  // }
+  Duration initialtimer = new Duration();
+
+  Widget _time() {
+    return CupertinoTimerPicker(
+      mode: CupertinoTimerPickerMode.hm,
+      minuteInterval: 10,
+      initialTimerDuration: initialtimer,
+      onTimerDurationChanged: (Duration changedtimer) {
+        setState(() {
+          initialtimer = changedtimer;
+          if(initialtimer!=null){
+            _hora = initialtimer.toString().split(':00.')[0];//.format(context); //f.format(pickedHora);
+            _inputHoraController.text = _hora;
+          }          
+        });
       },
     );
-
-    if(pickedHora!=null){
-      setState(() {
-        _hora= pickedHora.format(context); //f.format(pickedHora);
-        _inputHoraController.text = _hora;
-      });
-    }
   }
+
+  // Widget datetime() {
+  //   return CupertinoDatePicker(
+  //     initialDateTime: DateTime.now(),
+  //     onDateTimeChanged: (DateTime newdate) {
+  //       print(newdate);
+  //     },
+  //     use24hFormat: false,
+  //     minimumDate: DateTime.now(),
+  //     maximumDate: new DateTime(DateTime.now().year+1),
+  //     minimumYear: DateTime.now().year,
+  //     maximumYear: DateTime.now().year+1,
+  //     minuteInterval: 1,
+  //     mode: CupertinoDatePickerMode.dateAndTime,
+  //   );
+  // }
+
 }

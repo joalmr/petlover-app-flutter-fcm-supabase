@@ -20,5 +20,5 @@ class Proypet {
 
   static const _kFontFam = 'Proypet';
 
-  static const IconData bw = const IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData proypet = const IconData(0xe800, fontFamily: _kFontFam);
 }

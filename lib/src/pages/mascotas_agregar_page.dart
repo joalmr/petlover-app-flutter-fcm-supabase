@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:intl/intl.dart';
+import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 final tipopet = [{'cod':'1','nombre':'Perro',},{'cod':'2','nombre':'Gato'}];
 final raza = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];
 
-class MascotaAgregarPage extends StatelessWidget {
+class MascotaAgregarPage extends StatefulWidget {
+  @override
+  _MascotaAgregarPageState createState() => _MascotaAgregarPageState();
+}
+
+class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
+  String _fecha ='';
+  final _shape = BorderRadius.circular(10.0);
+  TextEditingController _inputFechaController=new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +57,10 @@ class MascotaAgregarPage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                     child: Text('Fecha de nacimiento'),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                    child: _crearFecha(context),
+                  ),
                   SizedBox(height: 10.0,),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
@@ -53,12 +68,94 @@ class MascotaAgregarPage extends StatelessWidget {
                   ),
                   
                   SizedBox(height: 25.0,),
-                  Center(child: FormControl().buttonSec('Agregar mascota',(){}))
+                  Center(child: FormControl().buttonSec('Agregar mascota',(){
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          content: Container(
+                            child: Text('Mascota agregada con éxito.')
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: new Text("Volver"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),                            
+                            FlatButton(
+                              child: new Text("Ir a inicio"),
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,MaterialPageRoute(
+                                    builder: (context) => NavigationBar(currentTabIndex: 1,)
+                                ));
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    ); 
+                  }))
                 ],
               ),
             ),
         ],
       ),
     );
+  }
+
+  
+
+  Widget _crearFecha(BuildContext context){
+    return Material(
+      elevation: 0.0,
+      borderRadius: _shape,
+      color: Colors.grey[200],
+      child: TextField(
+        enableInteractiveSelection: false,
+        controller: _inputFechaController,
+        onTap: (){
+          FocusScope.of(context).requestFocus(new FocusNode());
+          _selectDate(context);
+        },
+        cursorColor: colorMain,
+        decoration: InputDecoration(
+          hintText: 'Fecha de atención',
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Material(
+            //elevation: 0.0,
+            borderRadius: _shape,
+            color: Colors.grey[200],
+            child: Icon(
+              Icons.calendar_today,
+              color: colorMain,
+            ),
+          ),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+        ),
+      ),
+    );
+  }
+
+  _selectDate(BuildContext context) async {
+    DateTime picked = await showDatePicker(
+      context: context, 
+      initialDate: new DateTime.now(), 
+      //firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
+      firstDate: new DateTime(DateTime.now().year-25),
+      lastDate: DateTime.now(),
+      initialDatePickerMode: DatePickerMode.year
+    );
+
+    if(picked!=null){
+      final f = new DateFormat('yyyy-MM-dd');
+      setState(() {
+        _fecha= f.format(picked);
+        _inputFechaController.text = _fecha;
+      });
+    }
   }
 }

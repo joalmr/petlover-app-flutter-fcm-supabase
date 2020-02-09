@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/pages/atenciones_page.dart';
 import 'package:proypet/src/pages/home_page.dart';
 import 'package:proypet/src/pages/notificaciones_page.dart';
@@ -39,7 +40,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Inicio',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.search,),
+        icon: Icon(Proypet.proypet),
         title: Text('Veterinarias',style: TextStyle(fontSize: 12.0)),
       ),      
       BottomNavigationBarItem(
