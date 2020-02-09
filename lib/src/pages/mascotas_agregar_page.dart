@@ -122,7 +122,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         },
         cursorColor: colorMain,
         decoration: InputDecoration(
-          hintText: 'Fecha de atención',
+          hintText: 'Fecha de nacimiento',
           hintStyle: TextStyle(fontSize: 14.0),
           prefixIcon: Material(
             //elevation: 0.0,
