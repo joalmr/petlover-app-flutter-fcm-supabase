@@ -44,7 +44,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Veterinarias',style: TextStyle(fontSize: 12.0)),
       ),      
       BottomNavigationBarItem(
-        icon: Icon(Proypet.proypet2),//Icons.info
+        icon: Icon(Icons.info),//Proypet.proypet2
         title: Text('Destacados',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(

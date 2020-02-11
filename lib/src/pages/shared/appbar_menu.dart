@@ -19,16 +19,23 @@ final leadingProypet = Container(
 final leadingH = Container(
     margin: EdgeInsets.all(2.5),
     //padding: EdgeInsets.symmetric(horizontal: 10.0),
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: colorSec,
-    ),
-    child: CircleAvatar(
-      backgroundColor: colorMain,      
-      backgroundImage: AssetImage(mascotaList[0].foto),
-      //child: Image.asset('images/greco.png'),
-      //radius: 40.0,
-    ),
+    // decoration: BoxDecoration(
+    //   shape: BoxShape.circle,
+    //   color: colorSec,
+    // ),
+    child: ClipRRect(
+      //borderRadius: BorderRadius.circular(100.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Image(image: AssetImage('images/proypet.png')),
+      ),
+    )
+    // CircleAvatar(
+    //   backgroundColor: colorMain,      
+    //   backgroundImage: AssetImage(mascotaList[0].foto),
+    //   //child: Image.asset('images/greco.png'),
+    //   //radius: 40.0,
+    // ),
   );
 final titleH = Column(
             crossAxisAlignment: CrossAxisAlignment.start,

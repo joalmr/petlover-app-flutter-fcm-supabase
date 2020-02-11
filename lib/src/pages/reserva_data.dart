@@ -169,7 +169,10 @@ class _Data extends State<DataReserva> {
     }
   }
 
+  
   Widget _crearHora(BuildContext context){
+    //final abc = (MediaQuery.of(context).copyWith().size.height / 3)+70;
+
     return Material(
       elevation: 0.0,
       borderRadius: _shape,
@@ -183,7 +186,7 @@ class _Data extends State<DataReserva> {
             context: context,
             builder: (BuildContext builder) {
               return Container(
-                height: MediaQuery.of(context).copyWith().size.height / 3,
+                height: 275.0,
                 color: Colors.white,
                 child: Column(
                   children: <Widget>[

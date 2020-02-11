@@ -4,11 +4,11 @@ import 'package:proypet/main.dart';
 
 class CardSwiper extends StatelessWidget {
   final List<dynamic> imagenes;
-  final bool autoplay1;
+  //final bool autoplay1;
   final double radius;
   final double height1;
 
-  CardSwiper({@required this.imagenes,this.autoplay1,this.radius,this.height1});
+  CardSwiper({@required this.imagenes,this.radius,this.height1});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +16,13 @@ class CardSwiper extends StatelessWidget {
       height: height1,
       width: double.infinity,
       child: Swiper(
-        autoplay: autoplay1,
         itemBuilder: (BuildContext context, int index){
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(radius),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(imagenes[index])
-              )
-            ),
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(radius),
+            child: Image(
+              image: AssetImage(imagenes[index]),
+              fit: BoxFit.cover,
+            )
           );
         },
         itemCount: imagenes.length,

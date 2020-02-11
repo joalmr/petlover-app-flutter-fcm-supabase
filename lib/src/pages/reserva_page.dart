@@ -134,6 +134,6 @@ class ReservaPage extends StatelessWidget {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 5.0,height1: 175.0);    
+    return CardSwiper(imagenes : imagen,radius: 10.0,height1: 175.0);    
   }
 }

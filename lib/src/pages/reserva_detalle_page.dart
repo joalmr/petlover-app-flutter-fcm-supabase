@@ -36,10 +36,10 @@ class ReservaDetallePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.3), size: 11.0),
-                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.5), size: 12.0),
-                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.7), size: 13.0),
-                      Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.9), size: 14.0),
+                      // Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.3), size: 11.0),
+                      // Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.5), size: 12.0),
+                      // Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.7), size: 13.0),
+                      // Icon(Icons.arrow_forward_ios, color: Colors.white.withOpacity(0.9), size: 14.0),
                       Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
                     ],
                   ),
@@ -63,7 +63,7 @@ class ReservaDetallePage extends StatelessWidget {
                   ),
                   SizedBox(height: 5.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width - 0.0,
                       child: Row(
@@ -286,7 +286,7 @@ class ReservaDetallePage extends StatelessWidget {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,autoplay1: false,radius: 0.0,height1: 145.0);    
+    return CardSwiper(imagenes : imagen,radius: 0.0,height1: 145.0);    
   }
 
   nombreVet(index){

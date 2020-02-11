@@ -60,110 +60,108 @@ class HomePage extends StatelessWidget {
                       Swiper(
                         itemCount: mascotaList.length,
                         itemBuilder: (BuildContext context, int index){
-                          return Stack(
-                            children: <Widget>[
-                              Container(
-                                height: 250.0,
-                                width: double.infinity,
-                                foregroundDecoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.15),
-                                  borderRadius: BorderRadius.circular(15.0),
-                                ),
-                                padding: EdgeInsets.all(25.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  height: 250.0,
+                                  width: double.infinity,
+                                  foregroundDecoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.15),
+                                  ),
+                                  child: Image(
                                     image: AssetImage(mascotaList[index].foto),
-                                  )
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
 
-                              Positioned(
-                                top: 15.0,
-                                left: 10.0,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      mascotaList[index].nombre,
-                                      style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
+                                Positioned(
+                                  top: 15.0,
+                                  left: 10.0,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        mascotaList[index].nombre,
+                                        style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      mascotaList[index].raza,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
+                                      Text(
+                                        mascotaList[index].raza,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
 
-                              Positioned(
-                                bottom: 10.0,
-                                left: 10.0,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: mascotaList[index].peso,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .display1
-                                                .apply(color: Colors.white, fontWeightDelta: 2),
-                                          ),
-                                          TextSpan(text: " kg.")
+                                Positioned(
+                                  bottom: 10.0,
+                                  left: 10.0,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: mascotaList[index].peso,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .display1
+                                                  .apply(color: Colors.white, fontWeightDelta: 2),
+                                            ),
+                                            TextSpan(text: " kg.")
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(Icons.cake, color: Colors.grey[300]),
+                                          SizedBox(width: 5.0),
+                                          Text(
+                                            mascotaList[index].edad,
+                                            style: TextStyle(color: Colors.grey[300]),
+                                          )
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Icon(Icons.cake, color: Colors.grey[300]),
-                                        SizedBox(width: 5.0),
-                                        Text(
-                                          mascotaList[index].edad,
-                                          style: TextStyle(color: Colors.grey[300]),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              Positioned(
-                                bottom: 10.0,
-                                right: 10.0,
-                                child: RaisedButton(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 15.0, vertical: 11.0),
-                                  color: Colors.black.withOpacity(0.15),
-                                  onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                                    builder: (_)=>MascotaDetallePage(idmascota:  index),
-                                  )),
-                                  child: Text(
-                                    'Ver más',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                    ],
                                   ),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: new BorderRadius.circular(9.0),
-                                      side: BorderSide(color: Colors.white)),
                                 ),
-                              ),
-                            ],
-                            
+
+                                Positioned(
+                                  bottom: 10.0,
+                                  right: 10.0,
+                                  child: RaisedButton(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 11.0),
+                                    color: Colors.black.withOpacity(0.15),
+                                    onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+                                      builder: (_)=>MascotaDetallePage(idmascota:  index),
+                                    )),
+                                    child: Text(
+                                      'Ver más',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: new BorderRadius.circular(9.0),
+                                        side: BorderSide(color: Colors.white)),
+                                  ),
+                                ),
+                              ],
+                              
+                            ),
                           );
                         },
                         viewportFraction: 0.79,
