@@ -6,6 +6,7 @@ import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 final List publicidad = ['images/elegante1.jpg','images/royal1.jpg'];
 class HomePage extends StatelessWidget {

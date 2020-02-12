@@ -5,6 +5,7 @@ import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 import '../../main.dart';
 

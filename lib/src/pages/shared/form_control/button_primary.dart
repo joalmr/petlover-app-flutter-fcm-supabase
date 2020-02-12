@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 
-final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
+//final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
 //final _shape = BorderRadius.circular(10.0);
 
 Widget buttonPri(_text,_funtion){
   return RaisedButton(
-    shape: _shapeB,
+    shape: shapeB,
     color: colorMain,
     elevation: 2.0,
     textColor: Colors.white,

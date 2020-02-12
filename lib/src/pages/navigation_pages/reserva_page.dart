@@ -6,8 +6,8 @@ import 'package:proypet/src/pages/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/filtros_mapa.dart';
-import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field_button.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 
 class ReservaPage extends StatelessWidget {

@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 final tipopet = [{'cod':'1','nombre':'Perro',},{'cod':'2','nombre':'Gato'}];
 final raza = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];

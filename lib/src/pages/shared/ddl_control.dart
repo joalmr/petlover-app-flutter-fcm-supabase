@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
-final _shape = BorderRadius.circular(10.0);
+//final _shape = BorderRadius.circular(10.0);
 
 class DdlControl extends StatefulWidget {
   final lista;
@@ -19,7 +20,7 @@ class _DdlControl extends State<DdlControl> {
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Material(
         elevation: 0.0,
-        borderRadius: _shape,
+        borderRadius: shape,
         color: Colors.grey[200],
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -56,7 +57,7 @@ class _DdlControl2 extends State<DdlControl2> {
   Widget build(BuildContext context) {
     return Material(
         elevation: 0.0,
-        borderRadius: _shape,
+        borderRadius: shape,
         color: Colors.grey[200],
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),

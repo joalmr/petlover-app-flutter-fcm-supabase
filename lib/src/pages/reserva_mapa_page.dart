@@ -46,13 +46,17 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
     vetLocales.forEach((element) {
       allMarkers.add(Marker(
-        onTap: ()=>Navigator.push(context, MaterialPageRoute(
-          builder: (_)=>ReservaDetallePage(idvet: (element.idvet-1)),
-        )),
         markerId: MarkerId(element.nombre),
         draggable: false,
-        infoWindow: InfoWindow(title: element.nombre, snippet: element.direccion),
-        position: element.locationCoords, ));
+        infoWindow: InfoWindow(
+          title: element.nombre, 
+          snippet: '★ ${element.estrellas} (${element.votantes})',//element.direccion,
+          onTap: ()=>Navigator.push(context, MaterialPageRoute(
+            builder: (_)=>ReservaDetallePage(idvet: (element.idvet-1)),
+          )),
+        ),
+        position: element.locationCoords,
+        ));
     });
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
@@ -77,24 +81,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
             onPressed: (){ _key.currentState.openEndDrawer(); },
           )
         ]
-      ),
-      // appBar: AppBar(
-      //   backgroundColor: colorMain,
-        // title: Text('Establecimientos',
-        //   style: TextStyle(
-        //     fontSize: 16.0,
-        //     fontWeight: FontWeight.normal
-        //   ),
-        // ),
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: Icon(Icons.filter_list),
-        //     onPressed: (){ _key.currentState.openEndDrawer(); },
-        //   )
-        // ],
-      //   elevation: 0,
-      // ),
-      
+      ),     
       body: Stack(
         children: <Widget>[
           Container(
@@ -107,7 +94,8 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                 rotateGesturesEnabled: true,
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
-                  target: vetLocales[0].locationCoords, zoom: 16.0),
+                  target: vetLocales[0].locationCoords, zoom: 16.0
+                ),
                 markers: Set.from(allMarkers),
                 onMapCreated: mapCreated,
               ) : Container(
@@ -120,7 +108,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
               )
             ),
             Positioned(
-              bottom: 20.0,
+              bottom: 25.0,
               child: Container(
                 height: 200.0,
                 width: MediaQuery.of(context).size.width,
@@ -241,10 +229,11 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
   moveCamera() {
     _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-        target: vetLocales[_pageController.page.toInt()].locationCoords,
-        zoom: 16.0,
-        bearing: 45.0,
-        tilt: 45.0)));
+      target: vetLocales[_pageController.page.toInt()].locationCoords,
+      zoom: 16.0,
+      bearing: 45.0,
+      tilt: 45.0))
+    );
   }
   
 }
