@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 
 class DestacadosPage extends StatelessWidget {

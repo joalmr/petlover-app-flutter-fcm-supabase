@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/main.dart';
 import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/pages/navigation_pages/home_page.dart';

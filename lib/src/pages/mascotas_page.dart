@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/mascotas_editar_page.dart';
 import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 

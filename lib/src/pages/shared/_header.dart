@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
-import '../../../main.dart';
 
 class Header extends StatelessWidget {
   @override

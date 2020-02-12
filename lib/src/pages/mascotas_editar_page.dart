@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
-import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
