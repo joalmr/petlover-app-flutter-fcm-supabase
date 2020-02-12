@@ -6,11 +6,11 @@ import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 
-final mascotas=[
-  {'nombre':'Greco','raza':'Cocker spaniel','edad':'4 años 1 mes','foto':'images/greco.png'},
-  {'nombre':'Greco','raza':'Cocker spaniel','edad':'4 años 1 mes','foto':'images/greco.png'},
-  {'nombre':'Greco','raza':'Cocker spaniel','edad':'4 años 1 mes','foto':'images/greco.png'},
-];
+// final mascotas=[
+//   {'nombre':'Greco','raza':'Cocker spaniel','edad':'4 años 1 mes','foto':'images/greco.png'},
+//   {'nombre':'Greco','raza':'Cocker spaniel','edad':'4 años 1 mes','foto':'images/greco.png'},
+//   {'nombre':'Greco','raza':'Cocker spaniel','edad':'4 años 1 mes','foto':'images/greco.png'},
+// ];
 
 class MascotasPage extends StatelessWidget {
   //static const String _title = 'Flutter Code Sample';
@@ -49,7 +49,7 @@ class MascotasPage extends StatelessWidget {
               (BuildContext context, int index){
                 return _buildMascotas(context,index);
               },
-              childCount: mascotas.length
+              childCount: mascotaList.length
             ),
           ),
         ],
