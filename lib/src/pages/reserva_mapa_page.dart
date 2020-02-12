@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:location/location.dart';
-import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/filtros_mapa.dart';
 
 
@@ -63,22 +63,37 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
     return Scaffold(
       key: _key,
       endDrawer: FiltrosMapa(),
-      appBar: AppBar(
-        backgroundColor: colorMain,
-        title: Text('Establecimientos',
+      appBar: appbar2(
+        null,
+        Text('Establecimientos',
           style: TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.normal
           ),
         ),
-        actions: <Widget>[
+        <Widget>[
           IconButton(
             icon: Icon(Icons.filter_list),
             onPressed: (){ _key.currentState.openEndDrawer(); },
           )
-        ],
-        elevation: 0,
+        ]
       ),
+      // appBar: AppBar(
+      //   backgroundColor: colorMain,
+        // title: Text('Establecimientos',
+        //   style: TextStyle(
+        //     fontSize: 16.0,
+        //     fontWeight: FontWeight.normal
+        //   ),
+        // ),
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Icon(Icons.filter_list),
+        //     onPressed: (){ _key.currentState.openEndDrawer(); },
+        //   )
+        // ],
+      //   elevation: 0,
+      // ),
       
       body: Stack(
         children: <Widget>[

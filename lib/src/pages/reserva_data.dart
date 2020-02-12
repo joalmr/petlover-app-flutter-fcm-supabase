@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:proypet/main.dart';
-import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
-import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:intl/intl.dart';
 
@@ -47,66 +46,14 @@ class _Data extends State<DataReserva> {
           SizedBox(height: 10.0,),
           Text('Hora'),
           _crearHora(context),
-          // MaterialButton(
-          //   child: Text("Cupertino"),
-          //   color: Colors.greenAccent,
-          //   onPressed: () {
-          //     showModalBottomSheet(
-          //       context: context,
-          //       builder: (BuildContext builder) {
-          //         return Container(
-          //             height: MediaQuery.of(context).copyWith().size.height / 3,
-          //             child: time());
-          //       }
-          //     );
-          //   },
-          // ),
           SizedBox(height: 10.0,),
-          // MaterialButton(
-          //   child: Text(
-          //     "Cupertino date Picker",
-          //     style: TextStyle(color: Colors.white),
-          //   ),
-          //   color: Colors.redAccent,
-          //   onPressed: () {
-          //     showModalBottomSheet(
-          //       context: context,
-          //       builder: (BuildContext builder) {
-          //         return Container(
-          //           height:MediaQuery.of(context).copyWith().size.height/3,
-          //           child: datetime()
-          //         );
-          //       }
-          //     );
-          //   },
-          // ),
           Text('Atención'),
           DdlControl2(lista: _atencion),
           SizedBox(height: 20.0,),
-          FormControl().buttonSec('Reservar', (){
-            showDialog(
-              barrierDismissible: false,
-              context: context,
-              builder: (BuildContext context){
-                return AlertDialog(
-                  content: Container(
-                    child: Text('Reserva realizada con éxito.')
-                  ),
-                  actions: <Widget>[
-                    FlatButton(
-                      child: new Text("Ir a inicio"),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,MaterialPageRoute(
-                            builder: (context) => NavigationBar(currentTabIndex: 1,)
-                        ));
-                      },
-                    ),
-                  ],
-                );
-              }
-            );   
-          }),          
+          // FormControl().buttonSec('Reservar', (){
+          //   reservaDialog();   
+          // }),
+          buttonPri('Reservar', ()=>reservaDialog()),      
           SizedBox(height: 5.0),
           FlatButton(
             child: new Text("Cancelar",style: TextStyle(color: colorMain)),
@@ -222,25 +169,7 @@ class _Data extends State<DataReserva> {
       ),
     );
   }
-  //  _selectHour(BuildContext context) async {
-  //   TimeOfDay pickedHora = await showTimePicker(
-  //     context: context,
-  //     initialTime: TimeOfDay.now(),
-  //     builder: (BuildContext context, Widget child) {
-  //       return MediaQuery(
-  //         data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
-  //         child: child,
-  //       );
-  //     },
-  //   );
-
-  //   if(pickedHora!=null){
-  //     setState(() {
-  //       _hora= pickedHora.format(context); //f.format(pickedHora);
-  //       _inputHoraController.text = _hora;
-  //     });
-  //   }
-  // }
+  
   Duration initialtimer = new Duration();
 
   Widget _time() {
@@ -260,20 +189,29 @@ class _Data extends State<DataReserva> {
     );
   }
 
-  // Widget datetime() {
-  //   return CupertinoDatePicker(
-  //     initialDateTime: DateTime.now(),
-  //     onDateTimeChanged: (DateTime newdate) {
-  //       print(newdate);
-  //     },
-  //     use24hFormat: false,
-  //     minimumDate: DateTime.now(),
-  //     maximumDate: new DateTime(DateTime.now().year+1),
-  //     minimumYear: DateTime.now().year,
-  //     maximumYear: DateTime.now().year+1,
-  //     minuteInterval: 1,
-  //     mode: CupertinoDatePickerMode.dateAndTime,
-  //   );
-  // }
+  reservaDialog(){
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          content: Container(
+            child: Text('Reserva realizada con éxito.')
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: new Text("Ir a inicio"),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,MaterialPageRoute(
+                    builder: (context) => NavigationBar(currentTabIndex: 1,)
+                ));
+              },
+            ),
+          ],
+        );
+      }
+    ); 
+  }
 
 }

@@ -9,16 +9,19 @@ class NotificacionesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colorMain,
-        leading: leadingH,
-        title: titleH,
-        actions: actionsH,
-        elevation: 0,
+      appBar: appbar2(
+        leadingH,
+        titleH,
+        <Widget>[
+          IconButton(
+            icon: Icon(Icons.dashboard),
+            onPressed: (){},
+          )
+        ]
       ),
       body: Container(
         child: Center(
-          child: Text('Etc'),
+          child: Text('Notificaciones'),
         ),
       ),
     );

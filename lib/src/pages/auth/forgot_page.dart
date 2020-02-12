@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
 class ForgotPage extends StatelessWidget {
@@ -26,9 +28,14 @@ class ForgotPage extends StatelessWidget {
             child: Text('Se le enviará un correo electrónico para que reestablezca su contraseña.')
           ),
           SizedBox(height: 20.0),
-          FormControl().textfield('Email', Icons.mail, false),
+          textfield('Email', Icons.mail, false),
+          //FormControl().textfield('Email', Icons.mail, false),
           SizedBox(height: 30.0),
-          FormControl().buttonPri('Enviar', (){}),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: buttonPri('Enviar',(){}),
+          ),
+          //FormControl().buttonPri('Enviar', (){}),
           SizedBox(height: 20.0),
         ],
       ),

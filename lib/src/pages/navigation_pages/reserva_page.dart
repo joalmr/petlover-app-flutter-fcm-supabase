@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/reserva_mapa_page.dart';
@@ -6,28 +7,30 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/filtros_mapa.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
-import '../../main.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field_button.dart';
+
 
 class ReservaPage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       key: _key,
       endDrawer: FiltrosMapa(),
-      appBar: AppBar(
-        backgroundColor: colorMain,
-        leading: leadingH,
-        title: titleH,
-        actions: <Widget>[
+      
+      appBar: appbar2(
+        leadingH,
+        titleH,
+        <Widget>[
           IconButton(
             icon: Icon(Icons.filter_list),
             onPressed: (){ _key.currentState.openEndDrawer(); },
           )
-        ],
-        elevation: 0,
-      ),      
+        ]
+      ),     
       body: Stack(
         children: <Widget>[
           CustomScrollView(
@@ -36,7 +39,11 @@ class ReservaPage extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 20.0,),
-                    FormControl().textfieldBtn('Ingrese veterinaria..',Icon(Icons.search),(){})
+                    //FormControl().textfieldBtn('Ingrese veterinaria..',Icon(Icons.search),(){}),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0,vertical: 8.0),
+                      child: textfieldBtn('Ingrese veterinaria..',Icon(Icons.search),(){}),
+                    )
                   ],
                 ),
               ),

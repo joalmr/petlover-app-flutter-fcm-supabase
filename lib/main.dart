@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/home_page.dart';
+import 'package:proypet/src/pages/shared/navigation_bar.dart';
+//import 'package:proypet/src/pages/home_page.dart';
 // import 'package:proypet/src/pages/login_page.dart';
 import 'package:proypet/src/routes/routes.dart';
  
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'login',
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
-          builder: (BuildContext context)=>HomePage(), //cuando falle
+          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 1) //cuando falle
         );
       },      
     );

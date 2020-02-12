@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
@@ -17,15 +19,23 @@ class _LoginSevenPageState extends State<LoginPage> {
         children: <Widget>[
           WaveClipper(300.0,120.0),
           SizedBox(height: 30.0),
-          FormControl().textfield('Email', Icons.alternate_email, false),
+          //FormControl().textfield('Email', Icons.alternate_email, false),
+          textfield('Email', Icons.alternate_email, false),
           SizedBox(height: 20),
-          FormControl().textfield('Contraseña', Icons.lock, true),
+          //FormControl().textfield('Contraseña', Icons.lock, true),
+          textfield('Contraseña', Icons.lock_outline, true),
           SizedBox(height: 25.0),
           //pushReplacementNamed
-          FormControl().buttonPri('Ingresar', ()=>Navigator.pushReplacement(
-            context,MaterialPageRoute(
-              builder: (context) => NavigationBar(currentTabIndex: 1,)
-          ))),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: buttonPri('Ingresar',()=>Navigator.pushReplacement(
+              context,MaterialPageRoute(builder: (context) => NavigationBar(currentTabIndex: 1,))
+            )),
+          ),
+          // FormControl().buttonPri('Ingresar', ()=>Navigator.pushReplacement(
+          //   context,MaterialPageRoute(
+          //     builder: (context) => NavigationBar(currentTabIndex: 1,)
+          // ))),
           SizedBox(height: 20.0),
           Center(
             child: FlatButton(

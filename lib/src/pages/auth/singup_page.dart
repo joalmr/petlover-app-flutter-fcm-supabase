@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
 class SingupPage extends StatelessWidget {
@@ -20,13 +22,17 @@ class SingupPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          FormControl().textfield('Nombre', Icons.person, false),
+          //FormControl().textfield('Nombre', Icons.person, false),
+          textfield('Nombre', Icons.person, false),
           SizedBox(height: 20),
-          FormControl().textfield('Apellido', Icons.person, false),
+          //FormControl().textfield('Apellido', Icons.person, false),
+          textfield('Apellido', Icons.person, false),
           SizedBox(height: 20),
-          FormControl().textfield('Email', Icons.mail, false),
+          //FormControl().textfield('Email', Icons.mail, false),
+          textfield('Email', Icons.mail, false),
           SizedBox(height: 20),
-          FormControl().textfield('Contraseña', Icons.lock, true),
+          //FormControl().textfield('Contraseña', Icons.lock, true),
+          textfield('Contraseña', Icons.lock, true),
           SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -51,7 +57,11 @@ class SingupPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 25),
-          FormControl().buttonPri('Registrarse', (){}),
+          //FormControl().buttonPri('Registrarse', (){}),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: buttonPri('Registrarse', (){}),
+          ),
           SizedBox(height: 20.0),
         ],
       ),

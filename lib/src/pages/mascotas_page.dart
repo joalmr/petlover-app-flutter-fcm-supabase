@@ -4,6 +4,7 @@ import 'package:proypet/src/pages/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/mascotas_editar_page.dart';
 import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 
 
 final mascotas=[
@@ -34,7 +35,10 @@ class MascotasPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(height: 15.0,),
-                FormControl().buttonSec('Agregar mascota',()=>Navigator.push(context, MaterialPageRoute(
+                // FormControl().buttonSec('Agregar mascota',()=>Navigator.push(context, MaterialPageRoute(
+                //   builder: (_)=>MascotaAgregarPage(),
+                // ))),
+                buttonPri('Agregar mascota',()=>Navigator.push(context, MaterialPageRoute(
                   builder: (_)=>MascotaAgregarPage(),
                 ))),
                 SizedBox(height: 10.0,),

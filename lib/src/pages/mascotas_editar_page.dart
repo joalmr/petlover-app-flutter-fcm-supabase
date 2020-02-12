@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 
 final raza = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];
 
@@ -27,7 +29,8 @@ class MascotasEditarPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 25.0,),
-                  FormControl().textfield('Nombre de mascota', Icons.pets, false),
+                  //FormControl().textfield('Nombre de mascota', Icons.pets, false),
+                  textfield('Nombre de mascota', Icons.pets, false),
                   SizedBox(height: 10.0,),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
@@ -46,7 +49,9 @@ class MascotasEditarPage extends StatelessWidget {
                   ),
                   
                   SizedBox(height: 25.0,),
-                  Center(child: FormControl().buttonSec('Guardar',(){}))
+                  Center(
+                    child: buttonPri('Guardar',(){}),
+                  )
                 ],
               ),
             ),

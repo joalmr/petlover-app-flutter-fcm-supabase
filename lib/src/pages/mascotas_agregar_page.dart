@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/main.dart';
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
 import 'package:intl/intl.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 final tipopet = [{'cod':'1','nombre':'Perro',},{'cod':'2','nombre':'Gato'}];
@@ -28,18 +31,18 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               child: Column(                
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  AppBar(
-                    backgroundColor: colorMain,
-                    elevation: 0,
-                    title: Text("Agregar mascota",style: 
-                      TextStyle(
+                  appbar2(
+                    null,
+                    Text('Agregar mascota',
+                      style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.normal
                       ),
                     ),
+                    null
                   ),
                   SizedBox(height: 25.0,),
-                  FormControl().textfield('Nombre de mascota', Icons.pets, false),
+                  textfield('Nombre de mascota', Icons.pets, false),
                   SizedBox(height: 10.0,),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
@@ -68,36 +71,10 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                   ),
                   
                   SizedBox(height: 25.0,),
-                  Center(child: FormControl().buttonSec('Agregar mascota',(){
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context){
-                        return AlertDialog(
-                          content: Container(
-                            child: Text('Mascota agregada con éxito.')
-                          ),
-                          actions: <Widget>[
-                            FlatButton(
-                              child: new Text("Volver"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),                            
-                            FlatButton(
-                              child: new Text("Ir a inicio"),
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,MaterialPageRoute(
-                                    builder: (context) => NavigationBar(currentTabIndex: 1,)
-                                ));
-                              },
-                            ),
-                          ],
-                        );
-                      }
-                    ); 
-                  }))
+                  Center(
+                    child: buttonPri('Agregar mascota',()=>agregarDialog())
+                  ),
+                  //Center(child: FormControl().buttonSec('Agregar mascota',()=>agregarDialog()))
                 ],
               ),
             ),
@@ -157,5 +134,36 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         _inputFechaController.text = _fecha;
       });
     }
+  }
+
+  agregarDialog(){
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          content: Container(
+            child: Text('Mascota agregada con éxito.')
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: new Text("Volver"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),                            
+            FlatButton(
+              child: new Text("Ir a inicio"),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,MaterialPageRoute(
+                    builder: (context) => NavigationBar(currentTabIndex: 1,)
+                ));
+              },
+            ),
+          ],
+        );
+      }
+    ); 
   }
 }

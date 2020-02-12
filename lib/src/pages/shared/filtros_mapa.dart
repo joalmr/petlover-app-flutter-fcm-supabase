@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 
 
 
@@ -47,7 +48,8 @@ class FiltrosMapa extends StatelessWidget {
                     onPressed: (){},
                   ),
                   SizedBox(height: 20.0,),
-                  FormControl().buttonSec('Buscar',(){})
+                  //FormControl().buttonSec('Buscar',(){})
+                  buttonPri('Agregar mascota',()=>{})
                 ],
               ),
             ),

@@ -12,7 +12,6 @@ class Modal{
           child: Column(
             children: <Widget>[
               _funtion
-              //
             ],
           ),
         );
