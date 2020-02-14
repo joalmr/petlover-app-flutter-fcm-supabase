@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/mascotas_editar_page.dart';
 import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
@@ -18,15 +19,15 @@ class MascotasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colorMain,
-        title: Text('Mis mascotas',
+      appBar: appbar2(
+        null,
+        Text('Agregar mascota',
           style: TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.normal
           ),
         ),
-        elevation: 0,
+        null
       ),
       body: CustomScrollView(
         slivers: <Widget>[

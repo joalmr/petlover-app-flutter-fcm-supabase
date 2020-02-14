@@ -15,207 +15,176 @@ class MascotaDetallePage extends StatelessWidget {
         children: [
           Container(
             height: MediaQuery.of(context).size.height,
-            color: colorMain,
           ),
           Container(
-            height: MediaQuery.of(context).size.height-65.0,
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Image(
-                    image: AssetImage(mascotaList[idmascota].foto),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 300.0,                  
-                  ),
-                  // Container(
-                  //   child: listaHistorial(context),
-                  // )
+            child: Image(
+              image: AssetImage(mascotaList[idmascota].foto),
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),            
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height,
+            foregroundDecoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Colors.transparent,
+                  Colors.green.withOpacity(0.75)
                 ],
-              ),
-              // children: <Widget>[
-              //   Positioned(
-              //     top: 0.0,
-                  
-              //   ),
-                
-                // Positioned(
-                //   bottom: 0,
-                //   left: 5.0,
-                //   right: 5.0,
-                //   child: Container(
-                //     height: 180.0,
-                //     width: MediaQuery.of(context).size.width,
-                //     foregroundDecoration: BoxDecoration(
-                //       color: colorMain,
-                //       borderRadius: BorderRadius.circular(25.0),
-                //     ),
-                //   ),
-                // ),
-                // Positioned(
-                //   bottom: 0,
-                //   child: Container(
-                //     height: 175.0,
-                //     width: MediaQuery.of(context).size.width,
-                //     padding: EdgeInsets.symmetric(vertical: 15.0),
-                //     child: Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       children: <Widget>[
-                //         Padding(
-                //           padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //           child: Row(
-                //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //             children: <Widget>[
-                //               Column(
-                //                 crossAxisAlignment: CrossAxisAlignment.start,
-                //                 mainAxisAlignment: MainAxisAlignment.start,
-                //                 children: <Widget>[
-                //                   Text(mascotaList[idmascota].nombre,
-                //                     style: TextStyle(
-                //                       fontSize: 20.0,
-                //                       fontWeight: FontWeight.w600,
-                //                       color: Colors.white
-                //                     )
-                //                   ),
-                //                   Text(mascotaList[idmascota].raza,
-                //                     style: TextStyle(
-                //                       fontSize: 15.0,
-                //                       fontWeight: FontWeight.w600,
-                //                       color: Colors.white
-                //                     )
-                //                   )
-                //                 ],
-                //               ),
-                //               Row(
-                //                 crossAxisAlignment: CrossAxisAlignment.center,
-                //                 mainAxisAlignment: MainAxisAlignment.start,
-                //                 children: <Widget>[
-                //                   Icon(Icons.cake,color: Colors.white,size: 28.0,),
-                //                   splitEdad(mascotaList[idmascota].edad)                                  
-                //                 ],
-                //               )
-                //             ],
-                //           ),
-                //         ),
-                //         SizedBox(height: 15.0),
-                //         Row(
-                //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //           children: <Widget>[
-                //             Container(
-                //               height: 70.0,
-                //               width: 75.0,
-                //               decoration: BoxDecoration(
-                //                 color: Colors.black.withOpacity(0.15),
-                //                 borderRadius: BorderRadius.circular(10.0),
-                //                 border: Border.all(width: 2.0, color: Colors.white)
-                //               ),
-                //               //padding: EdgeInsets.all(0.0),
-                //               child: FlatButton(
-                //                 onPressed: (){},
-                //                 child: Column(
-                //                   mainAxisAlignment: MainAxisAlignment.center,
-                //                   crossAxisAlignment: CrossAxisAlignment.center,
-                //                   children: <Widget>[
-                //                     Center(child: Text('12',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                //                     Center(child: Text('Consultas',style: TextStyle(color: Colors.white,fontSize: 8,fontWeight: FontWeight.w300)))
-                //                   ],
-                //                 ),
-                //               )  ,
-                //             ),
-                //             Container(
-                //               height: 70.0,
-                //               width: 75.0,
-                //               decoration: BoxDecoration(
-                //                 color: Colors.black.withOpacity(0.15),
-                //                 borderRadius: BorderRadius.circular(10.0),
-                //                 border: Border.all(width: 2.0, color: Colors.white)
-                //               ),
-                //               //padding: EdgeInsets.all(0.0),
-                //               child: FlatButton(
-                //                 onPressed: (){},
-                //                 child: Column(
-                //                   mainAxisAlignment: MainAxisAlignment.center,
-                //                   crossAxisAlignment: CrossAxisAlignment.center,
-                //                   children: <Widget>[
-                //                     Center(child: Text('6',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                //                     Center(child: Text('Vacunas',style: TextStyle(color: Colors.white,fontSize: 8,fontWeight: FontWeight.w300)))
-                //                   ],
-                //                 ),
-                //               )  ,
-                //             ),
-                            
-                //             Container(
-                //               height: 70.0,
-                //               width: 75.0,
-                //               decoration: BoxDecoration(
-                //                 color: Colors.black.withOpacity(0.15),
-                //                 borderRadius: BorderRadius.circular(10.0),
-                //                 border: Border.all(width: 2.0, color: Colors.white)
-                //               ),
-                //               //padding: EdgeInsets.all(0.0),
-                //               child: FlatButton(
-                //                 onPressed: (){},
-                //                 child: Column(
-                //                   mainAxisAlignment: MainAxisAlignment.center,
-                //                   crossAxisAlignment: CrossAxisAlignment.center,
-                //                   children: <Widget>[
-                //                     Center(child: Text('32',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                //                     Center(child: Text('Baños',style: TextStyle(color: Colors.white,fontSize: 8,fontWeight: FontWeight.w300)))
-                //                   ],
-                //                 ),
-                //               )  ,
-                //             ),
-                //             Container(
-                //               height: 70.0,
-                //               width: 75.0,
-                //               decoration: BoxDecoration(
-                //                 color: Colors.black.withOpacity(0.15),
-                //                 borderRadius: BorderRadius.circular(10.0),
-                //                 border: Border.all(width: 2.0, color: Colors.white)
-                //               ),
-                //               //padding: EdgeInsets.all(0.0),
-                //               child: FlatButton(
-                //                 onPressed: (){},
-                //                 child: Column(
-                //                   mainAxisAlignment: MainAxisAlignment.center,
-                //                   crossAxisAlignment: CrossAxisAlignment.center,
-                //                   children: <Widget>[
-                //                     Center(child: Text('32',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                //                     Center(child: Text('Desparasitaciones',style: TextStyle(color: Colors.white,fontSize: 8,fontWeight: FontWeight.w300)))
-                //                   ],
-                //                 ),
-                //               )  ,
-                //             ),
-                //           ],
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-              //],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter
+              )
             ),
           ),
-
-          // Positioned(
-          //   bottom: 0,
-          //   child: Container(
-          //     height: 410.0,
-          //     child: Padding(
-          //       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          //       child: Text('Historial',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22.0),),
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   bottom: 0,
-          //   child: Container(
-          //     height: 415,
-          //     width: MediaQuery.of(context).size.width,
-          //     child: listaHistorial(context),
-          //   ),
-          // ),
-          // //
+          Container(
+            margin: EdgeInsets.only(top: 250.0,left: 10.0,right: 10.0),
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              color: Colors.white,                            
+            ),
+            height: double.infinity,  
+            width: double.infinity,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 5.0,left: 10.0,right: 10.0),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(mascotaList[idmascota].nombre,style: TextStyle(fontSize: 22.0,fontWeight: FontWeight.w600),),
+                              Text(mascotaList[idmascota].raza,style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600),),
+                              Text(mascotaList[idmascota].edad,style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text('${mascotaList[idmascota].peso} kg.', style: TextStyle(fontWeight: FontWeight.w600,),),
+                              IconButton(
+                                icon: Icon(Icons.filter_list,), 
+                                onPressed: ()=>showDialog(
+                                  context: context,
+                                  builder: (BuildContext context){
+                                    return AlertDialog(
+                                      title: Text('Filtros de historial'),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          onPressed: ()=>Navigator.pop(context), 
+                                          child: Text('Cerrar')
+                                        ),
+                                        FlatButton(
+                                          onPressed: (){}, 
+                                          child: Text('Buscar')
+                                        )
+                                      ],
+                                    );
+                                  }
+                                )
+                              )
+                            ],
+                          )                          
+                        ],
+                      ),
+                      SizedBox(height: 10.0,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Container(
+                            height: 65.0,
+                            width: 65.0,
+                            decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              border: Border.all(
+                                color: colorMain,
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('120',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+                                Text('Consultas',style: TextStyle(color: colorMain, fontSize: 7.5),),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 65.0,
+                            width: 65.0,
+                            decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              border: Border.all(
+                                color: colorMain,
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('20',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+                                Text('Vacunas',style: TextStyle(color: colorMain, fontSize: 7.5),),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 65.0,
+                            width: 65.0,
+                            decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              border: Border.all(
+                                color: colorMain,
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('80',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+                                Text('Baños',style: TextStyle(color: colorMain, fontSize: 7.5),),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 65.0,
+                            width: 65.0,
+                            decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              border: Border.all(
+                                color: colorMain,
+                                width: 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('110',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+                                Text('Desparasitaciones',style: TextStyle(color: colorMain, fontSize: 7.5),),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 137.5),
+                  //padding: EdgeInsets.symmetric(horizontal: 5.0),
+                  width: double.infinity,
+                  child: listaHistorial(context),
+                )
+              ],
+            ),        
+          ),
+          
           Positioned(
             top: 0,
             left: 0,
@@ -282,7 +251,7 @@ class MascotaDetallePage extends StatelessWidget {
   listaHistorial(BuildContext context){
     return ListView.builder(
       itemCount: historialList.length,
-      itemBuilder: (BuildContext context, int index){
+      itemBuilder: (context, int index){
         return FlatButton(
           onPressed: (){},          
           child: Padding(
