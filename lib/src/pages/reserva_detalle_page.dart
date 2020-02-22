@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/model/vet_model.dart';
+import 'package:proypet/src/model/vet_model.dart';
+
 import 'package:proypet/src/pages/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascotas_page.dart';
-import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/model/vet_model.dart';
+
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 

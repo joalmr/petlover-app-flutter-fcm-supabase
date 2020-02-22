@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-// import 'package:location/location.dart';
-import 'package:proypet/src/pages/model/vet_model.dart';
+import 'package:proypet/src/model/vet_model.dart';
+
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/filtros_mapa.dart';
@@ -100,10 +100,15 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                 onMapCreated: mapCreated,
               ) : Container(
                 color: Colors.white,
-                child: Center(
-                  child: Image.asset('images/dog_loading.gif',
-                    height: 145.0,
-                    width: 145.0,)                  
+                child: Container(
+                  color: Color(0xFFfcfefc),
+                  child: Center(
+                    child: ClipRect(
+                      child: Image.asset('images/dog_loading.gif',
+                        height: 145.0,
+                        width: 145.0,),
+                    )                  
+                  ),
                 ),
               )
             ),

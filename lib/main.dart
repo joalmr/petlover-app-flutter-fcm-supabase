@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 //import 'package:proypet/src/pages/home_page.dart';
 // import 'package:proypet/src/pages/login_page.dart';
 import 'package:proypet/src/routes/routes.dart';
  
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
 
-
-
+  runApp(MyApp());
+} 
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
+    final prefs = new PreferenciasUsuario();
+    print(prefs.token);
+
+    var rutaInicio='login';
+    if(prefs.token!=null){
+      rutaInicio='nav';
+    }
+
     return MaterialApp(
       title: 'Proypet',
       theme: ThemeData( 
@@ -20,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,      
       routes: getRoutes(),
-      initialRoute: 'login',
+      initialRoute: rutaInicio,
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
           builder: (BuildContext context)=>NavigationBar(currentTabIndex: 1) //cuando falle

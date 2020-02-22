@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/model/mascota/historias_model.dart';
-import 'package:proypet/src/pages/model/mascota/mascota_model.dart';
+import 'package:proypet/src/model/mascota/historias_model.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
+
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 class MascotaDetallePage extends StatelessWidget {
@@ -26,19 +27,19 @@ class MascotaDetallePage extends StatelessWidget {
           ),
           Container(
             height: MediaQuery.of(context).size.height,
-            foregroundDecoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[
-                  Colors.transparent,
-                  Colors.green.withOpacity(0.75)
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter
-              )
-            ),
+            // foregroundDecoration: BoxDecoration(
+            //   gradient: LinearGradient(
+            //     colors: <Color>[
+            //       Colors.transparent,
+            //       Colors.green.withOpacity(0.75)
+            //     ],
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter
+            //   )
+            // ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 250.0,left: 10.0,right: 10.0),
+            margin: EdgeInsets.only(top: 250.0,left: 5.0,right: 5.0),
             decoration: BoxDecoration(
               borderRadius: borderRadius,
               color: Colors.white,                            
