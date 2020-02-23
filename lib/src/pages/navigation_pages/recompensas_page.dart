@@ -9,12 +9,13 @@ class RecompensasPage extends StatelessWidget {
       appBar: appbar2(
         leadingH,
         titleH,
-        <Widget>[
-          IconButton(
-            icon: Icon(Icons.dashboard),
-            onPressed: (){},
-          )
-        ]
+        null
+        // <Widget>[
+        //   IconButton(
+        //     icon: Icon(Icons.dashboard),
+        //     onPressed: (){},
+        //   )
+        // ]
       ),
       body: Container(
         child: Center(
