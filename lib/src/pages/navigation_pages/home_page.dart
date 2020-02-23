@@ -4,6 +4,7 @@ import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascotas_page.dart';
+import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
@@ -11,14 +12,17 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 final List publicidad = ['images/elegante1.jpg','images/royal1.jpg'];
 class HomePage extends StatelessWidget {
   //final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
+      endDrawer: ConfigDrawer(),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        
+        padding: EdgeInsets.symmetric(horizontal: 20.0),        
         children: <Widget>[
           SizedBox(height: 35.0,),
           Row(
@@ -33,7 +37,7 @@ class HomePage extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.settings), 
-                onPressed: (){}
+                onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
               )
             ],
           ),

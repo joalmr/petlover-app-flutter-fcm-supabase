@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 
 
-class FiltrosMapa extends StatelessWidget {
+class ConfigDrawer extends StatelessWidget {
   final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
+  final _prefs = new PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
@@ -22,33 +23,25 @@ class FiltrosMapa extends StatelessWidget {
               child: Column(
                 children: <Widget>[                  
                   SizedBox(height: 40.0,),
-                  Text('Filtros',
+                  Text('Configuración',
                     style: TextStyle(
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                       fontSize: 24.0,
-                      letterSpacing: 5.0,
+                      letterSpacing: 3.0,
                       color: Colors.black54,                      
                     ),
                   ),
-                  SizedBox(height: 20,),
-                  FlatButton(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text('Filtro 1'),
-                    ),
-                    onPressed: (){},
-                  ),
-                  Divider(color: divider,),
-                  FlatButton(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text('Filtro 2'),
-                    ),
-                    onPressed: (){},
-                  ),
                   SizedBox(height: 20.0,),
                   //FormControl().buttonSec('Buscar',(){})
-                  buttonPri('Agregar mascota',()=>{})
+                  //buttonPri('Agregar mascota',()=>{}),
+                  ListTile(
+                    leading: Icon(Icons.person_outline, color: Colors.red[300],),
+                    title: Text('Cerrar sesión', style: TextStyle(
+                      color: Colors.red[300],
+                      fontWeight: FontWeight.w400,
+                    ),),
+                    onTap: ()=>_outToken(context),
+                  )
                 ],
               ),
             ),
@@ -56,5 +49,13 @@ class FiltrosMapa extends StatelessWidget {
         ),
       ),
     );
+  }
+
+    void _outToken(BuildContext context) async {
+    
+      _prefs.token = '';
+    
+      Navigator.popAndPushNamed(context, 'login');
+        
   }
 }

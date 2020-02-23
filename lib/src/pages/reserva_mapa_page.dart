@@ -5,7 +5,8 @@ import 'package:proypet/src/model/vet_model.dart';
 
 import 'package:proypet/src/pages/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/filtros_mapa.dart';
+import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
+
 
 
 class ReservaMapaPage extends StatefulWidget {

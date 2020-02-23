@@ -21,9 +21,8 @@ class LoginProvider{
       
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       
-      final respToken = TokenModel.fromJson(decodedResp);
-
-      print(respToken.token);
+      //final respToken = TokenModel.fromJson(decodedResp);
+      //print(respToken.token);
 
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
