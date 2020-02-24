@@ -107,6 +107,7 @@ class _LoginSevenPageState extends State<LoginPage> {
     final snackbar = SnackBar(
       content: Text(mensaje),
       duration: Duration(milliseconds: 2500),
+      backgroundColor: Colors.red[300],
     );
 
     scaffoldKey.currentState.showSnackBar(snackbar);

@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 
 import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/model/login/token_model.dart';
+import 'package:proypet/src/model/usuario_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 
@@ -26,6 +29,9 @@ class LoginProvider{
 
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
+
+        getUser();
+
         return {
           'ok':true,
           'token':decodedResp['token']
@@ -43,6 +49,21 @@ class LoginProvider{
           'mensaje':'Usuario o clave incorrecta'
         };
     }
+  }
+
+  Future<User> getUser() async {
+    final url = '$_url/profile';
+
+    final resp = await http.get(url,
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      }
+    );
+
+    final datosUsuario = usuarioModelFromJson(resp.body);
+    //print(datosUsuario.user.name);
+
+    return datosUsuario.user;
   }
 }
   
