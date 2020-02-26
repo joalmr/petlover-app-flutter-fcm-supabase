@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:proypet/src/model/home_model.dart';
 
 import 'dart:convert';
 
 import 'package:proypet/src/model/login/login_model.dart';
-import 'package:proypet/src/model/login/token_model.dart';
-import 'package:proypet/src/model/usuario_model.dart';
+
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 
@@ -24,9 +24,6 @@ class LoginProvider{
       
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       
-      //final respToken = TokenModel.fromJson(decodedResp);
-      //print(respToken.token);
-
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
 
@@ -51,8 +48,8 @@ class LoginProvider{
     }
   }
 
-  Future<User> getUser() async {
-    final url = '$_url/profile';
+  Future<HomeModel> getUser() async {
+    final url = '$_url/summary';
 
     final resp = await http.get(url,
       headers: { 
@@ -60,10 +57,10 @@ class LoginProvider{
       }
     );
 
-    final datosUsuario = usuarioModelFromJson(resp.body);
+    final datosUsuario = homeModelFromJson(resp.body);
     //print(datosUsuario.user.name);
 
-    return datosUsuario.user;
+    return datosUsuario;
   }
 }
   
