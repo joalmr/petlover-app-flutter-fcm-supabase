@@ -1,12 +1,8 @@
 import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'package:proypet/src/model/home_model.dart';
-
 import 'dart:convert';
-
 import 'package:proypet/src/model/login/login_model.dart';
-
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 
@@ -27,7 +23,8 @@ class LoginProvider{
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
 
-        getUser();
+        print(decodedResp['token']);
+        //getUser();
 
         return {
           'ok':true,

@@ -55,7 +55,7 @@ class ConfigDrawer extends StatelessWidget {
     
       _prefs.token = '';
     
-      Navigator.popAndPushNamed(context, 'login');
+      Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');
         
   }
 }

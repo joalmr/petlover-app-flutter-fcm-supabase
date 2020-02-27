@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/home_model.dart';
-import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
@@ -11,6 +10,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/login_provider.dart';
 
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
+import 'package:proypet/src/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   //final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
@@ -418,57 +418,46 @@ class _HomePageState extends State<HomePage> {
 
   Widget _atenciones(List<hoModel.Booking> atenciones){    
     return ListView.builder(
-      //physics: NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: atenciones.length,
       itemBuilder: (BuildContext context, int index) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                CircleAvatar(
+        return Dismissible(
+          key: UniqueKey(),
+          background: Container(
+            color: Colors.red,
+          ),
+          direction: DismissDirection.endToStart,
+          onDismissed: (fn){},
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                leading: CircleAvatar(
                   backgroundImage: AssetImage('images/greco.png'),
                   radius: 25.0,
                 ),
-                SizedBox(width: 7.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                title: Text(atenciones[index].establishmentName),
+                subtitle: Text(atenciones[index].address),
+                trailing: Column(
                   children: <Widget>[
                     Text(
-                      atenciones[index].establishmentName,//vetLocales[1].nombre,
-                      style: Theme.of(context)
-                          .textTheme
-                          .title
-                          .apply(color: Colors.black87, fontWeightDelta: 1),
+                      atenciones[index].date,//" Mañana",
+                      style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      atenciones[index].address,//vetLocales[1].direccion,
-                      style: TextStyle(color: Colors.black.withOpacity(.71)),
+                      atenciones[index].time,//"17:00",
+                      style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
                     ),
+                    //Icon(Icons.delete,color: Colors.red[300],size: 20.0,),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                atenciones[index].date,//" Mañana",
-                style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
               ),
-              Text(
-                atenciones[index].time,//"17:00",
-                style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
-                textAlign: TextAlign.center,
-              ),
-              IconButton(icon: Icon(Icons.delete,color: Colors.red[300],), onPressed: () {}),
+              Divider(),
             ],
           ),
-        ],
-      );
+        );
       },
     );
   }

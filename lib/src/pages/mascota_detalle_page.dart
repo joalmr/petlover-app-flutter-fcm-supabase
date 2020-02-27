@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/historias_model.dart';
-import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/model/mascota/mascota1_model.dart';
 
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 

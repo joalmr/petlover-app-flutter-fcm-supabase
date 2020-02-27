@@ -1,105 +1,113 @@
-// class DdlMascota{
-//   int idMascota;
-//   String nombre;
-//   DdlMascota({
-//     this.idMascota,
-//     this.nombre
-//   });
-// }
+// To parse this JSON data, do
+//
+//     final mascotaModel = mascotaModelFromJson(jsonString);
 
-class Mascota{
-  int idMascota;
-  String nombre;
-  String raza;
-  String edad;
-  String foto;
-  String peso;
+import 'dart:convert';
 
-  Mascota({
-    this.idMascota,
-    this.nombre,
-    this.raza,
-    this.edad,
-    this.foto,
-    this.peso,
-  });
+MascotaModel mascotaModelFromJson(String str) => MascotaModel.fromJson(json.decode(str));
+
+String mascotaModelToJson(MascotaModel data) => json.encode(data.toJson());
+
+class MascotaModel {
+    List<Pet> pets;
+
+    MascotaModel({
+        this.pets,
+    });
+
+    factory MascotaModel.fromJson(Map<String, dynamic> json) => MascotaModel(
+        pets: List<Pet>.from(json["pets"].map((x) => Pet.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "pets": List<dynamic>.from(pets.map((x) => x.toJson())),
+    };
 }
 
-//.now().add(new Duration(days: -700))
-final List<Mascota> mascotaList = [
-  Mascota(
-    idMascota: 1,
-    nombre: 'Greco',
-    raza: 'Cocker spaniel',
-    edad: calculateAge(DateTime.parse('2015-12-15')).toString(),
-    foto: 'images/greco.png',
-    peso: '12.45'
-  ),
-  Mascota(
-    idMascota: 2,
-    nombre: 'Perikito pimpim',
-    raza: 'Braco',
-    edad: calculateAge(DateTime.parse('2020-01-21')).toString(),
-    foto: 'images/perro2.jpg',
-    peso: '14.65'
-  ),
-  Mascota(
-    idMascota: 3,
-    nombre: 'Perrin',
-    raza: 'Perro peruano',
-    edad: calculateAge(DateTime.parse('2020-02-03')).toString(),
-    foto: 'images/perro3.png',
-    peso: '6.25'
-  ),
-  Mascota(
-    idMascota: 4,
-    nombre: 'Chulin',
-    raza: 'Perro peruano',
-    edad: calculateAge(DateTime.parse('2019-02-15')).toString(),
-    foto: 'images/perro3.png',
-    peso: '8.35'
-  ),
-  Mascota(
-    idMascota: 4,
-    nombre: 'Perez',
-    raza: 'Perro peruano',
-    edad: calculateAge(DateTime.parse('2020-01-08')).toString(),
-    foto: 'images/perro3.png',
-    peso: '10.25'
-  )
+class Pet {
+    int id;
+    int typeId;
+    int breedId;
+    String name;
+    int genre;
+    DateTime birthdate;
+    String picture;
+    int status;
+    DateTime createdAt;
+    DateTime updatedAt;
+    dynamic deletedAt;
+    Pivot pivot;
 
-];
+    Pet({
+        this.id,
+        this.typeId,
+        this.breedId,
+        this.name,
+        this.genre,
+        this.birthdate,
+        this.picture,
+        this.status,
+        this.createdAt,
+        this.updatedAt,
+        this.deletedAt,
+        this.pivot,
+    });
 
-calculateAge(DateTime birthDate) {
-  String resp; 
-  int edad,mes,dia,diferencia;
-  DateTime currentDate = DateTime.now();
-  Duration difference = currentDate.difference(birthDate);
-  diferencia = difference.inDays;
-  edad = diferencia ~/ 365;
-  mes = (diferencia ~/ 30)%12;
-  dia = ((diferencia % 365)%30);
+    factory Pet.fromJson(Map<String, dynamic> json) => Pet(
+        id: json["id"],
+        typeId: json["type_id"],
+        breedId: json["breed_id"],
+        name: json["name"],
+        genre: json["genre"],
+        birthdate: DateTime.parse(json["birthdate"]),
+        picture: json["picture"],
+        status: json["status"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        deletedAt: json["deleted_at"],
+        pivot: Pivot.fromJson(json["pivot"]),
+    );
 
-  String rAnio=' años';
-  String rMes=' meses';
-  String rDia=' días';
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "type_id": typeId,
+        "breed_id": breedId,
+        "name": name,
+        "genre": genre,
+        "birthdate": birthdate.toIso8601String(),
+        "picture": picture,
+        "status": status,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+        "deleted_at": deletedAt,
+        "pivot": pivot.toJson(),
+    };
+}
 
-  if(edad==1) rAnio=' año';
-  if(mes==1) rMes=' mes';
-  if(dia==1) rDia=' día';
+class Pivot {
+    int userId;
+    int petId;
+    DateTime createdAt;
+    DateTime updatedAt;
 
-  if(edad==0 && mes>0){
-    resp = mes.toString() + rMes;
-  }
-  if(edad==0 && mes==0){
-    resp =  dia.toString() + rDia;
-  }
-  if(edad>0 && mes==0){
-    resp = edad.toString() + rAnio;
-  }
-  if(edad>0 && mes>0){
-    resp = edad.toString() + rAnio +' '+ mes.toString() + rMes;
-  }
-  
-  return resp;
+    Pivot({
+        this.userId,
+        this.petId,
+        this.createdAt,
+        this.updatedAt,
+    });
+
+    factory Pivot.fromJson(Map<String, dynamic> json) => Pivot(
+        userId: json["user_id"],
+        petId: json["pet_id"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "user_id": userId,
+        "pet_id": petId,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
+    };
 }
