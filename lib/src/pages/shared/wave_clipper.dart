@@ -9,63 +9,63 @@ class WaveClipper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-            children: <Widget>[
-              ClipPath(
-                clipper: WaveClipper2(),
-                child: Container(
-                  child: Column(),
-                  width: double.infinity,
-                  height: _alto,
-                  decoration: BoxDecoration(
-                    color: colorMain[100]//Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
-                  ),
+      children: <Widget>[
+        ClipPath(
+          clipper: WaveClipper2(),
+          child: Container(
+            child: Column(),
+            width: double.infinity,
+            height: _alto,
+            decoration: BoxDecoration(
+              color: colorMain[100]//Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
+            ),
+          ),
+        ),
+        ClipPath(
+          clipper: WaveClipper3(),
+          child: Container(
+            child: Column(),
+            width: double.infinity,
+            height: _alto,
+            decoration: BoxDecoration(
+              color: colorMain[200]//Color.fromRGBO(1, 165, 141, 0.4)
+            ),
+          ),
+        ),
+        ClipPath(
+          clipper: WaveClipper1(),
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 40,
                 ),
-              ),
-              ClipPath(
-                clipper: WaveClipper3(),
-                child: Container(
-                  child: Column(),
-                  width: double.infinity,
-                  height: _alto,
-                  decoration: BoxDecoration(
-                    color: colorMain[200]//Color.fromRGBO(1, 165, 141, 0.4)
-                  ),
+                Image(
+                  image: AssetImage('images/proypet.png'),
+                  height: _numxy,
+                  width: _numxy,
                 ),
-              ),
-              ClipPath(
-                clipper: WaveClipper1(),
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Image(
-                        image: AssetImage('images/proypet.png'),
-                        height: _numxy,
-                        width: _numxy,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Proypet'.toUpperCase(),
-                        style: TextStyle(
-                            color: Color.fromRGBO(89, 74, 70, 0.75),
-                            fontWeight: FontWeight.w700,
-                            fontSize: 22),
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  height: _alto,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [colorMain, colorMain[400]])
-                  ),
+                SizedBox(
+                  height: 5,
                 ),
-              ),
-            ],
-          );
+                Text(
+                  'Proypet'.toUpperCase(),
+                  style: TextStyle(
+                      color: Color.fromRGBO(89, 74, 70, 0.75),
+                      fontWeight: FontWeight.w700,
+                      fontSize: 22),
+                ),
+              ],
+            ),
+            width: double.infinity,
+            height: _alto,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [colorMain, colorMain[400]])
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
