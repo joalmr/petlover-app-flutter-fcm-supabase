@@ -23,4 +23,29 @@ class MascotaProvider{
     return datosMascota;
 
   }
+
+  Future<bool> savePet(Pet mascota) async {
+    //http://www.proypet.localhost/api/pets
+    final url = '$_url/pets';
+
+    final petData = {
+      'name':mascota.name, 
+      'birthdate':mascota.birthdate, 
+      'specie':mascota.typeId, 
+      'breed':mascota.breedId, 
+      'genre':mascota.genre
+    };
+
+    final resp = await http.post(url,
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      },
+      body: petData
+    );
+
+    print(resp.statusCode);
+
+    return true;
+
+  }
 }

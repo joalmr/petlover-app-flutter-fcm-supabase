@@ -11,6 +11,7 @@ class LoginProvider{
   final _prefs = new PreferenciasUsuario();
 
   Future<Map<String,dynamic>> loginToken(LoginModel login) async {
+    //http://ce2019121721001.dnssw.net/api/login
     final url = '$_url/login';   
 
     try{
@@ -46,6 +47,7 @@ class LoginProvider{
   }
 
   Future<HomeModel> getUser() async {
+    //http://ce2019121721001.dnssw.net/api/summary
     final url = '$_url/summary';
 
     final resp = await http.get(url,
