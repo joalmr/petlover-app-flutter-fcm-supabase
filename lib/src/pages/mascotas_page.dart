@@ -62,7 +62,7 @@ class MascotasPage extends StatelessWidget {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index){
-                    var mascota = mydata.pets[index % mascotaList.length];
+                    var mascota = mydata.pets[index % mydata.pets.length];
                     return Container(
                       height: 110.0,
                       margin: EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
@@ -80,7 +80,7 @@ class MascotasPage extends StatelessWidget {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: AssetImage('images/greco.png')
+                                  image: AssetImage('images/greco.png')//NetworkImage(mascota.picture)
                               )
                             )
                           ),
@@ -104,7 +104,7 @@ class MascotasPage extends StatelessWidget {
                                       ),
                                       const Padding(padding: EdgeInsets.only(bottom: 2.0)),
                                       Text(
-                                        mascota.breedId.toString(),
+                                        mascota.breed,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(

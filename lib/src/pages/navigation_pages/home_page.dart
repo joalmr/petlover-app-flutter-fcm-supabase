@@ -304,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black.withOpacity(0.15),
                       ),
                       child: Image(
-                        image: AssetImage('images/greco.png'),//AssetImage(mascotaList[index].foto),
+                        image: NetworkImage(mascotas[index].picture),//AssetImage('images/greco.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -433,7 +433,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: AssetImage('images/greco.png'),
+                  backgroundImage: NetworkImage(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
                   radius: 25.0,
                 ),
                 title: Text(atenciones[index].establishmentName),
