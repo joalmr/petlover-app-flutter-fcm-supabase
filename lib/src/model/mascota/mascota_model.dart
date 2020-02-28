@@ -32,7 +32,7 @@ class Pet {
     int weight;
     DateTime birthdate;
     String picture;
-    int age;
+    int status;
 
     Pet({
         this.id,
@@ -42,7 +42,7 @@ class Pet {
         this.weight,
         this.birthdate,
         this.picture,
-        this.age,
+        this.status,
     });
 
     factory Pet.fromJson(Map<String, dynamic> json) => Pet(
@@ -53,7 +53,7 @@ class Pet {
         weight: json["weight"],
         birthdate: DateTime.parse(json["birthdate"]),
         picture: json["picture"],
-        age: json["age"],
+        status: json["status"] == null ? null : json["status"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -64,6 +64,6 @@ class Pet {
         "weight": weight,
         "birthdate": birthdate.toIso8601String(),
         "picture": picture,
-        "age": age,
+        "status": status == null ? null : status,
     };
 }

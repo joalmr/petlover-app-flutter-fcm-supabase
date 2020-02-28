@@ -80,7 +80,7 @@ class MascotasPage extends StatelessWidget {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: AssetImage('images/greco.png')//NetworkImage(mascota.picture)
+                                  image: NetworkImage(mascota.picture)//AssetImage('images/greco.png')
                               )
                             )
                           ),
