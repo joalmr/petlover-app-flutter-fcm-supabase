@@ -79,12 +79,12 @@ class _DdlControl2 extends State<DdlControl2> {
 }
 
 List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
-    List<DropdownMenuItem<String>> lista = new List();
-    _lista.forEach((_lista){
-      lista.add(DropdownMenuItem(
-        child: Text(_lista['nombre']),
-        value: _lista['cod'],
-      ));
-    });
-    return lista;
-  }
+  List<DropdownMenuItem<String>> lista = new List();
+  _lista.forEach((_lista){
+    lista.add(DropdownMenuItem(
+      child: Text(_lista['nombre']),
+      value: _lista['cod'],
+    ));
+  });
+  return lista;
+}

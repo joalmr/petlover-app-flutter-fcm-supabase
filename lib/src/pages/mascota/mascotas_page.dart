@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/mascota1_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/mascotas_agregar_page.dart';
-import 'package:proypet/src/pages/mascotas_editar_page.dart';
+import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
+import 'package:proypet/src/pages/mascota/mascotas_editar_page.dart';
+
 
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 
-class MascotasPage extends StatelessWidget {
+class MascotasPage extends StatefulWidget {
 
+  @override
+  _MascotasPageState createState() => _MascotasPageState();
+}
+
+class _MascotasPageState extends State<MascotasPage> {
   final mascotaProvider = MascotaProvider();
 
   @override
@@ -29,13 +35,6 @@ class MascotasPage extends StatelessWidget {
     );
     
   }
-
-  // Future<Null> obtenerPagina1() async{
-  //   final duration = new Duration(seconds: 2);
-  //   new Timer(duration, (){
-      
-  //   });
-  // }
 
   Widget _mascotas(){
     return FutureBuilder(
@@ -80,7 +79,7 @@ class MascotasPage extends StatelessWidget {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: NetworkImage(mascota.picture)//AssetImage('images/greco.png')
+                                  image: mascota.picture == 'http://ce2019121721001.dnssw.net/storage/' ? AssetImage('images/proypet.png') :  NetworkImage(mascota.picture)//AssetImage('images/greco.png')
                               )
                             )
                           ),
@@ -160,5 +159,4 @@ class MascotasPage extends StatelessWidget {
       }
     );
   }
-
 }

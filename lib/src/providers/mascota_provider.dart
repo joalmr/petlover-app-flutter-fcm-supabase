@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
-import 'dart:convert';
+
 
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
@@ -26,27 +26,26 @@ class MascotaProvider{
   }
 
   Future<bool> savePet(MascotaReq mascota) async {
-    //http://www.proypet.localhost/api/pets
     final url = '$_url/pets';
 
-    final petData = {
-      'name':mascota.name, 
-      'birthdate':mascota.birthdate, //datetime
-      'specie':mascota.specie, //int
-      'breed':mascota.breed, //int
-      'genre':mascota.genre //int
+    final data = {
+      'name': mascota.name, 
+      'birthdate': mascota.birthdate, //datetime
+      'specie': mascota.specie.toString(), //int
+      'breed': mascota.breed.toString(), //int
+      'genre': mascota.genre.toString() //int
     };
+    //print(mascotaReqToJson(mascota));
 
-    final resp = await http.post(url,
+    final resp = await http.post(url, 
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      },
-      body: petData
-    );
+      },      
+      body: data );
 
     print(resp.statusCode);
-
-    return true;
+    if(resp.statusCode==200 || resp.statusCode==201) return true;
+    else return false;
 
   }
 }

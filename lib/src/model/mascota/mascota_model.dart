@@ -32,7 +32,7 @@ class Pet {
     int weight;
     DateTime birthdate;
     String picture;
-    int status;
+    String status;
 
     Pet({
         this.id,
@@ -53,7 +53,7 @@ class Pet {
         weight: json["weight"],
         birthdate: DateTime.parse(json["birthdate"]),
         picture: json["picture"],
-        status: json["status"] == null ? null : json["status"],
+        status: json["status"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -64,6 +64,6 @@ class Pet {
         "weight": weight,
         "birthdate": birthdate.toIso8601String(),
         "picture": picture,
-        "status": status == null ? null : status,
+        "status": status,
     };
 }

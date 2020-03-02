@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/home_model.dart';
-import 'package:proypet/src/pages/mascota_detalle_page.dart';
-import 'package:proypet/src/pages/mascotas_page.dart';
+import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
+import 'package:proypet/src/pages/mascota/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
