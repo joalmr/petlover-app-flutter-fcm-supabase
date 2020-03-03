@@ -64,7 +64,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                               radius: 80.0,
                             ),
                             Positioned(
-                              bottom: 1.0,
+                              bottom: 1.5,
                               right: 10.0,
                               child: CircleAvatar(
                                 child: Icon(Icons.camera_enhance,color: Colors.white,),
