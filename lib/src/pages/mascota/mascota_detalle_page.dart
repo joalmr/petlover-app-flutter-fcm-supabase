@@ -294,7 +294,7 @@ class MascotaDetallePage extends StatelessWidget {
                     ),
                     Text(
                       historialList[index].hora,
-                      style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                      style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,
                     ),
                   ],

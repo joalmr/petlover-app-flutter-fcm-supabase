@@ -121,6 +121,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                 child: mapToggle ? PageView.builder(
                   controller: _pageController,
                   itemCount: vetLocales.length,
+                  physics: BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return _vetShopList(index);
                   },

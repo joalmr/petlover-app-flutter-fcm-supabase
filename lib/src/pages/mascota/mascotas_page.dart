@@ -63,7 +63,7 @@ class _MascotasPageState extends State<MascotasPage> {
                   (BuildContext context, int index){
                     var mascota = mydata.pets[index % mydata.pets.length];
                     return Container(
-                      height: 110.0,
+                      height: 115.0,
                       margin: EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
                       padding: EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
                       decoration: BoxDecoration(
@@ -149,7 +149,7 @@ class _MascotasPageState extends State<MascotasPage> {
                       ),
                     );
                   },
-                  childCount: mydata.pets.length
+                  childCount: mydata.pets.length,
                 ),
               ),
             ],

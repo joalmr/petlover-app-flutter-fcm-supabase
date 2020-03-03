@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 
 Widget appbar2(inn,titulo,acc){
   PreferredSize appbar =  PreferredSize(
     preferredSize: Size.fromHeight(55.0),
     child: AppBar(
+      backgroundColor: colorMain,
       leading: inn,
       title: titulo,
       actions: acc,

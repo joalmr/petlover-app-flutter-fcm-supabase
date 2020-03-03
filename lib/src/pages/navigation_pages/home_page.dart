@@ -45,11 +45,11 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot) {
         final mydata=snapshot.data;
         if(!snapshot.hasData){
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator()); //valueColor: new AlwaysStoppedAnimation<Color>(colorMain),
         }
         else{
           return SingleChildScrollView(
-            //physics: ScrollPhysics(),
+            //physics: BouncingScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 20.0),     
             child: Column(
               children: <Widget>[
@@ -88,6 +88,7 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.w300),),
                       SizedBox(height: 15.0),
                       SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: <Widget>[
@@ -291,6 +292,7 @@ class _HomePageState extends State<HomePage> {
       child: Stack(
         children: <Widget>[
           Swiper(
+            physics: BouncingScrollPhysics(),
             itemCount: mascotas.length,//mascotaList.length,
             itemBuilder: (BuildContext context, int index){
               return ClipRRect(
@@ -304,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black.withOpacity(0.15),
                       ),
                       child: Image(
-                        image: NetworkImage(mascotas[index].picture),//AssetImage('images/greco.png'),
+                        image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/' ? AssetImage('images/proypet.png') :  NetworkImage(mascotas[index].picture),//AssetImage('images/greco.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -405,6 +407,7 @@ class _HomePageState extends State<HomePage> {
             top: 0.0,
             right: 0.0,
             child: FloatingActionButton(
+              backgroundColor: colorMain,
               onPressed: ()=>Navigator.push(context, MaterialPageRoute(
                 builder: (_)=>MascotasPage(),
               )),
@@ -433,6 +436,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               ListTile(
                 leading: CircleAvatar(
+                  backgroundColor: colorMain,
                   backgroundImage: NetworkImage(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
                   radius: 25.0,
                 ),
@@ -446,7 +450,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(
                       atenciones[index].time,//"17:00",
-                      style: TextStyle(color: colorMain[700],fontSize: 16.0,fontWeight: FontWeight.w600),
+                      style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,
                     ),
                     //Icon(Icons.delete,color: Colors.red[300],size: 20.0,),

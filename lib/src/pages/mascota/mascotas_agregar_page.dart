@@ -7,7 +7,7 @@ import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
+// import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 

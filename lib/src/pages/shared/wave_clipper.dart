@@ -17,7 +17,7 @@ class WaveClipper extends StatelessWidget {
             width: double.infinity,
             height: _alto,
             decoration: BoxDecoration(
-              color: colorMain[100]//Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
+              color: colorMain.withAlpha(100) //Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
             ),
           ),
         ),
@@ -28,7 +28,7 @@ class WaveClipper extends StatelessWidget {
             width: double.infinity,
             height: _alto,
             decoration: BoxDecoration(
-              color: colorMain[200]//Color.fromRGBO(1, 165, 141, 0.4)
+              color: colorMain.withAlpha(200) //Color.fromRGBO(1, 165, 141, 0.4)
             ),
           ),
         ),
@@ -60,7 +60,7 @@ class WaveClipper extends StatelessWidget {
             width: double.infinity,
             height: _alto,
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [colorMain, colorMain[400]])
+              gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(400)])
             ),
           ),
         ),
