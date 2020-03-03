@@ -51,7 +51,7 @@ class WaveClipper extends StatelessWidget {
                 Text(
                   'Proypet'.toUpperCase(),
                   style: TextStyle(
-                      color: Color.fromRGBO(89, 74, 70, 0.75),
+                      color: Color.fromRGBO(242, 242, 242, 0.75),
                       fontWeight: FontWeight.w700,
                       fontSize: 22),
                 ),
@@ -60,7 +60,7 @@ class WaveClipper extends StatelessWidget {
             width: double.infinity,
             height: _alto,
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(400)])
+              gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(250)])
             ),
           ),
         ),

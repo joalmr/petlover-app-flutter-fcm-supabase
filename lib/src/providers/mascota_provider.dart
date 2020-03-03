@@ -28,12 +28,17 @@ class MascotaProvider{
   Future<bool> savePet(MascotaReq mascota) async {
     final url = '$_url/pets';
 
+    int intMascota=0;
+
+    if( mascota.genre) intMascota=1;    
+    else intMascota=0;
+
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
       'specie': mascota.specie.toString(), //int
       'breed': mascota.breed.toString(), //int
-      'genre': mascota.genre.toString() //int
+      'genre': intMascota.toString() //int
     };
     //print(mascotaReqToJson(mascota));
 

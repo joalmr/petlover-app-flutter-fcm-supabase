@@ -197,7 +197,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     final resp = await mascotaProvider.savePet(petDato);
 
     if(resp){
-      mostrarSnackbar('Mascota agregada.', Colors.green[300]);  
+      mostrarSnackbar('Mascota agregada.', colorMain);  
       Timer(
         Duration(milliseconds: 2500), (){
           Navigator.of(context).pushReplacementNamed('mismascotas');   
