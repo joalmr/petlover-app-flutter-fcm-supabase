@@ -48,21 +48,10 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       body: Stack(
         children: <Widget>[
             SingleChildScrollView(
-              //padding: const EdgeInsets.only(top: 0.0,bottom: 0.0),
               child: Form(
                 child: Column(                
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // appbar2(
-                    //   null,
-                    //   Text('Agregar mascota',
-                    //     style: TextStyle(
-                    //       fontSize: 16.0,
-                    //       fontWeight: FontWeight.normal
-                    //     ),
-                    //   ),
-                    //   null
-                    // ),
                     SizedBox(height: 25.0,),
                     
                     textfield('Nombre de mascota', Icons.pets, false),
@@ -97,7 +86,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     Center(
                       child: buttonPri('Agregar mascota', btnBool ? _onAdd : null ) //()=>agregarDialog()
                     ),
-                    //Center(child: FormControl().buttonSec('Agregar mascota',()=>agregarDialog()))
                   ],
                 ),
               ),
@@ -209,7 +197,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
     if(resp){
       mostrarSnackbar('Mascota agregada.', Colors.green[300]);  
-      //Navigator.of(context).pushReplacementNamed('mismascotas');   
       Timer(
         Duration(milliseconds: 2500), (){
           Navigator.of(context).pushReplacementNamed('mismascotas');   
@@ -231,8 +218,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       duration: Duration(milliseconds: 2500),
       backgroundColor: color,
     );
-
-    scaffoldKey.currentState.showSnackBar(snackbar);
-    
+    scaffoldKey.currentState.showSnackBar(snackbar);    
   }
 }
