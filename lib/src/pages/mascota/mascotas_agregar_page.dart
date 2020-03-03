@@ -28,6 +28,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final mascotaProvider = new MascotaProvider();
+  MascotaReq petReq = new MascotaReq();
 
   bool btnBool = true;
 
@@ -53,7 +54,29 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(height: 25.0,),
-                    
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      child: Center(
+                        child: Stack(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundImage: AssetImage('images/no-image.png'),
+                              radius: 80.0,
+                            ),
+                            Positioned(
+                              bottom: 1.0,
+                              right: 10.0,
+                              child: CircleAvatar(
+                                child: Icon(Icons.camera_enhance,color: Colors.white,),
+                                backgroundColor: colorMain,
+                                radius: 22.0,
+                              )
+                            )
+                          ],
+                        ),
+                      ) //Text('Foto de mi mascota'),
+                    ),
+                    SizedBox(height: 10.0,),
                     textfield('Nombre de mascota', Icons.pets, false),
                     SizedBox(height: 10.0,),
                     Padding(
@@ -76,10 +99,19 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                       child: _crearFecha(context),
                     ),
-                    SizedBox(height: 10.0,),
+                    SizedBox(height: 10.0,),                    
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
-                      child: Text('Foto de mi mascota'),
+                      child: SwitchListTile(
+                        value: petReq.genre,
+                        title: Text('Sexo'),
+                        subtitle: petReq.genre ? Text('Macho') : Text('Hembra'),
+                        //secondary: Text('Femenino'),
+                        activeColor: colorMain,
+                        onChanged: (value)=> setState((){
+                          petReq.genre = value;
+                        }),
+                      )
                     ),
                     
                     SizedBox(height: 25.0,),
@@ -148,37 +180,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
   }
 
-  // agregarDialog(){
-  //   return showDialog(
-  //     barrierDismissible: false,
-  //     context: context,
-  //     builder: (BuildContext context){
-  //       return AlertDialog(
-  //         content: Container(
-  //           child: Text('Mascota agregada con éxito.')
-  //         ),
-  //         actions: <Widget>[
-  //           FlatButton(
-  //             child: new Text("Lista"),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),                            
-  //           FlatButton(
-  //             child: new Text("Ir a inicio"),
-  //             onPressed: () {
-  //               Navigator.pushReplacement(
-  //                 context,MaterialPageRoute(
-  //                   builder: (context) => NavigationBar(currentTabIndex: 1,)
-  //               ));
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     }
-  //   ); 
-  // }
-
   void _onAdd() async {
     setState(() {
       btnBool = false;      
@@ -191,7 +192,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     petDato.birthdate = '2019-12-12';
     petDato.specie = 1;
     petDato.breed = 1;
-    petDato.genre = 1;
+    petDato.genre = true;
 
     final resp = await mascotaProvider.savePet(petDato);
 

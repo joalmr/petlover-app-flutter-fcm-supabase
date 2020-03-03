@@ -3,14 +3,14 @@ class MascotaReq {
   String birthdate;
   int specie;
   int breed;
-  int genre;
+  bool genre;
 
   MascotaReq({
       this.name,
       this.birthdate,
       this.specie,
       this.breed,
-      this.genre,
+      this.genre = false,
   });
 }
 
