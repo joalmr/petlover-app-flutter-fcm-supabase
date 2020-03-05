@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/mascota/mascota1_model.dart';
+
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_editar_page.dart';
 
-
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/utils/utils.dart';
 
 class MascotasPage extends StatefulWidget {
 
@@ -39,7 +39,7 @@ class _MascotasPageState extends State<MascotasPage> {
   Widget _mascotas(){
     return FutureBuilder(
       future: mascotaProvider.getPets(),
-      builder: (BuildContext context, AsyncSnapshot<MascotaModel> snapshot){
+      builder: (BuildContext context, AsyncSnapshot<List<MascotaModel>> snapshot){
         final mydata=snapshot.data;
         if(!snapshot.hasData){
           return Center(child: CircularProgressIndicator());
@@ -61,7 +61,7 @@ class _MascotasPageState extends State<MascotasPage> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index){
-                    var mascota = mydata.pets[index % mydata.pets.length];
+                    var mascota = mydata[index % mydata.length];
                     return Container(
                       height: 115.0,
                       margin: EdgeInsets.symmetric(vertical: 5.0,horizontal: 15.0),
@@ -149,7 +149,7 @@ class _MascotasPageState extends State<MascotasPage> {
                       ),
                     );
                   },
-                  childCount: mydata.pets.length,
+                  childCount: mydata.length,
                 ),
               ),
             ],

@@ -12,7 +12,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
-final tipopet = [{'cod':'1','nombre':'Gto',},{'cod':'2','nombre':'Perro'}];
+final tipopet = [{'cod':'1','nombre':'Gato',},{'cod':'2','nombre':'Perro'}];
 final razaPerro = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];
 final razaGato = [{'cod':'1','nombre':'Gato chiquito',},{'cod':'2','nombre':'Gato mediano'},{'cod':'3','nombre':'Gato grande'}];
 
@@ -259,22 +259,16 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   _mostrarFoto(){
-    //return AssetImage(foto?.path ?? 'images/no-image.png');
-    // return CircleAvatar(
-    //   ///backgroundImage: Image.file(foto),
-    //   child: Image(
-    //     image: FileImage(foto)
-    //   ), //AssetImage('images/no-image.png'),
-    //   radius: 80.0,
-    // );
+    return AssetImage(foto?.path ?? 'images/no-image.png');
 
-    if(foto!=null){
-      return FileImage(foto);
-    }
-      //foto?.path ?? 
-    return AssetImage('images/no-image.png');
+    // if(foto!=null){
+    //   return FileImage(foto);
+    // }
+    // //foto?.path ?? 
+    // return AssetImage('images/no-image.png');
 
   }
+
   _seleccionarFoto() async {
     _procesarImagen(ImageSource.gallery);
   }

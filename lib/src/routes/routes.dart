@@ -14,7 +14,7 @@ Map<String,WidgetBuilder> getRoutes(){
     //
     'nav'         : (BuildContext context)=>NavigationBar(currentTabIndex: 1),
     //
-    'mapa'        : (BuildContext context)=>ReservaMapaPage(),
+    //'mapa'        : (BuildContext context)=>ReservaMapaPage(establecimientos: ,),
     'mismascotas' : (BuildContext context)=>MascotasPage(),
   };
 }

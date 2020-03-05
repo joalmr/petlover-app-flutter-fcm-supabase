@@ -6,12 +6,15 @@ import 'package:proypet/src/pages/shared/form_control/text_field_button.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 class ReservaListaPage extends StatefulWidget {
-
+  // final establecimientos;
+  // ReservaListaPage({@required this.establecimientos});
   @override
   _ReservaListaPageState createState() => _ReservaListaPageState();
 }
 
 class _ReservaListaPageState extends State<ReservaListaPage> {
+  // final vetLocales;
+  // _ReservaListaPageState({@required this.vetLocales});
   @override
   Widget build(BuildContext context) {
     return Stack(

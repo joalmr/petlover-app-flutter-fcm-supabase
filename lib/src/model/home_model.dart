@@ -9,27 +9,27 @@ HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 String homeModelToJson(HomeModel data) => json.encode(data.toJson());
 
 class HomeModel {
-    User user;
-    List<Pet> pets;
-    List<Booking> bookings;
+  User user;
+  List<Pet> pets;
+  List<Booking> bookings;
 
-    HomeModel({
-        this.user,
-        this.pets,
-        this.bookings,
-    });
+  HomeModel({
+      this.user,
+      this.pets,
+      this.bookings,
+  });
 
-    factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
-        user: User.fromJson(json["user"]),
-        pets: List<Pet>.from(json["pets"].map((x) => Pet.fromJson(x))),
-        bookings: List<Booking>.from(json["bookings"].map((x) => Booking.fromJson(x))),
-    );
+  factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
+      user: User.fromJson(json["user"]),
+      pets: List<Pet>.from(json["pets"].map((x) => Pet.fromJson(x))),
+      bookings: List<Booking>.from(json["bookings"].map((x) => Booking.fromJson(x))),
+  );
 
-    Map<String, dynamic> toJson() => {
-        "user": user.toJson(),
-        "pets": List<dynamic>.from(pets.map((x) => x.toJson())),
-        "bookings": List<dynamic>.from(bookings.map((x) => x.toJson())),
-    };
+  Map<String, dynamic> toJson() => {
+      "user": user.toJson(),
+      "pets": List<dynamic>.from(pets.map((x) => x.toJson())),
+      "bookings": List<dynamic>.from(bookings.map((x) => x.toJson())),
+  };
 }
 
 class Booking {

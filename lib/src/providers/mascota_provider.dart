@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/src/model/mascota/mascota_model.dart';
@@ -10,7 +11,7 @@ class MascotaProvider{
   final _url = 'http://ce2019121721001.dnssw.net/api';
   final _prefs = new PreferenciasUsuario();
 
-  Future<MascotaModel> getPets() async {
+  Future<List<MascotaModel>> getPets() async {
     final url = '$_url/pets';
 
     final resp = await http.get(url,
@@ -19,22 +20,25 @@ class MascotaProvider{
       }
     );
 
-    final datosMascota = mascotaModelFromJson(resp.body);
-    
-    return datosMascota;
+    final Map<String, dynamic> decodedResp = json.decode(resp.body);
+    //print(decodedResp['pets']);
 
+    final datosMascota = decodedResp['pets'];//mascotaModelFromJson(decodedResp['pets']);
+
+    final List<MascotaModel> mascotas = new List();
+
+    if(datosMascota==null) return [];
+
+    datosMascota.forEach((pet){
+      final petTemp = MascotaModel.fromJson(pet);
+      mascotas.add(petTemp);
+    });
+
+    return mascotas;
   }
 
   Future<bool> savePet(MascotaReq mascota) async {
     final url = '$_url/pets';
-
-    print('llega');
-    print(mascota);
-    print(mascota.name);
-    print(mascota.birthdate);
-    print(mascota.specie);
-    print(mascota.breed);
-    print(mascota.genre);
 
     int intMascota=0;
 
@@ -48,8 +52,6 @@ class MascotaProvider{
       'breed': mascota.breed.toString(), //int
       'genre': intMascota.toString() //int
     };
-    //print(mascotaReqToJson(mascota));
-    //print(data);
 
     final resp = await http.post(url, 
       headers: { 

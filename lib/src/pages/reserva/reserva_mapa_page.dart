@@ -6,11 +6,15 @@ import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 
 
 class ReservaMapaPage extends StatefulWidget {
+  // final establecimientos;
+  // ReservaMapaPage({@required this.establecimientos});
   @override
   _ReservaMapaPageState createState() => _ReservaMapaPageState();
 }
 
 class _ReservaMapaPageState extends State<ReservaMapaPage> {
+  // final vetLocales;
+  // _ReservaMapaPageState({@required this.vetLocales});
   //final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   GoogleMapController _controller;
