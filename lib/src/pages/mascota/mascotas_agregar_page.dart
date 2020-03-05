@@ -1,18 +1,20 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_field.dart';
-// import 'package:proypet/src/pages/shared/navigation_bar.dart';
+import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/utils/utils.dart';
 
-final tipopet = [{'cod':'1','nombre':'Perro',},{'cod':'2','nombre':'Gato'}];
-final raza = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];
+final tipopet = [{'cod':'1','nombre':'Gto',},{'cod':'2','nombre':'Perro'}];
+final razaPerro = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];
+final razaGato = [{'cod':'1','nombre':'Gato chiquito',},{'cod':'2','nombre':'Gato mediano'},{'cod':'3','nombre':'Gato grande'}];
 
 class MascotaAgregarPage extends StatefulWidget {
   @override
@@ -31,12 +33,20 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   MascotaReq petReq = new MascotaReq();
 
   bool btnBool = true;
+  bool boolPet = true;  
+  String datoPet = tipopet[0]['cod'];
+  File foto;
+
+  String opcRaza= '1'; // : razaGato[0]['cod'] ;
 
   @override
   Widget build(BuildContext context) {
+    petReq.specie= int.tryParse(datoPet);
+    petReq.breed=int.tryParse(opcRaza);
+
     return Scaffold(
       key: scaffoldKey,
-      appBar: appbar2(
+      appBar: appbar(
         null,
         Text('Agregar mascota',
           style: TextStyle(
@@ -44,12 +54,13 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
             fontWeight: FontWeight.normal
           ),
         ),
-        null
+        null,
       ),
       body: Stack(
         children: <Widget>[
             SingleChildScrollView(
               child: Form(
+                key: formKey,
                 child: Column(                
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -60,14 +71,34 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                         child: Stack(
                           children: <Widget>[
                             CircleAvatar(
-                              backgroundImage: AssetImage('images/no-image.png'),
+                              backgroundImage: _mostrarFoto(),//AssetImage('images/no-image.png'),
                               radius: 80.0,
                             ),
                             Positioned(
                               bottom: 1.5,
                               right: 10.0,
                               child: CircleAvatar(
-                                child: Icon(Icons.camera_enhance,color: Colors.white,),
+                                child: IconButton(
+                                  icon: Icon(Icons.camera_enhance,color: Colors.white), 
+                                  onPressed: ()=>showDialog(
+                                  context: context,
+                                  builder: (BuildContext context){
+                                    return SimpleDialog(
+                                      //title: const Text('Select assignment'),
+                                      children: <Widget>[
+                                        SimpleDialogOption(
+                                          child: const Text('Tomar foto'),
+                                          onPressed: _tomarFoto,                                          
+                                        ),
+                                        SimpleDialogOption(
+                                          child: const Text('Seleccionar foto'),
+                                          onPressed: _seleccionarFoto,                                          
+                                        ),
+                                      ],
+                                    );
+                                  }
+                                ),                                  
+                                ),
                                 backgroundColor: colorMain,
                                 radius: 22.0,
                               )
@@ -77,19 +108,43 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       ) //Text('Foto de mi mascota'),
                     ),
                     SizedBox(height: 10.0,),
-                    textfield('Nombre de mascota', Icons.pets, false),
+                    textForm('Nombre de mascota', Icons.pets, false, (value)=>petReq.name=value, TextCapitalization.words),
                     SizedBox(height: 10.0,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                       child: Text('Seleccione tipo de mascota'),
                     ),
-                    DdlControl(lista: tipopet),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      child: _ddlDato(datoPet, tipopet, 
+                        (opt){ setState(() {
+                          datoPet=opt; 
+                          petReq.specie= int.tryParse(opt);
+                          if(datoPet=='1'){
+                            boolPet=true;
+                            opcRaza='1';
+                          } 
+                          else{
+                            boolPet=false;
+                            opcRaza='1';
+                          }  
+                        }
+                      );}),
+                    ),
                     SizedBox(height: 10.0,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                       child: Text('Seleccione raza'),
                     ),
-                    DdlControl(lista: raza),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      child: _ddlDato( opcRaza, boolPet ? razaGato : razaPerro, 
+                        (opt){ setState(() { 
+                          opcRaza=opt;
+                          petReq.breed=int.tryParse(opt);
+                        }); }),
+                    ),
+                    // DdlControl(lista: raza),
                     SizedBox(height: 10.0,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
@@ -102,18 +157,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     SizedBox(height: 10.0,),                    
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
-                      child: SwitchListTile(
-                        value: petReq.genre,
-                        title: Text('Sexo'),
-                        subtitle: petReq.genre ? Text('Macho') : Text('Hembra'),
-                        //secondary: Text('Femenino'),
-                        activeColor: colorMain,
-                        onChanged: (value)=> setState((){
-                          petReq.genre = value;
-                        }),
-                      )
+                      child: _sexo()
                     ),
-                    
                     SizedBox(height: 25.0,),
                     Center(
                       child: buttonPri('Agregar mascota', btnBool ? _onAdd : null ) //()=>agregarDialog()
@@ -128,19 +173,40 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   
+  Widget _ddlDato(opcionSeleccionada, lista, cambiaOpc){
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: Colors.grey[200],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+            isExpanded: true,
+            value: opcionSeleccionada,
+            items: getOpcionesDropdown(lista),
+            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
+          ),
+        ),
+      ), 
+    );
+  }
 
   Widget _crearFecha(BuildContext context){
     return Material(
       elevation: 0.0,
       borderRadius: _shape,
       color: Colors.grey[200],
-      child: TextField(
+      child: TextFormField(
         enableInteractiveSelection: false,
         controller: _inputFechaController,
         onTap: (){
           FocusScope.of(context).requestFocus(new FocusNode());
           _selectDate(context);
         },
+        //onChanged: (value)=>petReq.birthdate=value,
+        onSaved: (value)=>petReq.birthdate=value,
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Fecha de nacimiento',
@@ -180,29 +246,71 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
   }
 
+  Widget _sexo(){
+    return SwitchListTile(
+      value: petReq.genre,
+      title: Text('Sexo'),
+      subtitle: petReq.genre ? Text('Macho') : Text('Hembra'),
+      activeColor: colorMain,
+      onChanged: (value)=> setState((){
+        petReq.genre = value;
+      }),
+    );
+  }
+
+  _mostrarFoto(){
+    //return AssetImage(foto?.path ?? 'images/no-image.png');
+    // return CircleAvatar(
+    //   ///backgroundImage: Image.file(foto),
+    //   child: Image(
+    //     image: FileImage(foto)
+    //   ), //AssetImage('images/no-image.png'),
+    //   radius: 80.0,
+    // );
+
+    if(foto!=null){
+      return FileImage(foto);
+    }
+      //foto?.path ?? 
+    return AssetImage('images/no-image.png');
+
+  }
+  _seleccionarFoto() async {
+    _procesarImagen(ImageSource.gallery);
+  }
+
+  _tomarFoto() async {
+    _procesarImagen(ImageSource.camera);
+  }
+
+  _procesarImagen(ImageSource origen) async {
+    foto = await ImagePicker.pickImage(
+      source: origen,
+      imageQuality: 70,
+    );
+
+    if(foto!=null){
+      //limpieza
+    }
+    
+    setState(() {});
+    Navigator.pop(context);
+  }
+
   void _onAdd() async {
+    
     setState(() {
+      formKey.currentState.save();
       btnBool = false;      
     });
     
-    MascotaReq petDato = new MascotaReq();
-    //final f = new DateFormat('yyyy-MM-dd');
-
-    petDato.name = 'Pruebin 3';
-    petDato.birthdate = '2019-12-12';
-    petDato.specie = 1;
-    petDato.breed = 1;
-    petDato.genre = true;
-
-    final resp = await mascotaProvider.savePet(petDato);
+    final resp = await mascotaProvider.savePet(petReq);
 
     if(resp){
       mostrarSnackbar('Mascota agregada.', colorMain);  
       Timer(
         Duration(milliseconds: 2500), (){
           Navigator.of(context).pushReplacementNamed('mismascotas');   
-          // setState(() {
-          // });
         }
       );
     

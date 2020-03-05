@@ -1,5 +1,7 @@
 
 
+import 'package:flutter/material.dart';
+
 calculateAge(DateTime birthDate) {
   String resp; 
   int edad,mes,dia,diferencia;
@@ -32,4 +34,17 @@ calculateAge(DateTime birthDate) {
   }
   
   return resp;
+}
+
+//lista para ddl
+
+List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
+  List<DropdownMenuItem<String>> lista = new List();
+  _lista.forEach((_lista){
+    lista.add(DropdownMenuItem(
+      child: Text(_lista['nombre']),
+      value: _lista['cod'],
+    ));
+  });
+  return lista;
 }

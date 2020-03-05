@@ -21,7 +21,7 @@ class _MascotasPageState extends State<MascotasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar2(
+      appBar: appbar(
         null,
         Text('Agregar mascota',
           style: TextStyle(
@@ -29,7 +29,7 @@ class _MascotasPageState extends State<MascotasPage> {
             fontWeight: FontWeight.normal
           ),
         ),
-        null
+        null,
       ),
       body: _mascotas(),
     );

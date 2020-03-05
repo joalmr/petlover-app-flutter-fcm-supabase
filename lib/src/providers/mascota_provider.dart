@@ -28,6 +28,14 @@ class MascotaProvider{
   Future<bool> savePet(MascotaReq mascota) async {
     final url = '$_url/pets';
 
+    print('llega');
+    print(mascota);
+    print(mascota.name);
+    print(mascota.birthdate);
+    print(mascota.specie);
+    print(mascota.breed);
+    print(mascota.genre);
+
     int intMascota=0;
 
     if( mascota.genre) intMascota=1;    
@@ -41,6 +49,7 @@ class MascotaProvider{
       'genre': intMascota.toString() //int
     };
     //print(mascotaReqToJson(mascota));
+    //print(data);
 
     final resp = await http.post(url, 
       headers: { 

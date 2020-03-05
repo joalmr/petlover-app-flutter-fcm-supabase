@@ -3,7 +3,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 //final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
 final _shape = BorderRadius.circular(10.0);
 
-Widget textForm(_hinttext, _icon, _obscuretext, _onsaved){
+Widget textForm(_hinttext, _icon, _obscuretext, _onsaved, _textCap){
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 32),
     child: Material(
@@ -11,9 +11,9 @@ Widget textForm(_hinttext, _icon, _obscuretext, _onsaved){
       borderRadius: _shape,
       color: Colors.grey[200],
       child: TextFormField(
+        textCapitalization: _textCap,
         obscureText: _obscuretext,
         onSaved: _onsaved,
-        //onChanged: (String value){},
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: _hinttext,

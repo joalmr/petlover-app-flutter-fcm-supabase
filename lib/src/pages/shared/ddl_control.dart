@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/utils.dart';
 
 //final _shape = BorderRadius.circular(10.0);
 
@@ -78,13 +79,13 @@ class _DdlControl2 extends State<DdlControl2> {
   }
 }
 
-List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
-  List<DropdownMenuItem<String>> lista = new List();
-  _lista.forEach((_lista){
-    lista.add(DropdownMenuItem(
-      child: Text(_lista['nombre']),
-      value: _lista['cod'],
-    ));
-  });
-  return lista;
-}
+// List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
+//   List<DropdownMenuItem<String>> lista = new List();
+//   _lista.forEach((_lista){
+//     lista.add(DropdownMenuItem(
+//       child: Text(_lista['nombre']),
+//       value: _lista['cod'],
+//     ));
+//   });
+//   return lista;
+// }

@@ -6,16 +6,10 @@ class RecompensasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar2(
+      appBar: appbar(
         leadingH,
         titleH,
-        null
-        // <Widget>[
-        //   IconButton(
-        //     icon: Icon(Icons.dashboard),
-        //     onPressed: (){},
-        //   )
-        // ]
+        null,
       ),
       body: Container(
         child: Center(

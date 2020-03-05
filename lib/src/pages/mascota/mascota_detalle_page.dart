@@ -177,7 +177,7 @@ class MascotaDetallePage extends StatelessWidget {
                   )
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 137.5),
+                  margin: EdgeInsets.only(top: 140.5),
                   //padding: EdgeInsets.symmetric(horizontal: 5.0),
                   width: double.infinity,
                   child: listaHistorial(context),
