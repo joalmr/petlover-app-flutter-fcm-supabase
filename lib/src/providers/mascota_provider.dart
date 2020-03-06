@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:mime_type/mime_type.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
 
@@ -80,16 +82,17 @@ class MascotaProvider{
       final idkey = decodedResp['pet']['id'];
       print(idkey);
       final urlpet = '$_url/pets/$idkey/picture';
-      subirImagen(imagen,urlpet);
+      //http://ce2019121721001.dnssw.net/api/pets/12370f71-fade-4ec3-ac93-29a4537c8b0f/picture
+      uploadImage(imagen,urlpet);
       return true;
     } //return true;
     else return false;
 
   }
 
-  Future subirImagen(File imagen,String uri) async {
+  Future uploadImage(File imagen,String uri) async {
     final url = Uri.parse(uri);
-    //final mimetype = mime(imagen.path).split('/'); //image/jpeg
+    final mimetype = mime(imagen.path).split('/'); //image/jpeg
 
     final imageUploadRequest = http.MultipartRequest(
       'POST',
@@ -97,8 +100,9 @@ class MascotaProvider{
     );
 
     final file = await http.MultipartFile.fromPath(
-      'file', 
+      'picture', 
       imagen.path,
+      contentType: MediaType(mimetype[0],mimetype[1])
     );
 
     imageUploadRequest.files.add(file);

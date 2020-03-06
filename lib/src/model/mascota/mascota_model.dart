@@ -43,7 +43,7 @@ class MascotaModel {
         breedId: json["breed_id"],
         breedName: json["breed_name"],
         weight: json["weight"],
-        birthdate: DateTime.parse(json["birthdate"]),
+        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
         picture: json["picture"],
         condition: json["condition"],
         status: json["status"],
