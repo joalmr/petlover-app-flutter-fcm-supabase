@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
@@ -72,7 +73,7 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
                       padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         backgroundColor: Colors.transparent,
-                        backgroundImage: NetworkImage(vet.logo),
+                        backgroundImage: CachedNetworkImageProvider(vet.logo),
                         radius: 25.0,
                       ),
                     ),

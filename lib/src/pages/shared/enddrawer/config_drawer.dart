@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:share/share.dart';
 
 
 
@@ -34,6 +35,15 @@ class ConfigDrawer extends StatelessWidget {
                   SizedBox(height: 20.0,),
                   //FormControl().buttonSec('Buscar',(){})
                   //buttonPri('Agregar mascota',()=>{}),
+                  ListTile(
+                    leading: Icon(Icons.share),
+                    title: Text('Compartir con mis amigos', style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                    ),),
+                    onTap: ()=>Share.share('Registrate a Proypet, no más cartillas perdidas, tu mascota gozará de buena salud gracias a las notificaciones de Proypet. Ingresa ya y se parte de la comunidad responsable Proypet http://www.proypet.com',
+                      subject: 'Registrate hoy a Proypet',
+                    ),
+                  ),
                   ListTile(
                     leading: Icon(Icons.person_outline, color: Colors.red[300],),
                     title: Text('Cerrar sesión', style: TextStyle(

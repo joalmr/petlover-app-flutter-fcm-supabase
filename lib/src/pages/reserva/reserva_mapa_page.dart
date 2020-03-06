@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -176,7 +177,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                               bottomLeft: Radius.circular(10.0),
                               topLeft: Radius.circular(10.0)),
                           image: DecorationImage(
-                            image: NetworkImage(vetLocales[index].logo),
+                            image: CachedNetworkImageProvider(vetLocales[index].logo),
                             fit: BoxFit.cover))),
                       SizedBox(width: 5.0),
                       Column(

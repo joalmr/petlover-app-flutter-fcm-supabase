@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/home_model.dart';
@@ -306,7 +307,9 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black.withOpacity(0.15),
                       ),
                       child: Image(
-                        image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/' ? AssetImage('images/proypet.png') :  NetworkImage(mascotas[index].picture),//AssetImage('images/greco.png'),
+                        image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/' 
+                          ? AssetImage('images/proypet.png') 
+                          : CachedNetworkImageProvider(mascotas[index].picture),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -437,7 +440,7 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 leading: CircleAvatar(
                   backgroundColor: colorMain,
-                  backgroundImage: NetworkImage(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
+                  backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
                   radius: 25.0,
                 ),
                 title: Text(atenciones[index].establishmentName),

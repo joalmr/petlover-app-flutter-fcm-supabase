@@ -259,13 +259,13 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   _mostrarFoto(){
-    return AssetImage(foto?.path ?? 'images/no-image.png');
+    //return AssetImage(foto?.path ?? 'images/no-image.png');
 
-    // if(foto!=null){
-    //   return FileImage(foto);
-    // }
-    // //foto?.path ?? 
-    // return AssetImage('images/no-image.png');
+    if(foto!=null){
+      return FileImage(foto);
+    }
+    //foto?.path ?? 
+    return AssetImage('images/no-image.png');
 
   }
 
@@ -292,27 +292,35 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   void _onAdd() async {
-    
-    setState(() {
-      formKey.currentState.save();
-      btnBool = false;      
-    });
-    
-    final resp = await mascotaProvider.savePet(petReq);
+    try {
+      setState(() {
+        formKey.currentState.save();
+        btnBool = false;      
+      });
+      
+      final resp = await mascotaProvider.savePet(petReq, foto);
 
-    if(resp){
-      mostrarSnackbar('Mascota agregada.', colorMain);  
-      Timer(
-        Duration(milliseconds: 2500), (){
-          Navigator.of(context).pushReplacementNamed('mismascotas');   
-        }
-      );
-    
+      if(resp){
+        mostrarSnackbar('Mascota agregada.', colorMain);  
+        Timer(
+          Duration(milliseconds: 2500), (){
+            Navigator.of(context).pushReplacementNamed('mismascotas');   
+          }
+        );
+      
+      }
+      else setState(() {
+        mostrarSnackbar('No se agregadó la mascota.', Colors.red[300]);  
+        btnBool = true;      
+      });
     }
-    else setState(() {
-      btnBool = true;      
-    });
-
+    
+    catch(e) {
+      setState(() {
+        mostrarSnackbar('No se agregadó la mascota.', Colors.red[300]);
+        btnBool = true;      
+      });
+    }
   }
   //Colors.red[300]
   void mostrarSnackbar(String mensaje, Color color){

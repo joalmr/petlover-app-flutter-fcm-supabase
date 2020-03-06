@@ -9,27 +9,27 @@ HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 String homeModelToJson(HomeModel data) => json.encode(data.toJson());
 
 class HomeModel {
-  User user;
-  List<Pet> pets;
-  List<Booking> bookings;
+    User user;
+    List<Pet> pets;
+    List<Booking> bookings;
 
-  HomeModel({
-      this.user,
-      this.pets,
-      this.bookings,
-  });
+    HomeModel({
+        this.user,
+        this.pets,
+        this.bookings,
+    });
 
-  factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
-      user: User.fromJson(json["user"]),
-      pets: List<Pet>.from(json["pets"].map((x) => Pet.fromJson(x))),
-      bookings: List<Booking>.from(json["bookings"].map((x) => Booking.fromJson(x))),
-  );
+    factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
+        user: User.fromJson(json["user"]),
+        pets: List<Pet>.from(json["pets"].map((x) => Pet.fromJson(x))),
+        bookings: List<Booking>.from(json["bookings"].map((x) => Booking.fromJson(x))),
+    );
 
-  Map<String, dynamic> toJson() => {
-      "user": user.toJson(),
-      "pets": List<dynamic>.from(pets.map((x) => x.toJson())),
-      "bookings": List<dynamic>.from(bookings.map((x) => x.toJson())),
-  };
+    Map<String, dynamic> toJson() => {
+        "user": user.toJson(),
+        "pets": List<dynamic>.from(pets.map((x) => x.toJson())),
+        "bookings": List<dynamic>.from(bookings.map((x) => x.toJson())),
+    };
 }
 
 class Booking {
@@ -37,7 +37,7 @@ class Booking {
     String establishmentId;
     String establishmentName;
     String address;
-    int petId;
+    String petId;
     String petName;
     String petPicture;
     String date;
@@ -85,10 +85,10 @@ class Booking {
 }
 
 class Pet {
-    int id;
+    String id;
     String name;
     String breed;
-    String specie;
+    Specie specie;
     int weight;
     DateTime birthdate;
     String picture;
@@ -109,9 +109,9 @@ class Pet {
         id: json["id"],
         name: json["name"],
         breed: json["breed"],
-        specie: json["specie"],
+        specie: specieValues.map[json["specie"]],
         weight: json["weight"],
-        birthdate: DateTime.parse(json["birthdate"]),
+        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
         picture: json["picture"],
         age: json["age"],
     );
@@ -120,13 +120,19 @@ class Pet {
         "id": id,
         "name": name,
         "breed": breed,
-        "specie": specie,
+        "specie": specieValues.reverse[specie],
         "weight": weight,
-        "birthdate": birthdate.toIso8601String(),
+        "birthdate": birthdate == null ? null : birthdate.toIso8601String(),
         "picture": picture,
         "age": age,
     };
 }
+
+enum Specie { GATO }
+
+final specieValues = EnumValues({
+    "Gato": Specie.GATO
+});
 
 class User {
     String name;
@@ -146,4 +152,18 @@ class User {
         "name": name,
         "email": email,
     };
+}
+
+class EnumValues<T> {
+    Map<String, T> map;
+    Map<T, String> reverseMap;
+
+    EnumValues(this.map);
+
+    Map<T, String> get reverse {
+        if (reverseMap == null) {
+            reverseMap = map.map((k, v) => new MapEntry(v, k));
+        }
+        return reverseMap;
+    }
 }

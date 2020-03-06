@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:proypet/src/model/mascota/mascota_model.dart';
@@ -79,7 +80,9 @@ class _MascotasPageState extends State<MascotasPage> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: mascota.picture == 'http://ce2019121721001.dnssw.net/storage/' ? AssetImage('images/proypet.png') :  NetworkImage(mascota.picture)//AssetImage('images/greco.png')
+                                  image: mascota.picture == 'http://ce2019121721001.dnssw.net/storage/' 
+                                    ? AssetImage('images/proypet.png') 
+                                    : CachedNetworkImageProvider(mascota.picture)//AssetImage('images/greco.png')
                               )
                             )
                           ),
@@ -125,6 +128,7 @@ class _MascotasPageState extends State<MascotasPage> {
                                             padding: const EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
                                             child: InkWell(
                                               child: Icon(Icons.edit,color: Colors.blue[300]),
+                                              //onTap: ()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota)
                                               onTap: ()=>Navigator.push(context, MaterialPageRoute(
                                                 builder: (_)=>MascotasEditarPage(),
                                               )),

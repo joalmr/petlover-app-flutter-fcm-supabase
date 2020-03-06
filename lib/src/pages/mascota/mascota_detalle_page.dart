@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/historias_model.dart';
 import 'package:proypet/src/model/mascota/mascota1_model.dart';
@@ -265,7 +266,8 @@ class MascotaDetallePage extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundImage: NetworkImage(historialList[index].logo),
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: CachedNetworkImageProvider(historialList[index].logo),
                         radius: 25.0,
                       ),
                       SizedBox(width: 7.0),

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
@@ -8,6 +9,7 @@ import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class ReservaDetallePage extends StatelessWidget {
@@ -63,111 +65,116 @@ class ReservaDetallePage extends StatelessWidget {
                     width: double.infinity,
                     child: _swiperVets(vetLocales[idvet].imagen)
                   ),
-                  SizedBox(height: 5.0),
+                  SizedBox(height: .5),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width - 0.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Icon(Icons.location_on, size: 12.0, color: Colors.grey),
-                                  Text(vetLocales[idvet].distancia+' [ Paseo los franciscanos 529 ] ',
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.grey
-                                  ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 2.0),
-                              Text(nombreVet(idvet),
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.w600
-                                )
-                              )
-                            ],
-                          ),
-                          Container(
-                            height: 65.0,
-                            width: 65.0,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(100.0),
-                              image: DecorationImage(
-                                image: NetworkImage(vetLocales[idvet].logo),
-                                fit: BoxFit.cover
-                              )
-                            ),
+                      child: ListTile(
+                        title: Text(vetLocales[idvet].nombre,//nombreVet(idvet),
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600
                           )
-                        ],
+                        ),
+                        subtitle: Row(
+                          children: <Widget>[
+                            Icon(Icons.location_on, size: 12.0, color: Colors.grey),
+                            Text(vetLocales[idvet].distancia+' [ Paseo los franciscanos 529 ] ',
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.grey
+                            ),
+                            )
+                          ],
+                        ),
+                        trailing: Container(
+                          height: 65.0,
+                          width: 65.0,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(100.0),
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(vetLocales[idvet].logo),
+                              fit: BoxFit.cover
+                            )
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 22.0),
                     child: Row(
-                    children: <Widget>[
-                      Text('Recomendación',
-                          style: TextStyle(
-                              fontSize: 15.0,
-                              color: Color(0xFF6A6A6A),
-                              fontWeight: FontWeight.w600)),
-                      SizedBox(width: 15.0),
-                      Stack(
-                        children: <Widget>[
-                          Container(height: 40.0, width: 100.0),
-                          Positioned(
-                            left: 10.0,
-                            child: Container(
-                              height: 40.0,
-                              width: 40.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: colorMain //Color(0xFFFE7050)
-                              ),
-                              child: Center(
-                                child: Text(vetLocales[idvet].votantes,
-                                  style: TextStyle(
-                                    fontSize: 12.0, color: Colors.white
-                                  )
-                                ),
-                              ),
-                            ),
-                          ),
-                          Row(
-                            children: <Widget>[
-                              SizedBox(width: 55.0),
-                              Container(
-                                height: 40.0,
-                                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.black.withOpacity(0.2)),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Icon(Icons.star, color: Colors.white, size: 12.0),
-                                      SizedBox(width: 5.0),
-                                      Text(vetLocales[idvet].estrellas,style: TextStyle(color: Colors.white))
-                                    ],
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text('Recomendación',
+                            style: TextStyle(
+                                fontSize: 15.0,
+                                color: Color(0xFF6A6A6A),
+                                fontWeight: FontWeight.w600)),
+                            SizedBox(width: 15.0),
+                            Stack(
+                              children: <Widget>[
+                                Container(height: 40.0, width: 100.0),
+                                Positioned(
+                                  left: 10.0,
+                                  child: Container(
+                                    height: 40.0,
+                                    width: 40.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      color: colorMain //Color(0xFFFE7050)
+                                    ),
+                                    child: Center(
+                                      child: Text(vetLocales[idvet].votantes,
+                                        style: TextStyle(
+                                          fontSize: 12.0, color: Colors.white
+                                        )
+                                      ),
+                                    ),
                                   ),
-                                )
-                              )
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    SizedBox(width: 55.0),
+                                    Container(
+                                      height: 40.0,
+                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(20.0),
+                                          color: Colors.black.withOpacity(0.2)),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Icon(Icons.star, color: Colors.white, size: 12.0),
+                                            SizedBox(width: 5.0),
+                                            Text(vetLocales[idvet].estrellas,style: TextStyle(color: Colors.white))
+                                          ],
+                                        ),
+                                      )
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                        ],
-                      ),
-                    ],
-                ),
+                        
+                        Padding(
+                          padding: const EdgeInsets.only(right: 15.0),
+                          child: FloatingActionButton(
+                            backgroundColor: colorMain,
+                            child: Icon(Icons.phone, color: Colors.white,),
+                            onPressed: _launchPhone, 
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 
                   SizedBox(height: 20.0),
@@ -291,12 +298,21 @@ class ReservaDetallePage extends StatelessWidget {
     return CardSwiper(imagenes : imagen,radius: 0.0,height1: 145.0);    
   }
 
-  nombreVet(index){
-    if(vetLocales[index].nombre.length>30){
-      return vetLocales[index].nombre.substring(0,30);
-    }
-    else{
-      return vetLocales[index].nombre;
+  // nombreVet(index){
+  //   if(vetLocales[index].nombre.length>30){
+  //     return vetLocales[index].nombre.substring(0,30);
+  //   }
+  //   else{
+  //     return vetLocales[index].nombre;
+  //   }
+  // }
+
+  _launchPhone() async {
+    const url = 'tel:+51993191969';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'No se pudo llamar $url';
     }
   }
 

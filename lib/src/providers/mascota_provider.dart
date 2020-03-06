@@ -14,32 +14,44 @@ class MascotaProvider{
   Future<List<MascotaModel>> getPets() async {
     final url = '$_url/pets';
 
-    final resp = await http.get(url,
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      }
-    );
+    try {
 
-    final Map<String, dynamic> decodedResp = json.decode(resp.body);
-    //print(decodedResp['pets']);
+      final resp = await http.get(url,
+        headers: { 
+          HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+        }
+      );
 
-    final datosMascota = decodedResp['pets'];//mascotaModelFromJson(decodedResp['pets']);
+      final Map<String, dynamic> decodedResp = json.decode(resp.body);
+      print(decodedResp['pets'][0]);
 
-    final List<MascotaModel> mascotas = new List();
+      final datosMascota = decodedResp['pets'];//mascotaModelFromJson(decodedResp['pets']);
 
-    if(datosMascota==null) return [];
+      final List<MascotaModel> mascotas = new List();
 
-    datosMascota.forEach((pet){
-      final petTemp = MascotaModel.fromJson(pet);
-      mascotas.add(petTemp);
-    });
+      if(datosMascota==null) return [];
 
-    return mascotas;
+      datosMascota.forEach((pet){
+        final petTemp = MascotaModel.fromJson(pet);
+        mascotas.add(petTemp);
+      });
+
+      return mascotas;
+
+    }
+    catch(e) {
+
+      print(e);
+      return [];
+
+    }
+
+    
   }
 
-  Future<bool> savePet(MascotaReq mascota) async {
+  Future<bool> savePet(MascotaReq mascota, File imagen) async {
     final url = '$_url/pets';
-
+    
     int intMascota=0;
 
     if( mascota.genre) intMascota=1;    
@@ -50,18 +62,58 @@ class MascotaProvider{
       'birthdate': mascota.birthdate, //datetime
       'specie': mascota.specie.toString(), //int
       'breed': mascota.breed.toString(), //int
-      'genre': intMascota.toString() //int
+      'genre': intMascota.toString(), //int
+      //'picture': imagen.path
     };
 
     final resp = await http.post(url, 
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
       },      
-      body: data );
+      body: data,
+    );
 
     print(resp.statusCode);
-    if(resp.statusCode==200 || resp.statusCode==201) return true;
+    if(resp.statusCode==200 || resp.statusCode==201){
+      print('entra');
+      final Map<String, dynamic> decodedResp = json.decode(resp.body);
+      final idkey = decodedResp['pet']['id'];
+      print(idkey);
+      final urlpet = '$_url/pets/$idkey/picture';
+      subirImagen(imagen,urlpet);
+      return true;
+    } //return true;
     else return false;
 
+  }
+
+  Future subirImagen(File imagen,String uri) async {
+    final url = Uri.parse(uri);
+    //final mimetype = mime(imagen.path).split('/'); //image/jpeg
+
+    final imageUploadRequest = http.MultipartRequest(
+      'POST',
+      url
+    );
+
+    final file = await http.MultipartFile.fromPath(
+      'file', 
+      imagen.path,
+    );
+
+    imageUploadRequest.files.add(file);
+
+    final streamResponse = await imageUploadRequest.send();
+    final resp = await http.Response.fromStream(streamResponse);
+
+    if(resp.statusCode!=200 || resp.statusCode!=201){
+      print('Algo salió mal');
+      print(resp.body);
+      return null;
+    }
+
+    final respData = json.decode(resp.body);
+
+    print(respData);
   }
 }
