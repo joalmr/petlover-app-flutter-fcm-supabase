@@ -106,7 +106,7 @@ class _MascotasPageState extends State<MascotasPage> {
                                       ),
                                       const Padding(padding: EdgeInsets.only(bottom: 2.0)),
                                       Text(
-                                        mascota.breed,
+                                        mascota.breedName,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(

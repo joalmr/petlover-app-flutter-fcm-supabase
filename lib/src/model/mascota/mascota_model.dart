@@ -11,8 +11,10 @@ String mascotaModelToJson(MascotaModel data) => json.encode(data.toJson());
 class MascotaModel {
     String id;
     String name;
-    String breed;
-    String specie;
+    int specieId;
+    String specieName;
+    int breedId;
+    String breedName;
     int weight;
     DateTime birthdate;
     String picture;
@@ -22,8 +24,10 @@ class MascotaModel {
     MascotaModel({
         this.id,
         this.name,
-        this.breed,
-        this.specie,
+        this.specieId,
+        this.specieName,
+        this.breedId,
+        this.breedName,
         this.weight,
         this.birthdate,
         this.picture,
@@ -34,10 +38,12 @@ class MascotaModel {
     factory MascotaModel.fromJson(Map<String, dynamic> json) => MascotaModel(
         id: json["id"],
         name: json["name"],
-        breed: json["breed"],
-        specie: json["specie"],
+        specieId: json["specie_id"],
+        specieName: json["specie_name"],
+        breedId: json["breed_id"],
+        breedName: json["breed_name"],
         weight: json["weight"],
-        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+        birthdate: DateTime.parse(json["birthdate"]),
         picture: json["picture"],
         condition: json["condition"],
         status: json["status"],
@@ -46,8 +52,10 @@ class MascotaModel {
     Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "breed": breed,
-        "specie": specie,
+        "specie_id": specieId,
+        "specie_name": specieName,
+        "breed_id": breedId,
+        "breed_name": breedName,
         "weight": weight,
         "birthdate": birthdate.toIso8601String(),
         "picture": picture,
