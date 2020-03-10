@@ -58,7 +58,7 @@ class EstablecimientoModel {
     factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
         id: json["id"],
         name: json["name"],
-        description: json["description"],
+        description: json["description"]  == null ? "" : json["description"],
         stars: json["stars"],
         votes: json["votes"],
         address: json["address"],

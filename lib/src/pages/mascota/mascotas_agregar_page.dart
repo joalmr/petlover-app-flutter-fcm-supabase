@@ -44,6 +44,11 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final MascotaModel petData = ModalRoute.of(context).settings.arguments;
+    // if(petData!=null){ //editar
+    //   pet=petData;
+    // }
+    
     petReq.specie= int.tryParse(datoPet);
     petReq.breed= int.tryParse(opcRaza);
 

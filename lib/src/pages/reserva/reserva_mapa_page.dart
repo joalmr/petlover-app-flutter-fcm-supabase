@@ -2,33 +2,37 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:proypet/src/model/vet_model.dart';
+import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+// import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 
 
 class ReservaMapaPage extends StatefulWidget {
-  // final establecimientos;
-  // ReservaMapaPage({@required this.establecimientos});
+  final establecimientos;
+  ReservaMapaPage({@required this.establecimientos});
   @override
-  _ReservaMapaPageState createState() => _ReservaMapaPageState();
+  _ReservaMapaPageState createState() => _ReservaMapaPageState(vetLocales: establecimientos);
 }
 
 class _ReservaMapaPageState extends State<ReservaMapaPage> {
-  // final vetLocales;
-  // _ReservaMapaPageState({@required this.vetLocales});
+  List<EstablecimientoModel> vetLocales;
+  _ReservaMapaPageState({@required this.vetLocales});
+
   //final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   GoogleMapController _controller;
   List<Marker> allMarkers = [];
   PageController _pageController;
   int prevPage;
+
+  //var vet = vetLocales[index % vetLocales.length];
   
   nombreVet(index){
-    if(vetLocales[index].nombre.length>30){
-      return vetLocales[index].nombre.substring(0,29);
+    if(vetLocales[index].name.length>30){
+      return vetLocales[index].name.substring(0,29);
     }
     else{
-      return vetLocales[index].nombre;
+      return vetLocales[index].name;
     }
   }
 
@@ -48,16 +52,16 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
     vetLocales.forEach((element) {
       allMarkers.add(Marker(
-        markerId: MarkerId(element.nombre),
+        markerId: MarkerId(element.name),
         draggable: false,
         infoWindow: InfoWindow(
-          title: element.nombre, 
-          snippet: '★ ${element.estrellas} (${element.votantes})',//element.direccion,
+          title: element.name, 
+          snippet: '★ ${element.stars} (${element.votes})',//element.direccion,
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(idvet: (element.idvet-1)),
+            builder: (_)=>ReservaDetallePage(idvet: (1)),
           )),
         ),
-        position: element.locationCoords,
+        position: LatLng(element.latitude,element.longitude), //element.locationCoords,
         ));
     });
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
@@ -76,9 +80,11 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
               myLocationEnabled: true,
               compassEnabled: true,
               rotateGesturesEnabled: true,
+              zoomGesturesEnabled: true,
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
-                target: vetLocales[0].locationCoords, zoom: 16.0
+                target: LatLng(vetLocales[0].latitude,vetLocales[0].longitude),//vetLocales[0].locationCoords, 
+                zoom: 14.0
               ),
               markers: Set.from(allMarkers),
               onMapCreated: mapCreated,
@@ -192,7 +198,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            vetLocales[index].direccion,
+                            vetLocales[index].address,
                             style: TextStyle(
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.w600),
@@ -200,7 +206,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                           Container(
                             width: 170.0,
                             child: Text(
-                              vetLocales[index].descripcion,
+                              vetLocales[index].description,
                               maxLines: 3,
                               style: TextStyle(
                                   fontSize: 11.0,
@@ -221,8 +227,8 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
   moveCamera() {
     _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-      target: vetLocales[_pageController.page.toInt()].locationCoords,
-      zoom: 16.0,
+      target: LatLng(vetLocales[_pageController.page.toInt()].latitude, vetLocales[_pageController.page.toInt()].longitude), //vetLocales[_pageController.page.toInt()].locationCoords,
+      zoom: 14.0,
       bearing: 45.0,
       tilt: 45.0))
     );

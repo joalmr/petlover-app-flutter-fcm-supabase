@@ -1,21 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/vet_model.dart';
+import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+// import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field_button.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 class ReservaListaPage extends StatefulWidget {
-  // final establecimientos;
-  // ReservaListaPage({@required this.establecimientos});
+  final establecimientos;
+  ReservaListaPage({@required this.establecimientos});
   @override
-  _ReservaListaPageState createState() => _ReservaListaPageState();
+  _ReservaListaPageState createState() => _ReservaListaPageState(vetLocales: establecimientos);
 }
 
 class _ReservaListaPageState extends State<ReservaListaPage> {
-  // final vetLocales;
-  // _ReservaListaPageState({@required this.vetLocales});
+  List<EstablecimientoModel> vetLocales;
+  _ReservaListaPageState({@required this.vetLocales});
+  
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -65,7 +67,7 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  _swiperVets(vet.imagen),
+                  _swiperVets(vet.slides),
                   Positioned(//logo
                     bottom: 5.0,
                     right: 5.0,
@@ -90,18 +92,19 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(vet.distancia+' de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
+                        //vet.distancia +
+                        Text('## de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
                         Row(
                           //crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             Icon(Icons.star, color: colorMain, size: 12.0),
                             SizedBox(width: 0.5),
-                            Text(vet.estrellas+' ('+vet.votantes+')',style: TextStyle(fontSize: 12.0,color: Colors.grey[600],fontWeight: FontWeight.w400))
+                            Text(vet.stars.toString() + ' ('+vet.votes.toString()+')',style: TextStyle(fontSize: 12.0,color: Colors.grey[600],fontWeight: FontWeight.w400))
                           ],
                         ),
                       ],
                     ),
-                    Text(vet.nombre,style: TextStyle(
+                    Text(vet.name ,style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.grey[700],
                         fontWeight: FontWeight.w400

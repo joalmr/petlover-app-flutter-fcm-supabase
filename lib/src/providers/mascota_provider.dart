@@ -50,6 +50,41 @@ class MascotaProvider{
     
   }
 
+  Future<bool> editPet(MascotaReq mascota, File imagen) async {
+    final url = '$_url/pets/${mascota.idKey}/delete';
+
+    int intMascota=0;
+    if( mascota.genre) intMascota=1;    
+    else intMascota=0;
+
+    final data = {
+      'name': mascota.name, 
+      'birthdate': mascota.birthdate, //datetime
+      'specie': mascota.specie.toString(), //int
+      'breed': mascota.breed.toString(), //int
+      'genre': intMascota.toString(), //int
+    };
+
+    final resp = await http.post(url, 
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      },      
+      body: data,
+    );
+
+    print(resp.statusCode);
+    if(resp.statusCode==200 || resp.statusCode==201){
+      final idkey = mascota.idKey;
+      final urlpet = '$_url/pets/$idkey/base64';
+
+      upImage(imagen,urlpet);
+      return true;
+    }
+    else return false;
+
+
+  }
+
   Future<bool> savePet(MascotaReq mascota, File imagen) async {
     final url = '$_url/pets';
     
@@ -64,7 +99,6 @@ class MascotaProvider{
       'specie': mascota.specie.toString(), //int
       'breed': mascota.breed.toString(), //int
       'genre': intMascota.toString(), //int
-      //'picture': imagen.path
     };
 
     final resp = await http.post(url, 

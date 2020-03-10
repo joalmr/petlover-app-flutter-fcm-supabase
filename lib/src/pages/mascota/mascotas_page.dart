@@ -17,10 +17,13 @@ class MascotasPage extends StatefulWidget {
 }
 
 class _MascotasPageState extends State<MascotasPage> {
-  final mascotaProvider = MascotaProvider();
+  final mascotaProvider = MascotaProvider();  
+  // MascotaModel pet = MascotaModel();
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: appbar(
         null,
