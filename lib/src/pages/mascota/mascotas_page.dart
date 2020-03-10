@@ -79,7 +79,7 @@ class _MascotasPageState extends State<MascotasPage> {
                             decoration: new BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                   image: mascota.picture == 'http://ce2019121721001.dnssw.net/storage/' 
                                     ? AssetImage('images/proypet.png') 
                                     : CachedNetworkImageProvider(mascota.picture)//AssetImage('images/greco.png')

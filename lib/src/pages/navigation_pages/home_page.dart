@@ -5,6 +5,7 @@ import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
@@ -260,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 
-                _atenciones(mydata.bookings),
+                _atenciones(mydata.bookings,mydata.pets.length),
               ],
             ),
             
@@ -287,186 +288,245 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _mascotas(mascotas){
-    return Container(
-      height: 250.0,
-      width: double.infinity,
-      child: Stack(
-        children: <Widget>[
-          Swiper(
-            physics: BouncingScrollPhysics(),
-            itemCount: mascotas.length,//mascotaList.length,
-            itemBuilder: (BuildContext context, int index){
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 250.0,
-                      width: double.infinity,
-                      foregroundDecoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.15),
+    if(mascotas.length>0)
+      return Container(
+        height: 250.0,
+        width: double.infinity,
+        child: Stack(
+          children: <Widget>[
+            Swiper(
+              physics: BouncingScrollPhysics(),
+              itemCount: mascotas.length,//mascotaList.length,
+              itemBuilder: (BuildContext context, int index){
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 250.0,
+                        width: double.infinity,
+                        foregroundDecoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.15),
+                        ),
+                        child: Image(
+                          image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/' 
+                            ? AssetImage('images/proypet.png') 
+                            : CachedNetworkImageProvider(mascotas[index].picture),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      child: Image(
-                        image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/' 
-                          ? AssetImage('images/proypet.png') 
-                          : CachedNetworkImageProvider(mascotas[index].picture),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
 
-                    Positioned(
-                      top: 15.0,
-                      left: 10.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            mascotas[index].name,
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                      Positioned(
+                        top: 15.0,
+                        left: 10.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              mascotas[index].name,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          Text(
-                            mascotas[index].breed,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white,
+                            Text(
+                              mascotas[index].breed,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
 
-                    Positioned(
-                      bottom: 10.0,
-                      left: 10.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: mascotas[index].weight.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .display1
-                                      .apply(color: Colors.white, fontWeightDelta: 2),
-                                ),
-                                TextSpan(text: " kg.")
+                      Positioned(
+                        bottom: 10.0,
+                        left: 10.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: mascotas[index].weight.toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .display1
+                                        .apply(color: Colors.white, fontWeightDelta: 2),
+                                  ),
+                                  TextSpan(text: " kg.")
+                                ],
+                              ),
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Icon(Icons.cake, color: Colors.grey[300]),
+                                SizedBox(width: 5.0),
+                                Text(
+                                  calculateAge(mascotas[index].birthdate),//mascotas[index].age.toString(),
+                                  style: TextStyle(color: Colors.grey[300]),
+                                )
                               ],
                             ),
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.cake, color: Colors.grey[300]),
-                              SizedBox(width: 5.0),
-                              Text(
-                                calculateAge(mascotas[index].birthdate),//mascotas[index].age.toString(),
-                                style: TextStyle(color: Colors.grey[300]),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    Positioned(
-                      bottom: 10.0,
-                      right: 10.0,
-                      child: RaisedButton(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 11.0),
-                        color: Colors.black.withOpacity(0.15),
-                        onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                          builder: (_)=>MascotaDetallePage(idmascota:  0),
-                        )),
-                        child: Text(
-                          'Ver más',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                          ],
                         ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(9.0),
-                            side: BorderSide(color: Colors.white)),
                       ),
-                    ),
-                  ],
-                  
-                ),
-              );
-            },
-            viewportFraction: 0.79,
-            scale: 0.77,                        
-            loop: false,
-          ),
-          Positioned(
-            top: 0.0,
-            right: 0.0,
-            child: FloatingActionButton(
-              backgroundColor: colorMain,
-              onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                builder: (_)=>MascotasPage(),
-              )),
-              child: Icon(Icons.playlist_add),
+
+                      Positioned(
+                        bottom: 10.0,
+                        right: 10.0,
+                        child: RaisedButton(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15.0, vertical: 11.0),
+                          color: Colors.black.withOpacity(0.15),
+                          onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+                            builder: (_)=>MascotaDetallePage(idmascota:  0),
+                          )),
+                          child: Text(
+                            'Ver más',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(9.0),
+                              side: BorderSide(color: Colors.white)),
+                        ),
+                      ),
+                    ],
+                    
+                  ),
+                );
+              },
+              viewportFraction: 0.79,
+              scale: 0.77,                        
+              loop: false,
             ),
-          ),
-        ],
-      ),
-    );
+            Positioned(
+              top: 0.0,
+              right: 0.0,
+              child: FloatingActionButton(
+                backgroundColor: colorMain,
+                onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+                  builder: (_)=>MascotasPage(),
+                )),
+                child: Icon(Icons.playlist_add),
+              ),
+            ),
+          ],
+        ),
+      );
+    else 
+      return Container(
+        height: 250.0,
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Se parte de la comunidad responsable',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10.0,),
+            buttonPri('Agregar mascota', ()=>Navigator.push(context, MaterialPageRoute(
+                  builder: (_)=>MascotasPage(),
+                )),)
+          ],
+        ),
+      );
   }
 
-  Widget _atenciones(List<hoModel.Booking> atenciones){    
-    return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: atenciones.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Dismissible(
-          key: UniqueKey(),
-          background: Container(
-            color: Colors.red,
-          ),
-          direction: DismissDirection.endToStart,
-          onDismissed: (fn){},
+  Widget _atenciones(List<hoModel.Booking> atenciones,lengthPet){    
+    if(atenciones.length>0)
+      return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: atenciones.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Dismissible(
+            key: UniqueKey(),
+            background: Container(
+              color: Colors.red,
+            ),
+            direction: DismissDirection.endToStart,
+            onDismissed: (fn){},
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: colorMain,
+                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
+                    radius: 25.0,
+                  ),
+                  title: Text(atenciones[index].establishmentName),
+                  subtitle: Text(atenciones[index].address),
+                  trailing: Column(
+                    children: <Widget>[
+                      Text(
+                        atenciones[index].date,//" Mañana",
+                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        atenciones[index].time,//"17:00",
+                        style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                      ),
+                      //Icon(Icons.delete,color: Colors.red[300],size: 20.0,),
+                    ],
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
+                ),
+                Divider(),
+              ],
+            ),
+          );
+        },
+      );
+    else
+      if(lengthPet>0)
+        return Container(
+          // height: 150.0,
+          // width: double.infinity,
+          padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: colorMain,
-                  backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
-                  radius: 25.0,
-                ),
-                title: Text(atenciones[index].establishmentName),
-                subtitle: Text(atenciones[index].address),
-                trailing: Column(
-                  children: <Widget>[
-                    Text(
-                      atenciones[index].date,//" Mañana",
-                      style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      atenciones[index].time,//"17:00",
-                      style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
-                      textAlign: TextAlign.center,
-                    ),
-                    //Icon(Icons.delete,color: Colors.red[300],size: 20.0,),
-                  ],
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
+              Text('Haz tu primera reserva',
+                textAlign: TextAlign.center,
               ),
-              Divider(),
+              SizedBox(height: 10.0,),
+              buttonPri('Reservar', ()=>Navigator.push(context, MaterialPageRoute(
+                    builder: (_)=>NavigationBar(currentTabIndex: 2),
+                  )),)
             ],
           ),
         );
-      },
-    );
+      else
+        return Container(
+        // height: 150.0,
+        // width: double.infinity,
+        padding: EdgeInsets.symmetric(vertical: 30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10.0,),
+            buttonPri('Agregar mascota', ()=>Navigator.push(context, MaterialPageRoute(
+                  builder: (_)=>MascotasPage(),
+                )),)
+          ],
+        ),
+      );
   }
 
 

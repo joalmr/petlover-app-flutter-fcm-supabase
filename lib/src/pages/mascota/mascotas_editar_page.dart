@@ -46,7 +46,6 @@ class MascotasEditarPage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                     child: Text('Foto de mi mascota'),
                   ),
-                  
                   SizedBox(height: 25.0,),
                   Center(
                     child: buttonPri('Guardar',(){}),

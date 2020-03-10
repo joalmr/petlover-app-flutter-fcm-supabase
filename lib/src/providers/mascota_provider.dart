@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
-import 'package:http_parser/http_parser.dart';
+// import 'package:http_parser/http_parser.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
+// import 'package:image/image.dart' as ImageProcess;
 
 
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
@@ -25,7 +26,6 @@ class MascotaProvider{
       );
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
-      print(decodedResp['pets'][0]);
 
       final datosMascota = decodedResp['pets'];//mascotaModelFromJson(decodedResp['pets']);
 
@@ -43,7 +43,6 @@ class MascotaProvider{
     }
     catch(e) {
 
-      print(e);
       return [];
 
     }
@@ -77,47 +76,67 @@ class MascotaProvider{
 
     print(resp.statusCode);
     if(resp.statusCode==200 || resp.statusCode==201){
-      print('entra');
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       final idkey = decodedResp['pet']['id'];
-      print(idkey);
-      final urlpet = '$_url/pets/$idkey/picture';
-      //http://ce2019121721001.dnssw.net/api/pets/12370f71-fade-4ec3-ac93-29a4537c8b0f/picture
-      uploadImage(imagen,urlpet);
+      final urlpet = '$_url/pets/$idkey/base64';
+
+      upImage(imagen,urlpet);
       return true;
-    } //return true;
+    }
     else return false;
 
   }
 
-  Future uploadImage(File imagen,String uri) async {
-    final url = Uri.parse(uri);
-    final mimetype = mime(imagen.path).split('/'); //image/jpeg
+  Future upImage(File imagen,String url) async {
+    final imageBytes = imagen.readAsBytesSync();
+    final pic = base64.encode(imageBytes);
+    final mimetype = mime(imagen.path).split('/');
+    final part0 = mimetype[0];
+    final part1 = mimetype[1];
 
-    final imageUploadRequest = http.MultipartRequest(
-      'POST',
-      url
+    String sendPic = 'data:$part0/$part1;base64,$pic';
+
+    final resp = await http.post(url,
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      },
+      body: {
+        'base64':sendPic
+      }  
     );
 
-    final file = await http.MultipartFile.fromPath(
-      'picture', 
-      imagen.path,
-      contentType: MediaType(mimetype[0],mimetype[1])
-    );
+    print(resp.statusCode);
 
-    imageUploadRequest.files.add(file);
-
-    final streamResponse = await imageUploadRequest.send();
-    final resp = await http.Response.fromStream(streamResponse);
-
-    if(resp.statusCode!=200 || resp.statusCode!=201){
-      print('Algo salió mal');
-      print(resp.body);
-      return null;
-    }
-
-    final respData = json.decode(resp.body);
-
-    print(respData);
   }
+
+  // Future uploadImage(File imagen,String uri) async {
+  //   final url = Uri.parse(uri);
+  //   final mimetype = mime(imagen.path).split('/'); //image/jpeg
+
+  //   final imageUploadRequest = http.MultipartRequest(
+  //     'POST',
+  //     url
+  //   );
+
+  //   final file = await http.MultipartFile.fromPath(
+  //     'picture', 
+  //     imagen.path,
+  //     contentType: MediaType(mimetype[0],mimetype[1])
+  //   );
+
+  //   imageUploadRequest.files.add(file);
+
+  //   final streamResponse = await imageUploadRequest.send();
+  //   final resp = await http.Response.fromStream(streamResponse);
+
+  //   if(resp.statusCode!=200 || resp.statusCode!=201){
+  //     print('Algo salió mal');
+  //     print(resp.body);
+  //     return null;
+  //   }
+
+  //   final respData = json.decode(resp.body);
+
+  //   print(respData);
+  // }
 }

@@ -43,8 +43,8 @@ List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
   List<DropdownMenuItem<String>> lista = new List();
   _lista.forEach((_lista){
     lista.add(DropdownMenuItem(
-      child: Text(_lista['nombre']),
-      value: _lista['cod'],
+      child: Text(_lista['name']),
+      value: _lista['id'],
     ));
   });
   return lista;

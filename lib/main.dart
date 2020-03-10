@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final prefs = new PreferenciasUsuario();
-    //print(prefs.token);
 
     var rutaInicio='login';
     if(prefs.token!=''){

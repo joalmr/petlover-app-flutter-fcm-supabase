@@ -4,17 +4,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
+import 'package:proypet/src/model/raza/raza_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/providers/raza_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
-final tipopet = [{'cod':'1','nombre':'Gato',},{'cod':'2','nombre':'Perro'}];
-final razaPerro = [{'cod':'1','nombre':'Cocker spaniel',},{'cod':'2','nombre':'Labrador'},{'cod':'3','nombre':'Pastor alemán'}];
-final razaGato = [{'cod':'1','nombre':'Gato chiquito',},{'cod':'2','nombre':'Gato mediano'},{'cod':'3','nombre':'Gato grande'}];
+final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
+final razaPerro = [{'id':'1','name':'Cocker spaniel',},{'id':'2','name':'Labrador'},{'id':'3','name':'Pastor alemán'}];
+final razaGato = [{'id':'1','name':'Gato chiquito',},{'id':'2','name':'Gato mediano'},{'id':'3','name':'Gato grande'}];
 
 class MascotaAgregarPage extends StatefulWidget {
   @override
@@ -30,11 +32,12 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final mascotaProvider = new MascotaProvider();
+  final razaProvider = new RazaProvider();
   MascotaReq petReq = new MascotaReq();
 
   bool btnBool = true;
   bool boolPet = true;  
-  String datoPet = tipopet[0]['cod'];
+  String datoPet = tipopet[0]['id'];
   File foto;
 
   String opcRaza= '1'; // : razaGato[0]['cod'] ;
@@ -42,7 +45,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   @override
   Widget build(BuildContext context) {
     petReq.specie= int.tryParse(datoPet);
-    petReq.breed=int.tryParse(opcRaza);
+    petReq.breed= int.tryParse(opcRaza);
 
     return Scaffold(
       key: scaffoldKey,
@@ -144,6 +147,20 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                           petReq.breed=int.tryParse(opt);
                         }); }),
                     ),
+                    FutureBuilder(
+                      future: razaProvider.getBreed(opcRaza),
+                      builder: (BuildContext context, AsyncSnapshot<List<RazaModel>> snapshot) {
+                        return Text('Prueba',style: TextStyle(color: Colors.blue),);
+                        
+                        // return _ddlDato( opcRaza, snapshot.data, 
+                        //   (opt){ setState(() { 
+                        //     opcRaza=opt;
+                        //     petReq.breed=int.tryParse(opt);
+                        //   }); }
+                        // );
+
+                      },
+                    ),
                     // DdlControl(lista: raza),
                     SizedBox(height: 10.0,),
                     Padding(
@@ -174,6 +191,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
   
   Widget _ddlDato(opcionSeleccionada, lista, cambiaOpc){
+    //print(lista);
     return Material(
       elevation: 0.0,
       borderRadius: borderRadius,
@@ -298,21 +316,31 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         btnBool = false;      
       });
       
-      final resp = await mascotaProvider.savePet(petReq, foto);
-
-      if(resp){
-        mostrarSnackbar('Mascota agregada.', colorMain);  
-        Timer(
-          Duration(milliseconds: 2500), (){
-            Navigator.of(context).pushReplacementNamed('mismascotas');   
-          }
-        );
-      
-      }
-      else setState(() {
-        mostrarSnackbar('No se agregadó la mascota.', Colors.red[300]);  
+      if(petReq.name.trim()=='' || petReq.birthdate.trim()=='') setState(() {
+        mostrarSnackbar('Debe completar los datos de la mascota.', Colors.red[300]);  
         btnBool = true;      
       });
+
+      else {
+
+        final resp = await mascotaProvider.savePet(petReq, foto);
+
+        if(resp){
+          mostrarSnackbar('Mascota agregada.', colorMain);  
+          Timer(
+            Duration(milliseconds: 2500), (){
+              Navigator.of(context).pushReplacementNamed('mismascotas');   
+            }
+          );
+        
+        }
+        else setState(() {
+          mostrarSnackbar('No se agregadó la mascota.', Colors.red[300]);  
+          btnBool = true;      
+        });
+
+      }
+      
     }
     
     catch(e) {

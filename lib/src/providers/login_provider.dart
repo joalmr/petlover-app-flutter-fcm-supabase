@@ -24,9 +24,6 @@ class LoginProvider{
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
 
-        print(decodedResp['token']);
-        //getUser();
-
         return {
           'ok':true,
           'token':decodedResp['token']
@@ -57,7 +54,6 @@ class LoginProvider{
     );
 
     final datosUsuario = homeModelFromJson(resp.body);
-    //print(datosUsuario.user.name);
 
     return datosUsuario;
   }

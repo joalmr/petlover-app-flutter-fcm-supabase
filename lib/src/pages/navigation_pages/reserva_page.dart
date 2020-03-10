@@ -25,7 +25,6 @@ class _ReservaPageState extends State<ReservaPage> {
     //   future: vetProvider.getVets(),
     //   builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
     //     final mydata=snapshot.data[0];
-    //     print(mydata);
     //   }
     // );
 

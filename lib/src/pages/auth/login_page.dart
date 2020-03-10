@@ -91,8 +91,6 @@ class _LoginSevenPageState extends State<LoginPage> {
 
     Map resp = await loginProvider.loginToken(loginModel);
 
-    //print(resp);
-    
     if(!resp['ok']){
       mostrarSnackbar(resp['mensaje']);
     }
