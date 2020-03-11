@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-// import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 
 
@@ -76,15 +77,22 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
             height: double.infinity,//MediaQuery.of(context).size.height,
             width: double.infinity,//MediaQuery.of(context).size.width,
             child: mapToggle ? GoogleMap(
-              myLocationButtonEnabled: true,
               myLocationEnabled: true,
-              compassEnabled: true,
+              myLocationButtonEnabled: true,
+              compassEnabled: true,              
+              gestureRecognizers:Set()
+              ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+              ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
+              ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
+              ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
               rotateGesturesEnabled: true,
+              scrollGesturesEnabled: true,
               zoomGesturesEnabled: true,
+              tiltGesturesEnabled: true,
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
                 target: LatLng(vetLocales[0].latitude,vetLocales[0].longitude),//vetLocales[0].locationCoords, 
-                zoom: 14.0
+                zoom: 15.0
               ),
               markers: Set.from(allMarkers),
               onMapCreated: mapCreated,
@@ -228,7 +236,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   moveCamera() {
     _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: LatLng(vetLocales[_pageController.page.toInt()].latitude, vetLocales[_pageController.page.toInt()].longitude), //vetLocales[_pageController.page.toInt()].locationCoords,
-      zoom: 14.0,
+      zoom: 15.0,
       bearing: 45.0,
       tilt: 45.0))
     );
