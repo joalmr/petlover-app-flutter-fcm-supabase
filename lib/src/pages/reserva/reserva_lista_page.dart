@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/model/vet_model.dart';
 // import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
@@ -59,7 +60,7 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
       margin: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
       child: InkWell(
         onTap: ()=>Navigator.push(context, MaterialPageRoute(
-          builder: (_)=>ReservaDetallePage(idvet: index),
+          builder: (_)=>ReservaDetallePage(idvet: vet.id),
         )),
         child: Material(
           child: Column(

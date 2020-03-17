@@ -22,22 +22,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   final loginProvider = LoginProvider();
-
-  //User userData;
 
   @override
   Widget build(BuildContext context) {
-    //_onUser();
-
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
       endDrawer: ConfigDrawer(),
       body: onUser()
     );
-      
   }
 
   Widget onUser() {
@@ -386,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 15.0, vertical: 11.0),
                           color: Colors.black.withOpacity(0.15),
                           onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                            builder: (_)=>MascotaDetallePage(idmascota:  0),
+                            builder: (_)=>MascotaDetallePage(idmascota: mascotas[index].id),
                           )),
                           child: Text(
                             'Ver más',

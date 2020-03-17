@@ -19,16 +19,16 @@ class _Data extends State<DataReserva> {
   TextEditingController _inputFechaController=new TextEditingController();
   TextEditingController _inputHoraController=new TextEditingController();
   List _mascota = [
-    {'cod':'1','nombre':'Greco',},
-    {'cod':'2','nombre':'Pirulin',},
-    {'cod':'3','nombre':'Tito',},
+    {'id':'1','name':'Greco',},
+    {'id':'2','name':'Pirulin',},
+    {'id':'3','name':'Tito',},
   ];
 
   List _atencion = [
-    {'cod':'1','nombre':'Consulta',},
-    {'cod':'2','nombre':'Vacuna',},
-    {'cod':'3','nombre':'Baño',},
-    {'cod':'4','nombre':'Desparasitación',},
+    {'id':'1','name':'Consulta',},
+    {'id':'2','name':'Vacuna',},
+    {'id':'3','name':'Baño',},
+    {'id':'4','name':'Desparasitación',},
   ];
 
   @override

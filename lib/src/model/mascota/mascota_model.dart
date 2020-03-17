@@ -15,6 +15,7 @@ class MascotaModel {
     String specieName;
     int breedId;
     String breedName;
+    int genre;
     int weight;
     DateTime birthdate;
     String picture;
@@ -28,6 +29,7 @@ class MascotaModel {
         this.specieName,
         this.breedId,
         this.breedName,
+        this.genre,
         this.weight,
         this.birthdate,
         this.picture,
@@ -42,8 +44,9 @@ class MascotaModel {
         specieName: json["specie_name"],
         breedId: json["breed_id"],
         breedName: json["breed_name"],
+        genre: json["genre"],
         weight: json["weight"],
-        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+        birthdate: DateTime.parse(json["birthdate"]),
         picture: json["picture"],
         condition: json["condition"],
         status: json["status"],
@@ -56,6 +59,7 @@ class MascotaModel {
         "specie_name": specieName,
         "breed_id": breedId,
         "breed_name": breedName,
+        "genre": genre,
         "weight": weight,
         "birthdate": birthdate.toIso8601String(),
         "picture": picture,

@@ -1,37 +1,31 @@
+// To parse this JSON data, do
+//
+//     final petModel = petModelFromJson(jsonString);
 
-// class MascotaModel {
-//     String id;
-//     int specieId;
-//     int breedId;
-//     String name;
-//     int genre;
-//     DateTime birthdate;
-//     String picture;
-//     int status;
-//     DateTime createdAt;
-//     DateTime updatedAt;
-//     dynamic deletedAt;
+import 'dart:convert';
 
-//     //
-//     // "breed": breed,
-//     // "specie": specie,
-//     // "weight": weight,
-//     // "condition": condition,
-//     // // "created_at": createdAt.toIso8601String(),
-//     // // "updated_at": updatedAt.toIso8601String(),
-//     // // "deleted_at": deletedAt,
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 
-//     MascotaModel({
-//         this.id,
-//         this.specieId,
-//         this.breedId,
-//         this.name,
-//         this.genre,
-//         this.birthdate,
-//         this.picture,
-//         this.status,
-//         this.createdAt,
-//         this.updatedAt,
-//         this.deletedAt,
-//     });
-// }
+PetModel petModelFromJson(String str) => PetModel.fromJson(json.decode(str));
+
+String petModelToJson(PetModel data) => json.encode(data.toJson());
+
+class PetModel {
+    MascotaModel pet;
+    List<dynamic> history;
+
+    PetModel({
+        this.pet,
+        this.history,
+    });
+
+    factory PetModel.fromJson(Map<String, dynamic> json) => PetModel(
+        pet: MascotaModel.fromJson(json["pet"]),
+        history: List<dynamic>.from(json["history"].map((x) => x)),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "pet": pet.toJson(),
+        "history": List<dynamic>.from(history.map((x) => x)),
+    };
+}

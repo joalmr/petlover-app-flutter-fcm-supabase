@@ -5,6 +5,7 @@ import 'package:mime_type/mime_type.dart';
 // import 'package:http_parser/http_parser.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
+import 'package:proypet/src/model/mascota/pet_model.dart';
 // import 'package:image/image.dart' as ImageProcess;
 
 
@@ -133,44 +134,17 @@ class MascotaProvider{
     final resp = await http.post(url,
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      },
-      body: {
-        'base64':sendPic
-      }  
-    );
+      }, body: { 'base64':sendPic });
 
     print(resp.statusCode);
-
   }
 
-  // Future uploadImage(File imagen,String uri) async {
-  //   final url = Uri.parse(uri);
-  //   final mimetype = mime(imagen.path).split('/'); //image/jpeg
+  Future<PetModel> getPet(String idPet) async {
+    final url = '$_url/pets/$idPet';
 
-  //   final imageUploadRequest = http.MultipartRequest(
-  //     'POST',
-  //     url
-  //   );
-
-  //   final file = await http.MultipartFile.fromPath(
-  //     'picture', 
-  //     imagen.path,
-  //     contentType: MediaType(mimetype[0],mimetype[1])
-  //   );
-
-  //   imageUploadRequest.files.add(file);
-
-  //   final streamResponse = await imageUploadRequest.send();
-  //   final resp = await http.Response.fromStream(streamResponse);
-
-  //   if(resp.statusCode!=200 || resp.statusCode!=201){
-  //     print('Algo salió mal');
-  //     print(resp.body);
-  //     return null;
-  //   }
-
-  //   final respData = json.decode(resp.body);
-
-  //   print(respData);
-  // }
+    final resp = await http.get(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
+    final petModel = petModelFromJson(resp.body);
+    
+    return petModel;
+  }
 }

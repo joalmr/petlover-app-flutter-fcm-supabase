@@ -88,11 +88,11 @@ class Pet {
     String id;
     String name;
     String breed;
-    Specie specie;
+    String specie;
     int weight;
     DateTime birthdate;
     String picture;
-    int age;
+    String age;
 
     Pet({
         this.id,
@@ -109,9 +109,9 @@ class Pet {
         id: json["id"],
         name: json["name"],
         breed: json["breed"],
-        specie: specieValues.map[json["specie"]],
+        specie: json["specie"],
         weight: json["weight"],
-        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+        birthdate: DateTime.parse(json["birthdate"]),
         picture: json["picture"],
         age: json["age"],
     );
@@ -120,19 +120,13 @@ class Pet {
         "id": id,
         "name": name,
         "breed": breed,
-        "specie": specieValues.reverse[specie],
+        "specie": specie,
         "weight": weight,
-        "birthdate": birthdate == null ? null : birthdate.toIso8601String(),
+        "birthdate": birthdate.toIso8601String(),
         "picture": picture,
         "age": age,
     };
 }
-
-enum Specie { GATO }
-
-final specieValues = EnumValues({
-    "Gato": Specie.GATO
-});
 
 class User {
     String name;
@@ -152,18 +146,4 @@ class User {
         "name": name,
         "email": email,
     };
-}
-
-class EnumValues<T> {
-    Map<String, T> map;
-    Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        if (reverseMap == null) {
-            reverseMap = map.map((k, v) => new MapEntry(v, k));
-        }
-        return reverseMap;
-    }
 }

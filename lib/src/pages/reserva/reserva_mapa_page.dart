@@ -59,7 +59,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
           title: element.name, 
           snippet: '★ ${element.stars} (${element.votes})',//element.direccion,
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(idvet: (1)),
+            builder: (_)=>ReservaDetallePage(idvet: element.id),
           )),
         ),
         position: LatLng(element.latitude,element.longitude), //element.locationCoords,

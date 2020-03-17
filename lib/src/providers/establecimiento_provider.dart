@@ -28,4 +28,19 @@ class EstablecimientoProvider{
     print(vets.establecimientos);
     return vets.establecimientos;
   }
+
+  Future<EstablecimientoModel> getVet(String idVet) async {
+    final url = '$_url/establishments/$idVet';
+
+    final resp = await http.get(url,
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      }
+    );
+
+    final jsonResp = json.decode(resp.body);
+    EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp);
+    print(vets.name);
+    return vets;
+  }
 }
