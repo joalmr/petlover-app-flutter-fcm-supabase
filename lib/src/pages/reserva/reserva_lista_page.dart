@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/vet_model.dart';
-// import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field_button.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/utils/utils.dart';
 
 class ReservaListaPage extends StatefulWidget {
   final establecimientos;
@@ -54,6 +57,18 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
     );
   }
 
+  // Future<Null> obtenerRefresh() async{
+  //   EstablecimientoProvider vetProvider = EstablecimientoProvider();
+  //   final duration = new Duration(seconds: 2);
+  //   new Timer(duration, (){
+  //     vetLocales.clear();
+  //     // vetLocales = vetProvider.getVets() as List<EstablecimientoModel>;
+      
+  //   });
+
+  //   return Future.delayed(duration);
+  // }
+
   Widget _buildVets(BuildContext context, int index){
     var vet = vetLocales[index % vetLocales.length];
     return Container(
@@ -68,7 +83,7 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  _swiperVets(vet.slides),
+                  (vet.slides.length>0) ? _swiperVets(vet.slides) : _swiperVets(["images/vet_prueba.jpg"]),
                   Positioned(//logo
                     bottom: 5.0,
                     right: 5.0,
@@ -80,7 +95,7 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
                         radius: 25.0,
                       ),
                     ),
-                  ),                  
+                  ),
                 ],
               ),
               Container(
@@ -94,7 +109,18 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         //vet.distancia +
-                        Text('## de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
+                        FutureBuilder(
+                          future: fnDistance(vet.latitude,vet.longitude),
+                          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                            if(!snapshot.hasData){
+                              return Text("");
+                            }
+                            else{
+                              return Text('${snapshot.data} de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),);
+                            }
+                          },
+                        ),
+                        
                         Row(
                           //crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[

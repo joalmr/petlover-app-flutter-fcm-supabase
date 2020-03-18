@@ -25,6 +25,7 @@ class CardSwiper extends StatelessWidget {
             )
           );
         },
+        //loop: false,
         itemCount: imagenes.length,
         pagination: new SwiperPagination(
           builder: new DotSwiperPaginationBuilder(
@@ -33,9 +34,5 @@ class CardSwiper extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  getImagen(){
-
   }
 }

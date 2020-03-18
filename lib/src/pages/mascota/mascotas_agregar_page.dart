@@ -7,6 +7,7 @@ import 'package:proypet/src/model/mascota/mascota_req.dart';
 import 'package:proypet/src/model/raza/raza_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:intl/intl.dart';
+import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
@@ -40,14 +41,10 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   String datoPet = tipopet[0]['id'];
   File foto;
 
-  String opcRaza= '1'; // : razaGato[0]['cod'] ;
+  String opcRaza= '390'; // : razaGato[0]['cod'] ;
 
   @override
   Widget build(BuildContext context) {
-    // final MascotaModel petData = ModalRoute.of(context).settings.arguments;
-    // if(petData!=null){ //editar
-    //   pet=petData;
-    // }
     
     petReq.specie= int.tryParse(datoPet);
     petReq.breed= int.tryParse(opcRaza);
@@ -124,17 +121,17 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
-                      child: _ddlDato(datoPet, tipopet, 
+                      child: ddlMain(datoPet, tipopet, 
                         (opt){ setState(() {
                           datoPet=opt; 
                           petReq.specie= int.tryParse(opt);
                           if(datoPet=='1'){
-                            boolPet=true;
-                            opcRaza='1';
+                            opcRaza='390';
+                            print(opcRaza);
                           } 
                           else{
-                            boolPet=false;
                             opcRaza='1';
+                            print(opcRaza);
                           }  
                         }
                       );}),
@@ -144,25 +141,36 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                       child: Text('Seleccione raza'),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
-                      child: _ddlDato( opcRaza, boolPet ? razaGato : razaPerro, 
-                        (opt){ setState(() { 
-                          opcRaza=opt;
-                          petReq.breed=int.tryParse(opt);
-                        }); }),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                    //   child: _ddlDato( opcRaza, boolPet ? razaGato : razaPerro, 
+                    //     (opt){ setState(() { 
+                    //       opcRaza=opt;
+                    //       petReq.breed=int.tryParse(opt);
+                    //     }); }),
+                    // ),
                     FutureBuilder(
-                      future: razaProvider.getBreed(opcRaza),
-                      builder: (BuildContext context, AsyncSnapshot<List<RazaModel>> snapshot) {
-                        return Text('Prueba',style: TextStyle(color: Colors.blue),);
-                        
-                        // return _ddlDato( opcRaza, snapshot.data, 
-                        //   (opt){ setState(() { 
-                        //     opcRaza=opt;
-                        //     petReq.breed=int.tryParse(opt);
-                        //   }); }
-                        // );
+                      future: razaProvider.getBreed(datoPet),
+                      builder: (BuildContext context, AsyncSnapshot<RazaModel> snapshot) {
+                        print(snapshot.data.breeds);
+                        if(!snapshot.hasData){
+                          return Center(child: CircularProgressIndicator());
+                        }
+                        else return Column(
+                          children: <Widget>[
+                            Text(snapshot.data.breeds.length.toString() ,style: TextStyle(color: Colors.blue),),
+                            Text(snapshot.data.breeds[0].name ,style: TextStyle(color: Colors.blue),),
+                          ],
+                        );
+                        // else{
+                        //   return _ddlDato( opcRaza, snapshot.data.breeds , 
+                        //     (opt){ setState(() { 
+                        //       opcRaza=opt;
+                        //       petReq.breed=int.tryParse(opt);
+                        //     }); }
+                        //   );
+
+                        // } 
 
                       },
                     ),

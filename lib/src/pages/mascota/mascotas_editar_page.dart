@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
@@ -35,7 +34,7 @@ class MascotasEditarPage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                     child: Text('Seleccione raza'),
                   ),
-                  DdlControl(lista: raza),
+                  //DdlControl(lista: raza),
                   SizedBox(height: 10.0,),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),

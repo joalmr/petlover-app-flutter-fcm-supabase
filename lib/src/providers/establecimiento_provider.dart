@@ -39,8 +39,7 @@ class EstablecimientoProvider{
     );
 
     final jsonResp = json.decode(resp.body);
-    EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp);
-    print(vets.name);
+    EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
     return vets;
   }
 }

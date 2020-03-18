@@ -9,16 +9,32 @@ RazaModel razaModelFromJson(String str) => RazaModel.fromJson(json.decode(str));
 String razaModelToJson(RazaModel data) => json.encode(data.toJson());
 
 class RazaModel {
-    String id;
-    String name;
+    List<Breed> breeds;
 
     RazaModel({
+        this.breeds,
+    });
+
+    factory RazaModel.fromJson(Map<String, dynamic> json) => RazaModel(
+        breeds: List<Breed>.from(json["breeds"].map((x) => Breed.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "breeds": List<dynamic>.from(breeds.map((x) => x.toJson())),
+    };
+}
+
+class Breed {
+    int id;
+    String name;
+
+    Breed({
         this.id,
         this.name,
     });
 
-    factory RazaModel.fromJson(Map<String, dynamic> json) => RazaModel(
-        id: json["id"].toString(),
+    factory Breed.fromJson(Map<String, dynamic> json) => Breed(
+        id: json["id"],
         name: json["name"],
     );
 

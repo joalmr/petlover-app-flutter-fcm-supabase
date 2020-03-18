@@ -8,39 +8,28 @@ class RazaProvider{
   final _url = 'http://ce2019121721001.dnssw.net/api';
   final _prefs = new PreferenciasUsuario();
 
-  Future<List<RazaModel>> getBreed(String idRaza) async {
+  Future<RazaModel> getBreed(String idRaza) async {
     final url = '$_url/breeds/?specie=$idRaza';
+    
+    final resp = await http.get(url,
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      }
+    );
 
-    try {
-      final resp = await http.get(url,
-        headers: { 
-          HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-        }
-      );
-
-      final Map<String, dynamic> decodedResp = json.decode(resp.body);
-      print(decodedResp['breeds']);
-      final datosRaza = decodedResp['breeds'];
-
-      final List<RazaModel> razas = new List();
-
-      if(datosRaza==null) return [];
-
-      datosRaza.forEach((pet){
-        final petTemp = RazaModel.fromJson(pet);
-        razas.add(petTemp);
-      });
-
-      // print(razas);
-
-      return razas;
-
-    }
-
-    catch(ex) {
-      return [];
-    }
-
+    // final jsonResp = json.decode(resp.body);
+    final razaModel = razaModelFromJson(resp.body);
+    return razaModel;
+    // final Map<String, dynamic> decodedResp = json.decode(resp.body);
+    // print(decodedResp['breeds']);
+    // final datosRaza = decodedResp['breeds'];
+    // final List<RazaModel> razas = new List();
+    // if(datosRaza==null) return [];
+    // datosRaza.forEach((pet){
+    //   final petTemp = RazaModel.fromJson(pet);
+    //   razas.add(petTemp);
+    // });
+    // // print(razas);
+    // return razas;
   }
-  
 }
