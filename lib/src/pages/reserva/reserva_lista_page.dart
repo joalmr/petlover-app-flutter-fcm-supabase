@@ -1,14 +1,10 @@
-import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/model/vet_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field_button.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
-import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class ReservaListaPage extends StatefulWidget {

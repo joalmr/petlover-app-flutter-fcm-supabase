@@ -40,16 +40,38 @@ calculateAge(DateTime birthDate) {
 
 //lista para ddl
 
-List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
-  List<DropdownMenuItem<String>> lista = new List();
-  _lista.forEach((_lista){
-    lista.add(DropdownMenuItem(
-      child: Text(_lista['name']),
-      value: _lista['id'],
-    ));
-  });
-  return lista;
-}
+  List<DropdownMenuItem<String>> getOpcionesDropdown(_lista){
+    List<DropdownMenuItem<String>> lista = new List();
+    _lista.forEach((_lista){
+      lista.add(DropdownMenuItem(
+        child: Text(_lista['name']),
+        value: _lista['id'],
+      ));
+    });
+    return lista;
+  }
+
+  List<DropdownMenuItem<String>> getOpcionesFuture(_lista){
+    List<DropdownMenuItem<String>> lista = new List();
+    _lista.forEach((_lista){
+      lista.add(DropdownMenuItem(
+        child: Text(_lista.name),
+        value: _lista.id.toString()
+      ));
+    });
+    return lista;
+  }
+
+  List<DropdownMenuItem<String>> getOpcionesSearch(_lista){
+    List<DropdownMenuItem<String>> lista = new List();
+    _lista.forEach((_lista){
+      lista.add(DropdownMenuItem(
+        child: Text(_lista.name),
+        value: _lista.id+";"+_lista.name
+      ));
+    });
+    return lista;
+  }
 
 double calculateDistance(lat1, lon1, lat2, lon2){
   var p = 0.017453292519943295;

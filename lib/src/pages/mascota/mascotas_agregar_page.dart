@@ -16,8 +16,6 @@ import 'package:proypet/src/providers/raza_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
-final razaPerro = [{'id':'1','name':'Cocker spaniel',},{'id':'2','name':'Labrador'},{'id':'3','name':'Pastor alemán'}];
-final razaGato = [{'id':'1','name':'Gato chiquito',},{'id':'2','name':'Gato mediano'},{'id':'3','name':'Gato grande'}];
 
 class MascotaAgregarPage extends StatefulWidget {
   @override
@@ -37,7 +35,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   MascotaReq petReq = new MascotaReq();
 
   bool btnBool = true;
-  bool boolPet = true;  
   String datoPet = tipopet[0]['id'];
   File foto;
 
@@ -127,11 +124,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                           petReq.specie= int.tryParse(opt);
                           if(datoPet=='1'){
                             opcRaza='390';
-                            print(opcRaza);
                           } 
                           else{
                             opcRaza='1';
-                            print(opcRaza);
                           }  
                         }
                       );}),
@@ -141,36 +136,24 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                       child: Text('Seleccione raza'),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
-                    //   child: _ddlDato( opcRaza, boolPet ? razaGato : razaPerro, 
-                    //     (opt){ setState(() { 
-                    //       opcRaza=opt;
-                    //       petReq.breed=int.tryParse(opt);
-                    //     }); }),
-                    // ),
                     FutureBuilder(
                       future: razaProvider.getBreed(datoPet),
                       builder: (BuildContext context, AsyncSnapshot<RazaModel> snapshot) {
-                        print(snapshot.data.breeds);
                         if(!snapshot.hasData){
                           return Center(child: CircularProgressIndicator());
                         }
-                        else return Column(
-                          children: <Widget>[
-                            Text(snapshot.data.breeds.length.toString() ,style: TextStyle(color: Colors.blue),),
-                            Text(snapshot.data.breeds[0].name ,style: TextStyle(color: Colors.blue),),
-                          ],
-                        );
-                        // else{
-                        //   return _ddlDato( opcRaza, snapshot.data.breeds , 
-                        //     (opt){ setState(() { 
-                        //       opcRaza=opt;
-                        //       petReq.breed=int.tryParse(opt);
-                        //     }); }
-                        //   );
+                        else{
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                            child: ddlFuture( opcRaza , snapshot.data.breeds , 
+                              (opt){ setState(() { 
+                                opcRaza=opt;
+                                petReq.breed=int.tryParse(opt);
+                              }); }
+                            ),
+                          );
 
-                        // } 
+                        } 
 
                       },
                     ),
@@ -203,26 +186,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   
-  Widget _ddlDato(opcionSeleccionada, lista, cambiaOpc){
-    //print(lista);
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: Colors.grey[200],
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton(
-            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
-            isExpanded: true,
-            value: opcionSeleccionada,
-            items: getOpcionesDropdown(lista),
-            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
-          ),
-        ),
-      ), 
-    );
-  }
+  
 
   Widget _crearFecha(BuildContext context){
     return Material(
@@ -372,4 +336,5 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     );
     scaffoldKey.currentState.showSnackBar(snackbar);    
   }
+
 }

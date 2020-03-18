@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 
 class DdlControl2 extends StatefulWidget {
@@ -60,3 +61,71 @@ class _DdlControl2 extends State<DdlControl2> {
       ), 
     );
   }
+
+  Widget ddlFuture(opcionSeleccionada, lista, cambiaOpc){
+  try{
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: Colors.grey[200],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+            isExpanded: true,
+            value: opcionSeleccionada,
+            items: getOpcionesFuture(lista),
+            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
+          ),
+        ),
+      ), 
+    );
+  }
+  catch(ex){
+    return Center(child: CircularProgressIndicator());
+  }
+}
+
+Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
+  try{
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: Colors.grey[200],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: DropdownButtonHideUnderline(
+          child: SearchableDropdown(
+            items: getOpcionesFuture(lista),
+            value: opcionSeleccionada,
+            onChanged: cambiaOpc,
+            hint: "Seleccione raza",
+            searchHint: "Seleccione raza",
+            isExpanded: true,
+            closeButton: "Cerrar",
+            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+            displayClearIcon: false,
+            underline: "",
+          ),
+        ),
+      ), 
+    );
+  }
+  catch(ex){
+    return Center(child: CircularProgressIndicator());
+  }
+}
+
+// SearchableDropdown.single(
+//         items: items,
+//         value: selectedValue,
+//         hint: "Select one",
+//         searchHint: "Select one",
+//         onChanged: (value) {
+//           setState(() {
+//             selectedValue = value;
+//           });
+//         },
+//         isExpanded: true,
+//       )
