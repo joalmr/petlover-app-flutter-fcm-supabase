@@ -142,6 +142,7 @@ class MascotaDetallePage extends StatelessWidget {
       ],
     );
   }
+  
   numAtenciones(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

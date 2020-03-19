@@ -92,7 +92,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
                 target: LatLng(vetLocales[0].latitude,vetLocales[0].longitude),//vetLocales[0].locationCoords, 
-                zoom: 15.0
+                zoom: 17.0
               ),
               markers: Set.from(allMarkers),
               onMapCreated: mapCreated,
@@ -163,7 +163,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
             Center(
                 child: Container(
                   margin: EdgeInsets.symmetric(
-                    horizontal: 15.0,
+                    horizontal: 10.0,
                     vertical: 20.0,
                   ),
                   // height: 125.0,
@@ -236,7 +236,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   moveCamera() {
     _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: LatLng(vetLocales[_pageController.page.toInt()].latitude, vetLocales[_pageController.page.toInt()].longitude), //vetLocales[_pageController.page.toInt()].locationCoords,
-      zoom: 15.0,
+      zoom: 17.0,
       bearing: 45.0,
       tilt: 45.0))
     );

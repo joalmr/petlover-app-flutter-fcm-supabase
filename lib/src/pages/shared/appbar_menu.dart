@@ -3,19 +3,19 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 //double size=55.0;
 
-Widget appbar(inn,titulo,acc){
+Widget appbar(titulo,acc){
   return AppBar(
     backgroundColor: colorMain,
-    leading: inn,
+    // leading: inn,
     title: titulo,
     actions: acc,
   );
 }
 
-Widget appbar2(inn,titulo,acc,btnTab){
+Widget appbar2(titulo,acc,btnTab){
   return AppBar(
     backgroundColor: colorMain,
-    leading: inn,
+    // leading: inn,
     title: titulo,
     actions: acc,
     bottom: PreferredSize(
@@ -36,30 +36,28 @@ Widget appbar2(inn,titulo,acc,btnTab){
   // return appbar;
 }
 
-final leadingH = Container(
-  margin: EdgeInsets.all(.5),
-  child: ClipRRect(
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Center(child: Image(image: AssetImage('images/proypet.png'))),
-    ),
-  )
-);
+// final leadingH = Container(
+//   margin: EdgeInsets.all(.5),
+//   child: ClipRRect(
+//     child: Padding(
+//       padding: const EdgeInsets.symmetric(vertical: 5.0),
+//       child: Center(child: Image(image: AssetImage('images/proypet.png'))),
+//     ),
+//   )
+// );
 
-final titleH = Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  mainAxisAlignment: MainAxisAlignment.start,
+final titleH = Row(
   children: <Widget>[
-    Text("Proypet", style: TextStyle(fontSize: 18.0,),),//mascotaList[0].nombre
-    Text("El control de tu mascota en tus manos", 
-      style: TextStyle(
-        fontSize: 12.0,
-        fontWeight: FontWeight.w300,
-        color: Colors.grey[300],
+    ClipRRect(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        child: Center(child: Image(image: AssetImage('images/proypet.png'))),
       ),
     ),
+    Text("Proypet", style: TextStyle(fontSize: 22.0,),)
   ],
 );
+
 
 final actionsH = <Widget>[
   IconButton(

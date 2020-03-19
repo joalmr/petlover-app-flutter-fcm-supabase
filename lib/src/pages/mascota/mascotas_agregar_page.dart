@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
 import 'package:proypet/src/model/raza/raza_model.dart';
@@ -49,7 +51,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(
-        null,
+        // null,
         Text('Agregar mascota',
           style: TextStyle(
             fontSize: 16.0,
@@ -152,12 +154,14 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                               }); }
                             ),
                           );
-
                         } 
-
                       },
                     ),
-                    // DdlControl(lista: raza),
+                    // ddlSearchFuture(opcRaza , snapshot.data.breeds , 
+                    //   (opt){ setState(() { 
+                    //     opcRaza=opt;
+                    //     petReq.breed=int.tryParse(opt);
+                    //   }); }),
                     SizedBox(height: 10.0,),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
@@ -273,16 +277,48 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   _procesarImagen(ImageSource origen) async {
-    foto = await ImagePicker.pickImage(
-      source: origen,
-      imageQuality: 70,
+    var imagen = await ImagePicker.pickImage(source: origen);
+
+    File croppedFile = await ImageCropper.cropImage(
+      sourcePath: imagen.path,
+      maxHeight: 350,
+      maxWidth: 350,
+      cropStyle: CropStyle.circle,
+      compressFormat: ImageCompressFormat.jpg,
+      compressQuality: 80,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
+      ],
+      androidUiSettings: AndroidUiSettings(
+        toolbarTitle: 'Recortar',
+        toolbarColor: colorMain,
+        toolbarWidgetColor: Colors.white,
+        initAspectRatio: CropAspectRatioPreset.square,
+        lockAspectRatio: true,
+        activeControlsWidgetColor: colorMain,
+        showCropGrid: false,
+      ),
+      iosUiSettings: IOSUiSettings(
+        title: 'Recortar',
+        minimumAspectRatio: 1.0,
+        aspectRatioLockEnabled: true, 
+      )
     );
 
+    // var result = await FlutterImageCompress.compressAndGetFile(
+    //     croppedFile.path, 
+    //     croppedFile.path,
+    //     quality: 65,
+    //   );
+    
     if(foto!=null){
       //limpieza
     }
     
-    setState(() {});
+    setState(() {
+      foto = croppedFile;
+    });
+    // print(foto.lengthSync());
     Navigator.pop(context);
   }
 
@@ -306,7 +342,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
           mostrarSnackbar('Mascota agregada.', colorMain);  
           Timer(
             Duration(milliseconds: 2500), (){
-              Navigator.of(context).pushReplacementNamed('mismascotas');   
+              Navigator.pop(context);
             }
           );
         

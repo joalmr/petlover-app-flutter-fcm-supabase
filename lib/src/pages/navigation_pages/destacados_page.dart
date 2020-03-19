@@ -6,7 +6,7 @@ class DestacadosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(
-        leadingH,
+        // leadingH,
         titleH,
         null,
       ),

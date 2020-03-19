@@ -97,7 +97,7 @@ Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: DropdownButtonHideUnderline(
           child: SearchableDropdown(
-            items: getOpcionesFuture(lista),
+            items: getOpcionesSearch(lista),
             value: opcionSeleccionada,
             onChanged: cambiaOpc,
             hint: "Seleccione raza",
@@ -117,15 +117,3 @@ Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
   }
 }
 
-// SearchableDropdown.single(
-//         items: items,
-//         value: selectedValue,
-//         hint: "Select one",
-//         searchHint: "Select one",
-//         onChanged: (value) {
-//           setState(() {
-//             selectedValue = value;
-//           });
-//         },
-//         isExpanded: true,
-//       )

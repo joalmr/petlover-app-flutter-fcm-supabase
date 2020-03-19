@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,7 @@ import 'package:proypet/src/pages/mascota/mascotas_editar_page.dart';
 
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
@@ -18,15 +21,16 @@ class MascotasPage extends StatefulWidget {
 
 class _MascotasPageState extends State<MascotasPage> {
   final mascotaProvider = MascotaProvider();  
-  // MascotaModel pet = MascotaModel();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
 
 
     return Scaffold(
+      key: scaffoldKey,
       appBar: appbar(
-        null,
+        // null,
         Text('Agregar mascota',
           style: TextStyle(
             fontSize: 16.0,
@@ -141,7 +145,43 @@ class _MascotasPageState extends State<MascotasPage> {
                                             padding: const EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
                                             child: InkWell(
                                               child: Icon(Icons.delete,color: Colors.red[300]),
-                                              onTap: (){},
+                                              onTap: ()=>showDialog(
+                                                context: context,
+                                                builder: (BuildContext context){
+                                                  return AlertDialog(
+                                                    title: Text('Eliminar'),
+                                                    content: Text('Seguro que desea eliminar a ${mascota.name}?'),
+                                                    actions: <Widget>[
+                                                      FlatButton(
+                                                        onPressed: ()=>Navigator.pop(context), 
+                                                        child: Text('Cancelar')
+                                                      ),
+                                                      FlatButton(
+                                                        onPressed: () async {
+                                                          bool resp = await mascotaProvider.deletePet(mascota.id);
+                                                          if(resp){
+                                                            mostrarSnackbar("Se eliminó a ${mascota.name}", colorMain);
+                                                            Navigator.pushReplacementNamed(context, 'mismascotas');
+                                                            //Navigator.pop(context);
+                                                            // Navigator.pushNamed(context, 'mismascotas');
+                                                            // Navigator.of(context).popAndPushNamed('mismascotas');
+                                                            // Timer(
+                                                            //   Duration(milliseconds: 2500), (){
+                                                            //     Navigator.of(context).pushReplacementNamed('mismascotas');   
+                                                            //   }
+                                                            // );
+                                                          }
+                                                          else{
+                                                            mostrarSnackbar("No se eliminó a ${mascota.name}", Colors.red[300]);
+                                                            Navigator.pop(context);
+                                                          }
+                                                        },
+                                                        child: Text('Sí, eliminar')
+                                                      )
+                                                    ],
+                                                  );
+                                                }
+                                              )
                                             )
                                           ),
                                         ],
@@ -165,5 +205,14 @@ class _MascotasPageState extends State<MascotasPage> {
 
       }
     );
+  }
+
+    void mostrarSnackbar(String mensaje, Color color){
+    final snackbar = SnackBar(
+      content: Text(mensaje),
+      duration: Duration(milliseconds: 2500),
+      backgroundColor: color,
+    );
+    scaffoldKey.currentState.showSnackBar(snackbar);    
   }
 }

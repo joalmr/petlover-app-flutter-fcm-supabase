@@ -83,10 +83,21 @@ double calculateDistance(lat1, lon1, lat2, lon2){
 }
 
 Future<String> fnDistance(lat1,lng1) async{
+  String distanciaKm;
   Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   double distanciagps = await Geolocator().distanceBetween(lat1, lng1, position.latitude, position.longitude);
-  final display = createDisplay(length: 4);
-  return display(distanciagps);
+  distanciagps=distanciagps/1000;
+  // final display = createDisplay(length: 4);
+  // return display(distanciagps);
+  if(distanciagps>100){
+    distanciaKm=distanciagps.toStringAsFixed(0);
+  }
+  else{
+    distanciaKm=distanciagps.toStringAsFixed(3);
+    distanciaKm=(distanciaKm.split('.')[1]=='000') ? distanciaKm.split('.')[0] : distanciaKm;
+  }
+  return '${distanciaKm}km';
+
 }
 
 Future<Position> fnPosition() async{

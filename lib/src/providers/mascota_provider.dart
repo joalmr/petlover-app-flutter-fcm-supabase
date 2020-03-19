@@ -147,4 +147,16 @@ class MascotaProvider{
     
     return petModel;
   }
+
+  Future<bool> deletePet(String idPet) async {
+    try {
+      final url = '$_url/pets/$idPet/delete';
+      await http.post(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
+      return true;
+    }
+    catch(ex) {
+      return false;
+    }
+    
+  }
 }

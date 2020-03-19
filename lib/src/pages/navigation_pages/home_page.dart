@@ -459,7 +459,7 @@ class _HomePageState extends State<HomePage> {
                     radius: 25.0,
                   ),
                   title: Text(atenciones[index].establishmentName),
-                  subtitle: Text(atenciones[index].address),
+                  subtitle: Text(atenciones[index].petName),
                   trailing: Column(
                     children: <Widget>[
                       Text(

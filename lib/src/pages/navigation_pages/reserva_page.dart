@@ -45,7 +45,7 @@ class _ReservaPageState extends State<ReservaPage> {
         key: _key,
         endDrawer: FiltrosMapa(),
         appBar: appbar2(
-          leadingH,
+          // leadingH,
           titleH,
           <Widget>[
             IconButton(

@@ -117,30 +117,41 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
                 fontWeight: FontWeight.w600
               )
             ),
-            subtitle: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Icon(Icons.location_on, size: 12.0, color: Colors.grey),
-                FutureBuilder(
-                  future: fnDistance(localVet.latitude,localVet.longitude),
-                  builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                    if(!snapshot.hasData){
-                      return Text("");
-                    }
-                    else{
-                      return Text('${snapshot.data} Dir.: ${localVet.address}',
-                      maxLines: 2,
-                        style: TextStyle(
-                          fontSize: 11.0,
-                          color: Colors.grey
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
+            subtitle: FutureBuilder(
+              future: fnDistance(localVet.latitude,localVet.longitude),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if(!snapshot.hasData){
+                  return Text("");
+                }
+                else{
+                  // return Text('${snapshot.data} ${localVet.address}',
+                  // maxLines: 2,
+                  //   style: TextStyle(
+                  //     fontSize: 11.0,
+                  //     color: Colors.grey
+                  //   ),
+                  // );
+                  return RichText(
+                    text: TextSpan(
+                      text: '',
+                      style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(text: '${snapshot.data} ',),
+                        TextSpan(text: '${localVet.address}',style: TextStyle(fontStyle: FontStyle.italic)),
+                      ],
+                    ),
+                  );
+                }
+              },
             ),
+            // Row(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: <Widget>[
+            //     Icon(Icons.location_on, size: 12.0, color: Colors.grey),
+                
+            //   ],
+            // ),
             trailing: Container(
               height: 65.0,
               width: 65.0,
