@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' show cos, sqrt, asin;
 import 'package:geolocator/geolocator.dart';
-import 'package:number_display/number_display.dart';
 
 calculateAge(DateTime birthDate) {
   if(birthDate == null) return "No definido";

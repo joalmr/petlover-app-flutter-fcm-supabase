@@ -2,28 +2,39 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/historias_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
+import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
 
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
-class MascotaDetallePage extends StatelessWidget {
+class MascotaDetallePage extends StatefulWidget {
   final String idmascota;
-
+  // final MascotaModel mascota;
   MascotaDetallePage({@required this.idmascota});
+
+  @override
+  _MascotaDetallePageState createState() => _MascotaDetallePageState(idmascota: idmascota);
+}
+
+class _MascotaDetallePageState extends State<MascotaDetallePage> {
+  final String idmascota;
+  _MascotaDetallePageState({@required this.idmascota});
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final mascotaProvider = MascotaProvider();
 
   @override
   Widget build(BuildContext context) {
-    print(idmascota);
     return Scaffold(
+      key: _scaffoldKey,
       body: onDetail(),
+      endDrawer: MascotaDrawer(idPet: idmascota,),
     );
   }
 
   Widget onDetail(){
     return FutureBuilder(
-      future: mascotaProvider.getPet(idmascota),
+      future: mascotaProvider.getPet(widget.idmascota),
       builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
         final mydata=snapshot.data;
         if(!snapshot.hasData){
@@ -41,10 +52,7 @@ class MascotaDetallePage extends StatelessWidget {
                   height: 300,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                ),         
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height,
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 275.0,left: 5.0,right: 5.0),
@@ -52,28 +60,16 @@ class MascotaDetallePage extends StatelessWidget {
                   borderRadius: borderRadius,
                   color: Colors.white,                            
                 ),
-                height: double.infinity,  
-                width: double.infinity,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(top: 5.0,left: 10.0,right: 10.0),
-                      child: Column(
-                        children: <Widget>[
-                          datoMascota(mydata.pet),
-                          SizedBox(height: 10.0,),
-                          numAtenciones(),
-                        ],
-                      )
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 140.5),
-                      //padding: EdgeInsets.symmetric(horizontal: 5.0),
-                      width: double.infinity,
-                      child: listaHistorial(context),
-                    )
-                  ],
-                ),        
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: <Widget>[                      
+                      datoMascota(mydata.pet),
+                      numAtenciones(),
+                      listaHistorial(context)
+                    ],
+                  ),
+                ),         
               ),
               
               Positioned(
@@ -90,30 +86,12 @@ class MascotaDetallePage extends StatelessWidget {
                   ),),
                   actions: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.filter_list, color: Colors.white70,), 
-                      onPressed: ()=>showDialog(
-                        context: context,
-                        builder: (BuildContext context){
-                          return AlertDialog(
-                            title: Text('Filtros de historial'),
-                            actions: <Widget>[
-                              FlatButton(
-                                onPressed: ()=>Navigator.pop(context), 
-                                child: Text('Cerrar')
-                              ),
-                              FlatButton(
-                                onPressed: (){}, 
-                                child: Text('Buscar')
-                              )
-                            ],
-                          );
-                        }
-                      )
+                      icon: Icon(Icons.filter_list, ), 
+                      onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
                     ),
                   ],
                 ),
               )
-
 
             ],
           );
@@ -123,111 +101,71 @@ class MascotaDetallePage extends StatelessWidget {
   }
 
   datoMascota(pet){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(pet.name, style: TextStyle(fontSize: 22.0,fontWeight: FontWeight.w600),),
-            Text(pet.breedName, style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600),),
-            Text(calculateAge(pet.birthdate), style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text('${pet.weight} kg.', style: TextStyle(fontWeight: FontWeight.w600,),),
-          ],
-        )                          
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 5.0,bottom: 15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(pet.name, style: TextStyle(fontSize: 22.0,fontWeight: FontWeight.w600),),
+              Text(pet.breedName, style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600),),
+              Text(calculateAge(pet.birthdate), style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text('${pet.weight} kg.', style: TextStyle(fontWeight: FontWeight.w600,),),
+            ],
+          )                          
+        ],
+      ),
     );
   }
-  
+
   numAtenciones(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Container(
-          height: 65.0,
-          width: 65.0,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            border: Border.all(
-              color: colorMain,
-              width: 1,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('120',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
-              Text('Consultas',style: TextStyle(color: colorMain, fontSize: 7.5),),
-            ],
-          ),
-        ),
-        Container(
-          height: 65.0,
-          width: 65.0,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            border: Border.all(
-              color: colorMain,
-              width: 1,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('20',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
-              Text('Vacunas',style: TextStyle(color: colorMain, fontSize: 7.5),),
-            ],
-          ),
-        ),
-        Container(
-          height: 65.0,
-          width: 65.0,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            border: Border.all(
-              color: colorMain,
-              width: 1,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('80',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
-              Text('Baños',style: TextStyle(color: colorMain, fontSize: 7.5),),
-            ],
-          ),
-        ),
-        Container(
-          height: 65.0,
-          width: 65.0,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            border: Border.all(
-              color: colorMain,
-              width: 1,
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('110',style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
-              Text('Desparasitaciones',style: TextStyle(color: colorMain, fontSize: 7.5),),
-            ],
-          ),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          casilleroAtencion('120','Consultas'),
+          casilleroAtencion('20','Vacunas'),
+          casilleroAtencion('80','Baños'),
+          casilleroAtencion('120','Desparasitaciones'),
+        ],
+      ),
     );
   }
+
+  casilleroAtencion(String cantidad,String texto){
+    return Container(
+      height: 65.0,
+      width: 65.0,
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        border: Border.all(
+          color: colorMain,
+          width: 1,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(cantidad, style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+          Text(texto, style: TextStyle(color: colorMain, fontSize: 7.5),),
+        ],
+      ),
+    );
+  }
+
   listaHistorial(BuildContext context){
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       itemCount: historialList.length,
       itemBuilder: (context, int index){
         return FlatButton(

@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 
 class ReservaMapaPage extends StatefulWidget {
@@ -25,6 +26,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   List<Marker> allMarkers = [];
   PageController _pageController;
   int prevPage;
+  String _mapStyle;
 
   //var vet = vetLocales[index % vetLocales.length];
   
@@ -44,11 +46,16 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   void initState() {
     //implement initState
     super.initState();
+
     Geolocator().getCurrentPosition().then((currloc){
       setState(() {
         currentLocation = currloc;
         mapToggle = true;
       });
+    });
+
+    rootBundle.loadString('assets/map_style.txt').then((string) {
+      _mapStyle = string;
     });
 
     vetLocales.forEach((element) {
@@ -92,7 +99,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
                 target: LatLng(vetLocales[0].latitude,vetLocales[0].longitude),//vetLocales[0].locationCoords, 
-                zoom: 17.0
+                zoom: 16.0
               ),
               markers: Set.from(allMarkers),
               onMapCreated: mapCreated,
@@ -195,7 +202,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                             fit: BoxFit.cover))),
                       SizedBox(width: 5.0),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -205,12 +212,12 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                                 fontSize: 12.5,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text(
-                            vetLocales[index].address,
-                            style: TextStyle(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w600),
-                          ),
+                          // Text(
+                          //   vetLocales[index].address,
+                          //   style: TextStyle(
+                          //       fontSize: 12.0,
+                          //       fontWeight: FontWeight.w600),
+                          // ),
                           Container(
                             width: 170.0,
                             child: Text(
@@ -230,13 +237,14 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   void mapCreated(controller){
     setState(() {
       _controller = controller;
+      _controller.setMapStyle(_mapStyle);
     });
   }
 
   moveCamera() {
     _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
       target: LatLng(vetLocales[_pageController.page.toInt()].latitude, vetLocales[_pageController.page.toInt()].longitude), //vetLocales[_pageController.page.toInt()].locationCoords,
-      zoom: 17.0,
+      zoom: 16.0,
       bearing: 45.0,
       tilt: 45.0))
     );

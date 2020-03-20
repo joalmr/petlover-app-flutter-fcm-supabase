@@ -51,8 +51,8 @@ class MascotaProvider{
     
   }
 
-  Future<bool> editPet(MascotaReq mascota, File imagen) async {
-    final url = '$_url/pets/${mascota.idKey}/delete';
+  Future<bool> editPet(MascotaReq mascota) async {
+    final url = '$_url/pets/${mascota.idKey}';
 
     int intMascota=0;
     if( mascota.genre) intMascota=1;    
@@ -73,25 +73,26 @@ class MascotaProvider{
       body: data,
     );
 
-    print(resp.statusCode);
+    // print(resp.statusCode);
     if(resp.statusCode==200 || resp.statusCode==201){
-      final idkey = mascota.idKey;
-      final urlpet = '$_url/pets/$idkey/base64';
+      // if(imagen!=null){
+      //   final idkey = mascota.idKey;
+      //   final urlpet = '$_url/pets/$idkey/base64';
 
-      upImage(imagen,urlpet);
-      return true;
+      //   upImage(imagen,urlpet);
+            
+      // }
+      return true;  
     }
     else return false;
-
-
   }
 
-  Future<bool> savePet(MascotaReq mascota, File imagen) async {
+  Future<bool> savePet(MascotaReq mascota, File imagen) async { //create
     final url = '$_url/pets';
     
     int intMascota=0;
 
-    if( mascota.genre) intMascota=1;    
+    if(mascota.genre) intMascota=1;    
     else intMascota=0;
 
     final data = {

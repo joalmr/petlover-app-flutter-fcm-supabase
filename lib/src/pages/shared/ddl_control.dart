@@ -62,6 +62,28 @@ class _DdlControl2 extends State<DdlControl2> {
     );
   }
 
+    Widget ddlMainOut(opcionSeleccionada, lista, cambiaOpc,String deshabilitado){
+    //print(lista);
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: Colors.grey[200],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            disabledHint: Text(deshabilitado),            
+            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+            isExpanded: true,
+            value: opcionSeleccionada,
+            items: getOpcionesDropdown(lista),
+            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
+          ),
+        ),
+      ), 
+    );
+  }
+
   Widget ddlFuture(opcionSeleccionada, lista, cambiaOpc){
   try{
     return Material(

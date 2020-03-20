@@ -124,13 +124,6 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
                   return Text("");
                 }
                 else{
-                  // return Text('${snapshot.data} ${localVet.address}',
-                  // maxLines: 2,
-                  //   style: TextStyle(
-                  //     fontSize: 11.0,
-                  //     color: Colors.grey
-                  //   ),
-                  // );
                   return RichText(
                     text: TextSpan(
                       text: '',
@@ -144,14 +137,6 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
                 }
               },
             ),
-            // Row(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   mainAxisAlignment: MainAxisAlignment.start,
-            //   children: <Widget>[
-            //     Icon(Icons.location_on, size: 12.0, color: Colors.grey),
-                
-            //   ],
-            // ),
             trailing: Container(
               height: 65.0,
               width: 65.0,
@@ -168,7 +153,7 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.only(left: 15.0),
+        padding: const EdgeInsets.only(left: 20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -240,7 +225,7 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
       ),
       SizedBox(height: 20.0),
       Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: _servicios(),
@@ -248,27 +233,24 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
       ),
       SizedBox(height: 20.0),
       Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-        child: Row(
+        padding: EdgeInsets.only(left: 20.0,right: 20.0),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[  
-                Text('Descripción',
-                  style: TextStyle(
-                      fontSize: 15.0,
-                      color: Color(0xFF6A6A6A),
-                      fontWeight: FontWeight.w600)),  
-                SizedBox(height: 10.0,),
-                Text(localVet.description,
-                  style: TextStyle(),textAlign: TextAlign.justify,),
-              ],
-            ),
+          children: <Widget>[  
+            Text('Descripción',
+              style: TextStyle(
+                  fontSize: 15.0,
+                  color: Color(0xFF6A6A6A),
+                  fontWeight: FontWeight.w600)),  
+            SizedBox(height: 10.0,),
+            Text(localVet.description,textAlign: TextAlign.justify,),
+            SizedBox(width: double.infinity,),
+            // Text('Est laborum tempor sunt aliquip ex mollit cillum commodo laborum laborum laborum excepteur mollit. Adipisicing et irure Lorem qui nisi officia non eu. Officia dolor laboris sunt ipsum pariatur in minim dolor amet. Labore do nostrud sit ipsum aliqua aliqua cupidatat eu. Aliquip duis anim nostrud consequat enim ipsum. Consequat proident ex occaecat laboris ea exercitation culpa ex laborum dolore irure. Exercitation ea eu mollit Lorem. Laborum dolor tempor officia adipisicing esse enim sint consectetur anim in anim pariatur duis. Lorem ex non enim pariatur. Id sit adipisicing mollit laborum exercitation officia eiusmod voluptate ea labore ullamco est consectetur do. Excepteur est eu amet laboris in laboris non Lorem veniam. Consequat reprehenderit incididunt cupidatat aliqua deserunt. Officia pariatur ad irure proident tempor. Velit qui nulla reprehenderit ut do eu fugiat. Est enim veniam enim velit sint incididunt qui sint nulla sunt. Reprehenderit ullamco nisi voluptate elit laborum occaecat consequat.'
+            //   ,textAlign: TextAlign.justify,
+            // )
           ],
-        )
+        ),
       ),
     ],
   );
@@ -330,7 +312,7 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,radius: 0.0,height1: 145.0);    
+    return CardSwiper(imagenes : imagen, height: 145.0,);    
   }
 
   _launchPhone() async {

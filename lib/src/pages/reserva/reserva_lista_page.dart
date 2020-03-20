@@ -145,6 +145,6 @@ class _ReservaListaPageState extends State<ReservaListaPage> {
   }
 
   Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,radius: 10.0,height1: 175.0);    
+    return CardSwiper(imagenes : imagen,radius: 10.0,height: 175.0,scale: 0.9,);    
   }
 }
