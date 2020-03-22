@@ -50,7 +50,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                   bottom: 0.0,
                   height: 100.0,
                   child: FlatButton(
-                    onPressed: ()=>modal.mainModal(context,DataReserva()),
+                    onPressed: ()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.only(top: 35.0),

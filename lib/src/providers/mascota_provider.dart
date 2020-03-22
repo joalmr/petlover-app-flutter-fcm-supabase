@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
-// import 'package:http_parser/http_parser.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
-// import 'package:image/image.dart' as ImageProcess;
 
 
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
@@ -51,13 +49,16 @@ class MascotaProvider{
     
   }
 
-  Future<bool> editPet(MascotaReq mascota) async {
+  Future<bool> editPet(MascotaReq mascota, File imagen) async {
     final url = '$_url/pets/${mascota.idKey}';
 
     int intMascota=0;
     if( mascota.genre) intMascota=1;    
     else intMascota=0;
 
+    print(mascota.birthdate);
+    print(mascota.breed);
+    print(mascota.genre);
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
@@ -75,13 +76,13 @@ class MascotaProvider{
 
     // print(resp.statusCode);
     if(resp.statusCode==200 || resp.statusCode==201){
-      // if(imagen!=null){
-      //   final idkey = mascota.idKey;
-      //   final urlpet = '$_url/pets/$idkey/base64';
+      if(imagen!=null){
+        final idkey = mascota.idKey;
+        final urlpet = '$_url/pets/$idkey/base64';
 
-      //   upImage(imagen,urlpet);
+        upImage(imagen,urlpet);
             
-      // }
+      }
       return true;  
     }
     else return false;

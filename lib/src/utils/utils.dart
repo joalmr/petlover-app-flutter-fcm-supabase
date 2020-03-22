@@ -50,6 +50,22 @@ calculateAge(DateTime birthDate) {
     return lista;
   }
 
+  List<DropdownMenuItem<String>> getOpcionesImgFuture(_lista){
+    List<DropdownMenuItem<String>> lista = new List();
+    _lista.forEach((_lista){
+      lista.add(DropdownMenuItem(
+        child: Row(
+          children: <Widget>[
+            Image(image: NetworkImage(_lista.picture)),
+            Text(_lista.name),
+          ],
+        ),
+        value: _lista.id,
+      ));
+    });
+    return lista;
+  }
+
   List<DropdownMenuItem<String>> getOpcionesFuture(_lista){
     List<DropdownMenuItem<String>> lista = new List();
     _lista.forEach((_lista){

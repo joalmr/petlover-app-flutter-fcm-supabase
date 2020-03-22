@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_page.dart';
@@ -436,7 +437,7 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  Widget _atenciones(List<hoModel.Booking> atenciones,lengthPet){    
+  Widget _atenciones(List<BookingHome> atenciones,lengthPet){    
     if(atenciones.length>0)
       return ListView.builder(
         physics: NeverScrollableScrollPhysics(),

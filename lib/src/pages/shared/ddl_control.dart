@@ -41,6 +41,8 @@ class _DdlControl2 extends State<DdlControl2> {
   }
 }
 
+
+
   Widget ddlMain(opcionSeleccionada, lista, cambiaOpc){
     //print(lista);
     return Material(
@@ -62,7 +64,28 @@ class _DdlControl2 extends State<DdlControl2> {
     );
   }
 
-    Widget ddlMainOut(opcionSeleccionada, lista, cambiaOpc,String deshabilitado){
+  Widget ddlMainImg(opcionSeleccionada, lista, cambiaOpc){
+    //print(lista);
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: Colors.grey[200],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+            isExpanded: true,
+            value: opcionSeleccionada,
+            items: getOpcionesImgFuture(lista),
+            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
+          ),
+        ),
+      ), 
+    );
+  }
+
+  Widget ddlMainOut(opcionSeleccionada, lista, cambiaOpc,String deshabilitado){
     //print(lista);
     return Material(
       elevation: 0.0,
@@ -109,33 +132,33 @@ class _DdlControl2 extends State<DdlControl2> {
   }
 }
 
-Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
-  try{
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: Colors.grey[200],
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: DropdownButtonHideUnderline(
-          child: SearchableDropdown(
-            items: getOpcionesSearch(lista),
-            value: opcionSeleccionada,
-            onChanged: cambiaOpc,
-            hint: "Seleccione raza",
-            searchHint: "Seleccione raza",
-            isExpanded: true,
-            closeButton: "Cerrar",
-            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
-            displayClearIcon: false,
-            underline: "",
+  Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
+    try{
+      return Material(
+        elevation: 0.0,
+        borderRadius: borderRadius,
+        color: Colors.grey[200],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: DropdownButtonHideUnderline(
+            child: SearchableDropdown(
+              items: getOpcionesSearch(lista),
+              value: opcionSeleccionada,
+              onChanged: cambiaOpc,
+              hint: "Seleccione raza",
+              searchHint: "Seleccione raza",
+              isExpanded: true,
+              closeButton: "Cerrar",
+              icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+              displayClearIcon: false,
+              underline: "",
+            ),
           ),
-        ),
-      ), 
-    );
+        ), 
+      );
+    }
+    catch(ex){
+      return Center(child: CircularProgressIndicator());
+    }
   }
-  catch(ex){
-    return Center(child: CircularProgressIndicator());
-  }
-}
 

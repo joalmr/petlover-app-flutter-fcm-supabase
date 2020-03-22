@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:proypet/src/model/booking/booking_model.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/providers/booking_provider.dart';
+import 'package:proypet/src/providers/mascota_provider.dart';
 
-//final _shape = BorderRadius.circular(100.0);
 
 class DataReserva extends StatefulWidget {
+  final establecimientoID;
+  DataReserva({@required this.establecimientoID});
   @override
   _Data createState() => _Data();
 }
@@ -18,12 +22,11 @@ class _Data extends State<DataReserva> {
   String _hora ='';
   TextEditingController _inputFechaController=new TextEditingController();
   TextEditingController _inputHoraController=new TextEditingController();
-  List _mascota = [
-    {'id':'1','name':'Greco',},
-    {'id':'2','name':'Pirulin',},
-    {'id':'3','name':'Tito',},
-  ];
 
+  final bookingProvider = BookingProvider();
+  final mascotaProvider = MascotaProvider();
+  BookingModel booking =BookingModel();
+  
   List _atencion = [
     {'id':'1','name':'Consulta',},
     {'id':'2','name':'Vacuna',},
@@ -31,41 +34,64 @@ class _Data extends State<DataReserva> {
     {'id':'4','name':'Desparasitación',},
   ];
 
+  String resarvaId="1";
+  List<MascotaModel> misMascotas = [];
+  String opcMascota;
+  bool boolPet=false;
+
+  Future<bool> getMyPets() async {
+    misMascotas = await mascotaProvider.getPets();
+    opcMascota = misMascotas[0].id.toString();
+    boolPet=true;
+    return boolPet;
+  }
+  
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {   
+    // getMyPets();
     return Padding(
       padding: EdgeInsets.all(25.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text('Mascota'),
-          DdlControl2(lista: _mascota),
-          SizedBox(height: 10.0,),
-          Text('Fecha'),
-          _crearFecha(context),
-          SizedBox(height: 10.0,),
-          Text('Hora'),
-          _crearHora(context),
-          SizedBox(height: 10.0,),
-          Text('Atención'),
-          DdlControl2(lista: _atencion),
-          SizedBox(height: 20.0,),
-          // FormControl().buttonSec('Reservar', (){
-          //   reservaDialog();   
-          // }),
-          buttonPri('Reservar', ()=>reservaDialog()),      
-          SizedBox(height: 5.0),
-          FlatButton(
-            child: new Text("Cancelar",style: TextStyle(color: colorMain)),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },            
-          ),
-        ],
+      child: FutureBuilder(
+        future: getMyPets(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          return snapshot.data ? _onFuture(misMascotas) : Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }
 
+  Widget _onFuture(List<MascotaModel> misMascotas){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Text('Mascota'),          
+        ddlFuture(opcMascota, misMascotas, (opt){ setState(() { opcMascota=opt.toString(); });} ),
+        SizedBox(height: 10.0,),
+        Text('Fecha'),
+        _crearFecha(context),
+        SizedBox(height: 10.0,),
+        Text('Hora'),
+        _crearHora(context),
+        SizedBox(height: 10.0,),
+        Text('Atención'),
+        ddlMain(resarvaId, _atencion, 
+          (opt){ setState(() {
+              resarvaId=opt; 
+          });}
+        ),
+        SizedBox(height: 20.0,),
+        buttonPri('Reservar', ()=>reservaDialog()),      
+        SizedBox(height: 5.0),
+        FlatButton(
+          child: new Text("Cancelar",style: TextStyle(color: colorMain)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },            
+        ),
+      ],
+    );
+  }
   final _shape = BorderRadius.circular(10.0);
   Widget _crearFecha(BuildContext context){
     return Material(
@@ -118,8 +144,6 @@ class _Data extends State<DataReserva> {
 
   
   Widget _crearHora(BuildContext context){
-    //final abc = (MediaQuery.of(context).copyWith().size.height / 3)+70;
-
     return Material(
       elevation: 0.0,
       borderRadius: _shape,
@@ -189,29 +213,17 @@ class _Data extends State<DataReserva> {
     );
   }
 
-  reservaDialog(){
-    return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          content: Container(
-            child: Text('Reserva realizada con éxito.')
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: new Text("Ir a inicio"),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,MaterialPageRoute(
-                    builder: (context) => NavigationBar(currentTabIndex: 1,)
-                ));
-              },
-            ),
-          ],
-        );
-      }
-    ); 
+  reservaDialog() async {
+    var fechaTime = _inputFechaController.text+" "+_inputHoraController.text+":00";
+
+    booking.bookingAt = fechaTime;
+    booking.establishmentId = widget.establecimientoID;
+    booking.petId = "193144f3-5791-4ecf-88b9-34f35a321695";
+    booking.typeId = resarvaId;
+
+    bool resp = await bookingProvider.booking(booking);
+    print(resp);
+
   }
 
 }

@@ -43,6 +43,7 @@ class LoginProvider{
     }
   }
 
+  //summary
   Future<HomeModel> getUser() async {
     //http://ce2019121721001.dnssw.net/api/summary
     final url = '$_url/summary';
