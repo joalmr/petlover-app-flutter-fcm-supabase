@@ -6,6 +6,7 @@ import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
 
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
@@ -100,7 +101,7 @@ class _MascotasPageState extends State<MascotasPage> {
                 onPressed: () async {
                   bool resp = await mascotaProvider.deletePet(mascota.id);
                   if(resp){
-                    mostrarSnackbar("Se eliminó a ${mascota.name}", colorMain);
+                    mostrarSnackbar("Se eliminó a ${mascota.name}", colorMain, scaffoldKey);
                     Navigator.pushReplacementNamed(context, 'mismascotas');
                     //Navigator.pop(context);
                     // Navigator.pushNamed(context, 'mismascotas');
@@ -112,7 +113,7 @@ class _MascotasPageState extends State<MascotasPage> {
                     // );
                   }
                   else{
-                    mostrarSnackbar("No se eliminó a ${mascota.name}", Colors.red[300]);
+                    mostrarSnackbar("No se eliminó a ${mascota.name}", Colors.red[300], scaffoldKey);
                     Navigator.pop(context);
                   }
                 },
@@ -171,14 +172,14 @@ class _MascotasPageState extends State<MascotasPage> {
       ),
     );
   }
-  void mostrarSnackbar(String mensaje, Color color){
-    final snackbar = SnackBar(
-      content: Text(mensaje),
-      duration: Duration(milliseconds: 2500),
-      backgroundColor: color,
-    );
-    scaffoldKey.currentState.showSnackBar(snackbar);    
-  }
+  // void mostrarSnackbar(String mensaje, Color color){
+  //   final snackbar = SnackBar(
+  //     content: Text(mensaje),
+  //     duration: Duration(milliseconds: 2500),
+  //     backgroundColor: color,
+  //   );
+  //   scaffoldKey.currentState.showSnackBar(snackbar);    
+  // }
 }
 
 

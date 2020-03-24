@@ -4,6 +4,7 @@ import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
+import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/login_provider.dart';
@@ -92,7 +93,7 @@ class _LoginSevenPageState extends State<LoginPage> {
     Map resp = await loginProvider.loginToken(loginModel);
 
     if(!resp['ok']){
-      mostrarSnackbar(resp['mensaje']);
+      mostrarSnackbar(resp['mensaje'], Colors.red[300], scaffoldKey);
     }
     else{
       Navigator.pushReplacement(
@@ -101,15 +102,15 @@ class _LoginSevenPageState extends State<LoginPage> {
     }    
   }
 
-  void mostrarSnackbar(String mensaje){
-    final snackbar = SnackBar(
-      content: Text(mensaje),
-      duration: Duration(milliseconds: 2500),
-      backgroundColor: Colors.red[300],
-    );
+  // void mostrarSnackbar(String mensaje){
+  //   final snackbar = SnackBar(
+  //     content: Text(mensaje),
+  //     duration: Duration(milliseconds: 2500),
+  //     backgroundColor: Colors.red[300],
+  //   );
 
-    scaffoldKey.currentState.showSnackBar(snackbar);
+  //   scaffoldKey.currentState.showSnackBar(snackbar);
     
-  }
+  // }
 
 }
