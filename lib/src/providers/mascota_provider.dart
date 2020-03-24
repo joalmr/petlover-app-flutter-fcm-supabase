@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
+import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/mascota_req.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
@@ -10,7 +11,7 @@ import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 class MascotaProvider{
-  final _url = 'http://ce2019121721001.dnssw.net/api';
+  final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
   Future<List<MascotaModel>> getPets() async {

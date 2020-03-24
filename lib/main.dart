@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final prefs = new PreferenciasUsuario();
-
+    
     var rutaInicio='login';
     if(prefs.token!=''){
       rutaInicio='nav';
@@ -39,3 +39,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+    //var config = AppConfig.of(context);
+    //config.appName,
