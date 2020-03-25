@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_field.dart';
+import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
-class ForgotPage extends StatelessWidget {
+class ForgotPage extends StatefulWidget {
+  @override
+  _ForgotPageState createState() => _ForgotPageState();
+}
+
+class _ForgotPageState extends State<ForgotPage> {
+  String val= "";
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: ListView(
         children: <Widget>[
@@ -27,7 +34,11 @@ class ForgotPage extends StatelessWidget {
             child: Text('Se le enviará un correo electrónico para que reestablezca su contraseña.')
           ),
           SizedBox(height: 20.0),
-          textfield('Email', Icons.mail, false),
+          // textfield('Email', Icons.mail, false),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null),
+          ),
           //FormControl().textfield('Email', Icons.mail, false),
           SizedBox(height: 30.0),
           Padding(
@@ -40,5 +51,4 @@ class ForgotPage extends StatelessWidget {
       ),
     );
   }
-
 }

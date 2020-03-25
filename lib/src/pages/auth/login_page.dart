@@ -31,9 +31,15 @@ class _LoginSevenPageState extends State<LoginPage> {
           children: <Widget>[
             WaveClipper(300.0,120.0),
             SizedBox(height: 30.0),
-            textForm('Email', Icons.alternate_email, false, (value)=>loginModel.email=value, TextCapitalization.none, null),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: textForm('Email', Icons.alternate_email, false, (value)=>loginModel.email=value, TextCapitalization.none, null),
+            ),
             SizedBox(height: 20),
-            textForm('Contraseña', Icons.lock_outline, true, (value)=>loginModel.password=value, TextCapitalization.none, null),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>loginModel.password=value, TextCapitalization.none, null),
+            ),
             SizedBox(height: 25.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),

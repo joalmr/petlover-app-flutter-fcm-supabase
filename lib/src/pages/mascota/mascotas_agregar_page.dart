@@ -76,7 +76,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                   children: <Widget>[
                     SizedBox(height: 25.0,),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),//const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
                       child: Center(
                         child: Stack(
                           children: <Widget>[
@@ -118,14 +118,17 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       ) //Text('Foto de mi mascota'),
                     ),
                     SizedBox(height: 10.0,),
-                    textForm('Nombre de mascota', Icons.pets, false, (value)=>mascotaData.name=value, TextCapitalization.words, (petData==null) ? null : mascotaData.name),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+                      child: textForm('Nombre de mascota', Icons.pets, false, (value)=>mascotaData.name=value, TextCapitalization.words, (petData==null) ? null : mascotaData.name),
+                    ),
                     SizedBox(height: 10.0,),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                       child: Text('Seleccione tipo de mascota'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                       child: (petData==null) ? ddlMain(datoPet, tipopet, 
                         (opt){ setState(() {
                           datoPet=opt; 
@@ -137,7 +140,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     ),
                     SizedBox(height: 10.0,),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                       child: Text('Seleccione raza'),
                     ),
                     FutureBuilder(
@@ -148,7 +151,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                         }
                         else{
                           return Padding(
-                            padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                             child: (petData==null) ? ddlFuture( opcRaza , snapshot.data.breeds , 
                               (opt){ setState(() { 
                                 opcRaza=opt;
@@ -165,16 +168,16 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     ),
                     SizedBox(height: 10.0,),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                       child: Text('Fecha de nacimiento'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                       child: _crearFecha(context,petData),
                     ),
                     SizedBox(height: 10.0,),                    
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(35.0, 0, 35.0, 10.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       // child: _sexo(),
                       child: (petData==null) ? _sexo() : _sexoEdit(),
                     ),

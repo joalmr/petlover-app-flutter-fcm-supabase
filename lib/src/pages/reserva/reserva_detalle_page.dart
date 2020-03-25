@@ -25,6 +25,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   List<MascotaModel> misMascotas;
   final mascotaProvider = MascotaProvider();
   Modal modal = new Modal();  
+  String nameVet="";
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             return Center(child: CircularProgressIndicator()); //valueColor: new AlwaysStoppedAnimation<Color>(colorMain),
           }
           else{
+            nameVet = mydata.name;
             return Stack(
               children: [
                 Container(
@@ -325,6 +327,9 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
   _reservar() async {
     misMascotas = await mascotaProvider.getPets();
-    modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
+    // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
+    Navigator.push(
+      context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: nameVet,))
+    );
   }
 }
