@@ -71,7 +71,6 @@ class _HomePageState extends State<HomePage> {
                 _usuario(mydata.user),
                 SizedBox(height: 25.0,),
                 _mascotas(mydata.pets),
-
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 25.0),
                   child: Column(
@@ -238,9 +237,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-
                 SizedBox(height: 10.0),
-
                 Row(
                   children: <Widget>[
                     Expanded(
@@ -255,7 +252,6 @@ class _HomePageState extends State<HomePage> {
                     Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),                
                   ],
                 ),
-
                 _atenciones(mydata.bookings,mydata.pets.length),
               ],
             ),
@@ -351,9 +347,9 @@ class _HomePageState extends State<HomePage> {
                                   TextSpan(
                                     text: mascotas[index].weight.toString(),
                                     style: Theme.of(context)
-                                        .textTheme
-                                        .display1
-                                        .apply(color: Colors.white, fontWeightDelta: 2),
+                                      .textTheme
+                                      .display1
+                                      .apply(color: Colors.white, fontWeightDelta: 2),
                                   ),
                                   TextSpan(text: " kg.")
                                 ],

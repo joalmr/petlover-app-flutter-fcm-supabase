@@ -103,14 +103,6 @@ class _MascotasPageState extends State<MascotasPage> {
                   if(resp){
                     mostrarSnackbar("Se eliminó a ${mascota.name}", colorMain, scaffoldKey);
                     Navigator.pushReplacementNamed(context, 'mismascotas');
-                    //Navigator.pop(context);
-                    // Navigator.pushNamed(context, 'mismascotas');
-                    // Navigator.of(context).popAndPushNamed('mismascotas');
-                    // Timer(
-                    //   Duration(milliseconds: 2500), (){
-                    //     Navigator.of(context).pushReplacementNamed('mismascotas');   
-                    //   }
-                    // );
                   }
                   else{
                     mostrarSnackbar("No se eliminó a ${mascota.name}", Colors.red[300], scaffoldKey);
@@ -172,14 +164,6 @@ class _MascotasPageState extends State<MascotasPage> {
       ),
     );
   }
-  // void mostrarSnackbar(String mensaje, Color color){
-  //   final snackbar = SnackBar(
-  //     content: Text(mensaje),
-  //     duration: Duration(milliseconds: 2500),
-  //     backgroundColor: color,
-  //   );
-  //   scaffoldKey.currentState.showSnackBar(snackbar);    
-  // }
 }
 
 

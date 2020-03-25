@@ -86,7 +86,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                   ),),
                   actions: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.filter_list, ), 
+                      icon: Icon(Icons.settings ), 
                       onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
                     ),
                   ],
@@ -114,9 +114,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
               Text(calculateAge(pet.birthdate), style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
             ],
           ),
-          Row(
+          Column(
             children: <Widget>[
               Text('${pet.weight} kg.', style: TextStyle(fontWeight: FontWeight.w600,),),
+              IconButton(
+                icon: Icon(Icons.filter_list),
+                onPressed: (){}
+              ),
             ],
           )                          
         ],

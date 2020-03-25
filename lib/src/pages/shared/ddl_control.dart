@@ -86,7 +86,6 @@ class _DdlControl2 extends State<DdlControl2> {
   }
 
   Widget ddlMainOut(opcionSeleccionada, lista, cambiaOpc,String deshabilitado){
-    //print(lista);
     return Material(
       elevation: 0.0,
       borderRadius: borderRadius,

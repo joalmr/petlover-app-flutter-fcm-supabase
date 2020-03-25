@@ -12,14 +12,11 @@ class LoginProvider{
   final _prefs = new PreferenciasUsuario();
 
   Future<Map<String,dynamic>> loginToken(LoginModel login) async {
-    //http://ce2019121721001.dnssw.net/api/login
     final url = '$_url/login';   
 
     try{
       final loginData = { "email": login.email, "password": login.password };
-
       final resp = await http.post(url, body: loginData );
-      
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       
       if(decodedResp.containsKey('token')){
@@ -46,7 +43,6 @@ class LoginProvider{
 
   //summary
   Future<HomeModel> getUser() async {
-    //http://ce2019121721001.dnssw.net/api/summary
     final url = '$_url/summary';
 
     final resp = await http.get(url,

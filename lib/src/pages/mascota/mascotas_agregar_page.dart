@@ -355,8 +355,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       else {
         bool resp; 
         petReq.name = mascotaEdit.name;
-        petReq.specie=mascotaEdit.specieId;
-        petReq.breed=mascotaEdit.breedId;
+        petReq.specie = mascotaEdit.specieId;
+        petReq.breed = mascotaEdit.breedId;
         // if(mascotaEdit.genre==1) petReq.genre=true;
         // if(mascotaEdit.genre==0) petReq.genre=false;
         // petReq.birthdate=

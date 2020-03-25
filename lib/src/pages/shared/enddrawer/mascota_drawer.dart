@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
-import 'package:proypet/src/pages/mascota/mascotas_editar_page.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 
@@ -68,32 +67,13 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                 ),
               ),
               SizedBox(height: 20.0,),
-              _switch('Consultas'),
-              _switch('Vacunas'),
-              _switch('Baños'),
-              _switch('Desparasitaciones'),
-              FlatButton(
-                child: Container(
-                  width: double.infinity,
-                  child: Text('Filtrar', 
-                    style: TextStyle(
-                      color: colorMain,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    textAlign: TextAlign.center,
-                  )
-                ),
-                onPressed: (){},
-              ),
               Divider(),
               ListTile(
                 leading: Icon(Icons.share),
                 title: Text('Editar datos', style: TextStyle(
                   fontWeight: FontWeight.w400,
                 ),),
-                onTap: ()=>Navigator.push(context, MaterialPageRoute(
-                    builder: (_)=>MascotasEditarPage(),
-                )),
+                onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: pet),
               ),
               ListTile(
                 leading: Icon(Icons.person_outline, color: Colors.red[300],),
@@ -142,15 +122,86 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
     );
   }
 
-  bool valPrueba=true;
-  Widget _switch(String texto){
-    return SwitchListTile(
-      value: valPrueba,
-      title: Text(texto),
-      activeColor: colorMain,
-      onChanged: (value)=> setState((){
-        valPrueba = value;
-      }),
-    );
-  }
+  
+  // bool valConsulta=true;
+  // bool valVacuna=true;
+  // bool valBanio=true;
+  // bool valDesparacita=true;
+
+//
+//switchBool('Consultas',valConsulta),
+// SwitchListTile(
+//   value: valConsulta,
+//   title: Text('Consultas'),
+//   activeColor: colorMain,
+//   onChanged: (value)=> setState((){
+//     valConsulta = value;
+//   }),
+// ),
+// //
+// SwitchListTile(
+//   value: valVacuna,
+//   title: Text('Consultas'),
+//   activeColor: colorMain,
+//   onChanged: (value)=> setState((){
+//     valVacuna = value;
+//   }),
+// ),
+// //
+// SwitchListTile(
+//   value: valBanio,
+//   title: Text('Consultas'),
+//   activeColor: colorMain,
+//   onChanged: (value)=> setState((){
+//     valBanio = value;
+//   }),
+// ),
+// //
+// SwitchListTile(
+//   value: valDesparacita,
+//   title: Text('Consultas'),
+//   activeColor: colorMain,
+//   onChanged: (value)=> setState((){
+//     valDesparacita = value;
+//   }),
+// ),
+// // _switch('Vacunas', valVacuna=true),
+// _switch('Baños', valBanio=true),
+// _switch('Desparasitaciones', valDesparacita=true),
+// FlatButton(
+//   child: Container(
+//     width: double.infinity,
+//     child: Text('Filtrar', 
+//       style: TextStyle(
+//         color: colorMain,
+//         fontWeight: FontWeight.w600,
+//       ),
+//       textAlign: TextAlign.center,
+//     )
+//   ),
+//   onPressed: (){},
+// ),
+
+  // Widget _switch(String texto, valBool){
+  //   return SwitchListTile(
+  //     value: valBool,
+  //     title: Text(texto),
+  //     activeColor: colorMain,
+  //     onChanged: (value)=> setState((){
+  //       valBool = value;
+  //     }),
+  //   );
+  // }
+
+  // switchBool(String texto, bool valor){
+  //   return SwitchListTile(
+  //     value: valor,
+  //     title: Text(texto),
+  //     activeColor: colorMain,
+  //     onChanged: (value)=> setState((){
+  //       valor = value;
+  //     }),
+  //   );
+  // }
+
 }

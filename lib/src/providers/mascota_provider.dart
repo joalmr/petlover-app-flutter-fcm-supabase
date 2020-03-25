@@ -16,9 +16,7 @@ class MascotaProvider{
 
   Future<List<MascotaModel>> getPets() async {
     final url = '$_url/pets';
-
     try {
-
       final resp = await http.get(url,
         headers: { 
           HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
@@ -26,9 +24,7 @@ class MascotaProvider{
       );
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
-
       final datosMascota = decodedResp['pets'];//mascotaModelFromJson(decodedResp['pets']);
-
       final List<MascotaModel> mascotas = new List();
 
       if(datosMascota==null) return [];
@@ -39,54 +35,19 @@ class MascotaProvider{
       });
 
       return mascotas;
-
     }
     catch(e) {
-
       return [];
-
     }
-
-    
   }
 
-  Future<bool> editPet(MascotaReq mascota, File imagen) async {
-    final url = '$_url/pets/${mascota.idKey}';
+  Future<PetModel> getPet(String idPet) async {
+    final url = '$_url/pets/$idPet';
 
-    int intMascota=0;
-    if( mascota.genre) intMascota=1;    
-    else intMascota=0;
-
-    print(mascota.birthdate);
-    print(mascota.breed);
-    print(mascota.genre);
-    final data = {
-      'name': mascota.name, 
-      'birthdate': mascota.birthdate, //datetime
-      'specie': mascota.specie.toString(), //int
-      'breed': mascota.breed.toString(), //int
-      'genre': intMascota.toString(), //int
-    };
-
-    final resp = await http.post(url, 
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      },      
-      body: data,
-    );
-
-    // print(resp.statusCode);
-    if(resp.statusCode==200 || resp.statusCode==201){
-      if(imagen!=null){
-        final idkey = mascota.idKey;
-        final urlpet = '$_url/pets/$idkey/base64';
-
-        upImage(imagen,urlpet);
-            
-      }
-      return true;  
-    }
-    else return false;
+    final resp = await http.get(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
+    final petModel = petModelFromJson(resp.body);
+    
+    return petModel;
   }
 
   Future<bool> savePet(MascotaReq mascota, File imagen) async { //create
@@ -125,6 +86,56 @@ class MascotaProvider{
 
   }
 
+  Future<bool> editPet(MascotaReq mascota, File imagen) async {
+    final url = '$_url/pets/${mascota.idKey}';
+
+    int intMascota=0;
+    if(mascota.genre) intMascota=1;    
+    else intMascota=0;
+
+    print(mascota.birthdate);
+    print(mascota.breed);
+    print(mascota.genre);
+    final data = {
+      'name': mascota.name, 
+      'birthdate': mascota.birthdate, //datetime
+      'specie': mascota.specie.toString(), //int
+      'breed': mascota.breed.toString(), //int
+      'genre': intMascota.toString(), //int
+    };
+
+    final resp = await http.post(url, 
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      },      
+      body: data,
+    );
+
+    // print(resp.statusCode);
+    if(resp.statusCode==200 || resp.statusCode==201){
+      if(imagen!=null){
+        final idkey = mascota.idKey;
+        final urlpet = '$_url/pets/$idkey/base64';
+
+        upImage(imagen,urlpet);
+            
+      }
+      return true;  
+    }
+    else return false;
+  }
+
+  Future<bool> deletePet(String idPet) async {
+    try {
+      final url = '$_url/pets/$idPet/delete';
+      await http.post(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
+      return true;
+    }
+    catch(ex) {
+      return false;
+    }
+  }
+
   Future upImage(File imagen,String url) async {
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
@@ -142,24 +153,4 @@ class MascotaProvider{
     print(resp.statusCode);
   }
 
-  Future<PetModel> getPet(String idPet) async {
-    final url = '$_url/pets/$idPet';
-
-    final resp = await http.get(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
-    final petModel = petModelFromJson(resp.body);
-    
-    return petModel;
-  }
-
-  Future<bool> deletePet(String idPet) async {
-    try {
-      final url = '$_url/pets/$idPet/delete';
-      await http.post(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
-      return true;
-    }
-    catch(ex) {
-      return false;
-    }
-    
-  }
 }
