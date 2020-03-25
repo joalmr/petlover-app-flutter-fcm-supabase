@@ -69,14 +69,14 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               SizedBox(height: 20.0,),
               Divider(),
               ListTile(
-                leading: Icon(Icons.share),
+                leading: Icon(Icons.edit),
                 title: Text('Editar datos', style: TextStyle(
                   fontWeight: FontWeight.w400,
                 ),),
                 onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: pet),
               ),
               ListTile(
-                leading: Icon(Icons.person_outline, color: colorRed,),
+                leading: Icon(Icons.delete_forever, color: colorRed,),
                 title: Text('Eliminar mascota', style: TextStyle(
                   color: colorRed,
                   fontWeight: FontWeight.w400,

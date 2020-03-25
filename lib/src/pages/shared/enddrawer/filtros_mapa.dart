@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 
 
 
-class FiltrosMapa extends StatelessWidget {
+class FiltrosMapa extends StatefulWidget {
+  @override
+  _FiltrosMapaState createState() => _FiltrosMapaState();
+}
+
+class _FiltrosMapaState extends State<FiltrosMapa> {
   final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
+  final formKey = GlobalKey<FormState>();
+  String val= "";
 
   @override
   Widget build(BuildContext context) {
@@ -19,37 +27,41 @@ class FiltrosMapa extends StatelessWidget {
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[                  
-                  SizedBox(height: 40.0,),
-                  Text('Filtros',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 24.0,
-                      letterSpacing: 3.0,
-                      color: Colors.black54,                      
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[                  
+                    SizedBox(height: 40.0,),
+                    Text('Filtros',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 24.0,
+                        letterSpacing: 3.0,
+                        color: Colors.black54,                      
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20,),
-                  FlatButton(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text('Filtro 1'),
+                    SizedBox(height: 20,),
+                    textFormLess('Ingrese veterinaria',Icon(Icons.search), (value)=>val=value),
+                    FlatButton(
+                      child: Container(
+                        width: double.infinity,
+                        child: Text('Filtro 1'),
+                      ),
+                      onPressed: (){},
                     ),
-                    onPressed: (){},
-                  ),
-                  Divider(color: divider,),
-                  FlatButton(
-                    child: Container(
-                      width: double.infinity,
-                      child: Text('Filtro 2'),
+                    Divider(color: divider,),
+                    FlatButton(
+                      child: Container(
+                        width: double.infinity,
+                        child: Text('Filtro 2'),
+                      ),
+                      onPressed: (){},
                     ),
-                    onPressed: (){},
-                  ),
-                  SizedBox(height: 20.0,),
-                  //FormControl().buttonSec('Buscar',(){})
-                  buttonPri('Agregar mascota',()=>{})
-                ],
+                    SizedBox(height: 20.0,),
+                    //FormControl().buttonSec('Buscar',(){})
+                    buttonPri('Agregar mascota',()=>{})
+                  ],
+                ),
               ),
             ),
           ),

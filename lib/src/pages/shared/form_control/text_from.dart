@@ -33,7 +33,26 @@ Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitali
   );
 }
 
-Widget textFormLess(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial){
+Widget textFormLess(String _hinttext, _icon, _onsaved){
+  return Material(
+    elevation: 0.0,
+    borderRadius: _shape,
+    color: Colors.grey[200],
+    child: TextFormField(
+      textCapitalization: TextCapitalization.sentences,
+      onSaved: _onsaved,
+      cursorColor: colorMain,
+      decoration: InputDecoration(
+        hintText: _hinttext,
+        hintStyle: TextStyle(fontSize: 14.0),
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+      ),
+    ),
+  );
+}
+
+Widget textArea(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial){
   return Material(
     elevation: 0.0,
     borderRadius: _shape,
@@ -44,6 +63,8 @@ Widget textFormLess(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapi
       obscureText: _obscuretext,
       onSaved: _onsaved,
       cursorColor: colorMain,
+      maxLines: null,
+      keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
         hintText: _hinttext,
         hintStyle: TextStyle(fontSize: 14.0),

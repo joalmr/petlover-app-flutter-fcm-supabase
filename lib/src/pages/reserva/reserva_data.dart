@@ -94,7 +94,7 @@ class _Data extends State<DataReserva> {
             ),
             SizedBox(height: 10.0,),
             Text('Observación'),
-            textFormLess('Ingrese observación (opcional)', null, false, (value)=>observacion=value, TextCapitalization.sentences,""),
+            textArea('Ingrese observación (opcional)', null, false, (value)=>observacion=value, TextCapitalization.sentences,""),
             SizedBox(height: 20.0,),
             buttonPri('Reservar', ()=>reservaDialog()),      
             SizedBox(height: 5.0),
