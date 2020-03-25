@@ -111,7 +111,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             children: <Widget>[
               Text(pet.name, style: TextStyle(fontSize: 22.0,fontWeight: FontWeight.w600),),
               Text(pet.breedName, style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600),),
-              Text(calculateAge(pet.birthdate), style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
+              Text(calculateAge(DateTime.parse(pet.birthdate)), style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
             ],
           ),
           Column(

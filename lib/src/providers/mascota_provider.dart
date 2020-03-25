@@ -50,7 +50,7 @@ class MascotaProvider{
     return petModel;
   }
 
-  Future<bool> savePet(MascotaReq mascota, File imagen) async { //create
+  Future<bool> savePet(MascotaModel mascota, File imagen) async { //create
     final url = '$_url/pets';
     
     int intMascota=0;
@@ -61,8 +61,8 @@ class MascotaProvider{
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
-      'specie': mascota.specie.toString(), //int
-      'breed': mascota.breed.toString(), //int
+      'specie': mascota.specieId.toString(), //int
+      'breed': mascota.breedId.toString(), //int
       'genre': intMascota.toString(), //int
     };
 
@@ -86,39 +86,34 @@ class MascotaProvider{
 
   }
 
-  Future<bool> editPet(MascotaReq mascota, File imagen) async {
-    final url = '$_url/pets/${mascota.idKey}';
+  Future<bool> editPet(MascotaModel mascota, File imagen) async {
+    final url = '$_url/pets/${mascota.id}';
 
     int intMascota=0;
     if(mascota.genre) intMascota=1;    
-    else intMascota=0;
+    //else intMascota=0;
 
-    print(mascota.birthdate);
-    print(mascota.breed);
     print(mascota.genre);
+
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
-      'specie': mascota.specie.toString(), //int
-      'breed': mascota.breed.toString(), //int
+      'specie': mascota.specieId.toString(), //int
+      'breed': mascota.breedId.toString(), //int
       'genre': intMascota.toString(), //int
     };
 
     final resp = await http.post(url, 
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      },      
-      body: data,
+      }, body: data,
     );
 
-    // print(resp.statusCode);
     if(resp.statusCode==200 || resp.statusCode==201){
       if(imagen!=null){
-        final idkey = mascota.idKey;
+        final idkey = mascota.id;
         final urlpet = '$_url/pets/$idkey/base64';
-
         upImage(imagen,urlpet);
-            
       }
       return true;  
     }
