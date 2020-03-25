@@ -44,7 +44,6 @@ class _DdlControl2 extends State<DdlControl2> {
 
 
   Widget ddlMain(opcionSeleccionada, lista, cambiaOpc){
-    //print(lista);
     return Material(
       elevation: 0.0,
       borderRadius: borderRadius,
@@ -57,27 +56,6 @@ class _DdlControl2 extends State<DdlControl2> {
             isExpanded: true,
             value: opcionSeleccionada,
             items: getOpcionesDropdown(lista),
-            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
-          ),
-        ),
-      ), 
-    );
-  }
-
-  Widget ddlMainImg(opcionSeleccionada, lista, cambiaOpc){
-    //print(lista);
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: Colors.grey[200],
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: DropdownButtonHideUnderline(
-          child: DropdownButton(
-            icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
-            isExpanded: true,
-            value: opcionSeleccionada,
-            items: getOpcionesImgFuture(lista),
             onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
           ),
         ),
@@ -107,7 +85,31 @@ class _DdlControl2 extends State<DdlControl2> {
   }
 
   Widget ddlFuture(opcionSeleccionada, lista, cambiaOpc){
-  try{
+    try{
+      return Material(
+        elevation: 0.0,
+        borderRadius: borderRadius,
+        color: Colors.grey[200],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton(
+              icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+              isExpanded: true,
+              value: opcionSeleccionada,
+              items: getOpcionesFuture(lista),
+              onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
+            ),
+          ),
+        ), 
+      );
+    }
+    catch(ex){
+      return Center(child: CircularProgressIndicator());
+    }
+  }
+  
+  Widget ddlFutureImg(opcionSeleccionada, lista, cambiaOpc){
     return Material(
       elevation: 0.0,
       borderRadius: borderRadius,
@@ -119,17 +121,13 @@ class _DdlControl2 extends State<DdlControl2> {
             icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
             isExpanded: true,
             value: opcionSeleccionada,
-            items: getOpcionesFuture(lista),
+            items: getOpcionesImgFuture(lista),
             onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
           ),
         ),
       ), 
     );
   }
-  catch(ex){
-    return Center(child: CircularProgressIndicator());
-  }
-}
 
   Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
     try{

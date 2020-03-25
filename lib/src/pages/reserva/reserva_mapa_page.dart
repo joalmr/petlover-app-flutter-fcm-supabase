@@ -27,8 +27,6 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   PageController _pageController;
   int prevPage;
   String _mapStyle;
-
-  //var vet = vetLocales[index % vetLocales.length];
   
   nombreVet(index){
     if(vetLocales[index].name.length>30){
@@ -164,28 +162,28 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       },
       child: InkWell(
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(idvet: index),
+            builder: (_)=>ReservaDetallePage(idvet: vetLocales[index].id),
           )),
           child: Stack(children: [
             Center(
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                  vertical: 20.0,
+                ),
+                // height: 125.0,
+                // width: 275.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      offset: Offset(0.0, 4.0),
+                      blurRadius: 10.0,
+                    ),
+                  ]),
                 child: Container(
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 20.0,
-                  ),
-                  // height: 125.0,
-                  // width: 275.0,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black54,
-                          offset: Offset(0.0, 4.0),
-                          blurRadius: 10.0,
-                        ),
-                      ]),
-                  child: Container(
-                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white),
                     child: Row(children: [
@@ -193,10 +191,9 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                         height: 90.5,
                         width: 90.5,
                         decoration: BoxDecoration(
-                          //color: Colors.white,
                           borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10.0),
-                              topLeft: Radius.circular(10.0)),
+                            bottomLeft: Radius.circular(10.0),
+                            topLeft: Radius.circular(10.0)),
                           image: DecorationImage(
                             image: CachedNetworkImageProvider(vetLocales[index].logo),
                             fit: BoxFit.cover))),
@@ -205,19 +202,14 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(height: 10.0,),
                           Text(
-                            //vetLocales[index].nombre,
-                            nombreVet(index),
+                            vetLocales[index].name,//nombreVet(index),
+                            maxLines: 2,
                             style: TextStyle(
-                                fontSize: 12.5,
+                                fontSize: 14.5,
                                 fontWeight: FontWeight.bold),
                           ),
-                          // Text(
-                          //   vetLocales[index].address,
-                          //   style: TextStyle(
-                          //       fontSize: 12.0,
-                          //       fontWeight: FontWeight.w600),
-                          // ),
                           Container(
                             width: 170.0,
                             child: Text(

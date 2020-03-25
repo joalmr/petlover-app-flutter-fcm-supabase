@@ -38,7 +38,6 @@ class _ReservaPageState extends State<ReservaPage> {
   }
 
   _onTab(List<EstablecimientoModel> vets){
-    print(vets[0].name);
     return DefaultTabController(
       length: 2,
       child: Scaffold(

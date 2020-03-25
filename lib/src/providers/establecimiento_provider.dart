@@ -26,7 +26,6 @@ class EstablecimientoProvider{
 
     if(vets.establecimientos==null) return [];
 
-    print(vets.establecimientos);
     return vets.establecimientos;
   }
 

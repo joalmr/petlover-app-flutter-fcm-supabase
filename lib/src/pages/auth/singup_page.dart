@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 
 class SingupPage extends StatelessWidget {
@@ -39,7 +40,7 @@ class SingupPage extends StatelessWidget {
               TextSpan(
                 text: 'Acepto los ', // default text style
                 children: <TextSpan>[
-                  TextSpan(text: 'Términos y Condiciones.',style: TextStyle(color: Colors.blue,fontSize: 15.0,fontWeight: FontWeight.bold))
+                  TextSpan(text: 'Términos y Condiciones.',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold))
                 ],
               ),
             ),
@@ -50,7 +51,7 @@ class SingupPage extends StatelessWidget {
               TextSpan(
                 text: 'Acepto las ', // default text style
                 children: <TextSpan>[
-                  TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',style: TextStyle(color: Colors.blue,fontSize: 15.0,fontWeight: FontWeight.bold))
+                  TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold))
                 ],
               ),
             ),

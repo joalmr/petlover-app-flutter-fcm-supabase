@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/model/mascota/mascota_req.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 
 
@@ -73,7 +72,6 @@ class MascotaProvider{
       body: data,
     );
 
-    print(resp.statusCode);
     if(resp.statusCode==200 || resp.statusCode==201){
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       final idkey = decodedResp['pet']['id'];
@@ -92,8 +90,6 @@ class MascotaProvider{
     int intMascota=0;
     if(mascota.genre) intMascota=1;    
     //else intMascota=0;
-
-    print(mascota.genre);
 
     final data = {
       'name': mascota.name, 

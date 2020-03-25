@@ -25,7 +25,6 @@ class BookingProvider{
       body: bodyData
     );
 
-    print(resp.body);
     if(resp.statusCode==200 || resp.statusCode==201){
       return true;
     }

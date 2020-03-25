@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:share/share.dart';
 
@@ -46,9 +47,9 @@ class ConfigDrawer extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.person_outline, color: Colors.red[300],),
+                  leading: Icon(Icons.person_outline, color: colorRed,),
                   title: Text('Cerrar sesión', style: TextStyle(
-                    color: Colors.red[300],
+                    color: colorRed,
                     fontWeight: FontWeight.w400,
                   ),),
                   onTap: ()=>_outToken(context),

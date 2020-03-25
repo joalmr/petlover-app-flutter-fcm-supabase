@@ -280,7 +280,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       subtitle: mascotaData.genre ? Text('Macho') : Text('Hembra'),
       activeColor: colorMain,
       onChanged: (value)=> setState((){
-        print(value);
         mascotaData.genre = value;
       }),
     );
@@ -342,7 +341,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     setState(() {
       foto = croppedFile;
     });
-    // print(foto.lengthSync());
     Navigator.pop(context);
   }
 
@@ -354,7 +352,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       });
       
       if(mascotaData.name.trim()=='') setState(() {
-        mostrarSnackbar('Debe completar los datos de la mascota.', Colors.red[300], scaffoldKey);  
+        mostrarSnackbar('Debe completar los datos de la mascota.', colorRed, scaffoldKey);  
         btnBool = true;      
       });
 
@@ -362,7 +360,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         bool resp; 
         if(mascotaData.id==null){
           if(mascotaData.birthdate.trim()=='') setState(() {
-            mostrarSnackbar('Debe completar los datos de la mascota.', Colors.red[300], scaffoldKey);  
+            mostrarSnackbar('Debe completar los datos de la mascota.', colorRed, scaffoldKey);  
             btnBool = true;      
           });
           else{
@@ -382,12 +380,12 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
     catch(e) {
       setState(() {
-        mostrarSnackbar('No se agregadó la mascota.', Colors.red[300], scaffoldKey);
+        mostrarSnackbar('No se agregadó la mascota.', colorRed, scaffoldKey);
         btnBool = true;      
       });
     }
   }
-  //Colors.red[300]
+  //colorRed
   boolSave(resp){
     if(resp){
       mostrarSnackbar('Mascota agregada.', colorMain, scaffoldKey);  
@@ -399,7 +397,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     
     }
     else setState(() {
-      mostrarSnackbar('No se agregadó la mascota.', Colors.red[300], scaffoldKey);  
+      mostrarSnackbar('No se agregadó la mascota.', colorRed, scaffoldKey);  
       btnBool = true;      
     });
   }

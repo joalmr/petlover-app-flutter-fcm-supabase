@@ -7,16 +7,13 @@ import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/login_provider.dart';
-
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
-  //final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -440,13 +437,33 @@ class _HomePageState extends State<HomePage> {
         shrinkWrap: true,
         itemCount: atenciones.length,
         itemBuilder: (BuildContext context, int index) {
-          return Dismissible(
+          var dismissible = Dismissible(
             key: UniqueKey(),
             background: Container(
-              color: Colors.red,
+              color: colorRed,
             ),
             direction: DismissDirection.endToStart,
-            onDismissed: (fn){},
+            // onDismissed: (fn){},
+            confirmDismiss: (fn)=>showDialog(
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialog(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  title: Text('Eliminar'),
+                  content: Text('Seguro que desea eliminar esta reserva?'),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: ()=>Navigator.pop(context), 
+                      child: Text('Cancelar')
+                    ),
+                    FlatButton(
+                      onPressed: (){},
+                      child: Text('Sí, eliminar')
+                    )
+                  ],
+                );
+              }
+            ),
             child: Column(
               children: <Widget>[
                 ListTile(
@@ -468,7 +485,6 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
                         textAlign: TextAlign.center,
                       ),
-                      //Icon(Icons.delete,color: Colors.red[300],size: 20.0,),
                     ],
                   ),
                   contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
@@ -477,6 +493,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           );
+          return dismissible;
         },
       );
     else

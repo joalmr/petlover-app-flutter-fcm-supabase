@@ -2,33 +2,33 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class ReservaDetallePage extends StatefulWidget {
   final String idvet;
-
   ReservaDetallePage({@required this.idvet});
-
   @override
   _ReservaDetallePageState createState() => _ReservaDetallePageState();
 }
 
 class _ReservaDetallePageState extends State<ReservaDetallePage> {
   final establecimientoProvider = EstablecimientoProvider();
-
   String phone="";
-  // double distanceInMeters;
+  List<MascotaModel> misMascotas;
+  final mascotaProvider = MascotaProvider();
+  Modal modal = new Modal();  
 
   @override
   Widget build(BuildContext context) {
-    Modal modal = new Modal();
+    
     return Scaffold(
       body: FutureBuilder(
         future: establecimientoProvider.getVet(widget.idvet),
@@ -39,7 +39,6 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             return Center(child: CircularProgressIndicator()); //valueColor: new AlwaysStoppedAnimation<Color>(colorMain),
           }
           else{
-            // print(mydata);
             return Stack(
               children: [
                 Container(
@@ -50,7 +49,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                   bottom: 0.0,
                   height: 100.0,
                   child: FlatButton(
-                    onPressed: ()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+                    onPressed: _reservar,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.only(top: 35.0),
@@ -96,7 +95,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
 
 
-Widget _onDetail(context,EstablecimientoModel localVet) {
+  Widget _onDetail(context,EstablecimientoModel localVet) {
   return Column(
     children: <Widget>[
       Container(
@@ -322,5 +321,10 @@ Widget _onDetail(context,EstablecimientoModel localVet) {
     } else {
       throw 'No se pudo llamar $url';
     }
+  }
+
+  _reservar() async {
+    misMascotas = await mascotaProvider.getPets();
+    modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
   }
 }

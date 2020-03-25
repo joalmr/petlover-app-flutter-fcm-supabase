@@ -17,19 +17,7 @@ class RazaProvider{
       }
     );
 
-    // final jsonResp = json.decode(resp.body);
     final razaModel = razaModelFromJson(resp.body);
     return razaModel;
-    // final Map<String, dynamic> decodedResp = json.decode(resp.body);
-    // print(decodedResp['breeds']);
-    // final datosRaza = decodedResp['breeds'];
-    // final List<RazaModel> razas = new List();
-    // if(datosRaza==null) return [];
-    // datosRaza.forEach((pet){
-    //   final petTemp = RazaModel.fromJson(pet);
-    //   razas.add(petTemp);
-    // });
-    // // print(razas);
-    // return razas;
   }
 }

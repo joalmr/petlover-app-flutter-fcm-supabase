@@ -56,7 +56,8 @@ calculateAge(DateTime birthDate) {
       lista.add(DropdownMenuItem(
         child: Row(
           children: <Widget>[
-            Image(image: NetworkImage(_lista.picture)),
+            CircleAvatar(backgroundImage: NetworkImage(_lista.picture), radius: 20.0,),
+            SizedBox(width: 5.0,),
             Text(_lista.name),
           ],
         ),

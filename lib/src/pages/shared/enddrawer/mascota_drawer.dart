@@ -76,9 +76,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                 onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: pet),
               ),
               ListTile(
-                leading: Icon(Icons.person_outline, color: Colors.red[300],),
+                leading: Icon(Icons.person_outline, color: colorRed,),
                 title: Text('Eliminar mascota', style: TextStyle(
-                  color: Colors.red[300],
+                  color: colorRed,
                   fontWeight: FontWeight.w400,
                 ),),
                 onTap: ()=>showDialog(

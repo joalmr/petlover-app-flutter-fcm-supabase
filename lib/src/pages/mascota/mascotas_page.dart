@@ -81,7 +81,7 @@ class _MascotasPageState extends State<MascotasPage> {
       key: UniqueKey(),
       direction: DismissDirection.endToStart,
       background: Container(
-        color: Colors.red[300],
+        color: colorRed,
       ),
       confirmDismiss: (fn)=>showDialog(
         context: context,
@@ -103,7 +103,7 @@ class _MascotasPageState extends State<MascotasPage> {
                     Navigator.pushReplacementNamed(context, 'mismascotas');
                   }
                   else{
-                    mostrarSnackbar("No se eliminó a ${mascota.name}", Colors.red[300], scaffoldKey);
+                    mostrarSnackbar("No se eliminó a ${mascota.name}", colorRed, scaffoldKey);
                     Navigator.pop(context);
                   }
                 },
@@ -150,7 +150,7 @@ class _MascotasPageState extends State<MascotasPage> {
             ],
           ),
           trailing: IconButton(
-            icon: Icon(Icons.edit,color: Colors.blue[300]), 
+            icon: Icon(Icons.edit,color: colorBlue), 
             onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: mascota)
           ),
         ),

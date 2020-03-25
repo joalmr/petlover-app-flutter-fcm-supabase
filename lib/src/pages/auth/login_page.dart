@@ -93,7 +93,7 @@ class _LoginSevenPageState extends State<LoginPage> {
     Map resp = await loginProvider.loginToken(loginModel);
 
     if(!resp['ok']){
-      mostrarSnackbar(resp['mensaje'], Colors.red[300], scaffoldKey);
+      mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
     }
     else{
       Navigator.pushReplacement(
@@ -101,16 +101,4 @@ class _LoginSevenPageState extends State<LoginPage> {
       );
     }    
   }
-
-  // void mostrarSnackbar(String mensaje){
-  //   final snackbar = SnackBar(
-  //     content: Text(mensaje),
-  //     duration: Duration(milliseconds: 2500),
-  //     backgroundColor: Colors.red[300],
-  //   );
-
-  //   scaffoldKey.currentState.showSnackBar(snackbar);
-    
-  // }
-
 }

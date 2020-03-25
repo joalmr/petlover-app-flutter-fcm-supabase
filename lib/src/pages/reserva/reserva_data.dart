@@ -5,19 +5,27 @@ import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:intl/intl.dart';
+import 'package:proypet/src/pages/shared/form_control/text_from.dart';
+import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 
-
 class DataReserva extends StatefulWidget {
-  final establecimientoID;
-  DataReserva({@required this.establecimientoID});
+  final String establecimientoID;
+  final List<MascotaModel> misMascotas;
+  final String mascotaID;
+  DataReserva({@required this.establecimientoID, @required this.misMascotas, @required this.mascotaID});
   @override
-  _Data createState() => _Data();
+  _Data createState() => _Data(establecimientoID: establecimientoID,misMascotas: misMascotas,mascotaID: mascotaID); //establecimientoID: this.establecimientoID,misMascotas: this.misMascotas
 }
 
 class _Data extends State<DataReserva> {
+  String establecimientoID;
+  List<MascotaModel> misMascotas;
+  String mascotaID;
+  _Data({@required this.establecimientoID, this.misMascotas, this.mascotaID});
+  
   String _fecha ='';
   String _hora ='';
   TextEditingController _inputFechaController=new TextEditingController();
@@ -34,39 +42,25 @@ class _Data extends State<DataReserva> {
     {'id':'4','name':'Desparasitación',},
   ];
 
-  String resarvaId="1";
-  List<MascotaModel> misMascotas = [];
-  String opcMascota;
+  String resarvaId = "1";
+  String observacion="";
   bool boolPet=false;
-
-  Future<bool> getMyPets() async {
-    misMascotas = await mascotaProvider.getPets();
-    opcMascota = misMascotas[0].id.toString();
-    boolPet=true;
-    return boolPet;
-  }
-  
 
   @override
   Widget build(BuildContext context) {   
-    // getMyPets();
     return Padding(
+      // key: scaffoldKey,
       padding: EdgeInsets.all(25.0),
-      child: FutureBuilder(
-        future: getMyPets(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          return snapshot.data ? _onFuture(misMascotas) : Center(child: CircularProgressIndicator());
-        },
-      ),
+      child: _onFuture(),
     );
   }
 
-  Widget _onFuture(List<MascotaModel> misMascotas){
+  Widget _onFuture(){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Text('Mascota'),          
-        ddlFuture(opcMascota, misMascotas, (opt){ setState(() { opcMascota=opt.toString(); });} ),
+        ddlFutureImg(mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
         SizedBox(height: 10.0,),
         Text('Fecha'),
         _crearFecha(context),
@@ -80,6 +74,8 @@ class _Data extends State<DataReserva> {
               resarvaId=opt; 
           });}
         ),
+        SizedBox(height: 10.0,),
+        textForm('Ingrese observación (opcional)', null, false, (value)=>observacion=value, TextCapitalization.words,""),
         SizedBox(height: 20.0,),
         buttonPri('Reservar', ()=>reservaDialog()),      
         SizedBox(height: 5.0),
@@ -141,7 +137,6 @@ class _Data extends State<DataReserva> {
       });
     }
   }
-
   
   Widget _crearHora(BuildContext context){
     return Material(
@@ -218,12 +213,15 @@ class _Data extends State<DataReserva> {
 
     booking.bookingAt = fechaTime;
     booking.establishmentId = widget.establecimientoID;
-    booking.petId = "193144f3-5791-4ecf-88b9-34f35a321695";
+    booking.petId = mascotaID;//"193144f3-5791-4ecf-88b9-34f35a321695";
     booking.typeId = resarvaId;
 
     bool resp = await bookingProvider.booking(booking);
     print(resp);
-
+    if(resp) Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+    else{
+      //mostrarSnackbar("Complete los datos", colorRed, scaffoldKey);
+    }
   }
 
 }
