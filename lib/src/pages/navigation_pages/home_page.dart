@@ -540,6 +540,7 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
     if(resp){
       mostrarSnackbar("Atención eliminada", colorMain, _scaffoldKey);
+      Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav')); //
     } 
     else{
       mostrarSnackbar("No se eliminó la atención", colorRed, _scaffoldKey);
