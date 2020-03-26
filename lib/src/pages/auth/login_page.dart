@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/login/login_model.dart';
+import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
-import 'package:proypet/src/providers/login_provider.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -18,8 +18,8 @@ class _LoginSevenPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   
-  LoginModel loginModel = LoginModel();
-  final loginProvider = LoginProvider();
+  UserModel userModel = UserModel();
+  final loginProvider = UserProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +33,12 @@ class _LoginSevenPageState extends State<LoginPage> {
             SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Email', Icons.alternate_email, false, (value)=>loginModel.email=value, TextCapitalization.none, null),
+              child: textForm('Email', Icons.alternate_email, false, (value)=>userModel.email=value, TextCapitalization.none, null),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>loginModel.password=value, TextCapitalization.none, null),
+              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>userModel.password=value, TextCapitalization.none, null),
             ),
             SizedBox(height: 25.0),
             Padding(
@@ -96,7 +96,7 @@ class _LoginSevenPageState extends State<LoginPage> {
     formKey.currentState.save();
     setState(() { });
 
-    Map resp = await loginProvider.loginToken(loginModel);
+    Map resp = await loginProvider.loginToken(userModel);
 
     if(!resp['ok']){
       mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);

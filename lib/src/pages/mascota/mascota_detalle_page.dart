@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/historias_model.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
 
@@ -9,17 +10,17 @@ import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class MascotaDetallePage extends StatefulWidget {
-  final String idmascota;
-  // final MascotaModel mascota;
-  MascotaDetallePage({@required this.idmascota});
+  // final String idmascota;
+  final MascotaModel mascota;
+  MascotaDetallePage({@required this.mascota});
 
   @override
-  _MascotaDetallePageState createState() => _MascotaDetallePageState(idmascota: idmascota);
+  _MascotaDetallePageState createState() => _MascotaDetallePageState(mascota: mascota);
 }
 
 class _MascotaDetallePageState extends State<MascotaDetallePage> {
-  final String idmascota;
-  _MascotaDetallePageState({@required this.idmascota});
+  MascotaModel mascota;
+  _MascotaDetallePageState({@required this.mascota});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final mascotaProvider = MascotaProvider();
 
@@ -28,13 +29,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     return Scaffold(
       key: _scaffoldKey,
       body: onDetail(),
-      endDrawer: MascotaDrawer(idPet: idmascota,),
+      endDrawer: MascotaDrawer(modelMascota: mascota,),
     );
   }
 
   Widget onDetail(){
     return FutureBuilder(
-      future: mascotaProvider.getPet(widget.idmascota),
+      future: mascotaProvider.getPet(mascota.id),
       builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
         final mydata=snapshot.data;
         if(!snapshot.hasData){

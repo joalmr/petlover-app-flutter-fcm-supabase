@@ -392,12 +392,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   boolSave(resp){
     if(resp){
       mostrarSnackbar('Mascota agregada.', colorMain, scaffoldKey);  
-      Timer(
-        Duration(milliseconds: 2500), (){
-          Navigator.pop(context);
-        }
-      );
-    
+      Timer(Duration(milliseconds: 2500), (){Navigator.pop(context);});
     }
     else setState(() {
       mostrarSnackbar('No se agregadó la mascota.', colorRed, scaffoldKey);  

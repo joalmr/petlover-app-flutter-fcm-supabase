@@ -3,15 +3,15 @@ import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/home_model.dart';
 import 'dart:convert';
-import 'package:proypet/src/model/login/login_model.dart';
+import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 
-class LoginProvider{
+class UserProvider{
   final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
-  Future<Map<String,dynamic>> loginToken(LoginModel login) async {
+  Future<Map<String,dynamic>> loginToken(UserModel login) async {
     final url = '$_url/login';   
 
     try{
@@ -54,6 +54,20 @@ class LoginProvider{
     final datosUsuario = homeModelFromJson(resp.body);
 
     return datosUsuario;
+  }
+
+  Future<bool> registerUser(UserModel user) async {
+    final url = '$_url/register';
+    final userData = { 
+      "name": user.name, 
+      "lastname": user.lastname, 
+      "email": user.email, 
+      "password": user.password
+    };
+    final resp = await http.post(url, body: userData );
+    print(resp.statusCode);
+    if(resp.statusCode==201) return true;
+    else return false;
   }
 }
   

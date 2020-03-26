@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
-import 'package:proypet/src/pages/mascota/mascotas_page.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
+import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
-import 'package:proypet/src/providers/login_provider.dart';
+import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +22,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final loginProvider = LoginProvider();
+  final loginProvider = UserProvider();
+  final bookingProvider = BookingProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget onUser() {
-    //final usuario = await loginProvider.getUser();
     return FutureBuilder(
       future: loginProvider.getUser(),
       builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot) {
@@ -275,7 +277,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _mascotas(mascotas){
+  Widget _mascotas(List<MascotaModel> mascotas){
     if(mascotas.length>0)
       return Container(
         height: 250.0,
@@ -320,7 +322,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              mascotas[index].breed,
+                              mascotas[index].breedName,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w400,
@@ -357,7 +359,7 @@ class _HomePageState extends State<HomePage> {
                                 Icon(Icons.cake, color: Colors.grey[300]),
                                 SizedBox(width: 5.0),
                                 Text(
-                                  calculateAge(mascotas[index].birthdate),//mascotas[index].age.toString(),
+                                  calculateAge(DateTime.parse(mascotas[index].birthdate)),//mascotas[index].age.toString(),
                                   style: TextStyle(color: Colors.grey[300]),
                                 )
                               ],
@@ -374,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                               horizontal: 15.0, vertical: 11.0),
                           color: Colors.black.withOpacity(0.15),
                           onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                            builder: (_)=>MascotaDetallePage(idmascota: mascotas[index].id),
+                            builder: (_)=>MascotaDetallePage(mascota: mascotas[index],),
                           )),
                           child: Text(
                             'Ver más',
@@ -401,9 +403,8 @@ class _HomePageState extends State<HomePage> {
               right: 0.0,
               child: FloatingActionButton(
                 backgroundColor: colorMain,
-                onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                  builder: (_)=>MascotasPage(),
-                )),
+                onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=>MascotaAgregarPage(),)),
                 child: Icon(Icons.playlist_add),
               ),
             ),
@@ -422,9 +423,8 @@ class _HomePageState extends State<HomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10.0,),
-            buttonPri('Agregar mascota', ()=>Navigator.push(context, MaterialPageRoute(
-                  builder: (_)=>MascotasPage(),
-                )),)
+            buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
+            //Navigator.push(context, MaterialPageRoute(builder: (_)=>MascotaAgregarPage(),)),)
           ],
         ),
       );
@@ -457,7 +457,7 @@ class _HomePageState extends State<HomePage> {
                       child: Text('Cancelar')
                     ),
                     FlatButton(
-                      onPressed: (){},
+                      onPressed: ()=>deleteBooking(atenciones[index].id),
                       child: Text('Sí, eliminar')
                     )
                   ],
@@ -518,8 +518,6 @@ class _HomePageState extends State<HomePage> {
         );
       else
         return Container(
-        // height: 150.0,
-        // width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -529,13 +527,22 @@ class _HomePageState extends State<HomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10.0,),
-            buttonPri('Agregar mascota', ()=>Navigator.push(context, MaterialPageRoute(
-                  builder: (_)=>MascotasPage(),
-                )),)
+            buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
+            // Navigator.push(context, MaterialPageRoute(builder: (_)=>MascotasPage(),)),)
           ],
         ),
       );
   }
 
-
+  deleteBooking(String id) async {
+    print(id);
+    bool resp = await bookingProvider.deleteBooking(id);
+    Navigator.pop(context);
+    if(resp){
+      mostrarSnackbar("Atención eliminada", colorMain, _scaffoldKey);
+    } 
+    else{
+      mostrarSnackbar("No se eliminó la atención", colorRed, _scaffoldKey);
+    } 
+  }
 }

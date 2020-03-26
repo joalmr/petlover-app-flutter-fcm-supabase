@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/mascota/pet_model.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 
 
 class MascotaDrawer extends StatefulWidget {
-  final String idPet;
-  // final MascotaModel modelMascota;
-  MascotaDrawer({@required this.idPet});
+  final MascotaModel modelMascota;
+  MascotaDrawer({@required this.modelMascota});
 
   @override
-  _MascotaDrawerState createState() => _MascotaDrawerState(idPet: idPet);
+  _MascotaDrawerState createState() => _MascotaDrawerState(mascota: modelMascota);
 }
 
 class _MascotaDrawerState extends State<MascotaDrawer> {
-  final String idPet;
-  _MascotaDrawerState({@required this.idPet});
+  MascotaModel mascota;
+  _MascotaDrawerState({@required this.mascota});
   final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
-  // final _prefs = new PreferenciasUsuario();
   final mascotaProvider = MascotaProvider(); 
 
   @override
@@ -42,83 +40,66 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   }
 
   dataList(){
-    return FutureBuilder(
-      future: mascotaProvider.getPet(idPet),
-      builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
-        if(!snapshot.hasData){
-          return Container(
-            height: MediaQuery.of(context).size.height/2,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        else{
-          final pet = snapshot.data.pet;
-          return Column(
-            children: <Widget>[                  
-              SizedBox(height: 40.0,),
-              Text(pet.name,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 24.0,
-                  letterSpacing: 3.0,
-                  color: Colors.black54,                      
-                ),
-              ),
-              SizedBox(height: 20.0,),
-              Divider(),
-              ListTile(
-                leading: Icon(Icons.edit),
-                title: Text('Editar datos', style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                ),),
-                onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: pet),
-              ),
-              ListTile(
-                leading: Icon(Icons.delete_forever, color: colorRed,),
-                title: Text('Eliminar mascota', style: TextStyle(
-                  color: colorRed,
-                  fontWeight: FontWeight.w400,
-                ),),
-                onTap: ()=>showDialog(
-                  context: context,
-                  builder: (BuildContext context){
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                      title: Text('Eliminar'),
-                      content: Text('Seguro que desea eliminar a ${pet.name}?'),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: ()=>Navigator.pop(context), 
-                          child: Text('Cancelar')
-                        ),
-                        FlatButton(
-                          onPressed: () async {
-                            bool resp = await mascotaProvider.deletePet(pet.id);
-                            if(resp){
-                              Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
-                              // Navigator.pushAndRemoveUntil(context,                                      
-                              //   MaterialPageRoute(builder: (BuildContext context) => NavigationBar(currentTabIndex: 1,)),
-                              //   ModalRoute.withName('/mismascotas')
-                              // );
-                            }
-                            else{
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Text('Sí, eliminar')
-                        )
-                      ],
-                    );
-                  }
-                )
-              )
-            ],
-          );
-        }
-        
-      },
+    return Column(
+      children: <Widget>[                  
+        SizedBox(height: 40.0,),
+        Text(mascota.name,
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 24.0,
+            letterSpacing: 3.0,
+            color: Colors.black54,                      
+          ),
+        ),
+        SizedBox(height: 20.0,),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.edit),
+          title: Text('Editar datos', style: TextStyle(
+            fontWeight: FontWeight.w400,
+          ),),
+          onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: mascota),
+        ),
+        ListTile(
+          leading: Icon(Icons.delete_forever, color: colorRed,),
+          title: Text('Eliminar mascota', style: TextStyle(
+            color: colorRed,
+            fontWeight: FontWeight.w400,
+          ),),
+          onTap: ()=>showDialog(
+            context: context,
+            builder: (BuildContext context){
+              return AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                title: Text('Eliminar'),
+                content: Text('Seguro que desea eliminar a ${mascota.name}?'),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: ()=>Navigator.pop(context), 
+                    child: Text('Cancelar')
+                  ),
+                  FlatButton(
+                    onPressed: () async {
+                      bool resp = await mascotaProvider.deletePet(mascota.id);
+                      if(resp){
+                        Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+                        // Navigator.pushAndRemoveUntil(context,                                      
+                        //   MaterialPageRoute(builder: (BuildContext context) => NavigationBar(currentTabIndex: 1,)),
+                        //   ModalRoute.withName('/mismascotas')
+                        // );
+                      }
+                      else{
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Text('Sí, eliminar')
+                  )
+                ],
+              );
+            }
+          )
+        )
+      ],
     );
   }
 

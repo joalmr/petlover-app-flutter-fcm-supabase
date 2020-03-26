@@ -33,4 +33,19 @@ class BookingProvider{
     }
   }
   
+  Future<bool> deleteBooking(String idBooking) async {
+    final url = '$_url/bookings/$idBooking/delete';
+
+    final resp = await http.post(url,
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    });
+    
+    if(resp.statusCode==200 || resp.statusCode==201){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }
