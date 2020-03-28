@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:proypet/src/pages/shared/appbar_menu.dart';
 
 
 class ReservaMapaPage extends StatefulWidget {
@@ -27,16 +28,6 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   PageController _pageController;
   int prevPage;
   String _mapStyle;
-  
-  nombreVet(index){
-    if(vetLocales[index].name.length>30){
-      return vetLocales[index].name.substring(0,29);
-    }
-    else{
-      return vetLocales[index].name;
-    }
-  }
-
   bool mapToggle = false;
   var currentLocation;
   //-12.013286, -77.101933
@@ -76,66 +67,72 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-            height: double.infinity,//MediaQuery.of(context).size.height,
-            width: double.infinity,//MediaQuery.of(context).size.width,
-            child: mapToggle ? GoogleMap(
-              myLocationEnabled: true,
-              myLocationButtonEnabled: true,
-              compassEnabled: true,              
-              gestureRecognizers:Set()
-              ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
-              ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
-              ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
-              ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
-              rotateGesturesEnabled: true,
-              scrollGesturesEnabled: true,
-              zoomGesturesEnabled: true,
-              tiltGesturesEnabled: true,
-              mapType: MapType.normal,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(vetLocales[0].latitude,vetLocales[0].longitude),//vetLocales[0].locationCoords, 
-                zoom: 16.0
-              ),
-              markers: Set.from(allMarkers),
-              onMapCreated: mapCreated,
-            ) : Container(
-              color: Colors.white,
-              child: Container(
-                color: Color(0xFFfcfefc),
-                child: Center(
-                  // child: CircularProgressIndicator()
-                  child: ClipRect(
-                    child: Image.asset('images/dog_loading.gif',
-                      height: 145.0,
-                      width: 145.0,
-                    ),
-                  )                  
-                ),
-              ),
-            )
-          ),
-          Positioned(
-            bottom: 25.0,
-            child: Container(
-              height: 200.0,
-              width: MediaQuery.of(context).size.width,
-              child: mapToggle ? PageView.builder(
-                controller: _pageController,
-                itemCount: vetLocales.length,
-                physics: BouncingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return _vetShopList(index);
-                },
-              ) : null
-            ),
-          )         
-      ],
+    return Scaffold(
+      appBar: appbar(null,'Mapa Establecimientos', null),
+      body: _onBody(),
     );
   }
 
+  Widget _onBody(){
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: double.infinity,//MediaQuery.of(context).size.height,
+          width: double.infinity,//MediaQuery.of(context).size.width,
+          child: mapToggle ? GoogleMap(
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
+            compassEnabled: true,              
+            gestureRecognizers:Set()
+            ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+            ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
+            ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
+            ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
+            rotateGesturesEnabled: true,
+            scrollGesturesEnabled: true,
+            zoomGesturesEnabled: true,
+            tiltGesturesEnabled: true,
+            mapType: MapType.normal,
+            initialCameraPosition: CameraPosition(
+              target: LatLng(vetLocales[0].latitude,vetLocales[0].longitude),//vetLocales[0].locationCoords, 
+              zoom: 16.0
+            ),
+            markers: Set.from(allMarkers),
+            onMapCreated: mapCreated,
+          ) : Container(
+            color: Colors.white,
+            child: Container(
+              color: Color(0xFFfcfefc),
+              child: Center(
+                child: CircularProgressIndicator()
+                // child: ClipRect(
+                //   child: Image.asset('images/dog_loading.gif',
+                //     height: 145.0,
+                //     width: 145.0,
+                //   ),
+                // )                  
+              ),
+            ),
+          )
+        ),
+        Positioned(
+          bottom: 25.0,
+          child: Container(
+            height: 200.0,
+            width: MediaQuery.of(context).size.width,
+            child: mapToggle ? PageView.builder(
+              controller: _pageController,
+              itemCount: vetLocales.length,
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return _vetShopList(index);
+              },
+            ) : null
+          ),
+        )         
+      ],
+    );
+  }
   void _onScroll() {
     if (_pageController.page.toInt() != prevPage) {
       prevPage = _pageController.page.toInt();
@@ -171,8 +168,6 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                   horizontal: 10.0,
                   vertical: 20.0,
                 ),
-                // height: 125.0,
-                // width: 275.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: [
@@ -242,4 +237,12 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
     );
   }
   
+  // nombreVet(index){
+  //   if(vetLocales[index].name.length>30){
+  //     return vetLocales[index].name.substring(0,29);
+  //   }
+  //   else{
+  //     return vetLocales[index].name;
+  //   }
+  // }
 }

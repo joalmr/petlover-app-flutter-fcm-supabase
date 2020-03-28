@@ -6,6 +6,7 @@ import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 
 
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/utils/utils.dart';
 
 class EstablecimientoProvider{
   final _url = urlGlobal;
@@ -27,6 +28,16 @@ class EstablecimientoProvider{
     if(vets.establecimientos==null) return [];
 
     return vets.establecimientos;
+
+    // final List<EstablecimientoModel> establecimiento = new List();
+
+    // vets.establecimientos.forEach( (f) async {
+    //   EstablecimientoModel estTemp = f;
+    //   estTemp.distancia = await fnDistance(f.latitude,f.longitude);
+    //   establecimiento.add(estTemp);
+    // });
+
+    // return establecimiento;
   }
 
   Future<EstablecimientoModel> getVet(String idVet) async {

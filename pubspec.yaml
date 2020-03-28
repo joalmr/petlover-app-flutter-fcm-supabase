@@ -92,6 +92,9 @@ flutter:
         - asset: fonts/Proypet.ttf
         # - asset: fonts/Schyler-Italic.ttf
         #   style: italic
+    - family: IconProypet
+      fonts:
+        - asset: fonts/IconProypet.ttf
     - family: PT Sans
       fonts:
         - asset: fonts/PT_Sans/PTSans-Regular.ttf

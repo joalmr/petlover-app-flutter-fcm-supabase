@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:proypet/src/utils/utils.dart';
+
 EstablecimientoModel establecimientoModelFromJson(String str) => EstablecimientoModel.fromJson(json.decode(str));
 
 String establecimientoModelToJson(EstablecimientoModel data) => json.encode(data.toJson());
@@ -26,7 +28,6 @@ class EstablecimientoList {
     );
   }
 }
-//
 
 class EstablecimientoModel {
     String id;
@@ -40,6 +41,7 @@ class EstablecimientoModel {
     List<String> slides;
     String logo;
     List<Service> services;
+    String distancia;
 
     EstablecimientoModel({
         this.id,
@@ -53,6 +55,7 @@ class EstablecimientoModel {
         this.slides,
         this.logo,
         this.services,
+        this.distancia,
     });
 
     factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
@@ -67,6 +70,7 @@ class EstablecimientoModel {
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
+        distancia: "",
     );
 
     Map<String, dynamic> toJson() => {

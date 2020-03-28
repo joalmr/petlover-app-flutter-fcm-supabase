@@ -1,10 +1,13 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:proypet/icon_proypet_icons.dart';
+import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
+import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
@@ -28,8 +31,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   String nameVet="";
 
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) {    
     return Scaffold(
       body: FutureBuilder(
         future: establecimientoProvider.getVet(widget.idvet),
@@ -94,8 +96,6 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
 //double distanciagps=0;
-
-
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
   return Column(
@@ -226,11 +226,8 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       ),
       SizedBox(height: 20.0),
       Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: _servicios(),
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 10.0,),
+        child: _servicios(localVet.services),
       ),
       SizedBox(height: 20.0),
       Container(
@@ -257,58 +254,49 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   );
 }
 
-  Widget _servicios(){
-    return Row(
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      // mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        //servicios()
-        _icoServicio('images/veterinaria2.png','Servicio 1'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 2'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 1'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 2'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 1'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 2'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 1'),
-        SizedBox(width: 10.0,),
-        _icoServicio('images/veterinaria2.png','Servicio 2'),
-        SizedBox(width: 10.0,),
-      ],
-    );
-    
+  Widget _servicios(List<Service> servicios){
+    return SizedBox(
+      height: 70,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: servicios.length,
+        itemBuilder: (BuildContext context, int index) => _icoServicio(servicios[index].slug, servicios[index].name),
+      ),
+    );   
   }
 
-  Widget _icoServicio(imagen,nombre){
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 5,),
-        Container(
-          height: 32,
-          width: 32,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: Colors.white,
-            boxShadow:[ 
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 3.0,
-                spreadRadius: 2.0
-            )],
+  Widget _icoServicio(String icon, String nombre){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 7.5),
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 5,),
+          Container(
+            height: 32,
+            width: 32,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Colors.white,
+              boxShadow:[ 
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 3.0,
+                  spreadRadius: 2.0
+              )],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Tooltip(
+                child: Icon(iconMap[icon]),
+                message: nombre,
+              ),
+            )
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Image(image: AssetImage(imagen)),
-          ) //Icon(Icons.pets, color: colorMain,),
-        ),
-        SizedBox(height: 5),
-        Text(nombre,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 10.0),)
-      ],
+          SizedBox(height: 5),
+          Text((nombre.length>6) ? '${nombre.substring(0,6)}..' : nombre ,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 8.0),)
+        ],
+      ),
     );
   }
 

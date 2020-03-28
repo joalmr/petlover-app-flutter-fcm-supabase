@@ -3,11 +3,11 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 //double size=55.0;
 
-Widget appbar(titulo,acc){
+Widget appbar( logo, String texto, List<Widget> acc){
   return AppBar(
     backgroundColor: colorMain,
-    leading: leadingH,
-    title: titulo,
+    leading: logo,
+    title: Text(texto, style: TextStyle(fontSize: 18.0,),),
     actions: acc,
   );
 }
@@ -46,7 +46,7 @@ final leadingH = Container(
   )
 );
 
-final titleH = Text("Proypet", style: TextStyle(fontSize: 22.0,),);
+final titleH = "Proypet";
 
 final actionsH = <Widget>[
   IconButton(

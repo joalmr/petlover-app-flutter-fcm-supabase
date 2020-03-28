@@ -59,7 +59,7 @@ class _Data extends State<DataReserva> {
     // ); 
     return Scaffold(
       // key: scaffoldKey,
-      appBar: appbar(Text('Reserva'), null),
+      appBar: appbar(null,'Reserva', null),
       body: _onFuture(),
       // padding: EdgeInsets.all(25.0),
       // child: _onFuture(),

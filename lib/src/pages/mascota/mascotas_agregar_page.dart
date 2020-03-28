@@ -57,13 +57,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(
-        // null,
-        Text((mascotaData==null) ? 'Agregar mascota' : 'Editar mascota',
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.normal
-          ),
-        ),
+        null,
+        (mascotaData==null) ? 'Agregar mascota' : 'Editar mascota',
         null,
       ),
       body: Stack(
