@@ -62,7 +62,6 @@ class RecompensasPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
-                contentPadding: EdgeInsets.zero,
                 title: Text('Veterinaria Prueba 1',style: TextStyle(fontSize: 14.0)),
                 trailing: Text('25'),
               ),
@@ -70,7 +69,6 @@ class RecompensasPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
-                contentPadding: EdgeInsets.zero,
                 title: Text('Veterinaria Prueba 1',style: TextStyle(fontSize: 14.0)),
                 trailing: Text('10'),
               ),
@@ -78,7 +76,6 @@ class RecompensasPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
-                contentPadding: EdgeInsets.zero,
                 title: Text('Veterinaria Prueba 2',style: TextStyle(fontSize: 14.0)),
                 trailing: Text('15'),
               ),
@@ -86,7 +83,6 @@ class RecompensasPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
-                contentPadding: EdgeInsets.zero,
                 title: Text('Veterinaria Prueba 2',style: TextStyle(fontSize: 14.0)),
                 trailing: Text('20'),
               ),
@@ -94,7 +90,6 @@ class RecompensasPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
-                contentPadding: EdgeInsets.zero,
                 title: Text('Veterinaria Prueba 1',style: TextStyle(fontSize: 14.0)),
                 trailing: Text('15'),
               ),
