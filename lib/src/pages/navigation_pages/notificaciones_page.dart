@@ -11,7 +11,7 @@ class NotificacionesPage extends StatelessWidget {
       appBar: appbar(leadingH,'Notificaciones',null),
       body: Container(
         child: Center(
-          child: Text('Notificaciones'),
+          child: Text('No cuenta con notificaciones'),
         ),
       ),
     );

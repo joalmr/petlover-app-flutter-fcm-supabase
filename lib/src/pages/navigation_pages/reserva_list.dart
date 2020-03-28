@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
-import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
@@ -37,7 +35,7 @@ class _ReservaListState extends State<ReservaList> {
       );
   }
 
-  _onTab(vetLocales) {    
+  _onTab(List<EstablecimientoModel> vetLocales) {    
     return Stack(
       children: <Widget>[
         CustomScrollView(
@@ -74,7 +72,7 @@ class _ReservaListState extends State<ReservaList> {
                 (BuildContext context, int index){
                   return buildVets(context,index, vetLocales);
                 },
-                childCount: 8
+                childCount: vetLocales.length
               ),
             ),
             SliverToBoxAdapter(

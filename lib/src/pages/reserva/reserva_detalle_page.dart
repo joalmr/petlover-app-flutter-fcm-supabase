@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/icon_proypet_icons.dart';
-import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
@@ -288,7 +286,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Tooltip(
-                child: Icon(iconMap[icon]),
+                child: Icon(iconMap[icon], color: Colors.black54,),
                 message: nombre,
               ),
             )
