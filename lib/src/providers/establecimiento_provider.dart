@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-
-
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/utils/utils.dart';
 
@@ -17,7 +15,7 @@ class EstablecimientoProvider{
 
     final resp = await http.get(url,
       headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"
       }
     );
 

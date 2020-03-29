@@ -89,13 +89,15 @@ calculateAge(DateTime birthDate) {
     return lista;
   }
 
-double calculateDistance(lat1, lon1, lat2, lon2){
+String calculateDistance(lat1, lon1, lat2, lon2){
+  //lat2 y lon2 mi posicion
   var p = 0.017453292519943295;
   var c = cos;
   var a = 0.5 - c((lat2 - lat1) * p)/2 + 
         c(lat1 * p) * c(lat2 * p) * 
         (1 - c((lon2 - lon1) * p))/2;
-  return 12742 * asin(sqrt(a));
+  var resp = 12742 * asin(sqrt(a));
+  return resp.toStringAsFixed(2);
 }
 
 Future<String> fnDistance(lat1,lng1) async{
@@ -113,7 +115,6 @@ Future<String> fnDistance(lat1,lng1) async{
     distanciaKm=(distanciaKm.split('.')[1]=='000') ? distanciaKm.split('.')[0] : distanciaKm;
   }
   return '${distanciaKm}km';
-
 }
 
 Future<Position> fnPosition() async{

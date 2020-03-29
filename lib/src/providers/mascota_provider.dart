@@ -141,7 +141,7 @@ class MascotaProvider{
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
       }, body: { 'base64':sendPic });
 
-    print(resp.statusCode);
+    // print(resp.statusCode);
   }
 
 }

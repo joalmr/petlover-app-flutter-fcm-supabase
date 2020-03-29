@@ -34,7 +34,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   bool btnBool = true;
   File foto;
   String datoPet = tipopet[0]['id'];
-  String opcRaza= '390'; // : razaGato[0]['cod'] ;
+  String opcRaza; //= '390'; // : razaGato[0]['cod'] ;
   MascotaModel mascotaData = new MascotaModel();
 
   String fechaEdit = '';
@@ -45,7 +45,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     final MascotaModel petData = ModalRoute.of(context).settings.arguments;
     if(petData==null){ //agregar
       mascotaData.specieId = int.tryParse(datoPet);
-      mascotaData.breedId = int.tryParse(opcRaza);      
+      // mascotaData.breedId = int.tryParse(opcRaza);      
     }
 
     else{ //editar
@@ -128,8 +128,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                         (opt){ setState(() {
                           datoPet=opt; 
                           mascotaData.specieId = int.tryParse(opt);
-                          if(datoPet=='1') opcRaza='390';
-                          else opcRaza='1';
+                          // if(datoPet=='1') opcRaza='390';
+                          // else opcRaza='1';
                         }
                       );}) : ddlMainOut(datoPet, tipopet, null, mascotaData.specieName),
                     ),
@@ -145,9 +145,10 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                           return Center(child: CircularProgressIndicator());
                         }
                         else{
+                          opcRaza=opcRaza=snapshot.data.breeds[0].id.toString();
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                            child: (petData==null) ? ddlFuture( opcRaza , snapshot.data.breeds , 
+                            child: (petData==null) ? ddlFuture( opcRaza, snapshot.data.breeds, 
                               (opt){ setState(() { 
                                 opcRaza=opt;
                                 mascotaData.breedId = int.tryParse(opt);

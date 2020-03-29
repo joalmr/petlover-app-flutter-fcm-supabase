@@ -10,6 +10,7 @@ import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/providers/user_provider.dart';
@@ -24,9 +25,18 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
+  
+  // final _prefs = new PreferenciasUsuario();
+  
+  // fnGetPosition() async {
+  //   final datoPosicion = await fnPosition();
+  //   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
+  //   print(_prefs.position);
+  // }
 
   @override
   Widget build(BuildContext context) {
+    // fnGetPosition();
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
@@ -91,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15.0),
                               onTap: ()=>Navigator.push(
                                 context,MaterialPageRoute(
-                                  builder: (context) => NavigationBar(currentTabIndex: 2,)
+                                  builder: (context) => NavigationBar(currentTabIndex: 2, marcar: 1),
                               )),
                               child: Stack(
                                 children: <Widget>[
@@ -127,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15.0),
                               onTap: ()=>Navigator.push(
                                 context,MaterialPageRoute(
-                                  builder: (context) => NavigationBar(currentTabIndex: 2,)
+                                  builder: (context) => NavigationBar(currentTabIndex: 2, marcar: 2),
                               )),
                               child: Stack(
                                 children: <Widget>[
@@ -163,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15.0),
                               onTap: ()=>Navigator.push(
                                 context,MaterialPageRoute(
-                                  builder: (context) => NavigationBar(currentTabIndex: 2,)
+                                  builder: (context) => NavigationBar(currentTabIndex: 2, marcar: 3)
                               )),
                               child: Stack(
                                 children: <Widget>[
@@ -199,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(15.0),
                               onTap: ()=>Navigator.push(
                                 context,MaterialPageRoute(
-                                  builder: (context) => NavigationBar(currentTabIndex: 2,)
+                                  builder: (context) => NavigationBar(currentTabIndex: 2, marcar: 4)
                               )),
                               child: Stack(
                                 children: <Widget>[
@@ -535,7 +545,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   deleteBooking(String id) async {
-    print(id);
+    // print(id);
     bool resp = await bookingProvider.deleteBooking(id);
     Navigator.pop(context);
     if(resp){

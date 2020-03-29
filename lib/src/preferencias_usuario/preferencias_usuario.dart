@@ -36,23 +36,14 @@ class PreferenciasUsuario {
   set token( String value ) {
     _prefs.setString('token', value);
   }
+
+  // get position {
+  //   return _prefs.getString('position') ?? '0';
+  // }
+
+  // set position( String value ) {
+  //   _prefs.setString('position', value);
+  // }
   
-  // get misMascotas {
-  //   return _prefs.getString('token') ?? '';
-  // }
-
-  // set misMascotas( List<MascotaModel> value ) {
-  //   _prefs.setString('token', value);
-  // }
-
-  // // GET y SET de la última página
-  // get ultimaPagina {
-  //   return _prefs.getString('ultimaPagina') ?? 'login';
-  // }
-
-  // set ultimaPagina( String value ) {
-  //   _prefs.setString('ultimaPagina', value);
-  // }
-
 }
 

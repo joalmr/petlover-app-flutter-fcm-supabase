@@ -5,6 +5,7 @@ import 'package:proypet/src/model/home_model.dart';
 import 'dart:convert';
 import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/utils/utils.dart';
 
 
 class UserProvider{
@@ -65,7 +66,7 @@ class UserProvider{
       "password": user.password
     };
     final resp = await http.post(url, body: userData );
-    print(resp.statusCode);
+    // print(resp.statusCode);
     if(resp.statusCode==201) return true;
     else return false;
   }

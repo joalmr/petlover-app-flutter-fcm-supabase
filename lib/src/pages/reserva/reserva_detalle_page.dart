@@ -7,6 +7,7 @@ import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
+import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -22,15 +23,18 @@ class ReservaDetallePage extends StatefulWidget {
 
 class _ReservaDetallePageState extends State<ReservaDetallePage> {
   final establecimientoProvider = EstablecimientoProvider();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   String phone="";
   List<MascotaModel> misMascotas;
   final mascotaProvider = MascotaProvider();
   Modal modal = new Modal();  
   String nameVet="";
 
+
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
+      key: scaffoldKey,
       body: FutureBuilder(
         future: establecimientoProvider.getVet(widget.idvet),
         builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
@@ -41,6 +45,10 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           }
           else{
             nameVet = mydata.name;
+
+            // print(mydata.logo);
+            // print(mydata.slides);
+
             return Stack(
               children: [
                 Container(
@@ -96,161 +104,161 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 //double distanciagps=0;
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
-  return Column(
-    children: <Widget>[
-      Container(
-        height: 325.0,
-        width: double.infinity,
-        child: (localVet.slides.length>0) ? _swiperVets(localVet.slides) : _swiperVets(["images/vet_prueba.jpg"])
-      ),
-      SizedBox(height: .5),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0.0),
-        child: Container(
-          width: MediaQuery.of(context).size.width - 0.0,
-          child: ListTile(
-            title: Text(localVet.name,//nombreVet(0),
-              maxLines: 2,
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600
-              )
-            ),
-            subtitle: FutureBuilder(
-              future: fnDistance(localVet.latitude,localVet.longitude),
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if(!snapshot.hasData){
-                  return Text("");
-                }
-                else{
-                  return RichText(
-                    text: TextSpan(
-                      text: '',
-                      style: DefaultTextStyle.of(context).style,
-                      children: <TextSpan>[
-                        TextSpan(text: '${snapshot.data} ',),
-                        TextSpan(text: '${localVet.address}',style: TextStyle(fontStyle: FontStyle.italic)),
-                      ],
-                    ),
-                  );
-                }
-              },
-            ),
-            trailing: Container(
-              height: 65.0,
-              width: 65.0,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(100.0),
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(localVet.logo),
-                  fit: BoxFit.cover
+    return Column(
+      children: <Widget>[
+        Container(
+          height: 325.0,
+          width: double.infinity,
+          child: (localVet.slides.length>0) ? _swiperVets(localVet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false)
+        ),
+        SizedBox(height: .5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
+          child: Container(
+            width: MediaQuery.of(context).size.width - 0.0,
+            child: ListTile(
+              title: Text(localVet.name,//nombreVet(0),
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600
                 )
+              ),
+              subtitle: FutureBuilder(
+                future: fnDistance(localVet.latitude,localVet.longitude),
+                builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if(!snapshot.hasData){
+                    return Text("");
+                  }
+                  else{
+                    return RichText(
+                      text: TextSpan(
+                        text: '',
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(text: '${snapshot.data} ',),
+                          TextSpan(text: '${localVet.address}',style: TextStyle(fontStyle: FontStyle.italic)),
+                        ],
+                      ),
+                    );
+                  }
+                },
+              ),
+              trailing: Container(
+                height: 65.0,
+                width: 65.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(100.0),
+                  image: DecorationImage(
+                    image: CachedNetworkImageProvider(localVet.logo),
+                    fit: BoxFit.cover
+                  )
+                ),
               ),
             ),
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 20.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text('Recomendación',
-                style: TextStyle(
-                    fontSize: 15.0,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600)),
-                SizedBox(width: 15.0),
-                Stack(
-                  children: <Widget>[
-                    Container(height: 40.0, width: 100.0),
-                    Positioned(
-                      left: 10.0,
-                      child: Container(
-                        height: 40.0,
-                        width: 40.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: colorMain //Color(0xFFFE7050)
-                        ),
-                        child: Center(
-                          child: Text(localVet.votes.toString(),
-                            style: TextStyle(
-                              fontSize: 12.0, color: Colors.white
-                            )
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text('Recomendación',
+                  style: TextStyle(
+                      fontSize: 15.0,
+                      color: Color(0xFF6A6A6A),
+                      fontWeight: FontWeight.w600)),
+                  SizedBox(width: 15.0),
+                  Stack(
+                    children: <Widget>[
+                      Container(height: 40.0, width: 100.0),
+                      Positioned(
+                        left: 10.0,
+                        child: Container(
+                          height: 40.0,
+                          width: 40.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: colorMain //Color(0xFFFE7050)
+                          ),
+                          child: Center(
+                            child: Text(localVet.votes.toString(),
+                              style: TextStyle(
+                                fontSize: 12.0, color: Colors.white
+                              )
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        SizedBox(width: 55.0),
-                        Container(
-                          height: 40.0,
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: Colors.black.withOpacity(0.2)),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.star, color: Colors.white, size: 12.0),
-                                SizedBox(width: 5.0),
-                                Text(localVet.stars.toString(),style: TextStyle(color: Colors.white))
-                              ],
-                            ),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(width: 55.0),
+                          Container(
+                            height: 40.0,
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.black.withOpacity(0.2)),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.star, color: Colors.white, size: 12.0),
+                                  SizedBox(width: 5.0),
+                                  Text(localVet.stars.toString(),style: TextStyle(color: Colors.white))
+                                ],
+                              ),
+                            )
                           )
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: FloatingActionButton(
-                backgroundColor: colorMain,
-                child: Icon(Icons.phone, color: Colors.white,),
-                onPressed: _launchPhone, 
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.only(right: 15.0),
+                child: FloatingActionButton(
+                  backgroundColor: colorMain,
+                  child: Icon(Icons.phone, color: Colors.white,),
+                  onPressed: _launchPhone, 
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-      SizedBox(height: 20.0),
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: 10.0,),
-        child: _servicios(localVet.services),
-      ),
-      SizedBox(height: 20.0),
-      Container(
-        padding: EdgeInsets.only(left: 20.0,right: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[  
-            Text('Descripción',
-              style: TextStyle(
-                  fontSize: 15.0,
-                  color: Color(0xFF6A6A6A),
-                  fontWeight: FontWeight.w600)),  
-            SizedBox(height: 10.0,),
-            Text(localVet.description,textAlign: TextAlign.justify,),
-            SizedBox(width: double.infinity,),
-            // Text('Est laborum tempor sunt aliquip ex mollit cillum commodo laborum laborum laborum excepteur mollit. Adipisicing et irure Lorem qui nisi officia non eu. Officia dolor laboris sunt ipsum pariatur in minim dolor amet. Labore do nostrud sit ipsum aliqua aliqua cupidatat eu. Aliquip duis anim nostrud consequat enim ipsum. Consequat proident ex occaecat laboris ea exercitation culpa ex laborum dolore irure. Exercitation ea eu mollit Lorem. Laborum dolor tempor officia adipisicing esse enim sint consectetur anim in anim pariatur duis. Lorem ex non enim pariatur. Id sit adipisicing mollit laborum exercitation officia eiusmod voluptate ea labore ullamco est consectetur do. Excepteur est eu amet laboris in laboris non Lorem veniam. Consequat reprehenderit incididunt cupidatat aliqua deserunt. Officia pariatur ad irure proident tempor. Velit qui nulla reprehenderit ut do eu fugiat. Est enim veniam enim velit sint incididunt qui sint nulla sunt. Reprehenderit ullamco nisi voluptate elit laborum occaecat consequat.'
-            //   ,textAlign: TextAlign.justify,
-            // )
-          ],
+        SizedBox(height: 20.0),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 10.0,),
+          child: _servicios(localVet.services),
         ),
-      ),
-    ],
-  );
-}
+        SizedBox(height: 20.0),
+        Container(
+          padding: EdgeInsets.only(left: 20.0,right: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[  
+              Text('Descripción',
+                style: TextStyle(
+                    fontSize: 15.0,
+                    color: Color(0xFF6A6A6A),
+                    fontWeight: FontWeight.w600)),  
+              SizedBox(height: 10.0,),
+              Text(localVet.description,textAlign: TextAlign.justify,),
+              SizedBox(width: double.infinity,),
+              // Text('Est laborum tempor sunt aliquip ex mollit cillum commodo laborum laborum laborum excepteur mollit. Adipisicing et irure Lorem qui nisi officia non eu. Officia dolor laboris sunt ipsum pariatur in minim dolor amet. Labore do nostrud sit ipsum aliqua aliqua cupidatat eu. Aliquip duis anim nostrud consequat enim ipsum. Consequat proident ex occaecat laboris ea exercitation culpa ex laborum dolore irure. Exercitation ea eu mollit Lorem. Laborum dolor tempor officia adipisicing esse enim sint consectetur anim in anim pariatur duis. Lorem ex non enim pariatur. Id sit adipisicing mollit laborum exercitation officia eiusmod voluptate ea labore ullamco est consectetur do. Excepteur est eu amet laboris in laboris non Lorem veniam. Consequat reprehenderit incididunt cupidatat aliqua deserunt. Officia pariatur ad irure proident tempor. Velit qui nulla reprehenderit ut do eu fugiat. Est enim veniam enim velit sint incididunt qui sint nulla sunt. Reprehenderit ullamco nisi voluptate elit laborum occaecat consequat.'
+              //   ,textAlign: TextAlign.justify,
+              // )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _servicios(List<Service> servicios){
     return SizedBox(
@@ -298,8 +306,8 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     );
   }
 
-  Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen, height: 145.0,);    
+  Widget _swiperVets(imagen, bool urlBool){
+    return CardSwiper(imagenes : imagen, urlBool: urlBool, height: 145.0,);    
   }
 
   _launchPhone() async {
@@ -314,8 +322,14 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   _reservar() async {
     misMascotas = await mascotaProvider.getPets();
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
-    Navigator.push(
-      context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: nameVet,))
-    );
+    if(misMascotas.length>0){
+      Navigator.push(
+        context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: nameVet,))
+      );
+    }
+    else{
+      mostrarSnackbar('No tienes mascotas registradas', colorRed, scaffoldKey);  
+    }
+    
   }
 }

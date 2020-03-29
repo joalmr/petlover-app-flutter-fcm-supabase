@@ -70,7 +70,7 @@ class EstablecimientoModel {
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        distancia: "",
+        distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), 76.22, 80.22).toString(),
     );
 
     Map<String, dynamic> toJson() => {

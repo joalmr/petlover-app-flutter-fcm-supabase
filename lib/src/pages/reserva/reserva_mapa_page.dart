@@ -61,6 +61,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
         position: LatLng(element.latitude,element.longitude), //element.locationCoords,
         ));
     });
+    
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
   }

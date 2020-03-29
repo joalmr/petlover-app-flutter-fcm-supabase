@@ -6,6 +6,10 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 
   Widget buildVets(BuildContext context, int index, List<EstablecimientoModel> vetLocales){
     var vet = vetLocales[index % vetLocales.length];
+
+    // print(vet.slides);
+    // print(vet.slides.length);
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
       child: InkWell(
@@ -18,7 +22,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  (vet.slides.length>0) ? _swiperVets(vet.slides) : _swiperVets(["images/vet_prueba.jpg"]),
+                  (vet.slides.length>0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false),
                   Positioned(//logo
                     bottom: 5.0,
                     right: 5.0,
@@ -70,6 +74,6 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
     );
   }
 
-  Widget _swiperVets(imagen){
-    return CardSwiper(imagenes : imagen,radius: 10.0,height: 175.0,scale: 0.9,);    
+  Widget _swiperVets(imagen, bool url){
+    return CardSwiper(imagenes : imagen,urlBool: url,radius: 10.0,height: 175.0,scale: 0.9,);    
   }

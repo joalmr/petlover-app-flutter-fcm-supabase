@@ -258,7 +258,7 @@ class _Data extends State<DataReserva> {
       booking.typeId = resarvaId;
 
       bool resp = await bookingProvider.booking(booking);
-      print(resp);
+      // print(resp);
       if(resp) Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
     }
   }
