@@ -50,13 +50,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
               Container(
                 child: Image(
                   image: CachedNetworkImageProvider(mydata.pet.picture),
-                  height: 300,
+                  height: 350,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 275.0,left: 5.0,right: 5.0),
+                margin: EdgeInsets.only(top: 330.0,left: 5.0,right: 5.0),
                 decoration: BoxDecoration(
                   borderRadius: borderRadius,
                   color: Colors.white,                            
@@ -66,7 +66,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                   child: Column(
                     children: <Widget>[                      
                       datoMascota(mydata.pet),
-                      numAtenciones(),
+                      // numAtenciones(),
                       listaHistorial(context)
                     ],
                   ),
@@ -129,43 +129,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     );
   }
 
-  numAtenciones(){
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          casilleroAtencion('120','Consultas'),
-          casilleroAtencion('20','Vacunas'),
-          casilleroAtencion('80','Baños'),
-          casilleroAtencion('120','Desparasitaciones'),
-        ],
-      ),
-    );
-  }
-
-  casilleroAtencion(String cantidad,String texto){
-    return Container(
-      height: 65.0,
-      width: 65.0,
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        border: Border.all(
-          color: colorMain,
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(cantidad, style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
-          Text(texto, style: TextStyle(color: colorMain, fontSize: 7.5),),
-        ],
-      ),
-    );
-  }
 
   listaHistorial(BuildContext context){
     return ListView.builder(
@@ -227,4 +190,43 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
       } 
     );
   }
+
+  numAtenciones(){
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          casilleroAtencion('120','Consultas'),
+          casilleroAtencion('20','Vacunas'),
+          casilleroAtencion('80','Baños'),
+          casilleroAtencion('120','Desparasitaciones'),
+        ],
+      ),
+    );
+  }
+
+  casilleroAtencion(String cantidad,String texto){
+    return Container(
+      height: 65.0,
+      width: 65.0,
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        border: Border.all(
+          color: colorMain,
+          width: 1,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(cantidad, style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+          Text(texto, style: TextStyle(color: colorMain, fontSize: 7.5),),
+        ],
+      ),
+    );
+  }
+
 }

@@ -37,13 +37,13 @@ class PreferenciasUsuario {
     _prefs.setString('token', value);
   }
 
-  // get position {
-  //   return _prefs.getString('position') ?? '0';
-  // }
+  get position {
+    return _prefs.getString('position') ?? '0';
+  }
 
-  // set position( String value ) {
-  //   _prefs.setString('position', value);
-  // }
+  set position( String value ) {
+    _prefs.setString('position', value);
+  }
   
 }
 

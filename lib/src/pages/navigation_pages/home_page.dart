@@ -26,17 +26,17 @@ class _HomePageState extends State<HomePage> {
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
   
-  // final _prefs = new PreferenciasUsuario();
+  final _prefs = new PreferenciasUsuario();
   
-  // fnGetPosition() async {
-  //   final datoPosicion = await fnPosition();
-  //   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-  //   print(_prefs.position);
-  // }
+  fnGetPosition() async {
+    final datoPosicion = await fnPosition();
+    _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
+    print(_prefs.position);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // fnGetPosition();
+    fnGetPosition();
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,

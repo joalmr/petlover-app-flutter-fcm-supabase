@@ -70,7 +70,10 @@ class _NavigationBarState extends State<NavigationBar> {
     );
 
     return Scaffold(
-      body: _kTabPages[currentTabIndex],
+      body: GestureDetector(
+        
+        child: _kTabPages[currentTabIndex],
+      ),
       bottomNavigationBar: bottomNavBar,
     );
 

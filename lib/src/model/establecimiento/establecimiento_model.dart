@@ -4,12 +4,14 @@
 
 import 'dart:convert';
 
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 EstablecimientoModel establecimientoModelFromJson(String str) => EstablecimientoModel.fromJson(json.decode(str));
 
 String establecimientoModelToJson(EstablecimientoModel data) => json.encode(data.toJson());
 
+final _prefs = new PreferenciasUsuario();
 //
 class EstablecimientoList {
   final List<EstablecimientoModel> establecimientos;
@@ -70,7 +72,7 @@ class EstablecimientoModel {
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), 76.22, 80.22).toString(),
+        distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), double.parse(_prefs.position.split(',')[0]), double.parse(_prefs.position.split(',')[1]) ).toString(),
     );
 
     Map<String, dynamic> toJson() => {

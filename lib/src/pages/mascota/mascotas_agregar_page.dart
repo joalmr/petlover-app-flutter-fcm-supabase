@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/raza/raza_model.dart';
+import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
+import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -285,7 +288,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
  
   _mostrarFoto(petData){
-    if(petData!=null && foto==null) return NetworkImage(mascotaData.picture);
+    if(petData!=null && foto==null) return CachedNetworkImageProvider(mascotaData.picture);
     if(foto!=null) return FileImage(foto);
     return AssetImage('images/no-image.png');
   }
@@ -373,7 +376,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
             mascotaData.birthdate=fechaEdit;
           }
           resp = await mascotaProvider.editPet(mascotaData, foto);
-          boolSave(resp);
+
+          boolEdit(resp);
         }
       }
     }
@@ -388,10 +392,26 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   boolSave(resp){
     if(resp){
       mostrarSnackbar('Mascota agregada.', colorMain, scaffoldKey);  
-      Timer(Duration(milliseconds: 2500), (){Navigator.pop(context);});
+      Timer(Duration(milliseconds: 2000), (){Navigator.pop(context);});
     }
     else setState(() {
       mostrarSnackbar('No se agregadó la mascota.', colorRed, scaffoldKey);  
+      btnBool = true;      
+    });
+  }
+
+  boolEdit(resp){
+    if(resp){
+      mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);  
+      Timer(Duration(milliseconds: 2000), (){
+        // Navigator.maybePop(context);
+        // Navigator.maybePop(context);
+        var route = MaterialPageRoute( builder: ((BuildContext context) => MascotaDetallePage(mascota: mascotaData) ));
+        Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) { return route.isFirst; });
+      });
+    }
+    else setState(() {
+      mostrarSnackbar('No se guardó los datos.', colorRed, scaffoldKey);  
       btnBool = true;      
     });
   }

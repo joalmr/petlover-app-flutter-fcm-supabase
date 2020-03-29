@@ -8,6 +8,7 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 
 class ReservaList extends StatefulWidget {
@@ -23,10 +24,13 @@ class _ReservaListState extends State<ReservaList> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
   List<dynamic> listaFiltros=[];
+  final _prefs = new PreferenciasUsuario();
   
   @override
   Widget build(BuildContext context) {
-    print(marcar);
+  
+    print(_prefs.position);
+    // print(marcar);
     if(marcar!=null){
       listaFiltros.clear();
       if(marcar==1) listaFiltros.add({"name":"Consulta","icon":"consultation"});
@@ -57,6 +61,7 @@ class _ReservaListState extends State<ReservaList> {
   }
 
   _onTab(List<EstablecimientoModel> vetLocales) {    
+    // vetLocales.sort((a,b)=>a.distancia.compareTo(b.distancia));
     return Stack(
       children: <Widget>[
         CustomScrollView(

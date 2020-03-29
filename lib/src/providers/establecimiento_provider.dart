@@ -20,22 +20,10 @@ class EstablecimientoProvider{
     );
 
     final jsonResp = json.decode(resp.body);
-
     EstablecimientoList vets =  EstablecimientoList.fromJson(jsonResp);
-
     if(vets.establecimientos==null) return [];
 
     return vets.establecimientos;
-
-    // final List<EstablecimientoModel> establecimiento = new List();
-
-    // vets.establecimientos.forEach( (f) async {
-    //   EstablecimientoModel estTemp = f;
-    //   estTemp.distancia = await fnDistance(f.latitude,f.longitude);
-    //   establecimiento.add(estTemp);
-    // });
-
-    // return establecimiento;
   }
 
   Future<EstablecimientoModel> getVet(String idVet) async {
