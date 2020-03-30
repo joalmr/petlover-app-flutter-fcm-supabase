@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 
 PetModel petModelFromJson(String str) => PetModel.fromJson(json.decode(str));
@@ -12,7 +13,7 @@ String petModelToJson(PetModel data) => json.encode(data.toJson());
 
 class PetModel {
     MascotaModel pet;
-    List<dynamic> history;
+    List<HistoriaModel> history;
 
     PetModel({
         this.pet,
@@ -21,7 +22,7 @@ class PetModel {
 
     factory PetModel.fromJson(Map<String, dynamic> json) => PetModel(
         pet: MascotaModel.fromJson(json["pet"]),
-        history: List<dynamic>.from(json["history"].map((x) => x)),
+        history: List<HistoriaModel>.from(json["history"].map((x) => HistoriaModel.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {

@@ -45,6 +45,8 @@ class MascotaProvider{
 
     final resp = await http.get(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
     final petModel = petModelFromJson(resp.body);
+
+    print(petModel.history[0].attentionId);
     
     return petModel;
   }

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:proypet/icon_proypet_icons.dart';
+import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/historias_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
@@ -67,7 +69,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                     children: <Widget>[                      
                       datoMascota(mydata.pet),
                       // numAtenciones(),
-                      listaHistorial(context)
+                      listaHistorial(context, mydata.history),
                     ],
                   ),
                 ),         
@@ -130,11 +132,11 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
   }
 
 
-  listaHistorial(BuildContext context){
+  listaHistorial(BuildContext context, List<HistoriaModel> historias){
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: historialList.length,
+      itemCount: historias.length,
       itemBuilder: (context, int index){
         return FlatButton(
           onPressed: (){},          
@@ -149,7 +151,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                     children: <Widget>[
                       CircleAvatar(
                         backgroundColor: Colors.transparent,
-                        backgroundImage: CachedNetworkImageProvider(historialList[0].logo),
+                        backgroundImage: CachedNetworkImageProvider('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
                         radius: 25.0,
                       ),
                       SizedBox(width: 7.0),
@@ -157,14 +159,15 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            historialList[0].nombreVet,
+                            historias[index].establishment,
+                            //historialList[0].nombreVet,
                             style: TextStyle(
                               color: Colors.black87,
                               fontSize: 17.0,
                               fontWeight: FontWeight.w600
                             ),
                           ),
-                          Icon(Icons.local_hospital,size: 18.0,color: Colors.black.withOpacity(.5)),
+                          Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
                         ],
                       ),
                     ],
@@ -173,11 +176,11 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                 Column(
                   children: <Widget>[
                     Text(
-                      historialList[0].fecha,
+                      historias[index].createdAt.toString().split(' ')[0],
                       style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      historialList[0].hora,
+                      historias[index].createdAt.toString().split(' ')[1],
                       style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,
                     ),
@@ -191,42 +194,42 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     );
   }
 
-  numAtenciones(){
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          casilleroAtencion('120','Consultas'),
-          casilleroAtencion('20','Vacunas'),
-          casilleroAtencion('80','Baños'),
-          casilleroAtencion('120','Desparasitaciones'),
-        ],
-      ),
-    );
-  }
+  // numAtenciones(){
+  //   return SingleChildScrollView(
+  //     scrollDirection: Axis.horizontal,
+  //     child: Row(
+  //       //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //       children: <Widget>[
+  //         casilleroAtencion('120','Consultas'),
+  //         casilleroAtencion('20','Vacunas'),
+  //         casilleroAtencion('80','Baños'),
+  //         casilleroAtencion('120','Desparasitaciones'),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  casilleroAtencion(String cantidad,String texto){
-    return Container(
-      height: 65.0,
-      width: 65.0,
-      margin: EdgeInsets.symmetric(horizontal: 10.0),
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        border: Border.all(
-          color: colorMain,
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(cantidad, style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
-          Text(texto, style: TextStyle(color: colorMain, fontSize: 7.5),),
-        ],
-      ),
-    );
-  }
+  // casilleroAtencion(String cantidad,String texto){
+  //   return Container(
+  //     height: 65.0,
+  //     width: 65.0,
+  //     margin: EdgeInsets.symmetric(horizontal: 10.0),
+  //     decoration: BoxDecoration(
+  //       borderRadius: borderRadius,
+  //       border: Border.all(
+  //         color: colorMain,
+  //         width: 1,
+  //       ),
+  //     ),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: <Widget>[
+  //         Text(cantidad, style: TextStyle(color: colorMain, fontSize: 18.0, fontWeight: FontWeight.bold),),
+  //         Text(texto, style: TextStyle(color: colorMain, fontSize: 7.5),),
+  //       ],
+  //     ),
+  //   );
+  // }
 
 }
