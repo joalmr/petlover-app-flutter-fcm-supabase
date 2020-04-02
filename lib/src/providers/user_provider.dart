@@ -65,7 +65,6 @@ class UserProvider{
       "password": user.password
     };
     final resp = await http.post(url, body: userData );
-    // print(resp.statusCode);
     if(resp.statusCode==201) return true;
     else return false;
   }

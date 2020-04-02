@@ -45,8 +45,6 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           else{
             nameVet = mydata.name;
             phone = mydata.phone;//"+51993191969";
-            // print(mydata.logo);
-            // print(mydata.slides);
 
             return Stack(
               children: [

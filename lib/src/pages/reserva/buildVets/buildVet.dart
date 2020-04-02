@@ -7,9 +7,6 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
   Widget buildVets(BuildContext context, int index, List<EstablecimientoModel> vetLocales){
     var vet = vetLocales[index % vetLocales.length];
 
-    // print(vet.slides);
-    // print(vet.slides.length);
-
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
       child: InkWell(

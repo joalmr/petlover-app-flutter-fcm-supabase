@@ -261,7 +261,6 @@ class _Data extends State<DataReserva> {
       booking.observation= _inputObsController.text;
 
       bool resp = await bookingProvider.booking(booking);
-      // print(resp);
       if(resp) Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
     }
   }

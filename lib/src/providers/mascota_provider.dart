@@ -45,8 +45,6 @@ class MascotaProvider{
 
     final resp = await http.get(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
     final petModel = petModelFromJson(resp.body);
-
-    // print(petModel.history[0].attentionId);
     
     return petModel;
   }
@@ -92,7 +90,6 @@ class MascotaProvider{
     int intMascota=0;
     if(mascota.genre) intMascota=1;    
     //else intMascota=0;
-    print(mascota);
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
@@ -139,11 +136,11 @@ class MascotaProvider{
 
     String sendPic = 'data:$part0/$part1;base64,$pic';
 
-    final resp = await http.post(url,
+    await http.post(url,
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
       }, body: { 'base64':sendPic });
-
+    // final resp = 
     // print(resp.statusCode);
   }
 

@@ -15,9 +15,6 @@
 //       nuevaLista.add(estTemp);      
 //     }
 
-//     print(nuevaLista);
-//     print(nuevaLista[0].name);
-
 //     return nuevaLista.sort((a,b) => a.distancia.compareTo(b.distancia));
 
 //   });

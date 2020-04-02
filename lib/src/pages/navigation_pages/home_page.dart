@@ -31,7 +31,6 @@ class _HomePageState extends State<HomePage> {
   fnGetPosition() async {
     final datoPosicion = await fnPosition();
     _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-    print(_prefs.position);
   }
 
   @override
@@ -559,7 +558,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   deleteBooking(String id) async {
-    // print(id);
     bool resp = await bookingProvider.deleteBooking(id);
     Navigator.pop(context);
     if(resp){
