@@ -8,46 +8,50 @@ class HistoriaModel {
     String attentionId;
     String establishmentId;
     String establishment;
+    String establishmentLogo;
     double weight;
     double heartRhythm;
     double temperature;
     String bodyCondition;
     String createdAt;
-    List<dynamic> details;
+    // List<dynamic> details;
 
     HistoriaModel({
         this.attentionId,
         this.establishmentId,
         this.establishment,
+        this.establishmentLogo,
         this.weight,
         this.heartRhythm,
         this.temperature,
         this.bodyCondition,
         this.createdAt,
-        this.details,
+        // this.details,
     });
 
     factory HistoriaModel.fromJson(Map<String, dynamic> json) => HistoriaModel(
         attentionId: json["attention_id"],
         establishmentId: json["establishment_id"],
         establishment: json["establishment"],
+        establishmentLogo: json["establishment_logo"],
         weight: json["weight"].toDouble(),
         heartRhythm: json["heart_rhythm"].toDouble(),
         temperature: json["temperature"].toDouble(),
         bodyCondition: json["body_condition"],
         createdAt: json["created_at"],
-        details: List<dynamic>.from(json["details"].map((x) => x)),
+        // details: List<dynamic>.from(json["details"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {
         "attention_id": attentionId,
         "establishment_id": establishmentId,
         "establishment": establishment,
+        "establishment_logo": establishmentLogo,
         "weight": weight,
         "heart_rhythm": heartRhythm,
         "temperature": temperature,
         "body_condition": bodyCondition,
         "created_at": createdAt,
-        "details": List<dynamic>.from(details.map((x) => x)),
+        // "details": List<dynamic>.from(details.map((x) => x)),
     };
 }

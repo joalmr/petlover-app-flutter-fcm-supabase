@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/model/mascota/historia_model.dart';
-import 'package:proypet/src/model/mascota/historias_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
@@ -151,7 +150,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                     children: <Widget>[
                       CircleAvatar(
                         backgroundColor: Colors.transparent,
-                        backgroundImage: CachedNetworkImageProvider('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
+                        backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo), //('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
                         radius: 25.0,
                       ),
                       SizedBox(width: 7.0),

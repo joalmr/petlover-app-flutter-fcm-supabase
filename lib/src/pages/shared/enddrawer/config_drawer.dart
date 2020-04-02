@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/atenciones/atenciones_page.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:share/share.dart';
@@ -38,6 +39,15 @@ class ConfigDrawer extends StatelessWidget {
                 //FormControl().buttonSec('Buscar',(){})
                 //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
+                  leading: Icon(Icons.star_border,),
+                  title: Text('Calificar anteciones', style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),),
+                  onTap: ()=>Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => AtencionesPage())
+                  )
+                ),
+                ListTile(
                   leading: Icon(Icons.share),
                   title: Text('Compartir con mis amigos', style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -65,6 +75,7 @@ class ConfigDrawer extends StatelessWidget {
     void _outToken(BuildContext context) async {
     
       _prefs.token = '';
+      _prefs.position='';
     
       Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');
         

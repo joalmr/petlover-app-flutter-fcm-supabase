@@ -6,8 +6,8 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:intl/intl.dart';
+import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -33,6 +33,7 @@ class _Data extends State<DataReserva> {
   String _hora ='';
   TextEditingController _inputFechaController=new TextEditingController();
   TextEditingController _inputHoraController=new TextEditingController();
+  TextEditingController _inputObsController=new TextEditingController();
 
   final bookingProvider = BookingProvider();
   final mascotaProvider = MascotaProvider();
@@ -94,7 +95,8 @@ class _Data extends State<DataReserva> {
             ),
             SizedBox(height: 10.0,),
             Text('Observación'),
-            textArea('Ingrese observación (opcional)', null, false, (value)=>observacion=value, TextCapitalization.sentences,""),
+            // textArea('Ingrese observación (opcional)', null, false, (value)=>observacion=value, TextCapitalization.sentences,""),
+            textfieldArea(_inputObsController,'Ingrese observación (opcional)',null,null),
             SizedBox(height: 20.0,),
             buttonPri('Reservar', ()=>reservaDialog()),      
             SizedBox(height: 5.0),
@@ -256,6 +258,7 @@ class _Data extends State<DataReserva> {
       booking.establishmentId = widget.establecimientoID;
       booking.petId = mascotaID;//"193144f3-5791-4ecf-88b9-34f35a321695";
       booking.typeId = resarvaId;
+      booking.observation= _inputObsController.text;
 
       bool resp = await bookingProvider.booking(booking);
       // print(resp);

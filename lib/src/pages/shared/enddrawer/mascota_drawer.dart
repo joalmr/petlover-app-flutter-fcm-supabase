@@ -19,6 +19,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
   final mascotaProvider = MascotaProvider(); 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           ),
         ),
         SizedBox(height: 20.0,),
-        Divider(),
+        Divider(),        
         ListTile(
           leading: Icon(Icons.edit),
           title: Text('Editar datos', style: TextStyle(
@@ -102,87 +103,5 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
       ],
     );
   }
-
-  
-  // bool valConsulta=true;
-  // bool valVacuna=true;
-  // bool valBanio=true;
-  // bool valDesparacita=true;
-
-//
-//switchBool('Consultas',valConsulta),
-// SwitchListTile(
-//   value: valConsulta,
-//   title: Text('Consultas'),
-//   activeColor: colorMain,
-//   onChanged: (value)=> setState((){
-//     valConsulta = value;
-//   }),
-// ),
-// //
-// SwitchListTile(
-//   value: valVacuna,
-//   title: Text('Consultas'),
-//   activeColor: colorMain,
-//   onChanged: (value)=> setState((){
-//     valVacuna = value;
-//   }),
-// ),
-// //
-// SwitchListTile(
-//   value: valBanio,
-//   title: Text('Consultas'),
-//   activeColor: colorMain,
-//   onChanged: (value)=> setState((){
-//     valBanio = value;
-//   }),
-// ),
-// //
-// SwitchListTile(
-//   value: valDesparacita,
-//   title: Text('Consultas'),
-//   activeColor: colorMain,
-//   onChanged: (value)=> setState((){
-//     valDesparacita = value;
-//   }),
-// ),
-// // _switch('Vacunas', valVacuna=true),
-// _switch('Baños', valBanio=true),
-// _switch('Desparasitaciones', valDesparacita=true),
-// FlatButton(
-//   child: Container(
-//     width: double.infinity,
-//     child: Text('Filtrar', 
-//       style: TextStyle(
-//         color: colorMain,
-//         fontWeight: FontWeight.w600,
-//       ),
-//       textAlign: TextAlign.center,
-//     )
-//   ),
-//   onPressed: (){},
-// ),
-
-  // Widget _switch(String texto, valBool){
-  //   return SwitchListTile(
-  //     value: valBool,
-  //     title: Text(texto),
-  //     activeColor: colorMain,
-  //     onChanged: (value)=> setState((){
-  //       valBool = value;
-  //     }),
-  //   );
-  // }
-
-  // switchBool(String texto, bool valor){
-  //   return SwitchListTile(
-  //     value: valor,
-  //     title: Text(texto),
-  //     activeColor: colorMain,
-  //     onChanged: (value)=> setState((){
-  //       valor = value;
-  //     }),
-  //   );
-  // }
 
 }

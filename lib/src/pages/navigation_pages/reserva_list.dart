@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
-import 'package:proypet/src/pages/reserva/buildVets/futureVet.dart';
 import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
@@ -24,15 +22,15 @@ class _ReservaListState extends State<ReservaList> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
   List<dynamic> listaFiltros=[];
-  final _prefs = new PreferenciasUsuario();
+  // final _prefs = new PreferenciasUsuario();
+  String val="";
   
   @override
   Widget build(BuildContext context) {
-  
-    print(_prefs.position);
-    // print(marcar);
-    if(marcar!=null){
-      listaFiltros.clear();
+    print(marcar);
+    listaFiltros.clear();
+    if(marcar!=0){
+      // listaFiltros.clear();
       if(marcar==1) listaFiltros.add({"name":"Consulta","icon":"consultation"});
       if(marcar==2) listaFiltros.add({"name":"Vacunas","icon":"vaccination"});
       if(marcar==3) listaFiltros.add({"name":"Baños","icon":"grooming"});
@@ -48,6 +46,14 @@ class _ReservaListState extends State<ReservaList> {
               key: _key,
               endDrawer: FiltrosMapa(),
               body: _onTab(snapshot.data),
+              appBar: appbar(leadingH,'Establecimientos',
+                <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.filter_list),
+                    onPressed: (){ _key.currentState.openEndDrawer(); },
+                  ),
+                ]
+              ),
               floatingActionButton: FloatingActionButton(
                 onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => ReservaMapaPage(establecimientos: snapshot.data))),
                 child: Icon(Icons.location_on),
@@ -66,34 +72,17 @@ class _ReservaListState extends State<ReservaList> {
       children: <Widget>[
         CustomScrollView(
           slivers: <Widget>[
-            SliverAppBar(
-              backgroundColor: colorMain,
-              leading: leadingH,
-              title: Text('Establecimientos', style: TextStyle(fontSize: 18.0,)),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.filter_list),
-                  onPressed: (){ _key.currentState.openEndDrawer(); },
+            SliverToBoxAdapter(
+              child: FlatButton(onPressed: (){}, child: Text('Filtros', style: TextStyle(color: colorMain, fontWeight: FontWeight.bold),)),
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 35.0,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: _listarChip(listaFiltros),
                 ),
-              ],
-              floating: true,
-              pinned: true,
-              expandedHeight: 100.0,
-              flexibleSpace: Container(
-                padding: EdgeInsets.only(top: 40.0),
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 50.0,bottom: 5.0),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: _listarChip(listaFiltros),
-                    )
-                    // FlatButton(
-                    //   child: Text('Ver Mapa', style: TextStyle(color: Colors.white)),
-                    //   onPressed: ()=>Navigator.push(
-                    //     context,MaterialPageRoute(builder: (context) => ReservaMapaPage(establecimientos: vetLocales))
-                    //   ),
-                    // ),
-                  ),
               ),
             ),
             SliverList(
@@ -124,14 +113,14 @@ class _ReservaListState extends State<ReservaList> {
 
   _chip(dynamic servicio){
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0,),
       child: Chip(
         labelStyle: TextStyle(fontSize: 10.0, color: Colors.black54),
         labelPadding: EdgeInsets.only(left: 5.0,right: 2.5),
         // padding: EdgeInsets.zero,
         avatar: CircleAvatar(
           radius: 12.5,
-          backgroundColor: colorBlue, //Colors.grey.shade800,
+          backgroundColor: colorMain,//colorBlue, //Colors.grey.shade800,
           child: Icon(iconMap[servicio['icon']], size: 12.0,),
         ),
         label: Text(servicio['name']),

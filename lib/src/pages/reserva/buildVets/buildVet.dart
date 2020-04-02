@@ -11,7 +11,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
     // print(vet.slides.length);
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15.0,horizontal: 20.0),
+      margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
       child: InkWell(
         onTap: ()=>Navigator.push(context, MaterialPageRoute(
           builder: (_)=>ReservaDetallePage(idvet: vet.id),
@@ -47,7 +47,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text('${vet.distancia} de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
+                        Text('${vet.distance.toStringAsFixed(2)}km de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
                         Row(
                           children: <Widget>[
                             Icon(Icons.star, color: colorMain, size: 12.0),

@@ -46,7 +46,7 @@ class MascotaProvider{
     final resp = await http.get(url, headers: { HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" });
     final petModel = petModelFromJson(resp.body);
 
-    print(petModel.history[0].attentionId);
+    // print(petModel.history[0].attentionId);
     
     return petModel;
   }
@@ -92,13 +92,14 @@ class MascotaProvider{
     int intMascota=0;
     if(mascota.genre) intMascota=1;    
     //else intMascota=0;
-
+    print(mascota);
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
       'specie': mascota.specieId.toString(), //int
       'breed': mascota.breedId.toString(), //int
       'genre': intMascota.toString(), //int
+      // 'status': mascota.status.toString(), //int
     };
 
     final resp = await http.post(url, 

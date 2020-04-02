@@ -18,6 +18,7 @@ class BookingModel {
     String id;
     DateTime updatedAt;
     DateTime createdAt;
+    String observation;
 
     BookingModel({
         this.establishmentId,
@@ -29,6 +30,7 @@ class BookingModel {
         this.id,
         this.updatedAt,
         this.createdAt,
+        this.observation,
     });
 
     factory BookingModel.fromJson(Map<String, dynamic> json) => BookingModel(
@@ -41,6 +43,7 @@ class BookingModel {
         id: json["id"],
         updatedAt: DateTime.parse(json["updated_at"]),
         createdAt: DateTime.parse(json["created_at"]),
+        observation: json["observation"] == null ? "" : json["observation"] 
     );
 
     Map<String, dynamic> toJson() => {
@@ -53,5 +56,6 @@ class BookingModel {
         "id": id,
         "updated_at": updatedAt.toIso8601String(),
         "created_at": createdAt.toIso8601String(),
+        "observation": observation
     };
 }

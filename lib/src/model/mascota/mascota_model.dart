@@ -19,7 +19,7 @@ class MascotaModel {
     String weight;//int weight;
     String birthdate;//DateTime birthdate;
     String picture;
-    String condition;
+    // String condition;
     int status;
 
     MascotaModel({
@@ -33,7 +33,7 @@ class MascotaModel {
         this.weight,
         this.birthdate,
         this.picture,
-        this.condition,
+        // this.condition,
         this.status,
     });
 
@@ -48,7 +48,7 @@ class MascotaModel {
         weight: json["weight"].toString(),
         birthdate: json["birthdate"],//DateTime.parse(json["birthdate"]),
         picture: json["picture"],
-        condition: json["condition"],
+        // condition: json["condition"],
         status: json["status"],
     );
 
@@ -63,7 +63,7 @@ class MascotaModel {
         "weight": weight,
         "birthdate": birthdate,//birthdate.toIso8601String(),
         "picture": picture,
-        "condition": condition,
+        // "condition": condition,
         "status": status,
     };
 }

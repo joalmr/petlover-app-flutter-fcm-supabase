@@ -25,9 +25,9 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
-  
+
   final _prefs = new PreferenciasUsuario();
-  
+
   fnGetPosition() async {
     final datoPosicion = await fnPosition();
     _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         else{
           return SingleChildScrollView(
             //physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20.0),     
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               children: <Widget>[
                 SizedBox(height: 35.0,),
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
                           .apply(color: Colors.grey[500]),
                     ),
                     IconButton(
-                      icon: Icon(Icons.settings), 
+                      icon: Icon(Icons.settings),
                       onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
                     )
                   ],
@@ -258,16 +258,16 @@ class _HomePageState extends State<HomePage> {
                             .apply(color: Colors.black87, fontWeightDelta: 1),
                       ),
                     ),
-                    Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),                
+                    Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),
                   ],
                 ),
                 _atenciones(mydata.bookings,mydata.pets.length),
               ],
             ),
-            
+
           );
         }
-        
+
       },
     );
   }
@@ -282,7 +282,7 @@ class _HomePageState extends State<HomePage> {
               .textTheme
               .display1
               .apply(color: Colors.black87, fontWeightDelta: 2),
-        ),                
+        ),
       ],
     );
   }
@@ -309,8 +309,8 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black.withOpacity(0.15),
                         ),
                         child: Image(
-                          image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/' 
-                            ? AssetImage('images/proypet.png') 
+                          image: mascotas[index].picture == 'http://ce2019121721001.dnssw.net/storage/'
+                            ? AssetImage('images/proypet.png')
                             : CachedNetworkImageProvider(mascotas[index].picture),
                           fit: BoxFit.cover,
                         ),
@@ -400,12 +400,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ],
-                    
+
                   ),
                 );
               },
               viewportFraction: 0.79,
-              scale: 0.77,                        
+              scale: 0.77,
               loop: false,
             ),
             Positioned(
@@ -421,7 +421,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
-    else 
+    else
       return Container(
         height: 250.0,
         width: double.infinity,
@@ -434,13 +434,20 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10.0,),
             buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
-            //Navigator.push(context, MaterialPageRoute(builder: (_)=>MascotaAgregarPage(),)),)
+            // FlatButton(
+            //   child: Text('Agregar mascota',
+            //     style: TextStyle(
+            //       color: colorMain,
+            //       fontWeight: FontWeight.bold,
+            //       fontSize: 16.0),),
+            //   onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
+            // )
           ],
         ),
       );
   }
 
-  Widget _atenciones(List<BookingHome> atenciones,lengthPet){    
+  Widget _atenciones(List<BookingHome> atenciones,lengthPet){
     if(atenciones.length>0)
       return ListView.builder(
         physics: NeverScrollableScrollPhysics(),
@@ -463,7 +470,7 @@ class _HomePageState extends State<HomePage> {
                   content: Text('Seguro que desea eliminar esta reserva?'),
                   actions: <Widget>[
                     FlatButton(
-                      onPressed: ()=>Navigator.pop(context), 
+                      onPressed: ()=>Navigator.pop(context),
                       child: Text('Cancelar')
                     ),
                     FlatButton(
@@ -533,12 +540,19 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable',
+            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable', //Vamos, agrega a tu mascota y se parte de la comunidad responsable
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10.0,),
             buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
-            // Navigator.push(context, MaterialPageRoute(builder: (_)=>MascotasPage(),)),)
+            // FlatButton(
+            //   child: Text('Agregar mascota',
+            //     style: TextStyle(
+            //       color: colorMain,
+            //       fontWeight: FontWeight.bold,
+            //       fontSize: 16.0),),
+            //   onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
+            // )
           ],
         ),
       );
@@ -551,9 +565,9 @@ class _HomePageState extends State<HomePage> {
     if(resp){
       mostrarSnackbar("Atención eliminada", colorMain, _scaffoldKey);
       Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav')); //
-    } 
+    }
     else{
       mostrarSnackbar("No se eliminó la atención", colorRed, _scaffoldKey);
-    } 
+    }
   }
 }

@@ -16,6 +16,7 @@ class BookingProvider{
       "establishment_id": booking.establishmentId,
       "pet_id": booking.petId,
       "type_id": booking.typeId,
+      "observation": booking.observation
     };
 
     final resp = await http.post(url,

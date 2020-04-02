@@ -39,13 +39,12 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         future: establecimientoProvider.getVet(widget.idvet),
         builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
           final mydata=snapshot.data;
-          phone="+51993191969";
           if(!snapshot.hasData){
             return Center(child: CircularProgressIndicator()); //valueColor: new AlwaysStoppedAnimation<Color>(colorMain),
           }
           else{
             nameVet = mydata.name;
-
+            phone = mydata.phone;//"+51993191969";
             // print(mydata.logo);
             // print(mydata.slides);
 
@@ -235,7 +234,44 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           padding: EdgeInsets.symmetric(horizontal: 10.0,),
           child: _servicios(localVet.services),
         ),
-        SizedBox(height: 20.0),
+        SizedBox(height: 10.0),
+        localVet.prices.length>0 ?
+        DataTable(
+          headingRowHeight: 30.0,
+          dataRowHeight: 30.0,
+          columns: [
+            DataColumn(label: Text("Servicios")),
+            DataColumn(label: Text("Desde")),
+            DataColumn(label: Text("Hasta")),
+          ], 
+          rows: [
+            DataRow(cells: [
+              DataCell(Text("Consulta")),
+              DataCell(Text(localVet.prices["consultation"]["from"]==null?"-":localVet.prices["consultation"]["from"])),
+              DataCell(Text(localVet.prices["consultation"]["to"]==null?"-":localVet.prices["consultation"]["to"])),
+              ]
+            ),
+            DataRow(cells: [
+              DataCell(Text("Vacunas")),
+              DataCell(Text(localVet.prices["vaccination"]["from"]==null?"-":localVet.prices["vaccination"]["from"])),
+              DataCell(Text(localVet.prices["vaccination"]["to"]==null?"-":localVet.prices["vaccination"]["to"])),
+              ]
+            ),
+            DataRow(cells: [
+              DataCell(Text("Baños")),
+              DataCell(Text(localVet.prices["grooming"]["from"]==null?"-":localVet.prices["grooming"]["from"])),
+              DataCell(Text(localVet.prices["grooming"]["to"]==null?"-":localVet.prices["grooming"]["to"])),
+              ]
+            ),
+            DataRow(cells: [
+              DataCell(Text("Desparasitaciones")),
+              DataCell(Text(localVet.prices["deworming"]["from"]==null?"-":localVet.prices["deworming"]["from"])),
+              DataCell(Text(localVet.prices["deworming"]["to"]==null?"-":localVet.prices["deworming"]["to"])),
+              ]
+            ),
+          ]
+        ) : SizedBox(height: 0.0,),        
+        SizedBox(height: 25.0),
         Container(
           padding: EdgeInsets.only(left: 20.0,right: 20.0),
           child: Column(
@@ -262,7 +298,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
   Widget _servicios(List<Service> servicios){
     return SizedBox(
-      height: 70,
+      height: 60,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

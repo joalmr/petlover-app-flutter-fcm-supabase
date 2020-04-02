@@ -74,3 +74,24 @@ Widget textArea(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitali
     ),
   );
 }
+
+Widget textBtn(_hinttext, _icon, _funtion){
+    return Material(
+    elevation: 0.0,
+    borderRadius: _shape,
+    color: Colors.grey[200],
+    child: TextFormField(
+      textCapitalization: TextCapitalization.sentences,
+      onSaved: _funtion,
+      cursorColor: colorMain,
+      decoration: InputDecoration(
+        hintText: _hinttext,
+        hintStyle: TextStyle(fontSize: 14.0),
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+        suffixIcon: Container(
+          child: IconButton(onPressed: _funtion, icon: _icon,color: colorMain,tooltip: 'Buscar'))
+      ),
+    ),
+  );
+}

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';

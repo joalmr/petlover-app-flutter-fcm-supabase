@@ -12,7 +12,6 @@ import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -37,7 +36,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   bool btnBool = true;
   File foto;
   String datoPet = tipopet[0]['id'];
-  String opcRaza; //= '390'; // : razaGato[0]['cod'] ;
+  String opcRaza = '390'; // : razaGato[0]['cod'] ;
   MascotaModel mascotaData = new MascotaModel();
 
   String fechaEdit = '';
@@ -61,7 +60,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       key: scaffoldKey,
       appBar: appbar(
         null,
-        (mascotaData==null) ? 'Agregar mascota' : 'Editar mascota',
+        (petData==null) ? 'Agregar mascota' : 'Editar mascota',
         null,
       ),
       body: Stack(
@@ -131,8 +130,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                         (opt){ setState(() {
                           datoPet=opt; 
                           mascotaData.specieId = int.tryParse(opt);
-                          // if(datoPet=='1') opcRaza='390';
-                          // else opcRaza='1';
+                          if(datoPet=='1') opcRaza='390'; //observar
+                          else opcRaza='1'; //observar
                         }
                       );}) : ddlMainOut(datoPet, tipopet, null, mascotaData.specieName),
                     ),
@@ -148,12 +147,12 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                           return Center(child: CircularProgressIndicator());
                         }
                         else{
-                          opcRaza=opcRaza=snapshot.data.breeds[0].id.toString();
+                          // opcRaza=snapshot.data.breeds[0].id.toString();
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                             child: (petData==null) ? ddlFuture( opcRaza, snapshot.data.breeds, 
                               (opt){ setState(() { 
-                                opcRaza=opt;
+                                opcRaza=opt.toString();
                                 mascotaData.breedId = int.tryParse(opt);
                               }); }
                             ) : ddlFuture( mascotaData.breedId.toString() , snapshot.data.breeds , 

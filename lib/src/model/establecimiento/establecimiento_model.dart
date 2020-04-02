@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/utils/utils.dart';
+// import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+// import 'package:proypet/src/utils/utils.dart';
 
 EstablecimientoModel establecimientoModelFromJson(String str) => EstablecimientoModel.fromJson(json.decode(str));
 
 String establecimientoModelToJson(EstablecimientoModel data) => json.encode(data.toJson());
 
-final _prefs = new PreferenciasUsuario();
+// final _prefs = new PreferenciasUsuario();
 //
 class EstablecimientoList {
   final List<EstablecimientoModel> establecimientos;
@@ -34,7 +34,8 @@ class EstablecimientoList {
 class EstablecimientoModel {
     String id;
     String name;
-    dynamic description;
+    String phone;
+    String description;
     int stars;
     int votes;
     String address;
@@ -42,12 +43,14 @@ class EstablecimientoModel {
     double longitude;
     List<String> slides;
     String logo;
+    dynamic prices;
     List<Service> services;
-    String distancia;
+    double distance;
 
     EstablecimientoModel({
         this.id,
         this.name,
+        this.phone,
         this.description,
         this.stars,
         this.votes,
@@ -56,13 +59,15 @@ class EstablecimientoModel {
         this.longitude,
         this.slides,
         this.logo,
+        this.prices,
         this.services,
-        this.distancia,
+        this.distance,
     });
 
     factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
         id: json["id"],
         name: json["name"],
+        phone: json["phone"] == null ? "" : json["phone"],
         description: json["description"]  == null ? "Descripción no detallada" : json["description"],
         stars: json["stars"],
         votes: json["votes"],
@@ -71,13 +76,16 @@ class EstablecimientoModel {
         longitude: json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
+        prices: json["prices"],
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), double.parse(_prefs.position.split(',')[0]), double.parse(_prefs.position.split(',')[1]) ).toString(),
+        distance: json["distance"] == null ? "" : json["distance"].toDouble()
+        // distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), double.parse(_prefs.position.split(',')[0]), double.parse(_prefs.position.split(',')[1]) ).toString(),
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "phone": phone,
         "description": description,
         "stars": stars,
         "votes": votes,
@@ -86,7 +94,9 @@ class EstablecimientoModel {
         "longitude": longitude,
         "slides": List<dynamic>.from(slides.map((x) => x)),
         "logo": logo,
+        "prices": prices,
         "services": List<dynamic>.from(services.map((x) => x.toJson())),
+        "distance": distance,
     };
 }
 
@@ -115,5 +125,61 @@ class Service {
         "name": name,
         "slug": slug,
         "description": description,
+    };
+}
+
+class PricesClass {
+    Prices consultation;
+    Prices deworming;
+    Prices vaccination;
+    Prices surgery;
+    Prices grooming;
+    Prices supplementation;
+
+    PricesClass({
+        this.consultation,
+        this.deworming,
+        this.vaccination,
+        this.surgery,
+        this.grooming,
+        this.supplementation,
+    });
+
+    factory PricesClass.fromJson(Map<String, dynamic> json) => PricesClass(
+        consultation: Prices.fromJson(json["consultation"]),
+        deworming: Prices.fromJson(json["deworming"]),
+        vaccination: Prices.fromJson(json["vaccination"]),
+        surgery: Prices.fromJson(json["surgery"]),
+        grooming: Prices.fromJson(json["grooming"]),
+        supplementation: Prices.fromJson(json["supplementation"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "consultation": consultation.toJson(),
+        "deworming": deworming.toJson(),
+        "vaccination": vaccination.toJson(),
+        "surgery": surgery.toJson(),
+        "grooming": grooming.toJson(),
+        "supplementation": supplementation.toJson(),
+    };
+}
+
+class Prices {
+    String from;
+    String to;
+
+    Prices({
+        this.from,
+        this.to,
+    });
+
+    factory Prices.fromJson(Map<String, dynamic> json) => Prices(
+        from: json["from"] == null ? null : json["from"],
+        to: json["to"] == null ? null : json["to"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "from": from == null ? null : from,
+        "to": to == null ? null : to,
     };
 }

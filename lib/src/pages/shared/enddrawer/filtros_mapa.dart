@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
+import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 
 
@@ -15,6 +16,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
   final Color divider = Colors.grey.shade600;
   final formKey = GlobalKey<FormState>();
   String val= "";
+  bool consultaBool=false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +44,24 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     ),
                     SizedBox(height: 20,),
                     textFormLess('Ingrese veterinaria',Icon(Icons.search), (value)=>val=value),
-                    FlatButton(
-                      child: Container(
-                        width: double.infinity,
-                        child: Text('Filtro 1'),
-                      ),
-                      onPressed: (){},
-                    ),
-                    Divider(color: divider,),
-                    FlatButton(
-                      child: Container(
-                        width: double.infinity,
-                        child: Text('Filtro 2'),
-                      ),
-                      onPressed: (){},
+                    SwitchListTile(
+                      value: consultaBool,//petReq.genre,
+                      title: Text('Consultas'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        consultaBool = value;
+                      }),
                     ),
                     SizedBox(height: 20.0,),
                     //FormControl().buttonSec('Buscar',(){})
-                    buttonPri('Agregar mascota',()=>{})
+                    FlatButton(onPressed: ()=>{}, child: Container(
+                      width: double.infinity,
+                      child: Text('Flitrar', 
+                      textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: colorMain, 
+                          fontWeight: FontWeight.bold),))),
+                    // buttonPri('Filtrar',()=>{})
                   ],
                 ),
               ),
