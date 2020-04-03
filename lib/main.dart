@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       initialRoute: rutaInicio,
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
-          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 1) //cuando falle
+          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //cuando falle
         );
       },      
     );

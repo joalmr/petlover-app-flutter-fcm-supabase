@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/login/user_model.dart';
+import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
@@ -16,7 +16,7 @@ class _SingupPageState extends State<SingupPage> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final userProvider=UserProvider();
-  UserModel user = UserModel();
+  UserDato user = UserDato();
   bool btnBool = true;
 
   @override
@@ -41,22 +41,26 @@ class _SingupPageState extends State<SingupPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Nombre', Icons.person_outline, false, (value)=>user.name=value, TextCapitalization.words, null),
+              child: textForm('Nombre', Icons.person_outline, false, (value)=>user.name=value, TextCapitalization.words, null,
+                TextInputType.text),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null),
+              child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
+                TextInputType.text),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null),
+              child: textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null,
+                TextInputType.text),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>user.password=value, TextCapitalization.none, null),
+              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>user.password=value, TextCapitalization.none, null,
+                TextInputType.text),
             ),
             SizedBox(height: 20),
             Padding(

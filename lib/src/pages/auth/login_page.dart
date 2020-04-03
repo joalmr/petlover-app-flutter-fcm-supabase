@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/login/user_model.dart';
+import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
@@ -17,7 +17,7 @@ class _LoginSevenPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   
-  UserModel userModel = UserModel();
+  UserDato userModel = UserDato();
   final loginProvider = UserProvider();
 
   @override
@@ -32,12 +32,14 @@ class _LoginSevenPageState extends State<LoginPage> {
             SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Email', Icons.alternate_email, false, (value)=>userModel.email=value, TextCapitalization.none, null),
+              child: textForm('Email', Icons.alternate_email, false, (value)=>userModel.email=value, TextCapitalization.none, null,
+                TextInputType.text),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>userModel.password=value, TextCapitalization.none, null),
+              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>userModel.password=value, TextCapitalization.none, null,
+                TextInputType.text),
             ),
             SizedBox(height: 25.0),
             Padding(
@@ -102,7 +104,7 @@ class _LoginSevenPageState extends State<LoginPage> {
     }
     else{
       Navigator.pushReplacement(
-        context,MaterialPageRoute(builder: (context) => NavigationBar(currentTabIndex: 1,))
+        context,MaterialPageRoute(builder: (context) => NavigationBar(currentTabIndex: 0,))
       );
     }    
   }

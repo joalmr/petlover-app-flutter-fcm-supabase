@@ -6,7 +6,6 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 
 class ReservaList extends StatefulWidget {

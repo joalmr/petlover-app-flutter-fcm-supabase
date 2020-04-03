@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
@@ -23,6 +24,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    print(mascota.status);
     return ClipPath(
       child: Drawer(
         child: Container(
@@ -62,6 +64,18 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: mascota),
         ),
         ListTile(
+          leading: Icon(Icons.bookmark),
+          title: Text('Fallecido', style: TextStyle(
+            fontWeight: FontWeight.w400,
+          ),),
+          onTap: ()=>showDialog(
+            context: context,
+            builder: (BuildContext context){
+              return (mascota.status!=0) ? _fallecido() : _errorFallecido() ;
+            }
+          ),
+        ),
+        ListTile(
           leading: Icon(Icons.delete_forever, color: colorRed,),
           title: Text('Eliminar mascota', style: TextStyle(
             color: colorRed,
@@ -70,32 +84,30 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           onTap: ()=>showDialog(
             context: context,
             builder: (BuildContext context){
-              return AlertDialog(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                title: Text('Eliminar'),
-                content: Text('Seguro que desea eliminar a ${mascota.name}?'),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: ()=>Navigator.pop(context), 
-                    child: Text('Cancelar')
-                  ),
-                  FlatButton(
-                    onPressed: () async {
-                      bool resp = await mascotaProvider.deletePet(mascota.id);
-                      if(resp){
-                        Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
-                        // Navigator.pushAndRemoveUntil(context,                                      
-                        //   MaterialPageRoute(builder: (BuildContext context) => NavigationBar(currentTabIndex: 1,)),
-                        //   ModalRoute.withName('/mismascotas')
-                        // );
-                      }
-                      else{
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: Text('Sí, eliminar')
-                  )
-                ],
+              return FadeIn(
+                child: AlertDialog(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  title: Text('Eliminar'),
+                  content: Text('Seguro que desea eliminar a ${mascota.name}?'),
+                  actions: <Widget>[
+                    FlatButton(
+                      onPressed: ()=>Navigator.pop(context), 
+                      child: Text('Cancelar')
+                    ),
+                    FlatButton(
+                      onPressed: () async {
+                        bool resp = await mascotaProvider.deletePet(mascota.id);
+                        if(resp){
+                          Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+                        }
+                        else{
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Text('Sí, eliminar')
+                    )
+                  ],
+                ),
               );
             }
           )
@@ -104,4 +116,69 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
     );
   }
 
+
+/////////////////////////////////////////////////
+  _fallecido(){
+    return FadeIn(
+      child: AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        title: Text('Fallecido'),
+        content: Text('Lamentamos la perdida de tu ser querido.'),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: ()=>Navigator.pop(context), 
+            child: Text('No, cancelar')
+          ),
+          FlatButton(
+            onPressed: () async {
+              mascota.status=0;
+              bool resp = await mascotaProvider.muerePet(mascota);
+              if(resp){
+                Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+              }
+              else{
+                Navigator.pop(context);
+              }
+            },
+            child: Text('Sí, falleció mi mascota',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),)
+          )
+        ],
+      ),
+    );
+  }
+
+  _errorFallecido(){
+    return FadeIn(
+      child: AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        title: Text('Fallecido'),
+        content: Text('Cometiste un error?'),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: ()=>Navigator.pop(context), 
+            child: Text('No, cancelar')
+          ),
+          FlatButton(
+            onPressed: () async {
+              mascota.status=1;
+              bool resp = await mascotaProvider.muerePet(mascota);
+              if(resp){
+                Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+              }
+              else{
+                Navigator.pop(context);
+              }
+            },
+            child: Text('Sí, cometí un error',
+              style: TextStyle(fontWeight: FontWeight.bold, color: colorMain),)
+          )
+        ],
+      ),
+    );
+  }
+/////////////////////////////////////////////////
+
 }
+
+

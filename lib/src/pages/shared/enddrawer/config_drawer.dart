@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones/atenciones_page.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/pages/usuario/user_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:share/share.dart';
 
@@ -45,6 +46,15 @@ class ConfigDrawer extends StatelessWidget {
                   ),),
                   onTap: ()=>Navigator.push(context, 
                     MaterialPageRoute(builder: (context) => AtencionesPage())
+                  )
+                ),
+                ListTile(
+                  leading: Icon(Icons.person,),
+                  title: Text('Editar datos', style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),),
+                  onTap: ()=>Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => UserPage())
                   )
                 ),
                 ListTile(

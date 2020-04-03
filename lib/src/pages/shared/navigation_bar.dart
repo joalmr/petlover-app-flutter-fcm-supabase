@@ -25,24 +25,24 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context){
     final _kTabPages = <Widget>[
-      NotificacionesPage(), 
       HomePage(),
+      NotificacionesPage(),      
       ReservaList(marcar: marcar,),// ReservaPage(),
       DestacadosPage(),
       RecompensasPage(),
     ];
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_active,),
-        title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
-      ),
-      BottomNavigationBarItem(
         icon: Icon(Icons.pets,),
         title: Text('Inicio',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
+        icon: Icon(Icons.notifications_active,),
+        title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
+      ),
+      BottomNavigationBarItem(
         icon: Icon(Proypet.proypet),//Icons.search
-        title: Text('Veterinarias',style: TextStyle(fontSize: 12.0)),
+        title: Text('Establecimientos',style: TextStyle(fontSize: 12.0)),
       ),      
       BottomNavigationBarItem(
         icon: Icon(Icons.info),//Proypet.proypet2

@@ -3,12 +3,13 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 //final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
 final _shape = BorderRadius.circular(10.0);
 
-Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial){
+Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial,TextInputType _boardType){
   return Material(
     elevation: 0.0,
     borderRadius: _shape,
     color: Colors.grey[200],
     child: TextFormField(
+      keyboardType: _boardType,
       initialValue: _valorInicial,
       textCapitalization: _textCap,
       obscureText: _obscuretext,
@@ -18,7 +19,6 @@ Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitali
         hintText: _hinttext,
         hintStyle: TextStyle(fontSize: 14.0),
         prefixIcon: Material(
-          //elevation: 0.0,
           borderRadius: _shape,
           color: Colors.grey[200],
           child: Icon(
@@ -33,7 +33,7 @@ Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitali
   );
 }
 
-Widget textFormLess(String _hinttext, _icon, _onsaved){
+Widget textFormLess(String _hinttext, _onsaved){
   return Material(
     elevation: 0.0,
     borderRadius: _shape,

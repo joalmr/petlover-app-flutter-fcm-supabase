@@ -10,7 +10,7 @@ Map<String,WidgetBuilder> getRoutes(){
     'login'         : (BuildContext context)=>LoginPage(),
     'registro'      : (BuildContext context)=>SingupPage(),
     'olvidopass'    : (BuildContext context)=>ForgotPage(),
-    'nav'           : (BuildContext context)=>NavigationBar(currentTabIndex: 1, marcar: 0,),
+    'nav'           : (BuildContext context)=>NavigationBar(currentTabIndex: 0, marcar: 0,),
     //
     // 'mismascotas'   : (BuildContext context)=>MascotasPage(),
     'agregarmascota'    : (BuildContext context)=>MascotaAgregarPage(),

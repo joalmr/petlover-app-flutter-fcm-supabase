@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -90,18 +91,20 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                                   onPressed: ()=>showDialog(
                                   context: context,
                                   builder: (BuildContext context){
-                                    return SimpleDialog(
-                                      //title: const Text('Select assignment'),
-                                      children: <Widget>[
-                                        SimpleDialogOption(
-                                          child: const Text('Tomar foto'),
-                                          onPressed: _tomarFoto,                                          
-                                        ),
-                                        SimpleDialogOption(
-                                          child: const Text('Seleccionar foto'),
-                                          onPressed: _seleccionarFoto,                                          
-                                        ),
-                                      ],
+                                    return FadeIn(
+                                      child: SimpleDialog(
+                                        //title: const Text('Select assignment'),
+                                        children: <Widget>[
+                                          SimpleDialogOption(
+                                            child: const Text('Tomar foto'),
+                                            onPressed: _tomarFoto,                                          
+                                          ),
+                                          SimpleDialogOption(
+                                            child: const Text('Seleccionar foto'),
+                                            onPressed: _seleccionarFoto,                                          
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   }
                                 ),                                  
@@ -117,7 +120,12 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     SizedBox(height: 10.0,),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                      child: textForm('Nombre de mascota', Icons.pets, false, (value)=>mascotaData.name=value, TextCapitalization.words, (petData==null) ? null : mascotaData.name),
+                      child: textForm('Nombre de mascota', 
+                        Icons.pets, false, 
+                        (value)=>mascotaData.name=value, 
+                        TextCapitalization.words, 
+                        (petData==null) ? null : mascotaData.name,
+                        TextInputType.text),
                     ),
                     SizedBox(height: 10.0,),
                     Padding(
@@ -403,8 +411,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     if(resp){
       mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);  
       Timer(Duration(milliseconds: 2000), (){
-        // Navigator.maybePop(context);
-        // Navigator.maybePop(context);
         var route = MaterialPageRoute( builder: ((BuildContext context) => MascotaDetallePage(mascota: mascotaData) ));
         Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) { return route.isFirst; });
       });

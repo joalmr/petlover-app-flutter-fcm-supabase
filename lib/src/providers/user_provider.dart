@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/home_model.dart';
+import 'package:proypet/src/model/login/login_model.dart';
 import 'dart:convert';
 import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
@@ -11,7 +12,7 @@ class UserProvider{
   final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
-  Future<Map<String,dynamic>> loginToken(UserModel login) async {
+  Future<Map<String,dynamic>> loginToken(UserDato login) async {
     final url = '$_url/login';   
 
     try{
@@ -42,7 +43,7 @@ class UserProvider{
   }
 
   //summary
-  Future<HomeModel> getUser() async {
+  Future<HomeModel> getUserSummary() async {
     final url = '$_url/summary';
 
     final resp = await http.get(url,
@@ -56,7 +57,7 @@ class UserProvider{
     return datosUsuario;
   }
 
-  Future<bool> registerUser(UserModel user) async {
+  Future<bool> registerUser(UserDato user) async {
     final url = '$_url/register';
     final userData = { 
       "name": user.name, 
@@ -68,5 +69,34 @@ class UserProvider{
     if(resp.statusCode==201) return true;
     else return false;
   }
+
+  Future<UserModel> getUser() async {
+    final url = '$_url/profile';
+    final resp = await http.get(url, headers: { 
+      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    });
+    
+    print(resp.body);
+
+    final datosUsuario = userModelFromJson(resp.body);
+
+    return datosUsuario;
+  }
+
+  Future<bool> editUser(User user) async {
+    final url = '$_url/profile';
+    final userData = { 
+      "name": user.name, 
+      "lastname": user.lastname, 
+      "phone": user.phone
+    };
+    final resp = await http.post(url, body: userData, headers: { 
+      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    });
+    print(resp.statusCode);
+    if(resp.statusCode==200 || resp.statusCode==201) return true;
+    else return false;
+  }
+
 }
   

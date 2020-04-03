@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 
@@ -43,7 +42,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       ),
                     ),
                     SizedBox(height: 20,),
-                    textFormLess('Ingrese veterinaria',Icon(Icons.search), (value)=>val=value),
+                    textFormLess('Ingrese veterinaria', (value)=>val=value), //Icon(Icons.search),
                     SwitchListTile(
                       value: consultaBool,//petReq.genre,
                       title: Text('Consultas'),

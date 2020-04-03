@@ -119,10 +119,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           Column(
             children: <Widget>[
               Text('${pet.weight} kg.', style: TextStyle(fontWeight: FontWeight.w600,),),
-              IconButton(
-                icon: Icon(Icons.filter_list),
-                onPressed: (){}
-              ),
+              (pet.status==0) 
+              ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0, fontWeight: FontWeight.bold),)
+              : SizedBox(height: 0,)
+              // IconButton(
+              //   icon: Icon(Icons.filter_list),
+              //   onPressed: (){}
+              // ),
             ],
           )                          
         ],

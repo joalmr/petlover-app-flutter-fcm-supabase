@@ -37,7 +37,8 @@ class _ForgotPageState extends State<ForgotPage> {
           // textfield('Email', Icons.mail, false),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null),
+            child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,
+              TextInputType.text),
           ),
           //FormControl().textfield('Email', Icons.mail, false),
           SizedBox(height: 30.0),

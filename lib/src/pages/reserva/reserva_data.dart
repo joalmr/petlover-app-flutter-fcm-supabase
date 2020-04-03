@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:proypet/src/model/booking/booking_model.dart';
@@ -7,7 +10,6 @@ import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -236,16 +238,18 @@ class _Data extends State<DataReserva> {
       showDialog(
         context: context,
         builder: (BuildContext context){
-          return AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            title: Text('Error'),
-            content: Text('Debe ingresar fecha y hora de la reserva.'),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: ()=>Navigator.pop(context), 
-                child: Text('Continuar')
-              ),
-            ],
+          return FadeIn(
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              title: Text('Error'),
+              content: Text('Debe ingresar fecha y hora de la reserva.'),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: ()=>Navigator.pop(context), 
+                  child: Text('Continuar')
+                ),
+              ],
+            ),
           );
         }
       );
@@ -261,7 +265,22 @@ class _Data extends State<DataReserva> {
       booking.observation= _inputObsController.text;
 
       bool resp = await bookingProvider.booking(booking);
-      if(resp) Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+
+      if(resp){
+        showDialog(context: context,builder: (BuildContext context)=> FadeIn(
+          child: FadeIn(
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              content: Container(
+                height: 100.0,
+                child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: 14.0),))
+              ),),
+          ),
+        ), barrierDismissible: false );
+        Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav')));
+        // Navigator.popUntil(context, ModalRoute.withName("nav"))
+      } 
     }
   }
 }

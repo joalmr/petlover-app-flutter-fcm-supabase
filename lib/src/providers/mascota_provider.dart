@@ -116,6 +116,34 @@ class MascotaProvider{
     else return false;
   }
 
+    Future<bool> muerePet(MascotaModel mascota) async {
+    final url = '$_url/pets/${mascota.id}';
+    print(mascota.name);
+    print(mascota.status);
+    print(mascota.id);
+    int intMascota=0;
+    if(mascota.genre) intMascota=1;    
+    final data = {
+      'name': mascota.name, 
+      'birthdate': mascota.birthdate, //datetime
+      'specie': mascota.specieId.toString(), //int
+      'breed': mascota.breedId.toString(), //int
+      'genre': intMascota.toString(), //int
+      'status': mascota.status.toString(), //int
+    };
+
+    final resp = await http.post(url, 
+      headers: { 
+        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+      }, body: data,
+    );
+
+    print(resp.statusCode);
+
+    if(resp.statusCode==200 || resp.statusCode==201) return true;
+    else return false;
+  }
+
   Future<bool> deletePet(String idPet) async {
     try {
       final url = '$_url/pets/$idPet/delete';

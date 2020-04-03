@@ -12,7 +12,7 @@ HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 String homeModelToJson(HomeModel data) => json.encode(data.toJson());
 
 class HomeModel {
-    User user;
+    UserHome user;
     List<MascotaModel> pets;
     List<BookingHome> bookings;
 
@@ -23,7 +23,7 @@ class HomeModel {
     });
 
     factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
-        user: User.fromJson(json["user"]),
+        user: UserHome.fromJson(json["user"]),
         pets: List<MascotaModel>.from(json["pets"].map((x) => MascotaModel.fromJson(x))),
         bookings: List<BookingHome>.from(json["bookings"].map((x) => BookingHome.fromJson(x))),
     );
@@ -35,16 +35,16 @@ class HomeModel {
     };
 }
 
-class User {
+class UserHome {
     String name;
     String email;
 
-    User({
+    UserHome({
         this.name,
         this.email,
     });
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+    factory UserHome.fromJson(Map<String, dynamic> json) => UserHome(
         name: json["name"],
         email: json["email"],
     );

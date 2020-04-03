@@ -8,22 +8,35 @@
 
 // String loginModelToJson(LoginModel data) => json.encode(data.toJson());
 
-// class LoginModel {
-//     String email;
-//     String password;
+class UserDato {
+    String name;
+    String lastname;
+    String email;
+    String password;
+    String phone;
 
-//     LoginModel({
-//         this.email,
-//         this.password,
-//     });
+    UserDato({
+        this.name,
+        this.lastname,
+        this.email,
+        this.password,
+        this.phone,
+    });
 
-//     factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-//         email: json["email"],
-//         password: json["password"],
-//     );
+    factory UserDato.fromJson(Map<String, dynamic> json) => UserDato(
+        name: json["name"],
+        lastname: json["lastname"],
+        email: json["email"],
+        password: json["password"],
+        phone: json["phone"] == null ? "" : json["phone"],
+    );
 
-//     Map<String, dynamic> toJson() => {
-//         "email": email,
-//         "password": password,
-//     };
-// }
+    Map<String, dynamic> toJson() => {
+        "name": name,
+        "lastname": lastname,
+        "email": email,
+        "password": password,
+        "phone": phone,
+    };
+}
+
