@@ -9,60 +9,60 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 
 class ReservaList extends StatefulWidget {
-  final int marcar;
-  ReservaList({this.marcar});
   @override
-  _ReservaListState createState() => _ReservaListState(marcar: marcar);
+  _ReservaListState createState() => _ReservaListState();
 }
 
 class _ReservaListState extends State<ReservaList> {
-  int marcar;
-  _ReservaListState({this.marcar});
+
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
-  List<dynamic> listaFiltros=[];
+  List<int> listaFiltros=[];
   // final _prefs = new PreferenciasUsuario();
-  String val="";
-  
+  // String val="";
+
   @override
   Widget build(BuildContext context) {
-    print(marcar);
-    listaFiltros.clear();
-    if(marcar!=0){
-      // listaFiltros.clear();
-      if(marcar==1) listaFiltros.add({"name":"Consulta","icon":"consultation"});
-      if(marcar==2) listaFiltros.add({"name":"Vacunas","icon":"vaccination"});
-      if(marcar==3) listaFiltros.add({"name":"Baños","icon":"grooming"});
-      if(marcar==4) listaFiltros.add({"name":"Desparasitaciones","icon":"deworming"});
+    final dynamic filtrosData = ModalRoute.of(context).settings.arguments;
+    // print(filtros);
+    
+    if(filtrosData!=null){
+      print(filtrosData["filtros"]);
+      listaFiltros=filtrosData["filtros"];
     }
+    
+
     return FutureBuilder(
-        future: vetProvider.getVets(),
-        builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
-          if(!snapshot.hasData)
-            return Center(child: CircularProgressIndicator());
-          else{
-            return Scaffold(
-              key: _key,
-              endDrawer: FiltrosMapa(),
-              body: _onTab(snapshot.data),
-              appBar: appbar(leadingH,'Establecimientos',
-                <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.filter_list),
-                    onPressed: (){ _key.currentState.openEndDrawer(); },
-                  ),
-                ]
-              ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => ReservaMapaPage(establecimientos: snapshot.data))),
-                child: Icon(Icons.location_on),
-                backgroundColor: colorMain,
-              ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
-            );
-          }    
-        }
-      );
+      future: vetProvider.getVets(listaFiltros),
+      builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
+        if(!snapshot.hasData)
+          return Center(child: CircularProgressIndicator());
+        else{
+          return Scaffold(
+            key: _key,
+            
+            endDrawer: FiltrosMapa(),
+            body: _onTab(snapshot.data),
+            appBar: appbar(leadingH,'Establecimientos',
+              <Widget>[
+                IconButton(
+                  icon: Icon(Icons.filter_list),
+                  onPressed: (){ _key.currentState.openEndDrawer(); },
+                ),
+              ]
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: (snapshot.data.length==0) 
+                ? null
+                : ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => ReservaMapaPage(establecimientos: snapshot.data))),
+              child: Icon(Icons.location_on),
+              backgroundColor: colorMain,
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
+          );
+        }    
+      }
+    );
   }
 
   _onTab(List<EstablecimientoModel> vetLocales) {    
@@ -74,16 +74,7 @@ class _ReservaListState extends State<ReservaList> {
             SliverToBoxAdapter(
               child: FlatButton(onPressed: (){}, child: Text('Filtros', style: TextStyle(color: colorMain, fontWeight: FontWeight.bold),)),
             ),
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 35.0,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: _listarChip(listaFiltros),
-                ),
-              ),
-            ),
+            _listarChip(listaFiltros),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index){
@@ -101,16 +92,34 @@ class _ReservaListState extends State<ReservaList> {
     );
   }
 
-  _listarChip(List<dynamic> chips){
-    return ListView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.horizontal,
-      itemCount: chips.length,
-      itemBuilder: (BuildContext context, int index) => _chip(chips[index]),
-    );
+  _listarChip(dynamic chips){
+    if(chips!=null){
+      return SliverToBoxAdapter(
+        child: SizedBox(
+          height: 35.0,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: chips.length,
+              itemBuilder: (BuildContext context, int index) => _chip(chips[index]),
+            ),
+          ),
+        ),
+      );
+    }
+    else{
+      return SliverToBoxAdapter(
+        child: SizedBox(
+          height: 0.0,
+        ),
+      );
+    }    
   }
 
-  _chip(dynamic servicio){
+  _chip(int servicio){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0,),
       child: Chip(
@@ -120,9 +129,9 @@ class _ReservaListState extends State<ReservaList> {
         avatar: CircleAvatar(
           radius: 12.5,
           backgroundColor: colorMain,//colorBlue, //Colors.grey.shade800,
-          child: Icon(iconMap[servicio['icon']], size: 12.0,),
+          child: Icon(iconNum[servicio], size: 12.0,),
         ),
-        label: Text(servicio['name']),
+        label: Text(textMap[servicio]),
       ),
     );  
   }

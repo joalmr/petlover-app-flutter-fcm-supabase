@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     
     var rutaInicio='login';
     if(prefs.token!=''){
-      rutaInicio='nav';
+      rutaInicio='navInicio';
     }
 
     return MaterialApp(

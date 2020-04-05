@@ -20,9 +20,6 @@ class ReservaMapaPage extends StatefulWidget {
 class _ReservaMapaPageState extends State<ReservaMapaPage> {
   List<EstablecimientoModel> vetLocales;
   _ReservaMapaPageState({@required this.vetLocales});
-
-  //final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-
   GoogleMapController _controller;
   List<Marker> allMarkers = [];
   PageController _pageController;
@@ -30,7 +27,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   String _mapStyle;
   bool mapToggle = false;
   var currentLocation;
-  //-12.013286, -77.101933
+  
   @override
   void initState() {
     //implement initState
@@ -55,7 +52,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
           title: element.name, 
           snippet: '★ ${element.stars} (${element.votes})',//element.direccion,
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(idvet: element.id),
+            builder: (_)=>ReservaDetallePage(vet: element),
           )),
         ),
         position: LatLng(element.latitude,element.longitude), //element.locationCoords,
@@ -160,7 +157,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       },
       child: InkWell(
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(idvet: vetLocales[index].id),
+            builder: (_)=>ReservaDetallePage(vet: vetLocales[index]),
           )),
           child: Stack(children: [
             Center(

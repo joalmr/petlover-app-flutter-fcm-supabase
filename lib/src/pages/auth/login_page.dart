@@ -103,9 +103,10 @@ class _LoginSevenPageState extends State<LoginPage> {
       mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
     }
     else{
-      Navigator.pushReplacement(
-        context,MaterialPageRoute(builder: (context) => NavigationBar(currentTabIndex: 0,))
-      );
+      Navigator.pushReplacementNamed(context, 'navInicio');
+      // Navigator.pushReplacement(
+      //   context,MaterialPageRoute(builder: (context) => NavigationBar(currentTabIndex: 0,))
+      // );
     }    
   }
 }

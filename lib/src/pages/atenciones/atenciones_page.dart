@@ -154,7 +154,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
         ),
       ), barrierDismissible: false);
       // mostrarSnackbar('Se calificó la atención.', colorMain, scaffoldKey);  
-      Timer(Duration(milliseconds: 2000), ()=>Navigator.popUntil(context, ModalRoute.withName("nav")) ) ;
+      Timer(Duration(milliseconds: 2000), ()=>Navigator.popUntil(context, ModalRoute.withName("navInicio")) ) ;
     }
     else mostrarSnackbar('No se calificó la atención.', colorRed, scaffoldKey);  
   }

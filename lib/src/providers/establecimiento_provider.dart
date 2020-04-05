@@ -9,10 +9,18 @@ class EstablecimientoProvider{
   final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
-  Future<List<EstablecimientoModel>> getVets() async {
+  //List<int> filtros
+  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async {
     String lat = _prefs.position.toString().split(',')[0];
     String lng = _prefs.position.toString().split(',')[1];
-    final url = '$_url/establishments?serrvices=&latitude=$lat&longitude=$lng';
+    var filtroServicio;
+    if(filtros.length>0){
+      filtroServicio=filtros;
+    }
+    else{
+      filtroServicio="";
+    }
+    final url = '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
     final resp = await http.get(url,
       headers: { 
@@ -23,7 +31,7 @@ class EstablecimientoProvider{
     final jsonResp = json.decode(resp.body);
     EstablecimientoList vets =  EstablecimientoList.fromJson(jsonResp);
     if(vets.establecimientos==null) return [];
-
+    // print(vets.establecimientos.length);
     return vets.establecimientos;
   }
 

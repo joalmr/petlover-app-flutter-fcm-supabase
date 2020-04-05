@@ -1,6 +1,4 @@
-
 import 'dart:io';
-
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/antecion/atencion_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';

@@ -52,6 +52,7 @@ class MascotaProvider{
   Future<bool> savePet(MascotaModel mascota, File imagen) async { //create
     final url = '$_url/pets';
     
+    print(mascota.breedId);
     int intMascota=0;
 
     if(mascota.genre) intMascota=1;    

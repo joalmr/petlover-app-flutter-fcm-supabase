@@ -53,13 +53,18 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     ),
                     SizedBox(height: 20.0,),
                     //FormControl().buttonSec('Buscar',(){})
-                    FlatButton(onPressed: ()=>{}, child: Container(
-                      width: double.infinity,
-                      child: Text('Flitrar', 
-                      textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: colorMain, 
-                          fontWeight: FontWeight.bold),))),
+                    FlatButton( 
+                      child: Container(
+                        width: double.infinity,
+                        child: Text('Flitrar', 
+                        textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: colorMain, 
+                            fontWeight: FontWeight.bold),)),
+                      onPressed: ()
+                        =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments: {"",[1,2]} ),
+                    
+                    ),
                     // buttonPri('Filtrar',()=>{})
                   ],
                 ),

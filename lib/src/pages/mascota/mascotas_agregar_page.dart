@@ -156,6 +156,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                         }
                         else{
                           // opcRaza=snapshot.data.breeds[0].id.toString();
+                          mascotaData.breedId = int.tryParse(opcRaza);
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                             child: (petData==null) ? ddlFuture( opcRaza, snapshot.data.breeds, 
@@ -390,7 +391,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
     catch(e) {
       setState(() {
-        mostrarSnackbar('No se agregadó la mascota.', colorRed, scaffoldKey);
+        mostrarSnackbar('No se agregó la mascota.', colorRed, scaffoldKey);
         btnBool = true;      
       });
     }
@@ -402,7 +403,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       Timer(Duration(milliseconds: 2000), (){Navigator.pop(context);});
     }
     else setState(() {
-      mostrarSnackbar('No se agregadó la mascota.', colorRed, scaffoldKey);  
+      mostrarSnackbar('No se agregó la mascota.', colorRed, scaffoldKey);  
       btnBool = true;      
     });
   }
@@ -411,8 +412,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     if(resp){
       mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);  
       Timer(Duration(milliseconds: 2000), (){
-        var route = MaterialPageRoute( builder: ((BuildContext context) => MascotaDetallePage(mascota: mascotaData) ));
-        Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route) { return route.isFirst; });
+        Navigator.pushNamed(context, 'detallemascota', arguments: mascotaData);
       });
     }
     else setState(() {

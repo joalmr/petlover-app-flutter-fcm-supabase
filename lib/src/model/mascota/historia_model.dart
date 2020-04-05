@@ -9,9 +9,9 @@ class HistoriaModel {
     String establishmentId;
     String establishment;
     String establishmentLogo;
-    double weight;
-    double heartRhythm;
-    double temperature;
+    String weight;
+    String heartRhythm;
+    String temperature;
     String bodyCondition;
     String createdAt;
     // List<dynamic> details;
@@ -34,9 +34,9 @@ class HistoriaModel {
         establishmentId: json["establishment_id"],
         establishment: json["establishment"],
         establishmentLogo: json["establishment_logo"],
-        weight: json["weight"].toDouble(),
-        heartRhythm: json["heart_rhythm"].toDouble(),
-        temperature: json["temperature"].toDouble(),
+        weight: json["weight"].toString(), //.toDouble(),
+        heartRhythm: json["heart_rhythm"].toString(), //.toDouble(),
+        temperature: json["temperature"].toString(), //.toDouble(),
         bodyCondition: json["body_condition"],
         createdAt: json["created_at"],
         // details: List<dynamic>.from(json["details"].map((x) => x)),

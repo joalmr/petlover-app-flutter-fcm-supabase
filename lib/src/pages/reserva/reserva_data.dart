@@ -81,7 +81,7 @@ class _Data extends State<DataReserva> {
             ),
             SizedBox(height: 20.0,),
             Text('Mascota'),          
-            ddlFutureImg(mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
+            ddlFutureImg(mascotaID, misMascotas.where((x)=>x.status!=0).toList(), (opt){ setState(() { mascotaID=opt.toString(); });} ),
             SizedBox(height: 10.0,),
             Text('Fecha'),
             _crearFecha(context),

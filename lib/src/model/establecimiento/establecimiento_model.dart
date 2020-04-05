@@ -36,7 +36,7 @@ class EstablecimientoModel {
     String name;
     String phone;
     String description;
-    int stars;
+    String stars;
     int votes;
     String address;
     double latitude;
@@ -45,7 +45,7 @@ class EstablecimientoModel {
     String logo;
     dynamic prices;
     List<Service> services;
-    double distance;
+    String distance;
 
     EstablecimientoModel({
         this.id,
@@ -69,16 +69,16 @@ class EstablecimientoModel {
         name: json["name"],
         phone: json["phone"] == null ? "" : json["phone"],
         description: json["description"]  == null ? "Descripción no detallada" : json["description"],
-        stars: json["stars"],
-        votes: json["votes"],
-        address: json["address"],
+        stars: json["stars"] == null ? "" : json["stars"],
+        votes: json["votes"] == null ? "" : json["votes"],
+        address: json["address"] == null ? "" : json["address"],
         latitude: json["latitude"] == null ? 0.0 : json["latitude"].toDouble(),
         longitude: json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
         prices: json["prices"],
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        distance: json["distance"] == null ? "" : json["distance"].toDouble()
+        distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2)
         // distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), double.parse(_prefs.position.split(',')[0]), double.parse(_prefs.position.split(',')[1]) ).toString(),
     );
 

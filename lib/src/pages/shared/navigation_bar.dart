@@ -10,27 +10,28 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
-  final int marcar;
-  NavigationBar({@required this.currentTabIndex, this.marcar});
+  // final int marcar;
+  NavigationBar({@required this.currentTabIndex, }); //this.marcar
 
   @override
-  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: currentTabIndex, marcar: marcar);
+  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: currentTabIndex); //, marcar: marcar
 }
 
 class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
-  int marcar;
-  _NavigationBarState({@required this.currentTabIndex, this.marcar});
+  // int marcar;
+  _NavigationBarState({@required this.currentTabIndex, }); //this.marcar
 
   @override
   Widget build(BuildContext context){
     final _kTabPages = <Widget>[
       HomePage(),
       NotificacionesPage(),      
-      ReservaList(marcar: marcar,),// ReservaPage(),
+      ReservaList(),//marcar: marcar, // ReservaPage(),
       DestacadosPage(),
       RecompensasPage(),
     ];
+
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.pets,),

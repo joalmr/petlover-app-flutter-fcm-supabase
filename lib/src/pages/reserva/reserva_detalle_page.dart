@@ -11,42 +11,32 @@ import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
-import 'package:proypet/src/utils/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
-  final String idvet;
-  ReservaDetallePage({@required this.idvet});
+  final EstablecimientoModel vet;
+  ReservaDetallePage({@required this.vet});
   @override
-  _ReservaDetallePageState createState() => _ReservaDetallePageState();
+  _ReservaDetallePageState createState() => _ReservaDetallePageState(vet: vet);
 }
 
 class _ReservaDetallePageState extends State<ReservaDetallePage> {
+  EstablecimientoModel vet;
+  _ReservaDetallePageState({@required this.vet});
   final establecimientoProvider = EstablecimientoProvider();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  String phone="";
   List<MascotaModel> misMascotas;
   final mascotaProvider = MascotaProvider();
   Modal modal = new Modal();  
-  String nameVet="";
+  // String nameVet="";
+  // String phone="";
 
 
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
       key: scaffoldKey,
-      body: FutureBuilder(
-        future: establecimientoProvider.getVet(widget.idvet),
-        builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
-          final mydata=snapshot.data;
-          if(!snapshot.hasData){
-            return Center(child: CircularProgressIndicator()); //valueColor: new AlwaysStoppedAnimation<Color>(colorMain),
-          }
-          else{
-            nameVet = mydata.name;
-            phone = mydata.phone;//"+51993191969";
-
-            return Stack(
+      body: Stack(
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height,
@@ -73,7 +63,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                     color: Colors.white
                   ),
                   child: SingleChildScrollView(
-                    child: _onDetail(context,mydata),
+                    child: _onDetail(context,vet),
                   ),
                 ),
                 Positioned(
@@ -91,10 +81,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                   ),
                 ),
               ]
-            );
-          }
-        },
-      )
+            )
     );
   }
 
@@ -121,26 +108,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                   fontWeight: FontWeight.w600
                 )
               ),
-              subtitle: FutureBuilder(
-                future: fnDistance(localVet.latitude,localVet.longitude),
-                builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  if(!snapshot.hasData){
-                    return Text("");
-                  }
-                  else{
-                    return RichText(
-                      text: TextSpan(
-                        text: '',
-                        style: DefaultTextStyle.of(context).style,
-                        children: <TextSpan>[
-                          TextSpan(text: '${snapshot.data} ',),
-                          TextSpan(text: '${localVet.address}',style: TextStyle(fontStyle: FontStyle.italic)),
-                        ],
-                      ),
-                    );
-                  }
-                },
-              ),
+              subtitle: Text('${localVet.distance}km   ${localVet.address}'),
               trailing: Container(
                 height: 65.0,
                 width: 65.0,
@@ -345,7 +313,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
   _launchPhone() async {
-    var url = 'tel:$phone';
+    var url = 'tel:${vet.phone}';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -358,7 +326,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
     if(misMascotas.length>0){
       Navigator.push(
-        context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: nameVet,))
+        context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name,))
       );
     }
     else{
