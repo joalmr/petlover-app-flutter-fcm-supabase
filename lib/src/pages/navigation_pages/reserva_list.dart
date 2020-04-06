@@ -41,13 +41,13 @@ class _ReservaListState extends State<ReservaList> {
           return Scaffold(
             key: _key,
             
-            endDrawer: FiltrosMapa(),
+            endDrawer: FiltrosMapa(filtros: listaFiltros,),//listaFiltros
             body: _onTab(snapshot.data),
             appBar: appbar(leadingH,'Establecimientos',
               <Widget>[
                 IconButton(
                   icon: Icon(Icons.filter_list),
-                  onPressed: (){ _key.currentState.openEndDrawer(); },
+                  onPressed: ()=>_key.currentState.openEndDrawer(),
                 ),
               ]
             ),
@@ -72,7 +72,7 @@ class _ReservaListState extends State<ReservaList> {
         CustomScrollView(
           slivers: <Widget>[
             SliverToBoxAdapter(
-              child: FlatButton(onPressed: (){}, child: Text('Filtros', style: TextStyle(color: colorMain, fontWeight: FontWeight.bold),)),
+              child: FlatButton(onPressed: ()=>_key.currentState.openEndDrawer(), child: Text('Filtros', style: TextStyle(color: colorMain, fontWeight: FontWeight.bold),)),
             ),
             _listarChip(listaFiltros),
             SliverList(

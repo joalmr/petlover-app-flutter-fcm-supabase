@@ -105,10 +105,10 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             InkWell(
                               borderRadius: BorderRadius.circular(15.0),
-                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "tipo":"1","filtros":[2] } ),
+                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[2] } ),
                               // onTap: ()=>Navigator.push(
                               //   context,MaterialPageRoute(
-                              //     builder: (context) => NavigationBar(currentTabIndex: 2, filtros: { "tipo":"1","filtros":[1] }, ),
+                              //     builder: (context) => NavigationBar(currentTabIndex: 2, filtros: { "filtros":[1] }, ),
                               // )),
                               child: Stack(
                                 children: <Widget>[
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(width: 15.0),
                             InkWell(
                               borderRadius: BorderRadius.circular(15.0),
-                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "tipo":"1","filtros":[4] } ),
+                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[4] } ),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(width: 15.0),
                             InkWell(
                               borderRadius: BorderRadius.circular(15.0),
-                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "tipo":"1","filtros":[1] } ),
+                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[1] } ),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
@@ -208,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(width: 15.0),
                             InkWell(
                               borderRadius: BorderRadius.circular(15.0),
-                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "tipo":"1","filtros":[11] } ),
+                              onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[11] } ),
                               child: Stack(
                                 children: <Widget>[
                                   Container(
