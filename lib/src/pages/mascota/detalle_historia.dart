@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:proypet/icon_proypet_icons.dart';
-import 'package:proypet/src/model/mascota/historia_detalle_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 
 class HistoriaPage extends StatelessWidget {
@@ -12,19 +11,6 @@ class HistoriaPage extends StatelessWidget {
     final dynamic historiaData = ModalRoute.of(context).settings.arguments;
 
     var jsonText = historiaData["detalle"];
-
-    // List<String> listaData=[];
-    // if(jsonText["grooming"]!=null) listaData.add("grooming");
-    // if(jsonText["deworming"]!=null) listaData.add("surgery");
-    // if(jsonText["vaccination"]!=null) listaData.add("deworming");
-    // if(jsonText["consultation"]!=null) listaData.add("vaccination");
-    // if(jsonText["surgery"]!=null) listaData.add("consultation");
-
-    // print(jsonText["grooming"]);
-    // print(jsonText["deworming"]);
-    // print(jsonText["vaccination"]);
-    // print(jsonText["consultation"]);
-    // print(jsonText["surgery"]);
 
     return Scaffold(
       appBar: appbar(leadingH,'Detalle de historia',null),
@@ -43,15 +29,7 @@ class HistoriaPage extends StatelessWidget {
     );
   }
 
-  // _fn(jsonText){
-  //   if(jsonText.toString().contains("grooming")) return _banio(jsonText["grooming"]);
-  //   if(jsonText.toString().contains("deworming")) return _desparasita(jsonText["deworming"]);
-  //   if(jsonText.toString().contains("vaccination")) return _vacuna(jsonText["vaccination"]);
-  //   if(jsonText.toString().contains("consultation")) return _consulta(jsonText["consultation"]);
-  //   if(jsonText.toString().contains("surgery")) return _cirugia(jsonText["surgery"]);
-  // }
   _banio(data){
-    print(data["recommendations"]);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,

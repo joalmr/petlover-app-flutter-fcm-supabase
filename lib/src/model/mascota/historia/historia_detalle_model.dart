@@ -84,10 +84,6 @@ class Deworming {
     };
 }
 
-//     final grooming = groomingFromJson(jsonString);
-Grooming groomingFromJson(String str) => Grooming.fromJson(json.decode(str));
-String groomingToJson(Grooming data) => json.encode(data.toJson());
-
 class Grooming {
     dynamic groomings;
     String recommendations;
