@@ -4,7 +4,9 @@ import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
+import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
+import 'package:proypet/src/pages/shared/icons_map.dart';
 
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -133,6 +135,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
         }
         else{
           List<HistoriaModel> historias = snapshot.data.history;
+          // print(historias[0].details);
           return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -142,51 +145,55 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
               onPressed: (){},          
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo), //('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
-                            radius: 25.0,
-                          ),
-                          SizedBox(width: 7.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                historias[index].establishment,
-                                //historialList[0].nombreVet,
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 17.0,
-                                  fontWeight: FontWeight.w600
+                child: InkWell(
+                  onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details} ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Row(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo), //('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
+                              radius: 25.0,
+                            ),
+                            SizedBox(width: 7.0),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  historias[index].establishment,
+                                  //historialList[0].nombreVet,
+                                  style: TextStyle(
+                                    color: Colors.black87,
+                                    fontSize: 17.0,
+                                    fontWeight: FontWeight.w600
+                                  ),
                                 ),
-                              ),
-                              Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
-                            ],
+                                iconosHistoria(historias[index].details)
+                                //Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            historias[index].createdAt.toString().split(' ')[0],
+                            style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            historias[index].createdAt.toString().split(' ')[1],
+                            style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          historias[index].createdAt.toString().split(' ')[0],
-                          style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          historias[index].createdAt.toString().split(' ')[1],
-                          style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );
@@ -199,5 +206,52 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
   }
 
 
+  iconosHistoria(json){
+    List<String> listaIcon=[];
+    if(json.toString().contains("grooming")) listaIcon.add("grooming");
+    if(json.toString().contains("surgery")) listaIcon.add("surgery");
+    if(json.toString().contains("deworming")) listaIcon.add("deworming");
+    if(json.toString().contains("vaccination")) listaIcon.add("vaccination");
+    if(json.toString().contains("consultation")) listaIcon.add("consultation");
 
+    print(listaIcon);
+    return 
+      // onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: { "slug":listaIcon, "detalle":json } ),
+      Row(
+        children: <Widget>[
+          (json.toString().contains("grooming"))
+            ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Icon( iconMap["grooming"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+            )
+            : SizedBox(),
+          (json.toString().contains("surgery"))
+            ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Icon( iconMap["surgery"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+            )
+            : SizedBox(),
+          (json.toString().contains("deworming"))
+            ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Icon( iconMap["deworming"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+            )
+            : SizedBox(),
+          (json.toString().contains("vaccination"))
+            ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Icon( iconMap["vaccination"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+            )
+            : SizedBox(),
+          (json.toString().contains("consultation"))
+            ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+              child: Icon( iconMap["consultation"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+            )
+            : SizedBox(),
+        ],
+      )
+    ;
+
+  }
 }

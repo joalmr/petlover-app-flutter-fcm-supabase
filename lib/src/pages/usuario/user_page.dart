@@ -26,44 +26,45 @@ class _UserPageState extends State<UserPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(leadingH,'Editar usuario',null),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25.0,vertical: 10.0),
-        child: Form(
-          key: formKey,
-          child: FutureBuilder(
-            future: userProvider.getUser(),
-            builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
-              if(!snapshot.hasData){
-                return Center(child: CircularProgressIndicator());
-              }
-              else{
-                user=snapshot.data.user;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(height: 25.0,),
-                    Text('Nombre'),
-                    SizedBox(height: 10.0,),
-                    textForm('Ingrese nombre', Icons.person_outline, false, (value)=>user.name=value, TextCapitalization.words, user.name,TextInputType.text),
-                    SizedBox(height: 15.0,),
-                    Text('Apellido'),
-                    SizedBox(height: 10.0,),
-                    textForm('Ingrese apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, user.lastname,TextInputType.text),
-                    SizedBox(height: 15.0,),
-                    Text('Teléfono'),
-                    SizedBox(height: 10.0,),
-                    textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
-                    SizedBox(height: 35.0,),
-                    Center(
-                      child: buttonPri('Guardar cambios', btnBool ? _onEdit : null ) //()=>agregarDialog()
-                    )
-                  ],
-                );
-              }
-            },
-          ),
-        )
+      body: FutureBuilder(
+        future: userProvider.getUser(),
+        builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot){
+          if(!snapshot.hasData){
+            return Center(child: CircularProgressIndicator());
+          }
+          else{
+            user=snapshot.data.user;
+            return SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 25.0,vertical: 10.0),
+              child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 25.0,),
+                  Text('Nombre'),
+                  SizedBox(height: 10.0,),
+                  textForm('Ingrese nombre', Icons.person_outline, false, (value)=>user.name=value, TextCapitalization.words, user.name,TextInputType.text),
+                  SizedBox(height: 15.0,),
+                  Text('Apellido'),
+                  SizedBox(height: 10.0,),
+                  textForm('Ingrese apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, user.lastname,TextInputType.text),
+                  SizedBox(height: 15.0,),
+                  Text('Teléfono'),
+                  SizedBox(height: 10.0,),
+                  textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
+                  SizedBox(height: 35.0,),
+                  Center(
+                    child: buttonPri('Guardar cambios', btnBool ? _onEdit : null ) //()=>agregarDialog()
+                  )
+                ],
+              ),
+            )
+
+            );
+          }
+        }
       ),
     );
   }
@@ -78,7 +79,7 @@ class _UserPageState extends State<UserPage> {
       bool resp = await userProvider.editUser(user);
       if(resp){
         mostrarSnackbar('Se guardó los datos.', colorMain, scaffoldKey);
-        Timer(Duration(milliseconds: 2000), ()=>Navigator.popUntil(context, ModalRoute.withName("nav")) ) ;
+        Timer(Duration(milliseconds: 2000), ()=>Navigator.popUntil(context, ModalRoute.withName("navInicio")) ) ;
       }
       else{
         mostrarSnackbar('No se guardó los datos.', colorRed, scaffoldKey);

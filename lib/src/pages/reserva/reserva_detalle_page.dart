@@ -15,77 +15,91 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
   final EstablecimientoModel vet;
-  ReservaDetallePage({@required this.vet});
+  final String vetID;
+  ReservaDetallePage({this.vet, this.vetID});
   @override
-  _ReservaDetallePageState createState() => _ReservaDetallePageState(vet: vet);
+  _ReservaDetallePageState createState() => _ReservaDetallePageState(vet: vet, vetID: vetID);
 }
 
 class _ReservaDetallePageState extends State<ReservaDetallePage> {
   EstablecimientoModel vet;
-  _ReservaDetallePageState({@required this.vet});
+  String vetID;
+  _ReservaDetallePageState({this.vet, this.vetID});
   final establecimientoProvider = EstablecimientoProvider();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List<MascotaModel> misMascotas;
   final mascotaProvider = MascotaProvider();
   Modal modal = new Modal();  
-  // String nameVet="";
-  // String phone="";
-
 
   @override
   Widget build(BuildContext context) {    
+    
     return Scaffold(
       key: scaffoldKey,
       body: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  color: colorMain,
-                ),
-                Positioned(
-                  bottom: 0.0,
-                  height: 100.0,
-                  child: FlatButton(
-                    onPressed: _reservar,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(top: 35.0),
-                      child: Center(
-                        child: Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
-                      )
-                    ),
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height - 65.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
-                    color: Colors.white
-                  ),
-                  child: SingleChildScrollView(
-                    child: _onDetail(context,vet),
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    centerTitle: true,
-                    title: Text("",style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal
-                    ),),
-                  ),
-                ),
-              ]
-            )
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            color: colorMain,
+          ),
+          Positioned(
+            bottom: 0.0,
+            height: 100.0,
+            child: FlatButton(
+              onPressed: _reservar,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(top: 35.0),
+                child: Center(
+                  child: Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
+                )
+              ),
+            ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 65.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
+              color: Colors.white
+            ),
+            child: SingleChildScrollView(
+              child: (vet!=null) ? _onDetail(context,vet) : FutureBuilder(
+                future: establecimientoProvider.getVet(vetID),
+                builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
+                  if(!snapshot.hasData) return Container();
+                  else return _onDetail(context, snapshot.data);
+                },
+              ),
+            ),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
+              title: Text("",style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.normal
+              ),),
+            ),
+          ),
+        ]
+      )
     );
   }
 
 //double distanciagps=0;
+  // _buscaVet(context) async {
+  //   return FutureBuilder(
+  //     future: establecimientoProvider.getVet(vetID),
+  //     builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
+  //       return _onDetail(context, snapshot.data);
+  //     },
+  //   );
+  // }
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
     return Column(
@@ -108,7 +122,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                   fontWeight: FontWeight.w600
                 )
               ),
-              subtitle: Text('${localVet.distance}km   ${localVet.address}'),
+              subtitle: Text('${localVet.address}'),//${localVet.distance}km
               trailing: Container(
                 height: 65.0,
                 width: 65.0,
@@ -323,6 +337,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
   _reservar() async {
     misMascotas = await mascotaProvider.getPets();
+    misMascotas = misMascotas.where((x)=>x.status!=0).toList();
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
     if(misMascotas.length>0){
       Navigator.push(
@@ -330,8 +345,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       );
     }
     else{
-      mostrarSnackbar('No tienes mascotas registradas', colorRed, scaffoldKey);  
-    }
-    
+      mostrarSnackbar('No puede generar una reserva', colorRed, scaffoldKey);  
+    }    
   }
 }

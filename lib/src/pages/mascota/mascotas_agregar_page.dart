@@ -155,8 +155,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                           return Center(child: CircularProgressIndicator());
                         }
                         else{
-                          // opcRaza=snapshot.data.breeds[0].id.toString();
-                          mascotaData.breedId = int.tryParse(opcRaza);
+                          if(petData==null){
+                            mascotaData.breedId = int.tryParse(opcRaza);
+                          }                          
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                             child: (petData==null) ? ddlFuture( opcRaza, snapshot.data.breeds, 

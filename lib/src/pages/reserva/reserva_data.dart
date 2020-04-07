@@ -80,8 +80,9 @@ class _Data extends State<DataReserva> {
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),            
             ),
             SizedBox(height: 20.0,),
-            Text('Mascota'),          
-            ddlFutureImg(mascotaID, misMascotas.where((x)=>x.status!=0).toList(), (opt){ setState(() { mascotaID=opt.toString(); });} ),
+            Text('Mascota'),         
+            //.where((x)=>x.status!=0).toList() 
+            ddlFutureImg(mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
             SizedBox(height: 10.0,),
             Text('Fecha'),
             _crearFecha(context),
@@ -278,8 +279,7 @@ class _Data extends State<DataReserva> {
               ),),
           ),
         ), barrierDismissible: false );
-        Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav')));
-        // Navigator.popUntil(context, ModalRoute.withName("nav"))
+        Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
       } 
     }
   }

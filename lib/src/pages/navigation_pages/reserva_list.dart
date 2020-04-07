@@ -39,8 +39,7 @@ class _ReservaListState extends State<ReservaList> {
           return Center(child: CircularProgressIndicator());
         else{
           return Scaffold(
-            key: _key,
-            
+            key: _key,            
             endDrawer: FiltrosMapa(filtros: listaFiltros,),//listaFiltros
             body: _onTab(snapshot.data),
             appBar: appbar(leadingH,'Establecimientos',

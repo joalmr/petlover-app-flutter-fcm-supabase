@@ -14,7 +14,7 @@ class HistoriaModel {
     String temperature;
     String bodyCondition;
     String createdAt;
-    // List<dynamic> details;
+    dynamic details;
 
     HistoriaModel({
         this.attentionId,
@@ -26,7 +26,7 @@ class HistoriaModel {
         this.temperature,
         this.bodyCondition,
         this.createdAt,
-        // this.details,
+        this.details,
     });
 
     factory HistoriaModel.fromJson(Map<String, dynamic> json) => HistoriaModel(
@@ -39,7 +39,7 @@ class HistoriaModel {
         temperature: json["temperature"].toString(), //.toDouble(),
         bodyCondition: json["body_condition"],
         createdAt: json["created_at"],
-        // details: List<dynamic>.from(json["details"].map((x) => x)),
+        details: json["details"], //List<dynamic>.from(json["details"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {
