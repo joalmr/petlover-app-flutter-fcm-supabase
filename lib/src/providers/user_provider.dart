@@ -25,6 +25,7 @@ class UserProvider{
 
         return {
           'ok':true,
+          'verify':decodedResp['verify'],
           'token':decodedResp['token']
         };
       } else{
@@ -66,7 +67,8 @@ class UserProvider{
       "password": user.password
     };
     final resp = await http.post(url, body: userData );
-    if(resp.statusCode==201) return true;
+    print(resp.statusCode);
+    if(resp.statusCode==200 || resp.statusCode==201) return true;
     else return false;
   }
 

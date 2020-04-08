@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
 final List imagen2 = ['images/royal1.jpg','images/elegante1.jpg'];

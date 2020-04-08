@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
-import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/pages/shared/icons_map.dart';
 
@@ -13,9 +11,6 @@ import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class MascotaDetallePage extends StatefulWidget {
-  // final String idmascota;
-  // final MascotaModel mascota;
-  // MascotaDetallePage({@required this.mascota});
 
   @override
   _MascotaDetallePageState createState() => _MascotaDetallePageState();//mascota: mascota
@@ -146,7 +141,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: InkWell(
-                  onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details} ),
+                  onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount} ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,

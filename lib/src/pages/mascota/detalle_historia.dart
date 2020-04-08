@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
@@ -11,6 +10,7 @@ class HistoriaPage extends StatelessWidget {
     final dynamic historiaData = ModalRoute.of(context).settings.arguments;
 
     var jsonText = historiaData["detalle"];
+    var precio = historiaData["precio"];
 
     return Scaffold(
       appBar: appbar(leadingH,'Detalle de historia',null),
@@ -23,6 +23,18 @@ class HistoriaPage extends StatelessWidget {
             (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"]) : SizedBox(),
             (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"]) : SizedBox(),
             (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"]) : SizedBox(),
+            Divider(height: 30.0, color: Colors.black,),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text("Precio", style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),
+                ],
+              )
+            )
           ],
         ),
       )

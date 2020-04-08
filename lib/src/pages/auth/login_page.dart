@@ -1,8 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
@@ -103,10 +103,35 @@ class _LoginSevenPageState extends State<LoginPage> {
       mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
     }
     else{
-      Navigator.pushReplacementNamed(context, 'navInicio');
-      // Navigator.pushReplacement(
-      //   context,MaterialPageRoute(builder: (context) => NavigationBar(currentTabIndex: 0,))
-      // );
+      // print(resp['token']);
+      // print(resp['verify']);
+      if(resp['verify']!=null){
+        Navigator.pushReplacementNamed(context, 'navInicio');
+      }
+      else{
+        showDialog(
+          context: context,
+          builder: (BuildContext context){
+            return FadeIn(
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                // title: Text('Error'),
+                content: Container(
+                  height: 100.0,
+                  child: Center(child: Text('Verifique su correo.'))
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: ()=>Navigator.pop(context), 
+                    child: Text('Continuar')
+                  ),
+                ],
+              ),
+            );
+          }
+        );
+      }
+      
     }    
   }
 }

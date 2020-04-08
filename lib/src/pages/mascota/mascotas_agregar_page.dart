@@ -7,7 +7,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/raza/raza_model.dart';
-import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';

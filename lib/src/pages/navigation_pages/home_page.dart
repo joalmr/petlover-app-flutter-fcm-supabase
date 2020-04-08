@@ -5,7 +5,6 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';

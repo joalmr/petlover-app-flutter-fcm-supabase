@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class Consultation { //tmb surgery
     dynamic anamnesis;

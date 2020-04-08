@@ -12,17 +12,20 @@ class TokenModel {
     String token;
     String tokenType;
     DateTime expiresAt;
+    dynamic verify;
 
     TokenModel({
         this.token,
         this.tokenType,
         this.expiresAt,
+        this.verify,
     });
 
     factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
         token: json["token"],
         tokenType: json["token_type"],
         expiresAt: DateTime.parse(json["expires_at"]),
+        verify: json["verify"],
     );
 
     Map<String, dynamic> toJson() => {
