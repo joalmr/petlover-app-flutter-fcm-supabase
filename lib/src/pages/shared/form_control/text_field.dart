@@ -12,10 +12,6 @@ Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){
       enableInteractiveSelection: false,
       controller: _inputController,
       textCapitalization: TextCapitalization.sentences,
-      // onTap: (){
-      //   FocusScope.of(context).requestFocus(new FocusNode());
-      //   _selectDate(context);
-      // },
       maxLength: _maxLength,
       maxLines: _maxLines,
       keyboardType: TextInputType.multiline,
@@ -23,48 +19,13 @@ Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){
       decoration: InputDecoration(
         hintText: _hinttext,
         hintStyle: TextStyle(fontSize: 14.0),
-        // prefixIcon: Material(
-        //   //elevation: 0.0,
-        //   borderRadius: _shape,
-        //   color: Colors.grey[200],
-        //   child: Icon(
-        //     Icons.calendar_today,
-        //     color: colorMain,
-        //   ),
-        // ),
         border: InputBorder.none,
         contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
       ),
     ),
   );
 }
-  // return Material(
-  //   elevation: 0.0,
-  //   borderRadius: _shape,
-  //   color: Colors.grey[200],
-  //   child: TextFormField(
-  //     initialValue: _valorInicial,
-  //     textCapitalization: _textCap,
-  //     obscureText: _obscuretext,
-  //     onSaved: _onsaved,
-  //     cursorColor: colorMain,
-  //     maxLines: null,
-  //     keyboardType: TextInputType.multiline,
-  //     decoration: InputDecoration(
-  //       hintText: _hinttext,
-  //       hintStyle: TextStyle(fontSize: 14.0),
-  //       border: InputBorder.none,
-  //       contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-  //     ),
-  //   ),
-  // );
-// }
-
-// import 'package:proypet/src/pages/shared/styles/styles.dart';
-// //final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
-// final _shape = BorderRadius.circular(10.0);
-
-
+  
 
 // Widget textfield(_hinttext, _icon, _obscuretext){
 //   return Padding(

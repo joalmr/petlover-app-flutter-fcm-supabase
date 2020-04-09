@@ -43,6 +43,14 @@ class UserProvider{
     }
   }
 
+  Future<bool> forgotPassword(String email) async{
+    final url = '$_url/password/reset';
+
+    final emailData = { "email": email };
+    final resp = await http.post(url, body: emailData );
+    if(resp.statusCode==200) return true;
+    else return false;
+  }
   //summary
   Future<HomeModel> getUserSummary() async {
     final url = '$_url/summary';
