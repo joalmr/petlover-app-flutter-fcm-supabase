@@ -49,7 +49,7 @@ class ConfigDrawer extends StatelessWidget {
                   )
                 ),
                 ListTile(
-                  leading: Icon(Icons.person,),
+                  leading: Icon(Icons.person_outline,),
                   title: Text('Editar datos', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),

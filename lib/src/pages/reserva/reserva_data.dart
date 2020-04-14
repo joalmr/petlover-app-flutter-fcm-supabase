@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,9 +18,10 @@ class DataReserva extends StatefulWidget {
   final String establecimientoName;
   final List<MascotaModel> misMascotas;
   final String mascotaID;
-  DataReserva({@required this.establecimientoID, @required this.misMascotas, @required this.mascotaID, @required this.establecimientoName});
+  final bool delivery;
+  DataReserva({@required this.establecimientoID, @required this.misMascotas, @required this.mascotaID, @required this.establecimientoName, @required this.delivery});
   @override
-  _Data createState() => _Data(establecimientoID: establecimientoID,misMascotas: misMascotas,mascotaID: mascotaID, establecimientoName: establecimientoName); //establecimientoID: this.establecimientoID,misMascotas: this.misMascotas
+  _Data createState() => _Data(establecimientoID: establecimientoID,misMascotas: misMascotas,mascotaID: mascotaID, establecimientoName: establecimientoName, delivery: delivery); //establecimientoID: this.establecimientoID,misMascotas: this.misMascotas
 }
 
 class _Data extends State<DataReserva> {
@@ -29,7 +29,8 @@ class _Data extends State<DataReserva> {
   String establecimientoName;
   List<MascotaModel> misMascotas;
   String mascotaID;
-  _Data({@required this.establecimientoID, this.misMascotas, this.mascotaID, this.establecimientoName});
+  bool delivery;
+  _Data({@required this.establecimientoID, this.misMascotas, this.mascotaID, this.establecimientoName, this.delivery});
   
   String _fecha ='';
   String _hora ='';
@@ -47,25 +48,24 @@ class _Data extends State<DataReserva> {
     {'id':'3','name':'Baño',},
     {'id':'4','name':'Desparasitación',},
   ];
+  
+  List _delivery = [
+    {'id':'1','name':'No deseo',},
+    {'id':'2','name':'Recojo',},
+    {'id':'3','name':'Entrega',},
+    {'id':'4','name':'Recojo y entrega',},
+  ];
 
   String resarvaId = "1";
+  String deliveryId = "1";
   String observacion="";
   bool boolPet=false;
 
-  // final scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
-    // return Padding(
-    //   padding: const EdgeInsets.all(25.0),
-    //   child: _onFuture(),
-    // ); 
     return Scaffold(
-      // key: scaffoldKey,
       appBar: appbar(null,'Reserva', null),
       body: _onFuture(),
-      // padding: EdgeInsets.all(25.0),
-      // child: _onFuture(),
     );
   }
 
@@ -81,24 +81,29 @@ class _Data extends State<DataReserva> {
             ),
             SizedBox(height: 20.0,),
             Text('Mascota'),         
-            //.where((x)=>x.status!=0).toList() 
             ddlFutureImg(mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
-            SizedBox(height: 10.0,),
+            SizedBox(height: 12.0,),
             Text('Fecha'),
             _crearFecha(context),
-            SizedBox(height: 10.0,),
+            SizedBox(height: 12.0,),
             Text('Hora'),
             _crearHora(context),
-            SizedBox(height: 10.0,),
+            SizedBox(height: 12.0,),
             Text('Atención'),
             ddlMain(resarvaId, _atencion, 
               (opt){ setState(() {
                   resarvaId=opt; 
               });}
-            ),
-            SizedBox(height: 10.0,),
+            ),            
+            delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
+            delivery ? Text('Recojo/entrega') : SizedBox(height: 0.0,) ,
+            delivery ? ddlMain(deliveryId, _delivery, 
+              (opt){ setState(() {
+                  deliveryId=opt; 
+              });}
+            )  : SizedBox(height: 0.0,) ,
+            SizedBox(height: 12.0,),
             Text('Observación'),
-            // textArea('Ingrese observación (opcional)', null, false, (value)=>observacion=value, TextCapitalization.sentences,""),
             textfieldArea(_inputObsController,'Ingrese observación (opcional)',null,null),
             SizedBox(height: 20.0,),
             buttonPri('Reservar', ()=>reservaDialog()),      
@@ -265,7 +270,14 @@ class _Data extends State<DataReserva> {
       booking.typeId = resarvaId;
       booking.observation= _inputObsController.text;
 
-      bool resp = await bookingProvider.booking(booking);
+      var deliveryArray = ['No deseo', 'Recojo', 'Entrega', 'Recojo y entrega'];
+      var deliveryText = "";
+
+      if(delivery){
+        deliveryText = deliveryArray[int.parse(deliveryId)-1];
+      }
+
+      bool resp = await bookingProvider.booking(booking, deliveryText);
 
       if(resp){
         showDialog(context: context,builder: (BuildContext context)=> FadeIn(

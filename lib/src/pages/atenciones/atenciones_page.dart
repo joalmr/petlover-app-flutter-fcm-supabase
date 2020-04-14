@@ -145,12 +145,14 @@ class _AtencionesPageState extends State<AtencionesPage> {
     if(resp){
       // Navigator.pop(context);
       showDialog(context: context,builder: (BuildContext context)=> FadeIn(
-        child: AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-          content: Container(
-            height: 100.0,
-            child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))
+        child: FadeIn(
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            content: Container(
+              height: 100.0,
+              child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))
+            ),
           ),
         ),
       ), barrierDismissible: false);

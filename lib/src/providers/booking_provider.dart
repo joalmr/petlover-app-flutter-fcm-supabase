@@ -8,15 +8,16 @@ class BookingProvider{
   final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
-  Future<bool> booking(BookingModel booking) async {
+  Future<bool> booking(BookingModel booking, String delivery) async {
     final url = '$_url/bookings';
-    
+    print(delivery);
     final bodyData = { 
       "booking_at": booking.bookingAt, 
       "establishment_id": booking.establishmentId,
       "pet_id": booking.petId,
       "type_id": booking.typeId,
-      "observation": booking.observation
+      "observation": booking.observation,
+      "delivery": delivery,
     };
 
     final resp = await http.post(url,
@@ -25,7 +26,7 @@ class BookingProvider{
       },
       body: bodyData
     );
-
+    print(resp.statusCode);
     if(resp.statusCode==200 || resp.statusCode==201){
       return true;
     }

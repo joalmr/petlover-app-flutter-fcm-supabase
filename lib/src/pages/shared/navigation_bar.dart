@@ -34,11 +34,11 @@ class _NavigationBarState extends State<NavigationBar> {
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-        icon: Icon(Icons.pets,),
+        icon: Icon(Icons.pets),
         title: Text('Inicio',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_active,),
+        icon: Icon(Icons.notifications_none,),
         title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
@@ -46,7 +46,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Establecimientos',style: TextStyle(fontSize: 12.0)),
       ),      
       BottomNavigationBarItem(
-        icon: Icon(Icons.info),//Proypet.proypet2
+        icon: Icon(Icons.info_outline),//Proypet.proypet2
         title: Text('Destacados',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(

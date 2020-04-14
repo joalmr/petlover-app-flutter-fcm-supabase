@@ -24,7 +24,6 @@ class _ReservaListState extends State<ReservaList> {
   @override
   Widget build(BuildContext context) {
     final dynamic filtrosData = ModalRoute.of(context).settings.arguments;
-    // print(filtros);
     
     if(filtrosData!=null){
       print(filtrosData["filtros"]);
@@ -44,6 +43,12 @@ class _ReservaListState extends State<ReservaList> {
             body: _onTab(snapshot.data),
             appBar: appbar(leadingH,'Establecimientos',
               <Widget>[
+                // IconButton(
+                //   icon: Icon(Icons.search),
+                //   onPressed: (){
+                //     showSearch(context: context, delegate: null);
+                //   },
+                // ),
                 IconButton(
                   icon: Icon(Icons.filter_list),
                   onPressed: ()=>_key.currentState.openEndDrawer(),
@@ -79,7 +84,7 @@ class _ReservaListState extends State<ReservaList> {
                 (BuildContext context, int index){
                   return buildVets(context,index, vetLocales);
                 },
-                childCount: vetLocales.length
+                childCount: vetLocales.length,
               ),
             ),
             SliverToBoxAdapter(
@@ -102,7 +107,7 @@ class _ReservaListState extends State<ReservaList> {
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: chips.length,
+              itemCount: chips.length,              
               itemBuilder: (BuildContext context, int index) => _chip(chips[index]),
             ),
           ),

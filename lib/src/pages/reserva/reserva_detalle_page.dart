@@ -29,7 +29,8 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List<MascotaModel> misMascotas;
   final mascotaProvider = MascotaProvider();
-  Modal modal = new Modal();  
+  Modal modal = new Modal();
+  bool delivery = false;
 
   @override
   Widget build(BuildContext context) {    
@@ -90,16 +91,6 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       )
     );
   }
-
-//double distanciagps=0;
-  // _buscaVet(context) async {
-  //   return FutureBuilder(
-  //     future: establecimientoProvider.getVet(vetID),
-  //     builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
-  //       return _onDetail(context, snapshot.data);
-  //     },
-  //   );
-  // }
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
     return Column(
@@ -289,6 +280,9 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
   Widget _icoServicio(String icon, String nombre){
+    if(icon=="delivery"){
+      delivery=true;
+    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 7.5),
       child: Column(
@@ -341,7 +335,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
     if(misMascotas.length>0){
       Navigator.push(
-        context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name,))
+        context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
       );
     }
     else{

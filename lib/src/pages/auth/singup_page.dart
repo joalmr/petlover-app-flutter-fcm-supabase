@@ -47,7 +47,7 @@ class _SingupPageState extends State<SingupPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
+              child: textForm('Apellido', Icons.person_outline, false, (value)=>user.lastname=value, TextCapitalization.words, null,
                 TextInputType.text),
             ),
             SizedBox(height: 20),

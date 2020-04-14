@@ -31,7 +31,7 @@ class User {
     String phone;
     String email;
     DateTime emailVerifiedAt;
-    String settings;
+    // String settings;
     DateTime createdAt;
     DateTime updatedAt;
     dynamic deletedAt;
@@ -43,7 +43,7 @@ class User {
         this.phone,
         this.email,
         this.emailVerifiedAt,
-        this.settings,
+        // this.settings,
         this.createdAt,
         this.updatedAt,
         this.deletedAt,
@@ -56,7 +56,7 @@ class User {
         phone: json["phone"],
         email: json["email"],
         emailVerifiedAt: DateTime.parse(json["email_verified_at"]),
-        settings: json["settings"],
+        // settings: json["settings"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         deletedAt: json["deleted_at"],
@@ -69,7 +69,7 @@ class User {
         "phone": phone,
         "email": email,
         "email_verified_at": emailVerifiedAt.toIso8601String(),
-        "settings": settings,
+        // "settings": settings,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "deleted_at": deletedAt,
