@@ -271,10 +271,9 @@ class _Data extends State<DataReserva> {
 
       booking.bookingAt = fechaTime;
       booking.establishmentId = widget.establecimientoID;
-      booking.petId = mascotaID;//"193144f3-5791-4ecf-88b9-34f35a321695";
+      booking.petId = mascotaID;//
       booking.typeId = resarvaId;
       booking.observation= _inputObservacioController.text;
-      //_inputDireccionController.text;
 
       var deliveryArray = ['No deseo', 'Recojo', 'Entrega', 'Recojo y entrega'];
       var deliveryText = "";
