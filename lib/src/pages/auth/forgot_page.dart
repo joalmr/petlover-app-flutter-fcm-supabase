@@ -43,19 +43,16 @@ class _ForgotPageState extends State<ForgotPage> {
               child: Text('Se le enviará un correo electrónico para que reestablezca su contraseña.')
             ),
             SizedBox(height: 20.0),
-            // textfield('Email', Icons.mail, false),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,
                 TextInputType.text),
             ),
-            //FormControl().textfield('Email', Icons.mail, false),
             SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: buttonPri('Enviar', _forgot),
             ),
-            //FormControl().buttonPri('Enviar', (){}),
             SizedBox(height: 20.0),
           ],
         ),

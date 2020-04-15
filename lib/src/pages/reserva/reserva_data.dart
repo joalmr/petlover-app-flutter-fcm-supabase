@@ -36,7 +36,8 @@ class _Data extends State<DataReserva> {
   String _hora ='';
   TextEditingController _inputFechaController=new TextEditingController();
   TextEditingController _inputHoraController=new TextEditingController();
-  TextEditingController _inputObsController=new TextEditingController();
+  TextEditingController _inputObservacioController=new TextEditingController();
+  TextEditingController _inputDireccionController=new TextEditingController();
 
   final bookingProvider = BookingProvider();
   final mascotaProvider = MascotaProvider();
@@ -96,15 +97,19 @@ class _Data extends State<DataReserva> {
               });}
             ),            
             delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
-            delivery ? Text('Recojo/entrega') : SizedBox(height: 0.0,) ,
+            delivery ? Text('Delivery') : SizedBox(height: 0.0,) ,
             delivery ? ddlMain(deliveryId, _delivery, 
               (opt){ setState(() {
                   deliveryId=opt; 
               });}
             )  : SizedBox(height: 0.0,) ,
+            (delivery && deliveryId!="1") ? Padding(
+              padding: const EdgeInsets.only(top: 10.0) ,
+              child: textfieldArea(_inputDireccionController,'Ingrese dirección para el delivery',null,null),
+            ) : SizedBox(height: 0.0,) ,
             SizedBox(height: 12.0,),
             Text('Observación'),
-            textfieldArea(_inputObsController,'Ingrese observación (opcional)',null,null),
+            textfieldArea(_inputObservacioController,'Ingrese observación (opcional)',null,null),
             SizedBox(height: 20.0,),
             buttonPri('Reservar', ()=>reservaDialog()),      
             SizedBox(height: 5.0),
@@ -268,27 +273,29 @@ class _Data extends State<DataReserva> {
       booking.establishmentId = widget.establecimientoID;
       booking.petId = mascotaID;//"193144f3-5791-4ecf-88b9-34f35a321695";
       booking.typeId = resarvaId;
-      booking.observation= _inputObsController.text;
+      booking.observation= _inputObservacioController.text;
+      //_inputDireccionController.text;
 
       var deliveryArray = ['No deseo', 'Recojo', 'Entrega', 'Recojo y entrega'];
       var deliveryText = "";
-
+      var direccionText="";
       if(delivery){
         deliveryText = deliveryArray[int.parse(deliveryId)-1];
+        direccionText = _inputDireccionController.text;
       }
 
-      bool resp = await bookingProvider.booking(booking, deliveryText);
+      bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
 
       if(resp){
-        showDialog(context: context,builder: (BuildContext context)=> FadeIn(
-          child: FadeIn(
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              content: Container(
-                height: 100.0,
-                child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: 14.0),))
-              ),),
+        showDialog(context: context,builder: 
+        (BuildContext context)=> FadeIn(
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            content: Container(
+              height: 100.0,
+              child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: 14.0),))
+            ),
           ),
         ), barrierDismissible: false );
         Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));

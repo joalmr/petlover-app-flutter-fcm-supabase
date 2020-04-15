@@ -41,13 +41,13 @@ class _SingupPageState extends State<SingupPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Nombre', Icons.person_outline, false, (value)=>user.name=value, TextCapitalization.words, null,
+              child: textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null,
                 TextInputType.text),
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Apellido', Icons.person_outline, false, (value)=>user.lastname=value, TextCapitalization.words, null,
+              child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
                 TextInputType.text),
             ),
             SizedBox(height: 20),
@@ -59,7 +59,7 @@ class _SingupPageState extends State<SingupPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>user.password=value, TextCapitalization.none, null,
+              child: textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null,
                 TextInputType.text),
             ),
             SizedBox(height: 20),

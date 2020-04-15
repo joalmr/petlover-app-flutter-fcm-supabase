@@ -108,5 +108,17 @@ class UserProvider{
     else return false;
   }
 
+  Future<bool> validaTelefono() async {
+    final url = '$_url/profile';
+    final resp = await http.get(url, headers: { 
+      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    });
+    
+    final datosUsuario = userModelFromJson(resp.body);
+    
+    if(datosUsuario.user.phone != null) return true;
+    else return false;
+  }
+
 }
   

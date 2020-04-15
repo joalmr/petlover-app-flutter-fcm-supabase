@@ -8,9 +8,9 @@ class BookingProvider{
   final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
-  Future<bool> booking(BookingModel booking, String delivery) async {
+  Future<bool> booking(BookingModel booking, String delivery, String direccion) async {
     final url = '$_url/bookings';
-    print(delivery);
+    print(direccion);
     final bodyData = { 
       "booking_at": booking.bookingAt, 
       "establishment_id": booking.establishmentId,
@@ -18,6 +18,7 @@ class BookingProvider{
       "type_id": booking.typeId,
       "observation": booking.observation,
       "delivery": delivery,
+      "address": direccion,
     };
 
     final resp = await http.post(url,

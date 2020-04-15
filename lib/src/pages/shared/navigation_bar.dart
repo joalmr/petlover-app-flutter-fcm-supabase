@@ -38,7 +38,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Inicio',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_none,),
+        icon: Icon(Icons.notifications_active,),
         title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
@@ -46,7 +46,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Establecimientos',style: TextStyle(fontSize: 12.0)),
       ),      
       BottomNavigationBarItem(
-        icon: Icon(Icons.info_outline),//Proypet.proypet2
+        icon: Icon(Icons.info),
         title: Text('Destacados',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(

@@ -38,7 +38,7 @@ class _LoginSevenPageState extends State<LoginPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock_outline, true, (value)=>userModel.password=value, TextCapitalization.none, null,
+              child: textForm('Contraseña', Icons.lock, true, (value)=>userModel.password=value, TextCapitalization.none, null,
                 TextInputType.text),
             ),
             SizedBox(height: 25.0),
@@ -103,8 +103,6 @@ class _LoginSevenPageState extends State<LoginPage> {
       mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
     }
     else{
-      // print(resp['token']);
-      // print(resp['verify']);
       if(resp['verify']!=null){
         Navigator.pushReplacementNamed(context, 'navInicio');
       }

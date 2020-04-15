@@ -45,7 +45,7 @@ class _UserPageState extends State<UserPage> {
                   SizedBox(height: 25.0,),
                   Text('Nombre'),
                   SizedBox(height: 10.0,),
-                  textForm('Ingrese nombre', Icons.person_outline, false, (value)=>user.name=value, TextCapitalization.words, user.name,TextInputType.text),
+                  textForm('Ingrese nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, user.name,TextInputType.text),
                   SizedBox(height: 15.0,),
                   Text('Apellido'),
                   SizedBox(height: 10.0,),
@@ -54,6 +54,9 @@ class _UserPageState extends State<UserPage> {
                   Text('Teléfono'),
                   SizedBox(height: 10.0,),
                   textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
+                  Text('Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
+                    style: TextStyle(fontSize: 10.0),
+                  ),
                   SizedBox(height: 35.0,),
                   Center(
                     child: buttonPri('Guardar cambios', btnBool ? _onEdit : null ) //()=>agregarDialog()
@@ -74,8 +77,9 @@ class _UserPageState extends State<UserPage> {
       formKey.currentState.save();
       btnBool = false;      
     });
-
-    if(user.name.trim()!="" && user.phone.trim()!=""){    
+    
+    //&& user.phone.trim()!=""
+    if(user.name.trim()!=""){    
       bool resp = await userProvider.editUser(user);
       if(resp){
         mostrarSnackbar('Se guardó los datos.', colorMain, scaffoldKey);

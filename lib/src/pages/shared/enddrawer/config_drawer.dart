@@ -40,7 +40,7 @@ class ConfigDrawer extends StatelessWidget {
                 //FormControl().buttonSec('Buscar',(){})
                 //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
-                  leading: Icon(Icons.star_border,),
+                  leading: Icon(Icons.star,),
                   title: Text('Calificar anteciones', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
@@ -49,7 +49,7 @@ class ConfigDrawer extends StatelessWidget {
                   )
                 ),
                 ListTile(
-                  leading: Icon(Icons.person_outline,),
+                  leading: Icon(Icons.person,),
                   title: Text('Editar datos', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),

@@ -1,16 +1,21 @@
 import 'dart:ui';
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
+import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
@@ -26,11 +31,15 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   String vetID;
   _ReservaDetallePageState({this.vet, this.vetID});
   final establecimientoProvider = EstablecimientoProvider();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  List<MascotaModel> misMascotas;
   final mascotaProvider = MascotaProvider();
+  final userProvider = UserProvider();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final formKey = GlobalKey<FormState>();
+  User user = User();//
+  List<MascotaModel> misMascotas;  
   Modal modal = new Modal();
   bool delivery = false;
+  String telefono="";
 
   @override
   Widget build(BuildContext context) {    
@@ -334,12 +343,64 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     misMascotas = misMascotas.where((x)=>x.status!=0).toList();
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
     if(misMascotas.length>0){
-      Navigator.push(
-        context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
-      );
+      bool validatelefono = false;
+      var usuario = await userProvider.getUser();
+      user = usuario.user;
+      // print(user.phone);
+      if(user.phone != null){
+        validatelefono=true;
+      } 
+      //bool validatelefono
+      // print(validatelefono);
+      if(validatelefono){
+        Navigator.push(
+          context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
+        );
+      }
+      else{        
+        showDialog(context: context,builder: 
+          (BuildContext context)=> FadeIn(
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              content: Container(
+                height: 170.0,
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 10.0,),
+                      Text('Debe ingresar un número de teléfono', style: TextStyle(fontSize: 14.0)),
+                      SizedBox(height: 10.0,),
+                      // textFormLess("Ingresar teléfono", (value)=>telefono=value,),
+                      textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
+                      SizedBox(height: 10.0,),
+                      buttonPri("Guardar teléfono", _onPhone)
+                    ],
+                  ),
+                )
+              ),
+            ),
+          ),
+        );
+      }      
     }
     else{
       mostrarSnackbar('No puede generar una reserva', colorRed, scaffoldKey);  
     }    
   }
+
+  void _onPhone() async {
+    formKey.currentState.save();
+    setState(() { });
+    bool resp = await userProvider.editUser(user);//
+    print(resp);
+    Navigator.pop(context);
+    // if(resp){
+    //   Navigator.push(
+    //     context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
+    //   );
+    // }
+  }
+
 }

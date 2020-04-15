@@ -367,9 +367,15 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Row(
                               children: <Widget>[
-                                Icon(Icons.cake, color: Colors.grey[300]),
+                                (mascotas[index].status==0) 
+                                  ? Icon(Icons.bookmark, color: Colors.grey[300]) 
+                                  : Icon(Icons.cake, color: Colors.grey[300]),
                                 SizedBox(width: 5.0),
-                                Text(
+                                (mascotas[index].status==0) 
+                                ? Text("Fallecido",//mascotas[index].age.toString(),
+                                  style: TextStyle(color: Colors.grey[300],),
+                                )
+                                : Text(
                                   calculateAge(DateTime.parse(mascotas[index].birthdate)),//mascotas[index].age.toString(),
                                   style: TextStyle(color: Colors.grey[300]),
                                 )
