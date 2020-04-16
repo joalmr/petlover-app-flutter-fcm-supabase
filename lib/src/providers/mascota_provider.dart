@@ -84,9 +84,9 @@ class MascotaProvider{
 
   }
 
-  Future<bool> editPet(MascotaModel mascota, File imagen) async {
+  Future<Map<String,dynamic>> editPet(MascotaModel mascota, File imagen) async {
     final url = '$_url/pets/${mascota.id}';
-
+    String img="";
     int intMascota=0;
     if(mascota.genre) intMascota=1;    
     //else intMascota=0;
@@ -109,14 +109,20 @@ class MascotaProvider{
       if(imagen!=null){
         final idkey = mascota.id;
         final urlpet = '$_url/pets/$idkey/base64';
-        upImage(imagen,urlpet);
+        img = await upImage(imagen,urlpet);
       }
-      return true;  
+      return {
+        'edit': true,
+        'picture': img
+      };  
     }
-    else return false;
+    else return {
+      'edit': false,
+      'picture': ""
+    };
   }
 
-    Future<bool> muerePet(MascotaModel mascota) async {
+  Future<bool> muerePet(MascotaModel mascota) async {
     final url = '$_url/pets/${mascota.id}';
 
     int intMascota=0;
@@ -151,7 +157,7 @@ class MascotaProvider{
     }
   }
 
-  Future upImage(File imagen,String url) async {
+  Future<String> upImage(File imagen,String url) async {
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
     final mimetype = mime(imagen.path).split('/');
@@ -160,11 +166,15 @@ class MascotaProvider{
 
     String sendPic = 'data:$part0/$part1;base64,$pic';
 
-    await http.post(url,
+    var img = await http.post(url,
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      }, body: { 'base64':sendPic });
-    
+      }, body: { 'base64':sendPic }
+    );
+
+    var decodeimg = json.decode(img.body);
+    print(decodeimg["picture"]);
+    return decodeimg["picture"];
   }
 
 }

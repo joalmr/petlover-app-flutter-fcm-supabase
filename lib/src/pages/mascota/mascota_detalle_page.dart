@@ -16,8 +16,6 @@ class MascotaDetallePage extends StatefulWidget {
 }
 
 class _MascotaDetallePageState extends State<MascotaDetallePage> {
-  // MascotaModel mascota;
-  // _MascotaDetallePageState({@required this.mascota});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final mascotaProvider = MascotaProvider();
 
@@ -56,7 +54,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             child: Column(
               children: <Widget>[                      
                 datoMascota(mascota),
-                // numAtenciones(),
                 listaHistorial(context, mascota),
               ],
             ),
@@ -118,7 +115,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
       ),
     );
   }
-
 
   listaHistorial(BuildContext context, MascotaModel mascota){ //List<HistoriaModel> historias
     return FutureBuilder(
@@ -200,7 +196,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     );
 
   }
-
 
   iconosHistoria(json){
     List<String> listaIcon=[];

@@ -46,8 +46,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   Widget build(BuildContext context) {
     final MascotaModel petData = ModalRoute.of(context).settings.arguments;
     if(petData==null){ //agregar
-      mascotaData.specieId = int.tryParse(datoPet);
-      // mascotaData.breedId = int.tryParse(opcRaza);      
+      mascotaData.specieId = int.tryParse(datoPet); 
     }
 
     else{ //editar
@@ -342,12 +341,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         aspectRatioLockEnabled: true, 
       )
     );
-
-    // var result = await FlutterImageCompress.compressAndGetFile(
-    //     croppedFile.path, 
-    //     croppedFile.path,
-    //     quality: 65,
-    //   );
     
     if(foto!=null){
       //limpieza
@@ -388,7 +381,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
           if(mascotaData.birthdate=="" && fechaEdit!=""){
             mascotaData.birthdate=fechaEdit;
           }
-          resp = await mascotaProvider.editPet(mascotaData, foto);
+          Map resp = await mascotaProvider.editPet(mascotaData, foto);
 
           boolEdit(resp);
         }
@@ -414,8 +407,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   boolEdit(resp){
-    if(resp){
+    if(resp['edit']){
       mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);  
+      mascotaData.picture = resp['picture'];
       Timer(Duration(milliseconds: 2000), (){
         Navigator.pushNamed(context, 'detallemascota', arguments: mascotaData);
       });

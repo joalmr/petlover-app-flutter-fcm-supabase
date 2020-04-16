@@ -111,7 +111,8 @@ class _SingupPageState extends State<SingupPage> {
       }
       else{
         bool resp = await userProvider.registerUser(user);
-        if(resp) Navigator.pop(context); //Navigator.of(context).pushNamedAndRemoveUntil('/login', ModalRoute.withName('/login')); //
+        if(resp) Navigator.pop(context); 
+        //Navigator.of(context).pushNamedAndRemoveUntil('/login', ModalRoute.withName('/login')); //
         else mostrarSnackbar("No se registró el usuario, correo existente",colorRed,scaffoldKey);
       }
       
