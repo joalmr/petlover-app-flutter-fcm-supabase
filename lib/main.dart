@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData( 
         fontFamily: 'PT Sans',
         primarySwatch: Colors.teal,
-      ),
+      ) ,
       debugShowCheckedModeBanner: false,      
       routes: getRoutes(),
       initialRoute: rutaInicio,
@@ -41,5 +41,3 @@ class MyApp extends StatelessWidget {
 }
 
 
-    //var config = AppConfig.of(context);
-    //config.appName,

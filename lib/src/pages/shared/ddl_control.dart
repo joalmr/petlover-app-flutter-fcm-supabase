@@ -105,7 +105,9 @@ class _DdlControl2 extends State<DdlControl2> {
       );
     }
     catch(ex){
-      return Center(child: CircularProgressIndicator());
+      return LinearProgressIndicator(
+        backgroundColor: Colors.grey[200],
+      );
     }
   }
   
@@ -155,7 +157,9 @@ class _DdlControl2 extends State<DdlControl2> {
       );
     }
     catch(ex){
-      return Center(child: CircularProgressIndicator());
+      return LinearProgressIndicator(
+        backgroundColor: Colors.grey[200],
+      );
     }
   }
 

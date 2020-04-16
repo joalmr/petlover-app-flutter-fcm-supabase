@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
+import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 
@@ -19,7 +20,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       appBar: appbar(leadingH,'Notificaciones',null),
       body: Container(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
+          // padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
           child: _onFuture(),
         ),
       ),
@@ -31,12 +32,14 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       future: notificacionProvider.getNotificacion(),
       builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
         if(!snapshot.hasData){
-          return Center(child: CircularProgressIndicator(),);
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else{
           List<Notificacion> notification = snapshot.data.notifications;
-          print(notification.length);
           return ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 20.0, ),
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: notification.length,
@@ -68,7 +71,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   _comingBooking(notificacion){
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+      contentPadding: EdgeInsets.symmetric(vertical: 5.0,), //horizontal: 20.0
       leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
@@ -81,10 +84,10 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
-      // onTap: ()=>Navigator.push(
-      //   context,MaterialPageRoute(
-      //     builder: (context) => ReservaDetallePage(vetID: notificacion.options["establishment_id"],),
-      // )),
+      onTap: ()=>Navigator.push(
+        context,MaterialPageRoute(
+          builder: (context) => ReservaDetallePage(vetID: notificacion.options["establishment_id"],),
+      )),
     );
   }
 

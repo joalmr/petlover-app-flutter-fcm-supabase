@@ -4,10 +4,9 @@ import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
-import 'package:proypet/src/pages/shared/icons_map.dart';
-
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class MascotaDetallePage extends StatefulWidget {
@@ -126,11 +125,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
       future: mascotaProvider.getPet(mascota.id),
       builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
         if(!snapshot.hasData){
-          return Center(child: CircularProgressIndicator(),);
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else{
           List<HistoriaModel> historias = snapshot.data.history;
-          // print(historias[0].details);
+          
           return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -209,7 +210,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     if(json.toString().contains("vaccination")) listaIcon.add("vaccination");
     if(json.toString().contains("consultation")) listaIcon.add("consultation");
 
-    print(listaIcon);
     return 
       // onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: { "slug":listaIcon, "detalle":json } ),
       Row(

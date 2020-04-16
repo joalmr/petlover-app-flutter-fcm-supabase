@@ -65,7 +65,7 @@ class _ForgotPageState extends State<ForgotPage> {
     setState(() { });
 
     bool resp = await loginProvider.forgotPassword(val);
-    print(resp);
+    
     if(resp){
       mostrarSnackbar("Se le envío un correo electrónico a la dirección ingresada", colorMain,scaffoldKey);
     }

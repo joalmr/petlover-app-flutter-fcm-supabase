@@ -151,7 +151,12 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       future: razaProvider.getBreed(datoPet),
                       builder: (BuildContext context, AsyncSnapshot<RazaModel> snapshot) {
                         if(!snapshot.hasData){
-                          return Center(child: CircularProgressIndicator());
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+                            child: LinearProgressIndicator(
+                              backgroundColor: Colors.grey[200],
+                            ),
+                          );
                         }
                         else{
                           if(petData==null){

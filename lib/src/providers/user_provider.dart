@@ -75,7 +75,7 @@ class UserProvider{
       "password": user.password
     };
     final resp = await http.post(url, body: userData );
-    print(resp.statusCode);
+    
     if(resp.statusCode==200 || resp.statusCode==201) return true;
     else return false;
   }
@@ -86,8 +86,6 @@ class UserProvider{
       HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
     });
     
-    print(resp.body);
-
     final datosUsuario = userModelFromJson(resp.body);
 
     return datosUsuario;
@@ -103,7 +101,7 @@ class UserProvider{
     final resp = await http.post(url, body: userData, headers: { 
       HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
     });
-    print(resp.statusCode);
+    
     if(resp.statusCode==200 || resp.statusCode==201) return true;
     else return false;
   }

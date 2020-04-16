@@ -24,7 +24,6 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    print(mascota.status);
     return ClipPath(
       child: Drawer(
         child: Container(

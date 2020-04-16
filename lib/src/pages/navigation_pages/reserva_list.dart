@@ -4,9 +4,9 @@ import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
 import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
-import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/utils/icons_map.dart';
 
 class ReservaList extends StatefulWidget {
   @override
@@ -26,7 +26,6 @@ class _ReservaListState extends State<ReservaList> {
     final dynamic filtrosData = ModalRoute.of(context).settings.arguments;
     
     if(filtrosData!=null){
-      print(filtrosData["filtros"]);
       listaFiltros=filtrosData["filtros"];
     }
     
@@ -35,7 +34,14 @@ class _ReservaListState extends State<ReservaList> {
       future: vetProvider.getVets(listaFiltros),
       builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
         if(!snapshot.hasData)
-          return Center(child: CircularProgressIndicator());
+          return Scaffold(
+            appBar: appbar(leadingH,'Establecimientos veterinarios',
+              null
+            ),
+            body: LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+            ),
+          );
         else{
           return Scaffold(
             key: _key,            
@@ -43,12 +49,6 @@ class _ReservaListState extends State<ReservaList> {
             body: _onTab(snapshot.data),
             appBar: appbar(leadingH,'Establecimientos veterinarios',
               <Widget>[
-                // IconButton(
-                //   icon: Icon(Icons.search),
-                //   onPressed: (){
-                //     showSearch(context: context, delegate: null);
-                //   },
-                // ),
                 IconButton(
                   icon: Icon(Icons.filter_list),
                   onPressed: ()=>_key.currentState.openEndDrawer(),

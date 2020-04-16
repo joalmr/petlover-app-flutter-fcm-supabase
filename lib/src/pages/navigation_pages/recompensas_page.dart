@@ -23,7 +23,9 @@ class RecompensasPage extends StatelessWidget {
       future: bonificacionProvider.getBonificacion(),
       builder: (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
         if(!snapshot.hasData){
-          return Center(child: CircularProgressIndicator(),);
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else {
           BonificacionModel bonificacion = snapshot.data;

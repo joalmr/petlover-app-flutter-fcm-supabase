@@ -9,13 +9,13 @@ import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/icons_map.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/icons_map.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
@@ -346,12 +346,9 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       bool validatelefono = false;
       var usuario = await userProvider.getUser();
       user = usuario.user;
-      // print(user.phone);
       if(user.phone != null){
         validatelefono=true;
       } 
-      //bool validatelefono
-      // print(validatelefono);
       if(validatelefono){
         Navigator.push(
           context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
@@ -394,7 +391,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     formKey.currentState.save();
     setState(() { });
     bool resp = await userProvider.editUser(user);//
-    print(resp);
+    
     Navigator.pop(context);
     // if(resp){
     //   Navigator.push(

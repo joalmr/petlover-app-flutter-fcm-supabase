@@ -102,7 +102,11 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
             child: Container(
               color: Color(0xFFfcfefc),
               child: Center(
-                child: CircularProgressIndicator()
+                child: 
+                LinearProgressIndicator(
+                  backgroundColor: Colors.grey[200],
+                )
+
                 // child: ClipRect(
                 //   child: Image.asset('images/dog_loading.gif',
                 //     height: 145.0,

@@ -56,7 +56,9 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot) {
         final mydata=snapshot.data;
         if(!snapshot.hasData){
-          return Center(child: CircularProgressIndicator()); //valueColor: new AlwaysStoppedAnimation<Color>(colorMain),
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else{
           return SingleChildScrollView(

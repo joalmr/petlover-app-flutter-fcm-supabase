@@ -31,7 +31,7 @@ class EstablecimientoProvider{
     final jsonResp = json.decode(resp.body);
     EstablecimientoList vets =  EstablecimientoList.fromJson(jsonResp);
     if(vets.establecimientos==null) return [];
-    // print(vets.establecimientos.length);
+    
     return vets.establecimientos;
   }
 

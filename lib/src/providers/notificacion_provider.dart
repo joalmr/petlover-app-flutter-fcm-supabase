@@ -16,11 +16,8 @@ class NotificacionProvider{
       }
     );
 
-    // final Map<String, dynamic> decodedResp = json.decode(resp.body);
     NotificacionModel notificacionModel = notificacionModelFromJson(resp.body);
-    // print(notificacionModel.notifications.length);
-    // print(notificacionModel.notifications[0]);
-    // print(notificacionModel.notifications[0].type);
+
     return notificacionModel;
   }
 }

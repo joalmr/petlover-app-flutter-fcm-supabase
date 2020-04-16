@@ -41,7 +41,9 @@ class _AtencionesPageState extends State<AtencionesPage> {
       future: atencionProvider.getAtenciones(),
       builder: (BuildContext context, AsyncSnapshot<List<AtencionModel>> snapshot) {
         if(!snapshot.hasData){
-          return Center(child: CircularProgressIndicator(),);
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else{
           return ListView.builder(
@@ -110,7 +112,6 @@ class _AtencionesPageState extends State<AtencionesPage> {
                 glow: false,
                 itemBuilder: (context, _) => Icon(Icons.star, color: colorMain,),
                 onRatingUpdate: (rating) {
-                  // print(rating);
                   myrating=rating;
                 },
               ),

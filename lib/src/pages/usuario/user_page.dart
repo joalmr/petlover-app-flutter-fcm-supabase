@@ -30,7 +30,9 @@ class _UserPageState extends State<UserPage> {
         future: userProvider.getUser(),
         builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot){
           if(!snapshot.hasData){
-            return Center(child: CircularProgressIndicator());
+            return LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+            );
           }
           else{
             user=snapshot.data.user;

@@ -52,7 +52,6 @@ class MascotaProvider{
   Future<bool> savePet(MascotaModel mascota, File imagen) async { //create
     final url = '$_url/pets';
     
-    print(mascota.breedId);
     int intMascota=0;
 
     if(mascota.genre) intMascota=1;    
@@ -119,9 +118,7 @@ class MascotaProvider{
 
     Future<bool> muerePet(MascotaModel mascota) async {
     final url = '$_url/pets/${mascota.id}';
-    print(mascota.name);
-    print(mascota.status);
-    print(mascota.id);
+
     int intMascota=0;
     if(mascota.genre) intMascota=1;    
     final data = {
@@ -138,8 +135,6 @@ class MascotaProvider{
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
       }, body: data,
     );
-
-    print(resp.statusCode);
 
     if(resp.statusCode==200 || resp.statusCode==201) return true;
     else return false;
@@ -169,8 +164,7 @@ class MascotaProvider{
       headers: { 
         HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
       }, body: { 'base64':sendPic });
-    // final resp = 
-    // print(resp.statusCode);
+    
   }
 
 }

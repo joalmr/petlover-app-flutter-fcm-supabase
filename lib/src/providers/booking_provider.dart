@@ -10,7 +10,7 @@ class BookingProvider{
 
   Future<bool> booking(BookingModel booking, String delivery, String direccion) async {
     final url = '$_url/bookings';
-    print(direccion);
+    
     final bodyData = { 
       "booking_at": booking.bookingAt, 
       "establishment_id": booking.establishmentId,
@@ -27,7 +27,7 @@ class BookingProvider{
       },
       body: bodyData
     );
-    // print(resp.statusCode);
+    
     if(resp.statusCode==200 || resp.statusCode==201){
       return true;
     }
