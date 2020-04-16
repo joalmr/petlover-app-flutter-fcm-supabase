@@ -48,6 +48,7 @@ dependencies:
   smooth_star_rating: ^1.0.4+2
   flutter_rating_bar: ^3.0.1+1
   animate_do: ^1.6.3
+  condition: ^0.0.7
   
 
 dev_dependencies:

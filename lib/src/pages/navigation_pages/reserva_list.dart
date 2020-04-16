@@ -41,7 +41,7 @@ class _ReservaListState extends State<ReservaList> {
             key: _key,            
             endDrawer: FiltrosMapa(filtros: listaFiltros,),//listaFiltros
             body: _onTab(snapshot.data),
-            appBar: appbar(leadingH,'Establecimientos',
+            appBar: appbar(leadingH,'Establecimientos veterinarios',
               <Widget>[
                 // IconButton(
                 //   icon: Icon(Icons.search),

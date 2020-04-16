@@ -20,6 +20,25 @@ final iconMap = <String, IconData>{
   'hospitalization'   : IconProypet.hospitalizacion,
 };
 
+final slugNum = <String, int>{
+  'grooming'          : 1,
+  'consultation'      : 2,
+  'surgery'           : 3,
+  'vaccination'       : 4,
+  'delivery'          : 5,
+  'ecg'               : 6,
+  'laboratory'        : 7,
+  '24-hours'          : 8,
+  'lodging'           : 9,
+  'petshop'           : 10,
+  'deworming'         : 11,
+  'ultrasound'        : 12,
+  'x-ray'             : 13,
+  'resonance'         : 14,
+  'pharmacy'          : 15,
+  'hospitalization'   : 16,
+};
+
 final iconNum = <int, IconData>{
   1    : IconProypet.grooming,
   2    : IconProypet.consulta,
