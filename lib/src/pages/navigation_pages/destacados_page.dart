@@ -21,7 +21,13 @@ class _DestacadosPageState extends State<DestacadosPage> {
   }
 
   _onDestacado(){
-    return _destacado(destacadoList[0]);
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _destacado(destacadoList[0])
+        ],
+      ),
+    );
   }
 
   _destacado(destacado){
@@ -41,29 +47,19 @@ class _DestacadosPageState extends State<DestacadosPage> {
                 image: AssetImage(destacado.image)
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
-              color: Colors.white.withOpacity(0.4),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text(destacado.title, style: TextStyle(fontWeight: FontWeight.bold),),
-                  Text(destacado.text, maxLines: 3, textAlign: TextAlign.justify,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      FlatButton(
-                        onPressed: (){}, 
-                        child: Text("Leer más", 
-                          style: TextStyle(color: colorMain,),
-                        )
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            )
+            Text(destacado.title, style: TextStyle(fontWeight: FontWeight.bold),),
+            Text(destacado.text, maxLines: 3, textAlign: TextAlign.justify,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FlatButton(
+                  onPressed: ()=>Navigator.pushNamed(context, 'detalledestacado', arguments: destacado), 
+                  child: Text("Leer más", 
+                    style: TextStyle(color: colorMain,),
+                  )
+                ),
+              ],
+            ),
           ],
         ),
       ),

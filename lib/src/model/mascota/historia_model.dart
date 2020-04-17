@@ -14,7 +14,7 @@ class HistoriaModel {
     String temperature;
     String bodyCondition;
     String createdAt;
-    double amount;
+    dynamic amount;
     dynamic details;
 
     HistoriaModel({

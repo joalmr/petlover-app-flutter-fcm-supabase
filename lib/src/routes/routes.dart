@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/auth/forgot_page.dart';
 import 'package:proypet/src/pages/auth/login_page.dart';
 import 'package:proypet/src/pages/auth/singup_page.dart';
+import 'package:proypet/src/pages/destacado/destacado_detalle.dart';
 import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
@@ -22,6 +23,8 @@ Map<String,WidgetBuilder> getRoutes(){
     'agregarmascota'    : (BuildContext context)=>MascotaAgregarPage(),
     'detallemascota'    : (BuildContext context)=>MascotaDetallePage(),
     'detallehistoriamascota'    : (BuildContext context)=>HistoriaPage(),
+    //destacado
+    'detalledestacado'  : (BuildContext context)=>DetalleDestacadoPage(),
 
   };
 }

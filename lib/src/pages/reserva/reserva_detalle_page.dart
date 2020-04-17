@@ -77,7 +77,10 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                 future: establecimientoProvider.getVet(vetID),
                 builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
                   if(!snapshot.hasData) return Container();
-                  else return _onDetail(context, snapshot.data);
+                  else{
+                    vet = snapshot.data;
+                    return _onDetail(context, snapshot.data);
+                  } 
                 },
               ),
             ),

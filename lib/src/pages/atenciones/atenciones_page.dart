@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:proypet/src/model/antecion/atencion_model.dart';
-// import 'package:flutter_simple_rating_bar/flutter_simple_rating_bar.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
@@ -30,9 +28,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(leadingH,'Calificar Atenciones',null),
-      body: Padding(padding: EdgeInsets.symmetric(vertical: 20.0),
-        child: _listaAtenciones(),
-      ),
+      body: _listaAtenciones(),
     );
   }
 
@@ -46,39 +42,41 @@ class _AtencionesPageState extends State<AtencionesPage> {
           );
         }
         else{
-          return ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: snapshot.data.length,
-            itemBuilder: (BuildContext context, int index) {
-              AtencionModel _atencion= snapshot.data[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: colorMain,
-                        backgroundImage: NetworkImage(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
-                        radius: 25.0,
+          return SingleChildScrollView(
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int index) {
+                AtencionModel _atencion= snapshot.data[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: colorMain,
+                          backgroundImage: NetworkImage(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
+                          radius: 25.0,
+                        ),
+                        title: Text(_atencion.establishmentName),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(_atencion.pet),
+                            Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: 12.0,fontWeight: FontWeight.w600),),
+                          ],
+                        ),
+                        trailing: IconButton(icon: Icon(Icons.star_border), onPressed: ()=>_calificar(context, _atencion)),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                       ),
-                      title: Text(_atencion.establishmentName),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(_atencion.pet),
-                          Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: 12.0,fontWeight: FontWeight.w600),),
-                        ],
-                      ),
-                      trailing: IconButton(icon: Icon(Icons.star_border), onPressed: ()=>_calificar(context, _atencion)),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                    ),
-                    Divider(),
-                  ],
-                ),
-              );
-            },
+                      Divider(),
+                    ],
+                  ),
+                );
+              },
+            ),
           );
         }
         
@@ -157,7 +155,10 @@ class _AtencionesPageState extends State<AtencionesPage> {
         ),
       ), barrierDismissible: false);
       // mostrarSnackbar('Se calificó la atención.', colorMain, scaffoldKey);  
-      Timer(Duration(milliseconds: 2000), ()=>Navigator.popUntil(context, ModalRoute.withName("navInicio")) ) ;
+      Timer(Duration(milliseconds: 2000), (){
+        // Navigator.popUntil(context, ModalRoute.withName("/navInicio"));
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      }) ;
     }
     else mostrarSnackbar('No se calificó la atención.', colorRed, scaffoldKey);  
   }

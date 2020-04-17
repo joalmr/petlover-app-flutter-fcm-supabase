@@ -85,7 +85,13 @@ class _UserPageState extends State<UserPage> {
       bool resp = await userProvider.editUser(user);
       if(resp){
         mostrarSnackbar('Se guardó los datos.', colorMain, scaffoldKey);
-        Timer(Duration(milliseconds: 2000), ()=>Navigator.popUntil(context, ModalRoute.withName("navInicio")) ) ;
+        Timer(Duration(milliseconds: 2000), (){
+          Navigator.of(context).popUntil((route) => route.isFirst);
+          // Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+          // Navigator.popUntil(context, ModalRoute.withName('/navInicio'));
+          // Navigator.pop(context);
+        });
+        //Navigator.popUntil(context, ModalRoute.withName('navInicio')))
       }
       else{
         mostrarSnackbar('No se guardó los datos.', colorRed, scaffoldKey);

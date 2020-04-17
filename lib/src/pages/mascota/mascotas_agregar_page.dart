@@ -409,9 +409,13 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   boolEdit(resp){
     if(resp['edit']){
       mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);  
-      mascotaData.picture = resp['picture'];
+      if(resp['picture']!=""){
+        mascotaData.picture = resp['picture'];
+      }
+      
       Timer(Duration(milliseconds: 2000), (){
-        Navigator.pushNamed(context, 'detallemascota', arguments: mascotaData);
+        // Navigator.pushNamed(context, 'detallemascota', arguments: mascotaData);
+        Navigator.pushReplacementNamed(context, 'detallemascota', arguments: mascotaData);
       });
     }
     else setState(() {
