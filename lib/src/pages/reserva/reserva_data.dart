@@ -52,9 +52,9 @@ class _Data extends State<DataReserva> {
   
   List _delivery = [
     {'id':'1','name':'No deseo',},
-    {'id':'2','name':'Recojo',},
-    {'id':'3','name':'Entrega',},
-    {'id':'4','name':'Recojo y entrega',},
+    {'id':'2','name':'Recojo y entrega',},
+    {'id':'3','name':'Recojo',},
+    {'id':'4','name':'Entrega',},
   ];
 
   String resarvaId = "1";
@@ -275,7 +275,7 @@ class _Data extends State<DataReserva> {
       booking.typeId = resarvaId;
       booking.observation= _inputObservacioController.text;
 
-      var deliveryArray = ['No deseo', 'Recojo', 'Entrega', 'Recojo y entrega'];
+      var deliveryArray = ['', 'Recojo y entrega', 'Recojo', 'Entrega'];
       var deliveryText = "";
       var direccionText="";
       if(delivery){
