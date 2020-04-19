@@ -346,18 +346,11 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     misMascotas = misMascotas.where((x)=>x.status!=0).toList();
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
     if(misMascotas.length>0){
-      bool validatelefono = false;
+      // bool validatelefono = true;
       var usuario = await userProvider.getUser();
       user = usuario.user;
-      if(user.phone != null){
-        validatelefono=true;
-      } 
-      if(validatelefono){
-        Navigator.push(
-          context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
-        );
-      }
-      else{        
+      print(user.phone);
+      if(user.phone == null || user.phone.trim() == ""){        
         showDialog(context: context,builder: 
           (BuildContext context)=> FadeIn(
             child: AlertDialog(
@@ -383,6 +376,11 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             ),
           ),
         );
+      }
+      else{    
+        Navigator.push(
+          context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
+        );
       }      
     }
     else{
@@ -393,6 +391,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   void _onPhone() async {
     formKey.currentState.save();
     setState(() { });
+    print("guarda phone");
     bool resp = await userProvider.editUser(user);//
     print(resp);
     Navigator.pop(context);

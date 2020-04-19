@@ -275,7 +275,7 @@ class _Data extends State<DataReserva> {
       booking.typeId = resarvaId;
       booking.observation= _inputObservacioController.text;
 
-      var deliveryArray = ['', 'Recojo y entrega', 'Recojo', 'Entrega'];
+      var deliveryArray = [null, 'Recojo y entrega', 'Recojo', 'Entrega'];
       var deliveryText = "";
       var direccionText="";
       if(delivery){
