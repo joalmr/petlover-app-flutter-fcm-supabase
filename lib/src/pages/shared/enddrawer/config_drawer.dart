@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones/atenciones_page.dart';
 import 'package:proypet/src/pages/shared/styles/styles.dart';
@@ -72,7 +73,7 @@ class ConfigDrawer extends StatelessWidget {
                     color: colorRed,
                     fontWeight: FontWeight.w400,
                   ),),
-                  onTap: ()=>_outToken(context),
+                  onTap: ()=>_cerrarSesion(context),
                 )
               ],
             ),
@@ -82,13 +83,39 @@ class ConfigDrawer extends StatelessWidget {
     );
   }
 
-    void _outToken(BuildContext context) async {
-    
-      _prefs.token = '';
-      _prefs.position='';
-    
-      Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');
-        
+  void _outToken(BuildContext context) async {
+  
+    _prefs.token = '';
+    _prefs.position='';
+  
+    Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');        
+  }
+
+  _cerrarSesion(context){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return FadeIn(
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            title: Text('Ceerrar sesión'),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+            content: Text("Desea cerrar sesión?"),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: ()=>Navigator.pop(context),  
+                child: Text('Cancelar',style: TextStyle(color: colorMain),)
+              ),
+              FlatButton(
+                onPressed: ()=>_outToken(context), 
+                child: Text('Cerrar sesión',style: TextStyle(color: colorMain),)
+              ),
+            ],
+          ),
+        );
+      }
+    );
   }
 }
 

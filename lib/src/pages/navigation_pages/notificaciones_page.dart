@@ -38,15 +38,23 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
         }
         else{
           List<Notificacion> notification = snapshot.data.notifications;
-          return ListView.builder(
-            padding: EdgeInsets.symmetric(vertical: 20.0, ),
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: notification.length,
-            itemBuilder: (BuildContext context, int index) {
-            return _notificacionCase(notification[index]);
-           },
-          );
+
+          if(notification.length < 1){
+            return Center(
+              child: Text("No tiene notificaciones"),
+            );
+          }
+          else{
+            return ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 20.0, ),
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: notification.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _notificacionCase(notification[index]);
+              },
+            );
+          }
         }
       },
     );

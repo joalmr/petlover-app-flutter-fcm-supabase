@@ -8,7 +8,7 @@ class DetalleDestacadoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Destacado destacado = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      appBar: appbar(leadingH,'Destacados',null),
+      appBar: appbar(null,'Destacados',null),
       body: _onDestacado(destacado),
     );
   }

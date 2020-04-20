@@ -13,7 +13,7 @@ class HistoriaPage extends StatelessWidget {
     var precio = historiaData["precio"];
 
     return Scaffold(
-      appBar: appbar(leadingH,'Detalle de historia',null),
+      appBar: appbar(null,'Detalle de historia',null),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20.0 ,horizontal: 20.0),
         child: Column(        

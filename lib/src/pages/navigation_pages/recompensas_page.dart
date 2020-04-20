@@ -94,6 +94,12 @@ class RecompensasPage extends StatelessWidget {
   }
 
   Widget _listaBonificacion(List<Bonification> bonificados){
+    if(bonificados.length<1)
+    return Center(
+      child: Text("No tiene puntos ganados"),
+    );
+    
+    else
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
