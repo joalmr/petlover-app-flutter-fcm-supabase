@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                                       height: 100.0,
                                       padding: EdgeInsets.all(15.0),
                                       foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
+                                        color: Colors.red.withOpacity(0.25),
                                         borderRadius: BorderRadius.circular(15.0),
                                       ),
                                       //padding: EdgeInsets.all(25.0),
