@@ -82,7 +82,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   _comingBooking(notificacion){
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0,), //horizontal: 20.0
+      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0), //horizontal: 20.0
       leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),

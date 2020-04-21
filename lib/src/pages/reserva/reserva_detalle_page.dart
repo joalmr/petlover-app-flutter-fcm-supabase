@@ -227,14 +227,23 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Precio referencial")
+          child: Text("Precio referencial",style: TextStyle(
+                    fontSize: 15.0,
+                    color: Color(0xFF6A6A6A),
+                    fontWeight: FontWeight.w600))
         )
         : SizedBox(height: 0.0,),
         localVet.prices.length>0 ?
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: _listaPrecio(localVet.prices),
-        ) : SizedBox(height: 0.0,), 
+        ) : SizedBox(height: 0.0,),
+        localVet.prices.length>0 ?
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          width: double.infinity,
+          child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: 10.0),)
+        ) : SizedBox(height: 0.0,),
         // DataTable(
         //   headingRowHeight: 30.0,
         //   dataRowHeight: 30.0,
@@ -276,7 +285,10 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Horario")
+          child: Text("Horario",style: TextStyle(
+                    fontSize: 15.0,
+                    color: Color(0xFF6A6A6A),
+                    fontWeight: FontWeight.w600))
         ): SizedBox(height: 0.0,), 
 
         (localVet.schedule.length>0) ?
@@ -286,7 +298,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         ) : SizedBox(height: 0.0,), 
 
         Container(
-          padding: EdgeInsets.only(left: 20.0,right: 20.0, top: 20.0),
+          padding: EdgeInsets.only(left: 20.0,right: 20.0, top: 20.0, bottom: 10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -357,7 +369,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         return Container(
             // height: 85,
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            width: 165,
+            width: 170,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
               color: color,
@@ -376,6 +388,8 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                 SizedBox(height: 5,),
                 Text("desde", style: TextStyle(color: Colors.white),),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
                     (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),)
