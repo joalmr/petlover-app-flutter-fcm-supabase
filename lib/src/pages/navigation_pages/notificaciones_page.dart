@@ -39,9 +39,12 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
         else{
           List<Notificacion> notification = snapshot.data.notifications;
 
-          if(notification.length < 1){
+          if(notification.length<1){
             return Center(
-              child: Text("No tiene notificaciones"),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("No tiene notificaciones"),
+              ),
             );
           }
           else{

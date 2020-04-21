@@ -47,8 +47,14 @@ class _DestacadosPageState extends State<DestacadosPage> {
                 image: AssetImage(destacado.image)
               ),
             ),
-            Text(destacado.title, style: TextStyle(fontWeight: FontWeight.bold),),
-            Text(destacado.text, maxLines: 3, textAlign: TextAlign.justify,),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0,right: 10.0,top:10.0),
+              child: Text(destacado.title, style: TextStyle(fontWeight: FontWeight.bold),),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Text(destacado.text, maxLines: 3, textAlign: TextAlign.justify,),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[

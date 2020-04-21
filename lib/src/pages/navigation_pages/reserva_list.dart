@@ -79,10 +79,22 @@ class _ReservaListState extends State<ReservaList> {
               child: FlatButton(onPressed: ()=>_key.currentState.openEndDrawer(), child: Text('Filtros', style: TextStyle(color: colorMain, fontWeight: FontWeight.bold),)),
             ),
             _listarChip(listaFiltros),
+            (vetLocales.length<1)?
+            SliverToBoxAdapter(
+              child: SizedBox(height: 50.0,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Text("No se encontró establecimientos"),
+                  ),
+                ),
+              ),
+            )
+            :
             SliverList(
               delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index){
-                  return buildVets(context,index, vetLocales);
+                (BuildContext context, int index){                  
+                  return buildVets(context,index, vetLocales);               
                 },
                 childCount: vetLocales.length,
               ),

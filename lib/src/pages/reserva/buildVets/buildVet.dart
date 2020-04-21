@@ -7,15 +7,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
 
   Widget buildVets(BuildContext context, int index, List<EstablecimientoModel> vetLocales){
     var vet = vetLocales[index % vetLocales.length];
-    if(vetLocales.length < 1){
-      return FadeIn(
-        child: Center(
-          child: Text("No se encontró establecimientos"),
-        ),
-      );
-    }
 
-    else{
       return FadeIn(
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
@@ -80,7 +72,7 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
           ),
         ),
       );
-    }
+    
   }
 
   Widget _swiperVets(imagen, bool url){
