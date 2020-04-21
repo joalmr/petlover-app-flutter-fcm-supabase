@@ -46,6 +46,7 @@ class EstablecimientoModel {
     dynamic prices;
     List<Service> services;
     String distance;
+    dynamic schedule;
 
     EstablecimientoModel({
         this.id,
@@ -62,6 +63,7 @@ class EstablecimientoModel {
         this.prices,
         this.services,
         this.distance,
+        this.schedule,
     });
 
     factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
@@ -78,8 +80,8 @@ class EstablecimientoModel {
         logo: json["logo"],
         prices: json["prices"],
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2)
-        // distancia: calculateDistance(json["latitude"].toDouble(),json["longitude"].toDouble(), double.parse(_prefs.position.split(',')[0]), double.parse(_prefs.position.split(',')[1]) ).toString(),
+        distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2),
+        schedule: json["schedule"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -128,58 +130,58 @@ class Service {
     };
 }
 
-class PricesClass {
-    Prices consultation;
-    Prices deworming;
-    Prices vaccination;
-    Prices surgery;
-    Prices grooming;
-    Prices supplementation;
+// class PricesClass {
+//     Prices consultation;
+//     Prices deworming;
+//     Prices vaccination;
+//     Prices surgery;
+//     Prices grooming;
+//     Prices supplementation;
 
-    PricesClass({
-        this.consultation,
-        this.deworming,
-        this.vaccination,
-        this.surgery,
-        this.grooming,
-        this.supplementation,
-    });
+//     PricesClass({
+//         this.consultation,
+//         this.deworming,
+//         this.vaccination,
+//         this.surgery,
+//         this.grooming,
+//         this.supplementation,
+//     });
 
-    factory PricesClass.fromJson(Map<String, dynamic> json) => PricesClass(
-        consultation: Prices.fromJson(json["consultation"]),
-        deworming: Prices.fromJson(json["deworming"]),
-        vaccination: Prices.fromJson(json["vaccination"]),
-        surgery: Prices.fromJson(json["surgery"]),
-        grooming: Prices.fromJson(json["grooming"]),
-        supplementation: Prices.fromJson(json["supplementation"]),
-    );
+//     factory PricesClass.fromJson(Map<String, dynamic> json) => PricesClass(
+//         consultation: Prices.fromJson(json["consultation"]),
+//         deworming: Prices.fromJson(json["deworming"]),
+//         vaccination: Prices.fromJson(json["vaccination"]),
+//         surgery: Prices.fromJson(json["surgery"]),
+//         grooming: Prices.fromJson(json["grooming"]),
+//         supplementation: Prices.fromJson(json["supplementation"]),
+//     );
 
-    Map<String, dynamic> toJson() => {
-        "consultation": consultation.toJson(),
-        "deworming": deworming.toJson(),
-        "vaccination": vaccination.toJson(),
-        "surgery": surgery.toJson(),
-        "grooming": grooming.toJson(),
-        "supplementation": supplementation.toJson(),
-    };
-}
+//     Map<String, dynamic> toJson() => {
+//         "consultation": consultation.toJson(),
+//         "deworming": deworming.toJson(),
+//         "vaccination": vaccination.toJson(),
+//         "surgery": surgery.toJson(),
+//         "grooming": grooming.toJson(),
+//         "supplementation": supplementation.toJson(),
+//     };
+// }
 
-class Prices {
-    String from;
-    String to;
+// class Prices {
+//     String from;
+//     String to;
 
-    Prices({
-        this.from,
-        this.to,
-    });
+//     Prices({
+//         this.from,
+//         this.to,
+//     });
 
-    factory Prices.fromJson(Map<String, dynamic> json) => Prices(
-        from: json["from"] == null ? null : json["from"],
-        to: json["to"] == null ? null : json["to"],
-    );
+//     factory Prices.fromJson(Map<String, dynamic> json) => Prices(
+//         from: json["from"] == null ? null : json["from"],
+//         to: json["to"] == null ? null : json["to"],
+//     );
 
-    Map<String, dynamic> toJson() => {
-        "from": from == null ? null : from,
-        "to": to == null ? null : to,
-    };
-}
+//     Map<String, dynamic> toJson() => {
+//         "from": from == null ? null : from,
+//         "to": to == null ? null : to,
+//     };
+// }

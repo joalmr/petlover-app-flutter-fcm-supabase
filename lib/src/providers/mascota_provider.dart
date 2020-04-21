@@ -52,17 +52,14 @@ class MascotaProvider{
   Future<bool> savePet(MascotaModel mascota, File imagen) async { //create
     final url = '$_url/pets';
     
-    int intMascota=0;
-
-    if(mascota.genre) intMascota=1;    
-    else intMascota=0;
-
+    // int intMascota=0;
+    // if(mascota.genre) intMascota=1;    
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
       'specie': mascota.specieId.toString(), //int
       'breed': mascota.breedId.toString(), //int
-      'genre': intMascota.toString(), //int
+      'genre': mascota.genre.toString(), //int
     };
 
     final resp = await http.post(url, 
@@ -87,15 +84,14 @@ class MascotaProvider{
   Future<Map<String,dynamic>> editPet(MascotaModel mascota, File imagen) async {
     final url = '$_url/pets/${mascota.id}';
     String img="";
-    int intMascota=0;
-    if(mascota.genre) intMascota=1;    
-    //else intMascota=0;
+    // int intMascota=0;
+    // if() intMascota=1;    
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
       'specie': mascota.specieId.toString(), //int
       'breed': mascota.breedId.toString(), //int
-      'genre': intMascota.toString(), //int
+      'genre': mascota.genre.toString(), //int
       // 'status': mascota.status.toString(), //int
     };
 
@@ -125,14 +121,14 @@ class MascotaProvider{
   Future<bool> muerePet(MascotaModel mascota) async {
     final url = '$_url/pets/${mascota.id}';
 
-    int intMascota=0;
-    if(mascota.genre) intMascota=1;    
+    // int intMascota=0;
+    // if(mascota.genre) intMascota=1;    
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
       'specie': mascota.specieId.toString(), //int
       'breed': mascota.breedId.toString(), //int
-      'genre': intMascota.toString(), //int
+      'genre': mascota.genre.toString(), //int
       'status': mascota.status.toString(), //int
     };
 

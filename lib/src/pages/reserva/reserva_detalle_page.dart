@@ -105,6 +105,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
+    print(localVet.schedule.length);
     return Column(
       children: <Widget>[
         Container(
@@ -255,6 +256,13 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           ]
         ) : SizedBox(height: 0.0,),        
         SizedBox(height: 25.0),
+        
+        (localVet.schedule!=null && localVet.schedule.length>0) ?
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: _listHorario(localVet.schedule),
+        ) : SizedBox(height: 0.0,), 
+
         Container(
           padding: EdgeInsets.only(left: 20.0,right: 20.0),
           child: Column(
@@ -278,6 +286,86 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       ],
     );
   }
+
+Widget _listHorario(horario){
+  return SingleChildScrollView(
+    scrollDirection: Axis.horizontal,
+    child: Row(
+      children: <Widget>[
+        (horario["monday"]["attention"]=="on" && horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        (horario["tuesday"]["attention"]=="on" && horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        (horario["wednesday"]["attention"]=="on" && horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        (horario["thursday"]["attention"]=="on" && horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        (horario["friday"]["attention"]=="on" && horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        (horario["saturday"]["attention"]=="on" && horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        (horario["sunday"]["attention"]=="on" && horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null) 
+        ? Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"], colorGray3),
+        ) : SizedBox(width: 0, height: 0,),
+        
+      ],
+    ),
+  );
+}
+
+Widget _horario(dia, inicio, fin, color){
+  return Container(
+            // height: 80,
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            width: 95,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: color,
+              boxShadow:[ 
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 3.0,
+                  spreadRadius: 2.0
+              )],
+            ),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 5.0,),
+                    Icon(Icons.schedule, color: Colors.white, size: 20.0,),
+                    SizedBox(width: 5.0,),
+                    Text(dia, style: TextStyle(color: Colors.white),),
+                  ],
+                ),
+                SizedBox(height: 5,),
+                Text(inicio, style: TextStyle(color: Colors.white),),
+                SizedBox(height: 5,),
+                Text(fin, style: TextStyle(color: Colors.white),),
+              ],
+            )
+          );   
+}
 
   Widget _servicios(List<Service> servicios){
     return SizedBox(

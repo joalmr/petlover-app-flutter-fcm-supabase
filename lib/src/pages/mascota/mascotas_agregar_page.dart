@@ -127,7 +127,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     ),
                     SizedBox(height: 10.0,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+                      padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                       child: Text('Seleccione tipo de mascota'),
                     ),
                     Padding(
@@ -143,7 +143,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     ),
                     SizedBox(height: 10.0,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+                      padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                       child: Text('Seleccione raza'),
                     ),
                     FutureBuilder(
@@ -179,19 +179,19 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                     ),
                     SizedBox(height: 10.0,),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+                      padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                       child: Text('Fecha de nacimiento'),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
                       child: _crearFecha(context,petData),
                     ),
-                    SizedBox(height: 10.0,),                    
+                    SizedBox(height: 10.0,),   
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      // child: _sexo(),
-                      child: (petData==null) ? _sexo() : _sexoEdit(),
-                    ),
+                      padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
+                      child: Text('Sexo'),
+                    ),                 
+                    _sexoEdit(petData),//(petData==null) ? _sexo() : 
                     SizedBox(height: 25.0,),
                     Center(
                       child: buttonPri((petData==null)?'Agregar mascota':'Guardar cambios', btnBool ? _onAdd : null ) //()=>agregarDialog()
@@ -275,27 +275,30 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
   }
 
-  Widget _sexo(){
-    return SwitchListTile(
-      value: sexo,//petReq.genre,
-      title: Text('Sexo'),
-      subtitle: sexo ? Text('Macho') : Text('Hembra'),
-      activeColor: colorMain,
-      onChanged: (value)=> setState((){
-        sexo = value;
-      }),
-    );
-  }
+  // Widget _sexo(){
+  //   return SwitchListTile(
+  //     value: sexo,//petReq.genre,
+  //     title: Text('Sexo'),
+  //     subtitle: sexo ? Text('Macho') : Text('Hembra'),
+  //     activeColor: colorMain,
+  //     onChanged: (value)=> setState((){
+  //       sexo = value;
+  //     }),
+  //   );
+  // }
 
-  Widget _sexoEdit(){
-    return SwitchListTile(
-      value: mascotaData.genre,
-      title: Text('Sexo'),
-      subtitle: mascotaData.genre ? Text('Macho') : Text('Hembra'),
-      activeColor: colorMain,
-      onChanged: (value)=> setState((){
-        mascotaData.genre = value;
-      }),
+  Widget _sexoEdit(petData){
+    final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
+    if(petData==null){
+      mascotaData.genre=0;
+    }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+      child: ddlMain(mascotaData.genre.toString(), tiposex, 
+        (opt){ setState(() {
+          mascotaData.genre = int.tryParse(opt);
+        }
+      );})
     );
   }
  
@@ -372,7 +375,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
             btnBool = true;      
           });
           else{
-            mascotaData.genre=sexo;
+            // mascotaData.genre=0;
             resp = await mascotaProvider.savePet(mascotaData, foto);
             boolSave(resp);
           }          
