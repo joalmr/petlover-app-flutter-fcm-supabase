@@ -109,6 +109,45 @@ class _HomePageState extends State<HomePage> {
                             children: <Widget>[
                               InkWell(
                                 borderRadius: BorderRadius.circular(15.0),
+                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[8] } ),
+                                child: Stack(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 120.0,
+                                      height: 100.0,
+                                      padding: EdgeInsets.all(15.0),
+                                      foregroundDecoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.25),
+                                        borderRadius: BorderRadius.circular(15.0),
+                                      ),
+                                      //padding: EdgeInsets.all(25.0),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15.0),
+                                        // color: colorRed
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage('images/v_emergencia.jpg'),
+                                        )
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 120.0,
+                                      height: 100.0,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text('Emergencia',style: TextStyle(color: Colors.white)),
+                                            Text('24 horas',style: TextStyle(color: Colors.white, fontSize: 10.0)),
+                                          ],
+                                        ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 15.0),
+                              InkWell(
+                                borderRadius: BorderRadius.circular(15.0),
                                 onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[2] } ),
                                 // onTap: ()=>Navigator.push(
                                 //   context,MaterialPageRoute(
