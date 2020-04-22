@@ -44,7 +44,7 @@ class _LoginSevenPageState extends State<LoginPage> {
             SizedBox(height: 25.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: buttonPri('Ingresar',_onToken),
+              child: buttonPri('Iniciar sesión',_onToken),
             ),
             // FormControl().buttonPri('Ingresar', ()=>Navigator.pushReplacement(
             //   context,MaterialPageRoute(
@@ -54,7 +54,7 @@ class _LoginSevenPageState extends State<LoginPage> {
             Center(
               child: FlatButton(
                 onPressed: ()=>Navigator.pushNamed(context,'olvidopass'),
-                child: Text("Olvidó contraseña ?".toUpperCase(), 
+                child: Text("Olvidaste tu contraseña?".toUpperCase(), 
                   style: TextStyle(
                     color:colorMain,
                     fontSize: 12 ,
@@ -67,20 +67,20 @@ class _LoginSevenPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("No tienes una cuenta ?", 
+                Text("Nuevo en Proypet?", 
                 style: TextStyle(
                   color:Colors.black,
-                  fontSize: 12 ,
+                  fontSize: 14 ,
                   fontWeight: FontWeight.normal
                   )
                 ),
                 FlatButton(
                   onPressed: ()=>Navigator.pushNamed(context,'registro'),
-                  child: Text("Regístrate ", 
+                  child: Text("Registrarse", 
                     style: TextStyle(
                       color:colorMain, 
                       fontWeight: FontWeight.w500,
-                      fontSize: 12, 
+                      fontSize: 14, 
                       decoration: TextDecoration.underline 
                     )
                   ),

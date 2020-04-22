@@ -83,14 +83,6 @@ class ConfigDrawer extends StatelessWidget {
     );
   }
 
-  void _outToken(BuildContext context) async {
-  
-    _prefs.token = '';
-    _prefs.position='';
-  
-    Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');        
-  }
-
   _cerrarSesion(context){
     showDialog(
       context: context,
@@ -117,5 +109,13 @@ class ConfigDrawer extends StatelessWidget {
       }
     );
   }
+
+  void _outToken(BuildContext context) async {
+    _prefs.token = '';
+    _prefs.position='';
+    Navigator.pushNamedAndRemoveUntil(context, 'login', ModalRoute.withName('/'));
+    // Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');        
+  }
+
 }
 
