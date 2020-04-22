@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
 
@@ -63,7 +64,11 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       ),
                     ),
                     SizedBox(height: 20,),
-                    FlatButton( 
+                    // buttonPri('Flitrar', ()
+                    //   =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', 
+                    //     ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
+                    // ),
+                    FlatButton(
                       child: Container(
                         width: double.infinity,
                         child: Text('Flitrar', 
@@ -74,7 +79,6 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       onPressed: ()
                         =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
                     ),
-                    // textFormLess('Ingrese veterinaria', (value)=>val=value), //Icon(Icons.search),
                     SwitchListTile(                      
                       value: (filtros.contains(1)) ? true : false,//petReq.genre,
                       title: Text('Baños'),

@@ -90,7 +90,7 @@ class ConfigDrawer extends StatelessWidget {
         return FadeIn(
           child: AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            title: Text('Ceerrar sesión'),
+            title: Text('Cerrar sesión'),
             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             content: Text("Desea cerrar sesión?"),
