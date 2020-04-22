@@ -115,7 +115,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 // title: Text('Error'),
                 content: Container(
-                  height: 100.0,
+                  height: 60.0,
                   child: Center(child: Text('Verifique su correo.'))
                 ),
                 actions: <Widget>[

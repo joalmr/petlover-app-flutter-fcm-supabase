@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
@@ -79,7 +82,7 @@ class _SingupPageState extends State<SingupPage> {
                   text: 'Al registrarse en Proypet, acepta los ', // default text style
                   children: <TextSpan>[
                     TextSpan(text: 'Términos y Condiciones',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold)),
-                    TextSpan(text: 'y',style: TextStyle(fontSize: 15.0,)),
+                    TextSpan(text: ' y ',style: TextStyle(fontSize: 15.0,)),
                     TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold))
                   ],
                 ),
@@ -122,7 +125,31 @@ class _SingupPageState extends State<SingupPage> {
       }
       else{
         bool resp = await userProvider.registerUser(user);
-        if(resp) Navigator.pop(context); 
+        if(resp){
+          showDialog(
+            context: context,
+            builder: (BuildContext context){
+              return FadeIn(
+                child: AlertDialog(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  // title: Text('Error'),
+                  content: Container(
+                    height: 100.0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Text('Gracias por registrarte te hemos enviado un correo electrónico para confirmar la cuenta'),
+                    )
+                  ),
+                ),
+              );
+            }
+          );
+
+          Timer(Duration(milliseconds: 3500), (){
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          });
+          
+        }
         //Navigator.of(context).pushNamedAndRemoveUntil('/login', ModalRoute.withName('/login')); //
         else mostrarSnackbar("No se registró el usuario, correo existente",colorRed,scaffoldKey);
       }
