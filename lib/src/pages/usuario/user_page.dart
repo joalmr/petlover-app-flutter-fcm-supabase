@@ -5,8 +5,8 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 class UserPage extends StatefulWidget {
   // const UserPage({Key key}) : super(key: key);
@@ -25,7 +25,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: appbar(leadingH,'Editar usuario',null),
+      appBar: appbar(null,'Editar usuario',null),//leadingH
       body: FutureBuilder(
         future: userProvider.getUser(),
         builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot){
@@ -57,7 +57,7 @@ class _UserPageState extends State<UserPage> {
                   SizedBox(height: 10.0,),
                   textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
                   Text('Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
-                    style: TextStyle(fontSize: 10.0),
+                    style: TextStyle(fontSize: sizeCuerpoLite),
                   ),
                   SizedBox(height: 35.0,),
                   Center(

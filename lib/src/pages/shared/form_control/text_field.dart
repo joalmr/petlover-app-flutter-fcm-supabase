@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 final _shape = BorderRadius.circular(10.0);
 
 Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){

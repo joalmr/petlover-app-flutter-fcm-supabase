@@ -4,9 +4,9 @@ import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class MascotaDetallePage extends StatefulWidget {
@@ -69,7 +69,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             elevation: 0,
             centerTitle: true,
             title: Text("",style: TextStyle(
-              fontSize: 16.0,
+              fontSize: sizeH3,
               fontWeight: FontWeight.normal
             ),),
             actions: <Widget>[
@@ -94,16 +94,16 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(pet.name, style: TextStyle(fontSize: 22.0,fontWeight: FontWeight.w600),),
-              Text(pet.breedName, style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600),),
-              Text(calculateAge(DateTime.parse(pet.birthdate)), style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
+              Text(pet.name, style: TextStyle(fontSize: sizeH2,fontWeight: FontWeight.w600),),
+              Text(pet.breedName, style: TextStyle(fontSize: sizeH3,fontWeight: FontWeight.w600),),
+              Text(calculateAge(DateTime.parse(pet.birthdate)), style: TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),),
             ],
           ),
           Column(
             children: <Widget>[
-              Text('${pet.weight} kg.', style: TextStyle(fontWeight: FontWeight.w600,),),
+              Text('${pet.weight} kg.', style: TextStyle(fontSize: sizeH2, fontWeight: FontWeight.w600,),),
               (pet.status==0) 
-              ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12.0, fontWeight: FontWeight.bold),)
+              ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: sizeH2, fontWeight: FontWeight.bold),)
               : SizedBox(height: 0,)
               // IconButton(
               //   icon: Icon(Icons.filter_list),
@@ -160,7 +160,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                                   //historialList[0].nombreVet,
                                   style: TextStyle(
                                     color: Colors.black87,
-                                    fontSize: 17.0,
+                                    fontSize: sizeH3,
                                     fontWeight: FontWeight.w600
                                   ),
                                 ),
@@ -175,11 +175,11 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                         children: <Widget>[
                           Text(
                             historias[index].createdAt.toString().split(' ')[0],
-                            style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                            style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
                           ),
                           Text(
                             historias[index].createdAt.toString().split(' ')[1],
-                            style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
+                            style: TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
                             textAlign: TextAlign.center,
                           ),
                         ],

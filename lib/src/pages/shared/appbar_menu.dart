@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
-//double size=55.0;
 
 Widget appbar( logo, String texto, List<Widget> acc){
   return AppBar(
@@ -12,29 +11,18 @@ Widget appbar( logo, String texto, List<Widget> acc){
   );
 }
 
-Widget appbar2(titulo,acc,btnTab){
-  return AppBar(
-    backgroundColor: colorMain,
-    leading: leadingH,
-    title: titulo,
-    actions: acc,
-    bottom: PreferredSize(
-      preferredSize: Size.fromHeight(25),
-      child: btnTab,
-    ),
-  );
-  // PreferredSize appbar =  PreferredSize(
-  //   preferredSize: Size.fromHeight(80),
-  //   child: AppBar(
-  //     backgroundColor: colorMain,
-  //     leading: inn,
-  //     title: titulo,
-  //     actions: acc,
-  //     bottom: btnTab,
-  //   )
-  // );
-  // return appbar;
-}
+// Widget appbar2(titulo,acc,btnTab){
+//   return AppBar(
+//     backgroundColor: colorMain,
+//     leading: leadingH,
+//     title: titulo,
+//     actions: acc,
+//     bottom: PreferredSize(
+//       preferredSize: Size.fromHeight(25),
+//       child: btnTab,
+//     ),
+//   );
+// }
 
 final leadingH = Container(
   margin: EdgeInsets.all(.5),

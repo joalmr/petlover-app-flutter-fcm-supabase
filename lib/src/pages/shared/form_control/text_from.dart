@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
-//final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
+import 'package:proypet/src/utils/styles/styles.dart';
+
 final _shape = BorderRadius.circular(10.0);
 
 Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial,TextInputType _boardType){

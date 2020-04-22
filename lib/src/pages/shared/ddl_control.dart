@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 

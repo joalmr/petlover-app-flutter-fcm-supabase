@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 class HistoriaPage extends StatelessWidget {
   const HistoriaPage({Key key}) : super(key: key);
@@ -13,7 +14,7 @@ class HistoriaPage extends StatelessWidget {
     var precio = historiaData["precio"];
 
     return Scaffold(
-      appBar: appbar(null,'Detalle de historia',null),
+      appBar: appbar(null,'Detalle de atención',null),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20.0 ,horizontal: 20.0),
         child: Column(        
@@ -50,7 +51,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.grooming ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Baño', style: TextStyle(fontSize: 16.0, color: Colors.black54),),
+            Text('Baño', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
           ],
         ),
         // Text((data["groomings"]!=null) ? data["groomings"] : "-"),
@@ -74,7 +75,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.desparasitacion ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Desparasitación', style: TextStyle(fontSize: 16.0, color: Colors.black54),),
+            Text('Desparasitación', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
           ],
         ),
         // Text((data["dewormers"]!=null) ? data["dewormers"] : "-"),
@@ -99,7 +100,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.vacuna ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Vacuna', style: TextStyle(fontSize: 16.0, color: Colors.black54),),
+            Text('Vacuna', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
           ],
         ),
         // Text((data["vaccines"]!=null) ? data["vaccines"] : "-"),
@@ -123,7 +124,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.consulta ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Consulta', style: TextStyle(fontSize: 16.0, color: Colors.black54),),
+            Text('Consulta', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
           ],
         ),
         // Text((data["anamnesis"]!=null) ? data["anamnesis"] : "-"),
@@ -151,7 +152,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.cirugia ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Cirugía', style: TextStyle(fontSize: 16.0, color: Colors.black54),),
+            Text('Cirugía', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
           ],
         ),
         // Text((data["anamnesis"]!=null) ? data["anamnesis"] : "-"),

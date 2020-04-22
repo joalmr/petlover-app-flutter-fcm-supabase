@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/model/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 class RecompensasPage extends StatelessWidget {
   final bonificacionProvider = BonificacionProvider();
@@ -62,7 +62,7 @@ class RecompensasPage extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
                                         Text('${bonificacion.points}',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0,),),
-                                        Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: 12.0, fontWeight: FontWeight.bold),),
+                                        Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeH5, fontWeight: FontWeight.bold),),
                                       ],
                                     ),
                                   )
@@ -79,7 +79,7 @@ class RecompensasPage extends StatelessWidget {
                 FadeIn(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text('Últimos puntos ganados', style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+                    child: Text('Últimos puntos ganados', style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold)),
                   ),
                 ),
                 FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
@@ -111,13 +111,12 @@ class RecompensasPage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: ListTile(
-            title: Text('${bonificados[index].establishmentName}',style: TextStyle(fontSize: 14.0)),
+            title: Text('${bonificados[index].establishmentName}',style: TextStyle(fontSize: sizeH4)),
             trailing: CircleAvatar(
               backgroundColor: colorBlue,
               foregroundColor: Colors.white,
-              child: Text('+${bonificados[index].points}', style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),)
+              child: Text('+${bonificados[index].points}', style: TextStyle(fontSize: sizeH5, fontWeight: FontWeight.bold),)
             ),
-            // trailing: Text('+15', style: TextStyle(fontSize: 14.0),),
           ),
         );
      },

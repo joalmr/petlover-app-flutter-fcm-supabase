@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 
 class WaveClipper extends StatelessWidget {

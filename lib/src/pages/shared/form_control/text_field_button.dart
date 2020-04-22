@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
-//final _shapeB = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
+import 'package:proypet/src/utils/styles/styles.dart';
 
 Widget textfieldBtn(_hinttext, _icon, _funtion){
   return Container(

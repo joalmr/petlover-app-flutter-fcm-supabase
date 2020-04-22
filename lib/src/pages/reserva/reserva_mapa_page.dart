@@ -8,6 +8,7 @@ import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 
 class ReservaMapaPage extends StatefulWidget {
@@ -204,7 +205,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                             vetLocales[index].name,//nombreVet(index),
                             maxLines: 2,
                             style: TextStyle(
-                                fontSize: 14.5,
+                                fontSize: sizeH4,
                                 fontWeight: FontWeight.bold),
                           ),
                           Container(
@@ -213,7 +214,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
                               vetLocales[index].description,
                               maxLines: 3,
                               style: TextStyle(
-                                  fontSize: 11.0,
+                                  fontSize: sizeH5,
                                   fontWeight: FontWeight.w300),
                             ),
                           )

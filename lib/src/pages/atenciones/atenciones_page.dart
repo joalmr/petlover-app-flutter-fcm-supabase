@@ -6,8 +6,8 @@ import 'package:proypet/src/model/antecion/atencion_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/atencion_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 class AtencionesPage extends StatefulWidget {
   // const AtencionesPage({Key key}) : super(key: key);
@@ -27,7 +27,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
     
     return Scaffold(
       key: scaffoldKey,
-      appBar: appbar(leadingH,'Calificar Atenciones',null),
+      appBar: appbar(null,'Calificar Atenciones',null),//leadingH
       body: _listaAtenciones(),
     );
   }

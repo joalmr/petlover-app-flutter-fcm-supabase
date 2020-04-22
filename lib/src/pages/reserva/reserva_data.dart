@@ -9,9 +9,9 @@ import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 class DataReserva extends StatefulWidget {
   final String establecimientoID;
@@ -52,9 +52,9 @@ class _Data extends State<DataReserva> {
   
   List _delivery = [
     {'id':'1','name':'No deseo',},
-    {'id':'2','name':'Recojo y entrega',},
-    {'id':'3','name':'Recojo',},
-    {'id':'4','name':'Entrega',},
+    {'id':'2','name':'Recojo y entrega a domicilio',},
+    {'id':'3','name':'Solo recojo a domicilio',},
+    {'id':'4','name':'Solo entrega a domicilio',},
   ];
 
   String resarvaId = "1";
@@ -65,7 +65,7 @@ class _Data extends State<DataReserva> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null,'Reserva', null),
+      appBar: appbar(null,'Reservar servicio', null),
       body: _onFuture(),
     );
   }
@@ -84,18 +84,18 @@ class _Data extends State<DataReserva> {
             Text('Mascota'),         
             ddlFutureImg(mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
             SizedBox(height: 12.0,),
-            Text('Fecha'),
-            _crearFecha(context),
-            SizedBox(height: 12.0,),
-            Text('Hora'),
-            _crearHora(context),
-            SizedBox(height: 12.0,),
-            Text('Atención'),
+            Text('Servicio'),
             ddlMain(resarvaId, _atencion, 
               (opt){ setState(() {
                   resarvaId=opt; 
               });}
-            ),            
+            ), 
+            SizedBox(height: 12.0,),
+            Text('Fecha'),
+            _crearFecha(context),
+            SizedBox(height: 12.0,),
+            Text('Hora'),
+            _crearHora(context),                       
             delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
             delivery ? Text('Delivery') : SizedBox(height: 0.0,) ,
             delivery ? ddlMain(deliveryId, _delivery, 
@@ -111,7 +111,7 @@ class _Data extends State<DataReserva> {
             Text('Observación'),
             textfieldArea(_inputObservacioController,'Ingrese observación (opcional)',null,null),
             SizedBox(height: 20.0,),
-            buttonPri('Reservar', ()=>reservaDialog()),      
+            buttonPri('Confirmar reserva', ()=>reservaDialog()),      
             SizedBox(height: 5.0),
             FlatButton(
               child: new Text("Cancelar",style: TextStyle(color: colorMain)),
@@ -124,6 +124,7 @@ class _Data extends State<DataReserva> {
       ),
     );
   }
+
   final _shape = BorderRadius.circular(10.0);
   Widget _crearFecha(BuildContext context){
     return Material(
@@ -140,7 +141,7 @@ class _Data extends State<DataReserva> {
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Fecha de atención',
-          hintStyle: TextStyle(fontSize: 14.0),
+          hintStyle: TextStyle(fontSize: sizeH4),
           prefixIcon: Material(
             //elevation: 0.0,
             borderRadius: _shape,
@@ -209,7 +210,7 @@ class _Data extends State<DataReserva> {
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Hora de atención',
-          hintStyle: TextStyle(fontSize: 14.0),
+          hintStyle: TextStyle(fontSize: sizeH4),
           prefixIcon: Material(
             borderRadius: _shape,
             color: Colors.grey[200],
@@ -275,7 +276,7 @@ class _Data extends State<DataReserva> {
       booking.typeId = resarvaId;
       booking.observation= _inputObservacioController.text;
 
-      var deliveryArray = [null, 'Recojo y entrega', 'Recojo', 'Entrega'];
+      var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
       var deliveryText = "";
       var direccionText="";
       if(delivery){
@@ -293,7 +294,7 @@ class _Data extends State<DataReserva> {
             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             content: Container(
               height: 100.0,
-              child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: 14.0),))
+              child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
             ),
           ),
         ), barrierDismissible: false );

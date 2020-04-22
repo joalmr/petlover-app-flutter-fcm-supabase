@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/pages/navigation_pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 
 class NavigationBar extends StatefulWidget {
@@ -35,15 +34,15 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.pets),
-        title: Text('Inicio',style: TextStyle(fontSize: 12.0)),
+        title: Text('Mascota',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.notifications_active,),
         title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
       ),
       BottomNavigationBarItem(
-        icon: Icon(Proypet.proypet),//Icons.search
-        title: Text('Establecimientos',style: TextStyle(fontSize: 12.0)),
+        icon: Icon(Icons.search),//Proypet.proypet
+        title: Text('Buscar',style: TextStyle(fontSize: 12.0)),
       ),      
       BottomNavigationBarItem(
         icon: Icon(Icons.info),

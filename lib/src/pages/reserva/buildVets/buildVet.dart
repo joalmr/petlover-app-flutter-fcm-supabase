@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
   Widget buildVets(BuildContext context, int index, List<EstablecimientoModel> vetLocales){
     var vet = vetLocales[index % vetLocales.length];
@@ -46,18 +46,18 @@ import 'package:proypet/src/pages/shared/styles/styles.dart';
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text('${vet.distance}km de distancia',maxLines: 1,style: TextStyle(fontSize: 12.0,color: Colors.grey[400],fontWeight: FontWeight.w400),),
+                            Text('${vet.distance}km de distancia',maxLines: 1,style: TextStyle(fontSize: sizeH5,color: Colors.grey[400],fontWeight: FontWeight.w400),),
                             Row(
                               children: <Widget>[
-                                Icon(Icons.star, color: colorMain, size: 12.0),
+                                Icon(Icons.star, color: colorYellow, size: 12.0),
                                 SizedBox(width: 0.5),
-                                Text(vet.stars.toString() + ' ('+vet.votes.toString()+')',style: TextStyle(fontSize: 12.0,color: Colors.grey[600],fontWeight: FontWeight.w400))
+                                Text(vet.stars.toString() + ' ('+vet.votes.toString()+')',style: TextStyle(fontSize: sizeH4,color: Colors.grey[600],fontWeight: FontWeight.w400))
                               ],
                             ),
                           ],
                         ),
                         Text(vet.name ,style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: sizeH3,
                             color: Colors.grey[700],
                             fontWeight: FontWeight.w400
                           ),

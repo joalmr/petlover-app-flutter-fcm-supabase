@@ -13,9 +13,9 @@ import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/raza_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
 
@@ -223,7 +223,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         decoration: (petData==null) ? InputDecoration(
           //labelText: fechaEdit,
           hintText: 'Fecha de nacimiento',
-          hintStyle: TextStyle(fontSize: 14.0),
+          hintStyle: TextStyle(fontSize: sizeH4),
           prefixIcon: Material(
             //elevation: 0.0,
             borderRadius: _shape,
@@ -238,7 +238,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         ) : InputDecoration(
           labelText: fechaEdit,
           hintText: 'Fecha de nacimiento',
-          hintStyle: TextStyle(fontSize: 14.0),
+          hintStyle: TextStyle(fontSize: sizeH4),
           prefixIcon: Material(
             //elevation: 0.0,
             borderRadius: _shape,

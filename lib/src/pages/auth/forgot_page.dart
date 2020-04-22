@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 class ForgotPage extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _ForgotPageState extends State<ForgotPage> {
             WaveClipper(300.0,120.0),
             SizedBox(height: 10.0),
             Center(
-              child: Text('Olvidé mi contraseña',
+              child: Text('¿Olvidaste tu contraseña?',
                 style: TextStyle(
                   fontSize: 24.0, 
                   fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class _ForgotPageState extends State<ForgotPage> {
             SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text('Se le enviará un correo electrónico para que reestablezca su contraseña.')
+              child: Text('Ingresa tu dirección de correo electrónico para reestablecer contraseña')
             ),
             SizedBox(height: 20.0),
             Padding(
@@ -51,7 +51,7 @@ class _ForgotPageState extends State<ForgotPage> {
             SizedBox(height: 30.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: buttonPri('Enviar', _forgot),
+              child: buttonPri('Enviar correo electrónico', _forgot),
             ),
             SizedBox(height: 20.0),
           ],

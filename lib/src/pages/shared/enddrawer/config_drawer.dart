@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones/atenciones_page.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/pages/usuario/user_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:share/share.dart';
 
 
@@ -42,7 +42,7 @@ class ConfigDrawer extends StatelessWidget {
                 //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
                   leading: Icon(Icons.star,),
-                  title: Text('Calificar anteciones', style: TextStyle(
+                  title: Text('Calificar atenciones', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
                   onTap: ()=>Navigator.push(context, 

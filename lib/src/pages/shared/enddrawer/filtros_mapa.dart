@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 
 
 
@@ -39,23 +39,6 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
 
   @override
   Widget build(BuildContext context) {
-
-    // if(filtros.contains(1)) bool1=true;
-    // if(filtros.contains(2)) bool2=true;
-    // if(filtros.contains(3)) bool3=true;
-    // if(filtros.contains(4)) bool4=true;
-    // if(filtros.contains(5)) bool5=true;
-    // if(filtros.contains(6)) bool6=true;
-    // if(filtros.contains(7)) bool7=true;
-    // if(filtros.contains(8)) bool8=true;
-    // if(filtros.contains(9)) bool9=true;
-    // if(filtros.contains(10)) bool10=true;
-    // if(filtros.contains(11)) bool11=true;
-    // if(filtros.contains(12)) bool12=true;
-    // if(filtros.contains(13)) bool13=true;
-    // if(filtros.contains(14)) bool14=true;
-    // if(filtros.contains(15)) bool15=true;
-    // if(filtros.contains(16)) bool16=true;
 
     return ClipPath(
       child: Drawer(
@@ -130,7 +113,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     ),
                     SwitchListTile(
                       value: (filtros.contains(5)) ? true : false,//petReq.genre,
-                      title: Text('Delivery'),
+                      title: Text('Servicio de trasnporte'),
                       activeColor: colorMain,
                       onChanged: (value)=> setState((){
                         if(!value) filtros.remove(5);
@@ -157,7 +140,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     ),
                     SwitchListTile(
                       value: (filtros.contains(8)) ? true : false,//petReq.genre,
-                      title: Text('24 horas'),
+                      title: Text('Emergencia 24 horas'),
                       activeColor: colorMain,
                       onChanged: (value)=> setState((){
                         if(!value) filtros.remove(8);

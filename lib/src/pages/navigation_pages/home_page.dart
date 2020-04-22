@@ -3,17 +3,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
-import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
@@ -76,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                         style: Theme.of(context)
                             .textTheme
                             .display1
-                            .apply(color: Colors.grey[500]),
+                            .apply(),
                       ),
                       IconButton(
                         icon: Icon(Icons.settings),
@@ -96,191 +95,26 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(' Qué estás buscando?',
+                        Text(' Servicios frecuentes',
                         style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.w300),),
+                          color: Colors.black54,
+                          fontSize: sizeH2,
+                          fontWeight: FontWeight.bold),),
                         SizedBox(height: 15.0),
                         SingleChildScrollView(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: <Widget>[
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[8] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.red.withOpacity(0.5),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        // color: colorRed
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_emergencia.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            Text('Emergencia',style: TextStyle(color: Colors.white)),
-                                            Text('24 horas',style: TextStyle(color: Colors.white, fontSize: 10.0)),
-                                          ],
-                                        ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              _emergencia(),
                               SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[2] } ),
-                                // onTap: ()=>Navigator.push(
-                                //   context,MaterialPageRoute(
-                                //     builder: (context) => NavigationBar(currentTabIndex: 2, filtros: { "filtros":[1] }, ),
-                                // )),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_consulta.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Consulta',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              _banio(),                              
                               SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[4] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_vacuna.jpeg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Vacuna',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              _vacuna(),
                               SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[1] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_banio.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Baño',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              _desparasita(),                              
                               SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[11] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_desparacita.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Desparasitación',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
+                              _consulta(),
                             ],
                           ),
                         )
@@ -295,235 +129,11 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: Text(
                           "Próxima atención",
-                          style: Theme.of(context)
-                              .textTheme
-                              .title
-                              .apply(color: Colors.black87, fontWeightDelta: 1),
-                        ),
-                      ),
-                      Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),
-                    ],
-                  ),
-                ),
-                FadeIn(child: _atenciones(mydata.bookings,mydata.pets.length)),
-              ],
-            ),
-          );
-        }
-      },
-    );
-  }
-
-  Widget onUser() {
-    return FutureBuilder(
-      future: loginProvider.getUserSummary(),
-      builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot) {
-        final mydata=snapshot.data;
-        if(!snapshot.hasData){
-          return LinearProgressIndicator(
-            backgroundColor: Colors.grey[200],
-          );
-        }
-        else{
-          return SingleChildScrollView(
-            //physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 35.0,),
-                FadeIn(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Hola,", // + mascotas.length.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .display1
-                            .apply(color: Colors.grey[500]),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.settings),
-                        onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
-                      )
-                    ],
-                  ),
-                ),
-                //onUser(),
-                FadeIn(child: _usuario(mydata.user)),
-                SizedBox(height: 25.0,),
-                FadeIn(child: _mascotas(mydata.pets)),
-                FadeIn(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 25.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(' Qué estás buscando?',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.w300),),
-                        SizedBox(height: 15.0),
-                        SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: <Widget>[
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[2] } ),
-                                // onTap: ()=>Navigator.push(
-                                //   context,MaterialPageRoute(
-                                //     builder: (context) => NavigationBar(currentTabIndex: 2, filtros: { "filtros":[1] }, ),
-                                // )),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_consulta.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Consulta',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[4] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_vacuna.jpeg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Vacuna',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[1] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_banio.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Baño',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 15.0),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(15.0),
-                                onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[11] } ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      padding: EdgeInsets.all(15.0),
-                                      foregroundDecoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.25),
-                                        borderRadius: BorderRadius.circular(15.0),
-                                      ),
-                                      //padding: EdgeInsets.all(25.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15.0),
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/v_desparacita.jpg'),
-                                        )
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 120.0,
-                                      height: 100.0,
-                                      child: Center(
-                                        child: Text('Desparasitación',style: TextStyle(color: Colors.white)),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                FadeIn(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          "Próxima atención",
-                          style: Theme.of(context)
-                              .textTheme
-                              .title
-                              .apply(color: Colors.black87, fontWeightDelta: 1),
+                          style: TextStyle(
+                            fontSize: sizeH2,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54
+                          )
                         ),
                       ),
                       Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),
@@ -593,7 +203,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               mascotas[index].name,
                               style: TextStyle(
-                                fontSize: 22,
+                                fontSize: sizeH2,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -601,7 +211,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               mascotas[index].breedName,
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: sizeH4,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white,
                               ),
@@ -622,10 +232,16 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   TextSpan(
                                     text: mascotas[index].weight.toString(),
-                                    style: Theme.of(context)
+                                    style: 
+                                    Theme.of(context)
                                       .textTheme
                                       .display1
                                       .apply(color: Colors.white, fontWeightDelta: 2),
+                                    // TextStyle(
+                                    //   fontSize: sizeH1,
+                                    //   fontWeight: FontWeight.bold,
+                                    //   color: Colors.white,
+                                    // ),                                    
                                   ),
                                   TextSpan(text: " kg.")
                                 ],
@@ -771,11 +387,11 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Text(
                         atenciones[index].date,//" Mañana",
-                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: 12.0,fontWeight: FontWeight.w600),
+                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
                       ),
                       Text(
                         atenciones[index].time,//"17:00",
-                        style: TextStyle(color: colorMain,fontSize: 16.0,fontWeight: FontWeight.w600),
+                        style: TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -844,5 +460,188 @@ class _HomePageState extends State<HomePage> {
     else{
       mostrarSnackbar("No se eliminó la atención", colorRed, _scaffoldKey);
     }
+  }
+
+
+
+  _emergencia(){
+    return InkWell(
+      borderRadius: BorderRadius.circular(15.0),
+      onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[8] } ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            height: 100.0,
+            padding: EdgeInsets.all(15.0),
+            foregroundDecoration: BoxDecoration(
+              color: Colors.red.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            //padding: EdgeInsets.all(25.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              // color: colorRed
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('images/v_emergencia.jpg'),
+              )
+            ),
+          ),
+          Container(
+            width: 120.0,
+            height: 100.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text('Emergencia',style: TextStyle(color: Colors.white)),
+                  Text('24 horas',style: TextStyle(color: Colors.white, fontSize: sizeCuerpoLite)),
+                ],
+              ),
+          )
+        ],
+      ),
+    );
+  }
+
+  _consulta(){
+    return InkWell(
+      borderRadius: BorderRadius.circular(15.0),
+      onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[2] } ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            height: 100.0,
+            padding: EdgeInsets.all(15.0),
+            foregroundDecoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.25),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            //padding: EdgeInsets.all(25.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('images/v_consulta.jpg'),
+              )
+            ),
+          ),
+          Container(
+            width: 120.0,
+            height: 100.0,
+            child: Center(
+              child: Text('Consulta',style: TextStyle(color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  _vacuna(){
+    return InkWell(
+      borderRadius: BorderRadius.circular(15.0),
+      onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[4] } ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            height: 100.0,
+            padding: EdgeInsets.all(15.0),
+            foregroundDecoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.25),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            //padding: EdgeInsets.all(25.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('images/v_vacuna.jpeg'),
+              )
+            ),
+          ),
+          Container(
+            width: 120.0,
+            height: 100.0,
+            child: Center(
+              child: Text('Vacuna',style: TextStyle(color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  _banio(){
+    return InkWell(
+      borderRadius: BorderRadius.circular(15.0),
+      onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[1] } ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            height: 100.0,
+            padding: EdgeInsets.all(15.0),
+            foregroundDecoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.25),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            //padding: EdgeInsets.all(25.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('images/v_banio.jpg'),
+              )
+            ),
+          ),
+          Container(
+            width: 120.0,
+            height: 100.0,
+            child: Center(
+              child: Text('Baño',style: TextStyle(color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  _desparasita(){
+    return InkWell(
+      borderRadius: BorderRadius.circular(15.0),
+      onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[11] } ),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 120.0,
+            height: 100.0,
+            padding: EdgeInsets.all(15.0),
+            foregroundDecoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.25),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            //padding: EdgeInsets.all(25.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('images/v_desparacita.jpg'),
+              )
+            ),
+          ),
+          Container(
+            width: 120.0,
+            height: 100.0,
+            child: Center(
+              child: Text('Desparasitación',style: TextStyle(color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

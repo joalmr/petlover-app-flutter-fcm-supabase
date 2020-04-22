@@ -12,11 +12,11 @@ import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/modal_bottom.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/styles/styles.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
@@ -62,7 +62,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.only(top: 35.0),
                 child: Center(
-                  child: Text('Reservar atención',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15.0),),
+                  child: Text('Reservar servicio',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: sizeH3),),
                 )
               ),
             ),
@@ -95,7 +95,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
               elevation: 0,
               centerTitle: true,
               title: Text("",style: TextStyle(
-                fontSize: 16.0,
+                fontSize: sizeH3,
                 fontWeight: FontWeight.normal
               ),),
             ),
@@ -123,7 +123,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
               title: Text(localVet.name,//nombreVet(0),
                 maxLines: 2,
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: sizeH2,
                   fontWeight: FontWeight.w600
                 )
               ),
@@ -152,7 +152,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                 children: <Widget>[
                   Text('Recomendación',
                   style: TextStyle(
-                      fontSize: 15.0,
+                      fontSize: sizeH3,
                       color: Color(0xFF6A6A6A),
                       fontWeight: FontWeight.w600)),
                   SizedBox(width: 15.0),
@@ -171,7 +171,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                           child: Center(
                             child: Text(localVet.votes.toString(),
                               style: TextStyle(
-                                fontSize: 12.0, color: Colors.white
+                                fontSize: sizeH5, color: Colors.white
                               )
                             ),
                           ),
@@ -185,7 +185,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                             padding: EdgeInsets.symmetric(horizontal: 10.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20.0),
-                                color: Colors.black.withOpacity(0.2)),
+                                color: colorYellow),
                             child: Center(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -228,7 +228,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
           child: Text("Precio referencial",style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: sizeH4,
                     color: Color(0xFF6A6A6A),
                     fontWeight: FontWeight.w600))
         )
@@ -242,43 +242,9 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: 10.0),)
+          child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeH6),)
         ) : SizedBox(height: 0.0,),
-        // DataTable(
-        //   headingRowHeight: 30.0,
-        //   dataRowHeight: 30.0,
-        //   columns: [
-        //     DataColumn(label: Text("Servicios")),
-        //     DataColumn(label: Text("Desde")),
-        //     DataColumn(label: Text("Hasta")),
-        //   ], 
-        //   rows: [
-        //     DataRow(cells: [
-        //       DataCell(Text("Consulta")),
-        //       DataCell(Text(localVet.prices["consultation"]["from"]==null?"-":localVet.prices["consultation"]["from"])),
-        //       DataCell(Text(localVet.prices["consultation"]["to"]==null?"-":localVet.prices["consultation"]["to"])),
-        //       ]
-        //     ),
-        //     DataRow(cells: [
-        //       DataCell(Text("Vacunas")),
-        //       DataCell(Text(localVet.prices["vaccination"]["from"]==null?"-":localVet.prices["vaccination"]["from"])),
-        //       DataCell(Text(localVet.prices["vaccination"]["to"]==null?"-":localVet.prices["vaccination"]["to"])),
-        //       ]
-        //     ),
-        //     DataRow(cells: [
-        //       DataCell(Text("Baños")),
-        //       DataCell(Text(localVet.prices["grooming"]["from"]==null?"-":localVet.prices["grooming"]["from"])),
-        //       DataCell(Text(localVet.prices["grooming"]["to"]==null?"-":localVet.prices["grooming"]["to"])),
-        //       ]
-        //     ),
-        //     DataRow(cells: [
-        //       DataCell(Text("Desparasitaciones")),
-        //       DataCell(Text(localVet.prices["deworming"]["from"]==null?"-":localVet.prices["deworming"]["from"])),
-        //       DataCell(Text(localVet.prices["deworming"]["to"]==null?"-":localVet.prices["deworming"]["to"])),
-        //       ]
-        //     ),
-        //   ]
-        // )       
+      
         SizedBox(height: 5.0),
         
         localVet.schedule.length>0 ?
@@ -286,7 +252,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
           child: Text("Horario",style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: sizeH4,
                     color: Color(0xFF6A6A6A),
                     fontWeight: FontWeight.w600))
         ): SizedBox(height: 0.0,), 
@@ -305,7 +271,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             children: <Widget>[  
               Text('Descripción',
                 style: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: sizeH4,
                     color: Color(0xFF6A6A6A),
                     fontWeight: FontWeight.w600)),  
               SizedBox(height: 10.0,),
@@ -332,28 +298,28 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                 child: _precio("Consulta", 
                 precios["consultation"]["from"]==null?"":precios["consultation"]["from"], 
                 precios["consultation"]["to"]==null?"":precios["consultation"]["to"], 
-                Colors.lightBlueAccent),
+                colorBlue.withOpacity(0.75)),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _precio("Vacunas", 
                 precios["vaccination"]["from"]==null?"":precios["vaccination"]["from"], 
                 precios["vaccination"]["to"]==null?"":precios["vaccination"]["to"], 
-                Colors.lightBlueAccent),
+                colorBlue.withOpacity(0.75)),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _precio("Baños", 
                 precios["grooming"]["from"]==null?"":precios["grooming"]["from"], 
                 precios["grooming"]["to"]==null?"":precios["grooming"]["to"], 
-                Colors.lightBlueAccent),
+                colorBlue.withOpacity(0.75)),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _precio("Desparasitaciones", 
                 precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
                 precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 
-                Colors.lightBlueAccent),
+                colorBlue.withOpacity(0.75)),
               ),
             ],
           ),
@@ -366,128 +332,123 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       return SizedBox(width: 0, height: 0,);
     }
     else{
-        return Container(
-            // height: 85,
-            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            width: 170,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: color,
-              boxShadow:[ 
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 3.0,
-                  spreadRadius: 2.0
-              )],
-            ),
-            child: Column(
+      return Container(
+        // height: 85,
+        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        width: 170,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: color,
+          boxShadow:[ 
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 3.0,
+              spreadRadius: 2.0
+          )],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(tipo, style: TextStyle(color: Colors.white),),
+            SizedBox(height: 5,),
+            Text("desde", style: TextStyle(color: Colors.white),),
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(tipo, style: TextStyle(color: Colors.white),),
-                SizedBox(height: 5,),
-                Text("desde", style: TextStyle(color: Colors.white),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
-                    (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),)
-                    : SizedBox(width: 0,),
-                    (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                    (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.white),)
-                    : SizedBox(width: 0,),
-                  ],
-                ),
+                Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
+                (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),)
+                : SizedBox(width: 0,),
+                (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
+                (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.white),)
+                : SizedBox(width: 0,),
               ],
-            )
-          ); 
+            ),
+          ],
+        )
+      ); 
     }  
 }
 
-Widget _listHorario(horario){
-  return 
-    
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: <Widget>[
-            (horario["monday"]["attention"]=="on") //&& horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            (horario["tuesday"]["attention"]=="on") //&& horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            (horario["wednesday"]["attention"]=="on") //&& horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            (horario["thursday"]["attention"]=="on") //&& horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            (horario["friday"]["attention"]=="on") //&& horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            (horario["saturday"]["attention"]=="on") //&& horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            (horario["sunday"]["attention"]=="on") //&& horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null 
-            ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"], colorGray3),
-            ) : SizedBox(width: 0, height: 0,),
-            
-          ],
-        ),
-      )
-    
-  ;
-}
+  Widget _listHorario(horario){
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: <Widget>[
+          (horario["monday"]["attention"]=="on") //&& horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          (horario["tuesday"]["attention"]=="on") //&& horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          (horario["wednesday"]["attention"]=="on") //&& horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          (horario["thursday"]["attention"]=="on") //&& horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          (horario["friday"]["attention"]=="on") //&& horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          (horario["saturday"]["attention"]=="on") //&& horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          (horario["sunday"]["attention"]=="on") //&& horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null 
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"], colorGray3),
+          ) : SizedBox(width: 0, height: 0,),
+          
+        ],
+      ),
+    );
+  }
 
-Widget _horario(dia, inicio, fin, color){
-  return Container(
-            // height: 80,
-            padding: EdgeInsets.symmetric(vertical: 10.0),
-            width: 95,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: color,
-              boxShadow:[ 
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 3.0,
-                  spreadRadius: 2.0
-              )],
-            ),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 5.0,),
-                    Icon(Icons.schedule, color: Colors.white, size: 20.0,),
-                    SizedBox(width: 5.0,),
-                    Text(dia, style: TextStyle(color: Colors.white),),
-                  ],
-                ),
-                SizedBox(height: 5,),
-                Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.white),),
-                SizedBox(height: 5,),
-                Text(fin==null?"-":fin, style: TextStyle(color: Colors.white),),
-              ],
-            )
-          );   
-}
+  Widget _horario(dia, inicio, fin, color){
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10.0),
+      width: 95,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: color,
+        boxShadow:[ 
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 3.0,
+            spreadRadius: 2.0
+        )],
+      ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(width: 5.0,),
+              Icon(Icons.schedule, color: Colors.white, size: 20.0,),
+              SizedBox(width: 5.0,),
+              Text(dia, style: TextStyle(color: Colors.white),),
+            ],
+          ),
+          SizedBox(height: 5,),
+          Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.white),),
+          SizedBox(height: 5,),
+          Text(fin==null?"-":fin, style: TextStyle(color: Colors.white),),
+        ],
+      )
+    );   
+  }
 
   Widget _servicios(List<Service> servicios){
     return SizedBox(
@@ -506,7 +467,7 @@ Widget _horario(dia, inicio, fin, color){
       delivery=true;
     }
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 7.5),
+      padding: const EdgeInsets.symmetric(horizontal: 8.5),
       child: Column(
         children: <Widget>[
           SizedBox(height: 5,),
@@ -532,7 +493,7 @@ Widget _horario(dia, inicio, fin, color){
             )
           ),
           SizedBox(height: 5),
-          Text((nombre.length>6) ? '${nombre.substring(0,6)}..' : nombre ,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 8.0),)
+          Text((nombre.length>9) ? '${nombre.substring(0,9)}..' : nombre ,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 8.0),)
         ],
       ),
     );
@@ -573,7 +534,7 @@ Widget _horario(dia, inicio, fin, color){
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 10.0,),
-                      Text('Debe ingresar un número de teléfono', style: TextStyle(fontSize: 14.0)),
+                      Text('Debe ingresar un número de teléfono', style: TextStyle(fontSize: sizeH4)),
                       SizedBox(height: 10.0,),
                       // textFormLess("Ingresar teléfono", (value)=>telefono=value,),
                       textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
