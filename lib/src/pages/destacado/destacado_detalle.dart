@@ -24,6 +24,7 @@ class DetalleDestacadoPage extends StatelessWidget {
             child: Image(
               fit: BoxFit.cover,
               height: 350,                
+              width: double.infinity,
               image: AssetImage(destacado.image)
             ),
           ),

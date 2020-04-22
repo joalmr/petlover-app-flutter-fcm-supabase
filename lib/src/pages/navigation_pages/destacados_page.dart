@@ -45,7 +45,8 @@ class _DestacadosPageState extends State<DestacadosPage> {
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image(
                   fit: BoxFit.cover,
-                  height: 300,                
+                  height: 300,      
+                  width: double.infinity,          
                   image: AssetImage(destacado.image)
                 ),
               ),

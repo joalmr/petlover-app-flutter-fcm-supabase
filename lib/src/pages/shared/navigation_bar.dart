@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/pages/navigation_pages/notificaciones_page.dart';
@@ -18,7 +19,6 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
-  // int marcar;
   _NavigationBarState({@required this.currentTabIndex, }); //this.marcar
 
   @override
@@ -26,7 +26,7 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kTabPages = <Widget>[
       HomePage(),
       NotificacionesPage(),      
-      ReservaList(),//marcar: marcar, // ReservaPage(),
+      ReservaList(),
       DestacadosPage(),
       RecompensasPage(),
     ];
@@ -34,27 +34,26 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.pets),
-        title: Text('Mascota',style: TextStyle(fontSize: 12.0)),
+        title: Text('Mascota',style: TextStyle(fontSize: 10.5)),//
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.notifications_active,),
-        title: Text('Notificaciones',style: TextStyle(fontSize: 12.0)),
+        title: Text('Notificaciones',style: TextStyle(fontSize: 10.5)),//
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.search),//Proypet.proypet
-        title: Text('Buscar',style: TextStyle(fontSize: 12.0)),
+        title: Text('Veterinarias',style: TextStyle(fontSize: 10.5)),//
       ),      
       BottomNavigationBarItem(
-        icon: Icon(Icons.info),
-        title: Text('Destacados',style: TextStyle(fontSize: 12.0)),
+        icon: Icon(Icons.favorite),
+        title: Text('Destacados',style: TextStyle(fontSize: 10.5)),//
       ),
       BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on,),
-            title: Text('Recompensas',style: TextStyle(fontSize: 12.0)),
-          ),
+        icon: Icon(Icons.monetization_on,),
+        title: Text('Recompensas',style: TextStyle(fontSize: 10.5)),//
+      ),
     ];
 
-    //assert(_kTabPages.length == _kBottmonNavBarItems.length);
     final bottomNavBar = BottomNavigationBar(
       iconSize: 28.0,
       selectedItemColor: colorMain,

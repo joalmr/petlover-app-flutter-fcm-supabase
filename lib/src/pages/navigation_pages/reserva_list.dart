@@ -81,7 +81,7 @@ class _ReservaListState extends State<ReservaList> {
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("No se encontró establecimientos"),
+                    child: Text("No se encontró veterinarias"),
                   ),
                 ),
               ),

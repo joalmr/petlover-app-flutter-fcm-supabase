@@ -97,7 +97,7 @@ class _Data extends State<DataReserva> {
             Text('Hora'),
             _crearHora(context),                       
             delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
-            delivery ? Text('Delivery') : SizedBox(height: 0.0,) ,
+            delivery ? Text('Servicio de transporte') : SizedBox(height: 0.0,) ,
             delivery ? ddlMain(deliveryId, _delivery, 
               (opt){ setState(() {
                   deliveryId=opt; 
