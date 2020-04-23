@@ -6,6 +6,8 @@ import 'package:proypet/src/pages/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
+
+
 class ForgotPage extends StatefulWidget {
   @override
   _ForgotPageState createState() => _ForgotPageState();
@@ -22,40 +24,54 @@ class _ForgotPageState extends State<ForgotPage> {
     
     return Scaffold(
       key: scaffoldKey,
-      body: Form(
-        key: formKey,
-        child: ListView(
-          children: <Widget>[
-            WaveClipper(300.0,120.0),
-            SizedBox(height: 10.0),
-            Center(
-              child: Text('¿Olvidaste tu contraseña?',
-                style: TextStyle(
-                  fontSize: 24.0, 
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(89, 74, 70, 0.75)
-                )
-              ),
+      body: Stack(
+        children: <Widget>[
+          Form(
+            key: formKey,
+            child: ListView(
+              children: <Widget>[
+                WaveClipperOut(110.0),
+                SizedBox(height: 10.0),
+                Center(
+                  child: Text('¿Olvidaste tu contraseña?',
+                    style: TextStyle(
+                      fontSize: 24.0, 
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                    )
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Text('Ingresa tu dirección de correo electrónico para reestablecer contraseña')
+                ),
+                SizedBox(height: 20.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,
+                    TextInputType.text),
+                ),
+                SizedBox(height: 30.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: buttonPri('Enviar correo electrónico', _forgot),
+                ),
+                SizedBox(height: 20.0),
+              ],
             ),
-            SizedBox(height: 10.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text('Ingresa tu dirección de correo electrónico para reestablecer contraseña')
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
             ),
-            SizedBox(height: 20.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,
-                TextInputType.text),
-            ),
-            SizedBox(height: 30.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: buttonPri('Enviar correo electrónico', _forgot),
-            ),
-            SizedBox(height: 20.0),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

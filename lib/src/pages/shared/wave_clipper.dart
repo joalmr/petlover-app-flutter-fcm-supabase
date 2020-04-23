@@ -69,7 +69,56 @@ class WaveClipper extends StatelessWidget {
   }
 }
 
-
+class WaveClipperOut extends StatelessWidget {
+  final num _alto;
+  WaveClipperOut(this._alto);
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        ClipPath(
+          clipper: WaveClipper2(),
+          child: Container(
+            child: Column(),
+            width: double.infinity,
+            height: _alto,
+            decoration: BoxDecoration(
+              color: colorMain.withAlpha(100) //Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
+            ),
+          ),
+        ),
+        ClipPath(
+          clipper: WaveClipper3(),
+          child: Container(
+            child: Column(),
+            width: double.infinity,
+            height: _alto,
+            decoration: BoxDecoration(
+              color: colorMain.withAlpha(200) //Color.fromRGBO(1, 165, 141, 0.4)
+            ),
+          ),
+        ),
+        ClipPath(
+          clipper: WaveClipper1(),
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
+            width: double.infinity,
+            height: _alto,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(250)])
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class WaveClipper1 extends CustomClipper<Path> {
   @override

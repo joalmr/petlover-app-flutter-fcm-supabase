@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/login/login_model.dart';
@@ -26,87 +25,90 @@ class _SingupPageState extends State<SingupPage> {
   Widget build(BuildContext context) {    
     return Scaffold(
       key: scaffoldKey,
-      body: Form(
-        key: formKey,
-        child: ListView(
-          children: <Widget>[
-            WaveClipper(300.0,120.0),
-            SizedBox(height: 10),
-            Center(
-              child: Text('Bienvenido a Proypet',
-                style: TextStyle(
-                  fontSize: 24.0, 
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(89, 74, 70, 0.75)
-                )
-              ),
-            ),
-            Center(
-              child: Text('Crear cuenta',
-                style: TextStyle(
-                  fontSize: 16.0, 
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(89, 74, 70, 0.75)
-                )
-              ),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null,
-                TextInputType.text),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
-                TextInputType.text),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null,
-                TextInputType.text),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null,
-                TextInputType.text),
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text.rich(
-                TextSpan(
-                  text: 'Al registrarse en Proypet, acepta los ', // default text style
-                  children: <TextSpan>[
-                    TextSpan(text: 'Términos y Condiciones',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold)),
-                    TextSpan(text: ' y ',style: TextStyle(fontSize: 15.0,)),
-                    TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold))
-                  ],
+      body: Stack(
+        children: <Widget>[
+          Form(
+            key: formKey,
+            child: ListView(
+              children: <Widget>[
+                WaveClipperOut(110.0),
+                SizedBox(height: 10),
+                Center(
+                  child: Text('Bienvenido a Proypet',
+                    style: TextStyle(
+                      fontSize: 24.0, 
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                    )
+                  ),
                 ),
-              ),
+                Center(
+                  child: Text('Crear cuenta',
+                    style: TextStyle(
+                      fontSize: 16.0, 
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                    )
+                  ),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null,
+                    TextInputType.text),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
+                    TextInputType.text),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null,
+                    TextInputType.text),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null,
+                    TextInputType.text),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Al registrarse en Proypet, acepta los ', // default text style
+                      children: <TextSpan>[
+                        TextSpan(text: 'Términos y Condiciones',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold)),
+                        TextSpan(text: ' y ',style: TextStyle(fontSize: 15.0,)),
+                        TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 25),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: buttonPri('Registrarse', btnBool ? _onSaved : null),
+                ),
+                SizedBox(height: 20.0),
+              ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 32),
-            //   child: Text.rich(
-            //     TextSpan(
-            //       text: 'Acepto las ', // default text style
-            //       children: <TextSpan>[
-                    
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: buttonPri('Registrarse', btnBool ? _onSaved : null),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
             ),
-            SizedBox(height: 20.0),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
@@ -132,13 +134,10 @@ class _SingupPageState extends State<SingupPage> {
               return FadeIn(
                 child: AlertDialog(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  // title: Text('Error'),
-                  content: Container(
-                    height: 100.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text('Gracias por registrarte te hemos enviado un correo electrónico para confirmar la cuenta'),
-                    )
+                  title: Text('Gracias por registrarte'),
+                  content: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text('Te hemos enviado un correo electrónico para confirmar la cuenta'),
                   ),
                 ),
               );

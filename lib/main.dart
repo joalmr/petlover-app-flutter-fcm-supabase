@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
+import 'package:proypet/src/utils/styles/styles.dart';
  
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +23,10 @@ class MyApp extends StatelessWidget {
     if(prefs.token!=''){
       rutaInicio='navInicio';
     }
+    
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: colorMain
+    ));
 
     return MaterialApp(
       title: 'Proypet',
