@@ -24,6 +24,13 @@ class _LoginSevenPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: colorMain,
+          elevation: 0,
+        )
+      ),
       body: Form(
         key: formKey,
         child: ListView(

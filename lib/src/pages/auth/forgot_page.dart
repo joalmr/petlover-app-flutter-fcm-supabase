@@ -24,6 +24,13 @@ class _ForgotPageState extends State<ForgotPage> {
     
     return Scaffold(
       key: scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: AppBar(
+          backgroundColor: colorMain,
+          elevation: 0,
+        )
+      ),
       body: Stack(
         children: <Widget>[
           Form(

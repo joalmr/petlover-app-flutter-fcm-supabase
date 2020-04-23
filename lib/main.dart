@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
       rutaInicio='navInicio';
     }
     
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: colorMain
-    ));
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   statusBarColor: colorMain
+    // ));
 
     return MaterialApp(
       title: 'Proypet',
