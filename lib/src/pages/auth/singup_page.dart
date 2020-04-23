@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
@@ -8,6 +9,7 @@ import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/pages/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SingupPage extends StatefulWidget {
   @override
@@ -89,9 +91,21 @@ class _SingupPageState extends State<SingupPage> {
                     TextSpan(
                       text: 'Al registrarse en Proypet, acepta los ', // default text style
                       children: <TextSpan>[
-                        TextSpan(text: 'Términos y Condiciones',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold)),
-                        TextSpan(text: ' y ',style: TextStyle(fontSize: 15.0,)),
-                        TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',style: TextStyle(color: colorBlue,fontSize: 15.0,fontWeight: FontWeight.bold))
+                        TextSpan(text: 'Términos y Condiciones',
+                          style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () { 
+                              launch('https://beta.proypet.com/Recursos/Terminos');
+                          },
+                        ),
+                        TextSpan(text: ' y ',style: TextStyle()),
+                        TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',
+                          style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
+                          recognizer: new TapGestureRecognizer()
+                              ..onTap = () { 
+                                launch('https://beta.proypet.com/Recursos/Politicas');
+                            },
+                        )
                       ],
                     ),
                   ),
@@ -125,7 +139,7 @@ class _SingupPageState extends State<SingupPage> {
       formKey.currentState.save();
     });
 
-    if(user.name.trim()=="" || user.lastname.trim()=="" || user.email.trim()=="" || user.password==""){
+    if(user.name.trim()=="" || user.lastname.trim()=="" || user.email.trim()=="" || user.password.trim()==""){
       mostrarSnackbar("Debe completar los campos",colorRed,scaffoldKey);
     }
     else{

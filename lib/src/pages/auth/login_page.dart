@@ -88,7 +88,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                       color:colorMain, 
                       fontWeight: FontWeight.w500,
                       fontSize: 14, 
-                      decoration: TextDecoration.underline 
+                      decoration: TextDecoration.underline
                     )
                   ),
                 ),

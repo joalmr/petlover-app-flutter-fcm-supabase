@@ -87,14 +87,18 @@ class _ForgotPageState extends State<ForgotPage> {
     formKey.currentState.save();
     setState(() { });
 
-    bool resp = await loginProvider.forgotPassword(val);
-    
-    if(resp){
-      mostrarSnackbar("Se le envío un correo electrónico a la dirección ingresada", colorMain,scaffoldKey);
+    if(val.trim()==""){
+      mostrarSnackbar("Ingrese correo electrónico", colorRed, scaffoldKey);
     }
-    if(!resp){
-      mostrarSnackbar("Error ...", colorRed, scaffoldKey);
-    }
+    else{
+      bool resp = await loginProvider.forgotPassword(val);
+      if(resp){
+        mostrarSnackbar("Se le envío un correo electrónico a la dirección ingresada", colorMain,scaffoldKey);
+      }
+      if(!resp){
+        mostrarSnackbar("Error ...", colorRed, scaffoldKey);
+      }
+    }    
   }
 
 }
