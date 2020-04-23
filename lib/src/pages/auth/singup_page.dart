@@ -40,7 +40,7 @@ class _SingupPageState extends State<SingupPage> {
             key: formKey,
             child: ListView(
               children: <Widget>[
-                WaveClipperOut(110.0),
+                WaveClipperOut(120.0),
                 SizedBox(height: 10),
                 Center(
                   child: Text('Bienvenido a Proypet',

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
@@ -22,6 +23,9 @@ class _LoginSevenPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('kk:mm:ss \n dd-MM-yyyy').format(now);
+    print(formattedDate);
     return Scaffold(
       key: scaffoldKey,
       appBar: PreferredSize(
@@ -35,8 +39,15 @@ class _LoginSevenPageState extends State<LoginPage> {
         key: formKey,
         child: ListView(
           children: <Widget>[
-            WaveClipper(300.0,120.0),
-            SizedBox(height: 30.0),
+            WaveClipper(300.0,180.0),
+            // WaveClipperOut(120.0),
+            // SizedBox(height: 10.0),
+            // Image(
+            //   image: AssetImage('images/logo_v.png'),
+            //   height: 159.0,
+            //   width: 200.0,
+            // ),
+            SizedBox(height: 50.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: textForm('Email', Icons.alternate_email, false, (value)=>userModel.email=value, TextCapitalization.none, null,

@@ -18,7 +18,7 @@ import 'package:proypet/src/providers/raza_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
-
+final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
 class MascotaAgregarPage extends StatefulWidget {
   @override
   _MascotaAgregarPageState createState() => _MascotaAgregarPageState();
@@ -40,13 +40,13 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   MascotaModel mascotaData = new MascotaModel();
 
   String fechaEdit = '';
-  bool sexo=false;
+  String sexo="0";
 
   @override
   Widget build(BuildContext context) {
     final MascotaModel petData = ModalRoute.of(context).settings.arguments;
     if(petData==null){ //agregar
-      mascotaData.specieId = int.tryParse(datoPet); 
+      mascotaData.specieId = int.tryParse(datoPet);
     }
 
     else{ //editar
@@ -191,7 +191,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                       child: Text('Sexo'),
                     ),                 
-                    _sexoEdit(petData),//(petData==null) ? _sexo() : 
+                    (petData==null) ? _sexo() : _sexoEdit(petData),//
                     SizedBox(height: 25.0,),
                     Center(
                       child: buttonPri((petData==null)?'Agregar mascota':'Guardar cambios', btnBool ? _onAdd : null ) //()=>agregarDialog()
@@ -275,23 +275,27 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
   }
 
-  // Widget _sexo(){
-  //   return SwitchListTile(
-  //     value: sexo,//petReq.genre,
-  //     title: Text('Sexo'),
-  //     subtitle: sexo ? Text('Macho') : Text('Hembra'),
-  //     activeColor: colorMain,
-  //     onChanged: (value)=> setState((){
-  //       sexo = value;
-  //     }),
-  //   );
-  // }
-
+  Widget _sexo(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+      child: ddlMain(sexo, tiposex, 
+        (opt){ setState(() {
+          sexo = opt;
+        }
+      );})
+    );
+    // return SwitchListTile(
+    //   value: sexo,//petReq.genre,
+    //   title: Text('Sexo'),
+    //   subtitle: sexo ? Text('Macho') : Text('Hembra'),
+    //   activeColor: colorMain,
+    //   onChanged: (value)=> setState((){
+    //     sexo = value;
+    //   }),
+    // );
+  }
+  
   Widget _sexoEdit(petData){
-    final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
-    if(petData==null){
-      mascotaData.genre=0;
-    }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
       child: ddlMain(mascotaData.genre.toString(), tiposex, 
@@ -375,7 +379,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
             btnBool = true;      
           });
           else{
-            // mascotaData.genre=0;
+            mascotaData.genre=int.tryParse(sexo);
             resp = await mascotaProvider.savePet(mascotaData, foto);
             boolSave(resp);
           }          

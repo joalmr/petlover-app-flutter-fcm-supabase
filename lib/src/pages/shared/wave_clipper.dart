@@ -38,30 +38,20 @@ class WaveClipper extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Image(
-                  image: AssetImage('images/proypet.png'),
+                  image: AssetImage('images/logo_vw.png'),
                   height: _numxy,
                   width: _numxy,
                 ),
                 SizedBox(
                   height: 5,
                 ),
-                Text(
-                  'Proypet'.toUpperCase(),
-                  style: TextStyle(
-                      color: Color.fromRGBO(242, 242, 242, 0.75),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22),
-                ),
               ],
             ),
             width: double.infinity,
             height: _alto,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(250)])
-            ),
           ),
         ),
       ],
