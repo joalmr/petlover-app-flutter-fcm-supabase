@@ -9,6 +9,7 @@ import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/form_control/text_field.dart';
+import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
@@ -42,6 +43,7 @@ class _Data extends State<DataReserva> {
   final bookingProvider = BookingProvider();
   final mascotaProvider = MascotaProvider();
   BookingModel booking =BookingModel();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   
   List _atencion = [
     {'id':'1','name':'Consulta',},
@@ -65,6 +67,7 @@ class _Data extends State<DataReserva> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: appbar(null,'Reservar servicio', null),
       body: _onFuture(),
     );
@@ -237,7 +240,10 @@ class _Data extends State<DataReserva> {
         setState(() {
           initialtimer = changedtimer;
           if(initialtimer!=null){
-            _hora = initialtimer.toString().split(':00.')[0];//.format(context); //f.format(pickedHora);
+            if(initialtimer.toString().split(':')[0].length==1){
+              _hora = '0'+initialtimer.toString().split(':00.')[0];
+            }
+            else _hora = initialtimer.toString().split(':00.')[0];
             _inputHoraController.text = _hora;
           }          
         });
@@ -247,59 +253,72 @@ class _Data extends State<DataReserva> {
 
   reservaDialog() async {
     if(_inputFechaController.text=="" || _inputHoraController.text=="" ){
-      showDialog(
-        context: context,
-        builder: (BuildContext context){
-          return FadeIn(
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              title: Text('Error'),
-              content: Text('Debe ingresar fecha y hora de la reserva.'),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: ()=>Navigator.pop(context), 
-                  child: Text('Continuar')
-                ),
-              ],
-            ),
-          );
-        }
-      );
+      mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context){
+      //     return FadeIn(
+      //       child: AlertDialog(
+      //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      //         title: Text('Error'),
+      //         content: Text('Debe ingresar fecha y hora de la reserva.'),
+      //         actions: <Widget>[
+      //           FlatButton(
+      //             onPressed: ()=>Navigator.pop(context), 
+      //             child: Text('Continuar')
+      //           ),
+      //         ],
+      //       ),
+      //     );
+      //   }
+      // );
     }
 
     else{
-      var fechaTime = _inputFechaController.text+" "+_inputHoraController.text+":00";
+      DateTime now = DateTime.now();
+      // String formattedDate = DateFormat('yyyy-MM-dd kk:mm').format(now);
+      // print(formattedDate);
+      var fechaTime = DateTime.parse(_inputFechaController.text+" "+_inputHoraController.text);
+      String fechaTimeAt = DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
+      
+      if(fechaTime.hour>=now.hour && fechaTime.day>=now.day && fechaTime.month>=now.month && fechaTime.year>=now.year){
+        booking.bookingAt = fechaTimeAt;
+        booking.establishmentId = widget.establecimientoID;
+        booking.petId = mascotaID;//
+        booking.typeId = resarvaId;
+        booking.observation= _inputObservacioController.text;
 
-      booking.bookingAt = fechaTime;
-      booking.establishmentId = widget.establecimientoID;
-      booking.petId = mascotaID;//
-      booking.typeId = resarvaId;
-      booking.observation= _inputObservacioController.text;
+        var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
+        var deliveryText = "";
+        var direccionText="";
+        if(delivery){
+          deliveryText = deliveryArray[int.parse(deliveryId)-1];
+          direccionText = _inputDireccionController.text;
+        }
 
-      var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
-      var deliveryText = "";
-      var direccionText="";
-      if(delivery){
-        deliveryText = deliveryArray[int.parse(deliveryId)-1];
-        direccionText = _inputDireccionController.text;
-      }
+        bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
 
-      bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
-
-      if(resp){
-        showDialog(context: context,builder: 
-        (BuildContext context)=> FadeIn(
-          child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            content: Container(
-              height: 100.0,
-              child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
+        if(resp){
+          showDialog(context: context,builder: 
+          (BuildContext context)=> FadeIn(
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              content: Container(
+                height: 100.0,
+                child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
+              ),
             ),
-          ),
-        ), barrierDismissible: false );
-        Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
-      } 
+          ), barrierDismissible: false );
+          Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
+        }
+      }
+      else{
+        mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
+      }
+      // var fechaTime = _inputFechaController.text+" "+_inputHoraController.text+":00";
+      
+       
     }
   }
 }

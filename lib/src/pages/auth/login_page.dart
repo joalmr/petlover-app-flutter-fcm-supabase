@@ -23,9 +23,7 @@ class _LoginSevenPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('kk:mm:ss \n dd-MM-yyyy').format(now);
-    print(formattedDate);
+    
     return Scaffold(
       key: scaffoldKey,
       appBar: PreferredSize(
@@ -64,10 +62,6 @@ class _LoginSevenPageState extends State<LoginPage> {
               padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: buttonPri('Iniciar sesión',_onToken),
             ),
-            // FormControl().buttonPri('Ingresar', ()=>Navigator.pushReplacement(
-            //   context,MaterialPageRoute(
-            //     builder: (context) => NavigationBar(currentTabIndex: 1,)
-            // ))),
             SizedBox(height: 20.0),
             Center(
               child: FlatButton(
