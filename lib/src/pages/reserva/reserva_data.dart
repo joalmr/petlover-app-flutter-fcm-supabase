@@ -276,12 +276,15 @@ class _Data extends State<DataReserva> {
 
     else{
       DateTime now = DateTime.now();
-      // String formattedDate = DateFormat('yyyy-MM-dd kk:mm').format(now);
-      // print(formattedDate);
+      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
       var fechaTime = DateTime.parse(_inputFechaController.text+" "+_inputHoraController.text);
       String fechaTimeAt = DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
       
-      if(fechaTime.hour>=now.hour && fechaTime.day>=now.day && fechaTime.month>=now.month && fechaTime.year>=now.year){
+      // if(fechaTime.hour>=now.hour && fechaTime.day>=now.day && fechaTime.month>=now.month && fechaTime.year>=now.year)
+      if(formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour<now.hour){
+        mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
+      }
+      else{
         booking.bookingAt = fechaTimeAt;
         booking.establishmentId = widget.establecimientoID;
         booking.petId = mascotaID;//
@@ -313,12 +316,6 @@ class _Data extends State<DataReserva> {
           Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
         }
       }
-      else{
-        mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
-      }
-      // var fechaTime = _inputFechaController.text+" "+_inputHoraController.text+":00";
-      
-       
     }
   }
 }
