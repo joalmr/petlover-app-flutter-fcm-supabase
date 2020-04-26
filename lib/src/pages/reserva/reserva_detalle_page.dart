@@ -150,7 +150,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Text('Recomendación',
+                  Text('Atenciones',
                   style: TextStyle(
                       fontSize: sizeH3,
                       color: Color(0xFF6A6A6A),
@@ -169,7 +169,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                             color: colorMain //Color(0xFFFE7050)
                           ),
                           child: Center(
-                            child: Text(localVet.votes.toString(),
+                            child: Text(localVet.attentions.toString(),
                               style: TextStyle(
                                 fontSize: sizeH5, color: Colors.white
                               )

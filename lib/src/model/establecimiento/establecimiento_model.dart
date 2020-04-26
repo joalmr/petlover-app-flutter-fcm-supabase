@@ -38,6 +38,7 @@ class EstablecimientoModel {
     String description;
     String stars;
     int votes;
+    int attentions;
     String address;
     double latitude;
     double longitude;
@@ -55,6 +56,7 @@ class EstablecimientoModel {
         this.description,
         this.stars,
         this.votes,
+        this.attentions,
         this.address,
         this.latitude,
         this.longitude,
@@ -73,6 +75,7 @@ class EstablecimientoModel {
         description: json["description"]  == null ? "Descripción no detallada" : json["description"],
         stars: json["stars"] == null ? "" : json["stars"],
         votes: json["votes"] == null ? "" : json["votes"],
+        attentions: json["attentions"] == null ? 0 : json["attentions"],
         address: json["address"] == null ? "" : json["address"],
         latitude: json["latitude"] == null ? 0.0 : json["latitude"].toDouble(),
         longitude: json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),

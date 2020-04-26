@@ -3,6 +3,7 @@ import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
+import 'package:proypet/src/utils/icons_map.dart';
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
 final List imagen2 = ['images/royal1.jpg','images/elegante1.jpg'];
@@ -95,10 +96,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
-      onTap: ()=>Navigator.push(
-        context,MaterialPageRoute(
-          builder: (context) => ReservaDetallePage(vetID: notificacion.options["establishment_id"],),
-      )),
+      onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
     );
   }
 
@@ -108,9 +106,21 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
-      // onTap: ()=>Navigator.pushNamed(context, 'navLista', arguments:{ "filtros":[11] } ),
+      onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
     );
 
+  }
+
+  _fnEstablecimiento(id){
+    Navigator.push(
+      context,MaterialPageRoute(
+        builder: (context) => ReservaDetallePage(vetID: id),
+    ));
+  }
+
+  _fnRecordatorio(String slug){    
+    print(slug);
+    Navigator.pushNamed(context, 'navLista', arguments:{ "filtros": [ slugNum[slug] ] } );
   }
 
 }
