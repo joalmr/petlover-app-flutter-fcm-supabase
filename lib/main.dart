@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Proypet',
       theme: ThemeData( 
-        fontFamily: 'PT Sans',
+        fontFamily: 'Lato',
         primarySwatch: Colors.teal,
       ) ,
       debugShowCheckedModeBanner: false,      
