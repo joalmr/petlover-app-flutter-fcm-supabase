@@ -441,7 +441,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Haz una reserva en el establecimiento de tu agrado',
+              Text('Haz una reserva en la veterinaria de tu agrado',
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 10.0,),

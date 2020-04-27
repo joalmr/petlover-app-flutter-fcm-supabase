@@ -67,7 +67,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null,'Mapa Establecimientos', null),
+      appBar: appbar(null,'Mapa veterinarias', null),
       body: _onBody(),
     );
   }

@@ -43,6 +43,32 @@ class UserProvider{
     }
   }
 
+  Future<void> logOut() async {
+    final url = '$_url/logout';   
+    var resp = await http.post(url, headers: { 
+      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    });
+    print(resp.statusCode);
+  }
+
+  Future<bool> changePassword(String passAntigua, String passNueva) async {
+    final url = '$_url/settings/password';
+
+    final changePass = { 
+      "current_password": passAntigua,
+      "password": passNueva,
+      "password_confirmation": passNueva,
+    };
+    final resp = await http.post(url, headers: { 
+      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    }, body: changePass );
+    print(changePass);
+    print(resp.statusCode);
+    print(resp.body);
+    if(resp.statusCode==200) return true;
+    else return false;
+  }
+
   Future<bool> forgotPassword(String email) async{
     final url = '$_url/password/reset';
 

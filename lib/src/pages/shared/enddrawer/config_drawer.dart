@@ -1,8 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones/atenciones_page.dart';
+import 'package:proypet/src/pages/usuario/changepassword_page.dart';
 import 'package:proypet/src/pages/usuario/user_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:share/share.dart';
 
@@ -13,6 +15,7 @@ class ConfigDrawer extends StatelessWidget {
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
   final _prefs = new PreferenciasUsuario();
+  final loginProvider = UserProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,15 @@ class ConfigDrawer extends StatelessWidget {
                   ),),
                   onTap: ()=>Navigator.push(context, 
                     MaterialPageRoute(builder: (context) => UserPage())
+                  )
+                ),
+                ListTile(
+                  leading: Icon(Icons.lock),
+                  title: Text('Cambiar contraseña', style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),),
+                  onTap: ()=>Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => ChangePasswordPage())
                   )
                 ),
                 ListTile(
@@ -111,10 +123,10 @@ class ConfigDrawer extends StatelessWidget {
   }
 
   void _outToken(BuildContext context) async {
+    loginProvider.logOut();
     _prefs.token = '';
-    _prefs.position='';
-    Navigator.pushNamedAndRemoveUntil(context, 'login', ModalRoute.withName('/'));
-    // Navigator.pushReplacementNamed(context, 'login'); //.popAndPushNamed(context, 'login');        
+    _prefs.position='';    
+    Navigator.pushNamedAndRemoveUntil(context, 'login', ModalRoute.withName('/'));    
   }
 
 }
