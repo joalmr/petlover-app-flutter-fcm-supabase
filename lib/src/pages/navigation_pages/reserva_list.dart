@@ -46,7 +46,6 @@ class _ReservaListState extends State<ReservaList> {
           return Scaffold(
             key: _key,            
             endDrawer: FiltrosMapa(filtros: listaFiltros,),//listaFiltros
-            body: _onTab(snapshot.data),
             appBar: appbar(leadingH,'Buscar veterinarias',
               <Widget>[
                 IconButton(
@@ -55,6 +54,7 @@ class _ReservaListState extends State<ReservaList> {
                 ),
               ]
             ),
+            body: _onTab(snapshot.data),
             floatingActionButton: FloatingActionButton(
               onPressed: (snapshot.data.length==0) 
                 ? null

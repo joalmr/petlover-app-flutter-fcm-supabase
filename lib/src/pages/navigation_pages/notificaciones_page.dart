@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
@@ -15,14 +17,41 @@ class NotificacionesPage extends StatefulWidget {
 
 class _NotificacionesPageState extends State<NotificacionesPage> {
   NotificacionProvider notificacionProvider = NotificacionProvider();
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+  var stream;
+
+  Future<NotificacionModel> newFuture() => notificacionProvider.getNotificacion();
+
+  Future<Null> _onRefresh() async {
+    refreshKey.currentState?.show();
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      stream = newFuture();        
+    });
+    return null;
+  }
+
+  @override
+  void initState() {
+    //implement initState
+    super.initState();
+    _onRefresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(leadingH,'Notificaciones',null),
       body: Container(
-        child: SingleChildScrollView(
-          // padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
-          child: _onFuture(),
+        child: RefreshIndicator(
+          onRefresh: _onRefresh,
+          child: ListView(
+            // padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
+            children: <Widget>[
+              _onFuture(),
+            ],
+            // child: _onFuture(),
+          ),
         ),
       ),
     );
@@ -30,7 +59,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   _onFuture(){
     return FutureBuilder(
-      future: notificacionProvider.getNotificacion(),
+      future: stream,//notificacionProvider.getNotificacion(),
       builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
         if(!snapshot.hasData){
           return LinearProgressIndicator(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,20 +9,49 @@ import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
-class RecompensasPage extends StatelessWidget {
+class RecompensasPage extends StatefulWidget {
+  @override
+  _RecompensasPageState createState() => _RecompensasPageState();
+}
+
+class _RecompensasPageState extends State<RecompensasPage> {
   final bonificacionProvider = BonificacionProvider();
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+  var stream;
+
+  Future<BonificacionModel> newFuture() => bonificacionProvider.getBonificacion();
+
+  Future<Null> _onRefresh() async {
+    refreshKey.currentState?.show();
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      stream = newFuture();        
+    });
+    return null;
+  }
+
+  @override
+  void initState() {
+    //implement initState
+    super.initState();
+    _onRefresh();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(leadingH,'Recompensas',null),
-      body: _onPage(),
+      body: RefreshIndicator(
+        key: refreshKey,
+        onRefresh: _onRefresh,
+        child: _onPage()
+      ),
     );
   }
 
   Widget _onPage(){
     return FutureBuilder(
-      future: bonificacionProvider.getBonificacion(),
+      future: stream,//bonificacionProvider.getBonificacion(),
       builder: (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
         if(!snapshot.hasData){
           return LinearProgressIndicator(
@@ -29,62 +60,114 @@ class RecompensasPage extends StatelessWidget {
         }
         else {
           BonificacionModel bonificacion = snapshot.data;
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                FadeIn(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          // flex: 2,
-                          child: Container(
-                            padding: EdgeInsets.all(8.0),
-                            height: 120.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: colorBlue,
+          return ListView(
+            // padding: ,
+            children: <Widget>[
+              FadeIn(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        // flex: 2,
+                        child: Container(
+                          padding: EdgeInsets.all(8.0),
+                          height: 120.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: colorBlue,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Icon(FontAwesomeIcons.coins, color: Colors.white, size: 50.0,),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text('${bonificacion.points}',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0,),),
+                                      Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeH5, fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Icon(FontAwesomeIcons.coins, color: Colors.white, size: 50.0,),
-                                  Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text('${bonificacion.points}',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0,),),
-                                        Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeH5, fontWeight: FontWeight.bold),),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                        ),
-                      ],
-                    ),
+                          ),
+                        )
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 20.0,),
-                FadeIn(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text('Últimos puntos ganados', style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold)),
-                  ),
+              ),
+              SizedBox(height: 20.0,),
+              FadeIn(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text('Últimos puntos ganados', style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold)),
                 ),
-                FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
-              ],
-            ),
+              ),
+              FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
+            ],
+            // child: Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: <Widget>[
+            //     FadeIn(
+            //       child: Padding(
+            //         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
+            //         child: Row(
+            //           children: <Widget>[
+            //             Expanded(
+            //               // flex: 2,
+            //               child: Container(
+            //                 padding: EdgeInsets.all(8.0),
+            //                 height: 120.0,
+            //                 decoration: BoxDecoration(
+            //                   borderRadius: BorderRadius.circular(10.0),
+            //                   color: colorBlue,
+            //                 ),
+            //                 child: Padding(
+            //                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            //                   child: Row(
+            //                     crossAxisAlignment: CrossAxisAlignment.center,
+            //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                     children: <Widget>[
+            //                       Icon(FontAwesomeIcons.coins, color: Colors.white, size: 50.0,),
+            //                       Align(
+            //                         alignment: Alignment.centerRight,
+            //                         child: Column(
+            //                           crossAxisAlignment: CrossAxisAlignment.end,
+            //                           mainAxisAlignment: MainAxisAlignment.center,
+            //                           children: <Widget>[
+            //                             Text('${bonificacion.points}',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0,),),
+            //                             Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeH5, fontWeight: FontWeight.bold),),
+            //                           ],
+            //                         ),
+            //                       )
+            //                     ],
+            //                   ),
+            //                 ),
+            //               )
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //     SizedBox(height: 20.0,),
+            //     FadeIn(
+            //       child: Padding(
+            //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            //         child: Text('Últimos puntos ganados', style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold)),
+            //       ),
+            //     ),
+            //     FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
+            //   ],
+            // ),
           );
 
         }
