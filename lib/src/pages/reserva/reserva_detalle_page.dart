@@ -293,33 +293,41 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _precio("Consulta", 
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: 
+              // ),
+              _precio("Consulta", 
                 precios["consultation"]["from"]==null?"":precios["consultation"]["from"], 
                 precios["consultation"]["to"]==null?"":precios["consultation"]["to"], 
-                colorBlue.withOpacity(0.75)),
+                colorBlue.withOpacity(0.75)
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _precio("Vacunas", 
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: 
+              // ),
+              _precio("Vacunas", 
                 precios["vaccination"]["from"]==null?"":precios["vaccination"]["from"], 
                 precios["vaccination"]["to"]==null?"":precios["vaccination"]["to"], 
-                colorBlue.withOpacity(0.75)),
+                colorBlue.withOpacity(0.75)
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _precio("Baños", 
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: 
+              // ),
+              _precio("Baños", 
                 precios["grooming"]["from"]==null?"":precios["grooming"]["from"], 
                 precios["grooming"]["to"]==null?"":precios["grooming"]["to"], 
-                colorBlue.withOpacity(0.75)),
+                colorBlue.withOpacity(0.75)
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _precio("Desparasitaciones", 
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: 
+              // ),
+              _precio("Desparasitaciones", 
                 precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
                 precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 
-                colorBlue.withOpacity(0.75)),
+                colorBlue.withOpacity(0.75)
               ),
             ],
           ),
@@ -332,41 +340,43 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       return SizedBox(width: 0, height: 0,);
     }
     else{
-      return Container(
-        // height: 85,
-        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-        width: 170,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          color: color,
-          boxShadow:[ 
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 3.0,
-              spreadRadius: 2.0
-          )],
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          // height: 85,
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          width: 170,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: color,
+            boxShadow:[ 
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 3.0,
+                spreadRadius: 2.0
+            )],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(tipo, style: TextStyle(color: Colors.white),),
+              SizedBox(height: 5,),
+              Text("desde", style: TextStyle(color: Colors.white),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
+                  (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
+                  (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
+                  (desde=="" && hasta!="") ? Text("0 -", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
+                  (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.white),) : SizedBox(width: 0,), 
+                ],
+              ),
+            ],
+          )
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(tipo, style: TextStyle(color: Colors.white),),
-            SizedBox(height: 5,),
-            Text("desde", style: TextStyle(color: Colors.white),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
-                (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),)
-                : SizedBox(width: 0,),
-                (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.white),)
-                : SizedBox(width: 0,),
-              ],
-            ),
-          ],
-        )
       ); 
     }  
 }

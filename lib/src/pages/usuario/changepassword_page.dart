@@ -52,12 +52,15 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       formKey.currentState.save();
       // btnBool = false;      
     });
-    bool resp = await userProvider.changePassword(passAntigua, passNueva);
-    if(resp){
+    int resp = await userProvider.changePassword(passAntigua, passNueva);
+    if(resp==200){
       mostrarSnackbar('Se cambió la contraseña.', colorMain, scaffoldKey);
     }
-    else{
-      mostrarSnackbar('No se cambió la contraseña.', colorRed, scaffoldKey);
+    else if(resp==204){
+      mostrarSnackbar('Error, la contraseña debe ser no menor a 5 dígitos.', colorRed, scaffoldKey);
+    }
+    else if(resp==401){
+      mostrarSnackbar('Error, la contraseña actual es incorrecta.', colorRed, scaffoldKey);
     }
   }
 }

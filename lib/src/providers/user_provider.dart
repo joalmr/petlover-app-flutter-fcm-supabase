@@ -51,7 +51,7 @@ class UserProvider{
     print(resp.statusCode);
   }
 
-  Future<bool> changePassword(String passAntigua, String passNueva) async {
+  Future<int> changePassword(String passAntigua, String passNueva) async {
     final url = '$_url/settings/password';
 
     final changePass = { 
@@ -62,11 +62,8 @@ class UserProvider{
     final resp = await http.post(url, headers: { 
       HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
     }, body: changePass );
-    print(changePass);
     print(resp.statusCode);
-    print(resp.body);
-    if(resp.statusCode==200) return true;
-    else return false;
+    return resp.statusCode;
   }
 
   Future<bool> forgotPassword(String email) async{
