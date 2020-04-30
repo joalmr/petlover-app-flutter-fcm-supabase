@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
-import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
@@ -35,32 +34,27 @@ class _HomePageState extends State<HomePage> {
     _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
   }
 
-  Future<HomeModel> newFuture() => loginProvider.getUserSummary();
+  Future<dynamic> newFuture() => loginProvider.getUserSummary();
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(milliseconds: 2));
+
     setState(() {
-      stream = newFuture().asStream();        
+      stream = newFuture();
     });
     return null;
-
-    // final duration = new Duration(seconds: 2);
-    // new Timer(duration, (){
-    //   setState(() {
-    //     stream = newFuture().asStream();        
-    //   });
-    // });
-    // return Future.delayed(duration);
   }
 
   @override
   void initState() {
     //implement initState
     fnGetPosition();
-    super.initState();
     _onRefresh();
+    super.initState();    
   }
+
+
 
   @override
   Widget build(BuildContext context) {    
@@ -76,16 +70,16 @@ class _HomePageState extends State<HomePage> {
     return RefreshIndicator(
       key: refreshKey,
       onRefresh: _onRefresh,
-      child: StreamBuilder(
-        stream: stream,
-        builder: (BuildContext context, AsyncSnapshot snapshot){
+      child: FutureBuilder(
+        future: stream,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
           final mydata=snapshot.data;
           if(!snapshot.hasData){
             return LinearProgressIndicator(
               backgroundColor: Colors.grey[200],
             );
           }
-          else{
+          else{            
             return ListView(
               //physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 20.0),

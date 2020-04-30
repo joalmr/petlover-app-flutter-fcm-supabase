@@ -1,12 +1,9 @@
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/booking/booking_model.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 class BookingProvider{
   final _url = urlGlobal;
-  final _prefs = new PreferenciasUsuario();
 
   Future<bool> booking(BookingModel booking, dynamic delivery, String direccion) async {
     final url = '$_url/bookings';
@@ -33,10 +30,7 @@ class BookingProvider{
     }
     
 
-    final resp = await http.post(url,
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      },
+    final resp = await http.post(url,headers: headersToken(),
       body: bodyData
     );
     
@@ -53,10 +47,7 @@ class BookingProvider{
   Future<bool> deleteBooking(String idBooking) async {
     final url = '$_url/bookings/$idBooking/delete';
 
-    final resp = await http.post(url,
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-    });
+    final resp = await http.post(url,headers: headersToken(),);
     
     if(resp.statusCode==200 || resp.statusCode==201){
       return true;

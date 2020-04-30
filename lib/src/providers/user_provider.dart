@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/home_model.dart';
@@ -18,11 +17,14 @@ class UserProvider{
     try{
       final loginData = { "email": login.email, "password": login.password };
       final resp = await http.post(url, body: loginData );
+
+      print(resp.body);
+
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
-
+        print(_prefs.token);
         return {
           'ok':true,
           'verify':decodedResp['verify'],
@@ -45,9 +47,7 @@ class UserProvider{
 
   Future<void> logOut() async {
     final url = '$_url/logout';   
-    var resp = await http.post(url, headers: { 
-      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-    });
+    var resp = await http.post(url, headers: headersToken(),);
     print(resp.statusCode);
   }
 
@@ -59,9 +59,8 @@ class UserProvider{
       "password": passNueva,
       "password_confirmation": passNueva,
     };
-    final resp = await http.post(url, headers: { 
-      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-    }, body: changePass );
+    final resp = await http.post(url, headers: headersToken(),
+      body: changePass );
     print(resp.statusCode);
     return resp.statusCode;
   }
@@ -75,18 +74,21 @@ class UserProvider{
     else return false;
   }
   //summary
-  Future<HomeModel> getUserSummary() async {
+  Future<dynamic> getUserSummary() async {
     final url = '$_url/summary';
-
-    final resp = await http.get(url,
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
+    // print(_prefs.token);
+    final resp = await http.get(url, headers: headersToken(), );
+    
+    if(resp.statusCode==200){
+      try{
+        HomeModel homeModel = homeModelFromJson(resp.body);
+        return homeModel;
       }
-    );
-
-    final datosUsuario = homeModelFromJson(resp.body);
-
-    return datosUsuario;
+      catch(ex){
+        return null;
+      }
+    }
+    else return null;
   }
 
   Future<bool> registerUser(UserDato user) async {
@@ -105,9 +107,7 @@ class UserProvider{
 
   Future<UserModel> getUser() async {
     final url = '$_url/profile';
-    final resp = await http.get(url, headers: { 
-      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-    });
+    final resp = await http.get(url, headers: headersToken(),);
     
     final datosUsuario = userModelFromJson(resp.body);
 
@@ -121,9 +121,7 @@ class UserProvider{
       "lastname": user.lastname, 
       "phone": user.phone
     };
-    final resp = await http.post(url, body: userData, headers: { 
-      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-    });
+    final resp = await http.post(url, body: userData, headers: headersToken(),);
     
     if(resp.statusCode==200 || resp.statusCode==201) return true;
     else return false;
@@ -131,9 +129,7 @@ class UserProvider{
 
   Future<bool> validaTelefono() async {
     final url = '$_url/profile';
-    final resp = await http.get(url, headers: { 
-      HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-    });
+    final resp = await http.get(url, headers: headersToken(),);
     
     final datosUsuario = userModelFromJson(resp.body);
     

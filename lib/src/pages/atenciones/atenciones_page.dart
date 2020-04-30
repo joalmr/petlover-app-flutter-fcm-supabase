@@ -42,42 +42,55 @@ class _AtencionesPageState extends State<AtencionesPage> {
           );
         }
         else{
-          return SingleChildScrollView(
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                AtencionModel _atencion= snapshot.data[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: colorMain,
-                          backgroundImage: NetworkImage(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
-                          radius: 25.0,
+          List<AtencionModel> atencionModel = snapshot.data;
+          print(atencionModel);
+          if(atencionModel.length<1){
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("No tiene veterinarias a calificar"),
+              ),
+            );
+          }
+          else{
+            return SingleChildScrollView(
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  AtencionModel _atencion= snapshot.data[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: colorMain,
+                            backgroundImage: NetworkImage(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
+                            radius: 25.0,
+                          ),
+                          title: Text(_atencion.establishmentName),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(_atencion.pet),
+                              Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: 12.0,fontWeight: FontWeight.w600),),
+                            ],
+                          ),
+                          trailing: IconButton(icon: Icon(Icons.star_border), onPressed: ()=>_calificar(context, _atencion)),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                         ),
-                        title: Text(_atencion.establishmentName),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(_atencion.pet),
-                            Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: 12.0,fontWeight: FontWeight.w600),),
-                          ],
-                        ),
-                        trailing: IconButton(icon: Icon(Icons.star_border), onPressed: ()=>_calificar(context, _atencion)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                      ),
-                      Divider(),
-                    ],
-                  ),
-                );
-              },
-            ),
-          );
+                        Divider(),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            );
+          }
+          
         }
         
       },

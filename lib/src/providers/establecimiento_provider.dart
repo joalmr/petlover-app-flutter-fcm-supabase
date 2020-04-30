@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
@@ -22,11 +21,7 @@ class EstablecimientoProvider{
     }
     final url = '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
-    final resp = await http.get(url,
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"
-      }
-    );
+    final resp = await http.get(url,headers: headersToken(),);
 
     final jsonResp = json.decode(resp.body);
     EstablecimientoList vets =  EstablecimientoList.fromJson(jsonResp);
@@ -38,10 +33,7 @@ class EstablecimientoProvider{
   Future<EstablecimientoModel> getVet(String idVet) async {
     final url = '$_url/establishments/$idVet';
 
-    final resp = await http.get(url,
-      headers: { 
-        HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
-      }
+    final resp = await http.get(url,headers: headersToken(),
     );
 
     final jsonResp = json.decode(resp.body);

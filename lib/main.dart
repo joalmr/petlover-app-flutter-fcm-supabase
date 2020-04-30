@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/auth/login_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/routes/routes.dart';
  
+
+final loginProvider = UserProvider();
+final prefs = new PreferenciasUsuario();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
-
   runApp(MyApp());
-} 
+}
+
+var rutaInicio='login';
+
+_validaStream() async {
+  var resp = await loginProvider.getUserSummary();
+  if(resp!=null) {
+    rutaInicio='navInicio';
+  }
+  else{
+    print("valor null");
+    prefs.token = '';
+    prefs.position='';
+  }
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final prefs = new PreferenciasUsuario();
-    
-    var rutaInicio='login';
-    if(prefs.token!=''){
-      rutaInicio='navInicio';
-    }
-    
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //   statusBarColor: colorMain
-    // ));
+    _validaStream();
 
     return MaterialApp(
       title: 'Proypet',

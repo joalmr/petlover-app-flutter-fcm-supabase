@@ -24,7 +24,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(milliseconds: 2));
     setState(() {
       stream = newFuture();        
     });
