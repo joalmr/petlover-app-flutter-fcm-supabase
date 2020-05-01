@@ -73,22 +73,34 @@ class UserProvider{
     if(resp.statusCode==200) return true;
     else return false;
   }
+
+  // bool validateMain() {
+  //   var valor;
+  //   getUserSummary().then((dato)=>
+  //     valor = dato
+  //   );
+    
+  //   // if(valor==null){
+  //   //   return false;
+  //   // }
+  //   // else{
+  //   //   return true;
+  //   // }
+  // }
+
   //summary
   Future<dynamic> getUserSummary() async {
-    final url = '$_url/summary';
-    // print(_prefs.token);
-    final resp = await http.get(url, headers: headersToken(), );
-    
-    if(resp.statusCode==200){
-      try{
-        HomeModel homeModel = homeModelFromJson(resp.body);
-        return homeModel;
-      }
-      catch(ex){
-        return null;
-      }
+    try{
+      final url = '$_url/summary';
+      print(_prefs.token);
+      final resp = await http.get(url, headers: headersToken(), );
+
+      HomeModel homeModel = homeModelFromJson(resp.body);
+      return homeModel;
     }
-    else return null;
+    catch(ex){
+      return null;
+    }    
   }
 
   Future<bool> registerUser(UserDato user) async {
