@@ -5,8 +5,8 @@ import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
-  Widget buildVets(BuildContext context, int index, List<EstablecimientoModel> vetLocales){
-    var vet = vetLocales[index % vetLocales.length];
+  Widget buildVets(BuildContext context, EstablecimientoModel vetLocales){
+    var vet = vetLocales;
 
       return FadeIn(
         child: Container(

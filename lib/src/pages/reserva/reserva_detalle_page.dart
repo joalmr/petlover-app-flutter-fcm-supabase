@@ -106,7 +106,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
-    print(localVet.schedule.length);
+    // print(localVet.schedule.length);
     return Column(
       children: <Widget>[
         Container(
@@ -119,6 +119,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Container(
             width: MediaQuery.of(context).size.width - 0.0,
+            // height: MediaQuery.of(context).size.height * 0.1 ,
             child: ListTile(
               title: Text(localVet.name,//nombreVet(0),
                 maxLines: 2,
@@ -129,8 +130,8 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
               ),
               subtitle: Text('${localVet.address}'),//${localVet.distance}km
               trailing: Container(
-                height: 65.0,
-                width: 65.0,
+                height: 55.0,
+                width: 55.0,
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(100.0),

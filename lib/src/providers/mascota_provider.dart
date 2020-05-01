@@ -9,6 +9,7 @@ import 'package:proypet/src/model/mascota/pet_model.dart';
 
 class MascotaProvider{
   final _url = urlGlobal;
+  // final _prefs = new PreferenciasUsuario();
 
   Future<List<MascotaModel>> getPets() async {
     final url = '$_url/pets';
@@ -56,7 +57,8 @@ class MascotaProvider{
       'genre': mascota.genre.toString(), //int
     };
 
-    final resp = await http.post(url, headers: headersToken(),     
+    final resp = await http.post(url, 
+      headers: headersToken(),     
       body: data,
     );
 
@@ -141,6 +143,9 @@ class MascotaProvider{
   }
 
   Future<String> upImage(File imagen,String url) async {
+
+    print("subir imagen");
+
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
     final mimetype = mime(imagen.path).split('/');
@@ -152,6 +157,8 @@ class MascotaProvider{
     var img = await http.post(url, headers: headersToken(), 
       body: { 'base64':sendPic }
     );
+
+    print(img.statusCode);
 
     var decodeimg = json.decode(img.body);
     print(decodeimg["picture"]);

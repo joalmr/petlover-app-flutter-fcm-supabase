@@ -16,10 +16,31 @@ class ReservaList extends StatefulWidget {
 class _ReservaListState extends State<ReservaList> {
 
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
   List<int> listaFiltros=[];
+  var stream;
   // final _prefs = new PreferenciasUsuario();
   // String val="";
+
+  Future<List<EstablecimientoModel>> newFuture() => vetProvider.getVets(listaFiltros);
+
+  Future<Null> _onRefresh() async {
+    refreshKey.currentState?.show();
+    await Future.delayed(Duration(milliseconds: 2));
+
+    setState(() {
+      stream = newFuture();
+    });
+    return null;
+  }
+
+  @override
+  void initState() {
+    //implement initState
+    _onRefresh();
+    super.initState();    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +52,7 @@ class _ReservaListState extends State<ReservaList> {
     
 
     return FutureBuilder(
-      future: vetProvider.getVets(listaFiltros),
+      future: stream,
       builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
         if(!snapshot.hasData)
           return Scaffold(
@@ -69,36 +90,42 @@ class _ReservaListState extends State<ReservaList> {
     );
   }
 
+
+
   _onTab(List<EstablecimientoModel> vetLocales) {
     return Stack(
       children: <Widget>[
-        CustomScrollView(
-          slivers: <Widget>[
-            _listarChip(listaFiltros),
-            (vetLocales.length<1)?
-            SliverToBoxAdapter(
-              child: SizedBox(height: 50.0,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("No se encontró veterinarias"),
+        RefreshIndicator(
+          key: refreshKey,
+          onRefresh: _onRefresh,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              _listarChip(listaFiltros),
+              (vetLocales.length<1)?
+              SliverToBoxAdapter(
+                child: SizedBox(height: 50.0,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("No se encontró veterinarias"),
+                    ),
                   ),
                 ),
+              )
+              :
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index){                  
+                    return buildVets(context, vetLocales[index]);               
+                  },
+                  childCount: vetLocales.length,
+                ),
               ),
-            )
-            :
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index){                  
-                  return buildVets(context,index, vetLocales);               
-                },
-                childCount: vetLocales.length,
+              SliverToBoxAdapter(
+                child: SizedBox(height: 50.0),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(height: 50.0),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

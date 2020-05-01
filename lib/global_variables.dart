@@ -12,7 +12,7 @@ final _prefs = new PreferenciasUsuario();
 
 headersToken() { 
   return {
-    HttpHeaders.contentTypeHeader: "application/json",
+    // HttpHeaders.contentTypeHeader: "application/json",
     HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 
   };
   
