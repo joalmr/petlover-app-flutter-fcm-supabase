@@ -80,20 +80,11 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     ),
                     SwitchListTile(                      
                       value: (filtros.contains(1)) ? true : false,//petReq.genre,
-                      title: Text('Baños'),
+                      title: Text('Baños / Grooming'),
                       activeColor: colorMain,
                       onChanged: (value)=> setState((){
                         if(!value) filtros.remove(1);
                         else filtros.add(1);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(2)) ? true : false,//petReq.genre,
-                      title: Text('Consulta'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(2);
-                        else filtros.add(2);
                       }),
                     ),
                     SwitchListTile(
@@ -106,66 +97,12 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value: (filtros.contains(4)) ? true : false,//petReq.genre,
-                      title: Text('Vacuna'),
+                      value: (filtros.contains(2)) ? true : false,//petReq.genre,
+                      title: Text('Consulta'),
                       activeColor: colorMain,
                       onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(4);
-                        else filtros.add(4);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(5)) ? true : false,//petReq.genre,
-                      title: Text('Servicio de trasnporte'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(5);
-                        else filtros.add(5);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(6)) ? true : false,//petReq.genre,
-                      title: Text('Electrocardiograma'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(6);
-                        else filtros.add(6);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(7)) ? true : false,//petReq.genre,
-                      title: Text('Laboratorio'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(7);
-                        else filtros.add(7);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(8)) ? true : false,//petReq.genre,
-                      title: Text('Emergencia 24 horas'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(8);
-                        else filtros.add(8);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(9)) ? true : false,//petReq.genre,
-                      title: Text('Hospedaje'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(9);
-                        else filtros.add(9);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(10)) ? true : false,//petReq.genre,
-                      title: Text('Petshop'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(10);
-                        else filtros.add(10);
+                        if(!value) filtros.remove(2);
+                        else filtros.add(2);
                       }),
                     ),
                     SwitchListTile(
@@ -187,6 +124,69 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
+                      value: (filtros.contains(6)) ? true : false,//petReq.genre,
+                      title: Text('Electrocardiograma'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(6);
+                        else filtros.add(6);
+                      }),
+                    ),
+                    SwitchListTile(
+                      value: (filtros.contains(8)) ? true : false,//petReq.genre,
+                      title: Text('Emergencia 24 horas'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(8);
+                        else filtros.add(8);
+                      }),
+                    ),
+                    SwitchListTile(
+                      value: (filtros.contains(15)) ? true : false,//petReq.genre,
+                      title: Text('Farmacia'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(15);
+                        else filtros.add(15);
+                      }),
+                    ),
+                    SwitchListTile(
+                      value: (filtros.contains(9)) ? true : false,//petReq.genre,
+                      title: Text('Hospedaje'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(9);
+                        else filtros.add(9);
+                      }),
+                    ),
+                    SwitchListTile(
+                      value: (filtros.contains(16)) ? true : false,//petReq.genre,
+                      title: Text('Hospitalización'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(16);
+                        else filtros.add(16);
+                      }),
+                    ),
+                    SwitchListTile(
+                      value: (filtros.contains(7)) ? true : false,//petReq.genre,
+                      title: Text('Laboratorio'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(7);
+                        else filtros.add(7);
+                      }),
+                    ),
+                    SwitchListTile(
+                      value: (filtros.contains(10)) ? true : false,//petReq.genre,
+                      title: Text('Petshop'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(10);
+                        else filtros.add(10);
+                      }),
+                    ),
+                    SwitchListTile(
                       value: (filtros.contains(13)) ? true : false,//petReq.genre,
                       title: Text('Rayos x'),
                       activeColor: colorMain,
@@ -205,26 +205,24 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value: (filtros.contains(15)) ? true : false,//petReq.genre,
-                      title: Text('Farmacia'),
+                      value: (filtros.contains(5)) ? true : false,//petReq.genre,
+                      title: Text('Servicio de trasnporte'),
                       activeColor: colorMain,
                       onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(15);
-                        else filtros.add(15);
+                        if(!value) filtros.remove(5);
+                        else filtros.add(5);
                       }),
                     ),
                     SwitchListTile(
-                      value: (filtros.contains(16)) ? true : false,//petReq.genre,
-                      title: Text('Hospitalización'),
+                      value: (filtros.contains(4)) ? true : false,//petReq.genre,
+                      title: Text('Vacuna'),
                       activeColor: colorMain,
                       onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(16);
-                        else filtros.add(16);
+                        if(!value) filtros.remove(4);
+                        else filtros.add(4);
                       }),
                     ),
-                    
                     //FormControl().buttonSec('Buscar',(){})
-                    
                     // buttonPri('Filtrar',()=>{})
                   ],
                 ),

@@ -325,7 +325,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
               //   padding: const EdgeInsets.all(8.0),
               //   child: 
               // ),
-              _precio("Desparasitaciones", 
+              _precio("Desparasitación", 
                 precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
                 precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 
                 colorBlue.withOpacity(0.75)
@@ -566,7 +566,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       }      
     }
     else{
-      mostrarSnackbar('No puede generar una reserva', colorRed, scaffoldKey);  
+      mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed, scaffoldKey);  
     }    
   }
 
