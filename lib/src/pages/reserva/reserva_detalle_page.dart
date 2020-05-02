@@ -294,37 +294,25 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: <Widget>[
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: 
-              // ),
+              
               _precio("Consulta", 
                 precios["consultation"]["from"]==null?"":precios["consultation"]["from"], 
                 precios["consultation"]["to"]==null?"":precios["consultation"]["to"], 
                 colorBlue.withOpacity(0.75)
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: 
-              // ),
+              
               _precio("Vacunas", 
                 precios["vaccination"]["from"]==null?"":precios["vaccination"]["from"], 
                 precios["vaccination"]["to"]==null?"":precios["vaccination"]["to"], 
                 colorBlue.withOpacity(0.75)
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: 
-              // ),
+              
               _precio("Baños", 
                 precios["grooming"]["from"]==null?"":precios["grooming"]["from"], 
                 precios["grooming"]["to"]==null?"":precios["grooming"]["to"], 
                 colorBlue.withOpacity(0.75)
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: 
-              // ),
+              
               _precio("Desparasitación", 
                 precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
                 precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 

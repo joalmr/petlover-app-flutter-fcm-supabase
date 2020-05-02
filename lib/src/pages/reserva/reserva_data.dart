@@ -262,8 +262,7 @@ class _Data extends State<DataReserva> {
       var fechaTime = DateTime.parse(_inputFechaController.text+" "+_inputHoraController.text);
       String fechaTimeAt = DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
       
-      // if(fechaTime.hour>=now.hour && fechaTime.day>=now.day && fechaTime.month>=now.month && fechaTime.year>=now.year)
-      if(formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour<now.hour){
+      if(formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour<(now.hour-1)){
         mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
       }
       else{
