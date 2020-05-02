@@ -163,7 +163,7 @@ class _Data extends State<DataReserva> {
 
   _selectDate(BuildContext context) async {
     DateTime picked = await showDatePicker(
-      context: context, 
+      context: context,
       initialDate: new DateTime.now(), 
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
@@ -254,24 +254,6 @@ class _Data extends State<DataReserva> {
   reservaDialog() async {
     if(_inputFechaController.text=="" || _inputHoraController.text=="" ){
       mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
-      // showDialog(
-      //   context: context,
-      //   builder: (BuildContext context){
-      //     return FadeIn(
-      //       child: AlertDialog(
-      //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      //         title: Text('Error'),
-      //         content: Text('Debe ingresar fecha y hora de la reserva.'),
-      //         actions: <Widget>[
-      //           FlatButton(
-      //             onPressed: ()=>Navigator.pop(context), 
-      //             child: Text('Continuar')
-      //           ),
-      //         ],
-      //       ),
-      //     );
-      //   }
-      // );
     }
 
     else{
