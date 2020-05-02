@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/pages/auth/login_page.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Proypet',
       theme: ThemeData( 
-        fontFamily: 'PT Sans',
+        fontFamily: 'Lato',
         primarySwatch: Colors.teal,
       ) ,
       debugShowCheckedModeBanner: false,      
@@ -35,9 +36,9 @@ class MyApp extends StatelessWidget {
       initialRoute: rutaInicio,
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
-          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //cuando falle
+          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //cuando falle NavigationBar(currentTabIndex: 0)
         );
-      },      
+      },
     );
   }
 }

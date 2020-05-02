@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
+import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
   }
 
-  Future<dynamic> newFuture() => loginProvider.getUserSummary();
+  Future<HomeModel> newFuture() => loginProvider.getUserSummary();
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -55,7 +56,6 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
       onRefresh: _onRefresh,
       child: FutureBuilder(
         future: stream,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+        builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot){
           final mydata=snapshot.data;
           if(!snapshot.hasData){
             return LinearProgressIndicator(

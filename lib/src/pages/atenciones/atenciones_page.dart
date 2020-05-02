@@ -43,7 +43,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
         }
         else{
           List<AtencionModel> atencionModel = snapshot.data;
-          print(atencionModel);
+          // print(atencionModel);
           if(atencionModel.length<1){
             return Center(
               child: Padding(

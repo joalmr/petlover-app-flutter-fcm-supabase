@@ -148,7 +148,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   }
 
   _fnRecordatorio(String slug){    
-    print(slug);
+    // print(slug);
     Navigator.pushNamed(context, 'navLista', arguments:{ "filtros": [ slugNum[slug] ] } );
   }
 

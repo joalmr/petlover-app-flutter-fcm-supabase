@@ -144,7 +144,7 @@ class MascotaProvider{
 
   Future<String> upImage(File imagen,String url) async {
 
-    print("subir imagen");
+    // print("subir imagen");
 
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
@@ -161,7 +161,7 @@ class MascotaProvider{
     print(img.statusCode);
 
     var decodeimg = json.decode(img.body);
-    print(decodeimg["picture"]);
+    // print(decodeimg["picture"]);
     return decodeimg["picture"];
   }
 
