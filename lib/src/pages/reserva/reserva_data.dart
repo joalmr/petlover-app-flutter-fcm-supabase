@@ -170,7 +170,7 @@ class _Data extends State<DataReserva> {
     );
 
     if(picked!=null){
-      final f = new DateFormat('yyyy-MM-dd');
+      final f = new DateFormat('yyyy-MM-dd'); // DateFormat('yyyy-MM-dd');
       setState(() {
         _fecha= f.format(picked);
         _inputFechaController.text = _fecha;

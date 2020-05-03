@@ -41,6 +41,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   Modal modal = new Modal();
   bool delivery = false;
   String telefono="";
+  bool reservarClic = true;
 
   @override
   Widget build(BuildContext context) {    
@@ -57,7 +58,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             bottom: 0.0,
             height: 100.0,
             child: FlatButton(
-              onPressed: _reservar,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+              onPressed: reservarClic ? _reservar : null,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.only(top: 35.0),
@@ -512,6 +513,11 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
   _reservar() async {
+    
+    setState(() {
+      reservarClic=false;      
+    });
+
     misMascotas = await mascotaProvider.getPets();
     misMascotas = misMascotas.where((x)=>x.status!=0).toList();
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
@@ -547,23 +553,34 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
           ),
         );
       }
-      else{    
+      else{
+        
+        setState(() {
+          reservarClic=true;          
+        });
         Navigator.push(
           context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
         );
       }      
     }
     else{
+      setState(() {
+        reservarClic=true;          
+      });
       mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed, scaffoldKey);  
     }    
   }
 
   void _onPhone() async {
-    formKey.currentState.save();
-    setState(() { });
+    
+    setState(() {
+      reservarClic=true;   
+      formKey.currentState.save();
+    });  
     // print("guarda phone");
     bool resp = await userProvider.editUser(user);//
     // print(resp);
+
     Navigator.pop(context);
   }
 

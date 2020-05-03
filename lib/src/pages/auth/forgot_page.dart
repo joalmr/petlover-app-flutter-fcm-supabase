@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
@@ -18,6 +20,7 @@ class _ForgotPageState extends State<ForgotPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   String val= "";
+  bool enviarClic=true;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,7 @@ class _ForgotPageState extends State<ForgotPage> {
                 SizedBox(height: 30.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  child: buttonPri('Enviar correo electrónico', _forgot),
+                  child: buttonPri('Enviar correo electrónico', enviarClic ? _forgot : null),
                 ),
                 SizedBox(height: 20.0),
               ],
@@ -84,21 +87,51 @@ class _ForgotPageState extends State<ForgotPage> {
   }
 
   _forgot() async {
-    formKey.currentState.save();
-    setState(() { });
+    
+    setState(() { 
+      enviarClic = false;
+      formKey.currentState.save();
+    });
 
     if(val.trim()==""){
-      mostrarSnackbar("Ingrese correo electrónico", colorRed, scaffoldKey);
+      setState(() {
+        enviarClic = true;
+      });
+      _fnResponse("Ingrese correo electrónico", colorRed, null);
     }
+
     else{
-      bool resp = await loginProvider.forgotPassword(val);
-      if(resp){
-        mostrarSnackbar("Se le envío un correo electrónico a la dirección ingresada", colorMain,scaffoldKey);
+      int resp = await loginProvider.forgotPassword(val);
+
+      if(resp==200){
+        _fnResponse(
+          "Se le envío un correo electrónico a la dirección ingresada", 
+          colorMain, 
+          Timer(Duration(milliseconds: 3500), (){
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          })
+        );
       }
-      if(!resp){
-        mostrarSnackbar("Error ...", colorRed, scaffoldKey);
+      else if(resp==205){
+        _fnResponse(
+          "Este correo no esta registrado en Proypet", 
+          colorRed,
+          null
+        );       
       }
-    }    
+      else{
+        _fnResponse(
+          "Error, ejecución denegada", 
+          colorRed,
+          null
+        );
+      }
+    }
+
   }
 
+  _fnResponse(String texto, Color color, fnExecute){
+    mostrarSnackbar(texto, color, scaffoldKey);
+    fnExecute;
+  }
 }

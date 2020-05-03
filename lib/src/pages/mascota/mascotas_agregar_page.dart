@@ -325,8 +325,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
     File croppedFile = await ImageCropper.cropImage(
       sourcePath: imagen.path,
-      maxHeight: 350,
-      maxWidth: 350,
+      maxHeight: 400,
+      maxWidth: 400,
       cropStyle: CropStyle.circle,
       compressFormat: ImageCompressFormat.jpg,
       compressQuality: 80,

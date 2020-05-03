@@ -19,8 +19,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
-  final mascotaProvider = MascotaProvider(); 
-  
+  final mascotaProvider = MascotaProvider();
 
   @override
   Widget build(BuildContext context) {

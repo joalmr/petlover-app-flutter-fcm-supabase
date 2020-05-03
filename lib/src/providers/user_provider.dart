@@ -65,13 +65,12 @@ class UserProvider{
     return resp.statusCode;
   }
 
-  Future<bool> forgotPassword(String email) async{
+  Future<int> forgotPassword(String email) async{
     final url = '$_url/password/reset';
 
     final emailData = { "email": email };
     final resp = await http.post(url, body: emailData );
-    if(resp.statusCode==200) return true;
-    else return false;
+    return resp.statusCode;
   }
 
   // bool validateMain() {
