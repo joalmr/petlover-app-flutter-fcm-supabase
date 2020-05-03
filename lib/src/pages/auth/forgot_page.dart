@@ -117,7 +117,10 @@ class _ForgotPageState extends State<ForgotPage> {
           "Este correo no esta registrado en Proypet", 
           colorRed,
           null
-        );       
+        );
+        setState(() {
+          enviarClic = true;
+        });   
       }
       else{
         _fnResponse(
@@ -125,6 +128,9 @@ class _ForgotPageState extends State<ForgotPage> {
           colorRed,
           null
         );
+        setState(() {
+          enviarClic = true;
+        });  
       }
     }
 
