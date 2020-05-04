@@ -6,6 +6,7 @@ import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
 import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
 class UserPage extends StatefulWidget {
@@ -74,33 +75,57 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
-  void _onEdit() async {
+  void _onEdit() {
     setState(() {
       formKey.currentState.save();
       btnBool = false;      
     });
     
     //&& user.phone.trim()!=""
-    if(user.name.trim()!=""){    
-      bool resp = await userProvider.editUser(user);
-      if(resp){
-        mostrarSnackbar('Se guardó los datos.', colorMain, scaffoldKey);
-        Timer(Duration(milliseconds: 2000), (){
-          Navigator.of(context).popUntil((route) => route.isFirst);
-          // Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
-          // Navigator.popUntil(context, ModalRoute.withName('/navInicio'));
-          // Navigator.pop(context);
-        });
-        //Navigator.popUntil(context, ModalRoute.withName('navInicio')))
+    if(user.name.trim()!="" || user.lastname.trim()!=""){
+      if(user.phone!=""){
+        bool valida = phoneRegex(user.phone);
+        if(!valida){
+          mostrarSnackbar('Número telefónico invalido.', colorRed, scaffoldKey);
+          Timer(Duration(milliseconds: 2000), (){
+            setState(() {
+              btnBool = true;
+            });         
+          });
+        }
+        else{
+          _registraUsuario(user);
+        }
       }
       else{
-        mostrarSnackbar('No se guardó los datos.', colorRed, scaffoldKey);
-        btnBool = true;
+        _registraUsuario(user);
       }
+      
     }
     else{
       mostrarSnackbar('Complete los datos.', colorRed, scaffoldKey);    
-      btnBool = true;  
+      Timer(Duration(milliseconds: 2000), (){
+        setState(() {
+          btnBool = true;
+        });         
+      });
+    }
+  }
+
+  _registraUsuario(user) async {
+    bool resp = await userProvider.editUser(user);
+    if(resp){
+      mostrarSnackbar('Se guardaron los datos.', colorMain, scaffoldKey);
+      Timer(Duration(milliseconds: 2000), (){
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      });
+    }
+    else{
+      mostrarSnackbar('No se guardaron los datos ingresados.', colorRed, scaffoldKey);
+      btnBool = true;
+      setState(() {
+        
+      });
     }
   }
 }

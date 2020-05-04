@@ -3,6 +3,53 @@ import 'package:proypet/src/utils/styles/styles.dart';
 
 final _shape = BorderRadius.circular(10.0);
 
+class FormularioText extends StatelessWidget {
+  final hintText;
+  final icon;
+  final obscureText;
+  final onSaved;
+  final textCap;
+  final valorInicial;
+  final boardType;
+
+  FormularioText({this.hintText, this.icon, this.obscureText, this.onSaved, this.textCap, this.valorInicial, this.boardType});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      elevation: 0.0,
+      borderRadius: _shape,
+      color: Colors.grey[200],
+      child: TextFormField(
+        keyboardType: boardType,
+        initialValue: valorInicial,
+        textCapitalization: textCap,
+        obscureText: obscureText,
+        onSaved: onSaved,
+        cursorColor: colorMain,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Material(
+            borderRadius: _shape,
+            color: Colors.grey[200],
+            child: Icon(
+              icon,
+              color: colorMain,
+            ),
+          ),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
 Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial,TextInputType _boardType){
   return Material(
     elevation: 0.0,

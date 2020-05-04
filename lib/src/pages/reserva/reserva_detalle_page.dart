@@ -16,6 +16,7 @@ import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -542,7 +543,16 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                       Text('Debe ingresar un número de teléfono', style: TextStyle(fontSize: sizeH4)),
                       SizedBox(height: 10.0,),
                       // textFormLess("Ingresar teléfono", (value)=>telefono=value,),
-                      textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
+                      // textFormError('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
+                      FormularioText(
+                        hintText: 'Ingrese teléfono',
+                        icon: Icons.phone,
+                        obscureText: false,
+                        onSaved: (value)=>user.phone=value,
+                        textCap: TextCapitalization.words,
+                        valorInicial: user.phone,
+                        boardType: TextInputType.phone,
+                      ),
                       SizedBox(height: 10.0,),
                       buttonPri("Guardar teléfono", _onPhone)
                     ],
@@ -572,16 +582,23 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   }
 
   void _onPhone() async {
-    
     setState(() {
       reservarClic=true;   
       formKey.currentState.save();
     });  
+    
+    bool phone = phoneRegex(user.phone);
     // print("guarda phone");
-    bool resp = await userProvider.editUser(user);//
-    // print(resp);
-
-    Navigator.pop(context);
+    if(phone){
+      bool resp = await userProvider.editUser(user);//
+      Navigator.pop(context);
+    }
+    else{
+      //'Número telefónico inválido'
+      mostrarSnackbar('Número telefónico inválido', colorRed, scaffoldKey);
+    }
+    
   }
+
 
 }

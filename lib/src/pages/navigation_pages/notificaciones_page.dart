@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
@@ -113,7 +114,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   _comingBooking(notificacion){
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0), //horizontal: 20.0
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
+      leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
     );
@@ -122,7 +123,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   _nextDate(notificacion){
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
+      leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
       onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
@@ -132,7 +133,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   _recordatory(notificacion){
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
+      leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
       title: Text(notificacion.message,
         style: TextStyle(color: Colors.black54),),
       onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
