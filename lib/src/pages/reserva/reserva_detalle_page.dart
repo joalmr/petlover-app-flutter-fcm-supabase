@@ -600,5 +600,4 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     
   }
 
-
 }
