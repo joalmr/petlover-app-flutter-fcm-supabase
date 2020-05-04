@@ -5,6 +5,7 @@ import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
@@ -54,7 +55,7 @@ class _ReservaListState extends State<ReservaList> {
     return FutureBuilder(
       future: stream,
       builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
-        if(!snapshot.hasData)
+        if(snapshot.connectionState != ConnectionState.done)
           return Scaffold(
             appBar: appbar(leadingH,'Buscar veterinarias',
               null
@@ -64,6 +65,10 @@ class _ReservaListState extends State<ReservaList> {
             ),
           );
         else{
+          if(snapshot.hasError){
+            return errorInternet();
+          }
+          
           return Scaffold(
             key: _key,            
             endDrawer: FiltrosMapa(filtros: listaFiltros,),//listaFiltros

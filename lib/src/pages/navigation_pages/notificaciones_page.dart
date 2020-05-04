@@ -6,6 +6,7 @@ import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
@@ -62,14 +63,17 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     return FutureBuilder(
       future: stream,//notificacionProvider.getNotificacion(),
       builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
-        if(!snapshot.hasData){
+        if(snapshot.connectionState != ConnectionState.done){
           return LinearProgressIndicator(
             backgroundColor: Colors.grey[200],
           );
         }
         else{
-          List<Notificacion> notification = snapshot.data.notifications;
+          if(snapshot.hasError){
+            return errorInternet();
+          } 
 
+          List<Notificacion> notification = snapshot.data.notifications;
           if(notification.length<1){
             return Center(
               child: Padding(

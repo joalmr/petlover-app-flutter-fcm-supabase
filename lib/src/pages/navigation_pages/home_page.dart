@@ -14,6 +14,7 @@ import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 
@@ -74,12 +75,15 @@ class _HomePageState extends State<HomePage> {
         future: stream,
         builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot){
           final mydata=snapshot.data;
-          if(!snapshot.hasData){
+          if(snapshot.connectionState != ConnectionState.done){
             return LinearProgressIndicator(
               backgroundColor: Colors.grey[200],
             );
           }
-          else{            
+          else{ 
+            if(snapshot.hasError){
+              return errorInternet();
+            }           
             return ListView(
               //physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 20.0),
