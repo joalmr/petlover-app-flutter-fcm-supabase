@@ -507,7 +507,7 @@ class _HomePageState extends State<HomePage> {
               // color: colorRed
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios_frecuentes/emergencia.jpg'),
+                image: AssetImage('images/fre-emergencia.jpg'),
               )
             ),
           ),
@@ -547,7 +547,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios_frecuentes/consulta.jpg'),
+                image: AssetImage('images/fre-consulta.jpg'),
               )
             ),
           ),
@@ -582,7 +582,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios_frecuentes/vacuna.jpeg'),
+                image: AssetImage('images/fre-vacuna.jpeg'),
               )
             ),
           ),
@@ -617,7 +617,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios_frecuentes/banio.jpg'),
+                image: AssetImage('images/fre-banio.jpg'),
               )
             ),
           ),
@@ -652,7 +652,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios_frecuentes/desparacita.jpg'),
+                image: AssetImage('images/fre-desparacita.jpg'),
               )
             ),
           ),

@@ -279,23 +279,28 @@ class _Data extends State<DataReserva> {
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
           direccionText = _inputDireccionController.text;
         }
-
-        bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
-
-        if(resp){
-          showDialog(context: context,builder: 
-          (BuildContext context)=> FadeIn(
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              content: Container(
-                height: 100.0,
-                child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
-              ),
-            ),
-          ), barrierDismissible: false );
-          Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
+        if(delivery==true && direccionText.trim()==""){
+          mostrarSnackbar('Debe ingresar la dirección para el servicio de transporte', colorRed, scaffoldKey);
         }
+        else{
+          bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
+
+          if(resp){
+            showDialog(context: context,builder: 
+            (BuildContext context)=> FadeIn(
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                content: Container(
+                  height: 100.0,
+                  child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
+                ),
+              ),
+            ), barrierDismissible: false );
+            Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
+          }
+        }
+        
       }
     }
   }
