@@ -94,10 +94,13 @@ class _ForgotPageState extends State<ForgotPage> {
     });
 
     if(val.trim()==""){
-      setState(() {
-        enviarClic = true;
-      });
-      _fnResponse("Ingrese correo electrónico", colorRed, null);
+      _fnResponse(
+        "Ingrese correo electrónico", 
+        colorRed, 
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { enviarClic = true; });
+        })
+      );
     }
 
     else{
@@ -116,21 +119,19 @@ class _ForgotPageState extends State<ForgotPage> {
         _fnResponse(
           "Este correo no esta registrado en Proypet", 
           colorRed,
-          null
-        );
-        setState(() {
-          enviarClic = true;
-        });   
+          Timer(Duration(milliseconds: 1500), (){
+            setState(() { enviarClic = true; });
+          })
+        ); 
       }
       else{
         _fnResponse(
           "Error, ejecución denegada", 
           colorRed,
-          null
-        );
-        setState(() {
-          enviarClic = true;
-        });  
+          Timer(Duration(milliseconds: 1500), (){
+            setState(() { enviarClic = true; });
+          })
+        ); 
       }
     }
 

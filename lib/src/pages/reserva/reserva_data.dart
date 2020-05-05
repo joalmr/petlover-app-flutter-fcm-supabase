@@ -63,6 +63,7 @@ class _Data extends State<DataReserva> {
   String deliveryId = "1";
   String observacion="";
   bool boolPet=false;
+  bool clickReservar = true;
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +115,7 @@ class _Data extends State<DataReserva> {
             Text('Observación'),
             textfieldArea(_inputObservacioController,'Ingrese observación (opcional)',null,null),
             SizedBox(height: 20.0,),
-            buttonPri('Confirmar reserva', ()=>reservaDialog()),      
+            buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null ),      
             SizedBox(height: 5.0),
             FlatButton(
               child: new Text("Cancelar",style: TextStyle(color: colorMain)),
@@ -252,8 +253,16 @@ class _Data extends State<DataReserva> {
   }
 
   reservaDialog() async {
+    
+    setState(() {
+      clickReservar = false;      
+    });
+
     if(_inputFechaController.text=="" || _inputHoraController.text=="" ){
       mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { clickReservar = true; });
+      });
     }
 
     else{
@@ -264,6 +273,9 @@ class _Data extends State<DataReserva> {
       
       if(formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour<(now.hour-1)){
         mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { clickReservar = true; });
+        });
       }
       else{
         booking.bookingAt = fechaTimeAt;
@@ -280,6 +292,7 @@ class _Data extends State<DataReserva> {
           direccionText = _inputDireccionController.text;
         }
         if(delivery==true && direccionText.trim()==""){
+          setState(() { clickReservar = true; });
           mostrarSnackbar('Debe ingresar la dirección para el servicio de transporte', colorRed, scaffoldKey);
         }
         else{
