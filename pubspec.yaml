@@ -80,6 +80,7 @@ flutter:
   assets:
    - assets/map_style.txt
    - images/
+   - images/servicios
   #  - images/greco.png
   #  - images/vet_prueba.jpg
   #  - images/veterinaria.png

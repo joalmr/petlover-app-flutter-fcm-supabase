@@ -487,7 +487,6 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
   _emergencia(){
     return InkWell(
       borderRadius: BorderRadius.circular(15.0),
@@ -508,7 +507,7 @@ class _HomePageState extends State<HomePage> {
               // color: colorRed
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios-frecuentes/emergencia.jpg'),
+                image: AssetImage('images/servicios_frecuentes/emergencia.jpg'),
               )
             ),
           ),
@@ -548,7 +547,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios-frecuentes/consulta.jpg'),
+                image: AssetImage('images/servicios_frecuentes/consulta.jpg'),
               )
             ),
           ),
@@ -583,7 +582,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios-frecuentes/vacuna.jpeg'),
+                image: AssetImage('images/servicios_frecuentes/vacuna.jpeg'),
               )
             ),
           ),
@@ -618,7 +617,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios-frecuentes/banio.jpg'),
+                image: AssetImage('images/servicios_frecuentes/banio.jpg'),
               )
             ),
           ),
@@ -653,7 +652,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/servicios-frecuentes/desparacita.jpg'),
+                image: AssetImage('images/servicios_frecuentes/desparacita.jpg'),
               )
             ),
           ),
