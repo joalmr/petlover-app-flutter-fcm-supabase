@@ -55,15 +55,12 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
 
   @override
   Widget build(BuildContext context) {
-    // _fecha = mascotaData.birthdate;
-    // final MascotaModel mascotaData = ModalRoute.of(context).settings.arguments;
-    return WillPopScope(
-      onWillPop: ()=>Navigator.pushNamedAndRemoveUntil(context, 'detallemascota', ModalRoute.withName('/detallemascota'), arguments: mascotaData.id ),
-      // ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotaData.id ),
-      // () {
+    // return WillPopScope(
+      // onWillPop: () {
       //   return new Future(() => false);
       // },
-      child: Scaffold(
+
+      return Scaffold(
         key: scaffoldKey,
         appBar: appbar(
           null,
@@ -198,8 +195,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
             )
           ),
         ),
-      ),
-    );
+      );
+    // );
   }
 
   _mostrarFoto(){
