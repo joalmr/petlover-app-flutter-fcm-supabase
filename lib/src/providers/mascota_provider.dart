@@ -74,11 +74,14 @@ class MascotaProvider{
 
   }
 
-  Future<Map<String,dynamic>> editPet(MascotaModel mascota, File imagen) async {
+  Future<bool> editPet(MascotaModel mascota, File imagen) async {
     final url = '$_url/pets/${mascota.id}';
-    String img="";
+    // String img="";
+    // dynamic respuesta;
     // int intMascota=0;
-    // if() intMascota=1;    
+    // if() intMascota=1;  
+    print(mascota.birthdate);
+
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
@@ -92,21 +95,29 @@ class MascotaProvider{
       body: data,
     );
 
-    if(resp.statusCode==200 || resp.statusCode==201){
-      if(imagen!=null){
-        final idkey = mascota.id;
-        final urlpet = '$_url/pets/$idkey/base64';
-        img = await upImage(imagen,urlpet);
-      }
-      return {
-        'edit': true,
-        'picture': img
-      };  
+    print(resp.body);
+    print(resp.statusCode);
+
+    if(resp.statusCode==200){ //|| resp.statusCode==201
+      return true;
+      // if(imagen!=null){
+      //   final idkey = mascota.id;
+      //   final urlpet = '$_url/pets/$idkey/base64';
+      //   img = await upImage(imagen,urlpet);
+
+      //   respuesta = { 'edit': true, 'picture': img };
+      // }
+      // else{
+      //   respuesta = { 'edit': true,  };
+      // }       
     }
-    else return {
-      'edit': false,
-      'picture': ""
-    };
+    else {
+      return false;
+    }
+    // respuesta = { 'edit': false,  };
+    // print("respuesta");
+    // print(respuesta);
+    // return respuesta;
   }
 
   Future<bool> muerePet(MascotaModel mascota) async {

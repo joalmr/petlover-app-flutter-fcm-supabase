@@ -46,7 +46,7 @@ class MascotaModel {
         breedName: json["breed_name"],
         genre: json["genre"], // == 0 ? false : true
         weight: json["weight"].toString(),
-        birthdate: json["birthdate"],//DateTime.parse(json["birthdate"]),
+        birthdate: json["birthdate"].split(' ')[0],//DateTime.parse(json["birthdate"]),
         picture: json["picture"],
         // condition: json["condition"],
         status: json["status"],

@@ -5,6 +5,7 @@ import 'package:proypet/src/pages/auth/singup_page.dart';
 import 'package:proypet/src/pages/destacado/destacado_detalle.dart';
 import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
+// import 'package:proypet/src/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
@@ -21,6 +22,7 @@ Map<String,WidgetBuilder> getRoutes(){
     'navRecompensa'     : (BuildContext context)=>NavigationBar(currentTabIndex: 4), //, marcar: 0,
     //nav cierra
     'agregarmascota'    : (BuildContext context)=>MascotaAgregarPage(),
+    // 'editarmascota'    : (BuildContext context)=>MascotaEditarPage(),
     'detallemascota'    : (BuildContext context)=>MascotaDetallePage(),
     'detallehistoriamascota'    : (BuildContext context)=>HistoriaPage(),
     //destacado

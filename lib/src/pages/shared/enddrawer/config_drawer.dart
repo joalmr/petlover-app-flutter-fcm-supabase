@@ -54,7 +54,7 @@ class ConfigDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.person,),
-                  title: Text('Editar datos', style: TextStyle(
+                  title: Text('Editar usuario', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
                   onTap: ()=>Navigator.push(context, 

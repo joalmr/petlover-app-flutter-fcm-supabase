@@ -5,6 +5,7 @@ import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
@@ -21,15 +22,36 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
 
   @override
   Widget build(BuildContext context) {
-    final MascotaModel mascota = ModalRoute.of(context).settings.arguments;
-    return Scaffold(
-      key: _scaffoldKey,
-      body: onDetail(mascota),
-      endDrawer: MascotaDrawer(modelMascota: mascota,),
+    final String mascotaId = ModalRoute.of(context).settings.arguments;
+    return FutureBuilder(
+      future: mascotaProvider.getPet(mascotaId),
+      builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
+        if(snapshot.connectionState != ConnectionState.done)
+          return Scaffold(
+            body: LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+            ),
+          );
+        else{
+          if(snapshot.hasError){
+            return errorInternet();
+          }
+          PetModel mascota = snapshot.data;
+          return Scaffold(
+            key: _scaffoldKey,
+            body: onDetail(mascota),
+            endDrawer: MascotaDrawer(modelMascota: mascota.pet,),
+          );
+
+        }
+      },
     );
+
+    
   }
 
-  Widget onDetail(MascotaModel mascota){
+  Widget onDetail(PetModel petModel){
+    MascotaModel mascota = petModel.pet;
     return Stack(
       children: <Widget>[
         Container(
@@ -54,7 +76,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             child: Column(
               children: <Widget>[                      
                 datoMascota(mascota),
-                listaHistorial(context, mascota),
+                listaHistorial(context, petModel.history),
               ],
             ),
           ),         
@@ -118,83 +140,70 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     );
   }
 
-  listaHistorial(BuildContext context, MascotaModel mascota){ //List<HistoriaModel> historias
-    return FutureBuilder(
-      future: mascotaProvider.getPet(mascota.id),
-      builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
-        if(!snapshot.hasData){
-          return LinearProgressIndicator(
-            backgroundColor: Colors.grey[200],
-          );
-        }
-        else{
-          List<HistoriaModel> historias = snapshot.data.history;
-          
-          return ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: historias.length,
-          itemBuilder: (context, int index){
-            return FlatButton(
-              onPressed: (){},          
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: InkWell(
-                  onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount} ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: Row(
+  listaHistorial(BuildContext context, List<HistoriaModel> historias){ //List<HistoriaModel> historias
+  // List<HistoriaModel> historias = snapshot.data.history;
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: historias.length,
+      itemBuilder: (context, int index){
+        return FlatButton(
+          onPressed: (){},          
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: InkWell(
+              onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount} ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo), //('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
+                          radius: 25.0,
+                        ),
+                        SizedBox(width: 7.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo), //('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
-                              radius: 25.0,
+                            Text(
+                              historias[index].establishment,
+                              //historialList[0].nombreVet,
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: sizeH3,
+                                fontWeight: FontWeight.w600
+                              ),
                             ),
-                            SizedBox(width: 7.0),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  historias[index].establishment,
-                                  //historialList[0].nombreVet,
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: sizeH3,
-                                    fontWeight: FontWeight.w600
-                                  ),
-                                ),
-                                iconosHistoria(historias[index].details)
-                                //Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
-                              ],
-                            ),
+                            iconosHistoria(historias[index].details)
+                            //Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
                           ],
                         ),
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        historias[index].createdAt.toString().split(' ')[0],
+                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
                       ),
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            historias[index].createdAt.toString().split(' ')[0],
-                            style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
-                          ),
-                          Text(
-                            historias[index].createdAt.toString().split(' ')[1],
-                            style: TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                      Text(
+                        historias[index].createdAt.toString().split(' ')[1],
+                        style: TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
-                ),
+                ],
               ),
-            );
-          } 
+            ),
+          ),
         );
-        }
-      },
+      } 
     );
 
   }

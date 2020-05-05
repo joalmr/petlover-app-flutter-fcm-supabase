@@ -59,11 +59,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {    
-    return Scaffold(
-      key: _scaffoldKey,
-      backgroundColor: Colors.white,
-      endDrawer: ConfigDrawer(),
-      body: inUser()
+    return WillPopScope(
+      onWillPop: () {
+        return new Future(() => false);
+      },
+      child: Scaffold(
+        key: _scaffoldKey,
+        backgroundColor: Colors.white,
+        endDrawer: ConfigDrawer(),
+        body: inUser()
+      ),
     );
   }
   
@@ -301,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                           // onPressed: ()=>Navigator.push(context, MaterialPageRoute(
                           //   builder: (_)=>MascotaDetallePage(mascota: mascotas[index],),
                           // )),
-                          onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index]),
+                          onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index].id),
                           child: Text(
                             'Ver más',
                             style: TextStyle(

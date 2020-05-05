@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
@@ -59,7 +60,12 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           title: Text('Editar datos', style: TextStyle(
             fontWeight: FontWeight.w400,
           ),),
-          onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: mascota),
+          onTap: 
+          // ()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
+          ()=>Navigator.push(context, MaterialPageRoute(
+            builder: (_)=>MascotaEditarPage(mascotaData: mascota,),
+          ))
+          //()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
         ),
         ListTile(
           leading: Icon(Icons.bookmark),

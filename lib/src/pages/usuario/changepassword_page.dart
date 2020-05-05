@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
@@ -20,6 +22,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   String passAntigua;
   String passNueva;
 
+  bool clickPassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +43,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             textForm('Ingrese contraseña nueva', Icons.lock, true, (value)=>passNueva=value, TextCapitalization.sentences, null,TextInputType.text),
             SizedBox(height: 35.0,),
             Center(
-              child: buttonPri('Cambiar contraseña', _changePassword ) //()=>agregarDialog()
+              child: buttonPri('Cambiar contraseña', clickPassword ? _changePassword : null ) //()=>agregarDialog()
             )
           ],
         ),
@@ -49,18 +53,28 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   _changePassword() async {
     setState(() {
+      clickPassword = false;
       formKey.currentState.save();
       // btnBool = false;      
     });
     int resp = await userProvider.changePassword(passAntigua, passNueva);
     if(resp==200){
-      mostrarSnackbar('Se cambió la contraseña.', colorMain, scaffoldKey);
+      mostrarSnackbar('Se cambió la contraseña.', colorMain, scaffoldKey);     
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { clickPassword = true; });
+      }); 
     }
     else if(resp==204){
       mostrarSnackbar('Error, la contraseña debe ser no menor a 5 dígitos.', colorRed, scaffoldKey);
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { clickPassword = true; });
+      });
     }
     else if(resp==401){
       mostrarSnackbar('Error, la contraseña actual es incorrecta.', colorRed, scaffoldKey);
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { clickPassword = true; });
+      });
     }
   }
 }

@@ -82,7 +82,15 @@ class _UserPageState extends State<UserPage> {
     });
     
     //&& user.phone.trim()!=""
-    if(user.name.trim()!="" || user.lastname.trim()!=""){
+    if(user.name.trim()=="" || user.lastname.trim()==""){
+      mostrarSnackbar('Complete los datos.', colorRed, scaffoldKey);    
+      Timer(Duration(milliseconds: 2000), (){
+        setState(() {
+          btnBool = true;
+        });         
+      });
+    }
+    else{
       if(user.phone!=""){
         bool valida = phoneRegex(user.phone);
         if(!valida){
@@ -99,17 +107,16 @@ class _UserPageState extends State<UserPage> {
       }
       else{
         _registraUsuario(user);
-      }
-      
+      }      
     }
-    else{
-      mostrarSnackbar('Complete los datos.', colorRed, scaffoldKey);    
-      Timer(Duration(milliseconds: 2000), (){
-        setState(() {
-          btnBool = true;
-        });         
-      });
-    }
+    // else{
+    //   mostrarSnackbar('Complete los datos.', colorRed, scaffoldKey);    
+    //   Timer(Duration(milliseconds: 2000), (){
+    //     setState(() {
+    //       btnBool = true;
+    //     });         
+    //   });
+    // }
   }
 
   _registraUsuario(user) async {
@@ -122,9 +129,9 @@ class _UserPageState extends State<UserPage> {
     }
     else{
       mostrarSnackbar('No se guardaron los datos ingresados.', colorRed, scaffoldKey);
-      btnBool = true;
+      
       setState(() {
-        
+        btnBool = true;        
       });
     }
   }
