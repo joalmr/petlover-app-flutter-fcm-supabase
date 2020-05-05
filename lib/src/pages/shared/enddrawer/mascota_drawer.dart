@@ -138,9 +138,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               mascota.status=0;
               bool resp = await mascotaProvider.muerePet(mascota);
               if(resp){
-                // Navigator.popUntil(context, ModalRoute.withName("/detallemascota"));
-                Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pushNamed(context, 'detallemascota', arguments: mascota);
+                // Navigator.of(context).popUntil((route) => route.isFirst);
+                // Navigator.of(context).pushReplacementNamed('routeName')
+                Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
               }
               else{
                 Navigator.pop(context);
@@ -170,10 +170,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               mascota.status=1;
               bool resp = await mascotaProvider.muerePet(mascota);
               if(resp){
-                // Navigator.popUntil(context, ModalRoute.withName("/detallemascota"));
-                Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pushNamed(context, 'detallemascota', arguments: mascota);
-                // Navigator.pushReplacementNamed(context, 'detallemascota', arguments: mascota);
+                Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
               }
               else{
                 Navigator.pop(context);

@@ -75,12 +75,11 @@ class MascotaProvider{
   }
 
   Future<bool> editPet(MascotaModel mascota, File imagen) async {
-    final url = '$_url/pets/${mascota.id}';
-    // String img="";
-    // dynamic respuesta;
-    // int intMascota=0;
-    // if() intMascota=1;  
-    print(mascota.birthdate);
+    final idkey = mascota.id;
+    final urlpet = '$_url/pets/$idkey/base64';
+    upImage(imagen,urlpet);
+
+    final url = '$_url/pets/$idkey';
 
     final data = {
       'name': mascota.name, 
@@ -95,29 +94,8 @@ class MascotaProvider{
       body: data,
     );
 
-    print(resp.body);
-    print(resp.statusCode);
-
-    if(resp.statusCode==200){ //|| resp.statusCode==201
-      return true;
-      // if(imagen!=null){
-      //   final idkey = mascota.id;
-      //   final urlpet = '$_url/pets/$idkey/base64';
-      //   img = await upImage(imagen,urlpet);
-
-      //   respuesta = { 'edit': true, 'picture': img };
-      // }
-      // else{
-      //   respuesta = { 'edit': true,  };
-      // }       
-    }
-    else {
-      return false;
-    }
-    // respuesta = { 'edit': false,  };
-    // print("respuesta");
-    // print(respuesta);
-    // return respuesta;
+    if(resp.statusCode==200) return true;      
+    else return false;
   }
 
   Future<bool> muerePet(MascotaModel mascota) async {

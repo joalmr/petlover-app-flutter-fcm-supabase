@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
@@ -19,13 +18,8 @@ import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/raza_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
-
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
 final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
-
-// class Page2Route extends MaterialPageRoute {
-//   Page2Route() : super(builder: (context) => new MascotaEditarPage());
-// }
 
 class MascotaEditarPage extends StatefulWidget {
   final MascotaModel mascotaData;
@@ -48,13 +42,14 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   // TextEditingController _inputFechaController=new TextEditingController();
   bool btnBool = true;
   File foto;
-  String datoPet = tipopet[0]['id'];
+  String datoPet = '';
   String opcRaza = '390'; 
   // MascotaModel mascotaData = new MascotaModel();
-  String sexo="0";
+  // String sexo="0";
 
   @override
   Widget build(BuildContext context) {
+    datoPet=mascotaData.specieId.toString();
     // return WillPopScope(
       // onWillPop: () {
       //   return new Future(() => false);
@@ -200,8 +195,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   }
 
   _mostrarFoto(){
-    if(foto==null) return CachedNetworkImageProvider(mascotaData.picture);
-    else return FileImage(foto);
+    if(foto!=null) return FileImage(foto);
+    else return  CachedNetworkImageProvider(mascotaData.picture);
   }
 
   _seleccionarFoto() async {
@@ -309,6 +304,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
 
   void _onAdd() async {
     try{
+      print(foto);
+
       setState(() {
         formKey.currentState.save();
         btnBool = false;      
@@ -332,7 +329,6 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
           });     
         });
         else{
-          // mascotaData.genre=int.tryParse(sexo);
           resp = await mascotaProvider.editPet(mascotaData, foto);
           boolEdit(resp);
         }
@@ -353,6 +349,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
     if(resp){
       mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);
       Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
+      // Navigator.of(context).pushReplacementNamed('detallemascota', arguments: mascotaData.id);
+      //'detallemascota', arguments: mascotas[index].id
     }
     else {
       mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed, scaffoldKey); 

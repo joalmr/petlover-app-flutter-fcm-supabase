@@ -403,6 +403,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         });
         else{
           mascotaData.genre=int.tryParse(sexo);
+          print(foto);
           resp = await mascotaProvider.savePet(mascotaData, foto);
           boolSave(resp);
         } 

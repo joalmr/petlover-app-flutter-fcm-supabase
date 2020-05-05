@@ -59,17 +59,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {    
-    return WillPopScope(
-      onWillPop: () {
-        return new Future(() => false);
-      },
-      child: Scaffold(
+    // return WillPopScope(
+      // onWillPop: () {
+      //   return new Future(() => false);
+      // },
+      return Scaffold(
         key: _scaffoldKey,
         backgroundColor: Colors.white,
         endDrawer: ConfigDrawer(),
         body: inUser()
-      ),
-    );
+      );
+    // );
   }
   
   Widget inUser(){
