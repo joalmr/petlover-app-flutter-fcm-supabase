@@ -287,11 +287,11 @@ class _Data extends State<DataReserva> {
         var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
         var deliveryText = "";
         var direccionText="";
-        if(delivery){
+        if(delivery==true && deliveryId!="1"){
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
           direccionText = _inputDireccionController.text;
         }
-        if(delivery==true && direccionText.trim()==""){
+        if(delivery==true && deliveryId!="1" && direccionText.trim()==""){
           setState(() { clickReservar = true; });
           mostrarSnackbar('Debe ingresar la dirección para el servicio de transporte', colorRed, scaffoldKey);
         }
