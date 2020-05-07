@@ -95,7 +95,7 @@ class _SingupPageState extends State<SingupPage> {
                           style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
                           recognizer: new TapGestureRecognizer()
                             ..onTap = () { 
-                              launch('https://beta.proypet.com/Recursos/Terminos');
+                              launch('https://proypet.com/terminos');
                           },
                         ),
                         TextSpan(text: ' y ',style: TextStyle()),
@@ -103,7 +103,7 @@ class _SingupPageState extends State<SingupPage> {
                           style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
                           recognizer: new TapGestureRecognizer()
                               ..onTap = () { 
-                                launch('https://beta.proypet.com/Recursos/Politicas');
+                                launch('https://proypet.com/politicas');
                             },
                         )
                       ],
