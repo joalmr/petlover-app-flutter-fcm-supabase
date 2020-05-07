@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
@@ -12,6 +13,12 @@ class HistoriaPage extends StatelessWidget {
 
     var jsonText = historiaData["detalle"];
     var precio = historiaData["precio"];
+    var proximacita;
+    var motivo = historiaData["motivo"];
+
+    if(historiaData["proximacita"]!=""){
+      proximacita = DateFormat('dd-MM-yyyy').format(DateTime.parse(historiaData["proximacita"]));
+    }
 
     return Scaffold(
       appBar: appbar(null,'Detalle de atención',null),
@@ -27,7 +34,7 @@ class HistoriaPage extends StatelessWidget {
             Divider(height: 30.0, color: Colors.black,),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.only(right: 20.0), //.symmetric(horizontal: 0.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -35,7 +42,25 @@ class HistoriaPage extends StatelessWidget {
                   Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),
                 ],
               )
-            )
+            ),
+            SizedBox(height: 20.0,),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 0.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeH6 ),),
+                  Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold) ),
+                  SizedBox(height: 10.0,),
+                  Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeH6 ),),
+                  Text(motivo, style: TextStyle( fontWeight: FontWeight.bold) ),
+                ],
+              ),
+            ),
+            
+
           ],
         ),
       )

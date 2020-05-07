@@ -152,7 +152,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: InkWell(
-              onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount} ),
+              onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount,"proximacita":historias[index].nextdate,"motivo":historias[index].reason} ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
