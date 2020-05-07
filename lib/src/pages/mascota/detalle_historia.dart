@@ -44,9 +44,15 @@ class HistoriaPage extends StatelessWidget {
               )
             ),
             SizedBox(height: 20.0,),
+            // Divider(),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 0.0),
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              decoration: BoxDecoration(
+                borderRadius: borderRadius,
+                color: colorGray1,     
+                
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
