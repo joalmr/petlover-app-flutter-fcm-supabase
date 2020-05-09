@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Proypet',
       theme: ThemeData( 
-        fontFamily: 'Lato',
+        fontFamily: 'Lato', //GoogleFonts.lato(),//
         primarySwatch: Colors.teal,
       ) ,
       debugShowCheckedModeBanner: false,      

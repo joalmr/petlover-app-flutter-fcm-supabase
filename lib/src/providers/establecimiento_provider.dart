@@ -30,14 +30,28 @@ class EstablecimientoProvider{
     return vets.establecimientos;
   }
 
-  Future<EstablecimientoModel> getVet(String idVet) async {
+  Future<dynamic> getVet(String idVet) async {
     final url = '$_url/establishments/$idVet';
 
     final resp = await http.get(url,headers: headersToken(),
     );
 
     final jsonResp = json.decode(resp.body);
-    EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
-    return vets;
+    if(resp.statusCode==200){
+      EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
+      
+      return{
+        'status':200,
+        'establishment':vets
+      };
+    }
+    else{
+      return{
+        'status':205,
+        'establishment':null
+      };
+    }
+    
+    
   }
 }

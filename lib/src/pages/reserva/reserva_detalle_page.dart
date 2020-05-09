@@ -78,11 +78,33 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
             child: SingleChildScrollView(
               child: (vet!=null) ? _onDetail(context,vet) : FutureBuilder(
                 future: establecimientoProvider.getVet(vetID),
-                builder: (BuildContext context, AsyncSnapshot<EstablecimientoModel> snapshot) {
-                  if(!snapshot.hasData) return Container();
+                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if(snapshot.connectionState != ConnectionState.done){
+                     return Container();
+                  }
                   else{
-                    vet = snapshot.data;
-                    return _onDetail(context, snapshot.data);
+                    Map datovet = snapshot.data;
+                    if(datovet['status']==200){
+                      vet = datovet['establishment'];
+                      return _onDetail(context, snapshot.data);
+                    }
+                    else{
+                      setState(() {
+                        reservarClic = false;
+                      });
+                      return Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("Lo sentimos, esta veterinaria ya no es parte de proypet"),
+                            buttonPri("Buscar veterinarias", 
+                              Navigator.pushNamed(context, 'navLista')
+                            )
+                          ],
+                        ),
+                      );
+                    }
                   } 
                 },
               ),
