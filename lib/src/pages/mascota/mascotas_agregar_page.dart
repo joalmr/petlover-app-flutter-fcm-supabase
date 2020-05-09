@@ -277,7 +277,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     DateTime picked = await showDatePicker(
       context: context, 
       initialDate: DateTime.now(), // (petData==null) ? DateTime.now() : DateTime.parse(fechaEdit),
-      //firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       firstDate: new DateTime(DateTime.now().year-25),
       lastDate: DateTime.now(),
       initialDatePickerMode: DatePickerMode.day

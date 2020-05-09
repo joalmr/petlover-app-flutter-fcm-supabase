@@ -53,7 +53,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
           title: element.name, 
           snippet: '★ ${element.stars} (${element.votes})',//element.direccion,
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(vet: element),
+            builder: (_)=>ReservaDetallePage(vetID: element.id),
           )),
         ),
         position: LatLng(element.latitude,element.longitude), //element.locationCoords,
@@ -162,7 +162,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       },
       child: InkWell(
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(vet: vetLocales[index]),
+            builder: (_)=>ReservaDetallePage(vetID: vetLocales[index].id),
           )),
           child: Stack(children: [
             Center(

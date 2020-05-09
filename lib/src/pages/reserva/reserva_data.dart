@@ -166,6 +166,7 @@ class _Data extends State<DataReserva> {
     DateTime picked = await showDatePicker(
       context: context,
       initialDate: new DateTime.now(), 
+      // locale: Locale('es','ES'),
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
     );

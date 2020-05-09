@@ -31,13 +31,17 @@ class EstablecimientoProvider{
   }
 
   Future<dynamic> getVet(String idVet) async {
-    final url = '$_url/establishments/$idVet';
+    String lat = _prefs.position.toString().split(',')[0];
+    String lng = _prefs.position.toString().split(',')[1];
+    final url = '$_url/establishments/$idVet?latitude=$lat&longitude=$lng';
 
     final resp = await http.get(url,headers: headersToken(),
     );
 
-    final jsonResp = json.decode(resp.body);
+    print(resp.statusCode);
+    
     if(resp.statusCode==200){
+      final jsonResp = json.decode(resp.body);
       EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
       
       return{

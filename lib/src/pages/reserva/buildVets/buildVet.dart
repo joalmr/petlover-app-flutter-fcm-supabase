@@ -14,7 +14,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
           margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
           child: InkWell(
             onTap: ()=>Navigator.push(context, MaterialPageRoute(
-              builder: (_)=>ReservaDetallePage(vet: vet),
+              builder: (_)=>ReservaDetallePage(vetID: vet.id,),
             )),
             child: Material(
               child: Column(

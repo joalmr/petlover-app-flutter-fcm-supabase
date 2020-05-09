@@ -15,23 +15,22 @@ import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
-  final EstablecimientoModel vet;
   final String vetID;
-  ReservaDetallePage({this.vet, this.vetID});
+  ReservaDetallePage({this.vetID});
   @override
-  _ReservaDetallePageState createState() => _ReservaDetallePageState(vet: vet, vetID: vetID);
+  _ReservaDetallePageState createState() => _ReservaDetallePageState(vetID: vetID);
 }
 
 class _ReservaDetallePageState extends State<ReservaDetallePage> {
-  EstablecimientoModel vet;
   String vetID;
-  _ReservaDetallePageState({this.vet, this.vetID});
+  _ReservaDetallePageState({this.vetID});
   final establecimientoProvider = EstablecimientoProvider();
   final mascotaProvider = MascotaProvider();
   final userProvider = UserProvider();
@@ -43,91 +42,99 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   bool delivery = false;
   String telefono="";
   bool reservarClic = true;
+  EstablecimientoModel vet;
 
   @override
   Widget build(BuildContext context) {    
-    
     return Scaffold(
       key: scaffoldKey,
-      body: Stack(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height,
-            color: colorMain,
-          ),
-          Positioned(
-            bottom: 0.0,
-            height: 100.0,
-            child: FlatButton(
-              onPressed: reservarClic ? _reservar : null,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(top: 35.0),
+      body: FutureBuilder(
+        future: establecimientoProvider.getVet(vetID),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.connectionState != ConnectionState.done){
+              return Container();
+          }
+          else{
+            Map datovet = snapshot.data;
+            if(datovet['status']==200){
+              vet = datovet['establishment'];
+              return FadeIn(
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      color: colorMain,
+                    ),
+                    _botonPrincipal(),
+                    Container(
+                      height: MediaQuery.of(context).size.height - 65.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
+                        color: Colors.white
+                      ),
+                      child: SingleChildScrollView(
+                        child: _onDetail(context, vet),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: AppBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        centerTitle: true,
+                        title: Text("",style: TextStyle(
+                          fontSize: sizeH3,
+                          fontWeight: FontWeight.normal
+                        ),),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+              // return _onDetail(context, snapshot.data);
+            }
+            else{
+              return FadeIn(
                 child: Center(
-                  child: Text('Reservar servicio',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: sizeH3),),
-                )
-              ),
-            ),
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height - 65.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
-              color: Colors.white
-            ),
-            child: SingleChildScrollView(
-              child: (vet!=null) ? _onDetail(context,vet) : FutureBuilder(
-                future: establecimientoProvider.getVet(vetID),
-                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  if(snapshot.connectionState != ConnectionState.done){
-                     return Container();
-                  }
-                  else{
-                    Map datovet = snapshot.data;
-                    if(datovet['status']==200){
-                      vet = datovet['establishment'];
-                      return _onDetail(context, snapshot.data);
-                    }
-                    else{
-                      setState(() {
-                        reservarClic = false;
-                      });
-                      return Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text("Lo sentimos, esta veterinaria ya no es parte de proypet"),
-                            buttonPri("Buscar veterinarias", 
-                              Navigator.pushNamed(context, 'navLista')
-                            )
-                          ],
-                        ),
-                      );
-                    }
-                  } 
-                },
-              ),
-            ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              centerTitle: true,
-              title: Text("",style: TextStyle(
-                fontSize: sizeH3,
-                fontWeight: FontWeight.normal
-              ),),
-            ),
-          ),
-        ]
+                  child: Container(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25 ),
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: <Widget>[
+                        errorMessage("Lo sentimos, esta veterinaria ya no es parte de proypet"),
+                        SizedBox(height: 20.0,),
+                        buttonPri("Buscar veterinarias", _buscarVet)
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+          }
+        },
       )
     );
   }
+
+  Widget _botonPrincipal(){
+    return Positioned(
+      bottom: 0.0,
+      height: 100.0,
+      child: FlatButton(
+        onPressed: reservarClic ? _reservar : null,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.only(top: 35.0),
+          child: Center(
+            child: Text('Reservar servicio',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: sizeH3),),
+          )
+        ),
+      ),
+    );
+  }
+
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
     // print(localVet.schedule.length);
@@ -152,7 +159,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                   fontWeight: FontWeight.w600
                 )
               ),
-              subtitle: Text('${localVet.address}'),//${localVet.distance}km
+              subtitle: Text('${localVet.address} ${localVet.distance}km'),//${localVet.distance}km
               trailing: Container(
                 height: 55.0,
                 width: 55.0,
@@ -621,6 +628,10 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
       mostrarSnackbar('Número telefónico inválido', colorRed, scaffoldKey);
     }
     
+  }
+
+  _buscarVet(){
+    Navigator.pushNamed(context, 'navLista');
   }
 
 }

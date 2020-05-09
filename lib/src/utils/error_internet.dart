@@ -17,3 +17,21 @@ Widget errorInternet(){
     ],
   );
 }
+
+Widget errorMessage(String mensaje){
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      SizedBox(height: 10.0),
+      Text(mensaje),
+      Center(
+        child: Image(
+          height: 300,      
+          width: 300, 
+          image: AssetImage("images/gato-error.png")
+        ),
+      ),
+    ],
+  );
+}
