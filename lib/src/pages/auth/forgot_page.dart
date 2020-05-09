@@ -137,7 +137,7 @@ class _ForgotPageState extends State<ForgotPage> {
 
   }
 
-  _fnResponse(String texto, Color color, fnExecute){
+  _fnResponse(String texto, Color color,dynamic fnExecute){
     mostrarSnackbar(texto, color, scaffoldKey);
     fnExecute;
   }

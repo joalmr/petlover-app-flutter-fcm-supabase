@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+// import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
 import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
@@ -24,7 +25,7 @@ class _ReservaListState extends State<ReservaList> {
   // final _prefs = new PreferenciasUsuario();
   // String val="";
 
-  Future<List<EstablecimientoModel>> newFuture() => vetProvider.getVets(listaFiltros);
+  Future<List<EstablecimientoLess>> newFuture() => vetProvider.getVets(listaFiltros);
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -54,7 +55,7 @@ class _ReservaListState extends State<ReservaList> {
 
     return FutureBuilder(
       future: stream,
-      builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
+      builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoLess>> snapshot){
         if(snapshot.connectionState != ConnectionState.done)
           return Scaffold(
             appBar: appbar(leadingH,'Buscar veterinarias',
@@ -97,7 +98,7 @@ class _ReservaListState extends State<ReservaList> {
 
 
 
-  _onTab(List<EstablecimientoModel> vetLocales) {
+  _onTab(List<EstablecimientoLess> vetLocales) {
     return Stack(
       children: <Widget>[
         RefreshIndicator(

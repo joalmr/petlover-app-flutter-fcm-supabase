@@ -1,4 +1,43 @@
-class EstablecimientoModel {
+// To parse this JSON data, do
+//
+//     final establecimientoModel = establecimientoModelFromJson(jsonString);
+
+import 'dart:convert';
+
+import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+
+// import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+// import 'package:proypet/src/utils/utils.dart';
+
+EstablecimientoModel establecimientoModelFromJson(String str) => EstablecimientoModel.fromJson(json.decode(str));
+
+String establecimientoModelToJson(EstablecimientoModel data) => json.encode(data.toJson());
+
+
+//menos datos 
+EstablecimientoLess establecimientoLessFromJson(String str) => EstablecimientoLess.fromJson(json.decode(str));
+
+// final _prefs = new PreferenciasUsuario();
+//
+class EstablecimientoList {
+  final List<EstablecimientoLess> establecimientos;
+
+  EstablecimientoList({
+    this.establecimientos,
+  });
+
+  factory EstablecimientoList.fromJson(List<dynamic> parsedJson) {
+
+    List<EstablecimientoLess> establecimientos = new List<EstablecimientoLess>();
+    establecimientos = parsedJson.map((i)=>EstablecimientoLess.fromJson(i)).toList();
+
+    return new EstablecimientoList(
+       establecimientos: establecimientos,
+    );
+  }
+}
+
+class EstablecimientoLess {
     String id;
     String name;
     String phone;
@@ -11,12 +50,9 @@ class EstablecimientoModel {
     double longitude;
     List<String> slides;
     String logo;
-    dynamic prices;
-    List<Service> services;
     String distance;
-    dynamic schedule;
 
-    EstablecimientoModel({
+    EstablecimientoLess({
         this.id,
         this.name,
         this.phone,
@@ -29,13 +65,10 @@ class EstablecimientoModel {
         this.longitude,
         this.slides,
         this.logo,
-        this.prices,
-        this.services,
         this.distance,
-        this.schedule,
     });
 
-    factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
+    factory EstablecimientoLess.fromJson(Map<String, dynamic> json) => EstablecimientoLess(
         id: json["id"],
         name: json["name"],
         phone: json["phone"] == null ? "" : json["phone"],
@@ -48,10 +81,7 @@ class EstablecimientoModel {
         longitude: json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
-        prices: json["prices"],
-        services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
         distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2),
-        schedule: json["schedule"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -66,36 +96,6 @@ class EstablecimientoModel {
         "longitude": longitude,
         "slides": List<dynamic>.from(slides.map((x) => x)),
         "logo": logo,
-        "prices": prices,
-        "services": List<dynamic>.from(services.map((x) => x.toJson())),
         "distance": distance,
-    };
-}
-
-class Service {
-    int id;
-    String name;
-    String slug;
-    String description;
-
-    Service({
-        this.id,
-        this.name,
-        this.slug,
-        this.description,
-    });
-
-    factory Service.fromJson(Map<String, dynamic> json) => Service(
-        id: json["id"],
-        name: json["name"],
-        slug: json["slug"],
-        description: json["description"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "slug": slug,
-        "description": description,
     };
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablecimientoProvider{
@@ -9,7 +10,7 @@ class EstablecimientoProvider{
   final _prefs = new PreferenciasUsuario();
 
   //List<int> filtros
-  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async {
+  Future<List<EstablecimientoLess>> getVets(dynamic filtros) async {
     String lat = _prefs.position.toString().split(',')[0];
     String lng = _prefs.position.toString().split(',')[1];
     var filtroServicio;
