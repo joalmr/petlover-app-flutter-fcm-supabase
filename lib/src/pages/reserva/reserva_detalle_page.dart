@@ -590,7 +590,8 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     bool phone = phoneRegex(user.phone);
     // print("guarda phone");
     if(phone){
-      bool resp = await userProvider.editUser(user);//
+      //bool resp = 
+      await userProvider.editUser(user);//
       Navigator.pop(context);
     }
     else{
