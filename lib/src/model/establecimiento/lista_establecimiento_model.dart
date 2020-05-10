@@ -20,7 +20,7 @@ EstablecimientoLess establecimientoLessFromJson(String str) => EstablecimientoLe
 // final _prefs = new PreferenciasUsuario();
 //
 class EstablecimientoList {
-  final List<EstablecimientoLess> establecimientos;
+  final List<EstablecimientoModel> establecimientos;
 
   EstablecimientoList({
     this.establecimientos,
@@ -28,8 +28,8 @@ class EstablecimientoList {
 
   factory EstablecimientoList.fromJson(List<dynamic> parsedJson) {
 
-    List<EstablecimientoLess> establecimientos = new List<EstablecimientoLess>();
-    establecimientos = parsedJson.map((i)=>EstablecimientoLess.fromJson(i)).toList();
+    List<EstablecimientoModel> establecimientos = new List<EstablecimientoModel>();
+    establecimientos = parsedJson.map((i)=>EstablecimientoModel.fromJson(i)).toList();
 
     return new EstablecimientoList(
        establecimientos: establecimientos,

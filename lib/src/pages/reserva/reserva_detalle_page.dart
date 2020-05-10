@@ -15,22 +15,24 @@ import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/error_internet.dart';
+// import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReservaDetallePage extends StatefulWidget {
-  final String vetID;
-  ReservaDetallePage({this.vetID});
+  // final String vetID;
+  final EstablecimientoModel vet;
+  ReservaDetallePage({this.vet});
   @override
-  _ReservaDetallePageState createState() => _ReservaDetallePageState(vetID: vetID);
+  _ReservaDetallePageState createState() => _ReservaDetallePageState(vet: vet);
 }
 
 class _ReservaDetallePageState extends State<ReservaDetallePage> {
-  String vetID;
-  _ReservaDetallePageState({this.vetID});
+  // String vetID;
+  EstablecimientoModel vet;
+  _ReservaDetallePageState({this.vet});
   final establecimientoProvider = EstablecimientoProvider();
   final mascotaProvider = MascotaProvider();
   final userProvider = UserProvider();
@@ -41,89 +43,95 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
   Modal modal = new Modal();
   bool delivery = false;
   String telefono="";
-  bool reservarClic = true;
-  EstablecimientoModel vet;
-
+  bool reservarClic=true;
+  
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
       key: scaffoldKey,
-      body: FutureBuilder(
-        future: establecimientoProvider.getVet(vetID),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if(snapshot.connectionState != ConnectionState.done){
-              return Container();
-          }
-          else{
-            Map datovet = snapshot.data;
-            if(datovet['status']==200){
-              vet = datovet['establishment'];
-              return FadeIn(
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      color: colorMain,
-                    ),
-                    _botonPrincipal(),
-                    Container(
-                      height: MediaQuery.of(context).size.height - 65.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
-                        color: Colors.white
-                      ),
-                      child: SingleChildScrollView(
-                        child: _onDetail(context, vet),
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      child: AppBar(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
-                        centerTitle: true,
-                        title: Text("",style: TextStyle(
-                          fontSize: sizeH3,
-                          fontWeight: FontWeight.normal
-                        ),),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-              // return _onDetail(context, snapshot.data);
-            }
-            else{
-              return FadeIn(
-                child: Center(
-                  child: Container(
-                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25 ),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      children: <Widget>[
-                        errorMessage("Lo sentimos, esta veterinaria ya no es parte de proypet"),
-                        SizedBox(height: 20.0,),
-                        buttonPri("Buscar veterinarias", _buscarVet)
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }
-          }
-        },
-      )
+      body: _onStack(context, vet)
+      // FutureBuilder(
+      //   future: establecimientoProvider.getVet(vetID),
+      //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      //     if(snapshot.connectionState != ConnectionState.done){
+      //       return LinearProgressIndicator(
+      //         backgroundColor: Colors.grey[200],
+      //       );
+      //     }
+      //     else{
+      //       Map datovet = snapshot.data;
+      //       if(datovet['status']==200){
+      //         vet = datovet['establishment'];
+      //         return _onStack(context, vet);
+      //       }
+      //       else{
+      //         return FadeIn(
+      //           child: Center(
+      //             child: Container(
+      //               padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25 ),
+      //               width: MediaQuery.of(context).size.width,
+      //               child: Column(
+      //                 children: <Widget>[
+      //                   errorMessage("Lo sentimos, esta veterinaria ya no es parte de proypet"),
+      //                   SizedBox(height: 20.0,),
+      //                   buttonPri("Buscar veterinarias", _buscarVet)
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //         );
+      //       }
+      //     }
+      //   }
+      // )
+      
+
     );
   }
 
-  Widget _botonPrincipal(){
+
+  Widget _onStack(context, vet){
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: MediaQuery.of(context).size.height,
+          color: colorMain,
+        ),
+        _botonPrincipal(context),
+        Container(
+          height: MediaQuery.of(context).size.height - 65.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15.0), bottomRight: Radius.circular(15.0)),
+            color: Colors.white
+          ),
+          child: SingleChildScrollView(
+            child: _onDetail(context, vet),
+          ),
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            title: Text("",style: TextStyle(
+              fontSize: sizeH3,
+              fontWeight: FontWeight.normal
+            ),),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _botonPrincipal(context){
     return Positioned(
       bottom: 0.0,
       height: 100.0,
       child: FlatButton(
-        onPressed: reservarClic ? _reservar : null,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+        onPressed: reservarClic ? _reservar : null, // ,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
         child: Container(
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 35.0),
@@ -137,7 +145,6 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
-    // print(localVet.schedule.length);
     return Column(
       children: <Widget>[
         Container(
@@ -544,26 +551,25 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
   _reservar() async {
     
-    setState(() {
-      reservarClic=false;      
-    });
+    setState(() { reservarClic = false; });
 
     misMascotas = await mascotaProvider.getPets();
     misMascotas = misMascotas.where((x)=>x.status!=0).toList();
     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
     if(misMascotas.length>0){
-      // bool validatelefono = true;
       var usuario = await userProvider.getUser();
       user = usuario.user;
-      // print(user.phone);
+      
       if(user.phone == null || user.phone.trim() == ""){        
-        showDialog(context: context,builder: 
+        showDialog(
+          barrierDismissible: false,
+          context: context,builder: 
           (BuildContext context)=> FadeIn(
             child: AlertDialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
               contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               content: Container(
-                height: 170.0,
+                height: 200.0,
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -571,8 +577,6 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                       SizedBox(height: 10.0,),
                       Text('Debe ingresar un número de teléfono', style: TextStyle(fontSize: sizeH4)),
                       SizedBox(height: 10.0,),
-                      // textFormLess("Ingresar teléfono", (value)=>telefono=value,),
-                      // textFormError('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
                       FormularioText(
                         hintText: 'Ingrese teléfono',
                         icon: Icons.phone,
@@ -583,7 +587,11 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
                         boardType: TextInputType.phone,
                       ),
                       SizedBox(height: 10.0,),
-                      buttonPri("Guardar teléfono", _onPhone)
+                      buttonPri("Guardar teléfono", _onPhone),
+                      FlatButton(
+                        child: Text("Cancelar", style: TextStyle(color: colorMain),),
+                        onPressed: _cancelar,
+                      )
                     ],
                   ),
                 )
@@ -593,38 +601,37 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         );
       }
       else{
-        
-        setState(() {
-          reservarClic=true;          
-        });
+        setState(() { reservarClic=true; });   
         Navigator.push(
-          context,MaterialPageRoute(builder: (context) => DataReserva(establecimientoID: vet.id, misMascotas: misMascotas, mascotaID: misMascotas[0].id, establecimientoName: vet.name, delivery: delivery,))
+          context,MaterialPageRoute(builder: (context) => 
+            DataReserva(
+              establecimientoID: vet.id, 
+              misMascotas: misMascotas, 
+              mascotaID: misMascotas[0].id, 
+              establecimientoName: vet.name, 
+              delivery: delivery,
+            ))
         );
       }      
     }
     else{
-      setState(() {
-        reservarClic=true;          
-      });
+      setState(() { reservarClic=true; });
       mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed, scaffoldKey);  
     }    
   }
 
   void _onPhone() async {
     setState(() {
-      reservarClic=true;   
+      reservarClic=true;
       formKey.currentState.save();
     });  
     
     bool phone = phoneRegex(user.phone);
-    // print("guarda phone");
     if(phone){
-      //bool resp = 
       await userProvider.editUser(user);//
       Navigator.pop(context);
     }
     else{
-      //'Número telefónico inválido'
       mostrarSnackbar('Número telefónico inválido', colorRed, scaffoldKey);
     }
     
@@ -632,6 +639,11 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
 
   _buscarVet(){
     Navigator.pushNamed(context, 'navLista');
+  }
+
+  _cancelar(){
+    setState(() { reservarClic=true; });
+    Navigator.pop(context);
   }
 
 }

@@ -1,13 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-// import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
+import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+// import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
-  Widget buildVets(BuildContext context, EstablecimientoLess vetLocales){
+  Widget buildVets(BuildContext context, EstablecimientoModel vetLocales){
     var vet = vetLocales;
 
       return FadeIn(
@@ -15,7 +15,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
           margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
           child: InkWell(
             onTap: ()=>Navigator.push(context, MaterialPageRoute(
-              builder: (_)=>ReservaDetallePage(vetID: vet.id,),
+              builder: (_)=>ReservaDetallePage(vet: vet,),
             )),
             child: Material(
               child: Column(

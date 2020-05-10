@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
@@ -145,11 +148,43 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   }
 
-  _fnEstablecimiento(id){
-    Navigator.push(
-      context,MaterialPageRoute(
-        builder: (context) => ReservaDetallePage(vetID: id),
-    ));
+  _fnEstablecimiento(id) async {
+    final establecimientoProvider = EstablecimientoProvider();
+    Map veterinaria = await establecimientoProvider.getVet(id);
+    if(veterinaria['status']==200){
+      EstablecimientoModel vet = veterinaria['establishment'];
+      Navigator.push(
+        context,MaterialPageRoute(
+          builder: (context) => ReservaDetallePage(vet: veterinaria['establishment']),
+      ));
+    }
+    else{
+      showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return FadeIn(
+            child: SimpleDialog(
+              contentPadding: EdgeInsets.all(20.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                  Text('Lo sentimos, esta veterinaria ya no forma parte de proypet'),
+                  Center(
+                    child: Image(
+                      height: 200,      
+                      width: 200, 
+                      image: AssetImage("images/gato-error.png")
+                    ),
+                  ),
+              ],
+              
+            ),
+          );
+        }
+      );
+    }
+    
+    
   }
 
   _fnRecordatorio(String slug){    
