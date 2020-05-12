@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          "Próxima atención",
+                          "Reservas confirmadas",
                           style: TextStyle(
                             fontSize: sizeH2,
                             fontWeight: FontWeight.bold,

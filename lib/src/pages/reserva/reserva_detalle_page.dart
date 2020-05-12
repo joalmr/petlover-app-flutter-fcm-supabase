@@ -256,6 +256,10 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         SizedBox(height: 20.0),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0,),
+          child: Text("Servicios"),
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 10.0,),
           child: _servicios(localVet.services),
         ),
         SizedBox(height: 10.0),

@@ -50,6 +50,8 @@ class _Data extends State<DataReserva> {
     {'id':'2','name':'Vacuna',},
     {'id':'3','name':'Baño',},
     {'id':'4','name':'Desparasitación',},
+    {'id':'5','name':'Baño y corte',},
+    {'id':'6','name':'Otro servicio',},
   ];
   
   List _delivery = [
@@ -101,7 +103,7 @@ class _Data extends State<DataReserva> {
             Text('Hora'),
             _crearHora(context),                       
             delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
-            delivery ? Text('Servicio de transporte') : SizedBox(height: 0.0,) ,
+            delivery ? Text('Movilidad') : SizedBox(height: 0.0,) ,
             delivery ? ddlMain(deliveryId, _delivery, 
               (opt){ setState(() {
                   deliveryId=opt; 
@@ -114,6 +116,7 @@ class _Data extends State<DataReserva> {
             SizedBox(height: 12.0,),
             Text('Observación'),
             textfieldArea(_inputObservacioController,'Ingrese observación (opcional)',null,null),
+            Text('*Si seleccionó Otro servicio, especifíquelo en observaciones', style: TextStyle(fontSize: sizeH5),),
             SizedBox(height: 20.0,),
             buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null ),      
             SizedBox(height: 5.0),

@@ -178,6 +178,15 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
+                      value: (filtros.contains(5)) ? true : false,//petReq.genre,
+                      title: Text('Movilidad'),
+                      activeColor: colorMain,
+                      onChanged: (value)=> setState((){
+                        if(!value) filtros.remove(5);
+                        else filtros.add(5);
+                      }),
+                    ),
+                    SwitchListTile(
                       value: (filtros.contains(10)) ? true : false,//petReq.genre,
                       title: Text('Petshop'),
                       activeColor: colorMain,
@@ -202,15 +211,6 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       onChanged: (value)=> setState((){
                         if(!value) filtros.remove(14);
                         else filtros.add(14);
-                      }),
-                    ),
-                    SwitchListTile(
-                      value: (filtros.contains(5)) ? true : false,//petReq.genre,
-                      title: Text('Servicio de trasnporte'),
-                      activeColor: colorMain,
-                      onChanged: (value)=> setState((){
-                        if(!value) filtros.remove(5);
-                        else filtros.add(5);
                       }),
                     ),
                     SwitchListTile(
