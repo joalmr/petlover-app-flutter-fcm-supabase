@@ -369,6 +369,7 @@ class _HomePageState extends State<HomePage> {
   Widget _atenciones(List<BookingHome> atenciones,lengthPet){
     if(atenciones.length>0)
       return ListView.builder(
+        padding: EdgeInsets.only(top: 5.0),
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: atenciones.length,

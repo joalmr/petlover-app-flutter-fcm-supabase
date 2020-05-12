@@ -116,7 +116,18 @@ class _Data extends State<DataReserva> {
             SizedBox(height: 12.0,),
             Text('Observación'),
             textfieldArea(_inputObservacioController,'Ingrese observación (opcional)',null,null),
-            Text('*Si seleccionó Otro servicio, especifíquelo en observaciones', style: TextStyle(fontSize: sizeH5),),
+            Text.rich(
+              TextSpan(
+                text: '*Si seleccionó ', // default text style
+                children: <TextSpan>[
+                  TextSpan(text: 'Otro servicio',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(text: ', especifíquelo en observaciones',style: TextStyle()),
+                ],
+              ),
+              style: TextStyle(fontSize: sizeH5),
+            ),
             SizedBox(height: 20.0,),
             buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null ),      
             SizedBox(height: 5.0),
@@ -297,7 +308,7 @@ class _Data extends State<DataReserva> {
         }
         if(delivery==true && deliveryId!="1" && direccionText.trim()==""){
           setState(() { clickReservar = true; });
-          mostrarSnackbar('Debe ingresar la dirección para el servicio de transporte', colorRed, scaffoldKey);
+          mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
         }
         else{
           bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);

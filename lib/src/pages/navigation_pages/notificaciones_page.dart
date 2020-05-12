@@ -86,7 +86,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
           }
           else{
             return ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 20.0, ),
+              padding: EdgeInsets.symmetric(vertical: 10.0, ),
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: notification.length,
@@ -118,31 +118,55 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   }
 
   _comingBooking(notificacion){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0), //horizontal: 20.0
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
-      title: Text(notificacion.message,
-        style: TextStyle(color: Colors.black54),),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0), //horizontal: 20.0
+            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
+            title: Text(notificacion.message,
+              style: TextStyle(color: Colors.black54),),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 
   _nextDate(notificacion){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
-      title: Text(notificacion.message,
-        style: TextStyle(color: Colors.black54),),
-      onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
+            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
+            title: Text(notificacion.message,
+              style: TextStyle(color: Colors.black54),),
+            onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 
   _recordatory(notificacion){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
-      title: Text(notificacion.message,
-        style: TextStyle(color: Colors.black54),),
-      onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
+            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
+            title: Text(notificacion.message,
+              style: TextStyle(color: Colors.black54),),
+            onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
+          ),
+          Divider(),
+        ],
+      ),
     );
 
   }

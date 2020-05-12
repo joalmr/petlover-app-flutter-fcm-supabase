@@ -63,7 +63,7 @@ final textMap = <int, String>{
   2    : "Consulta",
   3    : "Cirugía",
   4    : "Vacunas",
-  5    : "Servicio de transporte",//Recojo/Entrega
+  5    : "Movilidad",//Recojo/Entrega
   6    : "Electrocardiograma",
   7    : "Laboratorio",
   8    : "24 horas",

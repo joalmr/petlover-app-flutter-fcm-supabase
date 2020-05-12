@@ -53,7 +53,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
                               children: <Widget>[
                                 Icon(Icons.star, color: colorYellow, size: 12.0),
                                 SizedBox(width: 0.5),
-                                Text(vet.stars.toString() + ' ('+vet.votes.toString()+')',style: TextStyle(fontSize: sizeH4,color: Colors.grey[600],fontWeight: FontWeight.w400))
+                                Text(vet.stars.toString() + ' ('+vet.attentions.toString()+')',style: TextStyle(fontSize: sizeH4,color: Colors.grey[600],fontWeight: FontWeight.w400))
                               ],
                             ),
                           ],

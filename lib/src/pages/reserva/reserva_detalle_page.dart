@@ -255,8 +255,12 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         ),
         SizedBox(height: 20.0),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 10.0,),
-          child: Text("Servicios"),
+          width: double.infinity,
+          padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
+          child: Text("Servicios", style: TextStyle(
+            fontSize: sizeH4,
+            color: Color(0xFF6A6A6A),
+            fontWeight: FontWeight.w600)),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0,),
@@ -376,7 +380,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
         child: Container(
           // height: 85,
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          width: 170,
+          width: 130,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
             color: color,

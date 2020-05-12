@@ -51,7 +51,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
         draggable: false,
         infoWindow: InfoWindow(
           title: element.name, 
-          snippet: '★ ${element.stars} (${element.votes})',//element.direccion,
+          snippet: '★ ${element.stars} (${element.attentions})',//element.direccion,
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
             builder: (_)=>ReservaDetallePage(vet: element),
           )),
