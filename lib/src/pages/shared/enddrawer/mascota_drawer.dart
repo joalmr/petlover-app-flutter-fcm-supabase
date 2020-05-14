@@ -102,7 +102,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                       onPressed: () async {
                         bool resp = await mascotaProvider.deletePet(mascota.id);
                         if(resp){
-                          Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+                          // Navigator.of(context).popUntil((route) => route.isFirst);
+                          // Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
+                          Navigator.pushNamedAndRemoveUntil(context, '/navInicio', (route) => false);
                         }
                         else{
                           Navigator.pop(context);

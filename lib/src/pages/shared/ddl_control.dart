@@ -1,4 +1,6 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:proypet/src/model/raza/raza_model.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
@@ -134,26 +136,21 @@ class _DdlControl2 extends State<DdlControl2> {
   Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
     try{
       return Material(
-        elevation: 0.0,
         borderRadius: borderRadius,
         color: Colors.grey[200],
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: DropdownButtonHideUnderline(
-            child: SearchableDropdown(
-              items: getOpcionesSearch(lista),
-              value: opcionSeleccionada,
-              onChanged: cambiaOpc,
-              hint: "Seleccione raza",
-              searchHint: "Seleccione raza",
-              isExpanded: true,
-              closeButton: "Cerrar",
-              icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
-              displayClearIcon: false,
-              underline: "",
-            ),
-          ),
-        ), 
+        elevation: 0.0,
+        child: SearchableDropdown.single( 
+          icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+          hint: "Seleccione raza",
+          searchHint: "Seleccione raza",
+          items: getOpcionesSearch(lista),
+          value: opcionSeleccionada,              
+          onChanged: cambiaOpc,
+          isExpanded: true,
+          closeButton: null,            
+          displayClearIcon: false,
+          underline: "",
+        ),
       );
     }
     catch(ex){
@@ -161,5 +158,59 @@ class _DdlControl2 extends State<DdlControl2> {
         backgroundColor: Colors.grey[200],
       );
     }
+    
+    
+    
+    // return Material(
+    //     elevation: 0.0,
+    //     borderRadius: borderRadius,
+    //     color: Colors.grey[200],
+    //     child: Padding(
+    //       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+    //       child: DropdownButtonHideUnderline(
+    //         child: SearchableDropdown.single(
+    //           items: getOpcionesSearch(lista),
+    //           value: opcionSeleccionada,              
+    //           hint: "Seleccione raza",
+    //           searchHint: "Seleccione raza",
+    //           onChanged: cambiaOpc,
+    //           isExpanded: true,
+    //           closeButton: "Cerrar",
+    //           icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+    //           displayClearIcon: false,
+    //           underline: "",
+    //         ),
+    //       ),
+    //     ), 
+    //   );
+    // try{
+    //   return Material(
+    //     elevation: 0.0,
+    //     borderRadius: borderRadius,
+    //     color: Colors.grey[200],
+    //     child: Padding(
+    //       padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    //       child: DropdownButtonHideUnderline(
+    //         child: SearchableDropdown(
+    //           items: getOpcionesSearch(lista),
+    //           value: opcionSeleccionada,
+    //           onChanged: cambiaOpc,
+    //           hint: "Seleccione raza",
+    //           searchHint: "Seleccione raza",
+    //           isExpanded: true,
+    //           closeButton: "Cerrar",
+    //           icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+    //           displayClearIcon: false,
+    //           underline: "",
+    //         ),
+    //       ),
+    //     ), 
+    //   );
+    // }
+    // catch(ex){
+    //   return LinearProgressIndicator(
+    //     backgroundColor: Colors.grey[200],
+    //   );
+    // }
   }
 

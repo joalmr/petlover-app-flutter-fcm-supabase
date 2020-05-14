@@ -83,10 +83,11 @@ calculateAge(DateTime birthDate) {
     List<DropdownMenuItem<String>> lista = new List();
     _lista.forEach((_lista){
       lista.add(DropdownMenuItem(
-        child: Text(_lista.name),
-        value: _lista.id+";"+_lista.name
+        child: Text(_lista.name.toString()),
+        value: "${_lista.id}|${_lista.name}"//_lista.id.toString()
       ));
     });
+    // print(lista);
     return lista;
   }
 
