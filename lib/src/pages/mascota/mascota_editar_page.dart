@@ -43,9 +43,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   bool btnBool = true;
   File foto;
   String datoPet = '';
-  String opcRaza = '390'; 
-  // MascotaModel mascotaData = new MascotaModel();
-  // String sexo="0";
+  String opcRaza = ''; 
   RazaModel razaLista;
 
   Future<RazaModel> traeRazas() => razaProvider.getBreed(datoPet);

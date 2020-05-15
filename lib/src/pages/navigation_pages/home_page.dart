@@ -353,14 +353,6 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10.0,),
             buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
-            // FlatButton(
-            //   child: Text('Agregar mascota',
-            //     style: TextStyle(
-            //       color: colorMain,
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 16.0),),
-            //   onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
-            // )
           ],
         ),
       );
@@ -380,7 +372,6 @@ class _HomePageState extends State<HomePage> {
               color: colorRed,
             ),
             direction: DismissDirection.endToStart,
-            // onDismissed: (fn){},
             confirmDismiss: (fn)=>showDialog(
               context: context,
               builder: (BuildContext context){
@@ -438,8 +429,6 @@ class _HomePageState extends State<HomePage> {
     else
       if(lengthPet>0)
         return Container(
-          // height: 150.0,
-          // width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -462,19 +451,11 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable', //Vamos, agrega a tu mascota y se parte de la comunidad responsable
+            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable',
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10.0,),
             buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
-            // FlatButton(
-            //   child: Text('Agregar mascota',
-            //     style: TextStyle(
-            //       color: colorMain,
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 16.0),),
-            //   onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
-            // )
           ],
         ),
       );
@@ -492,7 +473,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-
   _emergencia(){
     return InkWell(
       borderRadius: BorderRadius.circular(15.0),
@@ -507,10 +487,8 @@ class _HomePageState extends State<HomePage> {
               color: Colors.red.withOpacity(0.5),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
-              // color: colorRed
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('images/fre-emergencia.jpg'),
@@ -548,7 +526,6 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
@@ -583,7 +560,6 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
@@ -618,7 +594,6 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
@@ -653,7 +628,6 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
