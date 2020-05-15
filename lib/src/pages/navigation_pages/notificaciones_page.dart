@@ -175,7 +175,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     final establecimientoProvider = EstablecimientoProvider();
     Map veterinaria = await establecimientoProvider.getVet(id);
     if(veterinaria['status']==200){
-      EstablecimientoModel vet = veterinaria['establishment'];
+      // EstablecimientoModel vet = veterinaria['establishment'];
       Navigator.push(
         context,MaterialPageRoute(
           builder: (context) => ReservaDetallePage(vet: veterinaria['establishment']),

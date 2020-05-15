@@ -23,7 +23,6 @@ final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
 
 class MascotaEditarPage extends StatefulWidget {
   final MascotaModel mascotaData;
-  // final int marcar;
   MascotaEditarPage({@required this.mascotaData, }); 
 
   @override

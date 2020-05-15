@@ -645,9 +645,9 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     
   }
 
-  _buscarVet(){
-    Navigator.pushNamed(context, 'navLista');
-  }
+  // _buscarVet(){
+  //   Navigator.pushNamed(context, 'navLista');
+  // }
 
   _cancelar(){
     setState(() { reservarClic=true; });

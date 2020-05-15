@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-// import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
 import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
