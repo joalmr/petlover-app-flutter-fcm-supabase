@@ -34,12 +34,11 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   MascotaModel mascotaData;
   _MascotaEditarPageState({@required this.mascotaData, });
 
-  // String _fecha ='';
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final mascotaProvider = new MascotaProvider();
   final razaProvider = new RazaProvider();
-  // TextEditingController _inputFechaController=new TextEditingController();
+  
   bool btnBool = true;
   File foto;
   String datoPet = '';
