@@ -12,7 +12,12 @@ class DetalleReserva extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            
+            Image(
+              image: AssetImage("mascotas.png"),
+              height: 350,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            )
           ],
         ),
       ),

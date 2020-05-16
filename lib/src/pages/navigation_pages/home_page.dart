@@ -17,6 +17,7 @@ import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
+import 'package:proypet/src/pages/reserva/detalleReserva/detalle_reserva.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -161,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                FadeIn(child: _atenciones(mydata.bookings,mydata.pets.length)),
+                FadeIn(child: _atenciones(mydata.bookings,mydata.pets)),
               ],
             );
           }
@@ -351,7 +352,7 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  Widget _atenciones(List<BookingHome> atenciones,lengthPet){
+  Widget _atenciones(List<BookingHome> atenciones, petDato){
     if(atenciones.length>0)
       return ListView.builder(
         padding: EdgeInsets.only(top: 5.0),
@@ -390,6 +391,11 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 ListTile(
+                  // onTap: ()=>
+                  //   Navigator.push(context, MaterialPageRoute(
+                  //     builder: (context) => DetalleReserva()
+                  //   ))
+                  // ,
                   leading: CircleAvatar(
                     backgroundColor: colorMain,
                     backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
@@ -423,7 +429,7 @@ class _HomePageState extends State<HomePage> {
         },
       );
     else
-      if(lengthPet>0)
+      if(petDato.length>0)
         return Container(
           padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Column(
