@@ -41,7 +41,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(leadingH,'Recompensas',null),
+      appBar: appbar(leadingH,'Puntos',null),
       body: RefreshIndicator(
         key: refreshKey,
         onRefresh: _onRefresh,
