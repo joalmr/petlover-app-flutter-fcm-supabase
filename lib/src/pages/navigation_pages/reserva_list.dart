@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
-import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
+import 'package:proypet/src/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
@@ -84,7 +84,7 @@ class _ReservaListState extends State<ReservaList> {
             floatingActionButton: FloatingActionButton(
               onPressed: (snapshot.data.length==0) 
                 ? null
-                : ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => ReservaMapaPage(establecimientos: snapshot.data))),
+                : ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => VetMapaPage(establecimientos: snapshot.data))),
               child: Icon(Icons.location_on),
               backgroundColor: colorMain,
             ),

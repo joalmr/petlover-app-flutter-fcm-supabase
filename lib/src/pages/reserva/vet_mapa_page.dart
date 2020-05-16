@@ -5,22 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 
 
-class ReservaMapaPage extends StatefulWidget {
+class VetMapaPage extends StatefulWidget {
   final establecimientos;
-  ReservaMapaPage({@required this.establecimientos});
+  VetMapaPage({@required this.establecimientos});
   @override
-  _ReservaMapaPageState createState() => _ReservaMapaPageState(vetLocales: establecimientos);
+  _VetMapaPageState createState() => _VetMapaPageState(vetLocales: establecimientos);
 }
 
-class _ReservaMapaPageState extends State<ReservaMapaPage> {
+class _VetMapaPageState extends State<VetMapaPage> {
   List<EstablecimientoModel> vetLocales;
-  _ReservaMapaPageState({@required this.vetLocales});
+  _VetMapaPageState({@required this.vetLocales});
   GoogleMapController _controller;
   List<Marker> allMarkers = [];
   PageController _pageController;
@@ -53,7 +53,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
           title: element.name, 
           snippet: '★ ${element.stars} (${element.attentions})',//element.direccion,
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(vet: element),
+            builder: (_)=>VetDetallePage(vet: element),
           )),
         ),
         position: LatLng(element.latitude,element.longitude), //element.locationCoords,
@@ -162,7 +162,7 @@ class _ReservaMapaPageState extends State<ReservaMapaPage> {
       },
       child: InkWell(
           onTap: ()=>Navigator.push(context, MaterialPageRoute(
-            builder: (_)=>ReservaDetallePage(vet: vetLocales[index]),
+            builder: (_)=>VetDetallePage(vet: vetLocales[index]),
           )),
           child: Stack(children: [
             Center(

@@ -15,24 +15,23 @@ import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-// import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ReservaDetallePage extends StatefulWidget {
+class VetDetallePage extends StatefulWidget {
   // final String vetID;
   final EstablecimientoModel vet;
-  ReservaDetallePage({this.vet});
+  VetDetallePage({this.vet});
   @override
-  _ReservaDetallePageState createState() => _ReservaDetallePageState(vet: vet);
+  _VetDetallePageState createState() => _VetDetallePageState(vet: vet);
 }
 
-class _ReservaDetallePageState extends State<ReservaDetallePage> {
+class _VetDetallePageState extends State<VetDetallePage> {
   // String vetID;
   EstablecimientoModel vet;
-  _ReservaDetallePageState({this.vet});
+  _VetDetallePageState({this.vet});
   final establecimientoProvider = EstablecimientoProvider();
   final mascotaProvider = MascotaProvider();
   final userProvider = UserProvider();
@@ -50,42 +49,7 @@ class _ReservaDetallePageState extends State<ReservaDetallePage> {
     return Scaffold(
       key: scaffoldKey,
       body: _onStack(context, vet)
-      // FutureBuilder(
-      //   future: establecimientoProvider.getVet(vetID),
-      //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-      //     if(snapshot.connectionState != ConnectionState.done){
-      //       return LinearProgressIndicator(
-      //         backgroundColor: Colors.grey[200],
-      //       );
-      //     }
-      //     else{
-      //       Map datovet = snapshot.data;
-      //       if(datovet['status']==200){
-      //         vet = datovet['establishment'];
-      //         return _onStack(context, vet);
-      //       }
-      //       else{
-      //         return FadeIn(
-      //           child: Center(
-      //             child: Container(
-      //               padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25 ),
-      //               width: MediaQuery.of(context).size.width,
-      //               child: Column(
-      //                 children: <Widget>[
-      //                   errorMessage("Lo sentimos, esta veterinaria ya no es parte de proypet"),
-      //                   SizedBox(height: 20.0,),
-      //                   buttonPri("Buscar veterinarias", _buscarVet)
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //         );
-      //       }
-      //     }
-      //   }
-      // )
-      
-
+    
     );
   }
 

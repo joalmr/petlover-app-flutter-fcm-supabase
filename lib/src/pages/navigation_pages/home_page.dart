@@ -59,17 +59,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {    
-    // return WillPopScope(
-      // onWillPop: () {
-      //   return new Future(() => false);
-      // },
-      return Scaffold(
-        key: _scaffoldKey,
-        backgroundColor: Colors.white,
-        endDrawer: ConfigDrawer(),
-        body: inUser()
-      );
-    // );
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Colors.white,
+      endDrawer: ConfigDrawer(),
+      body: inUser()
+    );
   }
   
   Widget inUser(){
@@ -90,7 +85,6 @@ class _HomePageState extends State<HomePage> {
               return errorInternet();
             }           
             return ListView(
-              //physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
                 SizedBox(height: 35.0,),
@@ -99,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Hola,", // + mascotas.length.toString(),
+                        "Hola,",
                         style: Theme.of(context)
                             .textTheme
                             .display1
@@ -112,7 +106,6 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                //onUser(),
                 FadeIn(child: _usuario(mydata.user)),
                 SizedBox(height: 25.0,),
                 FadeIn(child: _mascotas(mydata.pets)),
@@ -403,7 +396,10 @@ class _HomePageState extends State<HomePage> {
                     radius: 25.0,
                   ),
                   title: Text(atenciones[index].establishmentName),
-                  subtitle: Text(atenciones[index].petName),
+                  subtitle: Text(atenciones[index].status, 
+                    style: (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
+                    ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
+                    : TextStyle(fontWeight: FontWeight.bold) ,),
                   trailing: Column(
                     children: <Widget>[
                       Text(

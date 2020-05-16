@@ -2,14 +2,13 @@ import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
-import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
 final List imagen2 = ['images/royal1.jpg','images/elegante1.jpg'];
@@ -178,7 +177,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       // EstablecimientoModel vet = veterinaria['establishment'];
       Navigator.push(
         context,MaterialPageRoute(
-          builder: (context) => ReservaDetallePage(vet: veterinaria['establishment']),
+          builder: (context) => VetDetallePage(vet: veterinaria['establishment']),
       ));
     }
     else{
