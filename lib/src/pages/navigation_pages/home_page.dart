@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          "Reservas confirmadas",
+                          "Reservas",
                           style: TextStyle(
                             fontSize: sizeH2,
                             fontWeight: FontWeight.bold,
