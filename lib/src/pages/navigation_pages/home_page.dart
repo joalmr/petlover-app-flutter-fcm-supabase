@@ -17,7 +17,8 @@ import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
-import 'package:proypet/src/pages/reserva/detalleReserva/detalle_reserva.dart';
+// import 'package:proypet/src/pages/reserva/detalle_reserva.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                FadeIn(child: _atenciones(mydata.bookings,mydata.pets)),
+                FadeIn(child: _atenciones(mydata.bookings,mydata.pets.length)),
               ],
             );
           }
@@ -352,7 +353,7 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  Widget _atenciones(List<BookingHome> atenciones, petDato){
+  Widget _atenciones(List<BookingHome> atenciones, petLength){
     if(atenciones.length>0)
       return ListView.builder(
         padding: EdgeInsets.only(top: 5.0),
@@ -391,14 +392,10 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 ListTile(
-                  // onTap: ()=>
-                  //   Navigator.push(context, MaterialPageRoute(
-                  //     builder: (context) => DetalleReserva()
-                  //   ))
-                  // ,
+                  // onTap: ()=> Navigator.push(context, MaterialPageRoute(builder:(context)=>DetalleReservado())),
                   leading: CircleAvatar(
                     backgroundColor: colorMain,
-                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
+                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
                     radius: 25.0,
                   ),
                   title: Text(atenciones[index].establishmentName),
@@ -429,7 +426,7 @@ class _HomePageState extends State<HomePage> {
         },
       );
     else
-      if(petDato.length>0)
+      if(petLength>0)
         return Container(
           padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Column(

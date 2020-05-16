@@ -148,58 +148,55 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
       itemCount: historias.length,
       itemBuilder: (context, int index){
         return FlatButton(
-          onPressed: (){},          
+          onPressed: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount,"proximacita":historias[index].nextdate,"motivo":historias[index].reason} ),          
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: InkWell(
-              onTap: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount,"proximacita":historias[index].nextdate,"motivo":historias[index].reason} ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo), //('http://ce2019121721001.dnssw.net/storage/logos/default.jpg'), //CachedNetworkImageProvider(historialList[0].logo),
-                          radius: 25.0,
-                        ),
-                        SizedBox(width: 7.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              historias[index].establishment,
-                              //historialList[0].nombreVet,
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: sizeH3,
-                                fontWeight: FontWeight.w600
-                              ),
-                            ),
-                            iconosHistoria(historias[index].details)
-                            //Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Row(
                     children: <Widget>[
-                      Text(
-                        historias[index].createdAt.toString().split(' ')[0],
-                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
+                      CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo),
+                        radius: 25.0,
                       ),
-                      Text(
-                        historias[index].createdAt.toString().split(' ')[1],
-                        style: TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center,
+                      SizedBox(width: 7.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            historias[index].establishment,
+                            //historialList[0].nombreVet,
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: sizeH3,
+                              fontWeight: FontWeight.w600
+                            ),
+                          ),
+                          iconosHistoria(historias[index].details)
+                          //Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      historias[index].createdAt.toString().split(' ')[0],
+                      style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      historias[index].createdAt.toString().split(' ')[1],
+                      style: TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         );

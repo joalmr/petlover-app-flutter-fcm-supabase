@@ -27,6 +27,7 @@ Map<String,WidgetBuilder> getRoutes(){
     'detallehistoriamascota'    : (BuildContext context)=>HistoriaPage(),
     //destacado
     'detalledestacado'  : (BuildContext context)=>DetalleDestacadoPage(),
+    // 'detallereservado'  : (BuildContext context)=>DetalleReservado(),
 
   };
 }
