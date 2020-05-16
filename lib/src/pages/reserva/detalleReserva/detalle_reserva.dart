@@ -9,7 +9,13 @@ class DetalleReserva extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(null,'Detalle de reserva',null),
-
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            
+          ],
+        ),
+      ),
     );
   }
 }
