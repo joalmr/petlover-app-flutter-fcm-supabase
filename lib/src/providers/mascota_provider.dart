@@ -9,6 +9,7 @@ import 'package:proypet/src/model/mascota/pet_model.dart';
 
 class MascotaProvider{
   final _url = urlGlobal;
+  // final _prefs = new PreferenciasUsuario();
 
   Future<List<MascotaModel>> getPets() async {
     final url = '$_url/pets';
@@ -56,7 +57,8 @@ class MascotaProvider{
       'genre': mascota.genre.toString(), //int
     };
 
-    final resp = await http.post(url, headers: headersToken(),     
+    final resp = await http.post(url, 
+      headers: headersToken(),     
       body: data,
     );
 
@@ -72,11 +74,13 @@ class MascotaProvider{
 
   }
 
-  Future<Map<String,dynamic>> editPet(MascotaModel mascota, File imagen) async {
-    final url = '$_url/pets/${mascota.id}';
-    String img="";
-    // int intMascota=0;
-    // if() intMascota=1;    
+  Future<bool> editPet(MascotaModel mascota, File imagen) async {
+    final idkey = mascota.id;
+    final urlpet = '$_url/pets/$idkey/base64';
+    upImage(imagen,urlpet);
+
+    final url = '$_url/pets/$idkey';
+
     final data = {
       'name': mascota.name, 
       'birthdate': mascota.birthdate, //datetime
@@ -90,21 +94,8 @@ class MascotaProvider{
       body: data,
     );
 
-    if(resp.statusCode==200 || resp.statusCode==201){
-      if(imagen!=null){
-        final idkey = mascota.id;
-        final urlpet = '$_url/pets/$idkey/base64';
-        img = await upImage(imagen,urlpet);
-      }
-      return {
-        'edit': true,
-        'picture': img
-      };  
-    }
-    else return {
-      'edit': false,
-      'picture': ""
-    };
+    if(resp.statusCode==200) return true;      
+    else return false;
   }
 
   Future<bool> muerePet(MascotaModel mascota) async {
@@ -141,6 +132,9 @@ class MascotaProvider{
   }
 
   Future<String> upImage(File imagen,String url) async {
+
+    // print("subir imagen");
+
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
     final mimetype = mime(imagen.path).split('/');
@@ -153,8 +147,10 @@ class MascotaProvider{
       body: { 'base64':sendPic }
     );
 
+    print(img.statusCode);
+
     var decodeimg = json.decode(img.body);
-    print(decodeimg["picture"]);
+    // print(decodeimg["picture"]);
     return decodeimg["picture"];
   }
 

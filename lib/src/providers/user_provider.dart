@@ -18,13 +18,13 @@ class UserProvider{
       final loginData = { "email": login.email, "password": login.password };
       final resp = await http.post(url, body: loginData );
 
-      print(resp.body);
+      // print(resp.body);
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       
       if(decodedResp.containsKey('token')){
         _prefs.token = decodedResp['token'];
-        print(_prefs.token);
+        // print(_prefs.token);
         return {
           'ok':true,
           'verify':decodedResp['verify'],
@@ -61,34 +61,40 @@ class UserProvider{
     };
     final resp = await http.post(url, headers: headersToken(),
       body: changePass );
-    print(resp.statusCode);
+    // print(resp.statusCode);
     return resp.statusCode;
   }
 
-  Future<bool> forgotPassword(String email) async{
+  Future<int> forgotPassword(String email) async{
     final url = '$_url/password/reset';
 
     final emailData = { "email": email };
     final resp = await http.post(url, body: emailData );
-    if(resp.statusCode==200) return true;
-    else return false;
+    return resp.statusCode;
   }
+
+  // bool validateMain() {
+  //   var valor;
+  //   getUserSummary().then((dato)=>
+  //     valor = dato
+  //   );
+    
+  //   // if(valor==null){
+  //   //   return false;
+  //   // }
+  //   // else{
+  //   //   return true;
+  //   // }
+  // }
+
   //summary
-  Future<dynamic> getUserSummary() async {
+  Future<HomeModel> getUserSummary() async {
     final url = '$_url/summary';
     // print(_prefs.token);
     final resp = await http.get(url, headers: headersToken(), );
-    
-    if(resp.statusCode==200){
-      try{
-        HomeModel homeModel = homeModelFromJson(resp.body);
-        return homeModel;
-      }
-      catch(ex){
-        return null;
-      }
-    }
-    else return null;
+
+    HomeModel homeModel = homeModelFromJson(resp.body);
+    return homeModel;
   }
 
   Future<bool> registerUser(UserDato user) async {

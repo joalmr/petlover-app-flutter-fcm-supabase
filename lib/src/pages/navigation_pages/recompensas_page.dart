@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/model/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
 class RecompensasPage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(leadingH,'Recompensas',null),
+      appBar: appbar(leadingH,'Puntos',null),
       body: RefreshIndicator(
         key: refreshKey,
         onRefresh: _onRefresh,
@@ -53,12 +54,16 @@ class _RecompensasPageState extends State<RecompensasPage> {
     return FutureBuilder(
       future: stream,//bonificacionProvider.getBonificacion(),
       builder: (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
-        if(!snapshot.hasData){
+        if(snapshot.connectionState != ConnectionState.done){
           return LinearProgressIndicator(
             backgroundColor: Colors.grey[200],
           );
         }
         else {
+          if(snapshot.hasError){
+            return errorInternet();
+          }
+          
           BonificacionModel bonificacion = snapshot.data;
           return ListView(
             // padding: ,

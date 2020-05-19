@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/buildVets/buildVet.dart';
-import 'package:proypet/src/pages/reserva/reserva_mapa_page.dart';
+import 'package:proypet/src/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
 import 'package:proypet/src/pages/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
@@ -16,10 +17,31 @@ class ReservaList extends StatefulWidget {
 class _ReservaListState extends State<ReservaList> {
 
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
   List<int> listaFiltros=[];
+  var stream;
   // final _prefs = new PreferenciasUsuario();
   // String val="";
+
+  Future<List<EstablecimientoModel>> newFuture() => vetProvider.getVets(listaFiltros);
+
+  Future<Null> _onRefresh() async {
+    refreshKey.currentState?.show();
+    await Future.delayed(Duration(milliseconds: 2));
+
+    setState(() {
+      stream = newFuture();
+    });
+    return null;
+  }
+
+  @override
+  void initState() {
+    //implement initState
+    _onRefresh();
+    super.initState();    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +53,9 @@ class _ReservaListState extends State<ReservaList> {
     
 
     return FutureBuilder(
-      future: vetProvider.getVets(listaFiltros),
+      future: stream,
       builder: (BuildContext context, AsyncSnapshot<List<EstablecimientoModel>> snapshot){
-        if(!snapshot.hasData)
+        if(snapshot.connectionState != ConnectionState.done)
           return Scaffold(
             appBar: appbar(leadingH,'Buscar veterinarias',
               null
@@ -43,6 +65,10 @@ class _ReservaListState extends State<ReservaList> {
             ),
           );
         else{
+          if(snapshot.hasError){
+            return errorInternet();
+          }
+          
           return Scaffold(
             key: _key,            
             endDrawer: FiltrosMapa(filtros: listaFiltros,),//listaFiltros
@@ -58,7 +84,7 @@ class _ReservaListState extends State<ReservaList> {
             floatingActionButton: FloatingActionButton(
               onPressed: (snapshot.data.length==0) 
                 ? null
-                : ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => ReservaMapaPage(establecimientos: snapshot.data))),
+                : ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => VetMapaPage(establecimientos: snapshot.data))),
               child: Icon(Icons.location_on),
               backgroundColor: colorMain,
             ),
@@ -69,36 +95,42 @@ class _ReservaListState extends State<ReservaList> {
     );
   }
 
+
+
   _onTab(List<EstablecimientoModel> vetLocales) {
     return Stack(
       children: <Widget>[
-        CustomScrollView(
-          slivers: <Widget>[
-            _listarChip(listaFiltros),
-            (vetLocales.length<1)?
-            SliverToBoxAdapter(
-              child: SizedBox(height: 50.0,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Text("No se encontró veterinarias"),
+        RefreshIndicator(
+          key: refreshKey,
+          onRefresh: _onRefresh,
+          child: CustomScrollView(
+            slivers: <Widget>[
+              _listarChip(listaFiltros),
+              (vetLocales.length<1)?
+              SliverToBoxAdapter(
+                child: SizedBox(height: 50.0,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("No se encontró veterinarias"),
+                    ),
                   ),
                 ),
+              )
+              :
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index){                  
+                    return buildVets(context, vetLocales[index]);               
+                  },
+                  childCount: vetLocales.length,
+                ),
               ),
-            )
-            :
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index){                  
-                  return buildVets(context,index, vetLocales);               
-                },
-                childCount: vetLocales.length,
+              SliverToBoxAdapter(
+                child: SizedBox(height: 50.0),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: SizedBox(height: 50.0),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

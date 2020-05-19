@@ -1,19 +1,20 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
+import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/pages/shared/card_swiper.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
-  Widget buildVets(BuildContext context, int index, List<EstablecimientoModel> vetLocales){
-    var vet = vetLocales[index % vetLocales.length];
+  Widget buildVets(BuildContext context, EstablecimientoModel vetLocales){
+    var vet = vetLocales;
 
       return FadeIn(
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
           child: InkWell(
             onTap: ()=>Navigator.push(context, MaterialPageRoute(
-              builder: (_)=>ReservaDetallePage(vet: vet),
+              builder: (_)=>VetDetallePage(vet: vet,),
             )),
             child: Material(
               child: Column(
@@ -29,7 +30,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
                           padding: EdgeInsets.all(8.0),
                           child: CircleAvatar(
                             backgroundColor: Colors.transparent,
-                            backgroundImage: NetworkImage(vet.logo),
+                            backgroundImage: CachedNetworkImageProvider(vet.logo),
                             radius: 25.0,
                           ),
                         ),
@@ -51,7 +52,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
                               children: <Widget>[
                                 Icon(Icons.star, color: colorYellow, size: 12.0),
                                 SizedBox(width: 0.5),
-                                Text(vet.stars.toString() + ' ('+vet.votes.toString()+')',style: TextStyle(fontSize: sizeH4,color: Colors.grey[600],fontWeight: FontWeight.w400))
+                                Text(vet.stars.toString() + ' ('+vet.attentions.toString()+')',style: TextStyle(fontSize: sizeH4,color: Colors.grey[600],fontWeight: FontWeight.w400))
                               ],
                             ),
                           ],

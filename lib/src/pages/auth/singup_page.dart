@@ -95,7 +95,7 @@ class _SingupPageState extends State<SingupPage> {
                           style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
                           recognizer: new TapGestureRecognizer()
                             ..onTap = () { 
-                              launch('https://beta.proypet.com/Recursos/Terminos');
+                              launch('https://proypet.com/terminos');
                           },
                         ),
                         TextSpan(text: ' y ',style: TextStyle()),
@@ -103,7 +103,7 @@ class _SingupPageState extends State<SingupPage> {
                           style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
                           recognizer: new TapGestureRecognizer()
                               ..onTap = () { 
-                                launch('https://beta.proypet.com/Recursos/Politicas');
+                                launch('https://proypet.com/politicas');
                             },
                         )
                       ],
@@ -136,15 +136,22 @@ class _SingupPageState extends State<SingupPage> {
 
   _onSaved() async {
     setState(() {
+      btnBool = false;
       formKey.currentState.save();
     });
 
     if(user.name.trim()=="" || user.lastname.trim()=="" || user.email.trim()=="" || user.password.trim()==""){
       mostrarSnackbar("Debe completar los campos",colorRed,scaffoldKey);
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { btnBool = true; });
+      });
     }
     else{
       if(user.password.length<5){
         mostrarSnackbar("La contraseña debe ser no menor a 5 dígitos",colorRed,scaffoldKey);
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { btnBool = true; });
+        });
       }
       else{
         bool resp = await userProvider.registerUser(user);
@@ -171,7 +178,12 @@ class _SingupPageState extends State<SingupPage> {
           
         }
         //Navigator.of(context).pushNamedAndRemoveUntil('/login', ModalRoute.withName('/login')); //
-        else mostrarSnackbar("No se registró el usuario, correo existente",colorRed,scaffoldKey);
+        else{
+          mostrarSnackbar("No se registró el usuario, correo existente",colorRed,scaffoldKey);
+          Timer(Duration(milliseconds: 1500), (){
+            setState(() { btnBool = true; });
+          });
+        }
       }
       
     }

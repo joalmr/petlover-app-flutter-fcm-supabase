@@ -15,6 +15,8 @@ class HistoriaModel {
     String bodyCondition;
     String createdAt;
     dynamic amount;
+    String nextdate;
+    String reason;
     dynamic details;
 
     HistoriaModel({
@@ -28,6 +30,8 @@ class HistoriaModel {
         this.bodyCondition,
         this.createdAt,
         this.amount,
+        this.nextdate,
+        this.reason,
         this.details,
     });
 
@@ -42,6 +46,8 @@ class HistoriaModel {
         bodyCondition: json["body_condition"],
         createdAt: json["created_at"],
         amount: json["amount"]==null ? 0 : json["amount"],
+        nextdate: json["nextdate"]==null ? "" : json["nextdate"],
+        reason: json["reason"]==null ? "" : json["reason"],
         details: json["details"], //List<dynamic>.from(json["details"].map((x) => x)),
     );
 

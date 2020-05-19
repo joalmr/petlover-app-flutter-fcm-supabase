@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
@@ -22,7 +23,7 @@ class CardSwiper extends StatelessWidget {
           return ClipRRect(
             borderRadius: BorderRadius.circular(radius),
             child: Image(
-              image: urlBool ? NetworkImage(imagenes[index]) : AssetImage(imagenes[index]),
+              image: urlBool ? CachedNetworkImageProvider(imagenes[index]) : AssetImage(imagenes[index]),
               fit: BoxFit.cover,
             )
           );

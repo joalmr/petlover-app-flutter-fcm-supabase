@@ -1,11 +1,14 @@
 import 'dart:async';
-
+import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
-import 'package:proypet/src/pages/reserva/reserva_detalle_page.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
 final List imagen2 = ['images/royal1.jpg','images/elegante1.jpg'];
@@ -61,14 +64,17 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     return FutureBuilder(
       future: stream,//notificacionProvider.getNotificacion(),
       builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
-        if(!snapshot.hasData){
+        if(snapshot.connectionState != ConnectionState.done){
           return LinearProgressIndicator(
             backgroundColor: Colors.grey[200],
           );
         }
         else{
-          List<Notificacion> notification = snapshot.data.notifications;
+          if(snapshot.hasError){
+            return errorInternet();
+          } 
 
+          List<Notificacion> notification = snapshot.data.notifications;
           if(notification.length<1){
             return Center(
               child: Padding(
@@ -79,7 +85,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
           }
           else{
             return ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 20.0, ),
+              padding: EdgeInsets.symmetric(vertical: 10.0, ),
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: notification.length,
@@ -111,44 +117,100 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   }
 
   _comingBooking(notificacion){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0), //horizontal: 20.0
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
-      title: Text(notificacion.message,
-        style: TextStyle(color: Colors.black54),),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0), //horizontal: 20.0
+            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
+            title: Text(notificacion.message,
+              style: TextStyle(color: Colors.black54),),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 
   _nextDate(notificacion){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
-      title: Text(notificacion.message,
-        style: TextStyle(color: Colors.black54),),
-      onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
+            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
+            title: Text(notificacion.message,
+              style: TextStyle(color: Colors.black54),),
+            onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 
   _recordatory(notificacion){
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-      leading: CircleAvatar(radius: 25.0 ,backgroundImage: NetworkImage(notificacion.petPicture),),
-      title: Text(notificacion.message,
-        style: TextStyle(color: Colors.black54),),
-      onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
+            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
+            title: Text(notificacion.message,
+              style: TextStyle(color: Colors.black54),),
+            onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
+          ),
+          Divider(),
+        ],
+      ),
     );
 
   }
 
-  _fnEstablecimiento(id){
-    Navigator.push(
-      context,MaterialPageRoute(
-        builder: (context) => ReservaDetallePage(vetID: id),
-    ));
+  _fnEstablecimiento(id) async {
+    final establecimientoProvider = EstablecimientoProvider();
+    Map veterinaria = await establecimientoProvider.getVet(id);
+    if(veterinaria['status']==200){
+      // EstablecimientoModel vet = veterinaria['establishment'];
+      Navigator.push(
+        context,MaterialPageRoute(
+          builder: (context) => VetDetallePage(vet: veterinaria['establishment']),
+      ));
+    }
+    else{
+      showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return FadeIn(
+            child: SimpleDialog(
+              contentPadding: EdgeInsets.all(20.0),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                  Text('Lo sentimos, esta veterinaria ya no forma parte de proypet'),
+                  Center(
+                    child: Image(
+                      height: 200,      
+                      width: 200, 
+                      image: AssetImage("images/gato-error.png")
+                    ),
+                  ),
+              ],
+              
+            ),
+          );
+        }
+      );
+    }
+    
+    
   }
 
   _fnRecordatorio(String slug){    
-    print(slug);
+    // print(slug);
     Navigator.pushNamed(context, 'navLista', arguments:{ "filtros": [ slugNum[slug] ] } );
   }
 

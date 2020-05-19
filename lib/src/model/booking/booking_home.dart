@@ -9,6 +9,7 @@ class BookingHome {
     String date;
     String time;
     String status;
+    int statusId;
 
     BookingHome({
         this.id,
@@ -21,6 +22,7 @@ class BookingHome {
         this.date,
         this.time,
         this.status,
+        this.statusId,
     });
 
     factory BookingHome.fromJson(Map<String, dynamic> json) => BookingHome(
@@ -34,6 +36,7 @@ class BookingHome {
         date: json["date"],
         time: json["time"],
         status: json["status"],
+        statusId: json["status_id"],
     );
 
     Map<String, dynamic> toJson() => {

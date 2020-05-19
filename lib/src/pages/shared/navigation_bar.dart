@@ -49,7 +49,7 @@ class _NavigationBarState extends State<NavigationBar> {
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.monetization_on,),
-        title: Text('Recompensas',style: TextStyle(fontSize: 10.5)),//
+        title: Text('Puntos',style: TextStyle(fontSize: 10.5)),//
       ),
     ];
 

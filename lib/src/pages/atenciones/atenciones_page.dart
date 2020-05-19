@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:proypet/src/model/antecion/atencion_model.dart';
@@ -43,7 +44,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
         }
         else{
           List<AtencionModel> atencionModel = snapshot.data;
-          print(atencionModel);
+          // print(atencionModel);
           if(atencionModel.length<1){
             return Center(
               child: Padding(
@@ -67,7 +68,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
                         ListTile(
                           leading: CircleAvatar(
                             backgroundColor: colorMain,
-                            backgroundImage: NetworkImage(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
+                            backgroundImage: CachedNetworkImageProvider(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
                             radius: 25.0,
                           ),
                           title: Text(_atencion.establishmentName),

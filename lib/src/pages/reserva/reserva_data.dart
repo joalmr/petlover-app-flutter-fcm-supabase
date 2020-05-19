@@ -50,6 +50,8 @@ class _Data extends State<DataReserva> {
     {'id':'2','name':'Vacuna',},
     {'id':'3','name':'Baño',},
     {'id':'4','name':'Desparasitación',},
+    {'id':'5','name':'Baño y corte',},
+    {'id':'6','name':'Otro servicio',},
   ];
   
   List _delivery = [
@@ -63,6 +65,7 @@ class _Data extends State<DataReserva> {
   String deliveryId = "1";
   String observacion="";
   bool boolPet=false;
+  bool clickReservar = true;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,7 @@ class _Data extends State<DataReserva> {
             Text('Hora'),
             _crearHora(context),                       
             delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
-            delivery ? Text('Servicio de transporte') : SizedBox(height: 0.0,) ,
+            delivery ? Text('Movilidad') : SizedBox(height: 0.0,) ,
             delivery ? ddlMain(deliveryId, _delivery, 
               (opt){ setState(() {
                   deliveryId=opt; 
@@ -113,8 +116,20 @@ class _Data extends State<DataReserva> {
             SizedBox(height: 12.0,),
             Text('Observación'),
             textfieldArea(_inputObservacioController,'Ingrese observación (opcional)',null,null),
+            Text.rich(
+              TextSpan(
+                text: '*Si seleccionó ', // default text style
+                children: <TextSpan>[
+                  TextSpan(text: 'Otro servicio',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(text: ', especifíquelo en observaciones',style: TextStyle()),
+                ],
+              ),
+              style: TextStyle(fontSize: sizeH5),
+            ),
             SizedBox(height: 20.0,),
-            buttonPri('Confirmar reserva', ()=>reservaDialog()),      
+            buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null ),      
             SizedBox(height: 5.0),
             FlatButton(
               child: new Text("Cancelar",style: TextStyle(color: colorMain)),
@@ -163,14 +178,15 @@ class _Data extends State<DataReserva> {
 
   _selectDate(BuildContext context) async {
     DateTime picked = await showDatePicker(
-      context: context, 
+      context: context,
       initialDate: new DateTime.now(), 
+      // locale: Locale('es','ES'),
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
     );
 
     if(picked!=null){
-      final f = new DateFormat('yyyy-MM-dd');
+      final f = new DateFormat('yyyy-MM-dd'); // DateFormat('yyyy-MM-dd');
       setState(() {
         _fecha= f.format(picked);
         _inputFechaController.text = _fecha;
@@ -252,26 +268,16 @@ class _Data extends State<DataReserva> {
   }
 
   reservaDialog() async {
+    
+    setState(() {
+      clickReservar = false;      
+    });
+
     if(_inputFechaController.text=="" || _inputHoraController.text=="" ){
       mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
-      // showDialog(
-      //   context: context,
-      //   builder: (BuildContext context){
-      //     return FadeIn(
-      //       child: AlertDialog(
-      //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      //         title: Text('Error'),
-      //         content: Text('Debe ingresar fecha y hora de la reserva.'),
-      //         actions: <Widget>[
-      //           FlatButton(
-      //             onPressed: ()=>Navigator.pop(context), 
-      //             child: Text('Continuar')
-      //           ),
-      //         ],
-      //       ),
-      //     );
-      //   }
-      // );
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { clickReservar = true; });
+      });
     }
 
     else{
@@ -280,9 +286,11 @@ class _Data extends State<DataReserva> {
       var fechaTime = DateTime.parse(_inputFechaController.text+" "+_inputHoraController.text);
       String fechaTimeAt = DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
       
-      // if(fechaTime.hour>=now.hour && fechaTime.day>=now.day && fechaTime.month>=now.month && fechaTime.year>=now.year)
-      if(formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour<now.hour){
+      if(formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour<(now.hour-1)){
         mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { clickReservar = true; });
+        });
       }
       else{
         booking.bookingAt = fechaTimeAt;
@@ -294,27 +302,33 @@ class _Data extends State<DataReserva> {
         var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
         var deliveryText = "";
         var direccionText="";
-        if(delivery){
+        if(delivery==true && deliveryId!="1"){
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
           direccionText = _inputDireccionController.text;
         }
-
-        bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
-
-        if(resp){
-          showDialog(context: context,builder: 
-          (BuildContext context)=> FadeIn(
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              content: Container(
-                height: 100.0,
-                child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
-              ),
-            ),
-          ), barrierDismissible: false );
-          Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
+        if(delivery==true && deliveryId!="1" && direccionText.trim()==""){
+          setState(() { clickReservar = true; });
+          mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
         }
+        else{
+          bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
+
+          if(resp){
+            showDialog(context: context,builder: 
+            (BuildContext context)=> FadeIn(
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                content: Container(
+                  height: 100.0,
+                  child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
+                ),
+              ),
+            ), barrierDismissible: false );
+            Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
+          }
+        }
+        
       }
     }
   }

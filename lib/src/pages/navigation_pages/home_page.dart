@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
+import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
@@ -13,8 +14,11 @@ import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
+// import 'package:proypet/src/pages/reserva/detalle_reserva.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
   }
 
-  Future<dynamic> newFuture() => loginProvider.getUserSummary();
+  Future<HomeModel> newFuture() => loginProvider.getUserSummary();
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -55,7 +59,6 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
@@ -72,16 +75,18 @@ class _HomePageState extends State<HomePage> {
       onRefresh: _onRefresh,
       child: FutureBuilder(
         future: stream,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+        builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot){
           final mydata=snapshot.data;
-          if(!snapshot.hasData){
+          if(snapshot.connectionState != ConnectionState.done){
             return LinearProgressIndicator(
               backgroundColor: Colors.grey[200],
             );
           }
-          else{            
+          else{ 
+            if(snapshot.hasError){
+              return errorInternet();
+            }           
             return ListView(
-              //physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               children: <Widget>[
                 SizedBox(height: 35.0,),
@@ -90,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Hola,", // + mascotas.length.toString(),
+                        "Hola,",
                         style: Theme.of(context)
                             .textTheme
                             .display1
@@ -103,7 +108,6 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                //onUser(),
                 FadeIn(child: _usuario(mydata.user)),
                 SizedBox(height: 25.0,),
                 FadeIn(child: _mascotas(mydata.pets)),
@@ -147,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          "Próxima atención",
+                          "Reservas",
                           style: TextStyle(
                             fontSize: sizeH2,
                             fontWeight: FontWeight.bold,
@@ -297,7 +301,7 @@ class _HomePageState extends State<HomePage> {
                           // onPressed: ()=>Navigator.push(context, MaterialPageRoute(
                           //   builder: (_)=>MascotaDetallePage(mascota: mascotas[index],),
                           // )),
-                          onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index]),
+                          onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index].id),
                           child: Text(
                             'Ver más',
                             style: TextStyle(
@@ -344,22 +348,15 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 10.0,),
             buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
-            // FlatButton(
-            //   child: Text('Agregar mascota',
-            //     style: TextStyle(
-            //       color: colorMain,
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 16.0),),
-            //   onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
-            // )
           ],
         ),
       );
   }
 
-  Widget _atenciones(List<BookingHome> atenciones,lengthPet){
+  Widget _atenciones(List<BookingHome> atenciones, petLength){
     if(atenciones.length>0)
       return ListView.builder(
+        padding: EdgeInsets.only(top: 5.0),
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: atenciones.length,
@@ -370,7 +367,6 @@ class _HomePageState extends State<HomePage> {
               color: colorRed,
             ),
             direction: DismissDirection.endToStart,
-            // onDismissed: (fn){},
             confirmDismiss: (fn)=>showDialog(
               context: context,
               builder: (BuildContext context){
@@ -396,13 +392,17 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: <Widget>[
                 ListTile(
+                  // onTap: ()=> Navigator.push(context, MaterialPageRoute(builder:(context)=>DetalleReservado())),
                   leading: CircleAvatar(
                     backgroundColor: colorMain,
-                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),//AssetImage('images/greco.png'),//
+                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
                     radius: 25.0,
                   ),
                   title: Text(atenciones[index].establishmentName),
-                  subtitle: Text(atenciones[index].petName),
+                  subtitle: Text(atenciones[index].status, 
+                    style: (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
+                    ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
+                    : TextStyle(fontWeight: FontWeight.bold) ,),
                   trailing: Column(
                     children: <Widget>[
                       Text(
@@ -426,10 +426,8 @@ class _HomePageState extends State<HomePage> {
         },
       );
     else
-      if(lengthPet>0)
+      if(petLength>0)
         return Container(
-          // height: 150.0,
-          // width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -452,19 +450,11 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable', //Vamos, agrega a tu mascota y se parte de la comunidad responsable
+            Text('Vamos, agrega a tu mascota y se parte de la comunidad responsable',
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 10.0,),
             buttonPri('Agregar mascota', ()=>Navigator.pushNamed(context, 'agregarmascota'),),
-            // FlatButton(
-            //   child: Text('Agregar mascota',
-            //     style: TextStyle(
-            //       color: colorMain,
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 16.0),),
-            //   onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
-            // )
           ],
         ),
       );
@@ -482,8 +472,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-
-
   _emergencia(){
     return InkWell(
       borderRadius: BorderRadius.circular(15.0),
@@ -498,13 +486,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.red.withOpacity(0.5),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
-              // color: colorRed
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/v_emergencia.jpg'),
+                image: AssetImage('images/fre-emergencia.jpg'),
               )
             ),
           ),
@@ -539,12 +525,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/v_consulta.jpg'),
+                image: AssetImage('images/fre-consulta.jpg'),
               )
             ),
           ),
@@ -574,12 +559,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/v_vacuna.jpeg'),
+                image: AssetImage('images/fre-vacuna.jpeg'),
               )
             ),
           ),
@@ -609,12 +593,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/v_banio.jpg'),
+                image: AssetImage('images/fre-banio.jpg'),
               )
             ),
           ),
@@ -644,12 +627,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black.withOpacity(0.25),
               borderRadius: BorderRadius.circular(15.0),
             ),
-            //padding: EdgeInsets.all(25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('images/v_desparacita.jpg'),
+                image: AssetImage('images/fre-desparacita.jpg'),
               )
             ),
           ),

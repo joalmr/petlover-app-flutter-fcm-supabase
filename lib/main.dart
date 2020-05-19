@@ -1,63 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/auth/login_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/routes/routes.dart';
  
-
-// final prefs = new PreferenciasUsuario();
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
+
   runApp(MyApp());
-}
-
-final loginProvider = UserProvider();
-var rutaInicio='login';
-dynamic resp;
-
-_valida() async {
-  resp = await loginProvider.getUserSummary();
-}
+} 
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
     final prefs = new PreferenciasUsuario();
+    // final loginProvider = UserProvider();
     
-    
+    var rutaInicio='login';
     if(prefs.token!=''){
-      _valida();
-      if(resp != null) {
-        rutaInicio='navInicio';
-      }
-
-      else{
-        print("valor null");
-        prefs.token = '';
-        prefs.position='';
-      }
+      // loginProvider.validateMain();
+      rutaInicio='navInicio';
     }
 
     return MaterialApp(
       title: 'Proypet',
       theme: ThemeData( 
-        fontFamily: 'Lato',
+        fontFamily: 'Lato', //GoogleFonts.lato(),//
         primarySwatch: Colors.teal,
       ) ,
-      debugShowCheckedModeBanner: false,      
+      debugShowCheckedModeBanner: false, 
+      localizationsDelegates: [
+        // ... app-specific localization delegate[s] here
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+          const Locale('en','US'), // English
+          const Locale('es','ES'), // Español
+        ],     
       routes: getRoutes(),
       initialRoute: rutaInicio,
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
-          builder: (BuildContext context)=>LoginPage() //cuando falle NavigationBar(currentTabIndex: 0)
+          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //ruta general
         );
-      },      
+      },
     );
   }
 }
-
-

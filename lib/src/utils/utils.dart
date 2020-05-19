@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' show cos, sqrt, asin;
 import 'package:geolocator/geolocator.dart';
@@ -56,7 +57,7 @@ calculateAge(DateTime birthDate) {
       lista.add(DropdownMenuItem(
         child: Row(
           children: <Widget>[
-            CircleAvatar(backgroundImage: NetworkImage(_lista.picture), radius: 20.0,),
+            CircleAvatar(backgroundImage: CachedNetworkImageProvider(_lista.picture), radius: 20.0,),
             SizedBox(width: 5.0,),
             Text(_lista.name),
           ],
@@ -82,10 +83,11 @@ calculateAge(DateTime birthDate) {
     List<DropdownMenuItem<String>> lista = new List();
     _lista.forEach((_lista){
       lista.add(DropdownMenuItem(
-        child: Text(_lista.name),
-        value: _lista.id+";"+_lista.name
+        child: Text(_lista.name.toString()),
+        value: "${_lista.id}|${_lista.name}"//_lista.id.toString()
       ));
     });
+    // print(lista);
     return lista;
   }
 

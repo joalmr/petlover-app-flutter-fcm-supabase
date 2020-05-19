@@ -134,26 +134,21 @@ class _DdlControl2 extends State<DdlControl2> {
   Widget ddlSearchFuture(opcionSeleccionada, lista, cambiaOpc){
     try{
       return Material(
-        elevation: 0.0,
         borderRadius: borderRadius,
         color: Colors.grey[200],
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: DropdownButtonHideUnderline(
-            child: SearchableDropdown(
-              items: getOpcionesSearch(lista),
-              value: opcionSeleccionada,
-              onChanged: cambiaOpc,
-              hint: "Seleccione raza",
-              searchHint: "Seleccione raza",
-              isExpanded: true,
-              closeButton: "Cerrar",
-              icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
-              displayClearIcon: false,
-              underline: "",
-            ),
-          ),
-        ), 
+        elevation: 0.0,
+        child: SearchableDropdown.single( 
+          icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
+          hint: "Seleccione raza",
+          searchHint: "Seleccione raza",
+          items: getOpcionesSearch(lista),
+          value: opcionSeleccionada,              
+          onChanged: cambiaOpc,
+          isExpanded: true,
+          closeButton: null,            
+          displayClearIcon: false,
+          underline: "",
+        ),
       );
     }
     catch(ex){
@@ -162,4 +157,3 @@ class _DdlControl2 extends State<DdlControl2> {
       );
     }
   }
-

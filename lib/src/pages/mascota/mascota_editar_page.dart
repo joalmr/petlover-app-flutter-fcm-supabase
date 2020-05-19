@@ -1,13 +1,15 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/raza/raza_model.dart';
 import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:intl/intl.dart';
 import 'package:proypet/src/pages/shared/ddl_control.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/form_control/text_from.dart';
@@ -18,41 +20,43 @@ import 'package:proypet/src/utils/styles/styles.dart';
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
 final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
-class MascotaAgregarPage extends StatefulWidget {
+
+class MascotaEditarPage extends StatefulWidget {
+  final MascotaModel mascotaData;
+  MascotaEditarPage({@required this.mascotaData, }); 
+
   @override
-  _MascotaAgregarPageState createState() => _MascotaAgregarPageState();
+  _MascotaEditarPageState createState() => _MascotaEditarPageState(mascotaData: mascotaData);
 }
 
-class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
-  String _fecha ='';
-  // final _shape = BorderRadius.circular(10.0);  
+class _MascotaEditarPageState extends State<MascotaEditarPage> {
+  MascotaModel mascotaData;
+  _MascotaEditarPageState({@required this.mascotaData, });
+
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final mascotaProvider = new MascotaProvider();
   final razaProvider = new RazaProvider();
-  TextEditingController _inputFechaController=new TextEditingController();
-
+  
   bool btnBool = true;
   File foto;
-  String datoPet = tipopet[0]['id'];
-  String opcRaza = '';//'390|Gatos Mestizo de pelo corto';
-  MascotaModel mascotaData = new MascotaModel();
-
-  String fechaEdit = '';
-  String sexo="0";
+  String datoPet = '';
+  String opcRaza = ''; 
   RazaModel razaLista;
-  
+
   Future<RazaModel> traeRazas() => razaProvider.getBreed(datoPet);
 
   obtenerRaza() async {
     razaLista = await razaProvider.getBreed(datoPet);
-    // mascotaData.breedId = razaLista.breeds.first.id;
-    opcRaza = "${razaLista.breeds.first.id}|${razaLista.breeds.first.name}";
+    var item = razaLista.breeds.where((x) => x.id == mascotaData.breedId );
+    opcRaza = "${item.first.id}|${item.first.name}";
+    mascotaData.breedId = item.first.id;
     setState(() { });
   }
 
   @override
   void initState() {
+    datoPet=mascotaData.specieId.toString();
     //implement initState
     obtenerRaza();
     super.initState();    
@@ -60,13 +64,11 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
   @override
   Widget build(BuildContext context) {
-    mascotaData.specieId = int.tryParse(datoPet);
-
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(
         null,
-        'Agregar mascota',
+        'Editar mascota',
         null,
       ),
       body: (razaLista==null) ? LinearProgressIndicator(
@@ -74,7 +76,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       ) : SingleChildScrollView(
         child: Form(
           key: formKey,
-          child: Column(                
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 25.0,),
@@ -119,7 +121,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                       )
                     ],
                   ),
-                )
+                ) //Text('Foto de mi mascota'),
               ),
               SizedBox(height: 10.0,),
               Padding(
@@ -128,8 +130,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                   Icons.pets, false, 
                   (value)=>mascotaData.name=value, 
                   TextCapitalization.words, 
-                  null,
-                  TextInputType.text),
+                  mascotaData.name,
+                  TextInputType.text
+                ),
               ),
               SizedBox(height: 10.0,),
               Padding(
@@ -138,122 +141,57 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlMain(datoPet, tipopet, 
-                  (opt){ setState(() {
-                    datoPet=opt; 
-                    opcRaza='';
-                    mascotaData.specieId = int.tryParse(opt);
-                    obtenerRaza();
-                  }
-                );})
+                child: ddlMainOut(datoPet, tipopet, null, mascotaData.specieName),
               ),
               SizedBox(height: 10.0,),
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                 child: Text('Seleccione raza'),
               ),
-              
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlSearchFuture( opcRaza, razaLista.breeds, 
-                  (opt){ setState(() { 
-                    opcRaza=opt.toString();
-                    mascotaData.breedId = int.tryParse(opt.split("|")[0]);
-                  }); }
-                )
+                child: ddlSearchFuture( 
+                  opcRaza, razaLista.breeds, 
+                  (opt){ 
+                    setState(() { 
+                      opcRaza=opt.toString();
+                      mascotaData.breedId = int.tryParse(opt.split("|")[0]);
+                      // mascotaData.breedId=int.tryParse(opt);
+                    }); 
+                  }
+                ),
               ),
               SizedBox(height: 10.0,),
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                 child: Text('Fecha de nacimiento'),
               ),
+              // DateTimePickerFormField(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: _crearFecha(context), //,petData
+                child: _crearFecha(context),
               ),
               SizedBox(height: 10.0,),   
               Padding(
                 padding: const EdgeInsets.only(left: 25.0, right: 25.0, bottom: 2.5) ,
                 child: Text('Sexo'),
               ),                 
-              _sexo(),
+              _sexoEdit(),
               SizedBox(height: 25.0,),
               Center(
-                child: buttonPri('Agregar mascota', btnBool ? _onAdd : null )
+                child: buttonPri('Guardar cambios', btnBool ? _onAdd : null ) //()=>agregarDialog()
+                //(petData==null)?'Agregar mascota':'Guardar cambios'
               ),
             ],
-          ),
+          )
         ),
       ),
-        
-    );
-  }
-  
-
-  Widget _crearFecha(BuildContext context){ //petData
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: Colors.grey[200],
-      child: TextFormField(
-        enableInteractiveSelection: false,
-        controller: _inputFechaController,
-        onTap: (){
-          FocusScope.of(context).requestFocus(new FocusNode());
-          _selectDate(context); //petData
-        },
-        onSaved: (value)=>mascotaData.birthdate=value,
-        cursorColor: colorMain,
-        decoration: InputDecoration(
-          hintText: 'Fecha de nacimiento',
-          hintStyle: TextStyle(fontSize: sizeH4),
-          prefixIcon: Material(
-            borderRadius: borderRadius,
-            color: Colors.grey[200],
-            child: Icon(
-              Icons.calendar_today,
-              color: colorMain,
-            ),
-          ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
-        ) 
-      ),
     );
   }
 
-  _selectDate(BuildContext context) async { //petData
-    DateTime picked = await showDatePicker(
-      context: context, 
-      initialDate: DateTime.now(),
-      firstDate: new DateTime(DateTime.now().year-25),
-      lastDate: DateTime.now(),
-      initialDatePickerMode: DatePickerMode.day
-    );
-
-    if(picked!=null){
-      final f = new DateFormat('yyyy-MM-dd');
-      setState(() {
-        _fecha= f.format(picked);
-        _inputFechaController.text = _fecha;
-      });
-    }
-  }
-
-  Widget _sexo(){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-      child: ddlMain(sexo, tiposex, 
-        (opt){ setState(() {
-          sexo = opt;
-        }
-      );})
-    );
-  }
- 
-  _mostrarFoto(){ //petData
+  _mostrarFoto(){
     if(foto!=null) return FileImage(foto);
-    return AssetImage('images/no-image.png');
+    else return  CachedNetworkImageProvider(mascotaData.picture);
   }
 
   _seleccionarFoto() async {
@@ -303,13 +241,71 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     Navigator.pop(context);
   }
 
+  Widget _sexoEdit(){
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
+      child: ddlMain(mascotaData.genre.toString(), tiposex, 
+        (opt){ setState(() {
+          mascotaData.genre = int.tryParse(opt);
+        }
+      );})
+    );
+  }
+
+  Widget _crearFecha(BuildContext context){
+    final format = DateFormat("yyyy-MM-dd");
+    var currentValue = DateTime.parse(mascotaData.birthdate);
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: Colors.grey[200],
+      child: DateTimeField(
+        initialValue: currentValue,
+        format: format,
+        onChanged: (dt) => setState(() => mascotaData.birthdate = dt.toString() ),
+        enableInteractiveSelection: false,
+        cursorColor: colorMain,
+        onShowPicker: (context, currentValue) {
+          return showDatePicker(
+            context: context,
+            initialDate: currentValue ?? DateTime.now(), //DateTime.parse(mascotaData.birthdate),
+            firstDate: new DateTime(DateTime.now().year-25),
+            lastDate: DateTime.now(),
+            initialDatePickerMode: DatePickerMode.day
+          );
+        },
+        decoration: InputDecoration(
+          hintText: 'Fecha de nacimiento',
+          hintStyle: TextStyle(fontSize: sizeH4),
+          prefixIcon: Material(
+            borderRadius: borderRadius,
+            color: Colors.grey[200],
+            child: Icon(
+              Icons.calendar_today,
+              color: colorMain,
+            ),
+          ),
+          suffixIcon: Material(
+            borderRadius: borderRadius,
+            color: Colors.grey[200],
+          ),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+        ),
+      ),
+    );
+
+  }
+
   void _onAdd() async {
-    try {
+    try{
+      print(foto);
+
       setState(() {
         formKey.currentState.save();
         btnBool = false;      
       });
-      
+
       if(mascotaData.name.trim()==''){
         mostrarSnackbar('Ingrese nombre de la mascota.', colorRed, scaffoldKey);
         Timer(Duration(milliseconds: 1500), (){
@@ -318,8 +314,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
           });
         });
       }
-
-      else {
+      else{
+        // mascotaData.birthdate = currentValue;
         bool resp;
         if(mascotaData.birthdate.trim()=='') setState(() {
           mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed, scaffoldKey); 
@@ -328,37 +324,35 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
           });     
         });
         else{
-          mascotaData.genre=int.tryParse(sexo);
-          print(foto);
-          resp = await mascotaProvider.savePet(mascotaData, foto);
-          boolSave(resp);
-        } 
+          resp = await mascotaProvider.editPet(mascotaData, foto);
+          boolEdit(resp);
+        }
       }
+
     }
-    catch(e) {
+    catch(e){
       setState(() {
-        mostrarSnackbar('No se agregó la mascota.', colorRed, scaffoldKey);
+        mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed, scaffoldKey);
         Timer(Duration(milliseconds: 1500), (){
           setState(() { btnBool = true; });
         });
       });
     }
   }
-  
-  boolSave(resp){
+
+  boolEdit(resp){
     if(resp){
-      mostrarSnackbar('Mascota agregada.', colorMain, scaffoldKey);  
-      Timer(Duration(milliseconds: 2000), (){
-        // Navigator.of(context).popUntil((route) => route.isFirst);
-        Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
-      });
+      mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);
+      Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
+      // Navigator.of(context).pushReplacementNamed('detallemascota', arguments: mascotaData.id);
+      //'detallemascota', arguments: mascotas[index].id
     }
-    else setState(() {
-      mostrarSnackbar('No se agregó la mascota.', colorRed, scaffoldKey);  
+    else {
+      mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed, scaffoldKey); 
       Timer(Duration(milliseconds: 1500), (){
         setState(() { btnBool = true; });
-      });  
-    });
+      });
+    }
   }
 
 }

@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
@@ -19,8 +20,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
-  final mascotaProvider = MascotaProvider(); 
-  
+  final mascotaProvider = MascotaProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,12 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           title: Text('Editar datos', style: TextStyle(
             fontWeight: FontWeight.w400,
           ),),
-          onTap: ()=>Navigator.pushNamed(context, 'agregarmascota', arguments: mascota),
+          onTap: 
+          // ()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
+          ()=>Navigator.push(context, MaterialPageRoute(
+            builder: (_)=>MascotaEditarPage(mascotaData: mascota,),
+          ))
+          //()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
         ),
         ListTile(
           leading: Icon(Icons.bookmark),
@@ -97,7 +102,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                       onPressed: () async {
                         bool resp = await mascotaProvider.deletePet(mascota.id);
                         if(resp){
-                          Navigator.of(context).pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav'));
+                          // Navigator.of(context).popUntil((route) => route.isFirst);
+                          // Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
+                          Navigator.pushNamedAndRemoveUntil(context, '/navInicio', (route) => false);
                         }
                         else{
                           Navigator.pop(context);
@@ -133,9 +140,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               mascota.status=0;
               bool resp = await mascotaProvider.muerePet(mascota);
               if(resp){
-                // Navigator.popUntil(context, ModalRoute.withName("/detallemascota"));
-                Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pushNamed(context, 'detallemascota', arguments: mascota);
+                // Navigator.of(context).popUntil((route) => route.isFirst);
+                // Navigator.of(context).pushReplacementNamed('routeName')
+                Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
               }
               else{
                 Navigator.pop(context);
@@ -165,10 +172,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               mascota.status=1;
               bool resp = await mascotaProvider.muerePet(mascota);
               if(resp){
-                // Navigator.popUntil(context, ModalRoute.withName("/detallemascota"));
-                Navigator.of(context).popUntil((route) => route.isFirst);
-                Navigator.pushNamed(context, 'detallemascota', arguments: mascota);
-                // Navigator.pushReplacementNamed(context, 'detallemascota', arguments: mascota);
+                Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
               }
               else{
                 Navigator.pop(context);

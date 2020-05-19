@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablecimientoProvider{
@@ -30,14 +31,32 @@ class EstablecimientoProvider{
     return vets.establecimientos;
   }
 
-  Future<EstablecimientoModel> getVet(String idVet) async {
-    final url = '$_url/establishments/$idVet';
+  Future<dynamic> getVet(String idVet) async {
+    String lat = _prefs.position.toString().split(',')[0];
+    String lng = _prefs.position.toString().split(',')[1];
+    final url = '$_url/establishments/$idVet?latitude=$lat&longitude=$lng';
 
     final resp = await http.get(url,headers: headersToken(),
     );
 
-    final jsonResp = json.decode(resp.body);
-    EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
-    return vets;
+    print(resp.statusCode);
+    
+    if(resp.statusCode==200){
+      final jsonResp = json.decode(resp.body);
+      EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
+      
+      return{
+        'status':200,
+        'establishment':vets
+      };
+    }
+    else{
+      return{
+        'status':205,
+        'establishment':null
+      };
+    }
+    
+    
   }
 }
