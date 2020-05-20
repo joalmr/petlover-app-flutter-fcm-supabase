@@ -89,17 +89,6 @@ class ConfigDrawer extends StatelessWidget {
                   onTap: ()=>_cerrarSesion(context),
                 ),
 
-                ListTile(
-                  leading: Icon(Icons.person_outline, color: colorRed,),
-                  title: Text('Prueba', style: TextStyle(
-                    color: colorRed,
-                    fontWeight: FontWeight.w400,
-                  ),),
-                  onTap: ()=> Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => DetalleReservado())
-                  ),
-                )
-
               ],
             ),
           ),

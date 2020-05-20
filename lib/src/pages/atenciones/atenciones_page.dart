@@ -4,9 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:proypet/src/model/antecion/atencion_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/form_control/text_field.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/text_field.dart';
+import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/atencion_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 

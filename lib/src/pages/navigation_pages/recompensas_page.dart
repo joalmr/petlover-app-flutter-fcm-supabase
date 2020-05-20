@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/model/bonificacion/bonificacion_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/styles/styles.dart';

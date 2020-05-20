@@ -3,7 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';

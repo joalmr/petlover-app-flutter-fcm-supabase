@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/model/mascota/historia_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
-import 'package:proypet/src/pages/shared/enddrawer/mascota_drawer.dart';
+import 'package:proypet/src/shared/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';

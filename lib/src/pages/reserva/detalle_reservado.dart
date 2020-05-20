@@ -3,9 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 
@@ -56,7 +56,7 @@ class DetalleReservado extends StatelessWidget {
 
                   SizedBox(height: 20.0,),
                   Center(
-                    child: buttonPri("Ver en mapa", ()=>_openMapsSheet(context) )
+                    child: buttonPri("Ver en mapa", ()=>_openMapsSheet(context, arg.establishmentName, arg.address, -12.046238, -77.098685) )
                   ),
                   SizedBox(height: 35.0,),
                   Center(
@@ -120,11 +120,11 @@ class DetalleReservado extends StatelessWidget {
     }
   }
 
-  _openMapsSheet(context) async {
+  _openMapsSheet(context, vet, direccion, lat, lng) async {
     try {
       final title = "";
       final description = "";
-      final coords = Coords(-12.046238, -77.098685);
+      final coords = Coords(lat,lng);
       final availableMaps = await MapLauncher.installedMaps;
 
       showModalBottomSheet(

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
+import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/styles/styles.dart';
 

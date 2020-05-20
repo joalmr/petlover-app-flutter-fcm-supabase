@@ -5,11 +5,10 @@ import 'package:proypet/src/pages/auth/singup_page.dart';
 import 'package:proypet/src/pages/destacado/destacado_detalle.dart';
 import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
-// import 'package:proypet/src/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/notificaciones/mensaje_page.dart';
 import 'package:proypet/src/pages/reserva/detalle_reservado.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
+import 'package:proypet/src/shared/navigation_bar.dart';
 
 Map<String,WidgetBuilder> getRoutes(){
   return <String,WidgetBuilder>{    

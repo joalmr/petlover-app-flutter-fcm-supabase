@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/destacado/destacado_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
 
 class DetalleDestacadoPage extends StatelessWidget {
 

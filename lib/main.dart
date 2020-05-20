@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/routes/routes.dart';
+import 'package:proypet/src/shared/navigation_bar.dart';
  
  final prefs = new PreferenciasUsuario();
 void main() async {
