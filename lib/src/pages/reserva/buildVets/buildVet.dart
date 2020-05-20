@@ -29,7 +29,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
                         child: Container(
                           padding: EdgeInsets.all(8.0),
                           child: CircleAvatar(
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: Colors.grey.withOpacity(0.24),
                             backgroundImage: CachedNetworkImageProvider(vet.logo),
                             radius: 25.0,
                           ),

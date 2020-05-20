@@ -47,11 +47,12 @@ class _Data extends State<DataReserva> {
   
   List _atencion = [
     {'id':'1','name':'Consulta',},
-    {'id':'2','name':'Vacuna',},
-    {'id':'3','name':'Baño',},
+    {'id':'7','name':'Chequeo preventivo',},
     {'id':'4','name':'Desparasitación',},
+    {'id':'2','name':'Vacuna',},    
+    {'id':'3','name':'Baño',},    
     {'id':'5','name':'Baño y corte',},
-    {'id':'6','name':'Otro servicio',},
+    {'id':'6','name':'Otro servicio',},    
   ];
   
   List _delivery = [
