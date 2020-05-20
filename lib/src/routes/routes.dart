@@ -7,6 +7,7 @@ import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 // import 'package:proypet/src/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
+import 'package:proypet/src/pages/notificaciones/mensaje_page.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 Map<String,WidgetBuilder> getRoutes(){
@@ -28,6 +29,7 @@ Map<String,WidgetBuilder> getRoutes(){
     //destacado
     'detalledestacado'  : (BuildContext context)=>DetalleDestacadoPage(),
     // 'detallereservado'  : (BuildContext context)=>DetalleReservado(),
+    'mensaje'  : (BuildContext context)=>MensajePage(),
 
   };
 }
