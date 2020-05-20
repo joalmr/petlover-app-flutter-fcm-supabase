@@ -32,11 +32,11 @@ class _MyAppState extends State<MyApp> {
 
     pushProvider.mensajes.listen((data) { 
 
-      print('Argumento');
+      print('===== Notificacion =====');
       print(data);
 
 
-      navigatorKey.currentState.pushNamed('mensaje', arguments: data);
+      // navigatorKey.currentState.pushNamed('mensaje', arguments: data);
 
     });
 
@@ -46,9 +46,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    
-    // final prefs = new PreferenciasUsuario();
-    // final loginProvider = UserProvider();
     
     var rutaInicio='login';
     if(prefs.token!=''){
@@ -61,18 +58,17 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       title: 'Proypet',
       theme: ThemeData( 
-        fontFamily: 'Lato', //GoogleFonts.lato(),//
+        fontFamily: 'Lato',
         primarySwatch: Colors.teal,
       ),      
       localizationsDelegates: [
-        // ... app-specific localization delegate[s] here
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
-          const Locale('en','US'), // English
-          const Locale('es','ES'), // Español
+          const Locale('en','US'),
+          const Locale('es','ES'), //PE
         ],     
       routes: getRoutes(),
       initialRoute: rutaInicio,

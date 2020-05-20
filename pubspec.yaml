@@ -45,6 +45,7 @@ dependencies:
   flutter_rating_bar: ^3.0.1+1
   animate_do: ^1.6.3
   datetime_picker_formfield: ^1.0.0
+  map_launcher: ^0.4.5
   # find_dropdown: ^0.2.0
   # dropdown_search: ^0.4.0
   # google_fonts: ^1.0.0

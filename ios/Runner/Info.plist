@@ -12,6 +12,12 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Se necesita acceso al micrófono</string>
 
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>iosamap</string>
+		<string>waze</string>
+	</array>
 
 
 	<key>CFBundleDevelopmentRegion</key>

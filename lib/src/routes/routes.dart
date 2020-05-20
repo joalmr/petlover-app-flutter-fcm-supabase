@@ -8,6 +8,7 @@ import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 // import 'package:proypet/src/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/notificaciones/mensaje_page.dart';
+import 'package:proypet/src/pages/reserva/detalle_reservado.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
 
 Map<String,WidgetBuilder> getRoutes(){
@@ -16,11 +17,11 @@ Map<String,WidgetBuilder> getRoutes(){
     'registro'          : (BuildContext context)=>SingupPage(),
     'olvidopass'        : (BuildContext context)=>ForgotPage(),
     //nav abre
-    'navInicio'         : (BuildContext context)=>NavigationBar(currentTabIndex: 0), //, marcar: 0,
-    'navNotifica'       : (BuildContext context)=>NavigationBar(currentTabIndex: 1), //, marcar: 0,
-    'navLista'          : (BuildContext context)=>NavigationBar(currentTabIndex: 2), //, marcar: 0,
-    'navDestacado'      : (BuildContext context)=>NavigationBar(currentTabIndex: 3), //, marcar: 0,
-    'navRecompensa'     : (BuildContext context)=>NavigationBar(currentTabIndex: 4), //, marcar: 0,
+    'navInicio'         : (BuildContext context)=>NavigationBar(currentTabIndex: 0), //home
+    'navNotifica'       : (BuildContext context)=>NavigationBar(currentTabIndex: 1), //lista de notificaciones 
+    'navLista'          : (BuildContext context)=>NavigationBar(currentTabIndex: 2), //lista de veterinarias
+    'navDestacado'      : (BuildContext context)=>NavigationBar(currentTabIndex: 3), //destacados
+    'navRecompensa'     : (BuildContext context)=>NavigationBar(currentTabIndex: 4), //puntos
     //nav cierra
     'agregarmascota'    : (BuildContext context)=>MascotaAgregarPage(),
     // 'editarmascota'    : (BuildContext context)=>MascotaEditarPage(),
@@ -28,7 +29,9 @@ Map<String,WidgetBuilder> getRoutes(){
     'detallehistoriamascota'    : (BuildContext context)=>HistoriaPage(),
     //destacado
     'detalledestacado'  : (BuildContext context)=>DetalleDestacadoPage(),
-    // 'detallereservado'  : (BuildContext context)=>DetalleReservado(),
+
+    'detallereservado'  : (BuildContext context)=>DetalleReservado(), //detalle de la reserva
+
     'mensaje'  : (BuildContext context)=>MensajePage(),
 
   };

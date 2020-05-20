@@ -6,6 +6,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/pages/reserva/detalle_reservado.dart';
 import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:proypet/src/pages/shared/navigation_bar.dart';
@@ -168,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                FadeIn(child: _atenciones(mydata.bookings,mydata.pets.length)),
+                FadeIn(child: _atenciones(mydata.bookings,mydata.pets)),
               ],
             );
           }
@@ -358,7 +359,8 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  Widget _atenciones(List<BookingHome> atenciones, petLength){
+  Widget _atenciones(List<BookingHome> atenciones, List<MascotaModel> pets){
+    int petLength = pets.length;
     if(atenciones.length>0)
       return ListView.builder(
         padding: EdgeInsets.only(top: 5.0),
@@ -386,7 +388,7 @@ class _HomePageState extends State<HomePage> {
                         child: Text('Cancelar')
                       ),
                       FlatButton(
-                        onPressed: ()=>deleteBooking(atenciones[index].id),
+                        onPressed: ()=>_deleteBooking(atenciones[index].id),
                         child: Text('Sí, eliminar')
                       )
                     ],
@@ -394,37 +396,39 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             ),
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  // onTap: ()=> Navigator.push(context, MaterialPageRoute(builder:(context)=>DetalleReservado())),
-                  leading: CircleAvatar(
-                    backgroundColor: colorMain,
-                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
-                    radius: 25.0,
+            child: FlatButton(
+              onPressed: ()=> Navigator.pushNamed(context, 'detallereservado', arguments: atenciones[index]),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: colorMain,
+                      backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
+                      radius: 25.0,
+                    ),
+                    title: Text(atenciones[index].establishmentName),
+                    subtitle: Text(atenciones[index].status, 
+                      style: (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
+                      ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
+                      : TextStyle(fontWeight: FontWeight.bold) ,),
+                    trailing: Column(
+                      children: <Widget>[
+                        Text(
+                          atenciones[index].date,//" Mañana",
+                          style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          atenciones[index].time,//"17:00",
+                          style: TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                   ),
-                  title: Text(atenciones[index].establishmentName),
-                  subtitle: Text(atenciones[index].status, 
-                    style: (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
-                    ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
-                    : TextStyle(fontWeight: FontWeight.bold) ,),
-                  trailing: Column(
-                    children: <Widget>[
-                      Text(
-                        atenciones[index].date,//" Mañana",
-                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        atenciones[index].time,//"17:00",
-                        style: TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                ),
-                Divider(),
-              ],
+                  Divider(),
+                ],
+              ),
             ),
           );
           return dismissible;
@@ -465,7 +469,7 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  deleteBooking(String id) async {
+  _deleteBooking(String id) async {
     bool resp = await bookingProvider.deleteBooking(id);
     Navigator.pop(context);
     if(resp){
