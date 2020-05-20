@@ -6,7 +6,6 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/reserva/detalle_reservado.dart';
 import 'package:proypet/src/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
@@ -104,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                         "Hola,",
                         style: Theme.of(context)
                             .textTheme
-                            .display1
+                            .headline4
                             .apply(),
                       ),
                       IconButton(
@@ -187,7 +186,7 @@ class _HomePageState extends State<HomePage> {
           usuario.name, //snapshot.data?.name, //nombre del usuario
           style: Theme.of(context)
               .textTheme
-              .display1
+              .headline4
               .apply(color: Colors.black87, fontWeightDelta: 2),
         ),
       ],
@@ -265,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                                     style: 
                                     Theme.of(context)
                                       .textTheme
-                                      .display1
+                                      .headline4
                                       .apply(color: Colors.white, fontWeightDelta: 2),
                                     // TextStyle(
                                     //   fontSize: sizeH1,

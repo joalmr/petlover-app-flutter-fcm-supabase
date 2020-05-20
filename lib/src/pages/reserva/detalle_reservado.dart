@@ -122,8 +122,8 @@ class DetalleReservado extends StatelessWidget {
 
   _openMapsSheet(context, vet, direccion, lat, lng) async {
     try {
-      final title = "";
-      final description = "";
+      final title = vet;
+      final description = direccion;
       final coords = Coords(lat,lng);
       final availableMaps = await MapLauncher.installedMaps;
 

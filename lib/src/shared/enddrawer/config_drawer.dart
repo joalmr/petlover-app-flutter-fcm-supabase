@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/atenciones/atenciones_page.dart';
-import 'package:proypet/src/pages/reserva/detalle_reservado.dart';
 import 'package:proypet/src/pages/usuario/changepassword_page.dart';
 import 'package:proypet/src/pages/usuario/user_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
