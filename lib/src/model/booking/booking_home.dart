@@ -10,6 +10,8 @@ class BookingHome {
     String time;
     String status;
     int statusId;
+    double establishmentLat;
+    double establishmentLng;
 
     BookingHome({
         this.id,
@@ -23,6 +25,8 @@ class BookingHome {
         this.time,
         this.status,
         this.statusId,
+        this.establishmentLat,
+        this.establishmentLng,
     });
 
     factory BookingHome.fromJson(Map<String, dynamic> json) => BookingHome(
@@ -37,6 +41,8 @@ class BookingHome {
         time: json["time"],
         status: json["status"],
         statusId: json["status_id"],
+        establishmentLat: json["establishment_latitude"],
+        establishmentLng: json["establishment_longitude"],
     );
 
     Map<String, dynamic> toJson() => {

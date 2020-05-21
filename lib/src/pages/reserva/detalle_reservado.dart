@@ -56,7 +56,7 @@ class DetalleReservado extends StatelessWidget {
 
                   SizedBox(height: 20.0,),
                   Center(
-                    child: buttonPri("Ver en mapa", ()=>_openMapsSheet(context, arg.establishmentName, arg.address, -12.046238, -77.098685) )
+                    child: buttonPri("Ver en mapa", ()=>_openMapsSheet(context, arg.establishmentName, arg.address, arg.establishmentLat, arg.establishmentLng) )
                   ),
                   SizedBox(height: 35.0,),
                   Center(
