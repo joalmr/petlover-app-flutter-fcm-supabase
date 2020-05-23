@@ -14,7 +14,7 @@ import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/raza_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
 final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];

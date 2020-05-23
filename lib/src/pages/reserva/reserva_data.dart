@@ -12,7 +12,7 @@ import 'package:proypet/src/shared/form_control/text_field.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 class DataReserva extends StatefulWidget {
   final String establecimientoID;

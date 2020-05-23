@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 
 Widget appbar( logo, String texto, List<Widget> acc){

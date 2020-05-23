@@ -8,7 +8,7 @@ import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/shared/form_control/text_field.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/atencion_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 class AtencionesPage extends StatefulWidget {
   // const AtencionesPage({Key key}) : super(key: key);

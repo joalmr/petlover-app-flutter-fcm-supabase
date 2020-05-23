@@ -4,7 +4,7 @@ import 'package:proypet/src/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/pages/navigation_pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 
 class NavigationBar extends StatefulWidget {

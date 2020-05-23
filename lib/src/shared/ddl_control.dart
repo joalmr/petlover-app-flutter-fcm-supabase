@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
@@ -40,7 +40,6 @@ class _DdlControl2 extends State<DdlControl2> {
       );
   }
 }
-
 
 
   Widget ddlMain(opcionSeleccionada, lista, cambiaOpc){

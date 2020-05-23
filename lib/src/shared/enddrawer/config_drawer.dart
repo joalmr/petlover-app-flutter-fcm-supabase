@@ -5,7 +5,7 @@ import 'package:proypet/src/pages/usuario/changepassword_page.dart';
 import 'package:proypet/src/pages/usuario/user_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:share/share.dart';
 
 

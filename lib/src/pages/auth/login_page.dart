@@ -6,7 +6,7 @@ import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 class LoginPage extends StatefulWidget {
   @override

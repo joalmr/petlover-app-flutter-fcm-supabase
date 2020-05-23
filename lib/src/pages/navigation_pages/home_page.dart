@@ -16,7 +16,7 @@ import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
 // import 'package:proypet/src/pages/reserva/detalle_reserva.dart';
 

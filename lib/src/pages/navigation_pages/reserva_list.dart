@@ -7,7 +7,7 @@ import 'package:proypet/src/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 class ReservaList extends StatefulWidget {
   @override

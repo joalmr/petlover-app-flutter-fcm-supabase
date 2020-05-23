@@ -77,6 +77,7 @@ class _MyAppState extends State<MyApp> {
           builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //ruta general
         );
       },
+      
     );
   }
 }

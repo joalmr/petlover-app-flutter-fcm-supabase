@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:proypet/src/shared/appbar_menu.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 
 

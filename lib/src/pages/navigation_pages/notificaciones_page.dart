@@ -6,6 +6,7 @@ import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
@@ -125,7 +126,11 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0), //horizontal: 20.0
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(color: Colors.black54),),
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: sizeH6,
+              ),),
+            isThreeLine: true,
           ),
           Divider(),
         ],
@@ -142,7 +147,11 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(color: Colors.black54),),
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: sizeH6,
+              ),),
+            isThreeLine: true,
             onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
           ),
           Divider(),
@@ -160,7 +169,11 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(color: Colors.black54),),
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: sizeH6,
+              ),),
+            isThreeLine: true,
             onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
           ),
           Divider(),
