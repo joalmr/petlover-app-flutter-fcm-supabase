@@ -49,7 +49,7 @@ class DetalleReservado extends StatelessWidget {
     );
   }
 
-  _listaDatos(arg, context){
+  _listaDatos(BookingHome arg, context){
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Column(
@@ -83,7 +83,7 @@ class DetalleReservado extends StatelessWidget {
                         mini: true,
                         backgroundColor: colorMain,
                         child: Icon(Icons.phone, color: Colors.white,),
-                        onPressed: ()=>_launchPhone('993926739'), 
+                        onPressed: ()=>_launchPhone(arg.establishmentPhone), 
                       ),
                     )
                   ],
