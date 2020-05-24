@@ -148,7 +148,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
       itemCount: historias.length,
       itemBuilder: (context, int index){
         return FlatButton(
-          onPressed: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {"detalle":historias[index].details,"precio":historias[index].amount,"proximacita":historias[index].nextdate,"motivo":historias[index].reason} ),          
+          onPressed: ()=>Navigator.pushNamed(context, 'detallehistoriamascota', 
+            arguments: {
+              "detalle":historias[index].details,
+              "precio":historias[index].amount,
+              "proximacita":historias[index].nextdate,
+              "motivo":historias[index].reason
+            }),          
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: Row(
