@@ -128,9 +128,11 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             title: Text(notificacion.message,
               style: TextStyle(
                 color: Colors.black54,
-                fontSize: sizeH6,
-              ),),
-            isThreeLine: true,
+                fontSize: sizeH4,
+              ), 
+              maxLines: 3,
+            ),
+            
           ),
           Divider(),
         ],
@@ -149,9 +151,11 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             title: Text(notificacion.message,
               style: TextStyle(
                 color: Colors.black54,
-                fontSize: sizeH6,
-              ),),
-            isThreeLine: true,
+                fontSize: sizeH4,
+              ),
+              maxLines: 3,
+            ),
+            
             onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
           ),
           Divider(),
@@ -171,9 +175,11 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             title: Text(notificacion.message,
               style: TextStyle(
                 color: Colors.black54,
-                fontSize: sizeH6,
-              ),),
-            isThreeLine: true,
+                fontSize: sizeH4,
+              ),
+              maxLines: 3,
+            ),
+            
             onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
           ),
           Divider(),
