@@ -15,6 +15,7 @@ import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/push-providers/push_provider.dart';
+import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/utils.dart';
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                             .apply(),
                       ),
                       IconButton(
-                        icon: Icon(Icons.settings),
+                        icon: Icon(Icons.settings, color: Colors.black54,),
                         onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
                       )
                     ],
@@ -123,11 +124,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(' Servicios frecuentes',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: sizeH2,
-                          fontWeight: FontWeight.bold),),
+                        Text(' Servicios frecuentes', style: tituloH2,),
                         SizedBox(height: 15.0),
                         SingleChildScrollView(
                           physics: BouncingScrollPhysics(),
@@ -155,16 +152,9 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text(
-                          "Reservas",
-                          style: TextStyle(
-                            fontSize: sizeH2,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54
-                          )
-                        ),
+                        child: Text("Reservas", style: tituloH2),
                       ),
-                      Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),
+                      Icon(Icons.timelapse, color: Colors.black54),
                     ],
                   ),
                 ),

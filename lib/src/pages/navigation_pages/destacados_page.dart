@@ -3,6 +3,7 @@ import 'package:proypet/src/model/destacado/destacado_model.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/destacado_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/styles/titulos.dart';
 
 class DestacadosPage extends StatefulWidget {
   @override
@@ -52,11 +53,11 @@ class _DestacadosPageState extends State<DestacadosPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0,right: 10.0,top:10.0),
-                child: Text(destacado.title, style: TextStyle(fontWeight: FontWeight.bold),),
+                child: Text(destacado.title, style: tituloH4clasico,),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(destacado.text, maxLines: 3, textAlign: TextAlign.justify,),
+                child: Text(destacado.text, maxLines: 3, textAlign: TextAlign.justify, ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

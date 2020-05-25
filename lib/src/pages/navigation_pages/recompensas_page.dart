@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/model/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
+import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/styles/styles.dart';
 
@@ -113,66 +114,11 @@ class _RecompensasPageState extends State<RecompensasPage> {
               FadeIn(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text('Últimos puntos ganados', style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold)),
+                  child: Text('Últimos puntos ganados', style: tituloH4),
                 ),
               ),
               FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
             ],
-            // child: Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   mainAxisAlignment: MainAxisAlignment.start,
-            //   children: <Widget>[
-            //     FadeIn(
-            //       child: Padding(
-            //         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
-            //         child: Row(
-            //           children: <Widget>[
-            //             Expanded(
-            //               // flex: 2,
-            //               child: Container(
-            //                 padding: EdgeInsets.all(8.0),
-            //                 height: 120.0,
-            //                 decoration: BoxDecoration(
-            //                   borderRadius: BorderRadius.circular(10.0),
-            //                   color: colorBlue,
-            //                 ),
-            //                 child: Padding(
-            //                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            //                   child: Row(
-            //                     crossAxisAlignment: CrossAxisAlignment.center,
-            //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //                     children: <Widget>[
-            //                       Icon(FontAwesomeIcons.coins, color: Colors.white, size: 50.0,),
-            //                       Align(
-            //                         alignment: Alignment.centerRight,
-            //                         child: Column(
-            //                           crossAxisAlignment: CrossAxisAlignment.end,
-            //                           mainAxisAlignment: MainAxisAlignment.center,
-            //                           children: <Widget>[
-            //                             Text('${bonificacion.points}',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0,),),
-            //                             Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeH5, fontWeight: FontWeight.bold),),
-            //                           ],
-            //                         ),
-            //                       )
-            //                     ],
-            //                   ),
-            //                 ),
-            //               )
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //     SizedBox(height: 20.0,),
-            //     FadeIn(
-            //       child: Padding(
-            //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            //         child: Text('Últimos puntos ganados', style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold)),
-            //       ),
-            //     ),
-            //     FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
-            //   ],
-            // ),
           );
 
         }
@@ -186,7 +132,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Text("No tiene puntos ganados"),
+        child: Text("No tiene puntos ganados", ),
       ),
     );
 

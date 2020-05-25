@@ -5,6 +5,7 @@ import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/shared/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -117,7 +118,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(pet.name, style: TextStyle(fontSize: sizeH2,fontWeight: FontWeight.w600),),
-              Text(pet.breedName, style: TextStyle(fontSize: sizeH3,fontWeight: FontWeight.w600),),
+              Text(pet.breedName, style: tituloH3),
               (pet.status!=0) ?
               Text(calculateAge(DateTime.parse(pet.birthdate)), style: TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),)
               : SizedBox(height: 0,)
@@ -125,14 +126,10 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           ),
           Column(
             children: <Widget>[
-              Text('${pet.weight} kg.', style: TextStyle(fontSize: sizeH2, fontWeight: FontWeight.w600,),),
+              Text('${pet.weight} kg.', style: tituloH3,),
               (pet.status==0) 
-              ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: sizeH4, fontWeight: FontWeight.bold),)
+              ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),)
               : SizedBox(height: 0,)
-              // IconButton(
-              //   icon: Icon(Icons.filter_list),
-              //   onPressed: (){}
-              // ),
             ],
           )                          
         ],
@@ -140,8 +137,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     );
   }
 
-  listaHistorial(BuildContext context, List<HistoriaModel> historias){ //List<HistoriaModel> historias
-  // List<HistoriaModel> historias = snapshot.data.history;
+  listaHistorial(BuildContext context, List<HistoriaModel> historias){
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -175,7 +171,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                         children: <Widget>[
                           Text(
                             historias[index].establishment,
-                            //historialList[0].nombreVet,
                             style: TextStyle(
                               color: Colors.black87,
                               fontSize: sizeH3,
@@ -183,7 +178,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                             ),
                           ),
                           iconosHistoria(historias[index].details)
-                          //Icon( IconProypet.consulta ,size: 18.0,color: Colors.black.withOpacity(.5)),
                         ],
                       ),
                     ],

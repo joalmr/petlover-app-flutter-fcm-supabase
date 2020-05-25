@@ -12,8 +12,6 @@ import 'package:share/share.dart';
 
 class ConfigDrawer extends StatelessWidget {
   final Color primary = Colors.white;
-  final Color active = Colors.grey.shade800;
-  final Color divider = Colors.grey.shade600;
   final _prefs = new PreferenciasUsuario();
   final loginProvider = UserProvider();
 

@@ -8,6 +8,7 @@ import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/styles/titulos.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalleReservado extends StatelessWidget {
@@ -62,7 +63,7 @@ class DetalleReservado extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(arg.petName, style: TextStyle(fontSize: sizeH1, fontWeight: FontWeight.bold),),
+                Text(arg.petName, style: tituloH1clasico,),
                 SizedBox(height: 20.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,10 +72,10 @@ class DetalleReservado extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Estado de la reserva", style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),),
+                        Text("Estado de la reserva", style: tituloH4,),
                         Text(arg.status, style: (arg.statusId==3 || arg.statusId==6) 
                           ? TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold, color: colorMain ) 
-                          : TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold) ,),  
+                          : tituloH3clasico ,),  
                       ],
                     ),
                     Padding(
@@ -89,13 +90,13 @@ class DetalleReservado extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10.0,),
-                Text("Veterinaria", style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),),
+                Text("Veterinaria", style: tituloH4,),
                 Text(arg.establishmentName, style: TextStyle(fontSize: sizeH3),),
                 SizedBox(height: 10.0,),
-                Text("Dirección", style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),),
+                Text("Dirección", style: tituloH4,),
                 Text(arg.address),
                 SizedBox(height: 10.0,),
-                Text("Fecha y hora", style: TextStyle(fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),),
+                Text("Fecha y hora", style: tituloH4,),
                 Text('${arg.date} ${arg.time}'),
 
                 SizedBox(height: 20.0,),

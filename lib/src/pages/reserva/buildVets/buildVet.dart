@@ -29,7 +29,7 @@ import 'package:proypet/src/styles/styles.dart';
                         child: Container(
                           padding: EdgeInsets.all(8.0),
                           child: CircleAvatar(
-                            backgroundColor: Colors.grey.withOpacity(0.24),
+                            backgroundColor: colorGray1.withOpacity(0.25) ,//Colors.grey.withOpacity(0.24),
                             backgroundImage: CachedNetworkImageProvider(vet.logo),
                             radius: 25.0,
                           ),
@@ -59,7 +59,7 @@ import 'package:proypet/src/styles/styles.dart';
                         ),
                         Text(vet.name ,style: TextStyle(
                             fontSize: sizeH3,
-                            color: Colors.grey[700],
+                            color: Colors.black54,
                             fontWeight: FontWeight.w400
                           ),
                           maxLines: 1,

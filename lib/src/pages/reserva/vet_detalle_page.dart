@@ -15,6 +15,7 @@ import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -95,7 +96,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
       bottom: 0.0,
       height: 100.0,
       child: FlatButton(
-        onPressed: reservarClic ? _reservar : null, // ,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+        onPressed: reservarClic ? _reservar : null, 
         child: Container(
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 35.0),
@@ -125,17 +126,14 @@ class _VetDetallePageState extends State<VetDetallePage> {
             child: ListTile(
               title: Text(localVet.name,//nombreVet(0),
                 maxLines: 2,
-                style: TextStyle(
-                  fontSize: sizeH2,
-                  fontWeight: FontWeight.w600
-                )
+                style: tituloH2clasico
               ),
               subtitle: Text('${localVet.address} ${localVet.distance}km'),//${localVet.distance}km
               trailing: Container(
                 height: 55.0,
                 width: 55.0,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: colorGray1,// Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(100.0),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(localVet.logo),
@@ -153,11 +151,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Text('Atenciones',
-                  style: TextStyle(
-                      fontSize: sizeH3,
-                      color: Color(0xFF6A6A6A),
-                      fontWeight: FontWeight.w600)),
+                  Text('Atenciones', style: tituloH3),
                   SizedBox(width: 15.0),
                   Stack(
                     children: <Widget>[
@@ -221,10 +215,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           width: double.infinity,
           padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-          child: Text("Servicios", style: TextStyle(
-            fontSize: sizeH4,
-            color: Color(0xFF6A6A6A),
-            fontWeight: FontWeight.w600)),
+          child: Text("Servicios", style: tituloH4 ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0,),
@@ -238,10 +229,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Precio referencial",style: TextStyle(
-                    fontSize: sizeH4,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600))
+          child: Text("Precio referencial",style: tituloH4 )
         )
         : SizedBox(height: 0.0,),
         localVet.prices.length>0 ?
@@ -262,10 +250,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Horario",style: TextStyle(
-                    fontSize: sizeH4,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600))
+          child: Text("Horario",style: tituloH4 )
         ): SizedBox(height: 0.0,), 
 
         (localVet.schedule.length>0) ?
@@ -281,16 +266,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[  
               Text('Descripción',
-                style: TextStyle(
-                    fontSize: sizeH4,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600)),  
+                style: tituloH4 ),  
               SizedBox(height: 10.0,),
               Text(localVet.description,textAlign: TextAlign.justify,),
               SizedBox(width: double.infinity,),
-              // Text('Est laborum tempor sunt aliquip ex mollit cillum commodo laborum laborum laborum excepteur mollit. Adipisicing et irure Lorem qui nisi officia non eu. Officia dolor laboris sunt ipsum pariatur in minim dolor amet. Labore do nostrud sit ipsum aliqua aliqua cupidatat eu. Aliquip duis anim nostrud consequat enim ipsum. Consequat proident ex occaecat laboris ea exercitation culpa ex laborum dolore irure. Exercitation ea eu mollit Lorem. Laborum dolor tempor officia adipisicing esse enim sint consectetur anim in anim pariatur duis. Lorem ex non enim pariatur. Id sit adipisicing mollit laborum exercitation officia eiusmod voluptate ea labore ullamco est consectetur do. Excepteur est eu amet laboris in laboris non Lorem veniam. Consequat reprehenderit incididunt cupidatat aliqua deserunt. Officia pariatur ad irure proident tempor. Velit qui nulla reprehenderit ut do eu fugiat. Est enim veniam enim velit sint incididunt qui sint nulla sunt. Reprehenderit ullamco nisi voluptate elit laborum occaecat consequat.'
-              //   ,textAlign: TextAlign.justify,
-              // )
             ],
           ),
         ),

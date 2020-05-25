@@ -56,7 +56,9 @@ class _NavigationBarState extends State<NavigationBar> {
     final bottomNavBar = BottomNavigationBar(
       iconSize: 28.0,
       selectedItemColor: colorMain,
-      unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),//Colors.grey[300],
+      // backgroundColor: colorGray1,
+      // elevation: 0,
+      unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0), //colorGray3 //Color.fromRGBO(116, 117, 152, 1.0), //Colors.black54,
       items: _kBottmonNavBarItems,
       currentIndex: currentTabIndex,
       type: BottomNavigationBarType.fixed,
