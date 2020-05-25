@@ -164,7 +164,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlSearchFuture( opcRaza, razaLista.breeds, 
+                child: ddlFutureSearch( opcRaza, razaLista.breeds, 
                   (opt){ setState(() { 
                     opcRaza=opt.toString();
                     mascotaData.breedId = int.tryParse(opt.split("|")[0]);

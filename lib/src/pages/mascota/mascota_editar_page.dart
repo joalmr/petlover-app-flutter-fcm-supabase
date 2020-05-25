@@ -159,7 +159,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlSearchFuture( 
+                child: ddlFutureSearch( 
                   opcRaza, razaLista.breeds, 
                   (opt){ 
                     setState(() { 
