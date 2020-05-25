@@ -126,13 +126,22 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
               SizedBox(height: 10.0,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: textForm('Nombre de mascota', 
-                  Icons.pets, false, 
-                  (value)=>mascotaData.name=value, 
-                  TextCapitalization.words, 
-                  mascotaData.name,
-                  TextInputType.text
+                child: FormularioText(
+                  hintText: 'Nombre de mascota',
+                  icon: Icons.pets,
+                  obscureText: false,
+                  onSaved: (value)=>mascotaData.name=value,
+                  textCap: TextCapitalization.words,
+                  valorInicial: mascotaData.name,
+                  boardType: TextInputType.text,
                 ),
+                // textForm('Nombre de mascota', 
+                //   Icons.pets, false, 
+                //   (value)=>mascotaData.name=value, 
+                //   TextCapitalization.words, 
+                //   mascotaData.name,
+                //   TextInputType.text
+                // ),
               ),
               SizedBox(height: 10.0,),
               Padding(

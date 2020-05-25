@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/styles/styles.dart';
 
-final _shape = BorderRadius.circular(10.0);
+// final _shape = BorderRadius.circular(10.0);
 
 class FormularioText extends StatelessWidget {
   final hintText;
@@ -18,7 +18,7 @@ class FormularioText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 0.0,
-      borderRadius: _shape,
+      borderRadius: borderRadius,
       color: colorGray1,//Colors.grey[200],
       child: TextFormField(
         keyboardType: boardType,
@@ -28,15 +28,15 @@ class FormularioText extends StatelessWidget {
         onSaved: onSaved,
         cursorColor: colorMain,
         decoration: InputDecoration(
-          hintText: hintText,
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
           hintStyle: TextStyle(fontSize: 14.0),
+          hintText: hintText,          
           prefixIcon: (icon!=null) ? Material(
-            borderRadius: _shape,
+            borderRadius: borderRadius,
             color: Colors.transparent,
             child: Icon( icon, color: colorMain, ),
           ) : null,
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+          border: InputBorder.none,          
         ),
       ),
     );
@@ -44,36 +44,38 @@ class FormularioText extends StatelessWidget {
 }
 
 
-Widget textForm(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,
-String _valorInicial,TextInputType _boardType){
-  return Material(
-    elevation: 0.0,
-    borderRadius: _shape,
-    color: colorGray1,//Colors.grey[200],
-    child: TextFormField(
-      keyboardType: _boardType,
-      initialValue: _valorInicial,
-      textCapitalization: _textCap,
-      obscureText: _obscuretext,
-      onSaved: _onsaved,
-      cursorColor: colorMain,
-      decoration: InputDecoration(
-        hintText: _hinttext,
-        hintStyle: TextStyle(fontSize: 14.0),
-        prefixIcon: Material(
-          borderRadius: _shape,
-          color: Colors.transparent,
-          child: Icon(
-            _icon,
-            color: colorMain,
-          ),
-        ),
-        border: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
-      ),
-    ),
-  );
-}
+// Widget textForm(String _hinttext, _icon,
+//   bool _obscuretext, _onsaved,TextCapitalization _textCap,
+//   String _valorInicial,TextInputType _boardType){
+//   return Material(
+//     elevation: 0.0,
+//     borderRadius: _shape,
+//     color: colorGray1,//Colors.grey[200],
+//     child: TextFormField(
+//       keyboardType: _boardType,
+//       initialValue: _valorInicial,
+//       textCapitalization: _textCap,
+//       obscureText: _obscuretext,
+//       onSaved: _onsaved,
+//       cursorColor: colorMain,
+//       decoration: InputDecoration(
+//         hintText: _hinttext,
+//         hintStyle: TextStyle(fontSize: 14.0),
+//         prefixIcon: Material(
+//           borderRadius: _shape,
+//           color: Colors.transparent,
+//           child: Icon(
+//             _icon,
+//             color: colorMain,
+//           ),
+//         ),
+//         border: InputBorder.none,
+//         contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+//       ),
+//     ),
+//   );
+// }
+
 
 // Widget textFormLess(String _hinttext, _onsaved){
 //   return Material(
@@ -93,6 +95,7 @@ String _valorInicial,TextInputType _boardType){
 //     ),
 //   );
 // }
+
 
 // Widget textArea(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial){
 //   return Material(
@@ -116,6 +119,7 @@ String _valorInicial,TextInputType _boardType){
 //     ),
 //   );
 // }
+
 
 // Widget textBtn(_hinttext, _icon, _funtion){
 //     return Material(

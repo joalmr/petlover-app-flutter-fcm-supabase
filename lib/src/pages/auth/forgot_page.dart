@@ -59,8 +59,16 @@ class _ForgotPageState extends State<ForgotPage> {
                 SizedBox(height: 20.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Email',
+                    icon: Icons.alternate_email,
+                    obscureText: false,
+                    onSaved: (value)=>val=value,
+                    textCap: TextCapitalization.none,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  ),
+                  // textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,TextInputType.text),
                 ),
                 SizedBox(height: 30.0),
                 Padding(

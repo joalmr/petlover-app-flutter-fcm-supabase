@@ -63,26 +63,58 @@ class _SingupPageState extends State<SingupPage> {
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Nombre',
+                    icon: Icons.person,
+                    obscureText: false,
+                    onSaved: (value)=>user.name=value,
+                    textCap: TextCapitalization.words,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Apellido',
+                    icon: Icons.person,
+                    obscureText: false,
+                    onSaved: (value)=>user.lastname=value,
+                    textCap: TextCapitalization.words,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Email',
+                    icon: Icons.alternate_email,
+                    obscureText: false,
+                    onSaved: (value)=>user.email=value,
+                    textCap: TextCapitalization.none,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Contraseña',
+                    icon: Icons.lock,
+                    obscureText: true,
+                    onSaved: (value)=>user.password=value,
+                    textCap: TextCapitalization.none,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
