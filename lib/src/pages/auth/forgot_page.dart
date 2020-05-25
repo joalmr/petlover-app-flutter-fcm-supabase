@@ -97,10 +97,10 @@ class _ForgotPageState extends State<ForgotPage> {
       _fnResponse(
         "Ingrese correo electrónico", 
         colorRed, 
-        Timer(Duration(milliseconds: 1500), (){
-          setState(() { enviarClic = true; });
-        })
       );
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { enviarClic = true; });
+      });
     }
 
     else{
@@ -109,36 +109,36 @@ class _ForgotPageState extends State<ForgotPage> {
       if(resp==200){
         _fnResponse(
           "Se le envío un correo electrónico a la dirección ingresada", 
-          colorMain, 
-          Timer(Duration(milliseconds: 3500), (){
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          })
+          colorMain,           
         );
+        Timer(Duration(milliseconds: 3500), (){
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        });
       }
       else if(resp==205){
         _fnResponse(
           "Este correo no esta registrado en Proypet", 
           colorRed,
-          Timer(Duration(milliseconds: 1500), (){
-            setState(() { enviarClic = true; });
-          })
         ); 
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { enviarClic = true; });
+        });
       }
       else{
         _fnResponse(
           "Error, ejecución denegada", 
-          colorRed,
-          Timer(Duration(milliseconds: 1500), (){
-            setState(() { enviarClic = true; });
-          })
+          colorRed,          
         ); 
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { enviarClic = true; });
+        });
       }
     }
 
   }
 
-  _fnResponse(String texto, Color color,dynamic fnExecute){
+  _fnResponse(String texto, Color color,){ //dynamic fnExecute
     mostrarSnackbar(texto, color, scaffoldKey);
-    fnExecute;
+    // fnExecute;
   }
 }
