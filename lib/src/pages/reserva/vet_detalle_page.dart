@@ -256,7 +256,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
           child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeH6),)
         ) : SizedBox(height: 0.0,),
       
-        SizedBox(height: 5.0),
+        SizedBox(height: 10.0),
         
         localVet.schedule.length>0 ?
         Container(
@@ -308,25 +308,25 @@ class _VetDetallePageState extends State<VetDetallePage> {
               _precio("Consulta", 
                 precios["consultation"]["from"]==null?"":precios["consultation"]["from"], 
                 precios["consultation"]["to"]==null?"":precios["consultation"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
               
               _precio("Vacunas", 
                 precios["vaccination"]["from"]==null?"":precios["vaccination"]["from"], 
                 precios["vaccination"]["to"]==null?"":precios["vaccination"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
               
               _precio("Baños", 
                 precios["grooming"]["from"]==null?"":precios["grooming"]["from"], 
                 precios["grooming"]["to"]==null?"":precios["grooming"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
               
               _precio("Desparasitación", 
                 precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
                 precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
             ],
           ),
@@ -334,7 +334,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
     ;
   }
 
-  Widget _precio(tipo, desde, hasta, color){
+  Widget _precio(tipo, desde, hasta){
     if(desde=="" && hasta==""){
       return SizedBox(width: 0, height: 0,);
     }
@@ -347,7 +347,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
           width: 130,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
-            color: color,
+            color: colorGray1,//.withOpacity(0.75),//Colors.white,
             boxShadow:[ 
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -359,18 +359,18 @@ class _VetDetallePageState extends State<VetDetallePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(tipo, style: TextStyle(color: Colors.white),),
+              Text(tipo, style: TextStyle(color: Colors.black54),),
               SizedBox(height: 5,),
-              Text("desde", style: TextStyle(color: Colors.white),),
+              Text("desde", style: TextStyle(color: Colors.black54),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
-                  (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                  (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                  (desde=="" && hasta!="") ? Text("0 -", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                  (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.white),) : SizedBox(width: 0,), 
+                  Icon(IconProypet.sol_moneda, color: Colors.black54, size: 14.0,),
+                  (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
+                  (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
+                  (desde=="" && hasta!="") ? Text("0 -", style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
+                  (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,), 
                 ],
               ),
             ],
@@ -388,37 +388,37 @@ class _VetDetallePageState extends State<VetDetallePage> {
           (horario["monday"]["attention"]=="on") //&& horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"], colorGray3),
+            child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["tuesday"]["attention"]=="on") //&& horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"], colorGray3),
+            child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["wednesday"]["attention"]=="on") //&& horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"], colorGray3),
+            child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["thursday"]["attention"]=="on") //&& horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"], colorGray3),
+            child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["friday"]["attention"]=="on") //&& horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"], colorGray3),
+            child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["saturday"]["attention"]=="on") //&& horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"], colorGray3),
+            child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["sunday"]["attention"]=="on") //&& horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"], colorGray3),
+            child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           
         ],
@@ -426,13 +426,13 @@ class _VetDetallePageState extends State<VetDetallePage> {
     );
   }
 
-  Widget _horario(dia, inicio, fin, color){
+  Widget _horario(dia, inicio, fin){
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.0),
       width: 95,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: color,
+        color: colorGray1,//Colors.white,
         boxShadow:[ 
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -445,15 +445,15 @@ class _VetDetallePageState extends State<VetDetallePage> {
           Row(
             children: <Widget>[
               SizedBox(width: 5.0,),
-              Icon(Icons.schedule, color: Colors.white, size: 20.0,),
+              Icon(Icons.schedule, color: Colors.black54, size: 20.0,),
               SizedBox(width: 5.0,),
-              Text(dia, style: TextStyle(color: Colors.white),),
+              Text(dia, style: TextStyle(color: Colors.black54),),
             ],
           ),
           SizedBox(height: 5,),
-          Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.white),),
+          Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.black54),),
           SizedBox(height: 5,),
-          Text(fin==null?"-":fin, style: TextStyle(color: Colors.white),),
+          Text(fin==null?"-":fin, style: TextStyle(color: Colors.black54),),
         ],
       )
     );   
@@ -608,10 +608,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
     }
     
   }
-
-  // _buscarVet(){
-  //   Navigator.pushNamed(context, 'navLista');
-  // }
 
   _cancelar(){
     setState(() { reservarClic=true; });
