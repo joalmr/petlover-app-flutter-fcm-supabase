@@ -19,7 +19,7 @@ class FormularioText extends StatelessWidget {
     return Material(
       elevation: 0.0,
       borderRadius: _shape,
-      color: Colors.grey[200],
+      color: colorGray1,//Colors.grey[200],
       child: TextFormField(
         keyboardType: boardType,
         initialValue: valorInicial,
@@ -30,14 +30,11 @@ class FormularioText extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(fontSize: 14.0),
-          prefixIcon: Material(
+          prefixIcon: (icon!=null) ? Material(
             borderRadius: _shape,
-            color: Colors.grey[200],
-            child: Icon(
-              icon,
-              color: colorMain,
-            ),
-          ),
+            color: Colors.transparent,
+            child: Icon( icon, color: colorMain, ),
+          ) : null,
           border: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
         ),
@@ -52,7 +49,7 @@ String _valorInicial,TextInputType _boardType){
   return Material(
     elevation: 0.0,
     borderRadius: _shape,
-    color: Colors.grey[200],
+    color: colorGray1,//Colors.grey[200],
     child: TextFormField(
       keyboardType: _boardType,
       initialValue: _valorInicial,
@@ -65,7 +62,7 @@ String _valorInicial,TextInputType _boardType){
         hintStyle: TextStyle(fontSize: 14.0),
         prefixIcon: Material(
           borderRadius: _shape,
-          color: Colors.grey[200],
+          color: Colors.transparent,
           child: Icon(
             _icon,
             color: colorMain,
