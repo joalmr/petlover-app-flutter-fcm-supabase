@@ -28,7 +28,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
     return Material(
       elevation: 0.0,
       borderRadius: borderRadius,
-      color: Colors.grey[200],
+      color: colorGray1, //Colors.grey[200],
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: DropdownButtonHideUnderline(
