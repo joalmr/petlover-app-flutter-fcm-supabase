@@ -47,7 +47,7 @@ class _ForgotPageState extends State<ForgotPage> {
                     style: TextStyle(
                       fontSize: 24.0, 
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
                     )
                   ),
                 ),

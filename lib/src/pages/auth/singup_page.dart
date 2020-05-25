@@ -47,7 +47,7 @@ class _SingupPageState extends State<SingupPage> {
                     style: TextStyle(
                       fontSize: 24.0, 
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
                     )
                   ),
                 ),
@@ -56,7 +56,7 @@ class _SingupPageState extends State<SingupPage> {
                     style: TextStyle(
                       fontSize: 16.0, 
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
                     )
                   ),
                 ),
