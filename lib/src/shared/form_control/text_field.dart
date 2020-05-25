@@ -3,7 +3,6 @@ import 'package:proypet/src/styles/styles.dart';
 final _shape = BorderRadius.circular(10.0);
 
 Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){
-  //String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial
   return Material(
     elevation: 0.0,
     borderRadius: _shape,

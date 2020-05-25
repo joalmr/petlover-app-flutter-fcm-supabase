@@ -47,14 +47,32 @@ class _LoginSevenPageState extends State<LoginPage> {
             SizedBox(height: 50.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Email', Icons.alternate_email, false, (value)=>userModel.email=value, TextCapitalization.none, null,
-                TextInputType.text),
+              child: FormularioText(
+                hintText: 'Email',
+                icon: Icons.alternate_email,
+                obscureText: false,
+                onSaved: (value)=>userModel.email=value,
+                textCap: TextCapitalization.none,
+                valorInicial: null,
+                boardType: TextInputType.text,
+              )
             ),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: textForm('Contraseña', Icons.lock, true, (value)=>userModel.password=value, TextCapitalization.none, null,
-                TextInputType.text),
+              child: FormularioText(
+                hintText: 'Contraseña',
+                icon: Icons.lock,
+                obscureText: true,
+                onSaved: (value)=>userModel.password=value,
+                textCap: TextCapitalization.none,
+                valorInicial: null,
+                boardType: TextInputType.text,
+              )
+              // textForm('Contraseña', Icons.lock, true, 
+              //   (value)=>userModel.password=value, 
+              //   TextCapitalization.none, null,
+              //   TextInputType.text),
             ),
             SizedBox(height: 25.0),
             Padding(
