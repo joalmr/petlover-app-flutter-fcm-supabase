@@ -290,22 +290,13 @@ class _HomePageState extends State<HomePage> {
                         bottom: 10.0,
                         right: 10.0,
                         child: RaisedButton(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 11.0),
+                          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 11.0),
                           color: Colors.black.withOpacity(0.15),
-                          // onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                          //   builder: (_)=>MascotaDetallePage(mascota: mascotas[index],),
-                          // )),
                           onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index].id),
-                          child: Text(
-                            'Ver más',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          child: Text('Ver más',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                           shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(9.0),
-                              side: BorderSide(color: Colors.white)),
+                            borderRadius: new BorderRadius.circular(9.0),
+                            side: BorderSide(color: Colors.white)),
                         ),
                       ),
                     ],

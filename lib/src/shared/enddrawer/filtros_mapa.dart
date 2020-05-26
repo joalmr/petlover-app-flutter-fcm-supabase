@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -67,17 +68,22 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     //   =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', 
                     //     ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
                     // ),
-                    FlatButton(
-                      child: Container(
-                        width: double.infinity,
-                        child: Text('Flitrar', 
-                        textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: colorMain, 
-                            fontWeight: FontWeight.bold),)),
-                      onPressed: ()
-                        =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
+                    buttonOutLine(
+                      "Filtrar",
+                      ()=>Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
+                      colorMain
                     ),
+                    // FlatButton(
+                    //   child: Container(
+                    //     width: double.infinity,
+                    //     child: Text('Filtrar', 
+                    //     textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //         color: colorMain, 
+                    //         fontWeight: FontWeight.bold),)),
+                    //   onPressed: ()
+                    //     =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
+                    // ),
                     SwitchListTile(                      
                       value: (filtros.contains(1)) ? true : false,//petReq.genre,
                       title: Text('Baños / Grooming'),

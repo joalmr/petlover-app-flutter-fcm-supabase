@@ -51,6 +51,13 @@ class DetalleReservado extends StatelessWidget {
   }
 
   _listaDatos(BookingHome arg, context){
+    DateTime now = DateTime.now();
+    var fechaAt = arg.date.split('-');
+    bool vencido=false;
+    if( int.parse(fechaAt[0])<now.day && int.parse(fechaAt[1])==now.month && int.parse(fechaAt[2])==now.year){
+      vencido=true;
+    }
+    
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Column(
@@ -73,9 +80,10 @@ class DetalleReservado extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text("Estado de la reserva", style: tituloH4,),
-                        Text(arg.status, style: (arg.statusId==3 || arg.statusId==6) 
+                        (!vencido) ? Text(arg.status, style: (arg.statusId==3 || arg.statusId==6) 
                           ? TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold, color: colorMain ) 
-                          : tituloH3clasico ,),  
+                          : tituloH3clasico ,)
+                        : Text('${arg.status} - Vencido', style: TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold, color: colorRed),),  
                       ],
                     ),
                     Padding(
@@ -105,18 +113,23 @@ class DetalleReservado extends StatelessWidget {
                 ),
                 SizedBox(height: 35.0,),
                 Center(
-                  child: OutlineButton(
-                    onPressed: ()=>_alertaEliminar(arg.id,context),
-                    child: Text("Eliminar reserva",style: TextStyle(
-                      fontSize: sizeH4,
-                      fontWeight: FontWeight.w700
-                    ),),
-                    shape: shapeB,
-                    color: colorRed,
-                    textColor: colorRed,
-                    highlightedBorderColor: colorRed,
-                    padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 10.0),
-                  )
+                  child: buttonOutLine(
+                    "Eliminar reserva",
+                    ()=>_alertaEliminar(arg.id,context),
+                    colorRed
+                  ),
+                  // OutlineButton(
+                  //   onPressed: ()=>_alertaEliminar(arg.id,context),
+                  //   child: Text("Eliminar reserva",style: TextStyle(
+                  //     fontSize: sizeH4,
+                  //     fontWeight: FontWeight.w700
+                  //   ),),
+                  //   shape: shapeB,
+                  //   color: colorRed,
+                  //   textColor: colorRed,
+                  //   highlightedBorderColor: colorRed,
+                  //   padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 10.0),
+                  // )
                 ),
                 SizedBox(height: 10.0,),
               ],
