@@ -8,6 +8,7 @@ import 'package:proypet/src/shared/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/utils/posicion.dart';
 
 
 class ReservaList extends StatefulWidget {
@@ -20,12 +21,11 @@ class _ReservaListState extends State<ReservaList> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
+  // final _prefs = new PreferenciasUsuario();
   List<int> listaFiltros=[];
   var stream;
-  // final _prefs = new PreferenciasUsuario();
-  // String val="";
-
-  Future<List<EstablecimientoModel>> newFuture() => vetProvider.getVets(listaFiltros);
+  
+  Future<List<EstablecimientoModel>> newFuture() => vetProvider.getVets(listaFiltros);//, _prefs.position
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -45,13 +45,18 @@ class _ReservaListState extends State<ReservaList> {
   }
 
   @override
+  void dispose() {
+    fnGetPosition();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final dynamic filtrosData = ModalRoute.of(context).settings.arguments;
     
     if(filtrosData!=null){
       listaFiltros=filtrosData["filtros"];
-    }
-    
+    }  
 
     return FutureBuilder(
       future: stream,

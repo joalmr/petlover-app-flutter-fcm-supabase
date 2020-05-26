@@ -7,7 +7,7 @@ import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+// import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/push-providers/push_provider.dart';
@@ -31,14 +31,14 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
-  final _prefs = new PreferenciasUsuario();
+  // final _prefs = new PreferenciasUsuario();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
 
-  fnGetPosition() async {
-    final datoPosicion = await fnPosition();
-    _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-  }
+  // fnGetPosition() async {
+  //   final datoPosicion = await fnPosition();
+  //   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
+  // }
 
   Future<HomeModel> newFuture() => loginProvider.getUserSummary();
 
