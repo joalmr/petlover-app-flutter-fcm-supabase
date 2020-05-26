@@ -357,6 +357,13 @@ class _HomePageState extends State<HomePage> {
         shrinkWrap: true,
         itemCount: atenciones.length,
         itemBuilder: (BuildContext context, int index) {
+          DateTime now = DateTime.now();
+          var fechaAt = atenciones[index].date.split('-');
+          bool vencido=false;
+          if( int.parse(fechaAt[0])<now.day && int.parse(fechaAt[1])==now.month && int.parse(fechaAt[2])==now.year){
+            vencido=true;
+          }
+
           var dismissible = Dismissible(
             key: UniqueKey(),
             background: Container(
@@ -395,11 +402,16 @@ class _HomePageState extends State<HomePage> {
                       backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
                       radius: 25.0,
                     ),
-                    title: Text(atenciones[index].establishmentName),
-                    subtitle: Text(atenciones[index].status, 
-                      style: (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
-                      ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
-                      : TextStyle(fontWeight: FontWeight.bold) ,),
+                    title: Text(atenciones[index].establishmentName), //(!vencido) ? 
+                      // : Text(atenciones[index].establishmentName, style: TextStyle(color: colorRed),),
+                    subtitle: Text((!vencido) 
+                      ? atenciones[index].status
+                      : '${atenciones[index].status} - Vencido', 
+                      style: (!vencido) ? (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
+                        ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
+                        : TextStyle(fontWeight: FontWeight.bold) 
+                      : TextStyle(fontWeight: FontWeight.bold, color: colorRed) , //vencido
+                    ),
                     trailing: Column(
                       children: <Widget>[
                         Text(
