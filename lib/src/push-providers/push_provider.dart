@@ -14,7 +14,7 @@ class PushProvider {
     _firebaseMessaging.requestNotificationPermissions();
 
     _firebaseMessaging.getToken().then((token) {
-      //los tokens en la bd deben ser un arreglo de tokens
+      //los tokens a agregar en la bd deben ser un arreglo de tokens
       print("======== token ========");
       print(token);
     });
