@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
-// final String urlDevAzure = 'http://52.170.234.215/api';
-final String urlProdAws = 'https://proypet.com/api';
+final String urlPruebas = '/api';
+final String urlProduccion = 'https://proypet.com/api';
 
-final String urlGlobal = urlProdAws;
+final String urlGlobal = urlProduccion;
 
 final _prefs = new PreferenciasUsuario();
 
