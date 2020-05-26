@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -28,8 +29,6 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
 
   @override
   Widget build(BuildContext context) {
-    // const kGoogleApiKey = "AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844";
-    // GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
 
     return ClipPath(
       child: Drawer(
@@ -51,28 +50,32 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       colorMain
                     ),
                     SizedBox(height: 10,),
-                    Material(
-                      elevation: 0.0,
-                      borderRadius: borderRadius,
-                      color: colorGray1,
-                      child: TextFormField(
-                        cursorColor: colorMain,
-                        controller: destinationController,
-                        textInputAction: TextInputAction.go,
-                        onSaved: (value)=>searchAddr=value,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-                          hintStyle: TextStyle(fontSize: 14.0),
-                          hintText: "Ingrese distrito",
-                          border: InputBorder.none,          
-                        ),
-                        // onChanged: (val){
-                        //   setState(() {
-                        //     searchAddr = val;
-                        //   });
-                        // },
-                      ),
+                    FormularioText(
+                      hintText: 'Ingrese distrito',
+                      icon: Icons.location_on,
+                      obscureText: false,
+                      onSaved: (value)=>searchAddr=value,
+                      textCap: TextCapitalization.none,
+                      valorInicial: null,
+                      boardType: TextInputType.text,
                     ),
+                    // Material(
+                    //   elevation: 0.0,
+                    //   borderRadius: borderRadius,
+                    //   color: colorGray1,
+                    //   child: TextFormField(
+                    //     cursorColor: colorMain,
+                    //     controller: destinationController,
+                    //     textInputAction: TextInputAction.go,
+                    //     onSaved: (value)=>searchAddr=value,
+                    //     decoration: InputDecoration(
+                    //       contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                    //       hintStyle: TextStyle(fontSize: 14.0),
+                    //       hintText: "Ingrese distrito",
+                    //       border: InputBorder.none,          
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(height: 10,),
                     SwitchListTile(
                       value: (filtros.contains(1)) ? true : false,//petReq.genre,
@@ -231,15 +234,19 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
   searchandNavigate(){
     formKey.currentState.save();
     setState(() { });
-
-    Geolocator().placemarkFromAddress(searchAddr).then((result){
-      if(result!=null){
-        // print(result[0].position);
-        latlng = result[0].position;
-        _prefs.position = '${latlng.latitude},${latlng.longitude}';
-        Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );
-      }      
-    });
+    if(searchAddr.trim()!=""){
+      Geolocator().placemarkFromAddress(searchAddr).then((result){
+        if(result!=null){
+          latlng = result[0].position;
+          _prefs.position = '${latlng.latitude},${latlng.longitude}';
+          Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );
+        }      
+      });
+    }
+    else{
+      Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );      
+    }
+    
 
     
   }
