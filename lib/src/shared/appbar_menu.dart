@@ -11,19 +11,6 @@ Widget appbar( logo, String texto, List<Widget> acc){
   );
 }
 
-// Widget appbar2(titulo,acc,btnTab){
-//   return AppBar(
-//     backgroundColor: colorMain,
-//     leading: leadingH,
-//     title: titulo,
-//     actions: acc,
-//     bottom: PreferredSize(
-//       preferredSize: Size.fromHeight(25),
-//       child: btnTab,
-//     ),
-//   );
-// }
-
 final leadingH = Container(
   margin: EdgeInsets.all(.5),
   child: ClipRRect(
@@ -42,3 +29,16 @@ final actionsH = <Widget>[
     onPressed: (){},
   )
 ];
+
+// Widget appbar2(titulo,acc,btnTab){
+//   return AppBar(
+//     backgroundColor: colorMain,
+//     leading: leadingH,
+//     title: titulo,
+//     actions: acc,
+//     bottom: PreferredSize(
+//       preferredSize: Size.fromHeight(25),
+//       child: btnTab,
+//     ),
+//   );
+// }

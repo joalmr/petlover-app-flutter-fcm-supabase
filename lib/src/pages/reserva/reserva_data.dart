@@ -2,17 +2,18 @@ import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/src/model/booking/booking_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/shared/appbar_menu.dart';
-import 'package:proypet/src/shared/ddl_control.dart';
-import 'package:proypet/src/shared/form_control/button_primary.dart';
-import 'package:intl/intl.dart';
-import 'package:proypet/src/shared/form_control/text_field.dart';
-import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/ddl_control.dart';
+import 'package:proypet/src/shared/form_control/text_field.dart';
+import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/styles/styles.dart';
+
 
 class DataReserva extends StatefulWidget {
   final String establecimientoID;

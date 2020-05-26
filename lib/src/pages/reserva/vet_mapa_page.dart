@@ -3,13 +3,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/styles/titulos.dart';
 
 

@@ -7,18 +7,18 @@ import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
+import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/shared/card_swiper.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/modal_bottom.dart';
 import 'package:proypet/src/shared/snackbar.dart';
-import 'package:proypet/src/providers/establecimiento_provider.dart';
-import 'package:proypet/src/providers/mascota_provider.dart';
-import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
-import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VetDetallePage extends StatefulWidget {

@@ -5,23 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
+import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/providers/booking_provider.dart';
+import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 import 'package:proypet/src/shared/snackbar.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/providers/booking_provider.dart';
-import 'package:proypet/src/model/home_model.dart' as hoModel ;
-import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/styles/titulos.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/posicion.dart';
-// import 'package:proypet/src/utils/utils.dart';
-// import 'package:proypet/src/pages/reserva/detalle_reserva.dart';
 
 
 class HomePage extends StatefulWidget {
