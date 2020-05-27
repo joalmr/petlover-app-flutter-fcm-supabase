@@ -56,6 +56,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData( 
         fontFamily: 'Lato',
         primarySwatch: Colors.teal,
+        cursorColor: Colors.teal
       ),      
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

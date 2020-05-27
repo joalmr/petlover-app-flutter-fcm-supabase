@@ -224,7 +224,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         mode: Mode.BOTTOM_SHEET,             
         emptyBuilder: (context) => Center(
           child: Text('Dirección no encontrada'),
-        ),          
+        ),   
         searchBoxDecoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
           hintStyle: TextStyle(fontSize: 14.0),
@@ -232,6 +232,8 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
           border: InputBorder.none,
           filled: true,
           fillColor: colorGray1,
+          focusColor: colorMain,
+          hintText: 'Ingrese dirección'
         ), 
         dropDownSearchDecoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),

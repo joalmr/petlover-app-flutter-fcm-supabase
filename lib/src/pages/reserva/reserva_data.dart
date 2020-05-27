@@ -364,6 +364,8 @@ class _Data extends State<DataReserva> {
           border: InputBorder.none,
           filled: true,
           fillColor: colorGray1,
+          focusColor: colorMain,
+          hintText: 'Ingrese dirección'
         ), 
         dropDownSearchDecoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
