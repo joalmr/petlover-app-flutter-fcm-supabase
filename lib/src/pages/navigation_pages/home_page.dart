@@ -31,14 +31,8 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
-  // final _prefs = new PreferenciasUsuario();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
-
-  // fnGetPosition() async {
-  //   final datoPosicion = await fnPosition();
-  //   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-  // }
 
   Future<HomeModel> newFuture() => loginProvider.getUserSummary();
 

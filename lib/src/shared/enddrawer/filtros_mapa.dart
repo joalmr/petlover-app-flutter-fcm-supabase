@@ -247,7 +247,5 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
       Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );      
     }
     
-
-    
   }
 }
