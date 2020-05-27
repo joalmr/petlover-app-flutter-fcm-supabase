@@ -3,8 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
-import 'package:proypet/src/pages/shared/card_swiper.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/shared/card_swiper.dart';
+import 'package:proypet/src/styles/styles.dart';
 
   Widget buildVets(BuildContext context, EstablecimientoModel vetLocales){
     var vet = vetLocales;
@@ -29,7 +29,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
                         child: Container(
                           padding: EdgeInsets.all(8.0),
                           child: CircleAvatar(
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: colorGray1.withOpacity(0.25) ,//Colors.grey.withOpacity(0.24),
                             backgroundImage: CachedNetworkImageProvider(vet.logo),
                             radius: 25.0,
                           ),
@@ -59,7 +59,7 @@ import 'package:proypet/src/utils/styles/styles.dart';
                         ),
                         Text(vet.name ,style: TextStyle(
                             fontSize: sizeH3,
-                            color: Colors.grey[700],
+                            color: Colors.black54,
                             fontWeight: FontWeight.w400
                           ),
                           maxLines: 1,

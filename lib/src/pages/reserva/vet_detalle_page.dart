@@ -7,17 +7,18 @@ import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
-import 'package:proypet/src/pages/shared/card_swiper.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/modal_bottom.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/shared/card_swiper.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
+import 'package:proypet/src/shared/modal_bottom.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VetDetallePage extends StatefulWidget {
@@ -95,7 +96,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
       bottom: 0.0,
       height: 100.0,
       child: FlatButton(
-        onPressed: reservarClic ? _reservar : null, // ,//()=>modal.mainModal(context,DataReserva(establecimientoID: widget.idvet)),
+        onPressed: reservarClic ? _reservar : null, 
         child: Container(
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 35.0),
@@ -125,17 +126,14 @@ class _VetDetallePageState extends State<VetDetallePage> {
             child: ListTile(
               title: Text(localVet.name,//nombreVet(0),
                 maxLines: 2,
-                style: TextStyle(
-                  fontSize: sizeH2,
-                  fontWeight: FontWeight.w600
-                )
+                style: tituloH2clasico
               ),
               subtitle: Text('${localVet.address} ${localVet.distance}km'),//${localVet.distance}km
               trailing: Container(
                 height: 55.0,
                 width: 55.0,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
+                  color: colorGray1,// Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(100.0),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(localVet.logo),
@@ -153,11 +151,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Text('Atenciones',
-                  style: TextStyle(
-                      fontSize: sizeH3,
-                      color: Color(0xFF6A6A6A),
-                      fontWeight: FontWeight.w600)),
+                  Text('Atenciones', style: tituloH3),
                   SizedBox(width: 15.0),
                   Stack(
                     children: <Widget>[
@@ -221,10 +215,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           width: double.infinity,
           padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-          child: Text("Servicios", style: TextStyle(
-            fontSize: sizeH4,
-            color: Color(0xFF6A6A6A),
-            fontWeight: FontWeight.w600)),
+          child: Text("Servicios", style: tituloH4 ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0,),
@@ -238,10 +229,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Precio referencial",style: TextStyle(
-                    fontSize: sizeH4,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600))
+          child: Text("Precio referencial",style: tituloH4 )
         )
         : SizedBox(height: 0.0,),
         localVet.prices.length>0 ?
@@ -256,16 +244,13 @@ class _VetDetallePageState extends State<VetDetallePage> {
           child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeH6),)
         ) : SizedBox(height: 0.0,),
       
-        SizedBox(height: 5.0),
+        SizedBox(height: 10.0),
         
         localVet.schedule.length>0 ?
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Horario",style: TextStyle(
-                    fontSize: sizeH4,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600))
+          child: Text("Horario",style: tituloH4 )
         ): SizedBox(height: 0.0,), 
 
         (localVet.schedule.length>0) ?
@@ -281,16 +266,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[  
               Text('Descripción',
-                style: TextStyle(
-                    fontSize: sizeH4,
-                    color: Color(0xFF6A6A6A),
-                    fontWeight: FontWeight.w600)),  
+                style: tituloH4 ),  
               SizedBox(height: 10.0,),
               Text(localVet.description,textAlign: TextAlign.justify,),
               SizedBox(width: double.infinity,),
-              // Text('Est laborum tempor sunt aliquip ex mollit cillum commodo laborum laborum laborum excepteur mollit. Adipisicing et irure Lorem qui nisi officia non eu. Officia dolor laboris sunt ipsum pariatur in minim dolor amet. Labore do nostrud sit ipsum aliqua aliqua cupidatat eu. Aliquip duis anim nostrud consequat enim ipsum. Consequat proident ex occaecat laboris ea exercitation culpa ex laborum dolore irure. Exercitation ea eu mollit Lorem. Laborum dolor tempor officia adipisicing esse enim sint consectetur anim in anim pariatur duis. Lorem ex non enim pariatur. Id sit adipisicing mollit laborum exercitation officia eiusmod voluptate ea labore ullamco est consectetur do. Excepteur est eu amet laboris in laboris non Lorem veniam. Consequat reprehenderit incididunt cupidatat aliqua deserunt. Officia pariatur ad irure proident tempor. Velit qui nulla reprehenderit ut do eu fugiat. Est enim veniam enim velit sint incididunt qui sint nulla sunt. Reprehenderit ullamco nisi voluptate elit laborum occaecat consequat.'
-              //   ,textAlign: TextAlign.justify,
-              // )
             ],
           ),
         ),
@@ -308,25 +287,25 @@ class _VetDetallePageState extends State<VetDetallePage> {
               _precio("Consulta", 
                 precios["consultation"]["from"]==null?"":precios["consultation"]["from"], 
                 precios["consultation"]["to"]==null?"":precios["consultation"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
               
               _precio("Vacunas", 
                 precios["vaccination"]["from"]==null?"":precios["vaccination"]["from"], 
                 precios["vaccination"]["to"]==null?"":precios["vaccination"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
               
               _precio("Baños", 
                 precios["grooming"]["from"]==null?"":precios["grooming"]["from"], 
                 precios["grooming"]["to"]==null?"":precios["grooming"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
               
               _precio("Desparasitación", 
                 precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
                 precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 
-                colorBlue.withOpacity(0.75)
+                // colorBlue.withOpacity(0.75)
               ),
             ],
           ),
@@ -334,7 +313,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
     ;
   }
 
-  Widget _precio(tipo, desde, hasta, color){
+  Widget _precio(tipo, desde, hasta){
     if(desde=="" && hasta==""){
       return SizedBox(width: 0, height: 0,);
     }
@@ -347,7 +326,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
           width: 130,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
-            color: color,
+            color: colorGray1,//.withOpacity(0.75),//Colors.white,
             boxShadow:[ 
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -359,18 +338,18 @@ class _VetDetallePageState extends State<VetDetallePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(tipo, style: TextStyle(color: Colors.white),),
+              Text(tipo, style: TextStyle(color: Colors.black54),),
               SizedBox(height: 5,),
-              Text("desde", style: TextStyle(color: Colors.white),),
+              Text("desde", style: TextStyle(color: Colors.black54),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Icon(IconProypet.sol_moneda, color: Colors.white, size: 14.0,),
-                  (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                  (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                  (desde=="" && hasta!="") ? Text("0 -", style: TextStyle(color: Colors.white),) : SizedBox(width: 0,),
-                  (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.white),) : SizedBox(width: 0,), 
+                  Icon(IconProypet.sol_moneda, color: Colors.black54, size: 14.0,),
+                  (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
+                  (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
+                  (desde=="" && hasta!="") ? Text("0 -", style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
+                  (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,), 
                 ],
               ),
             ],
@@ -388,37 +367,37 @@ class _VetDetallePageState extends State<VetDetallePage> {
           (horario["monday"]["attention"]=="on") //&& horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"], colorGray3),
+            child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["tuesday"]["attention"]=="on") //&& horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"], colorGray3),
+            child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["wednesday"]["attention"]=="on") //&& horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"], colorGray3),
+            child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["thursday"]["attention"]=="on") //&& horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"], colorGray3),
+            child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["friday"]["attention"]=="on") //&& horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"], colorGray3),
+            child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["saturday"]["attention"]=="on") //&& horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"], colorGray3),
+            child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           (horario["sunday"]["attention"]=="on") //&& horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null 
           ? Padding(
             padding: const EdgeInsets.all(8.0),
-            child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"], colorGray3),
+            child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"],),
           ) : SizedBox(width: 0, height: 0,),
           
         ],
@@ -426,13 +405,13 @@ class _VetDetallePageState extends State<VetDetallePage> {
     );
   }
 
-  Widget _horario(dia, inicio, fin, color){
+  Widget _horario(dia, inicio, fin){
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.0),
       width: 95,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: color,
+        color: colorGray1,//Colors.white,
         boxShadow:[ 
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -445,15 +424,15 @@ class _VetDetallePageState extends State<VetDetallePage> {
           Row(
             children: <Widget>[
               SizedBox(width: 5.0,),
-              Icon(Icons.schedule, color: Colors.white, size: 20.0,),
+              Icon(Icons.schedule, color: Colors.black54, size: 20.0,),
               SizedBox(width: 5.0,),
-              Text(dia, style: TextStyle(color: Colors.white),),
+              Text(dia, style: TextStyle(color: Colors.black54),),
             ],
           ),
           SizedBox(height: 5,),
-          Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.white),),
+          Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.black54),),
           SizedBox(height: 5,),
-          Text(fin==null?"-":fin, style: TextStyle(color: Colors.white),),
+          Text(fin==null?"-":fin, style: TextStyle(color: Colors.black54),),
         ],
       )
     );   
@@ -608,10 +587,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
     }
     
   }
-
-  // _buscarVet(){
-  //   Navigator.pushNamed(context, 'navLista');
-  // }
 
   _cancelar(){
     setState(() { reservarClic=true; });

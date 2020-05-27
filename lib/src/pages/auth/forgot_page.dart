@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/wave_clipper.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 
 
@@ -47,7 +47,7 @@ class _ForgotPageState extends State<ForgotPage> {
                     style: TextStyle(
                       fontSize: 24.0, 
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
                     )
                   ),
                 ),
@@ -59,8 +59,16 @@ class _ForgotPageState extends State<ForgotPage> {
                 SizedBox(height: 20.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Email',
+                    icon: Icons.alternate_email,
+                    obscureText: false,
+                    onSaved: (value)=>val=value,
+                    textCap: TextCapitalization.none,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  ),
+                  // textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,TextInputType.text),
                 ),
                 SizedBox(height: 30.0),
                 Padding(
@@ -97,10 +105,10 @@ class _ForgotPageState extends State<ForgotPage> {
       _fnResponse(
         "Ingrese correo electrónico", 
         colorRed, 
-        Timer(Duration(milliseconds: 1500), (){
-          setState(() { enviarClic = true; });
-        })
       );
+      Timer(Duration(milliseconds: 1500), (){
+        setState(() { enviarClic = true; });
+      });
     }
 
     else{
@@ -109,36 +117,36 @@ class _ForgotPageState extends State<ForgotPage> {
       if(resp==200){
         _fnResponse(
           "Se le envío un correo electrónico a la dirección ingresada", 
-          colorMain, 
-          Timer(Duration(milliseconds: 3500), (){
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          })
+          colorMain,           
         );
+        Timer(Duration(milliseconds: 3500), (){
+          Navigator.of(context).popUntil((route) => route.isFirst);
+        });
       }
       else if(resp==205){
         _fnResponse(
           "Este correo no esta registrado en Proypet", 
           colorRed,
-          Timer(Duration(milliseconds: 1500), (){
-            setState(() { enviarClic = true; });
-          })
         ); 
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { enviarClic = true; });
+        });
       }
       else{
         _fnResponse(
           "Error, ejecución denegada", 
-          colorRed,
-          Timer(Duration(milliseconds: 1500), (){
-            setState(() { enviarClic = true; });
-          })
+          colorRed,          
         ); 
+        Timer(Duration(milliseconds: 1500), (){
+          setState(() { enviarClic = true; });
+        });
       }
     }
 
   }
 
-  _fnResponse(String texto, Color color,dynamic fnExecute){
+  _fnResponse(String texto, Color color,){ //dynamic fnExecute
     mostrarSnackbar(texto, color, scaffoldKey);
-    fnExecute;
+    // fnExecute;
   }
 }

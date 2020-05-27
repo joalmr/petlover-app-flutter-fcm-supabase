@@ -5,15 +5,13 @@ import 'package:proypet/src/pages/usuario/changepassword_page.dart';
 import 'package:proypet/src/pages/usuario/user_page.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:share/share.dart';
 
 
 
 class ConfigDrawer extends StatelessWidget {
   final Color primary = Colors.white;
-  final Color active = Colors.grey.shade800;
-  final Color divider = Colors.grey.shade600;
   final _prefs = new PreferenciasUsuario();
   final loginProvider = UserProvider();
 
@@ -86,7 +84,8 @@ class ConfigDrawer extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),),
                   onTap: ()=>_cerrarSesion(context),
-                )
+                ),
+
               ],
             ),
           ),

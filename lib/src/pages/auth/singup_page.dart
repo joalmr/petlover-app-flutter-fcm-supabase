@@ -3,12 +3,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/login/login_model.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/pages/shared/wave_clipper.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SingupPage extends StatefulWidget {
@@ -47,7 +47,7 @@ class _SingupPageState extends State<SingupPage> {
                     style: TextStyle(
                       fontSize: 24.0, 
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
                     )
                   ),
                 ),
@@ -56,33 +56,65 @@ class _SingupPageState extends State<SingupPage> {
                     style: TextStyle(
                       fontSize: 16.0, 
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(89, 74, 70, 0.75)
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
                     )
                   ),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Nombre',
+                    icon: Icons.person,
+                    obscureText: false,
+                    onSaved: (value)=>user.name=value,
+                    textCap: TextCapitalization.words,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Apellido',
+                    icon: Icons.person,
+                    obscureText: false,
+                    onSaved: (value)=>user.lastname=value,
+                    textCap: TextCapitalization.words,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Email',
+                    icon: Icons.alternate_email,
+                    obscureText: false,
+                    onSaved: (value)=>user.email=value,
+                    textCap: TextCapitalization.none,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null,
-                    TextInputType.text),
+                  child: FormularioText(
+                    hintText: 'Contraseña',
+                    icon: Icons.lock,
+                    obscureText: true,
+                    onSaved: (value)=>user.password=value,
+                    textCap: TextCapitalization.none,
+                    valorInicial: null,
+                    boardType: TextInputType.text,
+                  )
+                  // textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null, TextInputType.text),
                 ),
                 SizedBox(height: 20),
                 Padding(

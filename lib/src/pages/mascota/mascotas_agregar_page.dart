@@ -4,17 +4,17 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/raza/raza_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:intl/intl.dart';
-import 'package:proypet/src/pages/shared/ddl_control.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/raza_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/ddl_control.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
 final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
@@ -124,12 +124,21 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               SizedBox(height: 10.0,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: textForm('Nombre de mascota', 
-                  Icons.pets, false, 
-                  (value)=>mascotaData.name=value, 
-                  TextCapitalization.words, 
-                  null,
-                  TextInputType.text),
+                child: FormularioText(
+                  hintText: 'Nombre de mascota',
+                  icon: Icons.pets,
+                  obscureText: false,
+                  onSaved: (value)=>mascotaData.name=value,
+                  textCap: TextCapitalization.words,
+                  valorInicial: null,
+                  boardType: TextInputType.text,
+                ),
+                // textForm('Nombre de mascota', 
+                //   Icons.pets, false, 
+                //   (value)=>mascotaData.name=value, 
+                //   TextCapitalization.words, 
+                //   null,
+                //   TextInputType.text),
               ),
               SizedBox(height: 10.0,),
               Padding(
@@ -155,7 +164,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlSearchFuture( opcRaza, razaLista.breeds, 
+                child: ddlFutureSearch( opcRaza, razaLista.breeds, 
                   (opt){ setState(() { 
                     opcRaza=opt.toString();
                     mascotaData.breedId = int.tryParse(opt.split("|")[0]);

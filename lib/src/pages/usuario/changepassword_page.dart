@@ -1,12 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/form_control/text_from.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/text_from.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/styles/styles.dart';
+
 
 class ChangePasswordPage extends StatefulWidget {
   @override
@@ -36,11 +36,29 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           children: <Widget>[
             Text('Contraseña actual'),
             SizedBox(height: 10.0,),
-            textForm('Ingrese contraseña actual', Icons.lock, true, (value)=>passAntigua=value, TextCapitalization.sentences, null,TextInputType.text),
+            FormularioText(
+              hintText: 'Ingrese contraseña actual',
+              icon: Icons.lock,
+              obscureText: true,
+              onSaved: (value)=>passAntigua=value,
+              textCap: TextCapitalization.none,
+              valorInicial: null,
+              boardType: TextInputType.text,
+            ),
+            // textForm('Ingrese contraseña actual', Icons.lock, true, (value)=>passAntigua=value, TextCapitalization.sentences, null,TextInputType.text),
             SizedBox(height: 15.0,),
             Text('Nueva contraseña'),
             SizedBox(height: 10.0,),
-            textForm('Ingrese contraseña nueva', Icons.lock, true, (value)=>passNueva=value, TextCapitalization.sentences, null,TextInputType.text),
+            FormularioText(
+              hintText: 'Ingrese contraseña nueva',
+              icon: Icons.lock,
+              obscureText: true,
+              onSaved: (value)=>passNueva=value,
+              textCap: TextCapitalization.none,
+              valorInicial: null,
+              boardType: TextInputType.text,
+            ),
+            // textForm('Ingrese contraseña nueva', Icons.lock, true, (value)=>passNueva=value, TextCapitalization.sentences, null,TextInputType.text),
             SizedBox(height: 35.0,),
             Center(
               child: buttonPri('Cambiar contraseña', clickPassword ? _changePassword : null ) //()=>agregarDialog()

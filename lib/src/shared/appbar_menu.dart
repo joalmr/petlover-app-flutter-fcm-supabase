@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 
 Widget appbar( logo, String texto, List<Widget> acc){
@@ -10,19 +10,6 @@ Widget appbar( logo, String texto, List<Widget> acc){
     actions: acc,
   );
 }
-
-// Widget appbar2(titulo,acc,btnTab){
-//   return AppBar(
-//     backgroundColor: colorMain,
-//     leading: leadingH,
-//     title: titulo,
-//     actions: acc,
-//     bottom: PreferredSize(
-//       preferredSize: Size.fromHeight(25),
-//       child: btnTab,
-//     ),
-//   );
-// }
 
 final leadingH = Container(
   margin: EdgeInsets.all(.5),
@@ -42,3 +29,16 @@ final actionsH = <Widget>[
     onPressed: (){},
   )
 ];
+
+// Widget appbar2(titulo,acc,btnTab){
+//   return AppBar(
+//     backgroundColor: colorMain,
+//     leading: leadingH,
+//     title: titulo,
+//     actions: acc,
+//     bottom: PreferredSize(
+//       preferredSize: Size.fromHeight(25),
+//       child: btnTab,
+//     ),
+//   );
+// }

@@ -1,7 +1,15 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:proypet/global_variables.dart';
+import 'package:proypet/src/model/maps/address.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/styles/styles.dart';
+import 'package:http/http.dart' as http;
 
 
+TextEditingController destinationController = TextEditingController();
 
 class FiltrosMapa extends StatefulWidget {
   final List<int> filtros;
@@ -17,25 +25,10 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
   final formKey = GlobalKey<FormState>();
-
-  // String val= "";
-    bool bool1=false;
-    bool bool2=false;
-    bool bool3=false;
-    bool bool4=false;
-    bool bool5=false;
-    bool bool6=false;
-    bool bool7=false;
-    bool bool8=false;
-    bool bool9=false;
-    bool bool10=false;
-    bool bool11=false;
-    bool bool12=false;
-    bool bool13=false;
-    bool bool14=false;
-    bool bool15=false;
-    bool bool16=false;
-
+  String searchAddr="";
+  var latlng;
+  final _prefs = new PreferenciasUsuario();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -54,31 +47,15 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                 child: Column(
                   children: <Widget>[                  
                     SizedBox(height: 40.0,),
-                    Text('Filtros',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 24.0,
-                        letterSpacing: 3.0,
-                        color: Colors.black54,                      
-                      ),
+                    buttonOutLine(
+                      "Filtrar",
+                      searchandNavigate,
+                      colorMain
                     ),
-                    SizedBox(height: 20,),
-                    // buttonPri('Flitrar', ()
-                    //   =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', 
-                    //     ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
-                    // ),
-                    FlatButton(
-                      child: Container(
-                        width: double.infinity,
-                        child: Text('Flitrar', 
-                        textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: colorMain, 
-                            fontWeight: FontWeight.bold),)),
-                      onPressed: ()
-                        =>Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } ),
-                    ),
-                    SwitchListTile(                      
+                    SizedBox(height: 10,),
+                    _autocompleteAddress(),
+                    SizedBox(height: 10,),
+                    SwitchListTile(
                       value: (filtros.contains(1)) ? true : false,//petReq.genre,
                       title: Text('Baños / Grooming'),
                       activeColor: colorMain,
@@ -222,8 +199,6 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                         else filtros.add(4);
                       }),
                     ),
-                    //FormControl().buttonSec('Buscar',(){})
-                    // buttonPri('Filtrar',()=>{})
                   ],
                 ),
               ),
@@ -232,5 +207,64 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         ),
       ),
     );
+  }
+
+
+  _autocompleteAddress(){
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: colorGray1,
+      child: DropdownSearch<Prediction>(
+        hint: 'Ingrese dirección',
+        isFilteredOnline: true,
+        autoFocusSearchBox: true,
+        showSearchBox: true,
+        autoValidate: true,
+        mode: Mode.BOTTOM_SHEET,             
+        emptyBuilder: (context) => Center(
+          child: Text('Dirección no encontrada'),
+        ),          
+        searchBoxDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on),
+          border: InputBorder.none,
+          filled: true,
+          fillColor: colorGray1,
+        ), 
+        dropDownSearchDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on,color: colorMain),
+          border: InputBorder.none,
+        ),
+        onFind: (String filter) async {
+          var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+          var models = addressFromJson(response.body);
+          return models.predictions;
+        },
+        onChanged: (Prediction data)=>searchAddr=data.name,
+        // onSaved: (value)=>searchAddr,
+      ),
+    );
+  }
+
+  searchandNavigate(){
+    // formKey.currentState.save();
+    // setState(() { });
+    if(searchAddr.trim()!=""){
+      Geolocator().placemarkFromAddress(searchAddr).then((result){
+        if(result!=null){
+          latlng = result[0].position;
+          _prefs.position = '${latlng.latitude},${latlng.longitude}';
+          Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );
+        }      
+      });
+    }
+    else{
+      Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );      
+    }
+    
   }
 }

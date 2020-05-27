@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icon_proypet_icons.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 class HistoriaPage extends StatelessWidget {
   const HistoriaPage({Key key}) : super(key: key);

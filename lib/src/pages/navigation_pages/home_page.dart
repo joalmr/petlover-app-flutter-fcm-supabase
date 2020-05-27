@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/booking/booking_home.dart';
 import 'package:proypet/src/model/home_model.dart';
-import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/shared/enddrawer/config_drawer.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
-import 'package:proypet/src/pages/shared/navigation_bar.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/model/home_model.dart' as hoModel ;
+import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/push-providers/push_provider.dart';
+import 'package:proypet/src/shared/enddrawer/config_drawer.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/navigation_bar.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/styles/titulos.dart';
+import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
-import 'package:proypet/src/utils/utils.dart';
-// import 'package:proypet/src/pages/reserva/detalle_reserva.dart';
+import 'package:proypet/src/utils/posicion.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -29,14 +30,8 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
-  final _prefs = new PreferenciasUsuario();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
-
-  fnGetPosition() async {
-    final datoPosicion = await fnPosition();
-    _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-  }
 
   Future<HomeModel> newFuture() => loginProvider.getUserSummary();
 
@@ -52,9 +47,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    //implement initState
     fnGetPosition();
     _onRefresh();
+
+    // final pushProvider = new PushProvider();
+    // pushProvider.initNotificaciones();
+    
     super.initState();    
   }
 
@@ -98,11 +96,11 @@ class _HomePageState extends State<HomePage> {
                         "Hola,",
                         style: Theme.of(context)
                             .textTheme
-                            .display1
+                            .headline4
                             .apply(),
                       ),
                       IconButton(
-                        icon: Icon(Icons.settings),
+                        icon: Icon(Icons.settings, color: Colors.black54,),
                         onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
                       )
                     ],
@@ -118,11 +116,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(' Servicios frecuentes',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: sizeH2,
-                          fontWeight: FontWeight.bold),),
+                        Text(' Servicios frecuentes', style: tituloH2,),
                         SizedBox(height: 15.0),
                         SingleChildScrollView(
                           physics: BouncingScrollPhysics(),
@@ -150,20 +144,13 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text(
-                          "Reservas",
-                          style: TextStyle(
-                            fontSize: sizeH2,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54
-                          )
-                        ),
+                        child: Text("Reservas", style: tituloH2),
                       ),
-                      Icon(Icons.timelapse, color: Colors.black.withOpacity(.71)),
+                      Icon(Icons.timelapse, color: Colors.black54),
                     ],
                   ),
                 ),
-                FadeIn(child: _atenciones(mydata.bookings,mydata.pets.length)),
+                FadeIn(child: _atenciones(mydata.bookings,mydata.pets)),
               ],
             );
           }
@@ -181,7 +168,7 @@ class _HomePageState extends State<HomePage> {
           usuario.name, //snapshot.data?.name, //nombre del usuario
           style: Theme.of(context)
               .textTheme
-              .display1
+              .headline4
               .apply(color: Colors.black87, fontWeightDelta: 2),
         ),
       ],
@@ -259,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                                     style: 
                                     Theme.of(context)
                                       .textTheme
-                                      .display1
+                                      .headline4
                                       .apply(color: Colors.white, fontWeightDelta: 2),
                                     // TextStyle(
                                     //   fontSize: sizeH1,
@@ -295,22 +282,13 @@ class _HomePageState extends State<HomePage> {
                         bottom: 10.0,
                         right: 10.0,
                         child: RaisedButton(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 11.0),
+                          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 11.0),
                           color: Colors.black.withOpacity(0.15),
-                          // onPressed: ()=>Navigator.push(context, MaterialPageRoute(
-                          //   builder: (_)=>MascotaDetallePage(mascota: mascotas[index],),
-                          // )),
                           onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index].id),
-                          child: Text(
-                            'Ver más',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          child: Text('Ver más',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                           shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(9.0),
-                              side: BorderSide(color: Colors.white)),
+                            borderRadius: new BorderRadius.circular(9.0),
+                            side: BorderSide(color: Colors.white)),
                         ),
                       ),
                     ],
@@ -353,7 +331,8 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  Widget _atenciones(List<BookingHome> atenciones, petLength){
+  Widget _atenciones(List<BookingHome> atenciones, List<MascotaModel> pets){
+    int petLength = pets.length;
     if(atenciones.length>0)
       return ListView.builder(
         padding: EdgeInsets.only(top: 5.0),
@@ -361,6 +340,13 @@ class _HomePageState extends State<HomePage> {
         shrinkWrap: true,
         itemCount: atenciones.length,
         itemBuilder: (BuildContext context, int index) {
+          DateTime now = DateTime.now();
+          var fechaAt = atenciones[index].date.split('-');
+          bool vencido=false;
+          if( int.parse(fechaAt[0])<now.day && int.parse(fechaAt[1])==now.month && int.parse(fechaAt[2])==now.year){
+            vencido=true;
+          }
+
           var dismissible = Dismissible(
             key: UniqueKey(),
             background: Container(
@@ -381,7 +367,7 @@ class _HomePageState extends State<HomePage> {
                         child: Text('Cancelar')
                       ),
                       FlatButton(
-                        onPressed: ()=>deleteBooking(atenciones[index].id),
+                        onPressed: ()=>_deleteBooking(atenciones[index].id),
                         child: Text('Sí, eliminar')
                       )
                     ],
@@ -389,37 +375,44 @@ class _HomePageState extends State<HomePage> {
                 );
               }
             ),
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  // onTap: ()=> Navigator.push(context, MaterialPageRoute(builder:(context)=>DetalleReservado())),
-                  leading: CircleAvatar(
-                    backgroundColor: colorMain,
-                    backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
-                    radius: 25.0,
+            child: FlatButton(
+              onPressed: ()=> Navigator.pushNamed(context, 'detallereservado', arguments: atenciones[index]),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: colorMain,
+                      backgroundImage: CachedNetworkImageProvider(atenciones[index].petPicture),
+                      radius: 25.0,
+                    ),
+                    title: Text(atenciones[index].establishmentName), //(!vencido) ? 
+                      // : Text(atenciones[index].establishmentName, style: TextStyle(color: colorRed),),
+                    subtitle: Text((!vencido) 
+                      ? atenciones[index].status
+                      : '${atenciones[index].status} - Vencido', 
+                      style: (!vencido) ? (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
+                        ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
+                        : TextStyle(fontWeight: FontWeight.bold) 
+                      : TextStyle(fontWeight: FontWeight.bold, color: colorRed) , //vencido
+                    ),
+                    trailing: Column(
+                      children: <Widget>[
+                        Text(
+                          atenciones[index].date,//" Mañana",
+                          style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          atenciones[index].time,//"17:00",
+                          style: TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                   ),
-                  title: Text(atenciones[index].establishmentName),
-                  subtitle: Text(atenciones[index].status, 
-                    style: (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
-                    ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
-                    : TextStyle(fontWeight: FontWeight.bold) ,),
-                  trailing: Column(
-                    children: <Widget>[
-                      Text(
-                        atenciones[index].date,//" Mañana",
-                        style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        atenciones[index].time,//"17:00",
-                        style: TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                ),
-                Divider(),
-              ],
+                  Divider(),
+                ],
+              ),
             ),
           );
           return dismissible;
@@ -460,7 +453,7 @@ class _HomePageState extends State<HomePage> {
       );
   }
 
-  deleteBooking(String id) async {
+  _deleteBooking(String id) async {
     bool resp = await bookingProvider.deleteBooking(id);
     Navigator.pop(context);
     if(resp){

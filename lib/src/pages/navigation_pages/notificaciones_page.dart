@@ -3,12 +3,14 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
+import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
-import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
+
 
 final List imagen = ['images/elegante1.jpg','images/royal1.jpg'];
 final List imagen2 = ['images/royal1.jpg','images/elegante1.jpg'];
@@ -125,7 +127,13 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0), //horizontal: 20.0
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(color: Colors.black54),),
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: sizeH4,
+              ), 
+              maxLines: 3,
+            ),
+            
           ),
           Divider(),
         ],
@@ -142,7 +150,13 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(color: Colors.black54),),
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: sizeH4,
+              ),
+              maxLines: 3,
+            ),
+            
             onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
           ),
           Divider(),
@@ -160,7 +174,13 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(color: Colors.black54),),
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: sizeH4,
+              ),
+              maxLines: 3,
+            ),
+            
             onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
           ),
           Divider(),

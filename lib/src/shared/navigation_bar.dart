@@ -4,7 +4,7 @@ import 'package:proypet/src/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/pages/navigation_pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/styles/styles.dart';
 
 
 class NavigationBar extends StatefulWidget {
@@ -56,7 +56,9 @@ class _NavigationBarState extends State<NavigationBar> {
     final bottomNavBar = BottomNavigationBar(
       iconSize: 28.0,
       selectedItemColor: colorMain,
-      unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),//Colors.grey[300],
+      // backgroundColor: colorGray1,
+      // elevation: 0,
+      unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0), //colorGray3 //Color.fromRGBO(116, 117, 152, 1.0), //Colors.black54,
       items: _kBottmonNavBarItems,
       currentIndex: currentTabIndex,
       type: BottomNavigationBarType.fixed,

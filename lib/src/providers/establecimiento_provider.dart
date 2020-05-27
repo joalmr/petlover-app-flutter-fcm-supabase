@@ -10,7 +10,7 @@ class EstablecimientoProvider{
   final _prefs = new PreferenciasUsuario();
 
   //List<int> filtros
-  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async {
+  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async { //String latlng
     String lat = _prefs.position.toString().split(',')[0];
     String lng = _prefs.position.toString().split(',')[1];
     var filtroServicio;

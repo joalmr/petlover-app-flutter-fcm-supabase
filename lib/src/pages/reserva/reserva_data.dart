@@ -1,18 +1,23 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:proypet/src/model/booking/booking_model.dart';
-import 'package:proypet/src/model/mascota/mascota_model.dart';
-import 'package:proypet/src/pages/shared/appbar_menu.dart';
-import 'package:proypet/src/pages/shared/ddl_control.dart';
-import 'package:proypet/src/pages/shared/form_control/button_primary.dart';
 import 'package:intl/intl.dart';
-import 'package:proypet/src/pages/shared/form_control/text_field.dart';
-import 'package:proypet/src/pages/shared/snackbar.dart';
+import 'package:proypet/global_variables.dart';
+import 'package:proypet/src/model/booking/booking_model.dart';
+import 'package:proypet/src/model/maps/address.dart';
+import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
-import 'package:proypet/src/utils/styles/styles.dart';
+import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/form_control/ddl_control.dart';
+import 'package:proypet/src/shared/form_control/text_field.dart';
+import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/styles/styles.dart';
+import 'package:http/http.dart' as http;
+
 
 class DataReserva extends StatefulWidget {
   final String establecimientoID;
@@ -38,7 +43,8 @@ class _Data extends State<DataReserva> {
   TextEditingController _inputFechaController=new TextEditingController();
   TextEditingController _inputHoraController=new TextEditingController();
   TextEditingController _inputObservacioController=new TextEditingController();
-  TextEditingController _inputDireccionController=new TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  // TextEditingController _inputDireccionController=new TextEditingController();
 
   final bookingProvider = BookingProvider();
   final mascotaProvider = MascotaProvider();
@@ -47,11 +53,12 @@ class _Data extends State<DataReserva> {
   
   List _atencion = [
     {'id':'1','name':'Consulta',},
-    {'id':'2','name':'Vacuna',},
-    {'id':'3','name':'Baño',},
+    {'id':'7','name':'Chequeo preventivo',},
     {'id':'4','name':'Desparasitación',},
+    {'id':'2','name':'Vacuna',},    
+    {'id':'3','name':'Baño',},    
     {'id':'5','name':'Baño y corte',},
-    {'id':'6','name':'Otro servicio',},
+    {'id':'6','name':'Otro servicio',},    
   ];
   
   List _delivery = [
@@ -66,6 +73,8 @@ class _Data extends State<DataReserva> {
   String observacion="";
   bool boolPet=false;
   bool clickReservar = true;
+
+  String direccionDelivery="";//direccion de delivery
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +120,8 @@ class _Data extends State<DataReserva> {
             )  : SizedBox(height: 0.0,) ,
             (delivery && deliveryId!="1") ? Padding(
               padding: const EdgeInsets.only(top: 10.0) ,
-              child: textfieldArea(_inputDireccionController,'Ingrese dirección para el delivery',null,null),
+              child: _autocompleteAddress(),
+              // textfieldArea(_inputDireccionController,'Ingrese dirección para el delivery',null,null),
             ) : SizedBox(height: 0.0,) ,
             SizedBox(height: 12.0,),
             Text('Observación'),
@@ -268,7 +278,6 @@ class _Data extends State<DataReserva> {
   }
 
   reservaDialog() async {
-    
     setState(() {
       clickReservar = false;      
     });
@@ -304,7 +313,7 @@ class _Data extends State<DataReserva> {
         var direccionText="";
         if(delivery==true && deliveryId!="1"){
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
-          direccionText = _inputDireccionController.text;
+          direccionText = direccionDelivery.toString();//_inputDireccionController.text;
         }
         if(delivery==true && deliveryId!="1" && direccionText.trim()==""){
           setState(() { clickReservar = true; });
@@ -332,4 +341,45 @@ class _Data extends State<DataReserva> {
       }
     }
   }
+
+  _autocompleteAddress(){
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: colorGray1,
+      child: DropdownSearch<Prediction>(
+        hint: 'Ingrese dirección',
+        isFilteredOnline: true,
+        autoFocusSearchBox: true,
+        showSearchBox: true,
+        autoValidate: true,
+        mode: Mode.BOTTOM_SHEET,             
+        emptyBuilder: (context) => Center(
+          child: Text('Dirección no encontrada'),
+        ),          
+        searchBoxDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on),
+          border: InputBorder.none,
+          filled: true,
+          fillColor: colorGray1,
+        ), 
+        dropDownSearchDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on,color: colorMain),
+          border: InputBorder.none,
+        ),
+        onFind: (String filter) async {
+          var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+          var models = addressFromJson(response.body);
+          return models.predictions;
+        },
+        onChanged: (Prediction data)=>direccionDelivery=data.name,
+        // onSaved: (value)=>searchAddr,
+      ),
+    );
+  }
+
 }
