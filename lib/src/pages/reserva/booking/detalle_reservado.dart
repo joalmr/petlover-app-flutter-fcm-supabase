@@ -101,7 +101,7 @@ class DetalleReservado extends StatelessWidget {
                 Text("Veterinaria", style: tituloH4,),
                 Text(arg.establishmentName, style: TextStyle(fontSize: sizeH3),),
                 SizedBox(height: 10.0,),
-                Text("Dirección", style: tituloH4,),
+                Text("Dirección de veterinaria", style: tituloH4,),
                 Text(arg.address),
                 SizedBox(height: 10.0,),
                 Text("Fecha y hora", style: tituloH4,),

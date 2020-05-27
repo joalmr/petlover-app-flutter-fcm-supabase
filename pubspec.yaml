@@ -24,6 +24,8 @@ dependencies:
   google_maps_flutter: ^0.5.24+1
   geolocator: ^5.2.0
 
+  geocoder: ^0.2.1
+  # flutter_google_places: ^0.2.5
   # google_maps_webservice: ^0.0.16
   # flutter_google_places: ^0.2.5
   # location: ^1.4.1
@@ -34,9 +36,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   firebase_messaging: ^6.0.15
-  
-  geocoder: ^0.2.1
 
+  # find_dropdown: ^0.2.0
+  dropdown_search: ^0.4.2
+
+  
   animate_do: ^1.6.3
   cached_network_image: ^2.0.0
   datetime_picker_formfield: ^1.0.0

@@ -1,9 +1,12 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:proypet/global_variables.dart';
+import 'package:proypet/src/model/maps/address.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
-import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:http/http.dart' as http;
 
 
 TextEditingController destinationController = TextEditingController();
@@ -22,7 +25,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
   final formKey = GlobalKey<FormState>();
-  String searchAddr;
+  String searchAddr="";
   var latlng;
   final _prefs = new PreferenciasUsuario();
   
@@ -50,32 +53,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       colorMain
                     ),
                     SizedBox(height: 10,),
-                    FormularioText(
-                      hintText: 'Ingrese distrito',
-                      icon: Icons.location_on,
-                      obscureText: false,
-                      onSaved: (value)=>searchAddr=value,
-                      textCap: TextCapitalization.none,
-                      valorInicial: null,
-                      boardType: TextInputType.text,
-                    ),
-                    // Material(
-                    //   elevation: 0.0,
-                    //   borderRadius: borderRadius,
-                    //   color: colorGray1,
-                    //   child: TextFormField(
-                    //     cursorColor: colorMain,
-                    //     controller: destinationController,
-                    //     textInputAction: TextInputAction.go,
-                    //     onSaved: (value)=>searchAddr=value,
-                    //     decoration: InputDecoration(
-                    //       contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-                    //       hintStyle: TextStyle(fontSize: 14.0),
-                    //       hintText: "Ingrese distrito",
-                    //       border: InputBorder.none,          
-                    //     ),
-                    //   ),
-                    // ),
+                    _autocompleteAddress(),
                     SizedBox(height: 10,),
                     SwitchListTile(
                       value: (filtros.contains(1)) ? true : false,//petReq.genre,
@@ -231,9 +209,50 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
     );
   }
 
+
+  _autocompleteAddress(){
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: colorGray1,
+      child: DropdownSearch<Prediction>(
+        hint: 'Ingrese dirección',
+        isFilteredOnline: true,
+        autoFocusSearchBox: true,
+        showSearchBox: true,
+        autoValidate: true,
+        mode: Mode.BOTTOM_SHEET,             
+        emptyBuilder: (context) => Center(
+          child: Text('Dirección no encontrada'),
+        ),          
+        searchBoxDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on),
+          border: InputBorder.none,
+          filled: true,
+          fillColor: colorGray1,
+        ), 
+        dropDownSearchDecoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on,color: colorMain),
+          border: InputBorder.none,
+        ),
+        onFind: (String filter) async {
+          var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+          var models = addressFromJson(response.body);
+          return models.predictions;
+        },
+        onChanged: (Prediction data)=>searchAddr=data.name,
+        // onSaved: (value)=>searchAddr,
+      ),
+    );
+  }
+
   searchandNavigate(){
-    formKey.currentState.save();
-    setState(() { });
+    // formKey.currentState.save();
+    // setState(() { });
     if(searchAddr.trim()!=""){
       Geolocator().placemarkFromAddress(searchAddr).then((result){
         if(result!=null){

@@ -35,13 +35,9 @@ class _MyAppState extends State<MyApp> {
       print('===== Notificacion =====');
       print(data);
 
-
       // navigatorKey.currentState.pushNamed('mensaje', arguments: data);
 
     });
-
-
-
   }
 
   @override

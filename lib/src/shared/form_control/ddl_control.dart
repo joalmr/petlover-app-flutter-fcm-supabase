@@ -10,7 +10,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       borderRadius: borderRadius,
       color: colorGray1, //Colors.grey[200],
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
             icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
