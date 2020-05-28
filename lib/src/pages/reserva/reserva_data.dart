@@ -139,6 +139,28 @@ class _Data extends State<DataReserva> {
               style: TextStyle(fontSize: sizeH5),
             ),
             SizedBox(height: 20.0,),
+            
+            Material(
+              elevation: 0.0,
+              borderRadius: borderRadius,
+              color: colorGray1,
+              child: TextFormField(
+                onTap: () => Navigator.of(context).pushNamed('addressmap'),
+                readOnly: true,
+                decoration: InputDecoration(
+                  hintText: "Ingrese dirección",
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+                  hintStyle: TextStyle(fontSize: 14.0),
+                  prefixIcon: Material(
+                    borderRadius: borderRadius,
+                    color: Colors.transparent,
+                    child: Icon( Icons.location_on, color: colorMain, ),
+                  ),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+
             buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null ),      
             SizedBox(height: 5.0),
             FlatButton(
