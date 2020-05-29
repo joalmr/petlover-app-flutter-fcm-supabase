@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/maps/address.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
@@ -231,8 +232,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         },
         onChanged: (Prediction2 data){
           searchAddr=data.name;
-          print(searchAddr);
-          searchandNavigate(searchAddr);
+          searchandNavigate(data);
         },
         // onSaved: (value)=>searchAddr,
         itemBuilder: (context, address) => Padding(
@@ -249,13 +249,19 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
 
   searchandNavigate(dato){
     if(searchAddr.trim()!=""){
-      Geolocator().placemarkFromAddress(dato).then((result){
-        if(result!=null){
-          latlng = result[0].position;
-          _prefs.position = '${latlng.latitude},${latlng.longitude}';
-          print(_prefs.position);
-        }      
+
+      final places = new GoogleMapsPlaces(apiKey: keyMap);
+      places.getDetailsByPlaceId(dato.placeId).then((value) {
+        Location latlng = value.result.geometry.location;
+        _prefs.position = "${latlng.lat},${latlng.lng}";
       });
+      // Geolocator().placemarkFromAddress(dato).then((result){
+      //   if(result!=null){
+      //     latlng = result[0].position;
+      //     _prefs.position = '${latlng.latitude},${latlng.longitude}';
+      //     print(_prefs.position);
+      //   }      
+      // });
     }  
   }
 }

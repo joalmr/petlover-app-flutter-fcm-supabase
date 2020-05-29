@@ -31,15 +31,18 @@ class Address {
 class Prediction2 {
     String name;
     String id;
+    String placeId;
 
     Prediction2({
         this.name,
         this.id,
+        this.placeId,
     });
 
     factory Prediction2.fromJson(Map<String, dynamic> json) => Prediction2(
         name: json["description"],
         id: json["id"],
+        placeId: json["place_id"],
     );
 
     Map<String, dynamic> toJson() => {

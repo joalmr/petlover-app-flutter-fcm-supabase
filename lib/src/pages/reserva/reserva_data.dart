@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/geocoding.dart';
+import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/booking/booking_model.dart';
@@ -88,11 +90,21 @@ class _Data extends State<DataReserva> {
   List<Marker> marcador = [];
   double lat=0;
   double lng=0;
+  double zoomIn=10.0;
 
   //direccion de delivery
   @override
   void initState() {
     _inputDireccionController.text = _prefs.myAddress;
+    print(_prefs.myAddressLatLng);
+    if(_prefs.myAddressLatLng.toString().trim() !=""){
+      setState(() {
+        lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
+        lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
+        zoomIn=16.0;
+        marcador.add(Marker(markerId: MarkerId("1"), position: LatLng(lat,lng), draggable: true));        
+      });
+    }
 
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
@@ -149,7 +161,7 @@ class _Data extends State<DataReserva> {
               children: <Widget>[
                 SizedBox(height: 5.0,),
                 _direccion(),
-                SizedBox(height: 0.0,),
+                SizedBox(height: 5.0,),
                 Container(
                   height: 200.0,
                   width: double.infinity,
@@ -208,9 +220,12 @@ class _Data extends State<DataReserva> {
           var models = addressFromJson(response.body);
           return models.predictions;
         },
+        autocorrect: true,
+        autovalidate: true,
+
         onChanged: (Prediction2 data){
           direccionDelivery=data.name;
-          searchandNavigate(direccionDelivery);
+          searchandNavigate(data);
         },
         itemBuilder: (context, address) => Padding(
           padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
@@ -381,9 +396,9 @@ class _Data extends State<DataReserva> {
         var direccionText="";
         if(delivery==true && deliveryId!="1"){
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
-          direccionText = _inputDireccionController.text; //direccionDelivery.toString();//
+          direccionText = direccionDelivery.toString();//_inputDireccionController.text;
         }
-        if(delivery==true && deliveryId!="1" && direccionText.trim()==""){
+        if( delivery==true && deliveryId!="1" && direccionText.trim()=="" && _inputDireccionController.text.trim()=="" ){
           setState(() { clickReservar = true; });
           mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
         }
@@ -411,25 +426,27 @@ class _Data extends State<DataReserva> {
   }
 
 ///////////////////////////////////////////////////
-  searchandNavigate(dato){
-    Geolocator().placemarkFromAddress(dato).then((result){
-      if(result!=null){
-        marcador.clear();
-        Position latlng = result[0].position;
-        lat = latlng.latitude;
-        lng = latlng.longitude;
-        
-        _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-          target: LatLng(lat,lng), zoom: 16.0, bearing: 45.0, tilt: 45.0))
-        );
-        
-        _prefs.myAddress = dato;
-        _inputDireccionController.text = dato;
-        setState(() {
-          marcador.add(Marker(markerId: MarkerId("1"), position: LatLng(lat,lng), draggable: true));
-        });
-      }      
+  searchandNavigate(Prediction2 dato) async {
+    final places = new GoogleMapsPlaces(apiKey: keyMap);
+    places.getDetailsByPlaceId(dato.placeId).then((value) {
+      marcador.clear();
+      Location latlng = value.result.geometry.location;
+      lat = latlng.lat;
+      lng = latlng.lng;
+
+      _prefs.myAddressLatLng = "$lat,$lng";
+          
+      _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+        target: LatLng(lat,lng), zoom: 16.0, bearing: 45.0, tilt: 45.0))
+      );
+      
+      _prefs.myAddress = dato.name;
+      _inputDireccionController.text = dato.name;
+      setState(() {
+        marcador.add(Marker(markerId: MarkerId("1"), position: LatLng(lat,lng), draggable: true));
+      });
     });
+
   }
 
   _mapa(){
@@ -449,7 +466,7 @@ class _Data extends State<DataReserva> {
       mapType: MapType.normal,
       initialCameraPosition: CameraPosition(
         target: LatLng(lat,lng),
-        zoom: 10.0
+        zoom: zoomIn
       ),
       markers: Set.from(marcador),
       onMapCreated: mapCreated,
