@@ -44,6 +44,14 @@ class PreferenciasUsuario {
   set position( String value ) {
     _prefs.setString('position', value);
   }
+
+  get myAddress {
+    return _prefs.getString('address') ?? '';
+  }
+
+  set myAddress( String value ) {
+    _prefs.setString('address', value);
+  }
   
 }
 

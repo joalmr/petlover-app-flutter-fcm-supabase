@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/booking/booking_model.dart';
 import 'package:proypet/src/model/maps/address.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
@@ -17,7 +21,11 @@ import 'package:proypet/src/shared/form_control/text_field.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+// import 'package:search_map_place/search_map_place.dart';
 
+String direccionDelivery="";
 
 class DataReserva extends StatefulWidget {
   final String establecimientoID;
@@ -44,12 +52,13 @@ class _Data extends State<DataReserva> {
   TextEditingController _inputHoraController=new TextEditingController();
   TextEditingController _inputObservacioController=new TextEditingController();
   final formKey = GlobalKey<FormState>();
-  // TextEditingController _inputDireccionController=new TextEditingController();
+  TextEditingController _inputDireccionController=new TextEditingController();
 
   final bookingProvider = BookingProvider();
   final mascotaProvider = MascotaProvider();
   BookingModel booking =BookingModel();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _prefs = new PreferenciasUsuario();
   
   List _atencion = [
     {'id':'1','name':'Consulta',},
@@ -74,10 +83,28 @@ class _Data extends State<DataReserva> {
   bool boolPet=false;
   bool clickReservar = true;
 
-  String direccionDelivery="";//direccion de delivery
+  GoogleMapController _controller;
+  String _mapStyle;
+  List<Marker> marcador = [];
+  double lat=0;
+  double lng=0;
+
+  //direccion de delivery
+  @override
+  void initState() {
+    _inputDireccionController.text = _prefs.myAddress;
+
+    rootBundle.loadString('assets/map_style.txt').then((string) {
+      _mapStyle = string;
+    });
+
+    super.initState();    
+  }
 
   @override
   Widget build(BuildContext context) {
+    
+
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(null,'Reservar servicio', null),
@@ -118,10 +145,17 @@ class _Data extends State<DataReserva> {
                   deliveryId=opt; 
               });}
             )  : SizedBox(height: 0.0,) ,
-            (delivery && deliveryId!="1") ? Padding(
-              padding: const EdgeInsets.only(top: 10.0) ,
-              child: _autocompleteAddress(),
-              // textfieldArea(_inputDireccionController,'Ingrese dirección para el delivery',null,null),
+            (delivery && deliveryId!="1") ? Column(
+              children: <Widget>[
+                SizedBox(height: 5.0,),
+                _direccion(),
+                SizedBox(height: 0.0,),
+                Container(
+                  height: 200.0,
+                  width: double.infinity,
+                  child: _mapa(),
+                )
+              ],
             ) : SizedBox(height: 0.0,) ,
             SizedBox(height: 12.0,),
             Text('Observación'),
@@ -140,27 +174,6 @@ class _Data extends State<DataReserva> {
             ),
             SizedBox(height: 20.0,),
             
-            Material(
-              elevation: 0.0,
-              borderRadius: borderRadius,
-              color: colorGray1,
-              child: TextFormField(
-                onTap: () => Navigator.of(context).pushNamed('addressmap'),
-                readOnly: true,
-                decoration: InputDecoration(
-                  hintText: "Ingrese dirección",
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-                  hintStyle: TextStyle(fontSize: 14.0),
-                  prefixIcon: Material(
-                    borderRadius: borderRadius,
-                    color: Colors.transparent,
-                    child: Icon( Icons.location_on, color: colorMain, ),
-                  ),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-
             buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null ),      
             SizedBox(height: 5.0),
             FlatButton(
@@ -174,6 +187,39 @@ class _Data extends State<DataReserva> {
       ),
     );
   }
+
+  Widget _direccion(){ //MyAddressBloc bloc
+    return Material(
+      elevation: 0.0,
+      borderRadius: borderRadius,
+      color: colorGray1,
+      child: SimpleAutocompleteFormField<Prediction2>(
+        controller: _inputDireccionController,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+          hintStyle: TextStyle(fontSize: 14.0),
+          prefixIcon: Icon(Icons.location_on,color: colorMain),
+          border: InputBorder.none,
+        ),
+        // suggestionsHeight: 100.0,
+        maxSuggestions: 5,
+        onSearch: (filter) async {
+          var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+          var models = addressFromJson(response.body);
+          return models.predictions;
+        },
+        onChanged: (Prediction2 data){
+          direccionDelivery=data.name;
+          searchandNavigate(direccionDelivery);
+        },
+        itemBuilder: (context, address) => Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
+          child: Text(address.name,style: TextStyle(fontWeight: FontWeight.bold))
+        ),
+      ),
+    );
+  }
+
 
   final _shape = BorderRadius.circular(10.0);
   Widget _crearFecha(BuildContext context){
@@ -335,7 +381,7 @@ class _Data extends State<DataReserva> {
         var direccionText="";
         if(delivery==true && deliveryId!="1"){
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
-          direccionText = direccionDelivery.toString();//_inputDireccionController.text;
+          direccionText = _inputDireccionController.text; //direccionDelivery.toString();//
         }
         if(delivery==true && deliveryId!="1" && direccionText.trim()==""){
           setState(() { clickReservar = true; });
@@ -364,46 +410,56 @@ class _Data extends State<DataReserva> {
     }
   }
 
-  _autocompleteAddress(){
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: colorGray1,
-      child: DropdownSearch<Prediction>(
-        hint: 'Ingrese dirección',
-        isFilteredOnline: true,
-        autoFocusSearchBox: true,
-        showSearchBox: true,
-        autoValidate: true,
-        mode: Mode.BOTTOM_SHEET,             
-        emptyBuilder: (context) => Center(
-          child: Text('Dirección no encontrada'),
-        ),          
-        searchBoxDecoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-          hintStyle: TextStyle(fontSize: 14.0),
-          prefixIcon: Icon(Icons.location_on),
-          border: InputBorder.none,
-          filled: true,
-          fillColor: colorGray1,
-          focusColor: colorMain,
-          hintText: 'Ingrese dirección'
-        ), 
-        dropDownSearchDecoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
-          hintStyle: TextStyle(fontSize: 14.0),
-          prefixIcon: Icon(Icons.location_on,color: colorMain),
-          border: InputBorder.none,
-        ),
-        onFind: (String filter) async {
-          var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
-          var models = addressFromJson(response.body);
-          return models.predictions;
-        },
-        onChanged: (Prediction data)=>direccionDelivery=data.name,
-        // onSaved: (value)=>searchAddr,
+///////////////////////////////////////////////////
+  searchandNavigate(dato){
+    Geolocator().placemarkFromAddress(dato).then((result){
+      if(result!=null){
+        marcador.clear();
+        Position latlng = result[0].position;
+        lat = latlng.latitude;
+        lng = latlng.longitude;
+        
+        _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+          target: LatLng(lat,lng), zoom: 16.0, bearing: 45.0, tilt: 45.0))
+        );
+        
+        _prefs.myAddress = dato;
+        _inputDireccionController.text = dato;
+        setState(() {
+          marcador.add(Marker(markerId: MarkerId("1"), position: LatLng(lat,lng), draggable: true));
+        });
+      }      
+    });
+  }
+
+  _mapa(){
+    return GoogleMap(
+      myLocationEnabled: false,
+      myLocationButtonEnabled: false,
+      compassEnabled: false,              
+      gestureRecognizers:Set()
+      ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+      ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
+      ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
+      ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
+      rotateGesturesEnabled: false,
+      scrollGesturesEnabled: false,
+      zoomGesturesEnabled: true,
+      tiltGesturesEnabled: true,
+      mapType: MapType.normal,
+      initialCameraPosition: CameraPosition(
+        target: LatLng(lat,lng),
+        zoom: 10.0
       ),
+      markers: Set.from(marcador),
+      onMapCreated: mapCreated,
     );
   }
 
+  void mapCreated(controller){
+    setState(() {
+      _controller = controller;
+      _controller.setMapStyle(_mapStyle);
+    });
+  }
 }
