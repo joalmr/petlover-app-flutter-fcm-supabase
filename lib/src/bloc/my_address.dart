@@ -5,20 +5,13 @@ import 'package:proypet/src/model/maps/address.dart';
 class MyAddressBloc {
 
   final _myaddressController = StreamController<String>.broadcast();
-
-  //Recuperar dato
-  Stream<String> get addressStream => _myaddressController.stream;
-
-  //Insertar valor
-  Function(String) get changeAddress => _myaddressController.sink.add;
+  Stream<String> get addressStream => _myaddressController.stream;//Recuperar dato
+  Function(String) get changeAddress => _myaddressController.sink.add;//Insertar valor
 
 
   final _direccionesController = StreamController<List<Prediction2>>.broadcast();
-  //Recuperar dato
-  Stream<List<Prediction2>> get direccionesStream => _direccionesController.stream;
-
-  //Insertar valor
-  Function(List<Prediction2>) get changeDirecciones => _direccionesController.sink.add;
+  Stream<List<Prediction2>> get direccionesStream => _direccionesController.stream;//Recuperar dato
+  Function(List<Prediction2>) get changeDirecciones => _direccionesController.sink.add;//Insertar valor
 
   //Cierre
   dispose(){

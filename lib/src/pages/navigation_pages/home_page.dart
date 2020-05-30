@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
     fnGetPosition();
     _onRefresh();
 
-    final pushProvider = new PushProvider();
-    pushProvider.initNotificaciones();
+    // final pushProvider = new PushProvider();
+    // pushProvider.initNotificaciones();
     
     super.initState();    
   }

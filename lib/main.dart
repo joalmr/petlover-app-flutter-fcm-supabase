@@ -29,16 +29,16 @@ class _MyAppState extends State<MyApp> {
   void initState(){
     super.initState();
 
-    final pushProvider = new PushProvider();
+    // final pushProvider = new PushProvider();
 
-    pushProvider.mensajes.listen((data) { 
+    // pushProvider.mensajes.listen((data) { 
 
-      print('===== Notificacion =====');
-      print(data);
+    //   print('===== Notificacion =====');
+    //   print(data);
 
-      // navigatorKey.currentState.pushNamed('mensaje', arguments: data);
+    //   // navigatorKey.currentState.pushNamed('mensaje', arguments: data);
 
-    });
+    // });
   }
 
   @override

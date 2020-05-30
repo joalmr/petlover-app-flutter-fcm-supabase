@@ -102,7 +102,17 @@ class _Data extends State<DataReserva> {
         lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
         lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
         zoomIn=16.0;
-        marcador.add(Marker(markerId: MarkerId("1"), position: LatLng(lat,lng), draggable: true));        
+        
+        marcador.add(Marker(
+          markerId: MarkerId("1"), 
+          position: LatLng(lat,lng), 
+          draggable: true,
+          onDragEnd: ((value) {
+            lat = value.latitude;
+            lng = value.longitude;
+            _prefs.myAddressLatLng = "$lat,$lng";
+          }),
+        ));
       });
     }
 
@@ -163,7 +173,7 @@ class _Data extends State<DataReserva> {
                 _direccion(),
                 SizedBox(height: 5.0,),
                 Container(
-                  height: 200.0,
+                  height: 250.0,
                   width: double.infinity,
                   child: _mapa(),
                 )
@@ -428,6 +438,7 @@ class _Data extends State<DataReserva> {
 ///////////////////////////////////////////////////
   searchandNavigate(Prediction2 dato) async {
     final places = new GoogleMapsPlaces(apiKey: keyMap);
+
     places.getDetailsByPlaceId(dato.placeId).then((value) {
       marcador.clear();
       Location latlng = value.result.geometry.location;
@@ -443,7 +454,16 @@ class _Data extends State<DataReserva> {
       _prefs.myAddress = dato.name;
       _inputDireccionController.text = dato.name;
       setState(() {
-        marcador.add(Marker(markerId: MarkerId("1"), position: LatLng(lat,lng), draggable: true));
+        marcador.add(Marker(
+          markerId: MarkerId("1"), 
+          position: LatLng(lat,lng), 
+          draggable: true,
+          onDragEnd: ((value) {
+            lat = value.latitude;
+            lng = value.longitude;
+            _prefs.myAddressLatLng = "$lat,$lng";
+          }),
+        ));
       });
     });
 
@@ -453,14 +473,17 @@ class _Data extends State<DataReserva> {
     return GoogleMap(
       myLocationEnabled: false,
       myLocationButtonEnabled: false,
-      compassEnabled: false,              
+      compassEnabled: false,   
+      mapToolbarEnabled: false,
       gestureRecognizers:Set()
       ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
       ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
       ..add(Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
-      ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
+      // ..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer()))
+      // ..add(Factory<HorizontalDragGestureRecognizer>(() => HorizontalDragGestureRecognizer()))
+      ,
       rotateGesturesEnabled: false,
-      scrollGesturesEnabled: false,
+      scrollGesturesEnabled: true,
       zoomGesturesEnabled: true,
       tiltGesturesEnabled: true,
       mapType: MapType.normal,
