@@ -1,12 +1,13 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/maps/address.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
+import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 
 
 TextEditingController destinationController = TextEditingController();
@@ -49,7 +50,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                     SizedBox(height: 40.0,),
                     buttonOutLine(
                       "Filtrar",
-                      searchandNavigate,
+                      filtrar,
                       colorMain
                     ),
                     SizedBox(height: 10,),
@@ -215,56 +216,52 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
       elevation: 0.0,
       borderRadius: borderRadius,
       color: colorGray1,
-      child: DropdownSearch<Prediction>(
-        hint: 'Ingrese dirección',
-        isFilteredOnline: true,
-        autoFocusSearchBox: true,
-        showSearchBox: true,
-        autoValidate: true,
-        mode: Mode.BOTTOM_SHEET,             
-        emptyBuilder: (context) => Center(
-          child: Text('Dirección no encontrada'),
-        ),          
-        searchBoxDecoration: InputDecoration(
+      child: SimpleAutocompleteFormField<Prediction2>(
+        decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-          hintStyle: TextStyle(fontSize: 14.0),
-          prefixIcon: Icon(Icons.location_on),
-          border: InputBorder.none,
-          filled: true,
-          fillColor: colorGray1,
-        ), 
-        dropDownSearchDecoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 0.0),
           hintStyle: TextStyle(fontSize: 14.0),
           prefixIcon: Icon(Icons.location_on,color: colorMain),
           border: InputBorder.none,
         ),
-        onFind: (String filter) async {
+        // suggestionsHeight: 100.0,
+        maxSuggestions: 5,
+        onSearch: (filter) async {
           var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
           var models = addressFromJson(response.body);
           return models.predictions;
         },
-        onChanged: (Prediction data)=>searchAddr=data.name,
+        onChanged: (Prediction2 data){
+          searchAddr=data.name;
+          searchandNavigate(data);
+        },
         // onSaved: (value)=>searchAddr,
+        itemBuilder: (context, address) => Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
+          child: Text(address.name,style: TextStyle(fontWeight: FontWeight.bold))
+        ),
       ),
     );
   }
 
-  searchandNavigate(){
-    // formKey.currentState.save();
-    // setState(() { });
+  filtrar(){
+    Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );   
+  }
+
+  searchandNavigate(dato){
     if(searchAddr.trim()!=""){
-      Geolocator().placemarkFromAddress(searchAddr).then((result){
-        if(result!=null){
-          latlng = result[0].position;
-          _prefs.position = '${latlng.latitude},${latlng.longitude}';
-          Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );
-        }      
+
+      final places = new GoogleMapsPlaces(apiKey: keyMap);
+      places.getDetailsByPlaceId(dato.placeId).then((value) {
+        Location latlng = value.result.geometry.location;
+        _prefs.position = "${latlng.lat},${latlng.lng}";
       });
-    }
-    else{
-      Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navLista"), arguments:{ "filtros":filtros } );      
-    }
-    
+      // Geolocator().placemarkFromAddress(dato).then((result){
+      //   if(result!=null){
+      //     latlng = result[0].position;
+      //     _prefs.position = '${latlng.latitude},${latlng.longitude}';
+      //     print(_prefs.position);
+      //   }      
+      // });
+    }  
   }
 }

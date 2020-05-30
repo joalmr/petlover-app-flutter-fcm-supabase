@@ -9,7 +9,7 @@ Address addressFromJson(String str) => Address.fromJson(json.decode(str));
 String addressToJson(Address data) => json.encode(data.toJson());
 
 class Address {
-    List<Prediction> predictions;
+    List<Prediction2> predictions;
     String status;
 
     Address({
@@ -18,7 +18,7 @@ class Address {
     });
 
     factory Address.fromJson(Map<String, dynamic> json) => Address(
-        predictions: List<Prediction>.from(json["predictions"].map((x) => Prediction.fromJson(x))),
+        predictions: List<Prediction2>.from(json["predictions"].map((x) => Prediction2.fromJson(x))),
         status: json["status"],
     );
 
@@ -28,18 +28,21 @@ class Address {
     };
 }
 
-class Prediction {
+class Prediction2 {
     String name;
     String id;
+    String placeId;
 
-    Prediction({
+    Prediction2({
         this.name,
         this.id,
+        this.placeId,
     });
 
-    factory Prediction.fromJson(Map<String, dynamic> json) => Prediction(
+    factory Prediction2.fromJson(Map<String, dynamic> json) => Prediction2(
         name: json["description"],
         id: json["id"],
+        placeId: json["place_id"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -51,9 +54,30 @@ class Prediction {
     String toString() => name;
 
     @override
-    operator ==(o) => o is Prediction && o.id == id;
+    operator ==(o) => o is Prediction2 && o.id == id;
 
     @override
     int get hashCode => id.hashCode^name.hashCode;
     
 }
+
+
+// class Prediction {
+//     String description;
+//     String placeId;
+//     String geolocation;
+
+//     Prediction({
+//         this.description,
+//         this.placeId,
+//         this.geolocation,
+//     });
+
+//     factory Prediction.fromJson(Map<String, dynamic> json) => Prediction(
+//         description: json["description"],
+//         placeId: json["place_id"],
+//         geolocation: json["geolocation"],
+//     );
+    
+// }
+

@@ -38,7 +38,17 @@ dependencies:
   firebase_messaging: ^6.0.15
 
   dropdown_search: ^0.4.2
+
+  simple_autocomplete_formfield: ^0.2.7
+
+  google_maps_webservice: ^0.0.16
   
+  # search_map_place: ^0.3.0
+
+  # google_place: ^0.3.1
+  # autocomplete_textfield: ^1.7.3
+  # flutter_places_autocomplete: ^0.2.0
+
   animate_do: ^1.6.3
   cached_network_image: ^2.0.0
   datetime_picker_formfield: ^1.0.0

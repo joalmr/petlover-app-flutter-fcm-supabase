@@ -196,6 +196,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.24+1"
+  google_maps_webservice:
+    dependency: "direct main"
+    description:
+      name: google_maps_webservice
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.16"
   http:
     dependency: "direct main"
     description:
@@ -385,6 +392,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2+4"
+  simple_autocomplete_formfield:
+    dependency: "direct main"
+    description:
+      name: simple_autocomplete_formfield
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.7"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -446,6 +460,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.15"
+  textfield_state:
+    dependency: transitive
+    description:
+      name: textfield_state
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+2"
   transformer_page_view:
     dependency: transitive
     description:

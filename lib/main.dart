@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:proypet/src/bloc/provider.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/routes/routes.dart';
@@ -49,31 +50,34 @@ class _MyAppState extends State<MyApp> {
       rutaInicio='navInicio';
     }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false, 
-      navigatorKey: navigatorKey,
-      title: 'Proypet',
-      theme: ThemeData( 
-        fontFamily: 'Lato',
-        primarySwatch: Colors.teal,
-      ),      
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-          const Locale('en','US'),
-          const Locale('es','ES'), //PE
-        ],     
-      routes: getRoutes(),
-      initialRoute: rutaInicio,
-      onGenerateRoute: (RouteSettings settings){
-        return MaterialPageRoute(
-          builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //ruta general
-        );
-      },
-      
+    return Provider(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false, 
+        navigatorKey: navigatorKey,
+        title: 'Proypet',
+        theme: ThemeData( 
+          fontFamily: 'Lato',
+          primarySwatch: Colors.teal,
+          cursorColor: Colors.teal
+        ),      
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+            const Locale('en','US'),
+            const Locale('es','ES'), //PE
+          ],     
+        routes: getRoutes(),
+        initialRoute: rutaInicio,
+        onGenerateRoute: (RouteSettings settings){
+          return MaterialPageRoute(
+            builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //ruta general
+          );
+        },
+        
+      ),
     );
   }
 }
