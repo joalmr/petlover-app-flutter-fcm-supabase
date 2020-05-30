@@ -39,9 +39,9 @@ class _MyAppState extends State<MyApp> {
 
       navigatorKey.currentState.pushNamed('mensaje', arguments: data);
 
-
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

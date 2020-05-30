@@ -4,7 +4,6 @@ import 'package:proypet/src/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/pages/navigation_pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
-import 'package:proypet/src/push-providers/push_page.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -70,12 +69,11 @@ class _NavigationBarState extends State<NavigationBar> {
       },
     );
 
-    return PushPage(
+    return 
       Scaffold(
         body: _kTabPages[currentTabIndex],
         bottomNavigationBar: bottomNavBar,
-      ),
-    );
+      );
 
   }
 }

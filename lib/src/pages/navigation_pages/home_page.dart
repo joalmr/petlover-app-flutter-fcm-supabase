@@ -9,7 +9,6 @@ import 'package:proypet/src/model/home_model.dart' as hoModel ;
 import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';

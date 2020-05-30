@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/maps/address.dart';

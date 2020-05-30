@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:flutter/material.dart';
+
 
 class PushProvider {
   
@@ -33,6 +33,18 @@ class PushProvider {
         }
 
         _mensajesStreamController.sink.add(argumento);
+
+        // final snackbar = SnackBar(
+        //   content: Text(argumento),
+        //   action: SnackBarAction(
+        //     label: "Ok", 
+        //     onPressed: (){}
+        //   ),
+        // );
+
+        // Scaffold.of(context)
+        // ..hideCurrentSnackBar()
+        // ..showSnackBar(snackbar);
         
       },
 
@@ -54,8 +66,6 @@ class PushProvider {
         print(noti);
 
         _mensajesStreamController.sink.add(noti);
-
-        // Navigator.of(context).pushNamed('mensaje', arguments: noti);
       }
 
     );
