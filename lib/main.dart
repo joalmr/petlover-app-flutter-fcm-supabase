@@ -5,6 +5,8 @@ import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/routes/routes.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
+
+import 'package:flutter/services.dart';
  
  final prefs = new PreferenciasUsuario();
 void main() async {
@@ -12,7 +14,8 @@ void main() async {
   
   await prefs.initPrefs();
 
-  runApp(MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()) );
+  // runApp(MyApp());
 } 
 
 class MyApp extends StatefulWidget {
@@ -29,23 +32,23 @@ class _MyAppState extends State<MyApp> {
   void initState(){
     super.initState();
 
-    final pushProvider = new PushProvider();
-    pushProvider.initNotificaciones();
+    // final pushProvider = new PushProvider();
+    // pushProvider.initNotificaciones();
 
-    pushProvider.mensajes.listen((data) { 
+    // pushProvider.mensajes.listen((data) { 
 
-      print('===== Notificacion =====');
-      print(data);
+    //   print('===== Notificacion =====');
+    //   print(data);
 
-      navigatorKey.currentState.pushNamed('mensaje', arguments: data);
+    //   navigatorKey.currentState.pushNamed('mensaje', arguments: data);
 
-    });
+    // });
   }
 
 
   @override
   Widget build(BuildContext context) {
-    
+   
     var rutaInicio='login';
     if(prefs.token!=''){
       // loginProvider.validateMain();
@@ -73,12 +76,8 @@ class _MyAppState extends State<MyApp> {
           ],     
         routes: getRoutes(),
         initialRoute: rutaInicio,
-        onGenerateRoute: (RouteSettings settings){
-          return MaterialPageRoute(
-            builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0) //ruta general
-          );
-        },
-        
+        onGenerateRoute: (RouteSettings settings) => 
+          MaterialPageRoute(builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0)), //ruta general
       ),
     );
   }
