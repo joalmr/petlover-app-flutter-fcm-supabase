@@ -37,13 +37,6 @@ class _LoginSevenPageState extends State<LoginPage> {
         child: ListView(
           children: <Widget>[
             WaveClipper(300.0,180.0),
-            // WaveClipperOut(120.0),
-            // SizedBox(height: 10.0),
-            // Image(
-            //   image: AssetImage('images/logo_v.png'),
-            //   height: 159.0,
-            //   width: 200.0,
-            // ),
             SizedBox(height: 50.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -69,10 +62,6 @@ class _LoginSevenPageState extends State<LoginPage> {
                 valorInicial: null,
                 boardType: TextInputType.text,
               )
-              // textForm('Contraseña', Icons.lock, true, 
-              //   (value)=>userModel.password=value, 
-              //   TextCapitalization.none, null,
-              //   TextInputType.text),
             ),
             SizedBox(height: 25.0),
             Padding(
