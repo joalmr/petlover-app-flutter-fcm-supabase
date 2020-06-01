@@ -127,16 +127,16 @@ flutter:
   fonts:
     - family: Proypet
       fonts:
-        - asset: fonts/Proypet.ttf
+        - asset: assets/fonts/Proypet.ttf
         # - asset: fonts/Schyler-Italic.ttf
         #   style: italic
     - family: IconProypet
       fonts:
-        - asset: fonts/IconProypet.ttf
+        - asset: assets/fonts/IconProypet.ttf
     - family: Lato
       fonts:
-        - asset: fonts/Lato/Lato-Regular.ttf
-        - asset: fonts/Lato/Lato-Bold.ttf
+        - asset: assets/fonts/Lato/Lato-Regular.ttf
+        - asset: assets/fonts/Lato/Lato-Bold.ttf
           weight: 700
     # - family: PT Sans
     #   fonts:
