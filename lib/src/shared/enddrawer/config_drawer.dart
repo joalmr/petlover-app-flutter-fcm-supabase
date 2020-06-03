@@ -10,6 +10,7 @@ import 'package:share/share.dart';
 
 
 
+
 class ConfigDrawer extends StatelessWidget {
   final Color primary = Colors.white;
   final _prefs = new PreferenciasUsuario();
@@ -74,7 +75,7 @@ class ConfigDrawer extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),),
                   onTap: ()=>Share.share(
-                    'Registrate a Proypet, no más cartillas perdidas, tu mascota gozará de buena salud gracias a las notificaciones de Proypet. Ingresa ya y se parte de la comunidad responsable Proypet https://www.proypet.com',
+                    '¿Conoces Proypet? Descubre la nueva App para reservar citas en veterinarias y acceder a beneficios. Entérate más en: https://www.proypet.com',
                     subject: 'Registrate hoy a Proypet',
                   ),
                 ),

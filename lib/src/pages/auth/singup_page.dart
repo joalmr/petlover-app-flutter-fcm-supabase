@@ -187,7 +187,7 @@ class _SingupPageState extends State<SingupPage> {
       }
       else{
         bool resp = await userProvider.registerUser(user);
-        if(resp){
+        if(resp){          
           showDialog(
             context: context,
             builder: (BuildContext context){
