@@ -73,7 +73,8 @@ class ConfigDrawer extends StatelessWidget {
                   title: Text('Compartir con mis amigos', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
-                  onTap: ()=>Share.share('Registrate a Proypet, no más cartillas perdidas, tu mascota gozará de buena salud gracias a las notificaciones de Proypet. Ingresa ya y se parte de la comunidad responsable Proypet https://www.proypet.com',
+                  onTap: ()=>Share.share(
+                    'Registrate a Proypet, no más cartillas perdidas, tu mascota gozará de buena salud gracias a las notificaciones de Proypet. Ingresa ya y se parte de la comunidad responsable Proypet https://www.proypet.com',
                     subject: 'Registrate hoy a Proypet',
                   ),
                 ),

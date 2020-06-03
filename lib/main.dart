@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:proypet/src/bloc/provider.dart';
+// import 'package:proypet/src/bloc/provider.dart';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 // import 'package:proypet/src/push-providers/push_provider.dart';
 import 'package:proypet/src/routes/routes.dart';
@@ -55,8 +55,7 @@ class _MyAppState extends State<MyApp> {
       rutaInicio='navInicio';
     }
 
-    return Provider(
-      child: MaterialApp(
+    return MaterialApp(
         debugShowCheckedModeBanner: false, 
         navigatorKey: navigatorKey,
         title: 'Proypet',
@@ -78,7 +77,6 @@ class _MyAppState extends State<MyApp> {
         initialRoute: rutaInicio,
         onGenerateRoute: (RouteSettings settings) => 
           MaterialPageRoute(builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0)), //ruta general
-      ),
-    );
+      );
   }
 }
