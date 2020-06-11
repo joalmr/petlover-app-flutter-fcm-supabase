@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:957887873262:android:7ccf869778b69fa391b3ff",
         "android_client_info": {
-          "package_name": "com.proypet.user"
+          "package_name": "com.example.user"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "957887873262-ls907taou4onubsq9tm24hh23cicsn5n.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.proypet.user",
+            "package_name": "com.example.user",
             "certificate_hash": "c2867c39b264d1c301db5e1d9dd2b496efb4e748"
           }
         },

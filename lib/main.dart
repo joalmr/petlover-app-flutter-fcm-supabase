@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
     }
 
     return MaterialApp(
-        debugShowCheckedModeBanner: false, 
+        debugShowCheckedModeBanner: true, // TODO: cambiar antes de lanzar
         navigatorKey: navigatorKey,
         title: 'Proypet',
         theme: ThemeData( 
