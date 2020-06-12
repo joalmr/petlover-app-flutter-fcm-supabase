@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/styles/styles.dart';
 
 
 Widget appbar( logo, String texto, List<Widget> acc){
-  return AppBar(
-    backgroundColor: colorMain,
+  return AppBar(    
     leading: logo,
-    title: Text(texto, style: TextStyle(fontSize: 18.0,),),
+    title: Text(texto),
     actions: acc,
   );
 }

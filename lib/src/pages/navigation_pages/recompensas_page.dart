@@ -81,7 +81,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
                           height: 120.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
-                            color: colorBlue,
+                            color: colorMain,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -147,7 +147,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
           child: ListTile(
             title: Text('${bonificados[index].establishmentName}',style: TextStyle(fontSize: sizeH4)),
             trailing: CircleAvatar(
-              backgroundColor: colorBlue,
+              backgroundColor: colorMain,
               foregroundColor: Colors.white,
               child: Text('+${bonificados[index].points}', style: TextStyle(fontSize: sizeH5, fontWeight: FontWeight.bold),)
             ),

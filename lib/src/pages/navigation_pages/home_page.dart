@@ -57,7 +57,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {    
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
       endDrawer: ConfigDrawer(),
       body: inUser()
     );
@@ -165,7 +164,7 @@ class _HomePageState extends State<HomePage> {
           style: Theme.of(context)
               .textTheme
               .headline4
-              .apply(color: Colors.black87, fontWeightDelta: 2),
+              .apply(fontWeightDelta: 2),
         ),
       ],
     );
@@ -209,11 +208,16 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             Text(
                               mascotas[index].name,
-                              style: TextStyle(
-                                fontSize: sizeH2,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                              style: Theme.of(context)
+                                .textTheme
+                                .headline6
+                                .copyWith(color: Colors.white, fontWeight: FontWeight.bold ),
+                                // .apply(color: Colors.white, fontWeightDelta: 2 ),
+                              // TextStyle(
+                              //   fontSize: sizeH2,
+                              //   fontWeight: FontWeight.bold,
+                              //   color: Colors.white,
+                              // ),
                             ),
                             Text(
                               mascotas[index].breedName,
@@ -299,11 +303,10 @@ class _HomePageState extends State<HomePage> {
             Positioned(
               top: 0.0,
               right: 0.0,
-              child: FloatingActionButton(
-                backgroundColor: colorMain,
+              child: FloatingActionButton(                
                 onPressed: ()=>Navigator.pushNamed(context, 'agregarmascota'),
-                // Navigator.push(context, MaterialPageRoute(builder: (_)=>MascotaAgregarPage(),)),
                 child: Icon(Icons.playlist_add),
+                // backgroundColor: Theme.of(context).primaryColor,
               ),
             ),
           ],

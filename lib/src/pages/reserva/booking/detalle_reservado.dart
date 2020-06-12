@@ -70,7 +70,10 @@ class DetalleReservado extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(arg.petName, style: tituloH1clasico,),
+                Text(arg.petName, style: Theme.of(context)
+                                .textTheme
+                                .headline5
+                                .copyWith(fontWeight: FontWeight.bold ),),
                 SizedBox(height: 20.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +127,7 @@ class DetalleReservado extends StatelessWidget {
                   //     fontSize: sizeH4,
                   //     fontWeight: FontWeight.w700
                   //   ),),
-                  //   shape: shapeB,
+                  //   shape: shape10,
                   //   color: colorRed,
                   //   textColor: colorRed,
                   //   highlightedBorderColor: colorRed,

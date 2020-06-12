@@ -7,6 +7,7 @@ import 'package:proypet/src/routes/routes.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 
 import 'package:flutter/services.dart';
+import 'package:proypet/src/styles/styles.dart';
  
  final prefs = new PreferenciasUsuario();
 void main() async {
@@ -61,9 +62,31 @@ class _MyAppState extends State<MyApp> {
         title: 'Proypet',
         theme: ThemeData( 
           fontFamily: 'Lato',
-          primarySwatch: Colors.teal,
-          cursorColor: Colors.teal
-        ),      
+          textTheme: TextTheme(
+            headline1: TextStyle( color: colorBlue),
+            headline2: TextStyle( color: colorBlue),
+            headline3: TextStyle( color: colorBlue),
+            headline4: TextStyle( color: colorBlue),
+            headline5: TextStyle( color: colorBlue, fontSize: 26.0 ),
+            headline6: TextStyle( color: colorBlue, fontSize: 20.0 ),
+
+            subtitle1: TextStyle( color: colorBlue, fontSize: 16.0),
+            subtitle2: TextStyle( color: colorBlue, fontSize: 14.0),
+
+            bodyText1: TextStyle( color: colorBlue, fontSize: 16.0),
+            bodyText2: TextStyle( color: colorBlue, fontSize: 14.0),            
+          ),
+          // primarySwatch: Colors.teal,
+          primaryColor: colorMain,
+          accentColor: Colors.pink, //colorMain
+          cursorColor: colorMain,
+          appBarTheme: AppBarTheme(
+            textTheme: TextTheme(
+              headline6: TextStyle( fontSize: 18.0 ),
+            ),
+          ),
+          // scaffoldBackgroundColor: Colors.white
+        ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

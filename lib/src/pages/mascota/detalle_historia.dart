@@ -31,15 +31,15 @@ class HistoriaPage extends StatelessWidget {
             (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"]) : SizedBox(),
             (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"]) : SizedBox(),
             (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"]) : SizedBox(),
-            Divider(height: 30.0, color: Colors.black,),
+            Divider(height: 30.0, color: colorBrown1,),
             Container(
               width: double.infinity,
               padding: EdgeInsets.only(right: 20.0), //.symmetric(horizontal: 0.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Precio", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text("Precio", style: TextStyle(fontWeight: FontWeight.bold, color: colorBrown1)),
+                  Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold, color: colorBrown1),),
                 ],
               )
             ),
@@ -57,11 +57,11 @@ class HistoriaPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeH6 ),),
-                  Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold) ),
+                  Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeH6, color: colorBrown1 ),),
+                  Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold, color: colorBrown1) ),
                   SizedBox(height: 10.0,),
-                  Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeH6 ),),
-                  Text(motivo, style: TextStyle( fontWeight: FontWeight.bold) ),
+                  Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeH6, color: colorBrown1 ),),
+                  Text(motivo, style: TextStyle( fontWeight: FontWeight.bold, color: colorBrown1) ),
                 ],
               ),
             ),

@@ -118,7 +118,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(pet.name, style: TextStyle(fontSize: sizeH2,fontWeight: FontWeight.w600),),
+              Text(pet.name, style: tituloH2clasico,),
               Text(pet.breedName, style: tituloH3),
               (pet.status!=0) ?
               Text(calculateAge(DateTime.parse(pet.birthdate)), style: TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),)
@@ -172,11 +172,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                         children: <Widget>[
                           Text(
                             historias[index].establishment,
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: sizeH3,
-                              fontWeight: FontWeight.w600
-                            ),
+                            style: tituloH3clasico,
                           ),
                           iconosHistoria(historias[index].details)
                         ],

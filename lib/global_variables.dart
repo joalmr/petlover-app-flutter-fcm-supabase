@@ -4,10 +4,11 @@ import 'dart:io';
 import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 final String keyMap='AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844';
-final String urlPruebas = '/api';
+
+final String urlPruebas = 'http://18.188.214.204/api';
 final String urlProduccion = 'https://proypet.com/api';
 
-final String urlGlobal = urlProduccion;
+final String urlGlobal = urlProduccion; // TODO: cambiar servicio
 
 final _prefs = new PreferenciasUsuario();
 

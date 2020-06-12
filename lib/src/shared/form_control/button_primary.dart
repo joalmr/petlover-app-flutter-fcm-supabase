@@ -8,12 +8,12 @@ final _textstyle = TextStyle(
 
 Widget buttonPri(_text,_funtion){
   return RaisedButton(
-    shape: shapeB,
+    shape: shape20,
     color: colorMain,
     elevation: 2.0,
     textColor: Colors.white,
     child: Text(_text, style: _textstyle,),
-    padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 10.0),
+    padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 15.0),
     onPressed: _funtion,
   );
 }
@@ -22,8 +22,8 @@ Widget buttonOutLine(_text,_funtion,_color){
   return OutlineButton(
     onPressed: _funtion,
     child: Text(_text, style: _textstyle,),
-    padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 10.0),
-    shape: shapeB,
+    padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 15.0),
+    shape: shape20,
     borderSide: new BorderSide(color: _color, width: 0.5),
     highlightedBorderColor: _color,
     textColor: _color,

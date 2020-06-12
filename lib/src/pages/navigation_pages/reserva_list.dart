@@ -92,7 +92,7 @@ class _ReservaListState extends State<ReservaList> {
                 ? null
                 : ()=>Navigator.push(context,MaterialPageRoute(builder: (context) => VetMapaPage(establecimientos: snapshot.data))),
               child: Icon(Icons.location_on),
-              backgroundColor: colorMain,
+              // backgroundColor: Theme.of(context).primaryColor,
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
           );
