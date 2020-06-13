@@ -7,7 +7,6 @@ import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
-import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 

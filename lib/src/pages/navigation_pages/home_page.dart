@@ -13,7 +13,6 @@ import 'package:proypet/src/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 import 'package:proypet/src/shared/snackbar.dart';
-import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';

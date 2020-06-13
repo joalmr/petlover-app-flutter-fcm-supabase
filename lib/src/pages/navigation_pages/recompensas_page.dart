@@ -7,7 +7,6 @@ import 'package:proypet/src/model/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 
 

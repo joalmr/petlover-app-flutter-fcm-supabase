@@ -3,7 +3,7 @@ import 'package:proypet/src/model/destacado/destacado_model.dart';
 import 'package:proypet/src/providers/destacado_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/styles/titulos.dart';
+
 
 class DestacadosPage extends StatefulWidget {
   @override

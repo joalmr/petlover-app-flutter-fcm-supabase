@@ -5,12 +5,11 @@ import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/shared/enddrawer/mascota_drawer.dart';
-import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
-// import 'package:proypet/src/utils/utils.dart';
+
 
 class MascotaDetallePage extends StatefulWidget {
 

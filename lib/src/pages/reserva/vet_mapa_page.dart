@@ -10,7 +10,6 @@ import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/styles/titulos.dart';
 
 
 class VetMapaPage extends StatefulWidget {

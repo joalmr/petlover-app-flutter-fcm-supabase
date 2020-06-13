@@ -16,10 +16,10 @@ import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/modal_bottom.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/styles/titulos.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 class VetDetallePage extends StatefulWidget {
   // final String vetID;
