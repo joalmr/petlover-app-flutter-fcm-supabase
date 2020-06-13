@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 final _textstyle = TextStyle(
-  fontSize: sizeH4,
+  fontSize: 14.0,
   fontWeight: FontWeight.w700
 );
 

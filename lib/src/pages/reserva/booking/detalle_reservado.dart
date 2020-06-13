@@ -8,7 +8,6 @@ import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/styles/titulos.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalleReservado extends StatelessWidget {
@@ -86,9 +85,10 @@ class DetalleReservado extends StatelessWidget {
                             .apply(fontWeightDelta: 2),
                           ),
                         (!vencido) ? Text(arg.status, style: (arg.statusId==3 || arg.statusId==6) 
-                          ? TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold, color: colorMain ) 
-                          : tituloH3clasico ,)
-                        : Text('${arg.status} - Vencido', style: TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold, color: colorRed),),  
+                          ? Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorMain) 
+                          : Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+                        )
+                        : Text('${arg.status} - Vencido', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorRed) )
                       ],
                     ),
                     Padding(
@@ -107,7 +107,7 @@ class DetalleReservado extends StatelessWidget {
                   Theme.of(context).textTheme.subtitle2
                             .apply(fontWeightDelta: 2),
                 ),
-                Text(arg.establishmentName, style: TextStyle(fontSize: sizeH3),),
+                Text(arg.establishmentName, style: Theme.of(context).textTheme.subtitle1 ),
                 SizedBox(height: 10.0,),
                 Text("Dirección de veterinaria", style: 
                   Theme.of(context).textTheme.subtitle2

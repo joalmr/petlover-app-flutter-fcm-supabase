@@ -287,7 +287,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
         },
         decoration: InputDecoration(
           hintText: 'Fecha de nacimiento',
-          hintStyle: TextStyle(fontSize: sizeH4),
+          hintStyle: Theme.of(context).textTheme.subtitle2,
           prefixIcon: Material(
             borderRadius: borderRadius,
             color: Colors.grey[200],

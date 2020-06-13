@@ -173,13 +173,13 @@ class _ReservaListState extends State<ReservaList> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0,),
       child: Chip(
-        labelStyle: TextStyle(fontSize: sizeH6, color: Colors.black54),
+        labelStyle: TextStyle(fontSize: sizeLite, color: Colors.black54),
         labelPadding: EdgeInsets.only(left: 5.0,right: 2.5),
         // padding: EdgeInsets.zero,
         avatar: CircleAvatar(
           radius: 12.5,
           backgroundColor: colorMain,//colorBlue, //Colors.grey.shade800,
-          child: Icon(iconNum[servicio], size: sizeH5,),
+          child: Icon(iconNum[servicio], size: sizeSmall,),
         ),
         label: Text(textMap[servicio]),
       ),

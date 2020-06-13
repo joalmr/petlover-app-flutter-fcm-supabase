@@ -49,12 +49,12 @@ import 'package:proypet/src/styles/styles.dart';
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text('${vet.distance}km de distancia',maxLines: 1,style: TextStyle(fontSize: sizeH5,color: colorGray3,fontWeight: FontWeight.w400),),
+                            Text('${vet.distance}km de distancia',maxLines: 1,style: TextStyle(fontSize: sizeSmall,color: colorGray3,fontWeight: FontWeight.w400),),
                             Row(
                               children: <Widget>[
                                 Icon(Icons.star, color: colorYellow, size: 12.0),
                                 SizedBox(width: 0.5),
-                                Text(vet.stars.toString() + ' ('+vet.attentions.toString()+')',style: TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w400))
+                                Text(vet.stars.toString() + ' ('+vet.attentions.toString()+')',style: Theme.of(context).textTheme.subtitle2 )
                               ],
                             ),
                           ],

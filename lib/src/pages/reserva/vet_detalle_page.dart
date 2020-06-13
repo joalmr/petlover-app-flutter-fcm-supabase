@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/icon_proypet_icons.dart';
@@ -60,19 +61,27 @@ class _VetDetallePageState extends State<VetDetallePage> {
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
-          // color: colorMain,
         ),
-        _botonPrincipal(context),
+        
+        // Container(
+        //   height: MediaQuery.of(context).size.height - 60,          
+        //   child: SingleChildScrollView(
+        //     child: _onDetail(context, vet),
+        //   ),
+        // ),
+
         Container(
-          height: MediaQuery.of(context).size.height - 62.5,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15.0), bottomRight: Radius.circular(15.0)),
-            // color: Colors.white
-          ),
-          child: SingleChildScrollView(
-            child: _onDetail(context, vet),
-          ),
+          height: 275.0,
+          width: double.infinity,
+          child: (vet.slides.length>0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false)
         ),
+        Container(
+          padding: EdgeInsets.only(top: 275.0, bottom: 60.0),
+          child: _onDetail(context, vet),
+        ),
+
+        _botonPrincipal(context),
+
         Positioned(
           top: 0,
           left: 0,
@@ -81,10 +90,8 @@ class _VetDetallePageState extends State<VetDetallePage> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            title: Text("",style: TextStyle(
-              fontSize: sizeH3,
-              fontWeight: FontWeight.normal
-            ),),
+            title: Text("",style: Theme.of(context).textTheme.subtitle1
+            ),
           ),
         ),
       ],
@@ -93,14 +100,16 @@ class _VetDetallePageState extends State<VetDetallePage> {
 
   Widget _botonPrincipal(context){
     return Positioned(
-      bottom: 7.5,
-      // height: 100.0,
+      bottom: 0,
       child: Container(
+        // color: Colors.red,
+        height: 60,
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            SizedBox(height: 5,),
             buttonPri('Reservar servicio', reservarClic ? _reservar : null)
           ],
         )
@@ -110,189 +119,257 @@ class _VetDetallePageState extends State<VetDetallePage> {
 
 
   Widget _onDetail(context,EstablecimientoModel localVet) {
-    return Column(
-      children: <Widget>[
-        Container(
-          height: 325.0,
-          width: double.infinity,
-          child: (localVet.slides.length>0) ? _swiperVets(localVet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false)
-        ),
-        SizedBox(height: .5),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0.0),
-          child: Container(
-            width: MediaQuery.of(context).size.width - 0.0,
-            // height: MediaQuery.of(context).size.height * 0.1 ,
-            child: ListTile(
-              title: Text(localVet.name,//nombreVet(0),
-                maxLines: 2,
-                style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)
-              ),
-              subtitle: Text('${localVet.address} ${localVet.distance}km'),
-              trailing: Container(
-                height: 55.0,
-                width: 55.0,
-                decoration: BoxDecoration(
-                  color: colorGray1,
-                  borderRadius: BorderRadius.circular(100.0),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(localVet.logo),
-                    fit: BoxFit.cover
-                  )
+    return 
+    DefaultTabController(
+      length: 6,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width - 0.0,
+              // height: MediaQuery.of(context).size.height * 0.1 ,
+              child: ListTile(
+                title: Text(localVet.name,//nombreVet(0),
+                  maxLines: 2,
+                  style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)
+                ),
+                subtitle: Text('${localVet.address} ${localVet.distance}km'),
+                trailing: Container(
+                  height: 55.0,
+                  width: 55.0,
+                  decoration: BoxDecoration(
+                    color: colorGray1,
+                    borderRadius: BorderRadius.circular(100.0),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(localVet.logo),
+                      fit: BoxFit.cover
+                    )
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Text('Atenciones', style: 
-                    Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
-                  ),
-                  SizedBox(width: 15.0),
-                  Stack(
-                    children: <Widget>[
-                      Container(height: 40.0, width: 100.0),
-                      Positioned(
-                        left: 10.0,
-                        child: Container(
-                          height: 40.0,
-                          width: 40.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: colorMain //Color(0xFFFE7050)
-                          ),
-                          child: Center(
-                            child: Text(localVet.attentions.toString(),
-                              style: TextStyle(
-                                fontSize: sizeH5, color: Colors.white
-                              )
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text('Atenciones', style: 
+                      Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+                    ),
+                    SizedBox(width: 15.0),
+                    Stack(
+                      children: <Widget>[
+                        Container(height: 40.0, width: 100.0),
+                        Positioned(
+                          left: 10.0,
+                          child: Container(
+                            height: 40.0,
+                            width: 40.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: colorMain //Color(0xFFFE7050)
+                            ),
+                            child: Center(
+                              child: Text(localVet.attentions.toString(),
+                                style: TextStyle(
+                                  fontSize: sizeSmall, color: Colors.white
+                                )
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(width: 55.0),
-                          Container(
-                            height: 40.0,
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.0),
-                                color: colorYellow),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.star, color: Colors.white, size: 12.0),
-                                  SizedBox(width: 5.0),
-                                  Text(localVet.stars.toString(),style: TextStyle(color: Colors.white))
-                                ],
-                              ),
+                        Row(
+                          children: <Widget>[
+                            SizedBox(width: 55.0),
+                            Container(
+                              height: 40.0,
+                              padding: EdgeInsets.symmetric(horizontal: 10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: colorYellow),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.star, color: Colors.white, size: 12.0),
+                                    SizedBox(width: 5.0),
+                                    Text(localVet.stars.toString(),style: TextStyle(color: Colors.white))
+                                  ],
+                                ),
+                              )
                             )
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 15.0),
-                child: FloatingActionButton(
-                  // backgroundColor: colorMain,
-                  child: Icon(Icons.phone, ), //color: Colors.white,
-                  onPressed: _launchPhone, 
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              )
+                Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: FloatingActionButton(
+                    // backgroundColor: colorMain,
+                    child: Icon(Icons.phone, ), //color: Colors.white,
+                    onPressed: _launchPhone, 
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 10.0,),
+          // ButtonsTabBar(
+          //   backgroundColor: colorGray2,
+          //   unselectedBackgroundColor: colorGray2,
+          //   unselectedLabelStyle: TextStyle(color: Colors.black54),
+          //   labelStyle: TextStyle(color: colorMain, fontWeight: FontWeight.bold),
+          //   radius: 10.0,
+          //   tabs: [
+          //     Tab(text: "General",),
+          //     Tab(text: "Precios"),
+          //     Tab(text: "Horarios"),
+          //     Tab(text: "Comentarios"),
+          //   ],
+          // ),
+          TabBar(
+            indicatorColor: colorMain,
+            labelStyle: TextStyle(fontWeight: FontWeight.bold),
+            labelColor: colorMain,
+            unselectedLabelColor: Colors.black54,
+            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+            isScrollable: true,
+            tabs: [
+              Tab(text: "General",),
+              Tab(text: "Precios"),
+              Tab(text: "Horarios"),
+              Tab(text: "Comentarios"),
+              Tab(text: "Otro 1"),
+              Tab(text: "Otro 2"),
             ],
           ),
-        ),
-        SizedBox(height: 20.0),
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-          child: Text("Servicios", style: 
-            Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-          // tituloH4 
+          Expanded(
+            child: TabBarView(
+              children: <Widget>[
+                pagina1(localVet),
+                pagina2(localVet),
+                pagina3(localVet),
+                pagina4(localVet),
+                pagina4(localVet),
+                pagina4(localVet),
+              ],
+            ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 10.0,),
-          child: _servicios(localVet.services),
-        ),
-        SizedBox(height: 10.0),
-        // (localVet.prices!=null && localVet.prices.length>0)
-        // ? Text("Precios referenciales")
-        // : SizedBox(width: 0, height: 0,),
-        localVet.prices.length>0 ?
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          width: double.infinity,
-          child: Text("Precio referencial",style: 
-            Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-          // tituloH4 
-          )
-        )
-        : SizedBox(height: 0.0,),
-        localVet.prices.length>0 ?
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: _listaPrecio(localVet.prices),
-        ) : SizedBox(height: 0.0,),
-        localVet.prices.length>0 ?
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          width: double.infinity,
-          child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeH6),)
-        ) : SizedBox(height: 0.0,),
-      
-        SizedBox(height: 10.0),
-        
-        localVet.schedule.length>0 ?
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          width: double.infinity,
-          child: Text("Horario",style: 
-            Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-          // tituloH4 
-          )
-        ): SizedBox(height: 0.0,), 
+        ],
+      ),
+    );
 
-        (localVet.schedule.length>0) ?
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: _listHorario(localVet.schedule),
-        ) : SizedBox(height: 0.0,), 
+  }
 
-        Container(
-          padding: EdgeInsets.only(left: 20.0,right: 20.0, top: 20.0, bottom: 10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[  
-              Text('Descripción', style: 
-                Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-                // tituloH4 
-                ),  
-              SizedBox(height: 10.0,),
-              Text(localVet.description,textAlign: TextAlign.justify,),
-              SizedBox(width: double.infinity,),
-            ],
+  pagina1(localVet){
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 10.0,),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
+            child: Text("Servicios", style: 
+              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+            // tituloH4 
+            ),
           ),
-        ),
-      ],
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10.0,),
+            child: _servicios(localVet.services),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 20.0,right: 20.0, top: 20.0, bottom: 10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[  
+                Text('Descripción', style: 
+                  Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+                  // tituloH4 
+                  ),  
+                SizedBox(height: 10.0,),
+                Text(localVet.description,textAlign: TextAlign.justify,),
+                SizedBox(width: double.infinity,),
+              ],
+            ),
+          ),
+          
+        ],
+      ),
     );
   }
 
+  pagina2(localVet){
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 10.0,),
+          localVet.prices.length>0 ?
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            width: double.infinity,
+            child: Text("Precio referencial",style: 
+              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+            // tituloH4 
+            )
+          )
+          : SizedBox(height: 0.0,),
+          localVet.prices.length>0 ?
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: _listaPrecio(localVet.prices),
+          ) : SizedBox(height: 0.0,),
+          localVet.prices.length>0 ?
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            width: double.infinity,
+            child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeLite),)
+          ) : SizedBox(height: 0.0,),
+        ],
+      ),
+    );
+  }
+
+  pagina3(localVet){
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 10.0,),
+          localVet.schedule.length>0 ?
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            width: double.infinity,
+            child: Text("Horario",style: 
+              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+            // tituloH4 
+            )
+          ): SizedBox(height: 0.0,), 
+          (localVet.schedule.length>0) ?
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: _listHorario(localVet.schedule),
+          ) : SizedBox(height: 0.0,), 
+        ],
+      ),
+    );
+  }
+
+  pagina4(localVet){
+    return Center(
+      child: Text("Comentarios"),
+    );
+  }
+
+
   Widget _listaPrecio(precios){
-    return 
-        SingleChildScrollView(
+    return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: <Widget>[
@@ -539,7 +616,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 10.0,),
-                      Text('Debe ingresar un número de teléfono', style: TextStyle(fontSize: sizeH4)),
+                      Text('Debe ingresar un número de teléfono', style: Theme.of(context).textTheme.subtitle2 ),
                       SizedBox(height: 10.0,),
                       FormularioText(
                         hintText: 'Ingrese teléfono',

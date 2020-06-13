@@ -16,20 +16,22 @@ final colorBrown2 = Color(0xFF403432);
 
 final colorMain = colorGreen;
 
-// final shapeBtn = RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0));
-
 final shape10 = RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
 final shape20 = RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0));
 
 final borderRadius = BorderRadius.circular(10.0);
 
-final sizeH1 = 26.0;//26
-final sizeH2 = 20.0;
-final sizeH3 = 16.0;
-final sizeH4 = 14.0;
-final sizeH5 = 12.0;
-final sizeH6 = 10.0;
-
-final sizeCuerpo = 12.0;
-final sizeCuerpoLite = 10.0;
+final sizeSmall = 12.0;
+final sizeLite = 10.0;
 final sizeMini = 8.0;
+
+// final sizeH1 = 26.0;//26
+// final sizeH2 = 20.0;
+// final sizeH3 = 16.0;
+// final sizeH4 = 14.0;
+// final sizeH5 = 12.0;
+// final sizeLite = 10.0;
+
+// final sizeCuerpo = 12.0;
+// final sizeCuerpoLite = 10.0;
+// final sizeMini = 8.0;

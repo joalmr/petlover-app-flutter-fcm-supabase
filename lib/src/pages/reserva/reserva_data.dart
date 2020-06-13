@@ -191,7 +191,7 @@ class _Data extends State<DataReserva> {
                   TextSpan(text: ', especifíquelo en observaciones',style: TextStyle()),
                 ],
               ),
-              style: TextStyle(fontSize: sizeH5),
+              style: TextStyle(fontSize: sizeSmall),
             ),
             SizedBox(height: 20.0,),
             
@@ -261,7 +261,7 @@ class _Data extends State<DataReserva> {
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Fecha de atención',
-          hintStyle: TextStyle(fontSize: sizeH4),
+          // hintStyle: TextStyle(fontSize: sizeH4),
           prefixIcon: Material(
             //elevation: 0.0,
             borderRadius: _shape,
@@ -330,7 +330,7 @@ class _Data extends State<DataReserva> {
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Hora de atención',
-          hintStyle: TextStyle(fontSize: sizeH4),
+          // hintStyle: TextStyle(fontSize: sizeH4),
           prefixIcon: Material(
             borderRadius: _shape,
             color: Colors.grey[200],
@@ -421,7 +421,7 @@ class _Data extends State<DataReserva> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                 content: Container(
                   height: 100.0,
-                  child: Center(child: Text('Gracias por su reserva.', style: TextStyle(fontSize: sizeH4),))
+                  child: Center(child: Text('Gracias por su reserva.', style: Theme.of(context).textTheme.subtitle2 ,))
                 ),
               ),
             ), barrierDismissible: false );

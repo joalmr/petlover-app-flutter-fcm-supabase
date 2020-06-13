@@ -86,7 +86,7 @@ class _UserPageState extends State<UserPage> {
                   ),
                   // textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
                   Text('Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
-                    style: TextStyle(fontSize: sizeCuerpoLite),
+                    style: TextStyle(fontSize: sizeLite),
                   ),
                   SizedBox(height: 35.0,),
                   Center(

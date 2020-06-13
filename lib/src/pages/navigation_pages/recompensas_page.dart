@@ -96,7 +96,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text('${bonificacion.points}',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.0,),),
-                                      Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeH5, fontWeight: FontWeight.bold),),
+                                      Text('Puntos acumulados', style: TextStyle(color: Colors.white60, fontSize: sizeSmall, fontWeight: FontWeight.bold),),
                                     ],
                                   ),
                                 )
@@ -146,11 +146,11 @@ class _RecompensasPageState extends State<RecompensasPage> {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: ListTile(
-            title: Text('${bonificados[index].establishmentName}',style: TextStyle(fontSize: sizeH4)),
+            title: Text('${bonificados[index].establishmentName}',style: Theme.of(context).textTheme.subtitle2 ),
             trailing: CircleAvatar(
               backgroundColor: colorMain,
               foregroundColor: Colors.white,
-              child: Text('+${bonificados[index].points}', style: TextStyle(fontSize: sizeH5, fontWeight: FontWeight.bold),)
+              child: Text('+${bonificados[index].points}', style: TextStyle(fontSize: sizeSmall, fontWeight: FontWeight.bold),)
             ),
           ),
         );

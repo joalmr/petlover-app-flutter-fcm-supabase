@@ -91,10 +91,8 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            title: Text("",style: TextStyle(
-              fontSize: sizeH3,
-              fontWeight: FontWeight.normal
-            ),),
+            title: Text("",style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+            ),
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.settings ), 
@@ -136,7 +134,9 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                 Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
               ),
               (pet.status==0) 
-              ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),)
+              ? Text('Fallecido', 
+                style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2).copyWith(fontStyle: FontStyle.italic)
+              )
               : SizedBox(height: 0,)
             ],
           )                          

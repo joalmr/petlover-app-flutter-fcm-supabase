@@ -266,12 +266,12 @@ class _HomePageState extends State<HomePage> {
                         bottom: 10.0,
                         right: 10.0,
                         child: RaisedButton(
-                          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 11.0),
+                          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
                           color: Colors.black.withOpacity(0.15),
                           onPressed: ()=>Navigator.pushNamed(context, 'detallemascota', arguments: mascotas[index].id),
                           child: Text('Ver más',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                           shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(9.0),
+                            borderRadius: new BorderRadius.circular(20.0),
                             side: BorderSide(color: Colors.white)),
                         ),
                       ),
@@ -481,7 +481,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text('Emergencia',style: TextStyle(color: Colors.white)),
-                  Text('24 horas',style: TextStyle(color: Colors.white, fontSize: sizeCuerpoLite)),
+                  Text('24 horas',style: TextStyle(color: Colors.white, fontSize: sizeLite)),
                 ],
               ),
           )
