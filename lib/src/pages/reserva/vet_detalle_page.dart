@@ -60,14 +60,14 @@ class _VetDetallePageState extends State<VetDetallePage> {
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
-          color: colorMain,
+          // color: colorMain,
         ),
         _botonPrincipal(context),
         Container(
-          height: MediaQuery.of(context).size.height - 65.0,
+          height: MediaQuery.of(context).size.height - 62.5,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15.0), bottomRight: Radius.circular(15.0)),
-            color: Colors.white
+            // color: Colors.white
           ),
           child: SingleChildScrollView(
             child: _onDetail(context, vet),
@@ -93,18 +93,18 @@ class _VetDetallePageState extends State<VetDetallePage> {
 
   Widget _botonPrincipal(context){
     return Positioned(
-      bottom: 0.0,
-      height: 100.0,
-      child: FlatButton(
-        onPressed: reservarClic ? _reservar : null, 
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.only(top: 35.0),
-          child: Center(
-            child: Text('Reservar servicio',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: sizeH3),),
-          )
-        ),
-      ),
+      bottom: 7.5,
+      // height: 100.0,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            buttonPri('Reservar servicio', reservarClic ? _reservar : null)
+          ],
+        )
+      )
     );
   }
 
@@ -126,14 +126,14 @@ class _VetDetallePageState extends State<VetDetallePage> {
             child: ListTile(
               title: Text(localVet.name,//nombreVet(0),
                 maxLines: 2,
-                style: tituloH2clasico
+                style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)
               ),
-              subtitle: Text('${localVet.address} ${localVet.distance}km'),//${localVet.distance}km
+              subtitle: Text('${localVet.address} ${localVet.distance}km'),
               trailing: Container(
                 height: 55.0,
                 width: 55.0,
                 decoration: BoxDecoration(
-                  color: colorGray1,// Colors.grey.withOpacity(0.1),
+                  color: colorGray1,
                   borderRadius: BorderRadius.circular(100.0),
                   image: DecorationImage(
                     image: CachedNetworkImageProvider(localVet.logo),
@@ -151,7 +151,9 @@ class _VetDetallePageState extends State<VetDetallePage> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Text('Atenciones', style: tituloH3),
+                  Text('Atenciones', style: 
+                    Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+                  ),
                   SizedBox(width: 15.0),
                   Stack(
                     children: <Widget>[
@@ -203,8 +205,8 @@ class _VetDetallePageState extends State<VetDetallePage> {
               Padding(
                 padding: const EdgeInsets.only(right: 15.0),
                 child: FloatingActionButton(
-                  backgroundColor: colorMain,
-                  child: Icon(Icons.phone, color: Colors.white,),
+                  // backgroundColor: colorMain,
+                  child: Icon(Icons.phone, ), //color: Colors.white,
                   onPressed: _launchPhone, 
                 ),
               )
@@ -215,7 +217,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           width: double.infinity,
           padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-          child: Text("Servicios", style: tituloH4 ),
+          child: Text("Servicios", style: 
+            Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+          // tituloH4 
+          ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0,),
@@ -229,7 +234,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Precio referencial",style: tituloH4 )
+          child: Text("Precio referencial",style: 
+            Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+          // tituloH4 
+          )
         )
         : SizedBox(height: 0.0,),
         localVet.prices.length>0 ?
@@ -250,7 +258,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           width: double.infinity,
-          child: Text("Horario",style: tituloH4 )
+          child: Text("Horario",style: 
+            Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+          // tituloH4 
+          )
         ): SizedBox(height: 0.0,), 
 
         (localVet.schedule.length>0) ?
@@ -265,8 +276,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[  
-              Text('Descripción',
-                style: tituloH4 ),  
+              Text('Descripción', style: 
+                Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+                // tituloH4 
+                ),  
               SizedBox(height: 10.0,),
               Text(localVet.description,textAlign: TextAlign.justify,),
               SizedBox(width: double.infinity,),

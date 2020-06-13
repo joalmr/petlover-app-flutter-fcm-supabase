@@ -282,7 +282,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
             initialDate: currentValue ?? DateTime.now(), //DateTime.parse(mascotaData.birthdate),
             firstDate: new DateTime(DateTime.now().year-25),
             lastDate: DateTime.now(),
-            initialDatePickerMode: DatePickerMode.day
+            initialDatePickerMode: DatePickerMode.day,
           );
         },
         decoration: InputDecoration(

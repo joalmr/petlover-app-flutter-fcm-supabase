@@ -17,6 +17,8 @@ import 'package:proypet/src/styles/styles.dart';
               builder: (_)=>VetDetallePage(vet: vet,),
             )),
             child: Material(
+              color: Colors.white,
+              shape: shape10,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -39,7 +41,7 @@ import 'package:proypet/src/styles/styles.dart';
                   ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 5.0,vertical: 5.0),
-                    color: Colors.white.withOpacity(0.4),
+                    // color: Colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -47,21 +49,18 @@ import 'package:proypet/src/styles/styles.dart';
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text('${vet.distance}km de distancia',maxLines: 1,style: TextStyle(fontSize: sizeH5,color: Colors.grey[400],fontWeight: FontWeight.w400),),
+                            Text('${vet.distance}km de distancia',maxLines: 1,style: TextStyle(fontSize: sizeH5,color: colorGray3,fontWeight: FontWeight.w400),),
                             Row(
                               children: <Widget>[
                                 Icon(Icons.star, color: colorYellow, size: 12.0),
                                 SizedBox(width: 0.5),
-                                Text(vet.stars.toString() + ' ('+vet.attentions.toString()+')',style: TextStyle(fontSize: sizeH4,color: Colors.grey[600],fontWeight: FontWeight.w400))
+                                Text(vet.stars.toString() + ' ('+vet.attentions.toString()+')',style: TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w400))
                               ],
                             ),
                           ],
                         ),
-                        Text(vet.name ,style: TextStyle(
-                            fontSize: sizeH3,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w400
-                          ),
+                        Text(vet.name ,style: 
+                          Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
                           maxLines: 1,
                         ),
                       ],

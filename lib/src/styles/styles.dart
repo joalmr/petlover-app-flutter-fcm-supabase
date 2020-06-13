@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 final colorGreen = Color(0xFF00A48C);
+final colorGreen2 = Color(0xFF008480);
+final colorGreen3 = Color(0xFF006F80);
 final colorRed = Color(0xFFf06e64);
 final colorBlue = Color(0xFF008cdc);
 final colorYellow = Color(0xFFfac37a);

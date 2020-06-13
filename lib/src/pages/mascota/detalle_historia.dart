@@ -26,11 +26,11 @@ class HistoriaPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20.0 ,horizontal: 20.0),
         child: Column(        
           children: <Widget>[
-            (jsonText.toString().contains("grooming")) ? _banio(jsonText["grooming"]) : SizedBox(),
-            (jsonText.toString().contains("deworming")) ? _desparasita(jsonText["deworming"]) : SizedBox(),
-            (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"]) : SizedBox(),
-            (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"]) : SizedBox(),
-            (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"]) : SizedBox(),
+            (jsonText.toString().contains("grooming")) ? _banio(jsonText["grooming"], context) : SizedBox(),
+            (jsonText.toString().contains("deworming")) ? _desparasita(jsonText["deworming"], context) : SizedBox(),
+            (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"], context) : SizedBox(),
+            (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"], context) : SizedBox(),
+            (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"], context) : SizedBox(),
             Divider(height: 30.0, color: colorBrown1,),
             Container(
               width: double.infinity,
@@ -73,7 +73,7 @@ class HistoriaPage extends StatelessWidget {
     );
   }
 
-  _banio(data){
+  _banio(data, context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -82,7 +82,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.grooming ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Baño', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
+            Text('Baño', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
         ),
         SizedBox(height: 10,),
@@ -101,7 +101,7 @@ class HistoriaPage extends StatelessWidget {
     );
   }
 
-  _desparasita(data){
+  _desparasita(data, context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -110,7 +110,9 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.desparasitacion ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Desparasitación', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
+            Text('Desparasitación', style: 
+              Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+            ),
           ],
         ),
         SizedBox(height: 10,),
@@ -129,7 +131,7 @@ class HistoriaPage extends StatelessWidget {
     );
   }
 
-  _vacuna(data){
+  _vacuna(data, context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +140,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.vacuna ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Vacuna', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
+            Text('Vacuna', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
         ),
         SizedBox(height: 10,),
@@ -157,7 +159,7 @@ class HistoriaPage extends StatelessWidget {
     );
   }
 
-  _consulta(data){
+  _consulta(data, context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -166,7 +168,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.consulta ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Consulta', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
+            Text('Consulta', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
         ),
         SizedBox(height: 10,),
@@ -184,7 +186,7 @@ class HistoriaPage extends StatelessWidget {
     );
   }
 
-  _cirugia(data){
+  _cirugia(data, context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -193,7 +195,7 @@ class HistoriaPage extends StatelessWidget {
           children: <Widget>[
             Icon( IconProypet.cirugia ,size: 16.0,color: Colors.black54),
             SizedBox(width: 10.0,),
-            Text('Cirugía', style: TextStyle(fontSize: sizeH3, color: Colors.black54),),
+            Text('Cirugía', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
         ),
         SizedBox(height: 10,),

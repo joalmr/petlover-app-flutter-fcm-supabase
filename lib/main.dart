@@ -63,22 +63,22 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData( 
           fontFamily: 'Lato',
           textTheme: TextTheme(
-            headline1: TextStyle( color: colorBlue),
-            headline2: TextStyle( color: colorBlue),
-            headline3: TextStyle( color: colorBlue),
-            headline4: TextStyle( color: colorBlue),
-            headline5: TextStyle( color: colorBlue, fontSize: 26.0 ),
-            headline6: TextStyle( color: colorBlue, fontSize: 20.0 ),
+            headline1: TextStyle( color: Colors.black54),
+            headline2: TextStyle( color: Colors.black54),
+            headline3: TextStyle( color: Colors.black54),
+            headline4: TextStyle( color: Colors.black54),
+            headline5: TextStyle( color: Colors.black54, fontSize: 26.0 ),
+            headline6: TextStyle( color: Colors.black54, fontSize: 20.0 ),
 
-            subtitle1: TextStyle( color: colorBlue, fontSize: 16.0),
-            subtitle2: TextStyle( color: colorBlue, fontSize: 14.0),
+            subtitle1: TextStyle( color: Colors.black54, fontSize: 16.0),
+            subtitle2: TextStyle( color: Colors.black54, fontSize: 14.0),
 
-            bodyText1: TextStyle( color: colorBlue, fontSize: 16.0),
-            bodyText2: TextStyle( color: colorBlue, fontSize: 14.0),            
+            bodyText1: TextStyle( color: Colors.black54, fontSize: 16.0),
+            bodyText2: TextStyle( color: Colors.black54, fontSize: 14.0),            
           ),
-          // primarySwatch: Colors.teal,
+          primarySwatch: Colors.teal,
           primaryColor: colorMain,
-          accentColor: Colors.pink, //colorMain
+          accentColor: colorMain,
           cursorColor: colorMain,
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(

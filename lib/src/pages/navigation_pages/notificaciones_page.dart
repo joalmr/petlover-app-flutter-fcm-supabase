@@ -51,11 +51,9 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
         child: RefreshIndicator(
           onRefresh: _onRefresh,
           child: ListView(
-            // padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
             children: <Widget>[
               _onFuture(),
             ],
-            // child: _onFuture(),
           ),
         ),
       ),
@@ -127,10 +125,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0), //horizontal: 20.0
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: sizeH4,
-              ), 
+              style: Theme.of(context).textTheme.subtitle2,
               maxLines: 3,
             ),
             
@@ -150,10 +145,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: sizeH4,
-              ),
+              style: Theme.of(context).textTheme.subtitle2,
               maxLines: 3,
             ),
             
@@ -174,10 +166,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
             leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
             title: Text(notificacion.message,
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: sizeH4,
-              ),
+              style: Theme.of(context).textTheme.subtitle2,
               maxLines: 3,
             ),
             

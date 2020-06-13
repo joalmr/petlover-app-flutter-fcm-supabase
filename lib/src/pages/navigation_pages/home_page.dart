@@ -89,10 +89,8 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Text(
                         "Hola,",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4
-                            .apply(),
+                        style: Theme.of(context).textTheme.headline4
+                            .copyWith(fontWeight: FontWeight.normal),
                       ),
                       IconButton(
                         icon: Icon(Icons.settings, color: Colors.black54,),
@@ -111,7 +109,9 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(' Servicios frecuentes', style: tituloH2,),
+                        Text(' Servicios frecuentes', style: 
+                          Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
+                        ),
                         SizedBox(height: 15.0),
                         SingleChildScrollView(
                           physics: BouncingScrollPhysics(),
@@ -139,7 +139,9 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text("Reservas", style: tituloH2),
+                        child: Text("Reservas", style: 
+                          Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
+                        ),
                       ),
                       Icon(Icons.timelapse, color: Colors.black54),
                     ],
@@ -160,11 +162,9 @@ class _HomePageState extends State<HomePage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          usuario.name, //snapshot.data?.name, //nombre del usuario
+          usuario.name,
           style: Theme.of(context)
-              .textTheme
-              .headline4
-              .apply(fontWeightDelta: 2),
+              .textTheme.headline4.apply(fontWeightDelta: 2)
         ),
       ],
     );
@@ -209,23 +209,14 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               mascotas[index].name,
                               style: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                .copyWith(color: Colors.white, fontWeight: FontWeight.bold ),
-                                // .apply(color: Colors.white, fontWeightDelta: 2 ),
-                              // TextStyle(
-                              //   fontSize: sizeH2,
-                              //   fontWeight: FontWeight.bold,
-                              //   color: Colors.white,
-                              // ),
+                                .textTheme.headline6
+                                .apply(color: Colors.white, fontWeightDelta: 2)
                             ),
                             Text(
                               mascotas[index].breedName,
-                              style: TextStyle(
-                                fontSize: sizeH4,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white,
-                              ),
+                              style: Theme.of(context)
+                                .textTheme.subtitle2
+                                .apply(color: Colors.white)
                             ),
                           ],
                         ),
@@ -245,14 +236,8 @@ class _HomePageState extends State<HomePage> {
                                     text: mascotas[index].weight.toString(),
                                     style: 
                                     Theme.of(context)
-                                      .textTheme
-                                      .headline4
+                                      .textTheme.headline4
                                       .apply(color: Colors.white, fontWeightDelta: 2),
-                                    // TextStyle(
-                                    //   fontSize: sizeH1,
-                                    //   fontWeight: FontWeight.bold,
-                                    //   color: Colors.white,
-                                    // ),                                    
                                   ),
                                   TextSpan(text: " kg.")
                                 ],
@@ -261,16 +246,16 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               children: <Widget>[
                                 (mascotas[index].status==0) 
-                                  ? Icon(Icons.bookmark, color: Colors.grey[300]) 
-                                  : Icon(Icons.cake, color: Colors.grey[300]),
+                                  ? Icon(Icons.bookmark, color: colorGray2) 
+                                  : Icon(Icons.cake, color: colorGray2),
                                 SizedBox(width: 5.0),
                                 (mascotas[index].status==0) 
-                                ? Text("Fallecido",//mascotas[index].age.toString(),
-                                  style: TextStyle(color: Colors.grey[300],),
+                                ? Text("Fallecido",
+                                  style: TextStyle(color: colorGray2,),
                                 )
                                 : Text(
-                                  calculateAge(DateTime.parse(mascotas[index].birthdate)),//mascotas[index].age.toString(),
-                                  style: TextStyle(color: Colors.grey[300]),
+                                  calculateAge(DateTime.parse(mascotas[index].birthdate)),
+                                  style: Theme.of(context).textTheme.subtitle2.apply(color: colorGray2),
                                 )
                               ],
                             ),
@@ -398,11 +383,14 @@ class _HomePageState extends State<HomePage> {
                       children: <Widget>[
                         Text(
                           atenciones[index].date,//" Mañana",
-                          style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
+                          style: 
+                          Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12.0).apply(fontWeightDelta: 2)
                         ),
                         Text(
                           atenciones[index].time,//"17:00",
-                          style: TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
+                          style: 
+                          Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain),
+                          // TextStyle(color: colorMain,fontSize: sizeH4,fontWeight: FontWeight.w600),
                           textAlign: TextAlign.center,
                         ),
                       ],

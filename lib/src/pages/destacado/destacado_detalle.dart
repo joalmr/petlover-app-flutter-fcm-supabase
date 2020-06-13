@@ -10,11 +10,11 @@ class DetalleDestacadoPage extends StatelessWidget {
     final Destacado destacado = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: appbar(null,'Destacados',null),
-      body: _onDestacado(destacado),
+      body: _onDestacado(destacado, context),
     );
   }
 
-  _onDestacado(Destacado destacado) {
+  _onDestacado(Destacado destacado, context) {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -31,11 +31,16 @@ class DetalleDestacadoPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Text(destacado.title, style: tituloH4clasico,),
+            child: Text(destacado.title, style: 
+              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+            // tituloH4clasico,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-            child: Text('Autor: ${destacado.author}', style: TextStyle(color: Colors.black54),),
+            child: Text('Autor: ${destacado.author}', 
+              // style: TextStyle(color: Colors.black54),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 50.0),

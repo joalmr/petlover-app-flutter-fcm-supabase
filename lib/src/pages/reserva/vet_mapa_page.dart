@@ -192,14 +192,12 @@ class _VetMapaPageState extends State<VetMapaPage> {
       title: Text(
         vetLocales.name,
         maxLines: 2,
-        style: tituloH4clasico,
+        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
       ),
       subtitle: Text(
         vetLocales.description,
         maxLines: 3,
-        style: TextStyle(
-            fontSize: sizeH5,
-            fontWeight: FontWeight.w300),
+        style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12),
       ),
     );
   }

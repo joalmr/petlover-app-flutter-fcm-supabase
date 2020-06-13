@@ -118,16 +118,24 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(pet.name, style: tituloH2clasico,),
-              Text(pet.breedName, style: tituloH3),
+              Text(pet.name, style: 
+                Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,)
+              ),
+              Text(pet.breedName, style: 
+                Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2,)
+              ),
               (pet.status!=0) ?
-              Text(calculateAge(DateTime.parse(pet.birthdate)), style: TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),)
+              Text(calculateAge(DateTime.parse(pet.birthdate)), style: 
+                Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2,))
+              // TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),)
               : SizedBox(height: 0,)
             ],
           ),
           Column(
             children: <Widget>[
-              Text('${pet.weight} kg.', style: tituloH3,),
+              Text('${pet.weight} kg.', style: 
+                Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+              ),
               (pet.status==0) 
               ? Text('Fallecido', style: TextStyle(fontStyle: FontStyle.italic, fontSize: sizeH4, fontWeight: FontWeight.bold, color: Colors.black54),)
               : SizedBox(height: 0,)
@@ -164,7 +172,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                       CircleAvatar(
                         backgroundColor: Colors.transparent,
                         backgroundImage: CachedNetworkImageProvider(historias[index].establishmentLogo),
-                        radius: 25.0,
+                        radius: 20.0,
                       ),
                       SizedBox(width: 7.0),
                       Column(
@@ -172,7 +180,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                         children: <Widget>[
                           Text(
                             historias[index].establishment,
-                            style: tituloH3clasico,
+                            style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
                           ),
                           iconosHistoria(historias[index].details)
                         ],
@@ -184,11 +192,13 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                   children: <Widget>[
                     Text(
                       historias[index].createdAt.toString().split(' ')[0],
-                      style: TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2).copyWith(fontSize: 12.0),
+                      // TextStyle(color: Colors.black.withOpacity(.71),fontSize: sizeH5,fontWeight: FontWeight.w600),
                     ),
                     Text(
                       historias[index].createdAt.toString().split(' ')[1],
-                      style: TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
+                      style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+                      // TextStyle(color: colorMain,fontSize: sizeH3,fontWeight: FontWeight.w600),
                       textAlign: TextAlign.center,
                     ),
                   ],

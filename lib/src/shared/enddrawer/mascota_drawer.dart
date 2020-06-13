@@ -69,9 +69,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         ),
         ListTile(
           leading: Icon(Icons.bookmark),
-          title: Text('Fallecido', style: TextStyle(
-            fontWeight: FontWeight.w400,
-          ),),
+          title: Text('Fallecido', style: TextStyle( fontWeight: FontWeight.w400,),),
           onTap: ()=>showDialog(
             context: context,
             builder: (BuildContext context){
@@ -128,12 +126,13 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
     return FadeIn(
       child: AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        title: Text('Fallecido'),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+        title: null, //Text('Fallecido'),
         content: Text('Lamentamos la perdida de tu ser querido.'),
         actions: <Widget>[
           FlatButton(
             onPressed: ()=>Navigator.pop(context), 
-            child: Text('No, cancelar')
+            child: Text('Cancelar')
           ),
           FlatButton(
             onPressed: () async {
@@ -148,7 +147,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                 Navigator.pop(context);
               }
             },
-            child: Text('Sí, falleció mi mascota',
+            child: Text('Falleció mi mascota',
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),)
           )
         ],
@@ -160,12 +159,12 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
     return FadeIn(
       child: AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        title: Text('Fallecido'),
+        title: null, //Text('Fallecido'),
         content: Text('Cometiste un error?'),
         actions: <Widget>[
           FlatButton(
             onPressed: ()=>Navigator.pop(context), 
-            child: Text('No, cancelar')
+            child: Text('Cancelar')
           ),
           FlatButton(
             onPressed: () async {

@@ -71,9 +71,8 @@ class DetalleReservado extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text(arg.petName, style: Theme.of(context)
-                                .textTheme
-                                .headline5
-                                .copyWith(fontWeight: FontWeight.bold ),),
+                                .textTheme.headline5
+                                .apply(fontWeightDelta: 2),),
                 SizedBox(height: 20.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +81,10 @@ class DetalleReservado extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Estado de la reserva", style: tituloH4,),
+                        Text("Estado de la reserva", style: 
+                            Theme.of(context).textTheme.subtitle2
+                            .apply(fontWeightDelta: 2),
+                          ),
                         (!vencido) ? Text(arg.status, style: (arg.statusId==3 || arg.statusId==6) 
                           ? TextStyle(fontSize: sizeH3, fontWeight: FontWeight.bold, color: colorMain ) 
                           : tituloH3clasico ,)
@@ -93,21 +95,30 @@ class DetalleReservado extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 15.0),
                       child: FloatingActionButton(
                         mini: true,
-                        backgroundColor: colorMain,
-                        child: Icon(Icons.phone, color: Colors.white,),
+                        // backgroundColor: colorMain,
+                        child: Icon(Icons.phone, ), //color: Colors.white,
                         onPressed: ()=>_launchPhone(arg.establishmentPhone), 
                       ),
                     )
                   ],
                 ),
                 SizedBox(height: 10.0,),
-                Text("Veterinaria", style: tituloH4,),
+                Text("Veterinaria", style: 
+                  Theme.of(context).textTheme.subtitle2
+                            .apply(fontWeightDelta: 2),
+                ),
                 Text(arg.establishmentName, style: TextStyle(fontSize: sizeH3),),
                 SizedBox(height: 10.0,),
-                Text("Dirección de veterinaria", style: tituloH4,),
+                Text("Dirección de veterinaria", style: 
+                  Theme.of(context).textTheme.subtitle2
+                            .apply(fontWeightDelta: 2),
+                ),
                 Text(arg.address),
                 SizedBox(height: 10.0,),
-                Text("Fecha y hora", style: tituloH4,),
+                Text("Fecha y hora", style: 
+                  Theme.of(context).textTheme.subtitle2
+                            .apply(fontWeightDelta: 2),
+                ),
                 Text('${arg.date} ${arg.time}'),
 
                 SizedBox(height: 20.0,),

@@ -81,7 +81,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
                           height: 120.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
-                            color: colorMain,
+                            color: colorGreen2,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -114,7 +114,9 @@ class _RecompensasPageState extends State<RecompensasPage> {
               FadeIn(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text('Últimos puntos ganados', style: tituloH4),
+                  child: Text('Últimos puntos ganados', style: 
+                    Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+                  ),
                 ),
               ),
               FadeIn(child: _listaBonificacion(bonificacion.bonifications)),                
