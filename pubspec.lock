@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  buttons_tabbar:
-    dependency: "direct main"
-    description:
-      name: buttons_tabbar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1+1"
   cached_network_image:
     dependency: "direct main"
     description:

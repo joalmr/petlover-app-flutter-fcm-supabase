@@ -1,12 +1,14 @@
 import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/model/login/user_model.dart';
 import 'package:proypet/src/model/mascota/mascota_model.dart';
+import 'package:proypet/src/pages/reserva/buildVets/verDetalle/view_comentario.dart';
+import 'package:proypet/src/pages/reserva/buildVets/verDetalle/view_general.dart';
+import 'package:proypet/src/pages/reserva/buildVets/verDetalle/view_horario.dart';
+import 'package:proypet/src/pages/reserva/buildVets/verDetalle/view_precio.dart';
 import 'package:proypet/src/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -17,7 +19,6 @@ import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/modal_bottom.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -47,29 +48,31 @@ class _VetDetallePageState extends State<VetDetallePage> {
   bool reservarClic=true;
   
   @override
+  void initState() {
+    List<Service> servicios = vet.services;
+    servicios.forEach((element) {          
+      if(element.slug=="delivery"){
+        delivery=true;
+      }  
+    });
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {    
     return Scaffold(
       key: scaffoldKey,
-      body: _onStack(context, vet)
-    
+      body: _onStack(vet)    
     );
   }
 
 
-  Widget _onStack(context, vet){
+  Widget _onStack(vet){
     return Stack(
       children: <Widget>[
         Container(
           height: MediaQuery.of(context).size.height,
         ),
-        
-        // Container(
-        //   height: MediaQuery.of(context).size.height - 60,          
-        //   child: SingleChildScrollView(
-        //     child: _onDetail(context, vet),
-        //   ),
-        // ),
-
         Container(
           height: 275.0,
           width: double.infinity,
@@ -77,7 +80,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         ),
         Container(
           padding: EdgeInsets.only(top: 275.0, bottom: 60.0),
-          child: _onDetail(context, vet),
+          child: _onDetail(vet),
         ),
 
         _botonPrincipal(context),
@@ -118,10 +121,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
   }
 
 
-  Widget _onDetail(context,EstablecimientoModel localVet) {
+  Widget _onDetail(EstablecimientoModel localVet) {
     return 
     DefaultTabController(
-      length: 6,
+      length: 4,
       child: Column(
         children: <Widget>[
           Padding(
@@ -220,19 +223,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
             ),
           ),
           SizedBox(height: 10.0,),
-          // ButtonsTabBar(
-          //   backgroundColor: colorGray2,
-          //   unselectedBackgroundColor: colorGray2,
-          //   unselectedLabelStyle: TextStyle(color: Colors.black54),
-          //   labelStyle: TextStyle(color: colorMain, fontWeight: FontWeight.bold),
-          //   radius: 10.0,
-          //   tabs: [
-          //     Tab(text: "General",),
-          //     Tab(text: "Precios"),
-          //     Tab(text: "Horarios"),
-          //     Tab(text: "Comentarios"),
-          //   ],
-          // ),
           TabBar(
             indicatorColor: colorMain,
             labelStyle: TextStyle(fontWeight: FontWeight.bold),
@@ -241,23 +231,20 @@ class _VetDetallePageState extends State<VetDetallePage> {
             unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
             isScrollable: true,
             tabs: [
-              Tab(text: "General",),
+              Tab(text: "General"),
               Tab(text: "Precios"),
               Tab(text: "Horarios"),
               Tab(text: "Comentarios"),
-              Tab(text: "Otro 1"),
-              Tab(text: "Otro 2"),
             ],
           ),
           Expanded(
+            // TODO: hacer lo de indicar delivery de una mejor forma
             child: TabBarView(
               children: <Widget>[
-                pagina1(localVet),
-                pagina2(localVet),
-                pagina3(localVet),
-                pagina4(localVet),
-                pagina4(localVet),
-                pagina4(localVet),
+                ViewGeneral(localVet: localVet),
+                ViewPrecio(localVet: localVet),
+                ViewHorario(localVet: localVet),
+                ViewComentario(localVet: localVet),
               ],
             ),
           ),
@@ -267,315 +254,43 @@ class _VetDetallePageState extends State<VetDetallePage> {
 
   }
 
-  pagina1(localVet){
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 10.0,),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-            child: Text("Servicios", style: 
-              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-            // tituloH4 
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10.0,),
-            child: _servicios(localVet.services),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 20.0,right: 20.0, top: 20.0, bottom: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[  
-                Text('Descripción', style: 
-                  Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-                  // tituloH4 
-                  ),  
-                SizedBox(height: 10.0,),
-                Text(localVet.description,textAlign: TextAlign.justify,),
-                SizedBox(width: double.infinity,),
-              ],
-            ),
-          ),
-          
-        ],
-      ),
-    );
-  }
 
-  pagina2(localVet){
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 10.0,),
-          localVet.prices.length>0 ?
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            width: double.infinity,
-            child: Text("Precio referencial",style: 
-              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-            // tituloH4 
-            )
-          )
-          : SizedBox(height: 0.0,),
-          localVet.prices.length>0 ?
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: _listaPrecio(localVet.prices),
-          ) : SizedBox(height: 0.0,),
-          localVet.prices.length>0 ?
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            width: double.infinity,
-            child: Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeLite),)
-          ) : SizedBox(height: 0.0,),
-        ],
-      ),
-    );
-  }
-
-  pagina3(localVet){
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 10.0,),
-          localVet.schedule.length>0 ?
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            width: double.infinity,
-            child: Text("Horario",style: 
-              Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-            // tituloH4 
-            )
-          ): SizedBox(height: 0.0,), 
-          (localVet.schedule.length>0) ?
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: _listHorario(localVet.schedule),
-          ) : SizedBox(height: 0.0,), 
-        ],
-      ),
-    );
-  }
-
-  pagina4(localVet){
-    return Center(
-      child: Text("Comentarios"),
-    );
-  }
-
-
-  Widget _listaPrecio(precios){
-    return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: <Widget>[
-              
-              _precio("Consulta", 
-                precios["consultation"]["from"]==null?"":precios["consultation"]["from"], 
-                precios["consultation"]["to"]==null?"":precios["consultation"]["to"], 
-                // colorBlue.withOpacity(0.75)
-              ),
-              
-              _precio("Vacunas", 
-                precios["vaccination"]["from"]==null?"":precios["vaccination"]["from"], 
-                precios["vaccination"]["to"]==null?"":precios["vaccination"]["to"], 
-                // colorBlue.withOpacity(0.75)
-              ),
-              
-              _precio("Baños", 
-                precios["grooming"]["from"]==null?"":precios["grooming"]["from"], 
-                precios["grooming"]["to"]==null?"":precios["grooming"]["to"], 
-                // colorBlue.withOpacity(0.75)
-              ),
-              
-              _precio("Desparasitación", 
-                precios["deworming"]["from"]==null?"":precios["deworming"]["from"], 
-                precios["deworming"]["to"]==null?"":precios["deworming"]["to"], 
-                // colorBlue.withOpacity(0.75)
-              ),
-            ],
-          ),
-        )
-    ;
-  }
-
-  Widget _precio(tipo, desde, hasta){
-    if(desde=="" && hasta==""){
-      return SizedBox(width: 0, height: 0,);
-    }
-    else{
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          // height: 85,
-          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          width: 130,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: colorGray1,//.withOpacity(0.75),//Colors.white,
-            boxShadow:[ 
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 3.0,
-                spreadRadius: 2.0
-            )],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(tipo, style: TextStyle(color: Colors.black54),),
-              SizedBox(height: 5,),
-              Text("desde", style: TextStyle(color: Colors.black54),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Icon(IconProypet.sol_moneda, color: Colors.black54, size: 14.0,),
-                  (desde!="") ? Text(' $desde ', style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
-                  (desde!="" && hasta!="") ? Text("-", style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
-                  (desde=="" && hasta!="") ? Text("0 -", style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,),
-                  (hasta!="") ? Text(' $hasta ', style: TextStyle(color: Colors.black54),) : SizedBox(width: 0,), 
-                ],
-              ),
-            ],
-          )
-        ),
-      ); 
-    }  
-}
-
-  Widget _listHorario(horario){
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: <Widget>[
-          (horario["monday"]["attention"]=="on") //&& horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Lunes',horario["monday"]["time_start"],horario["monday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          (horario["tuesday"]["attention"]=="on") //&& horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Martes',horario["tuesday"]["time_start"],horario["tuesday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          (horario["wednesday"]["attention"]=="on") //&& horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Miércoles',horario["wednesday"]["time_start"],horario["wednesday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          (horario["thursday"]["attention"]=="on") //&& horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Jueves',horario["thursday"]["time_start"],horario["thursday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          (horario["friday"]["attention"]=="on") //&& horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Viernes',horario["friday"]["time_start"],horario["friday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          (horario["saturday"]["attention"]=="on") //&& horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Sábado',horario["saturday"]["time_start"],horario["saturday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          (horario["sunday"]["attention"]=="on") //&& horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null 
-          ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _horario('Domingo',horario["sunday"]["time_start"],horario["sunday"]["time_end"],),
-          ) : SizedBox(width: 0, height: 0,),
-          
-        ],
-      ),
-    );
-  }
-
-  Widget _horario(dia, inicio, fin){
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
-      width: 95,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.0),
-        color: colorGray1,//Colors.white,
-        boxShadow:[ 
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 3.0,
-            spreadRadius: 2.0
-        )],
-      ),
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              SizedBox(width: 5.0,),
-              Icon(Icons.schedule, color: Colors.black54, size: 20.0,),
-              SizedBox(width: 5.0,),
-              Text(dia, style: TextStyle(color: Colors.black54),),
-            ],
-          ),
-          SizedBox(height: 5,),
-          Text(inicio==null?"-":inicio, style: TextStyle(color: Colors.black54),),
-          SizedBox(height: 5,),
-          Text(fin==null?"-":fin, style: TextStyle(color: Colors.black54),),
-        ],
-      )
-    );   
-  }
-
-  Widget _servicios(List<Service> servicios){
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemCount: servicios.length,
-        itemBuilder: (BuildContext context, int index) => _icoServicio(servicios[index].slug, servicios[index].name),
-      ),
-    );   
-  }
-
-  Widget _icoServicio(String icon, String nombre){
-    if(icon=="delivery"){
-      delivery=true;
-    }
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.5),
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 5,),
-          Container(
-            height: 32,
-            width: 32,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5.0),
-              color: Colors.white,
-              boxShadow:[ 
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 3.0,
-                  spreadRadius: 2.0
-              )],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Tooltip(
-                child: Icon(iconMap[icon], color: Colors.black54,),
-                message: nombre,
-              ),
-            )
-          ),
-          SizedBox(height: 5),
-          Text((nombre.length>9) ? '${nombre.substring(0,9)}..' : nombre ,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 8.0),)
-        ],
-      ),
-    );
-  }
+  // Widget _icoServicio(String icon, String nombre){
+  //   if(icon=="delivery"){
+  //     delivery=true;
+  //   }
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 8.5),
+  //     child: Column(
+  //       children: <Widget>[
+  //         SizedBox(height: 5,),
+  //         Container(
+  //           height: 32,
+  //           width: 32,
+  //           decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(5.0),
+  //             color: Colors.white,
+  //             boxShadow:[ 
+  //               BoxShadow(
+  //                 color: Colors.black.withOpacity(0.1),
+  //                 blurRadius: 3.0,
+  //                 spreadRadius: 2.0
+  //             )],
+  //           ),
+  //           child: Padding(
+  //             padding: const EdgeInsets.all(5.0),
+  //             child: Tooltip(
+  //               child: Icon(iconMap[icon], color: Colors.black54,),
+  //               message: nombre,
+  //             ),
+  //           )
+  //         ),
+  //         SizedBox(height: 5),
+  //         Text((nombre.length>9) ? '${nombre.substring(0,9)}..' : nombre ,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 8.0),)
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _swiperVets(imagen, bool urlBool){
     return CardSwiper(imagenes : imagen, urlBool: urlBool, height: 145.0,);    
