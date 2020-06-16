@@ -79,13 +79,41 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.teal,
           primaryColor: colorMain,
           accentColor: colorMain,
-          cursorColor: colorMain,
+          cursorColor: colorMain,          
+          backgroundColor: Colors.white,
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
             ),
           ),
-          // scaffoldBackgroundColor: Colors.white
+        ),
+        darkTheme: ThemeData(
+          fontFamily: 'Lato',
+          textTheme: TextTheme(
+            headline1: TextStyle( color: Colors.white),
+            headline2: TextStyle( color: Colors.white),
+            headline3: TextStyle( color: Colors.white),
+            headline4: TextStyle( color: Colors.white),
+            headline5: TextStyle( color: Colors.white, fontSize: 26.0 ),
+            headline6: TextStyle( color: Colors.white, fontSize: 20.0 ),
+
+            subtitle1: TextStyle( color: Colors.white, fontSize: 16.0),
+            subtitle2: TextStyle( color: Colors.white, fontSize: 14.0),
+
+            bodyText1: TextStyle( color: Colors.white, fontSize: 16.0),
+            bodyText2: TextStyle( color: Colors.white, fontSize: 14.0),            
+          ),
+          primarySwatch: Colors.teal,
+          primaryColor: colorMain,
+          accentColor: colorMain,
+          cursorColor: colorMain,
+          backgroundColor: Colors.black,
+          scaffoldBackgroundColor: Color(0xFF24232d),
+          appBarTheme: AppBarTheme(
+            textTheme: TextTheme(
+              headline6: TextStyle( fontSize: 18.0 ),
+            ),
+          ),          
         ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

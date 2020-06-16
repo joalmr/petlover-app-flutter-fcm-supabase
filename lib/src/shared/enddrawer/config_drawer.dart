@@ -10,7 +10,6 @@ import 'package:share/share.dart';
 
 
 class ConfigDrawer extends StatelessWidget {
-  final Color primary = Colors.white;
   final _prefs = new PreferenciasUsuario();
   final loginProvider = UserProvider();
 
@@ -20,7 +19,7 @@ class ConfigDrawer extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(left: 16.0, right: 32.0),
         decoration: BoxDecoration(
-          color: primary, 
+          color: Theme.of(context).backgroundColor, 
           boxShadow: [BoxShadow(color: Colors.black45)]
         ),
         width: 300,
@@ -34,14 +33,14 @@ class ConfigDrawer extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 24.0,
                     letterSpacing: 3.0,
-                    color: Colors.black54,                      
+                    color: Theme.of(context).textTheme.subtitle2.color,                      
                   ),
                 ),
                 SizedBox(height: 20.0,),
                 //FormControl().buttonSec('Buscar',(){})
                 //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
-                  leading: Icon(Icons.star,),
+                  leading: Icon(Icons.star, color: Theme.of(context).textTheme.subtitle2.color,),
                   title: Text('Calificar atenciones', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
@@ -50,7 +49,7 @@ class ConfigDrawer extends StatelessWidget {
                   )
                 ),
                 ListTile(
-                  leading: Icon(Icons.person,),
+                  leading: Icon(Icons.person, color: Theme.of(context).textTheme.subtitle2.color,),
                   title: Text('Editar usuario', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
@@ -59,7 +58,7 @@ class ConfigDrawer extends StatelessWidget {
                   )
                 ),
                 ListTile(
-                  leading: Icon(Icons.lock),
+                  leading: Icon(Icons.lock, color: Theme.of(context).textTheme.subtitle2.color,),
                   title: Text('Cambiar contraseña', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),
@@ -68,7 +67,7 @@ class ConfigDrawer extends StatelessWidget {
                   )
                 ),
                 ListTile(
-                  leading: Icon(Icons.share),
+                  leading: Icon(Icons.share, color: Theme.of(context).textTheme.subtitle2.color,),
                   title: Text('Compartir con mis amigos', style: TextStyle(
                     fontWeight: FontWeight.w400,
                   ),),

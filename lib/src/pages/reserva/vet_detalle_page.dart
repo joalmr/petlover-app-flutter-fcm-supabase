@@ -53,7 +53,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
     servicios.forEach((element) {          
       if(element.slug=="delivery"){
         delivery=true;
-      }  
+      }
     });
     super.initState();
   }
@@ -137,7 +137,9 @@ class _VetDetallePageState extends State<VetDetallePage> {
                   maxLines: 2,
                   style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)
                 ),
-                subtitle: Text('${localVet.address} ${localVet.distance}km'),
+                subtitle: Text('${localVet.address} ${localVet.distance}km',
+                  style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
+                ),
                 trailing: Container(
                   height: 55.0,
                   width: 55.0,
@@ -227,7 +229,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             indicatorColor: colorMain,
             labelStyle: TextStyle(fontWeight: FontWeight.bold),
             labelColor: colorMain,
-            unselectedLabelColor: Colors.black54,
+            unselectedLabelColor: Theme.of(context).textTheme.subtitle2.color,
             unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
             isScrollable: true,
             tabs: [

@@ -37,7 +37,7 @@ class _DestacadosPageState extends State<DestacadosPage> {
       child: InkWell(
         onTap: ()=>Navigator.pushNamed(context, 'detalledestacado', arguments: destacado),
         child: Material(
-          color: Colors.white,
+          color: Theme.of(context).backgroundColor,
           borderRadius: BorderRadius.circular(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

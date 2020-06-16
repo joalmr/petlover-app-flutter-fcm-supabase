@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                             .copyWith(fontWeight: FontWeight.normal),
                       ),
                       IconButton(
-                        icon: Icon(Icons.settings, color: Colors.black54,),
+                        icon: Icon(Icons.settings, color: Theme.of(context).textTheme.subtitle2.color,),
                         onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
                       )
                     ],
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                           Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
                         ),
                       ),
-                      Icon(Icons.timelapse, color: Colors.black54),
+                      Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
                     ],
                   ),
                 ),
@@ -375,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                       : '${atenciones[index].status} - Vencido', 
                       style: (!vencido) ? (atenciones[index].statusId==3 || atenciones[index].statusId==6) 
                         ? TextStyle(fontWeight: FontWeight.bold, color: colorMain ) 
-                        : TextStyle(fontWeight: FontWeight.bold) 
+                        : TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) 
                       : TextStyle(fontWeight: FontWeight.bold, color: colorRed) , //vencido
                     ),
                     trailing: Column(

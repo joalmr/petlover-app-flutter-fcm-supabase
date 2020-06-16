@@ -21,7 +21,6 @@ class FiltrosMapa extends StatefulWidget {
 class _FiltrosMapaState extends State<FiltrosMapa> {
   List<int> filtros;
   _FiltrosMapaState({@required this.filtros});
-  final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
   final formKey = GlobalKey<FormState>();
@@ -38,7 +37,8 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 32.0),
           decoration: BoxDecoration(
-            color: primary, boxShadow: [BoxShadow(color: Colors.black45)]),
+            color: Theme.of(context).backgroundColor, 
+            boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(

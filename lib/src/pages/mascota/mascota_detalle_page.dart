@@ -70,7 +70,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           margin: EdgeInsets.only(top: 330.0,left: 5.0,right: 5.0),
           decoration: BoxDecoration(
             borderRadius: borderRadius,
-            color: Colors.white,                            
+            color: Theme.of(context).backgroundColor,                            
           ),
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -225,32 +225,32 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
         children: <Widget>[
           (json.toString().contains("grooming"))
             ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Icon( iconMap["grooming"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon( iconMap["grooming"] ,size: 18.0,color: Theme.of(context).textTheme.subtitle2.color ),
             )
             : SizedBox(),
           (json.toString().contains("surgery"))
             ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Icon( iconMap["surgery"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon( iconMap["surgery"] ,size: 18.0,color: Theme.of(context).textTheme.subtitle2.color ),
             )
             : SizedBox(),
           (json.toString().contains("deworming"))
             ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Icon( iconMap["deworming"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon( iconMap["deworming"] ,size: 18.0,color: Theme.of(context).textTheme.subtitle2.color ),
             )
             : SizedBox(),
           (json.toString().contains("vaccination"))
             ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Icon( iconMap["vaccination"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon( iconMap["vaccination"] ,size: 18.0,color: Theme.of(context).textTheme.subtitle2.color ),
             )
             : SizedBox(),
           (json.toString().contains("consultation"))
             ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Icon( iconMap["consultation"] ,size: 18.0,color: Colors.black.withOpacity(.5)),
+              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon( iconMap["consultation"] ,size: 18.0,color: Theme.of(context).textTheme.subtitle2.color ),
             )
             : SizedBox(),
         ],

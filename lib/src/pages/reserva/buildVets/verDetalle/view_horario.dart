@@ -91,7 +91,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                 Expanded(
                   child: Row(
                     children: <Widget>[
-                      Icon(Icons.schedule, color: Colors.black54, size: 20.0),
+                      Icon(Icons.schedule, color: Theme.of(context).textTheme.subtitle2.color, size: 20.0),
                       SizedBox(width: 5),
                       Text(inicio==null?"-":inicio),
                       SizedBox(width: 5),

@@ -60,6 +60,7 @@ class _NavigationBarState extends State<NavigationBar> {
       items: _kBottmonNavBarItems,
       currentIndex: currentTabIndex,
       type: BottomNavigationBarType.fixed,
+      backgroundColor: Theme.of(context).backgroundColor,
       onTap: (int index) {
         setState(() {
           currentTabIndex = index;

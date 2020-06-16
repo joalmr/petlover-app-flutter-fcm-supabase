@@ -17,7 +17,6 @@ class MascotaDrawer extends StatefulWidget {
 class _MascotaDrawerState extends State<MascotaDrawer> {
   MascotaModel mascota;
   _MascotaDrawerState({@required this.mascota});
-  final Color primary = Colors.white;
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
   final mascotaProvider = MascotaProvider();
@@ -29,7 +28,8 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 32.0),
           decoration: BoxDecoration(
-              color: primary, boxShadow: [BoxShadow(color: Colors.black45)]),
+              color: Theme.of(context).backgroundColor, 
+              boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
@@ -56,7 +56,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         SizedBox(height: 20.0,),
         Divider(),        
         ListTile(
-          leading: Icon(Icons.edit),
+          leading: Icon(Icons.edit, color: Theme.of(context).textTheme.subtitle2.color,),
           title: Text('Editar datos', style: TextStyle(
             fontWeight: FontWeight.w400,
           ),),
@@ -68,7 +68,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           //()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
         ),
         ListTile(
-          leading: Icon(Icons.bookmark),
+          leading: Icon(Icons.bookmark, color: Theme.of(context).textTheme.subtitle2.color,),
           title: Text('Fallecido', style: TextStyle( fontWeight: FontWeight.w400,),),
           onTap: ()=>showDialog(
             context: context,

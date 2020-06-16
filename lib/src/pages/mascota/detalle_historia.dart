@@ -38,8 +38,8 @@ class HistoriaPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("Precio", style: TextStyle(fontWeight: FontWeight.bold, color: colorBrown1)),
-                  Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold, color: colorBrown1),),
+                  Text("Precio", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color )),
+                  Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color ),),
                 ],
               )
             ),
@@ -50,18 +50,17 @@ class HistoriaPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
               decoration: BoxDecoration(
                 borderRadius: borderRadius,
-                color: colorGray1,     
-                
+                color: Theme.of(context).backgroundColor,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: colorBrown1 ),),
-                  Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold, color: colorBrown1) ),
+                  Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: Theme.of(context).textTheme.subtitle2.color) ),
+                  Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) ),
                   SizedBox(height: 10.0,),
-                  Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: colorBrown1 ),),
-                  Text(motivo, style: TextStyle( fontWeight: FontWeight.bold, color: colorBrown1) ),
+                  Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: Theme.of(context).textTheme.subtitle2.color) ),
+                  Text(motivo, style: TextStyle( fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) ),
                 ],
               ),
             ),
@@ -80,7 +79,7 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon( IconProypet.grooming ,size: 16.0,color: Colors.black54),
+            Icon( IconProypet.grooming ,size: 16.0,color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(width: 10.0,),
             Text('Baño', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
@@ -108,7 +107,7 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon( IconProypet.desparasitacion ,size: 16.0,color: Colors.black54),
+            Icon( IconProypet.desparasitacion ,size: 16.0,color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(width: 10.0,),
             Text('Desparasitación', style: 
               Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
@@ -138,7 +137,7 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon( IconProypet.vacuna ,size: 16.0,color: Colors.black54),
+            Icon( IconProypet.vacuna ,size: 16.0,color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(width: 10.0,),
             Text('Vacuna', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
@@ -166,7 +165,7 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon( IconProypet.consulta ,size: 16.0,color: Colors.black54),
+            Icon( IconProypet.consulta ,size: 16.0,color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(width: 10.0,),
             Text('Consulta', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],
@@ -193,7 +192,7 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon( IconProypet.cirugia ,size: 16.0,color: Colors.black54),
+            Icon( IconProypet.cirugia ,size: 16.0,color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(width: 10.0,),
             Text('Cirugía', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),),
           ],

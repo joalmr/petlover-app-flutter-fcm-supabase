@@ -20,7 +20,8 @@ class DetalleDestacadoPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10.0)),
+            //BorderRadius.circular(10.0),
             child: Image(
               fit: BoxFit.cover,
               height: 350,                
@@ -29,7 +30,7 @@ class DetalleDestacadoPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
             child: Text(destacado.title, style: 
               Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
             // tituloH4clasico,

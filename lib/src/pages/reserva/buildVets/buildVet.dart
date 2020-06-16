@@ -17,7 +17,7 @@ import 'package:proypet/src/styles/styles.dart';
               builder: (_)=>VetDetallePage(vet: vet,),
             )),
             child: Material(
-              color: Colors.white,
+              color: Theme.of(context).backgroundColor,
               shape: shape10,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
