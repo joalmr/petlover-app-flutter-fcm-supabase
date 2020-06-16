@@ -195,7 +195,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
           return FadeIn(
             child: SimpleDialog(
               contentPadding: EdgeInsets.all(20.0),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
               children: <Widget>[
                 SizedBox(height: 10.0),
                   Text('Lo sentimos, esta veterinaria ya no forma parte de proypet'),

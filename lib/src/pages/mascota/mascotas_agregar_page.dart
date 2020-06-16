@@ -147,7 +147,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlMain(datoPet, tipopet, 
+                child: ddlMain(context, datoPet, tipopet, 
                   (opt){ setState(() {
                     datoPet=opt; 
                     opcRaza='';
@@ -164,7 +164,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlFutureSearch( opcRaza, razaLista.breeds, 
+                child: ddlFutureSearch(context, opcRaza, razaLista.breeds, 
                   (opt){ setState(() { 
                     opcRaza=opt.toString();
                     mascotaData.breedId = int.tryParse(opt.split("|")[0]);
@@ -200,34 +200,19 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   
 
   Widget _crearFecha(BuildContext context){ //petData
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: Colors.grey[200],
-      child: TextFormField(
-        enableInteractiveSelection: false,
-        controller: _inputFechaController,
-        onTap: (){
-          FocusScope.of(context).requestFocus(new FocusNode());
-          _selectDate(context); //petData
-        },
-        onSaved: (value)=>mascotaData.birthdate=value,
-        cursorColor: colorMain,
-        decoration: InputDecoration(
-          hintText: 'Fecha de nacimiento',
-          hintStyle: Theme.of(context).textTheme.subtitle2,
-          prefixIcon: Material(
-            borderRadius: borderRadius,
-            color: Colors.grey[200],
-            child: Icon(
-              Icons.calendar_today,
-              color: colorMain,
-            ),
-          ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
-        ) 
-      ),
+    return TextFormField(
+      enableInteractiveSelection: false,
+      controller: _inputFechaController,
+      onTap: (){
+        FocusScope.of(context).requestFocus(new FocusNode());
+        _selectDate(context); //petData
+      },
+      onSaved: (value)=>mascotaData.birthdate=value,
+      cursorColor: colorMain,
+      decoration: InputDecoration(
+        hintText: 'Fecha de nacimiento',
+        prefixIcon: Icon(Icons.calendar_today, color: colorMain),
+      ) 
     );
   }
 
@@ -252,7 +237,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   Widget _sexo(){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-      child: ddlMain(sexo, tiposex, 
+      child: ddlMain(context, sexo, tiposex, 
         (opt){ setState(() {
           sexo = opt;
         }

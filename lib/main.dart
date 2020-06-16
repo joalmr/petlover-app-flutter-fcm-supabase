@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: true, // TODO: cambiar antes de lanzar y tambien cambiar el com.example.user
         navigatorKey: navigatorKey,
         title: 'Proypet',
-        theme: ThemeData( 
+        theme: ThemeData(
           fontFamily: 'Lato',
           textTheme: TextTheme(
             headline1: TextStyle( color: Colors.black54),
@@ -80,10 +80,32 @@ class _MyAppState extends State<MyApp> {
           primaryColor: colorMain,
           accentColor: colorMain,
           cursorColor: colorMain,          
-          backgroundColor: Colors.white,
+          backgroundColor: colorGray1,
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
+            ),
+          ),
+          // dialogBackgroundColor: colorDark1,
+          dialogTheme: DialogTheme(
+            shape: shape10,
+          ),
+          cardTheme: CardTheme(
+            shape: shape10,
+            elevation: .05
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: colorGray1,
+            contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+            hintStyle: TextStyle(fontSize: 14.0),
+            border: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+            ),
+            focusedBorder: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
         ),
@@ -107,13 +129,37 @@ class _MyAppState extends State<MyApp> {
           primaryColor: colorMain,
           accentColor: colorMain,
           cursorColor: colorMain,
-          backgroundColor: Colors.black,
-          scaffoldBackgroundColor: Color(0xFF24232d),
+          backgroundColor: colorDark1,
+          scaffoldBackgroundColor: colorDark2,
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
             ),
-          ),          
+          ),
+          dialogBackgroundColor: colorDark1,
+          dialogTheme: DialogTheme(
+            shape: shape10,
+          ),
+          cardTheme: CardTheme(
+            shape: shape10,
+            elevation: .05,
+            color: colorDark1,
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: colorDark1,
+            contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+            hintStyle: TextStyle(fontSize: 14.0),
+            border: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+            ),
+            focusedBorder: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+            ),
+          ),
+          
         ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

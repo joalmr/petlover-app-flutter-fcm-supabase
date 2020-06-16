@@ -193,7 +193,7 @@ class _SingupPageState extends State<SingupPage> {
             builder: (BuildContext context){
               return FadeIn(
                 child: AlertDialog(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   title: Text('Gracias por registrarte'),
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0),

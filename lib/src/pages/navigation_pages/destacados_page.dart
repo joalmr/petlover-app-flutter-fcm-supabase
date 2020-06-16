@@ -36,9 +36,7 @@ class _DestacadosPageState extends State<DestacadosPage> {
       margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
       child: InkWell(
         onTap: ()=>Navigator.pushNamed(context, 'detalledestacado', arguments: destacado),
-        child: Material(
-          color: Theme.of(context).backgroundColor,
-          borderRadius: BorderRadius.circular(10.0),
+        child: Card(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -75,7 +73,12 @@ class _DestacadosPageState extends State<DestacadosPage> {
               ),
             ],
           ),
-        ),
+        )
+        // Material(
+        //   color: Theme.of(context).backgroundColor,
+        //   borderRadius: BorderRadius.circular(10.0),
+        //   child: ,
+        // ),
       ),
     );
   }

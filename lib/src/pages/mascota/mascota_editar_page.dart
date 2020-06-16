@@ -152,7 +152,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlMainOut(datoPet, tipopet, null, mascotaData.specieName),
+                child: ddlMainOut(context, datoPet, tipopet, null, mascotaData.specieName),
               ),
               SizedBox(height: 10.0,),
               Padding(
@@ -161,7 +161,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-                child: ddlFutureSearch( 
+                child: ddlFutureSearch(context,
                   opcRaza, razaLista.breeds, 
                   (opt){ 
                     setState(() { 
@@ -255,7 +255,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   Widget _sexoEdit(){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-      child: ddlMain(mascotaData.genre.toString(), tiposex, 
+      child: ddlMain(context, mascotaData.genre.toString(), tiposex, 
         (opt){ setState(() {
           mascotaData.genre = int.tryParse(opt);
         }
@@ -266,43 +266,25 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   Widget _crearFecha(BuildContext context){
     final format = DateFormat("yyyy-MM-dd");
     var currentValue = DateTime.parse(mascotaData.birthdate);
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: Colors.grey[200],
-      child: DateTimeField(
-        initialValue: currentValue,
-        format: format,
-        onChanged: (dt) => setState(() => mascotaData.birthdate = dt.toString() ),
-        enableInteractiveSelection: false,
-        cursorColor: colorMain,
-        onShowPicker: (context, currentValue) {
-          return showDatePicker(
-            context: context,
-            initialDate: currentValue ?? DateTime.now(), //DateTime.parse(mascotaData.birthdate),
-            firstDate: new DateTime(DateTime.now().year-25),
-            lastDate: DateTime.now(),
-            initialDatePickerMode: DatePickerMode.day,
-          );
-        },
-        decoration: InputDecoration(
-          hintText: 'Fecha de nacimiento',
-          hintStyle: Theme.of(context).textTheme.subtitle2,
-          prefixIcon: Material(
-            borderRadius: borderRadius,
-            color: Colors.grey[200],
-            child: Icon(
-              Icons.calendar_today,
-              color: colorMain,
-            ),
-          ),
-          suffixIcon: Material(
-            borderRadius: borderRadius,
-            color: Colors.grey[200],
-          ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
-        ),
+    return DateTimeField(
+      initialValue: currentValue,
+      format: format,
+      onChanged: (dt) => setState(() => mascotaData.birthdate = dt.toString() ),
+      enableInteractiveSelection: false,
+      cursorColor: colorMain,
+      onShowPicker: (context, currentValue) {
+        return showDatePicker(
+          context: context,
+          initialDate: currentValue ?? DateTime.now(), //DateTime.parse(mascotaData.birthdate),
+          firstDate: new DateTime(DateTime.now().year-25),
+          lastDate: DateTime.now(),
+          initialDatePickerMode: DatePickerMode.day,
+        );
+      },
+      decoration: InputDecoration(
+        hintText: 'Fecha de nacimiento',
+        prefixIcon: Icon(Icons.calendar_today,color: colorMain),
+        suffixIcon: Icon(null),
       ),
     );
 

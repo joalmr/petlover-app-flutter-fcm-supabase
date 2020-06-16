@@ -145,10 +145,10 @@ class _Data extends State<DataReserva> {
             ),
             SizedBox(height: 20.0,),
             Text('Mascota'),         
-            ddlFutureImg(mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
+            ddlFutureImg(context, mascotaID, misMascotas, (opt){ setState(() { mascotaID=opt.toString(); });} ),
             SizedBox(height: 12.0,),
             Text('Servicio'),
-            ddlMain(resarvaId, _atencion, 
+            ddlMain(context, resarvaId, _atencion, 
               (opt){ setState(() {
                   resarvaId=opt; 
               });}
@@ -161,7 +161,7 @@ class _Data extends State<DataReserva> {
             _crearHora(context),                       
             delivery ? SizedBox(height: 12.0,) : SizedBox(height: 0.0,) ,
             delivery ? Text('Movilidad') : SizedBox(height: 0.0,) ,
-            delivery ? ddlMain(deliveryId, _delivery, 
+            delivery ? ddlMain(context, deliveryId, _delivery, 
               (opt){ setState(() {
                   deliveryId=opt; 
               });}
@@ -210,17 +210,10 @@ class _Data extends State<DataReserva> {
   }
 
   Widget _direccion(){ //MyAddressBloc bloc
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: colorGray1,
-      child: SimpleAutocompleteFormField<Prediction2>(
+    return SimpleAutocompleteFormField<Prediction2>(
         controller: _inputDireccionController,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-          hintStyle: TextStyle(fontSize: 14.0),
           prefixIcon: Icon(Icons.location_on,color: colorMain),
-          border: InputBorder.none,
         ),
         // suggestionsHeight: 100.0,
         maxSuggestions: 5,
@@ -240,40 +233,23 @@ class _Data extends State<DataReserva> {
           padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
           child: Text(address.name,style: TextStyle(fontWeight: FontWeight.bold))
         ),
-      ),
-    );
+      );
   }
 
 
-  final _shape = BorderRadius.circular(10.0);
+  // final _shape = BorderRadius.circular(10.0);
   Widget _crearFecha(BuildContext context){
-    return Material(
-      elevation: 0.0,
-      borderRadius: _shape,
-      color: Colors.grey[200],
-      child: TextField(
-        enableInteractiveSelection: false,
-        controller: _inputFechaController,
-        onTap: (){
-          FocusScope.of(context).requestFocus(new FocusNode());
-          _selectDate(context);
-        },
-        cursorColor: colorMain,
-        decoration: InputDecoration(
-          hintText: 'Fecha de atención',
-          // hintStyle: TextStyle(fontSize: sizeH4),
-          prefixIcon: Material(
-            //elevation: 0.0,
-            borderRadius: _shape,
-            color: Colors.grey[200],
-            child: Icon(
-              Icons.calendar_today,
-              color: colorMain,
-            ),
-          ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
-        ),
+    return TextField(
+      enableInteractiveSelection: false,
+      controller: _inputFechaController,
+      onTap: (){
+        FocusScope.of(context).requestFocus(new FocusNode());
+        _selectDate(context);
+      },
+      cursorColor: colorMain,
+      decoration: InputDecoration(
+        hintText: 'Fecha de atención',
+        prefixIcon: Icon(Icons.calendar_today, color: colorMain),
       ),
     );
   }
@@ -296,11 +272,7 @@ class _Data extends State<DataReserva> {
   }
   
   Widget _crearHora(BuildContext context){
-    return Material(
-      elevation: 0.0,
-      borderRadius: _shape,
-      color: Colors.grey[200],
-      child: TextField(
+    return TextField(
         enableInteractiveSelection: false,
         controller: _inputHoraController,
         onTap: (){
@@ -330,20 +302,9 @@ class _Data extends State<DataReserva> {
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Hora de atención',
-          // hintStyle: TextStyle(fontSize: sizeH4),
-          prefixIcon: Material(
-            borderRadius: _shape,
-            color: Colors.grey[200],
-            child: Icon(
-              Icons.access_time,
-              color: colorMain,
-            ),
-          ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0)
+          prefixIcon: Icon(Icons.access_time, color: colorMain),
         ),
-      ),
-    );
+      );
   }
   
   Duration initialtimer = new Duration();
@@ -417,7 +378,7 @@ class _Data extends State<DataReserva> {
             showDialog(context: context,builder: 
             (BuildContext context)=> FadeIn(
               child: AlertDialog(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                 content: Container(
                   height: 100.0,

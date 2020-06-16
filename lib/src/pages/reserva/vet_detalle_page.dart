@@ -324,7 +324,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
           context: context,builder: 
           (BuildContext context)=> FadeIn(
             child: AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
               contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               content: Container(
                 height: 200.0,

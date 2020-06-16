@@ -341,7 +341,7 @@ class _HomePageState extends State<HomePage> {
               builder: (BuildContext context){
                 return FadeIn(
                   child: AlertDialog(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     title: Text('Eliminar'),
                     content: Text('Seguro que desea eliminar esta reserva?'),
                     actions: <Widget>[

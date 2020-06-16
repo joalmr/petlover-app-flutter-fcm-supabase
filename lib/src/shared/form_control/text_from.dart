@@ -16,28 +16,16 @@ class FormularioText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: colorGray1,//Colors.grey[200],
-      child: TextFormField(
-        keyboardType: boardType,
-        initialValue: valorInicial,
-        textCapitalization: textCap,
-        obscureText: obscureText,
-        onSaved: onSaved,
-        cursorColor: colorMain,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-          hintStyle: TextStyle(fontSize: 14.0),
-          hintText: hintText,          
-          prefixIcon: (icon!=null) ? Material(
-            borderRadius: borderRadius,
-            color: Colors.transparent,
-            child: Icon( icon, color: colorMain, ),
-          ) : null,
-          border: InputBorder.none,          
-        ),
+    return TextFormField(
+      keyboardType: boardType,
+      initialValue: valorInicial,
+      textCapitalization: textCap,
+      obscureText: obscureText,
+      onSaved: onSaved,
+      cursorColor: colorMain,
+      decoration: InputDecoration(
+        hintText: hintText,          
+        prefixIcon: (icon!=null) ? Icon( icon, color: colorMain, ) : null,
       ),
     );
   }

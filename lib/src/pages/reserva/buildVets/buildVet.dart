@@ -16,9 +16,7 @@ import 'package:proypet/src/styles/styles.dart';
             onTap: ()=>Navigator.push(context, MaterialPageRoute(
               builder: (_)=>VetDetallePage(vet: vet,),
             )),
-            child: Material(
-              color: Theme.of(context).backgroundColor,
-              shape: shape10,
+            child: Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -68,7 +66,12 @@ import 'package:proypet/src/styles/styles.dart';
                   )
                 ],
               ),
-            ),
+            )
+            // Material(
+            //   color: Theme.of(context).backgroundColor,
+            //   shape: shape10,
+            //   child: ,
+            // ),
           ),
         ),
       );

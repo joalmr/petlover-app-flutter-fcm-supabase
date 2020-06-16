@@ -35,9 +35,9 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
     return ClipPath(
       child: Drawer(
         child: Container(
-          padding: const EdgeInsets.only(left: 16.0, right: 32.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor, 
+            color: Theme.of(context).backgroundColor.withOpacity(0.925), 
             boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
@@ -211,16 +211,10 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
 
 
   _autocompleteAddress(){
-    return Material(
-      elevation: 0.0,
-      borderRadius: borderRadius,
-      color: colorGray1,
-      child: SimpleAutocompleteFormField<Prediction2>(
+    return 
+    SimpleAutocompleteFormField<Prediction2>(
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-          hintStyle: TextStyle(fontSize: 14.0),
           prefixIcon: Icon(Icons.location_on,color: colorMain),
-          border: InputBorder.none,
         ),
         // suggestionsHeight: 100.0,
         maxSuggestions: 5,
@@ -238,8 +232,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
           padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
           child: Text(address.name,style: TextStyle(fontWeight: FontWeight.bold))
         ),
-      ),
-    );
+      );
   }
 
   filtrar(){

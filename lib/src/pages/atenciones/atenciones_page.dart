@@ -76,11 +76,13 @@ class _AtencionesPageState extends State<AtencionesPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Text(_atencion.pet),
-                              Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: 12.0,fontWeight: FontWeight.w600),),
+                              Text(_atencion.pet, style: Theme.of(context).textTheme.subtitle2,),
+                              Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: sizeSmall,fontWeight: FontWeight.w600),),
                             ],
                           ),
-                          trailing: IconButton(icon: Icon(Icons.star_border), onPressed: ()=>_calificar(context, _atencion)),
+                          trailing: IconButton(
+                            icon: Icon(Icons.star_border, color: Theme.of(context).textTheme.subtitle2.color,), 
+                            onPressed: ()=>_calificar(context, _atencion)),
                           contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                         ),
                         Divider(),
@@ -104,10 +106,10 @@ class _AtencionesPageState extends State<AtencionesPage> {
     _inputComentController.text='';
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context){
         return FadeIn(
           child: SimpleDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
             title: Text('Calificar atención'),
             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -115,6 +117,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
               Text(atencion.establishmentName),
               SizedBox(height: 10.0,),
               RatingBar(
+                // unratedColor: Theme.of(context).textTheme.subtitle2.color,
                 initialRating: myrating,
                 minRating: 0,
                 direction: Axis.horizontal,
@@ -160,7 +163,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
       showDialog(context: context,builder: 
       (BuildContext context)=> FadeIn(
         child: AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           content: Container(
             height: 100.0,

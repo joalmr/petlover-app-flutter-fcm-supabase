@@ -32,7 +32,7 @@ Map<String,WidgetBuilder> getRoutes(){
 
     'detallereservado'  : (BuildContext context)=>DetalleReservado(), //detalle de la reserva
     //reserva
-    'addressmap'       : (BuildContext context)=>AddressMap(),
+    // 'addressmap'       : (BuildContext context)=>AddressMap(),
 
     'mensaje'  : (BuildContext context)=>MensajePage(),
 

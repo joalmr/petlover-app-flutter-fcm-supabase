@@ -26,9 +26,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
     return ClipPath(
       child: Drawer(
         child: Container(
-          padding: const EdgeInsets.only(left: 16.0, right: 32.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor, 
+              color: Theme.of(context).backgroundColor.withOpacity(0.925),
               boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
@@ -50,7 +50,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
             fontWeight: FontWeight.w400,
             fontSize: 24.0,
             letterSpacing: 3.0,
-            color: Colors.black54,                      
+            color: Theme.of(context).textTheme.subtitle2.color,                      
           ),
         ),
         SizedBox(height: 20.0,),
@@ -88,7 +88,8 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
             builder: (BuildContext context){
               return FadeIn(
                 child: AlertDialog(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  backgroundColor: Theme.of(context).backgroundColor,
+                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   title: Text('Eliminar'),
                   content: Text('Seguro que desea eliminar a ${mascota.name}?'),
                   actions: <Widget>[
@@ -125,7 +126,8 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   _fallecido(){
     return FadeIn(
       child: AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        // backgroundColor: Theme.of(context).backgroundColor,
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
         title: null, //Text('Fallecido'),
         content: Text('Lamentamos la perdida de tu ser querido.'),
@@ -148,7 +150,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               }
             },
             child: Text('Falleció mi mascota',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),)
+              style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color),)
           )
         ],
       ),
@@ -158,7 +160,8 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   _errorFallecido(){
     return FadeIn(
       child: AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        // backgroundColor: Theme.of(context).backgroundColor,
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         title: null, //Text('Fallecido'),
         content: Text('Cometiste un error?'),
         actions: <Widget>[

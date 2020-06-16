@@ -17,9 +17,9 @@ class ConfigDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        padding: const EdgeInsets.only(left: 16.0, right: 32.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor, 
+          color: Theme.of(context).backgroundColor.withOpacity(0.925),
           boxShadow: [BoxShadow(color: Colors.black45)]
         ),
         width: 300,
@@ -99,7 +99,8 @@ class ConfigDrawer extends StatelessWidget {
       builder: (BuildContext context){
         return FadeIn(
           child: AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            // backgroundColor: Theme.of(context).backgroundColor,
+            // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
             title: null,//Text('Cerrar sesión'),
             contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
             titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -107,11 +108,11 @@ class ConfigDrawer extends StatelessWidget {
             actions: <Widget>[
               FlatButton(
                 onPressed: ()=>Navigator.pop(context),  
-                child: Text('Cancelar',style: TextStyle(color: colorMain),)
+                child: Text('Cancelar')
               ),
               FlatButton(
                 onPressed: ()=>_outToken(context), 
-                child: Text('Cerrar sesión',style: TextStyle(color: colorMain),)
+                child: Text('Cerrar sesión')
               ),
             ],
           ),

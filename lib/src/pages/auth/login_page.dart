@@ -130,7 +130,7 @@ class _LoginSevenPageState extends State<LoginPage> {
           builder: (BuildContext context){
             return FadeIn(
               child: AlertDialog(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 // title: Text('Error'),
                 content: Container(
                   height: 60.0,
