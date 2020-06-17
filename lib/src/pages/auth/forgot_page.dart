@@ -44,11 +44,9 @@ class _ForgotPageState extends State<ForgotPage> {
                 SizedBox(height: 10.0),
                 Center(
                   child: Text('¿Olvidaste tu contraseña?',
-                    style: TextStyle(
-                      fontSize: 24.0, 
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
-                    )
+                    style: Theme.of(context).textTheme.headline5
+                      .apply(fontWeightDelta: 2)
+                      .copyWith(fontSize: 24.0)
                   ),
                 ),
                 SizedBox(height: 10.0),

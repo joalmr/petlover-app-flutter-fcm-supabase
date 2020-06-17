@@ -66,9 +66,7 @@ class _ReservaListState extends State<ReservaList> {
             appBar: appbar(leadingH,'Buscar veterinarias',
               null
             ),
-            body: LinearProgressIndicator(
-              backgroundColor: Colors.grey[200],
-            ),
+            body: LinearProgressIndicator(),
           );
         else{
           if(snapshot.hasError){

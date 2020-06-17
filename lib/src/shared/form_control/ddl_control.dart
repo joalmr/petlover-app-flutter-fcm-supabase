@@ -9,7 +9,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       elevation: 0.0,
       // borderRadius: borderRadius,
       shape: shape10,
-      color: Theme.of(context).backgroundColor,      
+      color: Theme.of(context).splashColor,      
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
         child: DropdownButtonHideUnderline(
@@ -31,12 +31,12 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       elevation: 0.0,
       // borderRadius: borderRadius,
       shape: shape10,
-      color: Theme.of(context).backgroundColor, //Colors.grey[200],
+      color: Theme.of(context).splashColor, //Colors.grey[200],
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: DropdownButtonHideUnderline(
           child: DropdownButton(
-            dropdownColor: Theme.of(context).backgroundColor,
+            dropdownColor: Theme.of(context).splashColor,
             disabledHint: Text(deshabilitado),            
             icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
             isExpanded: true,
@@ -54,7 +54,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       elevation: 0.0,
       // borderRadius: borderRadius,
       shape: shape10,
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).splashColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: DropdownButtonHideUnderline(
@@ -76,7 +76,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       return Material(
         // borderRadius: borderRadius,
         shape: shape10,
-        color: Theme.of(context).backgroundColor, //Colors.grey[200],
+        color: Theme.of(context).splashColor, //Colors.grey[200],
         elevation: 0.0,
         child: SearchableDropdown.single( 
           icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
@@ -93,9 +93,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       );
     }
     catch(ex){
-      return LinearProgressIndicator(
-        backgroundColor: Colors.grey[200],
-      );
+      return LinearProgressIndicator();
     }
   }
 

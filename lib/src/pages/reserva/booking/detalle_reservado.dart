@@ -39,7 +39,7 @@ class DetalleReservado extends StatelessWidget {
             margin: EdgeInsets.only(top: 280.0,left: 5.0,right: 5.0),
             decoration: BoxDecoration(
               borderRadius: borderRadius,
-              color: Colors.white,                            
+              color: Theme.of(context).backgroundColor,                       
             ),
             child: _listaDatos(arg,context),
           )
@@ -132,18 +132,6 @@ class DetalleReservado extends StatelessWidget {
                     ()=>_alertaEliminar(arg.id,context),
                     colorRed
                   ),
-                  // OutlineButton(
-                  //   onPressed: ()=>_alertaEliminar(arg.id,context),
-                  //   child: Text("Eliminar reserva",style: TextStyle(
-                  //     fontSize: sizeH4,
-                  //     fontWeight: FontWeight.w700
-                  //   ),),
-                  //   shape: shape10,
-                  //   color: colorRed,
-                  //   textColor: colorRed,
-                  //   highlightedBorderColor: colorRed,
-                  //   padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 10.0),
-                  // )
                 ),
                 SizedBox(height: 10.0,),
               ],
@@ -160,7 +148,6 @@ class DetalleReservado extends StatelessWidget {
       builder: (BuildContext context){
         return FadeIn(
           child: AlertDialog(
-            // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
             title: Text('Eliminar'),
             content: Text('Seguro que desea eliminar esta reserva?'),
             actions: <Widget>[

@@ -34,6 +34,7 @@ class CardSwiper extends StatelessWidget {
         pagination: new SwiperPagination(
           builder: new DotSwiperPaginationBuilder(
             activeColor: colorMain,
+            color: Theme.of(context).splashColor
           )
         ),
       ),

@@ -260,6 +260,23 @@ class _Data extends State<DataReserva> {
       initialDate: new DateTime.now(), 
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
+      builder: (BuildContext context, Widget child) {
+        return Theme(
+          data: ThemeData(
+            primaryColor: colorMain,
+            accentColor: colorMain,
+            colorScheme: ColorScheme.light(
+              primary: colorMain,
+              onSurface:  Theme.of(context).textTheme.subtitle2.color,
+            ),
+            buttonTheme: ButtonThemeData(
+              textTheme: ButtonTextTheme.primary
+            ),
+            dialogBackgroundColor: Theme.of(context).backgroundColor
+          ),   
+          child: child,
+        );
+      },
     );
 
     if(picked!=null){
@@ -282,7 +299,7 @@ class _Data extends State<DataReserva> {
             builder: (BuildContext builder) {
               return Container(
                 height: 275.0,
-                color: Colors.white,
+                color: Theme.of(context).splashColor,
                 child: Column(
                   children: <Widget>[
                     _time(),
@@ -313,7 +330,7 @@ class _Data extends State<DataReserva> {
     return CupertinoTimerPicker(
       mode: CupertinoTimerPickerMode.hm,
       minuteInterval: 10,
-      initialTimerDuration: initialtimer,
+      initialTimerDuration: initialtimer,      
       onTimerDurationChanged: (Duration changedtimer) {
         setState(() {
           initialtimer = changedtimer;
