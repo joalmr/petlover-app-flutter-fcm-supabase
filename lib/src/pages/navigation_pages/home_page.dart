@@ -70,7 +70,9 @@ class _HomePageState extends State<HomePage> {
         builder: (BuildContext context, AsyncSnapshot<HomeModel> snapshot){
           final mydata=snapshot.data;
           if(snapshot.connectionState != ConnectionState.done){
-            return LinearProgressIndicator();
+            return LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+            );
           }
           else{ 
             if(snapshot.hasError){

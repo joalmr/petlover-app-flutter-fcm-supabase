@@ -55,7 +55,9 @@ class _RecompensasPageState extends State<RecompensasPage> {
       future: stream,//bonificacionProvider.getBonificacion(),
       builder: (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
         if(snapshot.connectionState != ConnectionState.done){
-          return LinearProgressIndicator();
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else {
           if(snapshot.hasError){

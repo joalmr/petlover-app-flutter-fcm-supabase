@@ -44,15 +44,20 @@ class _SingupPageState extends State<SingupPage> {
                 SizedBox(height: 10),
                 Center(
                   child: Text('Bienvenido a Proypet',
-                    style: Theme.of(context).textTheme.headline5
-                      .apply(fontWeightDelta: 2)
-                      .copyWith(fontSize: 24.0)
+                    style: TextStyle(
+                      fontSize: 24.0, 
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
+                    )
                   ),
                 ),
                 Center(
                   child: Text('Crear cuenta',
-                    style: Theme.of(context).textTheme.subtitle1
-                      .apply(fontWeightDelta: 2)
+                    style: TextStyle(
+                      fontSize: 16.0, 
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54//Color.fromRGBO(89, 74, 70, 0.75)
+                    )
                   ),
                 ),
                 SizedBox(height: 20),

@@ -29,7 +29,9 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
       builder: (BuildContext context, AsyncSnapshot<PetModel> snapshot) {
         if(snapshot.connectionState != ConnectionState.done)
           return Scaffold(
-            body: LinearProgressIndicator(),
+            body: LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+            ),
           );
         else{
           if(snapshot.hasError){

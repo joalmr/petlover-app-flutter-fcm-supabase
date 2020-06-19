@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 final colorGreen = Color(0xFF00A48C);
 final colorGreen2 = Color(0xFF008480);
 final colorGreen3 = Color(0xFF006F80);
-
 final colorRed = Color(0xFFf06e64);
 final colorBlue = Color(0xFF008cdc);
 final colorYellow = Color(0xFFfac37a);
@@ -15,9 +14,8 @@ final colorGray3 = Color(0xFFb9b9b9);
 final colorBrown1 = Color(0xFF5A4B46);
 final colorBrown2 = Color(0xFF403432);
 
-final colorDark1 = Color(0xFF2e2d37); //oscuro
-final colorDark2 = Color(0xFF24232d); //fondo oscuro
-final colorDark3 = Color(0xFF383741); //oscuro menor
+final colorDark1 = Color(0xFF2e2d37);
+final colorDark2 = Color(0xFF24232d);
 
 final colorMain = colorGreen;
 

@@ -69,8 +69,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         'Agregar mascota',
         null,
       ),
-      body: (razaLista==null) ? LinearProgressIndicator() 
-      : SingleChildScrollView(
+      body: (razaLista==null) ? LinearProgressIndicator(
+        backgroundColor: Colors.grey[200],
+      ) : SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(                
@@ -221,24 +222,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       initialDate: DateTime.now(),
       firstDate: new DateTime(DateTime.now().year-25),
       lastDate: DateTime.now(),
-      initialDatePickerMode: DatePickerMode.day,
-      builder: (BuildContext context, Widget child) {
-        return Theme(
-          data: ThemeData(
-            primaryColor: colorMain,
-            accentColor: colorMain,
-            colorScheme: ColorScheme.light(
-              primary: colorMain,
-              onSurface:  Theme.of(context).textTheme.subtitle2.color,
-            ),
-            buttonTheme: ButtonThemeData(
-              textTheme: ButtonTextTheme.primary
-            ),
-            dialogBackgroundColor: Theme.of(context).backgroundColor
-          ),   
-          child: child,
-        );
-      },
+      initialDatePickerMode: DatePickerMode.day
     );
 
     if(picked!=null){

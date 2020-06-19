@@ -58,8 +58,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
           )),
         ),
         position: LatLng(element.latitude,element.longitude), //element.locationCoords,
-        )
-      );
+        ));
     });
     
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
@@ -72,7 +71,9 @@ class _VetMapaPageState extends State<VetMapaPage> {
       appBar: appbar(null,'Mapa veterinarias', null),
       body: mapToggle 
         ? _onBody()
-        : LinearProgressIndicator()
+        : LinearProgressIndicator(
+          backgroundColor: Colors.grey[200],
+        )
     );
   }
 
@@ -86,7 +87,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
             child: GoogleMap(
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
-              compassEnabled: true,        
+              compassEnabled: true,              
               gestureRecognizers:Set()
               ..add(Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
               ..add(Factory<ScaleGestureRecognizer>(() => ScaleGestureRecognizer()))
@@ -161,7 +162,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
                 vertical: 20.0,
               ),
               decoration: BoxDecoration(
-                // color: Theme.of(context).backgroundColor,          
                 borderRadius: BorderRadius.circular(10.0),
                 boxShadow: [
                   BoxShadow(
@@ -171,12 +171,10 @@ class _VetMapaPageState extends State<VetMapaPage> {
                   ),
                 ]),
               child: Container(
-                height: 100.0,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).backgroundColor,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: _contenidoVet(vetLocales[index]),
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white),
+                  child: _contenidoVet(vetLocales[index]),
               )))
         ])
       ),

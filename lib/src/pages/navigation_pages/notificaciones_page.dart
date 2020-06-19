@@ -64,7 +64,9 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
       future: stream,//notificacionProvider.getNotificacion(),
       builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
         if(snapshot.connectionState != ConnectionState.done){
-          return LinearProgressIndicator();
+          return LinearProgressIndicator(
+            backgroundColor: Colors.grey[200],
+          );
         }
         else{
           if(snapshot.hasError){
