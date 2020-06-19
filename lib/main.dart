@@ -147,7 +147,7 @@ class _MyAppState extends State<MyApp> {
           ),
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
-            fillColor: colorDark1,
+            fillColor: colorDark3,
             contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
             hintStyle: TextStyle(fontSize: 14.0),
             border: new OutlineInputBorder(
