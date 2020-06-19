@@ -8,11 +8,11 @@ final String keyMap='AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844';
 final String urlPruebas = 'http://18.188.214.204/api';
 final String urlProduccion = 'https://proypet.com/api';
 
-final String urlGlobal = urlPruebas; // TODO: cambiar servicio
+final String urlGlobal = urlProduccion; // TODO: cambiar servicio
 
 final _prefs = new PreferenciasUsuario();
 
-headersToken() {
+headersToken() { 
   return {
     // HttpHeaders.contentTypeHeader: "application/json",
     HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}" 

@@ -80,8 +80,7 @@ class _MyAppState extends State<MyApp> {
           primaryColor: colorMain,
           accentColor: colorMain,
           cursorColor: colorMain,          
-          backgroundColor: Colors.white,
-          splashColor: colorGray1,
+          backgroundColor: colorGray1,
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
@@ -90,12 +89,10 @@ class _MyAppState extends State<MyApp> {
           // dialogBackgroundColor: colorDark1,
           dialogTheme: DialogTheme(
             shape: shape10,
-            backgroundColor: Colors.white
           ),
           cardTheme: CardTheme(
             shape: shape10,
-            elevation: 0.05,
-            color: Colors.white
+            elevation: .05
           ),
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
@@ -111,8 +108,6 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
-          indicatorColor: colorGray1,
-          // dividerColor: colorGray1,
         ),
         darkTheme: ThemeData(
           fontFamily: 'Lato',
@@ -135,7 +130,6 @@ class _MyAppState extends State<MyApp> {
           accentColor: colorMain,
           cursorColor: colorMain,
           backgroundColor: colorDark1,
-          splashColor: colorDark3,
           scaffoldBackgroundColor: colorDark2,
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
@@ -148,12 +142,12 @@ class _MyAppState extends State<MyApp> {
           ),
           cardTheme: CardTheme(
             shape: shape10,
-            elevation: 0.05,
+            elevation: .05,
             color: colorDark1,
           ),
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
-            fillColor: colorDark3,
+            fillColor: colorDark1,
             contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
             hintStyle: TextStyle(fontSize: 14.0),
             border: new OutlineInputBorder(
@@ -165,11 +159,7 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
-          dividerColor: colorDark3,
-          bottomSheetTheme: BottomSheetThemeData(
-            backgroundColor: colorDark1,
-          ),
-          indicatorColor: colorDark1,
+          
         ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

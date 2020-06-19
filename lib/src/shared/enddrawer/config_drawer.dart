@@ -19,7 +19,7 @@ class ConfigDrawer extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).backgroundColor.withOpacity(0.925),
           boxShadow: [BoxShadow(color: Colors.black45)]
         ),
         width: 300,

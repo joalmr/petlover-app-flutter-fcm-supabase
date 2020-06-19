@@ -86,7 +86,11 @@ class _LoginSevenPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Nuevo en Proypet?", 
-                style: Theme.of(context).textTheme.subtitle2
+                style: TextStyle(
+                  color:Colors.black,
+                  fontSize: 14 ,
+                  fontWeight: FontWeight.normal
+                  )
                 ),
                 FlatButton(
                   onPressed: ()=>Navigator.pushNamed(context,'registro'),
