@@ -7,6 +7,7 @@ import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/pages/notificaciones/mensaje_page.dart';
+import 'package:proypet/src/pages/reserva/address_map.dart';
 import 'package:proypet/src/pages/reserva/booking/detalle_reservado.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 

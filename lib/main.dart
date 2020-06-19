@@ -6,7 +6,7 @@ import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 
-// import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:proypet/src/styles/styles.dart';
  
  final prefs = new PreferenciasUsuario();
@@ -15,7 +15,7 @@ void main() async {
   
   await prefs.initPrefs();
 
-  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()) );
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()) );
   // runApp(MyApp());
 } 
 
