@@ -38,9 +38,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
       future: atencionProvider.getAtenciones(),
       builder: (BuildContext context, AsyncSnapshot<List<AtencionModel>> snapshot) {
         if(!snapshot.hasData){
-          return LinearProgressIndicator(
-            backgroundColor: Colors.grey[200],
-          );
+          return LinearProgressIndicator();
         }
         else{
           List<AtencionModel> atencionModel = snapshot.data;

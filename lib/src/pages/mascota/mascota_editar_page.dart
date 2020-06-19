@@ -73,9 +73,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
         'Editar mascota',
         null,
       ),
-      body: (razaLista==null) ? LinearProgressIndicator(
-        backgroundColor: Colors.grey[200],
-      ) : SingleChildScrollView(
+      body: (razaLista==null) ? LinearProgressIndicator() 
+        : SingleChildScrollView(
         child: Form(
           key: formKey,
           child: Column(

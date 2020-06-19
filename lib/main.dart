@@ -108,6 +108,7 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
+          indicatorColor: colorGray1
         ),
         darkTheme: ThemeData(
           fontFamily: 'Lato',
@@ -159,7 +160,8 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
-          
+          indicatorColor: colorDark3,
+          dividerColor: colorDark3,
         ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,

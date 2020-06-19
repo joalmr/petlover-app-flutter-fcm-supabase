@@ -35,14 +35,18 @@ class DetalleReservado extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Container(
+          Card(
             margin: EdgeInsets.only(top: 280.0,left: 5.0,right: 5.0),
-            decoration: BoxDecoration(
-              borderRadius: borderRadius,
-              color: Colors.white,                            
-            ),
             child: _listaDatos(arg,context),
-          )
+          ),
+          // Container(
+          //   margin: EdgeInsets.only(top: 280.0,left: 5.0,right: 5.0),
+          //   decoration: BoxDecoration(
+          //     borderRadius: borderRadius,
+          //     color: Colors.white,                            
+          //   ),
+          //   child: _listaDatos(arg,context),
+          // )
         ],
 
       ),
@@ -212,6 +216,7 @@ class DetalleReservado extends StatelessWidget {
           return SafeArea(
             child: SingleChildScrollView(
               child: Container(
+                color: Theme.of(context).backgroundColor,
                 child: Wrap(
                   children: <Widget>[
                     for (var map in availableMaps)

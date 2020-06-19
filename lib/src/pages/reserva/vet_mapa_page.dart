@@ -71,9 +71,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
       appBar: appbar(null,'Mapa veterinarias', null),
       body: mapToggle 
         ? _onBody()
-        : LinearProgressIndicator(
-          backgroundColor: Colors.grey[200],
-        )
+        : LinearProgressIndicator()
     );
   }
 
@@ -156,7 +154,9 @@ class _VetMapaPageState extends State<VetMapaPage> {
         child: 
         Stack(children: [
           Center(
-            child: Container(
+            child:             
+            Container(
+              height: 85.0,
               margin: EdgeInsets.symmetric(
                 horizontal: 10.0,
                 vertical: 20.0,
@@ -170,12 +170,11 @@ class _VetMapaPageState extends State<VetMapaPage> {
                     blurRadius: 10.0,
                   ),
                 ]),
-              child: Container(
-                decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.white),
-                  child: _contenidoVet(vetLocales[index]),
-              )))
+              child: Card(
+                child: _contenidoVet(vetLocales[index]),
+              )
+            )
+          )
         ])
       ),
     );

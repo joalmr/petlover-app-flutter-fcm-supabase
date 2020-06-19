@@ -93,9 +93,7 @@ import 'package:searchable_dropdown/searchable_dropdown.dart';
       );
     }
     catch(ex){
-      return LinearProgressIndicator(
-        backgroundColor: Colors.grey[200],
-      );
+      return LinearProgressIndicator();
     }
   }
 

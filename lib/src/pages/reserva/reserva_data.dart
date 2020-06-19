@@ -260,6 +260,7 @@ class _Data extends State<DataReserva> {
       initialDate: new DateTime.now(), 
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
+      
     );
 
     if(picked!=null){
