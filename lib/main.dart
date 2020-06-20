@@ -81,6 +81,10 @@ class _MyAppState extends State<MyApp> {
           accentColor: colorMain,
           cursorColor: colorMain,          
           backgroundColor: colorGray1,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: colorMain,
+            foregroundColor: Colors.white
+          ),
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
@@ -108,7 +112,7 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
-          indicatorColor: colorGray1
+          // indicatorColor: colorMain,
         ),
         darkTheme: ThemeData(
           fontFamily: 'Lato',
@@ -132,6 +136,10 @@ class _MyAppState extends State<MyApp> {
           cursorColor: colorMain,
           backgroundColor: colorDark1,
           scaffoldBackgroundColor: colorDark2,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: colorMain,
+            foregroundColor: Colors.white
+          ),
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
@@ -160,7 +168,7 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
-          indicatorColor: colorDark3,
+          // indicatorColor: colorMain,
           dividerColor: colorDark3,
         ),
         localizationsDelegates: [

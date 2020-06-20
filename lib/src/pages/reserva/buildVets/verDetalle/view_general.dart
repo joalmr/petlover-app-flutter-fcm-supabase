@@ -70,9 +70,6 @@ class _ViewGeneralState extends State<ViewGeneral> {
   }
 
   Widget _icoServicio(String icon, String nombre){
-    // if(icon=="delivery"){
-    //   delivery=true;
-    // }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.5),
       child: Column(
@@ -83,7 +80,7 @@ class _ViewGeneralState extends State<ViewGeneral> {
             width: 32,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
-              color: Colors.white,
+              color: Theme.of(context).backgroundColor , //Colors.white,
               boxShadow:[ 
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
@@ -94,7 +91,7 @@ class _ViewGeneralState extends State<ViewGeneral> {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Tooltip(
-                child: Icon(iconMap[icon], color: Colors.black54,),
+                child: Icon(iconMap[icon], size: 20, color: Theme.of(context).textTheme.subtitle2.color ),
                 message: nombre,
               ),
             )
