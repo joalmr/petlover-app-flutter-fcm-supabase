@@ -189,6 +189,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               Center(
                 child: buttonPri('Agregar mascota', btnBool ? _onAdd : null )
               ),
+              SizedBox(height: 10.0,),
             ],
           ),
         ),

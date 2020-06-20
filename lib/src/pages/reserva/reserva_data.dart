@@ -224,11 +224,11 @@ class _Data extends State<DataReserva> {
         },
         autocorrect: true,
         autovalidate: true,
-
         onChanged: (Prediction2 data){
           direccionDelivery=data.name;
           searchandNavigate(data);
         },
+        resetIcon: null,
         itemBuilder: (context, address) => Padding(
           padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
           child: Text(address.name,style: TextStyle(fontWeight: FontWeight.bold))
@@ -293,24 +293,61 @@ class _Data extends State<DataReserva> {
         onTap: (){
           FocusScope.of(context).requestFocus(new FocusNode());
           showModalBottomSheet(
+            backgroundColor: Theme.of(context).backgroundColor,
             context: context,
-            builder: (BuildContext builder) {
-              return Container(
+            builder: (context) => Theme(
+              data: ThemeData(
+                colorScheme: ColorScheme.light(
+                  primary: colorMain
+                ),
+                buttonTheme: ButtonThemeData(
+                  textTheme: ButtonTextTheme.primary
+                )
+              ),
+              child: Container(
                 height: 275.0,
-                color: Colors.white,
                 child: Column(
                   children: <Widget>[
                     _time(),
                     FlatButton(
-                      child: new Text("Cerrar",style: TextStyle(color: colorMain)),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },            
+                      child: new Text("Cerrar"),
+                      onPressed: () => Navigator.of(context).pop(),            
                     ),
                   ],
                 )
-              );
-            }
+              )
+            ),
+            // builder: (context, child) => Theme(
+            //   data: ThemeData.light().copyWith(
+            //     colorScheme: ColorScheme.light(
+            //       primary: colorMain,
+            //       onPrimary: Colors.white,
+            //       surface: colorMain,
+            //       onSurface: Theme.of(context).textTheme.subtitle2.color,
+            //     ),
+            //     dialogBackgroundColor: Theme.of(context).backgroundColor,
+            //     buttonTheme: ButtonThemeData(
+            //       textTheme: ButtonTextTheme.primary
+            //     )
+            //   ),
+            //   child: child
+            // ),
+            // builder: (BuildContext builder) {
+            //   return Container(
+            //     height: 275.0,
+            //     child: Column(
+            //       children: <Widget>[
+            //         _time(),
+            //         FlatButton(
+            //           child: new Text("Cerrar",style: TextStyle(color: colorMain)),
+            //           onPressed: () {
+            //             Navigator.of(context).pop();
+            //           },            
+            //         ),
+            //       ],
+            //     )
+            //   );
+            // }
           );
           //_selectHour(context);
         },
@@ -342,6 +379,7 @@ class _Data extends State<DataReserva> {
         });
       },
     );
+
   }
 
   reservaDialog() async {
@@ -382,7 +420,7 @@ class _Data extends State<DataReserva> {
           deliveryText = deliveryArray[int.parse(deliveryId)-1];
           direccionText = direccionDelivery.toString();//_inputDireccionController.text;
         }
-        if( delivery==true && deliveryId!="1" && direccionText.trim()=="" && _inputDireccionController.text.trim()=="" ){
+        if( delivery==true && deliveryId!="1" && (direccionText.trim()=="" || _inputDireccionController.text.trim()=="") ){
           setState(() { clickReservar = true; });
           mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
         }
@@ -404,7 +442,6 @@ class _Data extends State<DataReserva> {
             Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
           }
         }
-        
       }
     }
   }

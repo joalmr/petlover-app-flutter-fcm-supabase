@@ -36,7 +36,7 @@ class DetalleReservado extends StatelessWidget {
             ),
           ),
           Card(
-            margin: EdgeInsets.only(top: 280.0,left: 5.0,right: 5.0),
+            margin: EdgeInsets.only(top: 280.0,bottom: 7.5,left: 5.0,right: 5.0),
             child: _listaDatos(arg,context),
           ),
           // Container(
@@ -129,7 +129,7 @@ class DetalleReservado extends StatelessWidget {
                 Center(
                   child: buttonPri("Ver en mapa", ()=>_openMapsSheet(context, arg.establishmentName, arg.address, arg.establishmentLat, arg.establishmentLng) )
                 ),
-                SizedBox(height: 35.0,),
+                SizedBox(height: 20.0,),
                 Center(
                   child: buttonOutLine(
                     "Eliminar reserva",

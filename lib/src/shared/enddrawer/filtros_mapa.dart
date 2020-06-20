@@ -37,7 +37,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor, 
+            color: Theme.of(context).scaffoldBackgroundColor , 
             boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
@@ -227,7 +227,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
           searchAddr=data.name;
           searchandNavigate(data);
         },
-        // onSaved: (value)=>searchAddr,
+        resetIcon: null,
         itemBuilder: (context, address) => Padding(
           padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
           child: Text(address.name,style: TextStyle(fontWeight: FontWeight.bold))

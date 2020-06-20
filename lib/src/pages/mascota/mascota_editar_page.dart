@@ -192,6 +192,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
                 child: buttonPri('Guardar cambios', btnBool ? _onAdd : null ) //()=>agregarDialog()
                 //(petData==null)?'Agregar mascota':'Guardar cambios'
               ),
+              SizedBox(height: 10.0,),
             ],
           )
         ),

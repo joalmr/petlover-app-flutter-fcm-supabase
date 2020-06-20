@@ -65,7 +65,8 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 330.0,left: 5.0,right: 5.0),
+          margin: EdgeInsets.only(top: 330.0,bottom: 7.5,left: 5.0,right: 5.0),
+          height: MediaQuery.of(context).size.height - 330.0,
           decoration: BoxDecoration(
             borderRadius: borderRadius,
             color: Theme.of(context).backgroundColor,                            
