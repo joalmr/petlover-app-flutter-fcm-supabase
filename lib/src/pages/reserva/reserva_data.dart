@@ -260,7 +260,21 @@ class _Data extends State<DataReserva> {
       initialDate: new DateTime.now(), 
       firstDate: new DateTime(DateTime.now().year,DateTime.now().month,DateTime.now().day), 
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
-      
+      builder: (context, child) => Theme(
+        data: ThemeData.light().copyWith(
+          colorScheme: ColorScheme.light(
+            primary: colorMain,
+            onPrimary: Colors.white,
+            surface: colorMain,
+            onSurface: Theme.of(context).textTheme.subtitle2.color,
+          ),
+          dialogBackgroundColor: Theme.of(context).backgroundColor,
+          buttonTheme: ButtonThemeData(
+            textTheme: ButtonTextTheme.primary
+          )
+        ),
+        child: child
+      ),
     );
 
     if(picked!=null){

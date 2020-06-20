@@ -150,7 +150,7 @@ class _MyAppState extends State<MyApp> {
             filled: true,
             fillColor: colorDark3,
             contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-            hintStyle: TextStyle(fontSize: 14.0),
+            hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
             border: new OutlineInputBorder(
               borderRadius: new BorderRadius.circular(10.0),
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
