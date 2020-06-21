@@ -281,6 +281,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
           initialDatePickerMode: DatePickerMode.day,
           builder: (context, child) => Theme(
             data: ThemeData.light().copyWith(
+              accentColor: colorMain,
               colorScheme: ColorScheme.light(
                 primary: colorMain,
                 onPrimary: Colors.white,

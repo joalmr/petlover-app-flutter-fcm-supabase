@@ -225,6 +225,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       initialDatePickerMode: DatePickerMode.day,
       builder: (context, child) => Theme(
         data: ThemeData.light().copyWith(
+          accentColor: colorMain,
           colorScheme: ColorScheme.light(
             primary: colorMain,
             onPrimary: Colors.white,

@@ -262,6 +262,7 @@ class _Data extends State<DataReserva> {
       lastDate: new DateTime(DateTime.now().year+1,DateTime.now().month,DateTime.now().day),
       builder: (context, child) => Theme(
         data: ThemeData.light().copyWith(
+          accentColor: colorMain,
           colorScheme: ColorScheme.light(
             primary: colorMain,
             onPrimary: Colors.white,
