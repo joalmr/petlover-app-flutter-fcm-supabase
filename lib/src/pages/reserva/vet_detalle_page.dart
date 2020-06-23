@@ -73,17 +73,34 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           height: MediaQuery.of(context).size.height,
         ),
+        
         Container(
-          height: 275.0,
+          height: 260.0,
           width: double.infinity,
           child: (vet.slides.length>0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false)
         ),
         Container(
-          padding: EdgeInsets.only(top: 275.0, bottom: 60.0),
+          padding: EdgeInsets.only(top: 260.0, bottom: 60.0),
           child: _onDetail(vet),
         ),
 
-        _botonPrincipal(context),
+        // _botonPrincipal(context),
+        Positioned(
+          bottom: 0,
+          child: Container(
+            // color: Colors.red,
+            height: 60,
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(height: 5,),
+                buttonPri('Reservar servicio', reservarClic ? _reservar : null)
+              ],
+            )
+          )
+        ),
 
         Positioned(
           top: 0,
@@ -100,26 +117,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
       ],
     );
   }
-
-  Widget _botonPrincipal(context){
-    return Positioned(
-      bottom: 0,
-      child: Container(
-        // color: Colors.red,
-        height: 60,
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(height: 5,),
-            buttonPri('Reservar servicio', reservarClic ? _reservar : null)
-          ],
-        )
-      )
-    );
-  }
-
 
   Widget _onDetail(EstablecimientoModel localVet) {
     return 
@@ -247,6 +244,9 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 ViewPrecio(localVet: localVet),
                 ViewHorario(localVet: localVet),
                 ViewComentario(localVet: localVet),
+                // ViewComentario(localVet: localVet),
+                // ViewComentario(localVet: localVet),
+                // ViewComentario(localVet: localVet),
               ],
             ),
           ),

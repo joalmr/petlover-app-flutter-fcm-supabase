@@ -22,33 +22,26 @@ class DetalleReservado extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: appbar(null,'Detalle de reserva',null),
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height,
-          ),
-          Container(
-            child: Image(
-              image: CachedNetworkImageProvider(arg.petPicture),
-              height: 320,
-              width: double.infinity,
-              fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: <Widget>[
+            // Container(
+            //   height: MediaQuery.of(context).size.height,
+            // ),
+            Container(
+              child: Image(
+                image: CachedNetworkImageProvider(arg.petPicture),
+                height: 320,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Card(
-            margin: EdgeInsets.only(top: 280.0,bottom: 7.5,left: 5.0,right: 5.0),
-            child: _listaDatos(arg,context),
-          ),
-          // Container(
-          //   margin: EdgeInsets.only(top: 280.0,left: 5.0,right: 5.0),
-          //   decoration: BoxDecoration(
-          //     borderRadius: borderRadius,
-          //     color: Colors.white,                            
-          //   ),
-          //   child: _listaDatos(arg,context),
-          // )
-        ],
-
+            Card(
+              margin: EdgeInsets.only(top: 280.0,bottom: 7.5,left: 5.0,right: 5.0),
+              child: _listaDatos(arg,context),
+            ),
+          ],
+        ),
       ),
     );
   }

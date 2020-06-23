@@ -54,33 +54,41 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     return Stack(
       children: <Widget>[
         Container(
-          height: MediaQuery.of(context).size.height,
-        ),
-        Container(
-          child: Image(
-            image: CachedNetworkImageProvider(mascota.picture),
-            height: 350,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 330.0,bottom: 7.5,left: 5.0,right: 5.0),
-          height: MediaQuery.of(context).size.height - 330.0,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            color: Theme.of(context).backgroundColor,                            
-          ),
+          // height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              children: <Widget>[                      
-                datoMascota(mascota),
-                listaHistorial(context, petModel.history),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  child: Image(
+                    image: CachedNetworkImageProvider(mascota.picture),
+                    height: 350,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 330.0,bottom: 7.5,left: 5.0,right: 5.0),
+                  height: MediaQuery.of(context).size.height - 330.0,
+                  decoration: BoxDecoration(
+                    borderRadius: borderRadius,
+                    color: Theme.of(context).backgroundColor,                            
+                  ),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: <Widget>[                      
+                        datoMascota(mascota),
+                        listaHistorial(context, petModel.history),
+                      ],
+                    ),
+                  ),         
+                ),
               ],
             ),
-          ),         
+          ),
         ),
+        
+        
         
         Positioned(
           top: 0,
