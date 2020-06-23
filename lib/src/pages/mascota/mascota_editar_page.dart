@@ -192,6 +192,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
                 child: buttonPri('Guardar cambios', btnBool ? _onAdd : null ) //()=>agregarDialog()
                 //(petData==null)?'Agregar mascota':'Guardar cambios'
               ),
+              SizedBox(height: 10.0,),
             ],
           )
         ),
@@ -278,6 +279,22 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
           firstDate: new DateTime(DateTime.now().year-25),
           lastDate: DateTime.now(),
           initialDatePickerMode: DatePickerMode.day,
+          builder: (context, child) => Theme(
+            data: ThemeData.light().copyWith(
+              accentColor: colorMain,
+              colorScheme: ColorScheme.light(
+                primary: colorMain,
+                onPrimary: Colors.white,
+                surface: colorMain,
+                onSurface: Theme.of(context).textTheme.subtitle2.color,
+              ),
+              dialogBackgroundColor: Theme.of(context).backgroundColor,
+              buttonTheme: ButtonThemeData(
+                textTheme: ButtonTextTheme.primary
+              )
+            ),
+            child: child
+          ),
         );
       },
       decoration: InputDecoration(

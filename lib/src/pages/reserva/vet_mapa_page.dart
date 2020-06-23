@@ -156,7 +156,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
           Center(
             child:             
             Container(
-              height: 85.0,
+              height: 95.0,
               margin: EdgeInsets.symmetric(
                 horizontal: 10.0,
                 vertical: 20.0,

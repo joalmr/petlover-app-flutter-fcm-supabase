@@ -189,6 +189,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
               Center(
                 child: buttonPri('Agregar mascota', btnBool ? _onAdd : null )
               ),
+              SizedBox(height: 10.0,),
             ],
           ),
         ),
@@ -221,7 +222,23 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       initialDate: DateTime.now(),
       firstDate: new DateTime(DateTime.now().year-25),
       lastDate: DateTime.now(),
-      initialDatePickerMode: DatePickerMode.day
+      initialDatePickerMode: DatePickerMode.day,
+      builder: (context, child) => Theme(
+        data: ThemeData.light().copyWith(
+          accentColor: colorMain,
+          colorScheme: ColorScheme.light(
+            primary: colorMain,
+            onPrimary: Colors.white,
+            surface: colorMain,
+            onSurface: Theme.of(context).textTheme.subtitle2.color,
+          ),
+          dialogBackgroundColor: Theme.of(context).backgroundColor,
+          buttonTheme: ButtonThemeData(
+            textTheme: ButtonTextTheme.primary
+          )
+        ),
+        child: child
+      ),
     );
 
     if(picked!=null){

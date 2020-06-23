@@ -56,31 +56,37 @@ class _MyAppState extends State<MyApp> {
       rutaInicio='navInicio';
     }
 
+    const MaterialColor newteal = MaterialColor(
+    0xFF00A48C,
+    <int, Color>{
+       50: Color(0xFF00A48C),
+      100: Color(0xFF00A48C),
+      200: Color(0xFF00A48C),
+      300: Color(0xFF00A48C),
+      400: Color(0xFF00A48C),
+      500: Color(0xFF00A48C), //base
+      600: Color(0xFF00A48C),
+      700: Color(0xFF00A48C),
+      800: Color(0xFF00A48C),
+      900: Color(0xFF00A48C),
+    },
+  );
+
     return MaterialApp(
         debugShowCheckedModeBanner: true, // TODO: cambiar antes de lanzar y tambien cambiar el com.example.user
         navigatorKey: navigatorKey,
         title: 'Proypet',
         theme: ThemeData(
           fontFamily: 'Lato',
-          textTheme: TextTheme(
-            headline1: TextStyle( color: Colors.black54),
-            headline2: TextStyle( color: Colors.black54),
-            headline3: TextStyle( color: Colors.black54),
-            headline4: TextStyle( color: Colors.black54),
-            headline5: TextStyle( color: Colors.black54, fontSize: 26.0 ),
-            headline6: TextStyle( color: Colors.black54, fontSize: 20.0 ),
-
-            subtitle1: TextStyle( color: Colors.black54, fontSize: 16.0),
-            subtitle2: TextStyle( color: Colors.black54, fontSize: 14.0),
-
-            bodyText1: TextStyle( color: Colors.black54, fontSize: 16.0),
-            bodyText2: TextStyle( color: Colors.black54, fontSize: 14.0),            
-          ),
-          primarySwatch: Colors.teal,
-          primaryColor: colorMain,
-          accentColor: colorMain,
-          cursorColor: colorMain,          
+          brightness: Brightness.light,
+          primarySwatch: newteal,
+          // accentColor: colorMain,
+          // cursorColor: colorMain,        
           backgroundColor: colorGray1,
+          // floatingActionButtonTheme: FloatingActionButtonThemeData(
+          //   backgroundColor: colorMain,
+          //   foregroundColor: Colors.white
+          // ),
           appBarTheme: AppBarTheme(
             textTheme: TextTheme(
               headline6: TextStyle( fontSize: 18.0 ),
@@ -108,10 +114,63 @@ class _MyAppState extends State<MyApp> {
               borderSide: new BorderSide(style: BorderStyle.none, width: 0),
             ),
           ),
-          indicatorColor: colorGray1
+          textTheme: TextTheme(
+            headline1: TextStyle( color: Colors.black54),
+            headline2: TextStyle( color: Colors.black54),
+            headline3: TextStyle( color: Colors.black54),
+            headline4: TextStyle( color: Colors.black54),
+            headline5: TextStyle( color: Colors.black54, fontSize: 26.0 ),
+            headline6: TextStyle( color: Colors.black54, fontSize: 20.0 ),
+
+            subtitle1: TextStyle( color: Colors.black54, fontSize: 16.0),
+            subtitle2: TextStyle( color: Colors.black54, fontSize: 14.0),
+
+            bodyText1: TextStyle( color: Colors.black54, fontSize: 16.0),
+            bodyText2: TextStyle( color: Colors.black54, fontSize: 14.0),            
+          ),
         ),
         darkTheme: ThemeData(
           fontFamily: 'Lato',
+          brightness: Brightness.dark,
+          primarySwatch: newteal,
+          // accentColor: colorMain,
+          // cursorColor: colorMain,
+          backgroundColor: colorDark3,
+          // scaffoldBackgroundColor: colorDark2,
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: colorMain,
+            foregroundColor: Colors.white
+          ),
+          appBarTheme: AppBarTheme(
+            textTheme: TextTheme(
+              headline6: TextStyle( fontSize: 18.0 ),
+            ),
+          ),
+          dialogBackgroundColor: colorDark3,
+          dialogTheme: DialogTheme(
+            shape: shape10,
+          ),
+          cardTheme: CardTheme(
+            shape: shape10,
+            elevation: .05,
+            color: colorDark3,
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: colorDark3,
+            contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+            hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
+            border: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+            ),
+            focusedBorder: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+            ),
+          ),
+          // indicatorColor: colorMain,
+          dividerColor: colorDark3,
           textTheme: TextTheme(
             headline1: TextStyle( color: Colors.white),
             headline2: TextStyle( color: Colors.white),
@@ -126,43 +185,64 @@ class _MyAppState extends State<MyApp> {
             bodyText1: TextStyle( color: Colors.white, fontSize: 16.0),
             bodyText2: TextStyle( color: Colors.white, fontSize: 14.0),            
           ),
-          primarySwatch: Colors.teal,
-          primaryColor: colorMain,
-          accentColor: colorMain,
-          cursorColor: colorMain,
-          backgroundColor: colorDark1,
-          scaffoldBackgroundColor: colorDark2,
-          appBarTheme: AppBarTheme(
-            textTheme: TextTheme(
-              headline6: TextStyle( fontSize: 18.0 ),
-            ),
-          ),
-          dialogBackgroundColor: colorDark1,
-          dialogTheme: DialogTheme(
-            shape: shape10,
-          ),
-          cardTheme: CardTheme(
-            shape: shape10,
-            elevation: .05,
-            color: colorDark1,
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-            filled: true,
-            fillColor: colorDark3,
-            contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-            hintStyle: TextStyle(fontSize: 14.0),
-            border: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
-            ),
-            focusedBorder: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              borderSide: new BorderSide(style: BorderStyle.none, width: 0),
-            ),
-          ),
-          indicatorColor: colorDark3,
-          dividerColor: colorDark3,
         ),
+        // darkTheme: ThemeData(
+        //   fontFamily: 'Lato',
+        //   textTheme: TextTheme(
+        //     headline1: TextStyle( color: Colors.white),
+        //     headline2: TextStyle( color: Colors.white),
+        //     headline3: TextStyle( color: Colors.white),
+        //     headline4: TextStyle( color: Colors.white),
+        //     headline5: TextStyle( color: Colors.white, fontSize: 26.0 ),
+        //     headline6: TextStyle( color: Colors.white, fontSize: 20.0 ),
+
+        //     subtitle1: TextStyle( color: Colors.white, fontSize: 16.0),
+        //     subtitle2: TextStyle( color: Colors.white, fontSize: 14.0),
+
+        //     bodyText1: TextStyle( color: Colors.white, fontSize: 16.0),
+        //     bodyText2: TextStyle( color: Colors.white, fontSize: 14.0),            
+        //   ),
+        //   primarySwatch: newteal,
+        //   // primaryColor: colorMain,
+        //   accentColor: colorMain,
+        //   cursorColor: colorMain,
+        //   backgroundColor: colorDark1,
+        //   scaffoldBackgroundColor: colorDark2,
+        //   floatingActionButtonTheme: FloatingActionButtonThemeData(
+        //     backgroundColor: colorMain,
+        //     foregroundColor: Colors.white
+        //   ),
+        //   appBarTheme: AppBarTheme(
+        //     textTheme: TextTheme(
+        //       headline6: TextStyle( fontSize: 18.0 ),
+        //     ),
+        //   ),
+        //   dialogBackgroundColor: colorDark1,
+        //   dialogTheme: DialogTheme(
+        //     shape: shape10,
+        //   ),
+        //   cardTheme: CardTheme(
+        //     shape: shape10,
+        //     elevation: .05,
+        //     color: colorDark1,
+        //   ),
+        //   inputDecorationTheme: InputDecorationTheme(
+        //     filled: true,
+        //     fillColor: colorDark3,
+        //     contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+        //     hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
+        //     border: new OutlineInputBorder(
+        //       borderRadius: new BorderRadius.circular(10.0),
+        //       borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+        //     ),
+        //     focusedBorder: new OutlineInputBorder(
+        //       borderRadius: new BorderRadius.circular(10.0),
+        //       borderSide: new BorderSide(style: BorderStyle.none, width: 0),
+        //     ),
+        //   ),
+        //   // indicatorColor: colorMain,
+        //   dividerColor: colorDark3,
+        // ),
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

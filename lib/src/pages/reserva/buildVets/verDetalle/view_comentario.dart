@@ -18,22 +18,37 @@ class _ViewComentarioState extends State<ViewComentario> {
   }
 
   viewComentario(localVet){
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 10.0,),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            width: double.infinity,
-            child: Text("Comentario", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            width: double.infinity,
-            child: Text("Aqui vienen los comentarios")
-          )
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 10.0,),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          width: double.infinity,
+          child: Text("Comentario", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          width: double.infinity,
+          child: Text("Aqui vienen los comentarios")
+        )
+      ],
     );
+    // SingleChildScrollView(
+    //   child: Column(
+    //     children: <Widget>[
+    //       SizedBox(height: 10.0,),
+    //       Container(
+    //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    //         width: double.infinity,
+    //         child: Text("Comentario", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))
+    //       ),
+    //       Container(
+    //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    //         width: double.infinity,
+    //         child: Text("Aqui vienen los comentarios")
+    //       )
+    //     ],
+    //   ),
+    // );
   }
 }

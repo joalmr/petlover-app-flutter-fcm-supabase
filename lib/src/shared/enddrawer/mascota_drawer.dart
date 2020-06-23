@@ -28,7 +28,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor.withOpacity(0.925),
+              color: Theme.of(context).scaffoldBackgroundColor , 
               boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
