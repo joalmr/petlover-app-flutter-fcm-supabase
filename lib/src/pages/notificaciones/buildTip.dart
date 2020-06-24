@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:proypet/src/model/notificacion/tip_model.dart';
 
-Widget buildTip(context){
+Widget buildTip(context,Tip tip){
 
       return Container(
           margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
@@ -22,7 +23,7 @@ Widget buildTip(context){
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text('Tip de la semana:', style: Theme.of(context).textTheme.subtitle2),
-                            Text('Blabla', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
+                            Text(tip.title, style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
                           ],
                         )
                       )
@@ -33,8 +34,8 @@ Widget buildTip(context){
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       child: Image(
-                        image: AssetImage('images/mascotas.png'),
-                        height: 170,
+                        image: AssetImage(tip.image),
+                        height: 230,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),

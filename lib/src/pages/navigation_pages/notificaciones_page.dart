@@ -4,12 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
+import 'package:proypet/src/model/notificacion/tip_model.dart';
 import 'package:proypet/src/pages/notificaciones/buildNoti.dart';
 import 'package:proypet/src/pages/notificaciones/buildTip.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 
@@ -88,7 +90,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             Column(
               children: <Widget>[
                 Container(
-                  height: 280,
+                  height: 350,
                   child: Swiper(
                     itemCount: notification.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -98,20 +100,37 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                     // scale: 0.8,
                     loop: false,
                     physics: BouncingScrollPhysics(),
-                    
+                    pagination: new SwiperPagination(
+                      margin: new EdgeInsets.only(top: 15.0),
+                      builder: new DotSwiperPaginationBuilder(
+                        activeColor: colorMain,
+                        color: Theme.of(context).backgroundColor,
+                        activeSize: 8.0,
+                        size: 6.0
+                      )
+                    ),
                   ),
                 ),
                 Container(
-                  height: 260,
+                  height: 320,
                   child: Swiper(
-                    itemCount: 2,
+                    itemCount: tipList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return buildTip(context);
+                      return buildTip(context,tipList[index]);
                     },
                     viewportFraction: 1,
                     // scale: 0.8,
                     loop: false,
                     physics: BouncingScrollPhysics(),
+                    pagination: new SwiperPagination(
+                      margin: new EdgeInsets.only(top: 15.0),
+                      builder: new DotSwiperPaginationBuilder(
+                        activeColor: colorMain,
+                        color: Theme.of(context).backgroundColor,
+                        activeSize: 8.0,
+                        size: 6.0
+                      )
+                    ),
                   ),
                 ),
               ],

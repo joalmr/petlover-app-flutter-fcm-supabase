@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
@@ -7,6 +8,7 @@ import 'package:proypet/src/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/pages/navigation_pages/notificaciones_page.dart';
 import 'package:proypet/src/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
+import 'package:proypet/src/pages/notificaciones/buildPushNoti.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -56,20 +58,27 @@ class _NavigationBarState extends State<NavigationBar> {
 
       onMessage: (Map<String, dynamic> message) async {
         print('======== onMessage ========');
-        
+        print(message['data']);
         showDialog(
           context: context,
-          builder: (context) => AlertDialog(
-              content: ListTile(
-              title: Text(message['notification']['title']),
-              subtitle: Text(message['notification']['body']),
-              ),
-              actions: <Widget>[
-              FlatButton(
-                  child: Text('Ok'),
-                  onPressed: () => Navigator.of(context).pop(),
-              ),
+          builder: (context) => SimpleDialog(
+            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            children: <Widget>[
+              buildPushNoti(context,message['data']),
             ],
+            
+            // content: //buildPushNoti(message['notification']['data']),
+            //   ListTile(
+            //     leading: Image(image: CachedNetworkImageProvider(message['data']['petPicture'])),
+            //   // title: Text(message['notification']['title']),
+            //     subtitle: Text(message['data']['message']),
+            //   ),
+            //   actions: <Widget>[
+            //   FlatButton(
+            //       child: Text('Ok'),
+            //       onPressed: () => Navigator.of(context).pop(),
+            //   ),
+            // ],
           ),
         );
       },
