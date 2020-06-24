@@ -42,6 +42,7 @@ dependencies:
   google_maps_webservice: ^0.0.16
   
   # path_provider: ^1.6.10
+  youtube_player_flutter: ^7.0.0+6
 
   animate_do: ^1.6.3
   cached_network_image: ^2.0.0

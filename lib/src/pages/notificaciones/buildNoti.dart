@@ -39,7 +39,7 @@ import 'package:proypet/src/styles/styles.dart';
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       child: Image(
-                        image: CachedNetworkImageProvider(noti.petPicture),
+                        image: AssetImage('images/tipo1.jpg'), //CachedNetworkImageProvider(noti.petPicture),
                         height: 130,
                         width: double.infinity,
                         fit: BoxFit.cover,

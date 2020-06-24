@@ -195,14 +195,12 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
               style: Theme.of(context).textTheme.subtitle2,
               maxLines: 3,
             ),
-            
             onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
           ),
           Divider(),
         ],
       ),
     );
-
   }
 
   _fnEstablecimiento(id) async {

@@ -14,14 +14,6 @@ Widget buildTip(context){
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      // ClipRRect(
-                      //   borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
-                      //   child: Image(
-                      //     image: AssetImage('images/mascotas.png'),//AssetImage(destacado.image)
-                      //     height: 70,
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // ),
                       Container(
                         height: 50,
                         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),

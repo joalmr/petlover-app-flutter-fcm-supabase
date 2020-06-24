@@ -46,6 +46,12 @@ class _NavigationBarState extends State<NavigationBar> {
 
     _firebaseMessaging.requestNotificationPermissions();
 
+    _firebaseMessaging.getToken().then((token) {
+      //los tokens a agregar en la bd deben ser un arreglo de tokens
+      print("======== token ========");
+      print(token);
+    });
+    
     _firebaseMessaging.configure(
 
       onMessage: (Map<String, dynamic> message) async {
