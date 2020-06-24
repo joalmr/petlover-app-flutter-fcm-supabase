@@ -56,12 +56,6 @@ class _NavigationBarState extends State<NavigationBar> {
 
       onMessage: (Map<String, dynamic> message) async {
         print('======== onMessage ========');
-        // print(info);
-
-        // String argumento = 'no-data';
-        // if(Platform.isAndroid){
-        //   argumento = info['data']['comida'] ?? 'no-data';
-        // }   
         
         showDialog(
           context: context,
