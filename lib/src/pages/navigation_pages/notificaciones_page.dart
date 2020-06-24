@@ -2,7 +2,10 @@ import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
+import 'package:proypet/src/pages/notificaciones/buildNoti.dart';
+import 'package:proypet/src/pages/notificaciones/buildTip.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
@@ -81,14 +84,37 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             );
           }
           else{
-            return ListView.builder(
-              padding: EdgeInsets.symmetric(vertical: 10.0, ),
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: notification.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _notificacionCase(notification[index]);
-              },
+            return 
+            Column(
+              children: <Widget>[
+                Container(
+                  height: 280,
+                  child: Swiper(
+                    itemCount: notification.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildNoti(notification[index]);
+                    },
+                    viewportFraction: 1,
+                    // scale: 0.8,
+                    loop: false,
+                    physics: BouncingScrollPhysics(),
+                    
+                  ),
+                ),
+                Container(
+                  height: 260,
+                  child: Swiper(
+                    itemCount: 2,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildTip(context);
+                    },
+                    viewportFraction: 1,
+                    // scale: 0.8,
+                    loop: false,
+                    physics: BouncingScrollPhysics(),
+                  ),
+                ),
+              ],
             );
           }
         }
@@ -113,6 +139,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     }
   }
 
+  //reserva cercana
   _comingBooking(notificacion){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -133,6 +160,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     );
   }
 
+  //proxima cita
   _nextDate(notificacion){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -154,6 +182,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     );
   }
 
+  //vacuna, desparasitacion
   _recordatory(notificacion){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -180,7 +209,6 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     final establecimientoProvider = EstablecimientoProvider();
     Map veterinaria = await establecimientoProvider.getVet(id);
     if(veterinaria['status']==200){
-      // EstablecimientoModel vet = veterinaria['establishment'];
       Navigator.push(
         context,MaterialPageRoute(
           builder: (context) => VetDetallePage(vet: veterinaria['establishment']),
@@ -211,12 +239,9 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
         }
       );
     }
-    
-    
   }
 
-  _fnRecordatorio(String slug){    
-    // print(slug);
+  _fnRecordatorio(String slug){
     Navigator.pushNamed(context, 'navLista', arguments:{ "filtros": [ slugNum[slug] ] } );
   }
 

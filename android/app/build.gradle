@@ -48,7 +48,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1 //flutterVersionCode.toInteger()
-        versionName "1.0.0" //flutterVersionName
+        versionName "1.1.0" //flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -81,6 +81,5 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
-    // com.google.firebase:firebase-messaging:20.2.0
-    // implementation 'com.google.firebase:firebase-messaging:20.2.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.0'
 }

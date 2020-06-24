@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/pages/navigation_pages/home_page.dart';
@@ -6,6 +9,22 @@ import 'package:proypet/src/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
 import 'package:proypet/src/styles/styles.dart';
 
+
+// Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
+//   if (message.containsKey('data')) {
+//     // Handle data message
+//     final dynamic data = message['data'];
+//   }
+
+//   if (message.containsKey('notification')) {
+//     // Handle notification message
+//     final dynamic notification = message['notification'];
+//   }
+
+//   // Or do other work.
+// }
+
+FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
@@ -20,6 +39,60 @@ class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
   _NavigationBarState({@required this.currentTabIndex, }); //this.marcar
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _firebaseMessaging.requestNotificationPermissions();
+
+    _firebaseMessaging.configure(
+
+      onMessage: (Map<String, dynamic> message) async {
+        print('======== onMessage ========');
+        // print(info);
+
+        // String argumento = 'no-data';
+        // if(Platform.isAndroid){
+        //   argumento = info['data']['comida'] ?? 'no-data';
+        // }   
+        
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+              content: ListTile(
+              title: Text(message['notification']['title']),
+              subtitle: Text(message['notification']['body']),
+              ),
+              actions: <Widget>[
+              FlatButton(
+                  child: Text('Ok'),
+                  onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
+        );
+      },
+
+      onLaunch: ( info ) async {
+        print('======== onLaunch ========');
+        print(info);
+
+        final noti = info['data']['comida'];
+        print(noti);
+      },
+ 
+      onResume: ( info ) async {
+        print('======== onResume ========');
+        print(info);
+
+        final noti = info['data']['comida'];
+        print(noti);
+      }
+
+    );
+  }
+  
   @override
   Widget build(BuildContext context){
     final _kTabPages = <Widget>[

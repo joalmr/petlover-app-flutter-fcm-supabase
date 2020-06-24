@@ -67,11 +67,6 @@ import 'package:proypet/src/styles/styles.dart';
                 ],
               ),
             )
-            // Material(
-            //   color: Theme.of(context).backgroundColor,
-            //   shape: shape10,
-            //   child: ,
-            // ),
           ),
         ),
       );
