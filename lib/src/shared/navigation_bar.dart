@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
@@ -11,20 +8,6 @@ import 'package:proypet/src/pages/navigation_pages/reserva_list.dart';
 import 'package:proypet/src/pages/notificaciones/buildPushNoti.dart';
 import 'package:proypet/src/styles/styles.dart';
 
-
-// Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
-//   if (message.containsKey('data')) {
-//     // Handle data message
-//     final dynamic data = message['data'];
-//   }
-
-//   if (message.containsKey('notification')) {
-//     // Handle notification message
-//     final dynamic notification = message['notification'];
-//   }
-
-//   // Or do other work.
-// }
 
 FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
@@ -66,19 +49,6 @@ class _NavigationBarState extends State<NavigationBar> {
             children: <Widget>[
               buildPushNoti(context,message['data']),
             ],
-            
-            // content: //buildPushNoti(message['notification']['data']),
-            //   ListTile(
-            //     leading: Image(image: CachedNetworkImageProvider(message['data']['petPicture'])),
-            //   // title: Text(message['notification']['title']),
-            //     subtitle: Text(message['data']['message']),
-            //   ),
-            //   actions: <Widget>[
-            //   FlatButton(
-            //       child: Text('Ok'),
-            //       onPressed: () => Navigator.of(context).pop(),
-            //   ),
-            // ],
           ),
         );
       },

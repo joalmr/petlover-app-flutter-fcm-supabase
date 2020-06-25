@@ -136,13 +136,6 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
                   valorInicial: mascotaData.name,
                   boardType: TextInputType.text,
                 ),
-                // textForm('Nombre de mascota', 
-                //   Icons.pets, false, 
-                //   (value)=>mascotaData.name=value, 
-                //   TextCapitalization.words, 
-                //   mascotaData.name,
-                //   TextInputType.text
-                // ),
               ),
               SizedBox(height: 10.0,),
               Padding(

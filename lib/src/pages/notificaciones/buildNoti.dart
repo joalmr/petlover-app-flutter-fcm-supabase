@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 
+
 Widget buildNoti(Notificacion noti){
   return Container(
     margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),

@@ -90,14 +90,14 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             Column(
               children: <Widget>[
                 Container(
-                  height: 350,
+                  height: 355,
                   child: Swiper(
                     itemCount: notification.length,
                     itemBuilder: (BuildContext context, int index) {
                       return buildNoti(notification[index]);
                     },
                     viewportFraction: 1,
-                    // scale: 0.8,
+                    scale: 1,
                     loop: false,
                     physics: BouncingScrollPhysics(),
                     pagination: new SwiperPagination(
@@ -119,7 +119,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                       return buildTip(context,tipList[index]);
                     },
                     viewportFraction: 1,
-                    // scale: 0.8,
+                    scale: 1,
                     loop: false,
                     physics: BouncingScrollPhysics(),
                     pagination: new SwiperPagination(

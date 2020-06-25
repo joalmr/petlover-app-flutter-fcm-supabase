@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/tip_model.dart';
 
@@ -22,7 +21,7 @@ Widget buildTip(context,Tip tip){
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text('Tip de la semana:', style: Theme.of(context).textTheme.subtitle2),
+                            Text('ProypeTip:', style: Theme.of(context).textTheme.subtitle2),
                             Text(tip.title, style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
                           ],
                         )
