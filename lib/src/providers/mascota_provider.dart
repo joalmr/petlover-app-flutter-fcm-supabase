@@ -44,7 +44,7 @@ class MascotaProvider{
     return petModel;
   }
 
-  Future<bool> savePet(MascotaModel mascota, File imagen) async { //create
+  Future<Map<String,dynamic>> savePet(MascotaModel mascota, File imagen) async { //create
     final url = '$_url/pets';
     
     // int intMascota=0;
@@ -67,10 +67,17 @@ class MascotaProvider{
       final idkey = decodedResp['pet']['id'];
       final urlpet = '$_url/pets/$idkey/base64';
 
-      upImage(imagen,urlpet);
-      return true;
+      String petImg = await upImage(imagen,urlpet);
+      // return true;
+      return{
+        'ok':true,
+        'petImg':petImg
+      };
     }
-    else return false;
+    else return{
+      'ok':false,
+      'petImg':''
+    };
 
   }
 

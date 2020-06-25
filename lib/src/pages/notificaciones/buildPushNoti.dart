@@ -20,7 +20,7 @@ Widget buildPushNoti(context, noti){
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('${noti['message']} ${addNoti[Math.Random().nextInt(addNoti.length)]}'),
+                child: Text('${noti['message']} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
               )
             ),
           ],

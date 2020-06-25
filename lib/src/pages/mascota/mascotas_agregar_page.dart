@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +15,11 @@ import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/ddl_control.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/thx_page.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/utils/add_msg.dart';
+import 'dart:math' as Math;
+
 
 final tipopet = [{'id':'1','name':'Gato',},{'id':'2','name':'Perro'}];
 final tiposex = [{'id':'0','name':'Hembra',},{'id':'1','name':'Macho'}];
@@ -339,8 +344,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         });
         else{
           mascotaData.genre=int.tryParse(sexo);
-          print(foto);
-          resp = await mascotaProvider.savePet(mascotaData, foto);
+          // print(foto);
+          Map resp = await mascotaProvider.savePet(mascotaData, foto);
           boolSave(resp);
         } 
       }
@@ -356,12 +361,13 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
   
   boolSave(resp){
-    if(resp){
-      mostrarSnackbar('Mascota agregada.', colorMain, scaffoldKey);  
-      Timer(Duration(milliseconds: 2000), (){
-        // Navigator.of(context).popUntil((route) => route.isFirst);
-        Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
-      });
+    if(resp['ok']){
+      return Navigator.push(context, MaterialPageRoute(
+        builder: (_)=>ThxPage(
+          CachedNetworkImageProvider(resp['petImg']),
+          thxPet[Math.Random().nextInt(thxPet.length)]
+        )
+      ));
     }
     else setState(() {
       mostrarSnackbar('No se agregó la mascota.', colorRed, scaffoldKey);  

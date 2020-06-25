@@ -15,7 +15,7 @@ class NotificacionProvider{
     NotificacionModel notificacionModel = notificacionModelFromJson(resp.body);
 
     notificacionModel.notifications.forEach((element) {
-      element.message = '${element.message} ${addNoti[Math.Random().nextInt(addNoti.length)]}';
+      element.message = '${element.message} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}';
                       
     });
     return notificacionModel;
