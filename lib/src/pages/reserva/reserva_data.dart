@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +20,14 @@ import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/ddl_control.dart';
 import 'package:proypet/src/shared/form_control/text_field.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/thx_page.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:proypet/src/utils/add_msg.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
-// import 'package:search_map_place/search_map_place.dart';
+import 'dart:math' as Math;
+
 
 String direccionDelivery="";
 
@@ -318,37 +321,6 @@ class _Data extends State<DataReserva> {
                 )
               )
             ),
-            // builder: (context, child) => Theme(
-            //   data: ThemeData.light().copyWith(
-            //     colorScheme: ColorScheme.light(
-            //       primary: colorMain,
-            //       onPrimary: Colors.white,
-            //       surface: colorMain,
-            //       onSurface: Theme.of(context).textTheme.subtitle2.color,
-            //     ),
-            //     dialogBackgroundColor: Theme.of(context).backgroundColor,
-            //     buttonTheme: ButtonThemeData(
-            //       textTheme: ButtonTextTheme.primary
-            //     )
-            //   ),
-            //   child: child
-            // ),
-            // builder: (BuildContext builder) {
-            //   return Container(
-            //     height: 275.0,
-            //     child: Column(
-            //       children: <Widget>[
-            //         _time(),
-            //         FlatButton(
-            //           child: new Text("Cerrar",style: TextStyle(color: colorMain)),
-            //           onPressed: () {
-            //             Navigator.of(context).pop();
-            //           },            
-            //         ),
-            //       ],
-            //     )
-            //   );
-            // }
           );
           //_selectHour(context);
         },
@@ -429,18 +401,25 @@ class _Data extends State<DataReserva> {
           bool resp = await bookingProvider.booking(booking, deliveryText, direccionText);
 
           if(resp){
-            showDialog(context: context,builder: 
-            (BuildContext context)=> FadeIn(
-              child: AlertDialog(
-                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                content: Container(
-                  height: 100.0,
-                  child: Center(child: Text('Gracias por su reserva.', style: Theme.of(context).textTheme.subtitle2 ,))
-                ),
-              ),
-            ), barrierDismissible: false );
-            Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
+            mascotaProvider.getPet(mascotaID).then((value) => 
+              Navigator.push(context, MaterialPageRoute(
+                builder: (_)=>ThxPage(
+                  CachedNetworkImageProvider(value.pet.picture),
+                  thxReserva[Math.Random().nextInt(thxReserva.length)]
+                )
+              ))
+            );
+            // showDialog(context: context,builder: 
+            // (BuildContext context)=> FadeIn(
+            //   child: AlertDialog(
+            //     contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            //     content: Container(
+            //       height: 100.0,
+            //       child: Center(child: Text('Gracias por su reserva.', style: Theme.of(context).textTheme.subtitle2 ,))
+            //     ),
+            //   ),
+            // ), barrierDismissible: false );
+            // Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
           }
         }
       }

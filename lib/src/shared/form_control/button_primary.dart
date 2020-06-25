@@ -18,7 +18,7 @@ Widget buttonPri(_text,_funtion){
   );
 }
 
-Widget buttonOutLine(_text,_funtion,_color){
+Widget buttonOutLine(String _text,_funtion,Color _color){
   return OutlineButton(
     onPressed: _funtion,
     child: Text(_text, style: _textstyle,),

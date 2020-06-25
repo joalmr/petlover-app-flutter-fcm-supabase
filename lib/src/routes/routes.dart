@@ -6,7 +6,7 @@ import 'package:proypet/src/pages/destacado/destacado_detalle.dart';
 import 'package:proypet/src/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/pages/mascota/mascotas_agregar_page.dart';
-import 'package:proypet/src/pages/notificaciones/mensaje_page.dart';
+// import 'package:proypet/src/pages/notificaciones/mensaje_page.dart';
 import 'package:proypet/src/pages/reserva/booking/detalle_reservado.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 
@@ -33,7 +33,7 @@ Map<String,WidgetBuilder> getRoutes(){
     //reserva
     // 'addressmap'       : (BuildContext context)=>AddressMap(),
 
-    'mensaje'  : (BuildContext context)=>MensajePage(),
+    // 'mensaje'  : (BuildContext context)=>MensajePage(),
 
   };
 }

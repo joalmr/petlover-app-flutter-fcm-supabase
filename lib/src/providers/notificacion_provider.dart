@@ -1,9 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
-
-import 'package:proypet/src/model/notificacion/add_noti.dart';
 import 'dart:math' as Math;
+import 'package:proypet/src/utils/add_msg.dart';
+
 
 class NotificacionProvider{
   final _url = urlGlobal;

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-// import 'package:proypet/src/model/notificacion/notificacion_model.dart';
+import 'package:proypet/src/utils/add_msg.dart';
+import 'dart:math' as Math;
 
 Widget buildPushNoti(context, noti){
   return Container(
@@ -19,7 +20,7 @@ Widget buildPushNoti(context, noti){
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(noti['message']),
+                child: Text('${noti['message']} ${addNoti[Math.Random().nextInt(addNoti.length)]}'),
               )
             ),
           ],

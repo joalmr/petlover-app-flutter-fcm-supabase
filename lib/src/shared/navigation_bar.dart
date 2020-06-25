@@ -41,7 +41,6 @@ class _NavigationBarState extends State<NavigationBar> {
 
       onMessage: (Map<String, dynamic> message) async {
         print('======== onMessage ========');
-        print(message['data']);
         showDialog(
           context: context,
           builder: (context) => SimpleDialog(
