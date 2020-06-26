@@ -1,4 +1,4 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/pages/navigation_pages/home_page.dart';
@@ -9,7 +9,7 @@ import 'package:proypet/src/pages/notificaciones/buildPushNoti.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
-FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+// FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
@@ -22,54 +22,45 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
-  _NavigationBarState({@required this.currentTabIndex, }); //this.marcar
+  _NavigationBarState({@required this.currentTabIndex, }); //TODO: firebase
+  // @override
+  // void initState() {
+  //   super.initState();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  //   _firebaseMessaging.requestNotificationPermissions();
 
-    _firebaseMessaging.requestNotificationPermissions();
-
-    _firebaseMessaging.getToken().then((token) {
-      //los tokens a agregar en la bd deben ser un arreglo de tokens
-      print("======== token ========");
-      print(token);
-    });
+  //   _firebaseMessaging.getToken().then((token) {
+  //     //los tokens a agregar en la bd deben ser un arreglo de tokens
+  //     print("======== token ========");
+  //     print(token);
+  //   });
     
-    _firebaseMessaging.configure(
+  //   _firebaseMessaging.configure(
 
-      onMessage: (Map<String, dynamic> message) async {
-        print('======== onMessage ========');
-        showDialog(
-          context: context,
-          builder: (context) => SimpleDialog(
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            children: <Widget>[
-              buildPushNoti(context,message['data']),
-            ],
-          ),
-        );
-      },
+  //     onMessage: (Map<String, dynamic> message) async {
+  //       showDialog(
+  //         context: context,
+  //         builder: (context) => SimpleDialog(
+  //           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+  //           children: <Widget>[
+  //             buildPushNoti(context,message['data']),
+  //           ],
+  //         ),
+  //       );
+  //     },
 
-      onLaunch: ( info ) async {
-        print('======== onLaunch ========');
-        print(info);
-
-        final noti = info['data']['comida'];
-        print(noti);
-      },
+  //     onLaunch: ( info ) async {
+  //       print('======== onLaunch ========');
+  //       print(info);
+  //     },
  
-      onResume: ( info ) async {
-        print('======== onResume ========');
-        print(info);
+  //     onResume: ( info ) async {
+  //       print('======== onResume ========');
+  //       print(info);
+  //     }
 
-        final noti = info['data']['comida'];
-        print(noti);
-      }
-
-    );
-  }
+  //   );
+  // }
   
   @override
   Widget build(BuildContext context){
