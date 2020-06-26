@@ -177,9 +177,9 @@ class _ReservaListState extends State<ReservaList> {
         avatar: CircleAvatar(
           radius: 12.5,
           backgroundColor: colorMain,//colorBlue, //Colors.grey.shade800,
-          child: Icon(iconNum[servicio], size: sizeSmall,),
+          child: Icon(iconNum[servicio], size: sizeSmall, color: Colors.white),
         ),
-        label: Text(textMap[servicio]),
+        label: Text(textMap[servicio], style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
       ),
     );  
   }

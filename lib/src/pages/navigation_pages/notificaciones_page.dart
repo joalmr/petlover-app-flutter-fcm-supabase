@@ -94,7 +94,8 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                   child: Swiper(
                     itemCount: notification.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return buildNoti(notification[index]);
+                      return _notificacionCase(notification[index]);
+                      //buildNoti(notification[index]);
                     },
                     viewportFraction: 1,
                     scale: 1,
@@ -159,68 +160,20 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   }
 
   //reserva cercana
-  _comingBooking(notificacion){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0), //horizontal: 20.0
-            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
-            title: Text(notificacion.message,
-              style: Theme.of(context).textTheme.subtitle2,
-              maxLines: 3,
-            ),
-            
-          ),
-          Divider(),
-        ],
-      ),
-    );
+  _comingBooking(Notificacion notification){
+    return buildNoti(notification, (){});
   }
 
   //proxima cita
-  _nextDate(notificacion){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
-            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
-            title: Text(notificacion.message,
-              style: Theme.of(context).textTheme.subtitle2,
-              maxLines: 3,
-            ),
-            
-            onTap: ()=>_fnEstablecimiento(notificacion.options["establishment_id"]),
-          ),
-          Divider(),
-        ],
-      ),
-    );
+  _nextDate(Notificacion notification){
+    return buildNoti(notification, ()=>_fnEstablecimiento(notification.options["establishment_id"]));
   }
 
   //vacuna, desparasitacion
-  _recordatory(notificacion){
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
-            leading: CircleAvatar(radius: 25.0 ,backgroundImage: CachedNetworkImageProvider(notificacion.petPicture),),
-            title: Text(notificacion.message,
-              style: Theme.of(context).textTheme.subtitle2,
-              maxLines: 3,
-            ),
-            onTap: ()=>_fnRecordatorio(notificacion.options["slug"]),
-          ),
-          Divider(),
-        ],
-      ),
-    );
+  _recordatory(Notificacion notification){ 
+    return buildNoti(notification, ()=>_fnRecordatorio(notification.options["slug"]));
   }
+
 
   _fnEstablecimiento(id) async {
     final establecimientoProvider = EstablecimientoProvider();

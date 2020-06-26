@@ -16,12 +16,12 @@ class ThxPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: colorMain,
         body: FadeIn(
-          delay: Duration(seconds: 1),
-          duration: Duration(seconds: 2),
+          delay: Duration(milliseconds: 75),
+          duration: Duration(seconds: 1),
           child: Container(
             // decoration: BoxDecoration(
             //   image: DecorationImage(
-            //     image: AssetImage("images/noti1.jpg"),
+            //     image: AssetImage("images/confirmado.png"),
             //     fit: BoxFit.cover,
             //   ),
             // ),
@@ -37,13 +37,23 @@ class ThxPage extends StatelessWidget {
                     child: Center(
                       child: Column(
                         children: <Widget>[
-                          ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(100)),
-                            child: Image(
-                              image: image,
-                              height: 150,
-                              fit: BoxFit.cover,
-                            ),
+                          Stack(
+                            children: <Widget>[
+                              ClipRRect(
+                                borderRadius: BorderRadius.all(Radius.circular(100)),
+                                child: Image(
+                                  image: image,
+                                  height: 150,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 20,
+                                child: Icon(Icons.check_circle)
+                              )
+                            ],
+                            // child: 
                           ),
                           SizedBox(height: 25),
                           Text(

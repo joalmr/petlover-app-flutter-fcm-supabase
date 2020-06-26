@@ -19,5 +19,5 @@ final thxReserva = [
 
 final thxPet = [
   'Genial, ahora podré avisarte cuando necesite algo.',
-  'Que bien! Gracias por registrarme, te haré recordar cuando necesito una atención.',
+  'Que bien! Gracias por registrarme, te haré recordar cuando necesite una atención.',
 ];

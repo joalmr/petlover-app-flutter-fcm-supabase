@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
 
 
-Widget buildNoti(Notificacion noti){
+Widget buildNoti(Notificacion noti, funcion){
   return Container(
     margin: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
     child: InkWell(
-      onTap: (){},
+      onTap: funcion,
       child: Card(
         child:
         Column(
