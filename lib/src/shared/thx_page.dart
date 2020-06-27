@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/transicion/pagina_app.dart';

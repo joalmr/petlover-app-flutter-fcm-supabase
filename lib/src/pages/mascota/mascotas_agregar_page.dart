@@ -338,7 +338,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       }
 
       else {
-        bool resp;
         if(mascotaData.birthdate.trim()=='') setState(() {
           mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed, scaffoldKey); 
           Timer(Duration(milliseconds: 1500), (){

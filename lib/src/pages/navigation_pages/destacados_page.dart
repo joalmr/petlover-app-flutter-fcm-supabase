@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/destacado/destacado_model.dart';
 import 'package:proypet/src/providers/destacado_provider.dart';
