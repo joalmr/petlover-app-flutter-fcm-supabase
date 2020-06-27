@@ -4,6 +4,7 @@ import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -32,71 +33,73 @@ class _LoginSevenPageState extends State<LoginPage> {
           elevation: 0,
         )
       ),
-      body: Form(
-        key: formKey,
-        child: ListView(
-          children: <Widget>[
-            WaveClipper(300.0,180.0),
-            SizedBox(height: 50.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: FormularioText(
-                hintText: 'Email',
-                icon: Icons.alternate_email,
-                obscureText: false,
-                onSaved: (value)=>userModel.email=value,
-                textCap: TextCapitalization.none,
-                valorInicial: null,
-                boardType: TextInputType.text,
-              )
-            ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: FormularioText(
-                hintText: 'Contraseña',
-                icon: Icons.lock,
-                obscureText: true,
-                onSaved: (value)=>userModel.password=value,
-                textCap: TextCapitalization.none,
-                valorInicial: null,
-                boardType: TextInputType.text,
-              )
-            ),
-            SizedBox(height: 25.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0),
-              child: buttonPri('Iniciar sesión',_onToken),
-            ),
-            SizedBox(height: 20.0),
-            Center(
-              child: FlatButton(
-                onPressed: ()=>Navigator.pushNamed(context,'olvidopass'),
-                child: Text("Olvidaste tu contraseña?".toUpperCase(), 
-                  style: TextStyle(
-                    color:colorMain,
-                    fontSize: 12 ,
-                    fontWeight: FontWeight.w700
+      body: FadeView(
+        child: Form(
+          key: formKey,
+          child: ListView(
+            children: <Widget>[
+              WaveClipper(300.0,180.0),
+              SizedBox(height: 50.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: FormularioText(
+                  hintText: 'Email',
+                  icon: Icons.alternate_email,
+                  obscureText: false,
+                  onSaved: (value)=>userModel.email=value,
+                  textCap: TextCapitalization.none,
+                  valorInicial: null,
+                  boardType: TextInputType.text,
+                )
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: FormularioText(
+                  hintText: 'Contraseña',
+                  icon: Icons.lock,
+                  obscureText: true,
+                  onSaved: (value)=>userModel.password=value,
+                  textCap: TextCapitalization.none,
+                  valorInicial: null,
+                  boardType: TextInputType.text,
+                )
+              ),
+              SizedBox(height: 25.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                child: buttonPri('Iniciar sesión',_onToken),
+              ),
+              SizedBox(height: 20.0),
+              Center(
+                child: FlatButton(
+                  onPressed: ()=>Navigator.pushNamed(context,'olvidopass'),
+                  child: Text("Olvidaste tu contraseña?".toUpperCase(), 
+                    style: TextStyle(
+                      color:colorMain,
+                      fontSize: 12 ,
+                      fontWeight: FontWeight.w700
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 15.0,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Nuevo en Proypet?", 
-                style: Theme.of(context).textTheme.subtitle2
-                ),
-                FlatButton(
-                  onPressed: ()=>Navigator.pushNamed(context,'registro'),
-                  child: Text("Registrarse", 
-                    style: Theme.of(context).textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline)
+              SizedBox(height: 15.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Nuevo en Proypet?", 
+                  style: Theme.of(context).textTheme.subtitle2
                   ),
-                ),
-              ],
-            )
-          ],
+                  FlatButton(
+                    onPressed: ()=>Navigator.pushNamed(context,'registro'),
+                    child: Text("Registrarse", 
+                      style: Theme.of(context).textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline)
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

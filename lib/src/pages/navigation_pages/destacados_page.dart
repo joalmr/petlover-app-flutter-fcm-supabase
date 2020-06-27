@@ -1,7 +1,9 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/model/destacado/destacado_model.dart';
 import 'package:proypet/src/providers/destacado_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -17,7 +19,9 @@ class _DestacadosPageState extends State<DestacadosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(leadingH,'Destacados',null),
-      body: _onDestacado(),
+      body: FadeView(
+        child: _onDestacado()
+      )
     );
   }
 

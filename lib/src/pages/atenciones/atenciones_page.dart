@@ -8,6 +8,7 @@ import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/shared/form_control/text_field.dart';
 import 'package:proypet/src/shared/snackbar.dart';
 import 'package:proypet/src/providers/atencion_provider.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class AtencionesPage extends StatefulWidget {
@@ -52,42 +53,44 @@ class _AtencionesPageState extends State<AtencionesPage> {
             );
           }
           else{
-            return SingleChildScrollView(
-              child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  AtencionModel _atencion= snapshot.data[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      children: <Widget>[
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: colorMain,
-                            backgroundImage: CachedNetworkImageProvider(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
-                            radius: 25.0,
+            return FadeView(
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    AtencionModel _atencion= snapshot.data[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: colorMain,
+                              backgroundImage: CachedNetworkImageProvider(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
+                              radius: 25.0,
+                            ),
+                            title: Text(_atencion.establishmentName),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(_atencion.pet, style: Theme.of(context).textTheme.subtitle2,),
+                                Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: sizeSmall,fontWeight: FontWeight.w600),),
+                              ],
+                            ),
+                            trailing: IconButton(
+                              icon: Icon(Icons.star_border, color: Theme.of(context).textTheme.subtitle2.color,), 
+                              onPressed: ()=>_calificar(context, _atencion)),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                           ),
-                          title: Text(_atencion.establishmentName),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text(_atencion.pet, style: Theme.of(context).textTheme.subtitle2,),
-                              Text(_atencion.createdAt, style: TextStyle(color: colorMain,fontSize: sizeSmall,fontWeight: FontWeight.w600),),
-                            ],
-                          ),
-                          trailing: IconButton(
-                            icon: Icon(Icons.star_border, color: Theme.of(context).textTheme.subtitle2.color,), 
-                            onPressed: ()=>_calificar(context, _atencion)),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                        ),
-                        Divider(),
-                      ],
-                    ),
-                  );
-                },
+                          Divider(),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           }

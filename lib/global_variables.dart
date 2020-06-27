@@ -5,7 +5,7 @@ import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
 
 final String keyMap='AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844';
 
-final String urlPruebas = 'http://18.188.214.204/api';
+final String urlPruebas = 'http://danger.proypet.com/api'; //18.188.214.204
 final String urlProduccion = 'https://proypet.com/api';
 
 final String urlGlobal = urlPruebas; // TODO: cambiar servicio

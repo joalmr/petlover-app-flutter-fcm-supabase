@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/model/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 
@@ -42,10 +43,12 @@ class _RecompensasPageState extends State<RecompensasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(leadingH,'Puntos',null),
-      body: RefreshIndicator(
-        key: refreshKey,
-        onRefresh: _onRefresh,
-        child: _onPage()
+      body: FadeView(
+        child: RefreshIndicator(
+          key: refreshKey,
+          onRefresh: _onRefresh,
+          child: _onPage()
+        ),
       ),
     );
   }

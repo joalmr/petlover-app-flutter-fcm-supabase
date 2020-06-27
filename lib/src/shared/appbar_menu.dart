@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 Widget appbar( logo, String texto, List<Widget> acc){
-  return AppBar(    
+  return AppBar( 
     leading: logo,
     title: Text(texto),
     actions: acc,

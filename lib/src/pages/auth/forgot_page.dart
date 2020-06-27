@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -34,58 +35,60 @@ class _ForgotPageState extends State<ForgotPage> {
           elevation: 0,
         )
       ),
-      body: Stack(
-        children: <Widget>[
-          Form(
-            key: formKey,
-            child: ListView(
-              children: <Widget>[
-                WaveClipperOut(120.0),
-                SizedBox(height: 10.0),
-                Center(
-                  child: Text('¿Olvidaste tu contraseña?',
-                    style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)
+      body: FadeView(
+        child: Stack(
+          children: <Widget>[
+            Form(
+              key: formKey,
+              child: ListView(
+                children: <Widget>[
+                  WaveClipperOut(120.0),
+                  SizedBox(height: 10.0),
+                  Center(
+                    child: Text('¿Olvidaste tu contraseña?',
+                      style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)
+                    ),
                   ),
-                ),
-                SizedBox(height: 10.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Text('Ingresa tu dirección de correo electrónico para reestablecer contraseña')
-                ),
-                SizedBox(height: 20.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: FormularioText(
-                    hintText: 'Email',
-                    icon: Icons.alternate_email,
-                    obscureText: false,
-                    onSaved: (value)=>val=value,
-                    textCap: TextCapitalization.none,
-                    valorInicial: null,
-                    boardType: TextInputType.text,
+                  SizedBox(height: 10.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Text('Ingresa tu dirección de correo electrónico para reestablecer contraseña')
                   ),
-                  // textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,TextInputType.text),
-                ),
-                SizedBox(height: 30.0),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  child: buttonPri('Enviar correo electrónico', enviarClic ? _forgot : null),
-                ),
-                SizedBox(height: 20.0),
-              ],
+                  SizedBox(height: 20.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: FormularioText(
+                      hintText: 'Email',
+                      icon: Icons.alternate_email,
+                      obscureText: false,
+                      onSaved: (value)=>val=value,
+                      textCap: TextCapitalization.none,
+                      valorInicial: null,
+                      boardType: TextInputType.text,
+                    ),
+                    // textForm('Email', Icons.alternate_email, false, (value)=>val=value, TextCapitalization.none, null,TextInputType.text),
+                  ),
+                  SizedBox(height: 30.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                    child: buttonPri('Enviar correo electrónico', enviarClic ? _forgot : null),
+                  ),
+                  SizedBox(height: 20.0),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              centerTitle: true,
-            ),
-          )
-        ],
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                centerTitle: true,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

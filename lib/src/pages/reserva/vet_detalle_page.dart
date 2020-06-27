@@ -18,6 +18,7 @@ import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/modal_bottom.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -62,7 +63,9 @@ class _VetDetallePageState extends State<VetDetallePage> {
   Widget build(BuildContext context) {    
     return Scaffold(
       key: scaffoldKey,
-      body: _onStack(vet)    
+      body: FadeView(
+        child: _onStack(vet),
+      )    
     );
   }
 

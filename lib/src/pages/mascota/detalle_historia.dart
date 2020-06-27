@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class HistoriaPage extends StatelessWidget {
@@ -22,51 +23,53 @@ class HistoriaPage extends StatelessWidget {
 
     return Scaffold(
       appBar: appbar(null,'Detalle de atención',null),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 20.0 ,horizontal: 20.0),
-        child: Column(        
-          children: <Widget>[
-            (jsonText.toString().contains("grooming")) ? _banio(jsonText["grooming"], context) : SizedBox(),
-            (jsonText.toString().contains("deworming")) ? _desparasita(jsonText["deworming"], context) : SizedBox(),
-            (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"], context) : SizedBox(),
-            (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"], context) : SizedBox(),
-            (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"], context) : SizedBox(),
-            Divider(height: 30.0, color: colorBrown1,),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(right: 20.0), //.symmetric(horizontal: 0.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text("Precio", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color )),
-                  Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color ),),
-                ],
-              )
-            ),
-            SizedBox(height: 20.0,),
-            // Divider(),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-              decoration: BoxDecoration(
-                borderRadius: borderRadius,
-                color: Theme.of(context).backgroundColor,
+      body: FadeView(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 20.0 ,horizontal: 20.0),
+          child: Column(        
+            children: <Widget>[
+              (jsonText.toString().contains("grooming")) ? _banio(jsonText["grooming"], context) : SizedBox(),
+              (jsonText.toString().contains("deworming")) ? _desparasita(jsonText["deworming"], context) : SizedBox(),
+              (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"], context) : SizedBox(),
+              (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"], context) : SizedBox(),
+              (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"], context) : SizedBox(),
+              Divider(height: 30.0, color: colorBrown1,),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.only(right: 20.0), //.symmetric(horizontal: 0.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text("Precio", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color )),
+                    Text(precio.toString(), textAlign: TextAlign.right, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color ),),
+                  ],
+                )
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: Theme.of(context).textTheme.subtitle2.color) ),
-                  Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) ),
-                  SizedBox(height: 10.0,),
-                  Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: Theme.of(context).textTheme.subtitle2.color) ),
-                  Text(motivo, style: TextStyle( fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) ),
-                ],
+              SizedBox(height: 20.0,),
+              // Divider(),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                decoration: BoxDecoration(
+                  borderRadius: borderRadius,
+                  color: Theme.of(context).backgroundColor,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text("Próxima cita", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: Theme.of(context).textTheme.subtitle2.color) ),
+                    Text(proximacita, style: TextStyle( fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) ),
+                    SizedBox(height: 10.0,),
+                    Text("Motivo", style: TextStyle( fontWeight: FontWeight.bold, fontSize: sizeLite, color: Theme.of(context).textTheme.subtitle2.color) ),
+                    Text(motivo, style: TextStyle( fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color) ),
+                  ],
+                ),
               ),
-            ),
-            
+              
 
-          ],
+            ],
+          ),
         ),
       )
     );

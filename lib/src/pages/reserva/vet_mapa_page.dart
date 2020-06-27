@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -70,7 +71,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
     return Scaffold(
       appBar: appbar(null,'Mapa veterinarias', null),
       body: mapToggle 
-        ? _onBody()
+        ? FadeView(child: _onBody())
         : LinearProgressIndicator()
     );
   }

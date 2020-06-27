@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/model/notificacion/notificacion_model.dart';
@@ -11,6 +11,7 @@ import 'package:proypet/src/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
@@ -51,13 +52,15 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(leadingH,'Notificaciones',null),
-      body: Container(
-        child: RefreshIndicator(
-          onRefresh: _onRefresh,
-          child: ListView(
-            children: <Widget>[
-              _onFuture(),
-            ],
+      body: FadeView(
+        child: Container(
+          child: RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: ListView(
+              children: <Widget>[
+                _onFuture(),
+              ],
+            ),
           ),
         ),
       ),
@@ -203,7 +206,6 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                     ),
                   ),
               ],
-              
             ),
           );
         }

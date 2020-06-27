@@ -5,6 +5,7 @@ import 'package:proypet/src/model/mascota/mascota_model.dart';
 import 'package:proypet/src/model/mascota/pet_model.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/shared/enddrawer/mascota_drawer.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';
@@ -38,7 +39,9 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           PetModel mascota = snapshot.data;
           return Scaffold(
             key: _scaffoldKey,
-            body: onDetail(mascota),
+            body: FadeView(
+              child: onDetail(mascota),
+            ),
             endDrawer: MascotaDrawer(modelMascota: mascota.pet,),
           );
 
@@ -87,9 +90,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             ),
           ),
         ),
-        
-        
-        
+
         Positioned(
           top: 0,
           left: 0,

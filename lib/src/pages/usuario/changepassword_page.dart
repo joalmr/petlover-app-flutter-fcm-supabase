@@ -5,6 +5,7 @@ import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 
@@ -29,41 +30,43 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(null,'Cambiar contraseña',null),
-      body: Form(
-        key: formKey,
-        child: ListView(
-          padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 20.0), //.symmetric(horizontal: 25.0,vertical: 10.0),
-          children: <Widget>[
-            Text('Contraseña actual'),
-            SizedBox(height: 10.0,),
-            FormularioText(
-              hintText: 'Ingrese contraseña actual',
-              icon: Icons.lock,
-              obscureText: true,
-              onSaved: (value)=>passAntigua=value,
-              textCap: TextCapitalization.none,
-              valorInicial: null,
-              boardType: TextInputType.text,
-            ),
-            // textForm('Ingrese contraseña actual', Icons.lock, true, (value)=>passAntigua=value, TextCapitalization.sentences, null,TextInputType.text),
-            SizedBox(height: 15.0,),
-            Text('Nueva contraseña'),
-            SizedBox(height: 10.0,),
-            FormularioText(
-              hintText: 'Ingrese contraseña nueva',
-              icon: Icons.lock,
-              obscureText: true,
-              onSaved: (value)=>passNueva=value,
-              textCap: TextCapitalization.none,
-              valorInicial: null,
-              boardType: TextInputType.text,
-            ),
-            // textForm('Ingrese contraseña nueva', Icons.lock, true, (value)=>passNueva=value, TextCapitalization.sentences, null,TextInputType.text),
-            SizedBox(height: 35.0,),
-            Center(
-              child: buttonPri('Cambiar contraseña', clickPassword ? _changePassword : null ) //()=>agregarDialog()
-            )
-          ],
+      body: FadeView(
+        child: Form(
+          key: formKey,
+          child: ListView(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 20.0), //.symmetric(horizontal: 25.0,vertical: 10.0),
+            children: <Widget>[
+              Text('Contraseña actual'),
+              SizedBox(height: 10.0,),
+              FormularioText(
+                hintText: 'Ingrese contraseña actual',
+                icon: Icons.lock,
+                obscureText: true,
+                onSaved: (value)=>passAntigua=value,
+                textCap: TextCapitalization.none,
+                valorInicial: null,
+                boardType: TextInputType.text,
+              ),
+              // textForm('Ingrese contraseña actual', Icons.lock, true, (value)=>passAntigua=value, TextCapitalization.sentences, null,TextInputType.text),
+              SizedBox(height: 15.0,),
+              Text('Nueva contraseña'),
+              SizedBox(height: 10.0,),
+              FormularioText(
+                hintText: 'Ingrese contraseña nueva',
+                icon: Icons.lock,
+                obscureText: true,
+                onSaved: (value)=>passNueva=value,
+                textCap: TextCapitalization.none,
+                valorInicial: null,
+                boardType: TextInputType.text,
+              ),
+              // textForm('Ingrese contraseña nueva', Icons.lock, true, (value)=>passNueva=value, TextCapitalization.sentences, null,TextInputType.text),
+              SizedBox(height: 35.0,),
+              Center(
+                child: buttonPri('Cambiar contraseña', clickPassword ? _changePassword : null ) //()=>agregarDialog()
+              )
+            ],
+          ),
         ),
       ),
     );

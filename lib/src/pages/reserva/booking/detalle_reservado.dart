@@ -7,6 +7,7 @@ import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/shared/appbar_menu.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,25 +23,27 @@ class DetalleReservado extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: appbar(null,'Detalle de reserva',null),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            // Container(
-            //   height: MediaQuery.of(context).size.height,
-            // ),
-            Container(
-              child: Image(
-                image: CachedNetworkImageProvider(arg.petPicture),
-                height: 320,
-                width: double.infinity,
-                fit: BoxFit.cover,
+      body: FadeView(
+        child: SingleChildScrollView(
+          child: Stack(
+            children: <Widget>[
+              // Container(
+              //   height: MediaQuery.of(context).size.height,
+              // ),
+              Container(
+                child: Image(
+                  image: CachedNetworkImageProvider(arg.petPicture),
+                  height: 320,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Card(
-              margin: EdgeInsets.only(top: 280.0,bottom: 7.5,left: 5.0,right: 5.0),
-              child: _listaDatos(arg,context),
-            ),
-          ],
+              Card(
+                margin: EdgeInsets.only(top: 280.0,bottom: 7.5,left: 5.0,right: 5.0),
+                child: _listaDatos(arg,context),
+              ),
+            ],
+          ),
         ),
       ),
     );

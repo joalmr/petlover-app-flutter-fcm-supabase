@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class ThxPage extends StatelessWidget {
@@ -15,9 +16,7 @@ class ThxPage extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: colorMain,
-        body: FadeIn(
-          delay: Duration(milliseconds: 75),
-          duration: Duration(seconds: 1),
+        body: FadeView(
           child: Container(
             // decoration: BoxDecoration(
             //   image: DecorationImage(
@@ -50,7 +49,7 @@ class ThxPage extends StatelessWidget {
                               Positioned(
                                 bottom: 0,
                                 right: 20,
-                                child: Icon(Icons.check_circle)
+                                child: Icon(Icons.check_circle, color: Colors.white,)
                               )
                             ],
                             // child: 

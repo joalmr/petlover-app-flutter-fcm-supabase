@@ -6,6 +6,7 @@ import 'package:proypet/src/model/login/login_model.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/form_control/text_from.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/shared/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -34,126 +35,128 @@ class _SingupPageState extends State<SingupPage> {
           elevation: 0,
         )
       ),
-      body: Stack(
-        children: <Widget>[
-          Form(
-            key: formKey,
-            child: ListView(
-              children: <Widget>[
-                WaveClipperOut(120.0),
-                SizedBox(height: 10),
-                Center(
-                  child: Text('Bienvenido a Proypet',
-                    style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)
-                  ),
-                ),
-                Center(
-                  child: Text('Crear cuenta',
-                    style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
-                  ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: FormularioText(
-                    hintText: 'Nombre',
-                    icon: Icons.person,
-                    obscureText: false,
-                    onSaved: (value)=>user.name=value,
-                    textCap: TextCapitalization.words,
-                    valorInicial: null,
-                    boardType: TextInputType.text,
-                  )
-                  // textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null, TextInputType.text),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: FormularioText(
-                    hintText: 'Apellido',
-                    icon: Icons.person,
-                    obscureText: false,
-                    onSaved: (value)=>user.lastname=value,
-                    textCap: TextCapitalization.words,
-                    valorInicial: null,
-                    boardType: TextInputType.text,
-                  )
-                  // textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null, TextInputType.text),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: FormularioText(
-                    hintText: 'Email',
-                    icon: Icons.alternate_email,
-                    obscureText: false,
-                    onSaved: (value)=>user.email=value,
-                    textCap: TextCapitalization.none,
-                    valorInicial: null,
-                    boardType: TextInputType.text,
-                  )
-                  // textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null, TextInputType.text),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: FormularioText(
-                    hintText: 'Contraseña',
-                    icon: Icons.lock,
-                    obscureText: true,
-                    onSaved: (value)=>user.password=value,
-                    textCap: TextCapitalization.none,
-                    valorInicial: null,
-                    boardType: TextInputType.text,
-                  )
-                  // textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null, TextInputType.text),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Text.rich(
-                    TextSpan(
-                      text: 'Al registrarse en Proypet, acepta los ', // default text style
-                      children: <TextSpan>[
-                        TextSpan(text: 'Términos y Condiciones',
-                          style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () { 
-                              launch('https://proypet.com/terminos');
-                          },
-                        ),
-                        TextSpan(text: ' y ',style: TextStyle()),
-                        TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',
-                          style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
-                          recognizer: new TapGestureRecognizer()
-                              ..onTap = () { 
-                                launch('https://proypet.com/politicas');
-                            },
-                        )
-                      ],
+      body: FadeView(
+        child: Stack(
+          children: <Widget>[
+            Form(
+              key: formKey,
+              child: ListView(
+                children: <Widget>[
+                  WaveClipperOut(120.0),
+                  SizedBox(height: 10),
+                  Center(
+                    child: Text('Bienvenido a Proypet',
+                      style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)
                     ),
                   ),
-                ),
-                SizedBox(height: 25),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  child: buttonPri('Registrarse', btnBool ? _onSaved : null),
-                ),
-                SizedBox(height: 20.0),
-              ],
+                  Center(
+                    child: Text('Crear cuenta',
+                      style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: FormularioText(
+                      hintText: 'Nombre',
+                      icon: Icons.person,
+                      obscureText: false,
+                      onSaved: (value)=>user.name=value,
+                      textCap: TextCapitalization.words,
+                      valorInicial: null,
+                      boardType: TextInputType.text,
+                    )
+                    // textForm('Nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, null, TextInputType.text),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: FormularioText(
+                      hintText: 'Apellido',
+                      icon: Icons.person,
+                      obscureText: false,
+                      onSaved: (value)=>user.lastname=value,
+                      textCap: TextCapitalization.words,
+                      valorInicial: null,
+                      boardType: TextInputType.text,
+                    )
+                    // textForm('Apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, null, TextInputType.text),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: FormularioText(
+                      hintText: 'Email',
+                      icon: Icons.alternate_email,
+                      obscureText: false,
+                      onSaved: (value)=>user.email=value,
+                      textCap: TextCapitalization.none,
+                      valorInicial: null,
+                      boardType: TextInputType.text,
+                    )
+                    // textForm('Email', Icons.alternate_email, false, (value)=>user.email=value, TextCapitalization.none, null, TextInputType.text),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: FormularioText(
+                      hintText: 'Contraseña',
+                      icon: Icons.lock,
+                      obscureText: true,
+                      onSaved: (value)=>user.password=value,
+                      textCap: TextCapitalization.none,
+                      valorInicial: null,
+                      boardType: TextInputType.text,
+                    )
+                    // textForm('Contraseña', Icons.lock, true, (value)=>user.password=value, TextCapitalization.none, null, TextInputType.text),
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Text.rich(
+                      TextSpan(
+                        text: 'Al registrarse en Proypet, acepta los ', // default text style
+                        children: <TextSpan>[
+                          TextSpan(text: 'Términos y Condiciones',
+                            style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
+                            recognizer: new TapGestureRecognizer()
+                              ..onTap = () { 
+                                launch('https://proypet.com/terminos');
+                            },
+                          ),
+                          TextSpan(text: ' y ',style: TextStyle()),
+                          TextSpan(text: 'Políticas de Privacidad y Protección de Datos Personales.',
+                            style: TextStyle(color: colorBlue,fontWeight: FontWeight.bold),
+                            recognizer: new TapGestureRecognizer()
+                                ..onTap = () { 
+                                  launch('https://proypet.com/politicas');
+                              },
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                    child: buttonPri('Registrarse', btnBool ? _onSaved : null),
+                  ),
+                  SizedBox(height: 20.0),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              centerTitle: true,
-            ),
-          )
-        ],
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                centerTitle: true,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

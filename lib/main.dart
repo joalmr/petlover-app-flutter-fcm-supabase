@@ -60,8 +60,9 @@ class _MyAppState extends State<MyApp> {
         // cursorColor: colorMain,        
         backgroundColor: colorGray1,
         appBarTheme: AppBarTheme(
+          // elevation: 0,
           textTheme: TextTheme(
-            headline6: TextStyle( fontSize: 18.0 ),
+            headline6: TextStyle( fontSize: 18.0, ), //color: Colors.black54 
           ),
         ),
         dialogTheme: DialogTheme(
@@ -112,8 +113,9 @@ class _MyAppState extends State<MyApp> {
           foregroundColor: Colors.white
         ),
         appBarTheme: AppBarTheme(
+          // elevation: 0,
           textTheme: TextTheme(
-            headline6: TextStyle( fontSize: 18.0 ),
+            headline6: TextStyle( fontSize: 18.0, ), //color: Colors.white
           ),
         ),
         dialogBackgroundColor: colorDark3,

@@ -13,6 +13,7 @@ import 'package:proypet/src/shared/enddrawer/config_drawer.dart';
 import 'package:proypet/src/shared/form_control/button_primary.dart';
 import 'package:proypet/src/shared/navigation_bar.dart';
 import 'package:proypet/src/shared/snackbar.dart';
+import 'package:proypet/src/shared/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';
@@ -24,12 +25,15 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final loginProvider = UserProvider();
   final bookingProvider = BookingProvider();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
+
+  // AnimationController _controller;
+  // Animation _animation;
 
   Future<HomeModel> newFuture() => loginProvider.getUserSummary();
 
@@ -45,15 +49,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    // _controller = AnimationController(duration: const Duration(milliseconds: 1500), vsync: this);
+    // _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    // _controller.forward(); 
+
     fnGetPosition();
     _onRefresh();  
     
     super.initState();    
   }
 
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: ConfigDrawer(),
@@ -75,77 +88,85 @@ class _HomePageState extends State<HomePage> {
           else{ 
             if(snapshot.hasError){
               return errorInternet();
-            }           
-            return ListView(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              children: <Widget>[
-                SizedBox(height: 35.0,),
-                FadeIn(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            }
+            return FadeView(
+              child: Stack(
+                children: <Widget>[
+                  ListView(
+                    padding: EdgeInsets.only(top: 95, left: 20, right: 20),
                     children: <Widget>[
-                      Text(
-                        "Hola,",
-                        style: Theme.of(context).textTheme.headline4
-                            .copyWith(fontWeight: FontWeight.normal),
+                      SizedBox(height: 25.0,),
+                      _mascotas(mydata.pets),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text(' Servicios frecuentes', style: 
+                              Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
+                            ),
+                            SizedBox(height: 15.0),
+                            SingleChildScrollView(
+                              physics: BouncingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: <Widget>[
+                                  _emergencia(),
+                                  SizedBox(width: 15.0),
+                                  _banio(),                              
+                                  SizedBox(width: 15.0),
+                                  _vacuna(),
+                                  SizedBox(width: 15.0),
+                                  _desparasita(),                              
+                                  SizedBox(width: 15.0),
+                                  _consulta(),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text("Reservas", style: 
+                              Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
+                            ),
+                          ),
+                          Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(Icons.settings, color: Theme.of(context).textTheme.subtitle2.color,),
-                        onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
-                      )
+                      _atenciones(mydata.bookings,mydata.pets)
                     ],
                   ),
-                ),
-                FadeIn(child: _usuario(mydata.user)),
-                SizedBox(height: 25.0,),
-                FadeIn(child: _mascotas(mydata.pets)),
-                FadeIn(
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 25.0),
+                  Container(
+                    height: 95,
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(' Servicios frecuentes', style: 
-                          Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "Hola,",
+                              style: Theme.of(context).textTheme.headline4
+                                  .copyWith(fontWeight: FontWeight.normal),
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.settings, color: Theme.of(context).textTheme.subtitle2.color,),
+                              onPressed: ()=>_scaffoldKey.currentState.openEndDrawer()
+                            )
+                          ],
                         ),
-                        SizedBox(height: 15.0),
-                        SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: <Widget>[
-                              _emergencia(),
-                              SizedBox(width: 15.0),
-                              _banio(),                              
-                              SizedBox(width: 15.0),
-                              _vacuna(),
-                              SizedBox(width: 15.0),
-                              _desparasita(),                              
-                              SizedBox(width: 15.0),
-                              _consulta(),
-                            ],
-                          ),
-                        )
+                        _usuario(mydata.user),
                       ],
                     ),
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                FadeIn(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text("Reservas", style: 
-                          Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2,),
-                        ),
-                      ),
-                      Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
-                    ],
-                  ),
-                ),
-                FadeIn(child: _atenciones(mydata.bookings,mydata.pets)),
-              ],
+                  )
+                ],
+              ),
             );
           }
         },
