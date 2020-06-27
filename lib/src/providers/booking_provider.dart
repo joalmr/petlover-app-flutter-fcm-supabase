@@ -1,16 +1,17 @@
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
-import 'package:proypet/src/model/booking/booking_model.dart';
+import 'package:proypet/src/models/booking/booking_model.dart';
 
-class BookingProvider{
+class BookingProvider {
   final _url = urlGlobal;
 
-  Future<bool> booking(BookingModel booking, dynamic delivery, String direccion) async {
+  Future<bool> booking(
+      BookingModel booking, dynamic delivery, String direccion) async {
     final url = '$_url/bookings';
     var bodyData;
-    if(delivery!=null){
-      bodyData = { 
-        "booking_at": booking.bookingAt, 
+    if (delivery != null) {
+      bodyData = {
+        "booking_at": booking.bookingAt,
         "establishment_id": booking.establishmentId,
         "pet_id": booking.petId,
         "type_id": booking.typeId,
@@ -18,41 +19,38 @@ class BookingProvider{
         "delivery": delivery,
         "address": direccion,
       };
-    }
-    else{
-      bodyData = { 
-        "booking_at": booking.bookingAt, 
+    } else {
+      bodyData = {
+        "booking_at": booking.bookingAt,
         "establishment_id": booking.establishmentId,
         "pet_id": booking.petId,
         "type_id": booking.typeId,
         "observation": booking.observation,
       };
     }
-    
 
-    final resp = await http.post(url,headers: headersToken(),
-      body: bodyData
-    );
-    
+    final resp = await http.post(url, headers: headersToken(), body: bodyData);
+
     // print(resp.statusCode);
 
-    if(resp.statusCode==200 || resp.statusCode==201){
+    if (resp.statusCode == 200 || resp.statusCode == 201) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  
+
   Future<bool> deleteBooking(String idBooking) async {
     final url = '$_url/bookings/$idBooking/delete';
 
-    final resp = await http.post(url,headers: headersToken(),);
-    
-    if(resp.statusCode==200 || resp.statusCode==201){
+    final resp = await http.post(
+      url,
+      headers: headersToken(),
+    );
+
+    if (resp.statusCode == 200 || resp.statusCode == 201) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }

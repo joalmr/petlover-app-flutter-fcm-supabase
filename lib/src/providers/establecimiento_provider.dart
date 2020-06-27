@@ -1,33 +1,37 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:proypet/global_variables.dart';
-import 'package:proypet/src/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/model/establecimiento/lista_establecimiento_model.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/models/establecimiento/lista_establecimiento_model.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
-class EstablecimientoProvider{
+class EstablecimientoProvider {
   final _url = urlGlobal;
   final _prefs = new PreferenciasUsuario();
 
   //List<int> filtros
-  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async { //String latlng
+  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async {
+    //String latlng
     String lat = _prefs.position.toString().split(',')[0];
     String lng = _prefs.position.toString().split(',')[1];
     var filtroServicio;
-    if(filtros.length>0){
-      filtroServicio=filtros;
+    if (filtros.length > 0) {
+      filtroServicio = filtros;
+    } else {
+      filtroServicio = "";
     }
-    else{
-      filtroServicio="";
-    }
-    final url = '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
+    final url =
+        '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
-    final resp = await http.get(url,headers: headersToken(),);
+    final resp = await http.get(
+      url,
+      headers: headersToken(),
+    );
 
     final jsonResp = json.decode(resp.body);
-    EstablecimientoList vets =  EstablecimientoList.fromJson(jsonResp);
-    if(vets.establecimientos==null) return [];
-    
+    EstablecimientoList vets = EstablecimientoList.fromJson(jsonResp);
+    if (vets.establecimientos == null) return [];
+
     return vets.establecimientos;
   }
 
@@ -36,27 +40,21 @@ class EstablecimientoProvider{
     String lng = _prefs.position.toString().split(',')[1];
     final url = '$_url/establishments/$idVet?latitude=$lat&longitude=$lng';
 
-    final resp = await http.get(url,headers: headersToken(),
+    final resp = await http.get(
+      url,
+      headers: headersToken(),
     );
 
     print(resp.statusCode);
-    
-    if(resp.statusCode==200){
+
+    if (resp.statusCode == 200) {
       final jsonResp = json.decode(resp.body);
-      EstablecimientoModel vets =  EstablecimientoModel.fromJson(jsonResp["establishment"]);
-      
-      return{
-        'status':200,
-        'establishment':vets
-      };
+      EstablecimientoModel vets =
+          EstablecimientoModel.fromJson(jsonResp["establishment"]);
+
+      return {'status': 200, 'establishment': vets};
+    } else {
+      return {'status': 205, 'establishment': null};
     }
-    else{
-      return{
-        'status':205,
-        'establishment':null
-      };
-    }
-    
-    
   }
 }
