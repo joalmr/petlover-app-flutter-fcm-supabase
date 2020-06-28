@@ -140,10 +140,18 @@ class ConfigDrawer extends StatelessWidget {
               actions: <Widget>[
                 FlatButton(
                     onPressed: () => Navigator.pop(context),
-                    child: Text('Cancelar')),
+                    child: Text('Cancelar',
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle2
+                            .apply(fontWeightDelta: 2))),
                 FlatButton(
                     onPressed: () => _outToken(context),
-                    child: Text('Cerrar sesión')),
+                    child: Text('Cerrar sesión',
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle2
+                            .apply(fontWeightDelta: 2, color: colorRed))),
               ],
             ),
           );

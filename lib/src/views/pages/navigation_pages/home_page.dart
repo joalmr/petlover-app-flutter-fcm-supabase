@@ -306,23 +306,28 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Positioned(
                         bottom: 10.0,
                         right: 10.0,
-                        child: RaisedButton(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 12.0, horizontal: 15.0),
-                          color: Colors.black.withOpacity(0.15),
-                          onPressed: () => Navigator.pushNamed(
-                              context, 'detallemascota',
-                              arguments: mascotas[index].id),
-                          child: Text(
+                        child: buttonOutLine(
                             'Ver más',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(20.0),
-                              side: BorderSide(color: Colors.white)),
-                        ),
+                            () => Navigator.pushNamed(context, 'detallemascota',
+                                arguments: mascotas[index].id),
+                            colorGray1),
+                        //     RaisedButton(
+                        //   padding: EdgeInsets.symmetric(
+                        //       vertical: 12.0, horizontal: 15.0),
+                        //   color: Colors.black.withOpacity(0.15),
+                        //   onPressed: () => Navigator.pushNamed(
+                        //       context, 'detallemascota',
+                        //       arguments: mascotas[index].id),
+                        //   child: Text(
+                        //     'Ver más',
+                        //     style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontWeight: FontWeight.bold),
+                        //   ),
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: new BorderRadius.circular(20.0),
+                        //       side: BorderSide(color: Colors.white)),
+                        // ),
                       ),
                     ],
                   ),
@@ -401,13 +406,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       title: Text('Eliminar'),
                       content: Text('Seguro que desea eliminar esta reserva?'),
                       actions: <Widget>[
-                        FlatButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text('Cancelar')),
-                        FlatButton(
-                            onPressed: () =>
-                                _deleteBooking(atenciones[index].id),
-                            child: Text('Sí, eliminar'))
+                        buttonModal('Cancelar', () => Navigator.pop(context),
+                            Theme.of(context).textTheme.subtitle2.color),
+                        buttonModal(
+                            'Cancelar',
+                            () => _deleteBooking(atenciones[index].id),
+                            colorRed),
                       ],
                     ),
                   );

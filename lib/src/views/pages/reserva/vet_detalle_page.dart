@@ -121,8 +121,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
 
   Widget _onDetail(EstablecimientoModel localVet) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 0.0),
@@ -241,7 +243,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
               Tab(text: "General"),
               Tab(text: "Precios"),
               Tab(text: "Horarios"),
-              Tab(text: "Comentarios"),
+              // Tab(text: "Comentarios"),
             ],
           ),
           Expanded(
@@ -251,9 +253,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 ViewGeneral(localVet: localVet),
                 ViewPrecio(localVet: localVet),
                 ViewHorario(localVet: localVet),
-                ViewComentario(localVet: localVet),
-                // ViewComentario(localVet: localVet),
-                // ViewComentario(localVet: localVet),
                 // ViewComentario(localVet: localVet),
               ],
             ),
@@ -262,43 +261,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
       ),
     );
   }
-
-  // Widget _icoServicio(String icon, String nombre){
-  //   if(icon=="delivery"){
-  //     delivery=true;
-  //   }
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(horizontal: 8.5),
-  //     child: Column(
-  //       children: <Widget>[
-  //         SizedBox(height: 5,),
-  //         Container(
-  //           height: 32,
-  //           width: 32,
-  //           decoration: BoxDecoration(
-  //             borderRadius: BorderRadius.circular(5.0),
-  //             color: Colors.white,
-  //             boxShadow:[
-  //               BoxShadow(
-  //                 color: Colors.black.withOpacity(0.1),
-  //                 blurRadius: 3.0,
-  //                 spreadRadius: 2.0
-  //             )],
-  //           ),
-  //           child: Padding(
-  //             padding: const EdgeInsets.all(5.0),
-  //             child: Tooltip(
-  //               child: Icon(iconMap[icon], color: Colors.black54,),
-  //               message: nombre,
-  //             ),
-  //           )
-  //         ),
-  //         SizedBox(height: 5),
-  //         Text((nombre.length>9) ? '${nombre.substring(0,9)}..' : nombre ,style: TextStyle(fontWeight: FontWeight.w300,fontSize: 8.0),)
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Widget _swiperVets(imagen, bool urlBool) {
     return CardSwiper(

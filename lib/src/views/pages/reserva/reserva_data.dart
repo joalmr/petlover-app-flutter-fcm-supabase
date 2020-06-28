@@ -188,7 +188,7 @@ class _Data extends State<DataReserva> {
   Widget _onFuture() {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -291,13 +291,15 @@ class _Data extends State<DataReserva> {
             ),
             buttonPri(
                 'Confirmar reserva', clickReservar ? reservaDialog : null),
-            SizedBox(height: 5.0),
-            FlatButton(
-              child: new Text("Cancelar", style: TextStyle(color: colorMain)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
+            SizedBox(height: 7.5),
+            buttonFlat(
+                "Cancelar", () => Navigator.of(context).pop(), colorMain),
+            // FlatButton(
+            //   child: new Text("Cancelar", style: TextStyle(color: colorMain)),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //   },
+            // ),
           ],
         ),
       ),

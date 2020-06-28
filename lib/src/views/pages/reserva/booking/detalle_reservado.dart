@@ -178,21 +178,8 @@ class DetalleReservado extends StatelessWidget {
                   height: 20.0,
                 ),
                 Center(
-                  child: buttonOutLine("Eliminar reserva",
-                      () => _alertaEliminar(arg.id, context), colorRed),
-                  // OutlineButton(
-                  //   onPressed: ()=>_alertaEliminar(arg.id,context),
-                  //   child: Text("Eliminar reserva",style: TextStyle(
-                  //     fontSize: sizeH4,
-                  //     fontWeight: FontWeight.w700
-                  //   ),),
-                  //   shape: shape10,
-                  //   color: colorRed,
-                  //   textColor: colorRed,
-                  //   highlightedBorderColor: colorRed,
-                  //   padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 10.0),
-                  // )
-                ),
+                    child: buttonOutLine("Eliminar reserva",
+                        () => _alertaEliminar(arg.id, context), colorRed)),
                 SizedBox(
                   height: 10.0,
                 ),
@@ -214,12 +201,17 @@ class DetalleReservado extends StatelessWidget {
               title: Text('Eliminar'),
               content: Text('Seguro que desea eliminar esta reserva?'),
               actions: <Widget>[
-                FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('Cancelar')),
-                FlatButton(
-                    onPressed: () => _deleteBooking(id, context),
-                    child: Text('Sí, eliminar'))
+                buttonModal('Cancelar', () => Navigator.pop(context),
+                    Theme.of(context).textTheme.subtitle2.color),
+                buttonModal('Sí, eliminar', () => _deleteBooking(id, context),
+                    colorRed),
+                // FlatButton(
+                //     onPressed: () => Navigator.pop(context),
+                //     child: Text('Cancelar',
+                //         style: Theme.of(context)
+                //             .textTheme
+                //             .subtitle2
+                //             .apply(fontWeightDelta: 2))),
               ],
             ),
           );

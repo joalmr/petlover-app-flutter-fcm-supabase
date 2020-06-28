@@ -124,21 +124,28 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                       actions: <Widget>[
                         FlatButton(
                             onPressed: () => Navigator.pop(context),
-                            child: Text('Cancelar')),
+                            child: Text('Cancelar',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2
+                                    .apply(fontWeightDelta: 2))),
                         FlatButton(
                             onPressed: () async {
                               bool resp =
                                   await mascotaProvider.deletePet(mascota.id);
                               if (resp) {
-                                // Navigator.of(context).popUntil((route) => route.isFirst);
-                                // Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
                                 Navigator.pushNamedAndRemoveUntil(
                                     context, '/navInicio', (route) => false);
                               } else {
                                 Navigator.pop(context);
                               }
                             },
-                            child: Text('Sí, eliminar'))
+                            child: Text('Sí, eliminar',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle2
+                                    .apply(
+                                        fontWeightDelta: 2, color: colorRed))),
                       ],
                     ),
                   );
@@ -158,7 +165,12 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         content: Text('Lamentamos la perdida de tu ser querido.'),
         actions: <Widget>[
           FlatButton(
-              onPressed: () => Navigator.pop(context), child: Text('Cancelar')),
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancelar',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .apply(fontWeightDelta: 2))),
           FlatButton(
               onPressed: () async {
                 mascota.status = 0;
@@ -172,12 +184,11 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                   Navigator.pop(context);
                 }
               },
-              child: Text(
-                'Falleció mi mascota',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).textTheme.subtitle2.color),
-              ))
+              child: Text('Falleció mi mascota',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .apply(fontWeightDelta: 2, color: colorRed))),
         ],
       ),
     );
@@ -192,7 +203,12 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         content: Text('Cometiste un error?'),
         actions: <Widget>[
           FlatButton(
-              onPressed: () => Navigator.pop(context), child: Text('Cancelar')),
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancelar',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .apply(fontWeightDelta: 2))),
           FlatButton(
               onPressed: () async {
                 mascota.status = 1;
@@ -204,10 +220,11 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                   Navigator.pop(context);
                 }
               },
-              child: Text(
-                'Sí, cometí un error',
-                style: TextStyle(fontWeight: FontWeight.bold, color: colorMain),
-              ))
+              child: Text('Sí, cometí un error',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .apply(fontWeightDelta: 2, color: colorMain))),
         ],
       ),
     );

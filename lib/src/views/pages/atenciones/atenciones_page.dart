@@ -162,16 +162,18 @@ class _AtencionesPageState extends State<AtencionesPage> {
                   children: <Widget>[
                     FlatButton(
                         onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          'Cancelar',
-                          style: TextStyle(color: colorMain),
-                        )),
+                        child: Text('Cancelar',
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle2
+                                .apply(fontWeightDelta: 2))),
                     FlatButton(
                         onPressed: () => _onRate(atencion),
-                        child: Text(
-                          'Calificar',
-                          style: TextStyle(color: colorMain),
-                        )),
+                        child: Text('Calificar',
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle2
+                                .apply(fontWeightDelta: 2, color: colorMain))),
                   ],
                 ),
               ],
