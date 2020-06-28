@@ -34,8 +34,7 @@ Widget buildNoti(Notificacion noti, funcion) {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Image(
-                    image: AssetImage(
-                        'images/noti1.jpg'), //CachedNetworkImageProvider(noti.petPicture),
+                    image: CachedNetworkImageProvider(noti.notificationImg),
                     height: 200,
                     width: double.infinity,
                     fit: BoxFit.cover,

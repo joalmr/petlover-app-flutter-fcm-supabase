@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
 
-Widget buildPushNoti(context, noti){
+Widget buildPushNoti(context, noti) {
   return Container(
     child: Column(
       children: <Widget>[
@@ -18,18 +18,21 @@ Widget buildPushNoti(context, noti){
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('${noti['message']} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
-              )
-            ),
+                child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  '${noti['message']} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
+            )),
           ],
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           child: Image(
-            image: CachedNetworkImageProvider(noti['actImage']),
+            image: CachedNetworkImageProvider(noti[
+                'actImage']), //TODO: cambiar por la imagen que vendra en el push "notification_image"
             height: 140,
             width: double.maxFinite,
             fit: BoxFit.cover,
@@ -40,8 +43,8 @@ Widget buildPushNoti(context, noti){
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             FlatButton(
-                child: Text('Ok'),
-                onPressed: () => Navigator.of(context).pop(),
+              child: Text('Ok'),
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ],
         ),
