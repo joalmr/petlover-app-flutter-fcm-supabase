@@ -114,46 +114,46 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
             onTap: () => showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return FadeIn(
-                    child: AlertDialog(
-                      backgroundColor: Theme.of(context).backgroundColor,
-                      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                      title: Text('Eliminar'),
-                      content:
-                          Text('Seguro que desea eliminar a ${mascota.name}?'),
-                      actions: <Widget>[
-                        FlatButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text('Cancelar',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2
-                                    .apply(fontWeightDelta: 2))),
-                        FlatButton(
-                            onPressed: () async {
-                              bool resp =
-                                  await mascotaProvider.deletePet(mascota.id);
-                              if (resp) {
-                                return Navigator.of(context)
-                                    .pushNamedAndRemoveUntil('/navInicio',
-                                        ModalRoute.withName('/navInicio'));
-                                // Navigator.pushNamedAndRemoveUntil(
-                                //     context, '/navInicio', (route) => false);
-                              } else {
-                                return Navigator.pop(context);
-                              }
-                            },
-                            child: Text('Sí, eliminar',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2
-                                    .apply(
-                                        fontWeightDelta: 2, color: colorRed))),
-                      ],
-                    ),
-                  );
+                  return _eliminar();
                 }))
       ],
+    );
+  }
+
+/////////////////////////////////////////////////
+  _eliminar() {
+    return FadeIn(
+      child: AlertDialog(
+        backgroundColor: Theme.of(context).backgroundColor,
+        title: Text('Eliminar'),
+        content: Text('Seguro que desea eliminar a ${mascota.name}?'),
+        actions: <Widget>[
+          FlatButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancelar',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .apply(fontWeightDelta: 2))),
+          FlatButton(
+              onPressed: () async {
+                bool resp = await mascotaProvider.deletePet(mascota.id);
+                if (resp) {
+                  return Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/navInicio', ModalRoute.withName('/navInicio'));
+                  // Navigator.pushNamedAndRemoveUntil(
+                  //     context, '/navInicio', (route) => false);
+                } else {
+                  return Navigator.pop(context);
+                }
+              },
+              child: Text('Sí, eliminar',
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .apply(fontWeightDelta: 2, color: colorRed))),
+        ],
+      ),
     );
   }
 
@@ -161,8 +161,6 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   _fallecido() {
     return FadeIn(
       child: AlertDialog(
-        // backgroundColor: Theme.of(context).backgroundColor,
-        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
         title: null, //Text('Fallecido'),
         content: Text('Lamentamos la perdida de tu ser querido.'),
