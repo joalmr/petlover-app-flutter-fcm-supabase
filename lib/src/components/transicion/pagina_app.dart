@@ -9,11 +9,25 @@ class FadeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: FadeIn(
-        delay: Duration(milliseconds: 75),
-        duration: Duration(seconds: 1),
-        child: child,
-      )
+        child: FadeIn(
+      delay: Duration(milliseconds: 75),
+      duration: Duration(seconds: 1),
+      child: child,
+    ));
+  }
+}
+
+class FadeView2 extends StatelessWidget {
+  // const Pagina({Key key}) : super(key: key);
+  final Widget child;
+  FadeView2({@required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeIn(
+      delay: Duration(milliseconds: 75),
+      duration: Duration(seconds: 1),
+      child: child,
     );
   }
 }

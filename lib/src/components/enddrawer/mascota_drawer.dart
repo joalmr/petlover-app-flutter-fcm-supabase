@@ -134,10 +134,13 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
                               bool resp =
                                   await mascotaProvider.deletePet(mascota.id);
                               if (resp) {
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, '/navInicio', (route) => false);
+                                return Navigator.of(context)
+                                    .pushNamedAndRemoveUntil('/navInicio',
+                                        ModalRoute.withName('/navInicio'));
+                                // Navigator.pushNamedAndRemoveUntil(
+                                //     context, '/navInicio', (route) => false);
                               } else {
-                                Navigator.pop(context);
+                                return Navigator.pop(context);
                               }
                             },
                             child: Text('Sí, eliminar',

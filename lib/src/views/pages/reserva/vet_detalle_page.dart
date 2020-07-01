@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_comentario.dart';
+// import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_comentario.dart';
 import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_general.dart';
 import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_horario.dart';
 import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_precio.dart';
@@ -62,7 +62,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        body: FadeView(
+        body: FadeView2(
           child: _onStack(vet),
         ));
   }

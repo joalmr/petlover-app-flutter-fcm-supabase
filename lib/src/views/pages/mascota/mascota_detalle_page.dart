@@ -38,7 +38,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           PetModel mascota = snapshot.data;
           return Scaffold(
             key: _scaffoldKey,
-            body: FadeView(
+            body: FadeView2(
               child: onDetail(mascota),
             ),
             endDrawer: MascotaDrawer(

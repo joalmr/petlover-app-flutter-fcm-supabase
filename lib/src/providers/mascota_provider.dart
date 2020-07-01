@@ -53,8 +53,6 @@ class MascotaProvider {
     //create
     final url = '$_url/pets';
 
-    // int intMascota=0;
-    // if(mascota.genre) intMascota=1;
     final data = {
       'name': mascota.name,
       'birthdate': mascota.birthdate, //datetime
@@ -74,7 +72,10 @@ class MascotaProvider {
       final idkey = decodedResp['pet']['id'];
       final urlpet = '$_url/pets/$idkey/base64';
 
-      String petImg = await upImage(imagen, urlpet);
+      String petImg = "$urlDir/img/favicon.png";
+      if (imagen != null) {
+        petImg = await upImage(imagen, urlpet);
+      }
       // return true;
       return {'ok': true, 'petImg': petImg};
     } else

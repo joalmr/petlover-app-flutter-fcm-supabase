@@ -79,7 +79,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   @override
   Widget build(BuildContext context) {
     mascotaData.specieId = int.tryParse(datoPet);
-
+    mascotaData.breedId = int.tryParse(opcRaza.split("|")[0]);
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(
@@ -159,12 +159,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                           valorInicial: null,
                           boardType: TextInputType.text,
                         ),
-                        // textForm('Nombre de mascota',
-                        //   Icons.pets, false,
-                        //   (value)=>mascotaData.name=value,
-                        //   TextCapitalization.words,
-                        //   null,
-                        //   TextInputType.text),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -359,31 +353,31 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         formKey.currentState.save();
         btnBool = false;
       });
-
-      if (mascotaData.name.trim() == '') {
-        mostrarSnackbar('Ingrese nombre de la mascota.', colorRed, scaffoldKey);
+      if (mascotaData.name.trim() == '' || mascotaData.birthdate.trim() == '') {
+        if (mascotaData.name.trim() == '' &&
+            mascotaData.birthdate.trim() != '') {
+          mostrarSnackbar(
+              'Ingrese nombre de la mascota.', colorRed, scaffoldKey);
+        } else if (mascotaData.birthdate.trim() == '' &&
+            mascotaData.name.trim() != '') {
+          mostrarSnackbar(
+              'Ingrese nacimiento de la mascota.', colorRed, scaffoldKey);
+        } else {
+          mostrarSnackbar(
+              'Ingrese datos de la mascota.', colorRed, scaffoldKey);
+        }
+        //
         Timer(Duration(milliseconds: 1500), () {
           setState(() {
             btnBool = true;
           });
         });
+        //
       } else {
-        if (mascotaData.birthdate.trim() == '')
-          setState(() {
-            mostrarSnackbar(
-                'Ingrese nacimiento de la mascota.', colorRed, scaffoldKey);
-            Timer(Duration(milliseconds: 1500), () {
-              setState(() {
-                btnBool = true;
-              });
-            });
-          });
-        else {
-          mascotaData.genre = int.tryParse(sexo);
-          // print(foto);
-          Map resp = await mascotaProvider.savePet(mascotaData, foto);
-          boolSave(resp);
-        }
+        mascotaData.genre = int.tryParse(sexo);
+        // print(foto);
+        Map resp = await mascotaProvider.savePet(mascotaData, foto);
+        boolSave(resp);
       }
     } catch (e) {
       setState(() {
@@ -398,8 +392,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   boolSave(resp) {
+    print(resp); //
     if (resp['ok']) {
-      return Navigator.push(
+      Navigator.push(
           context,
           MaterialPageRoute(
               builder: (_) => ThxPage(
