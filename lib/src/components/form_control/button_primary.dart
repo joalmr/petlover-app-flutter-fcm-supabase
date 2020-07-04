@@ -4,17 +4,20 @@ import 'package:proypet/src/styles/styles.dart';
 final _textstyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
 
 Widget buttonPri(_text, _funtion) {
-  return RaisedButton(
-    shape: shape20,
-    color: colorMain,
-    elevation: 2.0,
-    textColor: Colors.white,
-    child: Text(
-      _text,
-      style: _textstyle,
+  return SizedBox(
+    width: double.maxFinite,
+    child: RaisedButton(
+      shape: shape20,
+      color: colorMain,
+      elevation: 2.0,
+      textColor: Colors.white,
+      child: Text(
+        _text,
+        style: _textstyle,
+      ),
+      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+      onPressed: _funtion,
     ),
-    padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-    onPressed: _funtion,
   );
 }
 

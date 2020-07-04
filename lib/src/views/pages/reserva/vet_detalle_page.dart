@@ -94,13 +94,13 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     SizedBox(
                       height: 5,
                     ),
                     buttonPri(
-                        'Reservar servicio', reservarClic ? _reservar : null)
+                        'Reservar servicio', reservarClic ? _reservar : null),
                   ],
                 ))),
 
