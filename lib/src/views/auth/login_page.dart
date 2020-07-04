@@ -39,7 +39,7 @@ class _LoginSevenPageState extends State<LoginPage> {
               WaveClipper(300.0, 180.0),
               SizedBox(height: 50.0),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: FormularioText(
                     hintText: 'Email',
                     icon: Icons.alternate_email,
@@ -51,7 +51,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                   )),
               SizedBox(height: 20),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: FormularioText(
                     hintText: 'Contraseña',
                     icon: Icons.lock,
@@ -63,7 +63,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                   )),
               SizedBox(height: 25.0),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: buttonPri('Iniciar sesión', _onToken),
               ),
               SizedBox(height: 20.0),

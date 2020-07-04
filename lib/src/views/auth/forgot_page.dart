@@ -50,12 +50,12 @@ class _ForgotPageState extends State<ForgotPage> {
                   ),
                   SizedBox(height: 10.0),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                           'Ingresa tu dirección de correo electrónico para reestablecer contraseña')),
                   SizedBox(height: 20.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: FormularioText(
                       hintText: 'Email',
                       icon: Icons.alternate_email,
@@ -69,7 +69,7 @@ class _ForgotPageState extends State<ForgotPage> {
                   ),
                   SizedBox(height: 30.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: buttonPri('Enviar correo electrónico',
                         enviarClic ? _forgot : null),
                   ),

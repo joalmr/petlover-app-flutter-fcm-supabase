@@ -60,7 +60,7 @@ class _SingupPageState extends State<SingupPage> {
                   ),
                   SizedBox(height: 20),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: FormularioText(
                         hintText: 'Nombre',
                         icon: Icons.person,
@@ -74,7 +74,7 @@ class _SingupPageState extends State<SingupPage> {
                       ),
                   SizedBox(height: 20),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: FormularioText(
                         hintText: 'Apellido',
                         icon: Icons.person,
@@ -88,7 +88,7 @@ class _SingupPageState extends State<SingupPage> {
                       ),
                   SizedBox(height: 20),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: FormularioText(
                         hintText: 'Email',
                         icon: Icons.alternate_email,
@@ -102,7 +102,7 @@ class _SingupPageState extends State<SingupPage> {
                       ),
                   SizedBox(height: 20),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: FormularioText(
                         hintText: 'Contraseña',
                         icon: Icons.lock,
@@ -116,7 +116,7 @@ class _SingupPageState extends State<SingupPage> {
                       ),
                   SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text.rich(
                       TextSpan(
                         text:
@@ -148,7 +148,7 @@ class _SingupPageState extends State<SingupPage> {
                   ),
                   SizedBox(height: 25),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: buttonPri('Registrarse', btnBool ? _onSaved : null),
                   ),
                   SizedBox(height: 20.0),
