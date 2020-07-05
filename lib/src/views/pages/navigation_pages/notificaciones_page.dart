@@ -80,60 +80,79 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
           }
 
           List<Notificacion> notification = snapshot.data.notifications;
-          if (notification.length < 1) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Text("No tiene notificaciones"),
+          return Column(
+            children: <Widget>[
+              Container(
+                height: 355,
+                child: (notification.length < 1)
+                    ? Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                        child: Card(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                child: Image(
+                                  image: AssetImage(
+                                      'images/proypetip/noti-img.png'),
+                                  height: 220,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Expanded(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text("No tienes notificaciones"),
+                              ))
+                            ],
+                          ),
+                        ),
+                      )
+                    : Swiper(
+                        itemCount: notification.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _notificacionCase(notification[index]);
+                          //buildNoti(notification[index]);
+                        },
+                        viewportFraction: 1,
+                        scale: 1,
+                        loop: false,
+                        physics: BouncingScrollPhysics(),
+                        pagination: new SwiperPagination(
+                            margin: new EdgeInsets.only(top: 15.0),
+                            builder: new DotSwiperPaginationBuilder(
+                                activeColor: colorMain,
+                                color: Theme.of(context).backgroundColor,
+                                activeSize: 8.0,
+                                size: 6.0)),
+                      ),
               ),
-            );
-          } else {
-            return Column(
-              children: <Widget>[
-                Container(
-                  height: 355,
-                  child: Swiper(
-                    itemCount: notification.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _notificacionCase(notification[index]);
-                      //buildNoti(notification[index]);
-                    },
-                    viewportFraction: 1,
-                    scale: 1,
-                    loop: false,
-                    physics: BouncingScrollPhysics(),
-                    pagination: new SwiperPagination(
-                        margin: new EdgeInsets.only(top: 15.0),
-                        builder: new DotSwiperPaginationBuilder(
-                            activeColor: colorMain,
-                            color: Theme.of(context).backgroundColor,
-                            activeSize: 8.0,
-                            size: 6.0)),
-                  ),
+              Container(
+                height: 320,
+                child: Swiper(
+                  itemCount: tipList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return buildTip(context, tipList[index]);
+                  },
+                  viewportFraction: 1,
+                  scale: 1,
+                  loop: false,
+                  physics: BouncingScrollPhysics(),
+                  pagination: new SwiperPagination(
+                      margin: new EdgeInsets.only(top: 15.0),
+                      builder: new DotSwiperPaginationBuilder(
+                          activeColor: colorMain,
+                          color: Theme.of(context).backgroundColor,
+                          activeSize: 8.0,
+                          size: 6.0)),
                 ),
-                Container(
-                  height: 320,
-                  child: Swiper(
-                    itemCount: tipList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildTip(context, tipList[index]);
-                    },
-                    viewportFraction: 1,
-                    scale: 1,
-                    loop: false,
-                    physics: BouncingScrollPhysics(),
-                    pagination: new SwiperPagination(
-                        margin: new EdgeInsets.only(top: 15.0),
-                        builder: new DotSwiperPaginationBuilder(
-                            activeColor: colorMain,
-                            color: Theme.of(context).backgroundColor,
-                            activeSize: 8.0,
-                            size: 6.0)),
-                  ),
-                ),
-              ],
-            );
-          }
+              ),
+            ],
+          );
         }
       },
     );

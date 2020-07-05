@@ -364,10 +364,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             SizedBox(
               height: 10.0,
             ),
-            buttonPri(
-              'Agregar mascota',
-              () => Navigator.pushNamed(context, 'agregarmascota'),
-            ),
+            buttonOutLine(
+                'Agregar mascota',
+                () => Navigator.pushNamed(context, 'agregarmascota'),
+                colorMain),
           ],
         ),
       );
@@ -494,14 +494,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             SizedBox(
               height: 10.0,
             ),
-            buttonPri(
-              'Reservar',
-              () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => NavigationBar(currentTabIndex: 2),
-                  )),
-            )
+            buttonOutLine(
+                'Reservar',
+                () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => NavigationBar(currentTabIndex: 2))),
+                colorMain)
           ],
         ),
       );
@@ -519,10 +518,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             SizedBox(
               height: 10.0,
             ),
-            buttonPri(
-              'Agregar mascota',
-              () => Navigator.pushNamed(context, 'agregarmascota'),
-            ),
+            buttonOutLine(
+                'Agregar mascota',
+                () => Navigator.pushNamed(context, 'agregarmascota'),
+                colorMain),
           ],
         ),
       );
