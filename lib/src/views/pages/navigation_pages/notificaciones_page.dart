@@ -97,8 +97,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 child: Image(
-                                  image: AssetImage(
-                                      'images/proypetip/noti-img.png'),
+                                  image: AssetImage('images/noti-img.png'),
                                   height: 220,
                                   fit: BoxFit.cover,
                                 ),
