@@ -12,7 +12,7 @@ Widget buildPushNoti(context, noti) {
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               child: Image(
-                image: CachedNetworkImageProvider(noti['petPicture']),
+                image: CachedNetworkImageProvider(noti['pet_picture']),
                 height: 50,
                 fit: BoxFit.cover,
               ),
