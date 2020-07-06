@@ -247,7 +247,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
             ],
           ),
           Expanded(
-            // TODO: hacer lo de indicar delivery de una mejor forma
             child: TabBarView(
               children: <Widget>[
                 ViewGeneral(localVet: localVet),

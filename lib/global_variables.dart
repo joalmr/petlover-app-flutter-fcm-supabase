@@ -10,9 +10,11 @@ final String urlPro = 'https://proypet.com';
 final String urlPruebas = '$urlDev/api';
 final String urlProduccion = '$urlPro/api';
 
-final String urlDir = urlPruebas.split('/api')[0]; // TODO: cambiar servicio
+final String urlDir =
+    urlProduccion.split('/api')[0]; // TODO: cambiar servicio para produccion
 
-final String urlGlobal = urlPruebas; // TODO: cambiar servicio
+final String urlGlobal =
+    urlProduccion; // TODO: cambiar servicio para produccion
 
 final _prefs = new PreferenciasUsuario();
 
