@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icon_proypet_icons.dart';
-import 'package:proypet/src/components/appbar_menu.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/appbar_menu.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class HistoriaPage extends StatelessWidget {

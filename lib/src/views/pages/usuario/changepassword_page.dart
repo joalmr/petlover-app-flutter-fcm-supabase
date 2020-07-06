@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-import 'package:proypet/src/components/appbar_menu.dart';
-import 'package:proypet/src/components/form_control/button_primary.dart';
-import 'package:proypet/src/components/form_control/text_from.dart';
-import 'package:proypet/src/components/snackbar.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/appbar_menu.dart';
+import 'package:proypet/src/views/components/form_control/button_primary.dart';
+import 'package:proypet/src/views/components/form_control/text_from.dart';
+import 'package:proypet/src/views/components/snackbar.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class ChangePasswordPage extends StatefulWidget {

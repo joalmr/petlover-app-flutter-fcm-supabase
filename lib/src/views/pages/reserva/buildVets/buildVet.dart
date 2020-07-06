@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/views/pages/reserva/vet_detalle_page.dart';
-import 'package:proypet/src/components/card_swiper.dart';
+import 'package:proypet/src/views/components/card_swiper.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 Widget buildVets(BuildContext context, EstablecimientoModel vetLocales) {

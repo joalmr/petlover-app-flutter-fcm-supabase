@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
-import 'package:proypet/src/components/appbar_menu.dart';
-import 'package:proypet/src/components/form_control/button_primary.dart';
-import 'package:proypet/src/components/snackbar.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/appbar_menu.dart';
+import 'package:proypet/src/views/components/form_control/button_primary.dart';
+import 'package:proypet/src/views/components/snackbar.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -11,13 +11,13 @@ import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/raza/raza_model.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/raza_provider.dart';
-import 'package:proypet/src/components/appbar_menu.dart';
-// import 'package:proypet/src/components/ddl_control.dart';
-import 'package:proypet/src/components/form_control/button_primary.dart';
-import 'package:proypet/src/components/form_control/ddl_control.dart';
-import 'package:proypet/src/components/form_control/text_from.dart';
-import 'package:proypet/src/components/snackbar.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/appbar_menu.dart';
+// import 'package:proypet/src/views/components/ddl_control.dart';
+import 'package:proypet/src/views/components/form_control/button_primary.dart';
+import 'package:proypet/src/views/components/form_control/ddl_control.dart';
+import 'package:proypet/src/views/components/form_control/text_from.dart';
+import 'package:proypet/src/views/components/snackbar.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 
 import 'package:proypet/src/styles/styles.dart';
 

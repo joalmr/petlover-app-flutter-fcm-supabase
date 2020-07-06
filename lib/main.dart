@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
-import 'package:proypet/src/components/navigation_bar.dart';
+import 'package:proypet/src/views/components/navigation_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:proypet/src/styles/styles.dart';
 

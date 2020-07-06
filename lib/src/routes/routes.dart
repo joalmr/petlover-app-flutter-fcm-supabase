@@ -7,7 +7,7 @@ import 'package:proypet/src/views/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/views/pages/mascota/mascota_detalle_page.dart';
 import 'package:proypet/src/views/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/views/pages/reserva/booking/detalle_reservado.dart';
-import 'package:proypet/src/components/navigation_bar.dart';
+import 'package:proypet/src/views/components/navigation_bar.dart';
 
 Map<String, WidgetBuilder> getRoutes() {
   return <String, WidgetBuilder>{

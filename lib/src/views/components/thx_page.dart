@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/components/form_control/button_primary.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/form_control/button_primary.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class ThxPage extends StatelessWidget {

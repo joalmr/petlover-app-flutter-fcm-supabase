@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/destacado/destacado_model.dart';
 import 'package:proypet/src/providers/destacado_provider.dart';
-import 'package:proypet/src/components/appbar_menu.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/appbar_menu.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class DestacadosPage extends StatefulWidget {

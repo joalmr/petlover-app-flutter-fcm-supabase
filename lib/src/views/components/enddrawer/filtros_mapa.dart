@@ -3,7 +3,7 @@ import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/components/form_control/button_primary.dart';
+import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';

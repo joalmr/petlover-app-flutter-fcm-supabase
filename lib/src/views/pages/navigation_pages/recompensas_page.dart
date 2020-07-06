@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/models/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
-import 'package:proypet/src/components/appbar_menu.dart';
-import 'package:proypet/src/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/appbar_menu.dart';
+import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 
