@@ -42,14 +42,7 @@ Widget buildNoti(Notificacion noti, funcion) {
                           height: 200,
                           width: double.maxFinite,
                           child: Center(child: CircularProgressIndicator())),
-                    )
-                    // Image(
-                    //   image: CachedNetworkImageProvider(noti.notificationImg, ),
-                    //   height: 200,
-                    //   width: double.infinity,
-                    //   fit: BoxFit.cover,
-                    // ),
-                    ),
+                    )),
               ),
             ],
           ),

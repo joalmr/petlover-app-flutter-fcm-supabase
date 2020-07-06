@@ -32,7 +32,7 @@ Widget buildPushNoti(context, noti) {
           borderRadius: BorderRadius.all(Radius.circular(5)),
           child: Image(
             image: CachedNetworkImageProvider(noti[
-                'actImage']), //TODO: cambiar por la imagen que vendra en el push "notification_image"
+                'notification_image']), //TODO: cambiar por la imagen que vendra en el push "notification_image"
             height: 140,
             width: double.maxFinite,
             fit: BoxFit.cover,
