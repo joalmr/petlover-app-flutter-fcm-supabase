@@ -1,4 +1,5 @@
 // import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/views/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/home_page.dart';
@@ -6,11 +7,16 @@ import 'package:proypet/src/views/pages/navigation_pages/notificaciones_page.dar
 import 'package:proypet/src/views/pages/navigation_pages/recompensas_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/reserva_list.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/views/pages/notificaciones/buildPushNoti.dart';
+import 'package:proypet/src/views/pages/notificaciones/buildPushQualify.dart';
 
-// FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
+FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
+
+// final scaffoldKey = GlobalKey<ScaffoldState>();
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
+
   // final int marcar;
   NavigationBar({
     @required this.currentTabIndex,
@@ -25,45 +31,34 @@ class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
   _NavigationBarState({
     @required this.currentTabIndex,
-  }); //TODO: firebase
-  // @override
-  // void initState() {
-  //   super.initState();
+  });
 
-  //   _firebaseMessaging.requestNotificationPermissions();
+  //TODO: firebase
+  @override
+  void initState() {
+    super.initState();
+    _firebaseMessaging.requestNotificationPermissions();
+    _firebaseMessaging.getToken().then((token) {
+      //los tokens a agregar en la bd deben ser un arreglo de tokens
+      print("======== token ========");
+      print(token);
+    });
 
-  //   _firebaseMessaging.getToken().then((token) {
-  //     //los tokens a agregar en la bd deben ser un arreglo de tokens
-  //     print("======== token ========");
-  //     print(token);
-  //   });
-
-  //   _firebaseMessaging.configure(
-
-  //     onMessage: (Map<String, dynamic> message) async {
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) => SimpleDialog(
-  //           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-  //           children: <Widget>[
-  //             buildPushNoti(context,message['data']),
-  //           ],
-  //         ),
-  //       );
-  //     },
-
-  //     onLaunch: ( info ) async {
-  //       print('======== onLaunch ========');
-  //       print(info);
-  //     },
-
-  //     onResume: ( info ) async {
-  //       print('======== onResume ========');
-  //       print(info);
-  //     }
-
-  //   );
-  // }
+    _firebaseMessaging.configure(
+        onMessage: (Map<String, dynamic> message) async {
+      onPush(message);
+    }, onLaunch: (Map<String, dynamic> message) async {
+      // print(message);
+      print('======== onLaunch ========');
+      if (message.isNotEmpty) onPush(message);
+      message = null;
+    }, onResume: (Map<String, dynamic> message) async {
+      // print(message);
+      print('======== onResume ========');
+      if (message.isNotEmpty) onPush(message);
+      message = null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +113,44 @@ class _NavigationBarState extends State<NavigationBar> {
     );
 
     return Scaffold(
+      // key: scaffoldKey,
       body: _kTabPages[currentTabIndex],
       bottomNavigationBar: bottomNavBar,
     );
+  }
+
+  onPush(message) {
+    // switch (message['data']['type']) {
+    //   case "qualify":
+    //     return;
+    //     break;
+    //   default:
+    //     return;
+    //     break;
+    // }
+
+    if (message['data']['type'] == "qualify") {
+      showDialog(
+        context: context,
+        builder: (context) => SimpleDialog(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          children: <Widget>[
+            BuildPushQualify(noti: message['data'])
+            // buildPushQualify(context, message['data']),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => SimpleDialog(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          children: <Widget>[
+            BuildPushNoti(noti: message['data'])
+            // buildPushNoti(context, message['data']),
+          ],
+        ),
+      );
+    }
   }
 }
