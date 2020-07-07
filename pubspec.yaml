@@ -64,8 +64,8 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "images/icon/proypet-c.png"
-  adaptive_icon_background: "images/icon/proypet-c.png"
+  image_path: "images/icon/proypet-cr.png"
+  adaptive_icon_background: "images/icon/proypet-cr.png"
 
 
 # For information on the generic Dart part of this file, see the
