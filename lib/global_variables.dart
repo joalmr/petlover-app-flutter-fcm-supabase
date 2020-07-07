@@ -9,12 +9,12 @@ final String urlPro = 'https://proypet.com';
 
 final String urlPruebas = '$urlDev/api';
 final String urlProduccion = '$urlPro/api';
-//TODO: revisar siempre
-final String urlDir =
-    urlProduccion.split('/api')[0]; // TODO: cambiar servicio para produccion
 
-final String urlGlobal =
-    urlProduccion; // TODO: cambiar servicio para produccion
+//TODO: revisar que este en urlProduccion antes de subir apk
+final String urlDir =
+    urlPruebas.split('/api')[0]; // TODO: cambiar servicio para produccion
+
+final String urlGlobal = urlPruebas; // TODO: cambiar servicio para produccion
 
 final _prefs = new PreferenciasUsuario();
 
