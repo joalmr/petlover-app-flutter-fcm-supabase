@@ -37,6 +37,13 @@ class UserProvider {
     }
   }
 
+  Future<void> sendTokenFire(String fireToken) async {
+    final url = '$_url/firebase';
+    final fireData = {"token": fireToken};
+    var resp = await http.post(url, headers: headersToken(), body: fireData);
+    print(resp.statusCode);
+  }
+
   Future<void> logOut() async {
     final url = '$_url/logout';
     var resp = await http.post(

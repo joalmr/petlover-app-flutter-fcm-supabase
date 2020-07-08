@@ -33,7 +33,18 @@ Widget buildNoti(Notificacion noti, funcion) {
                 padding: const EdgeInsets.all(10.0),
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: CachedNetworkImage(
+                    child:
+                        // Image.network(noti.notificationImg,
+                        //     height: 200, width: double.maxFinite, fit: BoxFit.cover,
+                        //     loadingBuilder: (context, child, loadingProgress) {
+                        //   if (loadingProgress == null) return child;
+                        //   return Container(
+                        //       height: 200,
+                        //       width: double.maxFinite,
+                        //       child: Center(child: CircularProgressIndicator()));
+                        // })
+                        CachedNetworkImage(
+                      useOldImageOnUrlChange: false,
                       imageUrl: noti.notificationImg,
                       height: 200,
                       width: double.infinity,

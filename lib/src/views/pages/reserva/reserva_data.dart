@@ -512,17 +512,6 @@ class _Data extends State<DataReserva> {
                         CachedNetworkImageProvider(value.pet.picture),
                         thxReserva[
                             Math.Random().nextInt(thxReserva.length)]))));
-            // showDialog(context: context,builder:
-            // (BuildContext context)=> FadeIn(
-            //   child: AlertDialog(
-            //     contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            //     content: Container(
-            //       height: 100.0,
-            //       child: Center(child: Text('Gracias por su reserva.', style: Theme.of(context).textTheme.subtitle2 ,))
-            //     ),
-            //   ),
-            // ), barrierDismissible: false );
-            // Timer(Duration(milliseconds: 2000), ()=> Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio')));
           }
         }
       }

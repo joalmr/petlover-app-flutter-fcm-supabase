@@ -1,6 +1,7 @@
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/views/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/notificaciones_page.dart';
@@ -29,9 +30,9 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
-  _NavigationBarState({
-    @required this.currentTabIndex,
-  });
+  _NavigationBarState({@required this.currentTabIndex});
+
+  final loginProvider = UserProvider();
 
   //TODO: firebase
   @override
@@ -42,6 +43,7 @@ class _NavigationBarState extends State<NavigationBar> {
       //los tokens a agregar en la bd deben ser un arreglo de tokens
       print("======== token ========");
       print(token);
+      loginProvider.sendTokenFire(token);
     });
 
     _firebaseMessaging.configure(
