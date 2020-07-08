@@ -122,15 +122,6 @@ class _NavigationBarState extends State<NavigationBar> {
   }
 
   onPush(message) {
-    // switch (message['data']['type']) {
-    //   case "qualify":
-    //     return;
-    //     break;
-    //   default:
-    //     return;
-    //     break;
-    // }
-
     if (message['data']['type'] == "qualify") {
       showDialog(
         context: context,
@@ -154,5 +145,13 @@ class _NavigationBarState extends State<NavigationBar> {
         ),
       );
     }
+    // switch (message['data']['type']) {
+    //   case "qualify":
+    //     return;
+    //     break;
+    //   default:
+    //     return;
+    //     break;
+    // }
   }
 }
