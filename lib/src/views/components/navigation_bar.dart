@@ -75,7 +75,7 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.pets),
-        title: Text('Mascota', style: TextStyle(fontSize: 10.5)), //
+        title: Text('Inicio', style: TextStyle(fontSize: 10.5)), //
       ),
       BottomNavigationBarItem(
         icon: Icon(
