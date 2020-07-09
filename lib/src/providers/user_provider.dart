@@ -41,6 +41,7 @@ class UserProvider {
     final url = '$_url/firebase';
     final fireData = {"token": fireToken};
     var resp = await http.post(url, headers: headersToken(), body: fireData);
+    print('===== guarda firebase =====');
     print(resp.statusCode);
   }
 

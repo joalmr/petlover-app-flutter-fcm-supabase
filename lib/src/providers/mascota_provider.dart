@@ -163,7 +163,7 @@ class MascotaProvider {
     var img = await http
         .post(url, headers: headersToken(), body: {'base64': sendPic});
 
-    print(img.statusCode);
+    // print(img.statusCode);
 
     var decodeimg = json.decode(img.body);
     // print(decodeimg["picture"]);

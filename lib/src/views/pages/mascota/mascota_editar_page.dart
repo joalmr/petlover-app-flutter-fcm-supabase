@@ -20,6 +20,7 @@ import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 
 import 'package:proypet/src/styles/styles.dart';
+import 'package:select_dialog/select_dialog.dart';
 
 final tipopet = [
   {
@@ -61,16 +62,22 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   bool btnBool = true;
   File foto;
   String datoPet = '';
-  String opcRaza = '';
+  // String opcRaza = '';
   RazaModel razaLista;
 
   Future<RazaModel> traeRazas() => razaProvider.getBreed(datoPet);
 
+  TextEditingController _inputPetController = new TextEditingController();
+
+  Breed datoSeleccionado;
+
   obtenerRaza() async {
     razaLista = await razaProvider.getBreed(datoPet);
     var item = razaLista.breeds.where((x) => x.id == mascotaData.breedId);
-    opcRaza = "${item.first.id}|${item.first.name}";
+    // opcRaza = "${item.first.id}|${item.first.name}";
     mascotaData.breedId = item.first.id;
+    datoSeleccionado = item.first;
+    _inputPetController.text = item.first.name;
     setState(() {});
   }
 
@@ -96,144 +103,228 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
           : FadeView(
               child: SingleChildScrollView(
                 child: Form(
-                    key: formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
-                              child: Center(
-                                child: Stack(
-                                  children: <Widget>[
-                                    CircleAvatar(
-                                      backgroundImage: _mostrarFoto(),
-                                      radius: 80.0,
-                                    ),
-                                    Positioned(
-                                        bottom: 1.5,
-                                        right: 10.0,
-                                        child: CircleAvatar(
-                                          child: IconButton(
-                                            icon: Icon(Icons.camera_enhance,
-                                                color: Colors.white),
-                                            onPressed: () => showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return FadeIn(
-                                                    child: SimpleDialog(
-                                                      children: <Widget>[
-                                                        SimpleDialogOption(
-                                                          child: const Text(
-                                                              'Tomar foto'),
-                                                          onPressed: _tomarFoto,
-                                                        ),
-                                                        SimpleDialogOption(
-                                                          child: const Text(
-                                                              'Seleccionar foto'),
-                                                          onPressed:
-                                                              _seleccionarFoto,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                }),
-                                          ),
-                                          backgroundColor: colorMain,
-                                          radius: 22.0,
-                                        ))
-                                  ],
-                                ),
-                              ) //Text('Foto de mi mascota'),
+                  key: formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 25.0,
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5.0),
+                            child: Center(
+                              child: Stack(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage: _mostrarFoto(),
+                                    radius: 80.0,
+                                  ),
+                                  Positioned(
+                                      bottom: 1.5,
+                                      right: 10.0,
+                                      child: CircleAvatar(
+                                        child: IconButton(
+                                          icon: Icon(Icons.camera_enhance,
+                                              color: Colors.white),
+                                          onPressed: () => showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return FadeIn(
+                                                  child: SimpleDialog(
+                                                    children: <Widget>[
+                                                      SimpleDialogOption(
+                                                        child: const Text(
+                                                            'Tomar foto'),
+                                                        onPressed: _tomarFoto,
+                                                      ),
+                                                      SimpleDialogOption(
+                                                        child: const Text(
+                                                            'Seleccionar foto'),
+                                                        onPressed:
+                                                            _seleccionarFoto,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                        backgroundColor: colorMain,
+                                        radius: 22.0,
+                                      ))
+                                ],
                               ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: FormularioText(
-                              hintText: 'Nombre de mascota',
-                              icon: Icons.pets,
-                              obscureText: false,
-                              onSaved: (value) => mascotaData.name = value,
-                              textCap: TextCapitalization.words,
-                              valorInicial: mascotaData.name,
-                              boardType: TextInputType.text,
+                            ) //Text('Foto de mi mascota'),
                             ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: FormularioText(
+                            hintText: 'Nombre de mascota',
+                            icon: Icons.pets,
+                            obscureText: false,
+                            onSaved: (value) => mascotaData.name = value,
+                            textCap: TextCapitalization.words,
+                            valorInicial: mascotaData.name,
+                            boardType: TextInputType.text,
                           ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 2.5),
-                            child: Text('Seleccione tipo de mascota'),
-                          ),
-                          Padding(
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 2.5),
+                          child: Text('Seleccione tipo de mascota'),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: ddlMainOut(context, datoPet, tipopet, null,
+                              mascotaData.specieName),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 2.5),
+                          child: Text('Seleccione raza'),
+                        ),
+                        Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: ddlMainOut(context, datoPet, tipopet, null,
-                                mascotaData.specieName),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 2.5),
-                            child: Text('Seleccione raza'),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: ddlFutureSearch(
-                                context, opcRaza, razaLista.breeds, (opt) {
-                              setState(() {
-                                opcRaza = opt.toString();
-                                mascotaData.breedId =
-                                    int.tryParse(opt.split("|")[0]);
-                                // mascotaData.breedId=int.tryParse(opt);
-                              });
-                            }),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 2.5),
-                            child: Text('Fecha de nacimiento'),
-                          ),
-                          // DateTimePickerFormField(),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: _crearFecha(context),
-                          ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 2.5),
-                            child: Text('Sexo'),
-                          ),
-                          _sexoEdit(),
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          buttonPri('Guardar cambios', btnBool ? _onAdd : null),
-                          // Center(
-                          //     child: //()=>agregarDialog()
-                          //     //(petData==null)?'Agregar mascota':'Guardar cambios'
-                          //     ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                        ],
-                      ),
-                    )),
+                            child: TextField(
+                              enableInteractiveSelection: false,
+                              controller: _inputPetController,
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(new FocusNode());
+                                _razasPet();
+                              },
+                              cursorColor: colorMain,
+                              decoration: InputDecoration(
+                                suffixIcon: Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Icon(Icons.keyboard_arrow_down,
+                                      color: colorMain),
+                                ),
+                              ),
+                            )
+                            // ddlFutureSearch(
+                            //     context, opcRaza, razaLista.breeds, (opt) {
+                            //   setState(() {
+                            //     opcRaza = opt.toString();
+                            //     mascotaData.breedId =
+                            //         int.tryParse(opt.split("|")[0]);
+                            //     // mascotaData.breedId=int.tryParse(opt);
+                            //   });
+                            // }),
+                            ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 2.5),
+                          child: Text('Fecha de nacimiento'),
+                        ),
+                        // DateTimePickerFormField(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: _crearFecha(context),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 2.5),
+                          child: Text('Sexo'),
+                        ),
+                        _sexoEdit(),
+                        SizedBox(
+                          height: 25.0,
+                        ),
+                        buttonPri('Guardar cambios', btnBool ? _onAdd : null),
+                        // Center(
+                        //     child: //()=>agregarDialog()
+                        //     //(petData==null)?'Agregar mascota':'Guardar cambios'
+                        //     ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
+    );
+  }
+
+  Future<List<Breed>> _getData(String filter) async {
+    // print(filter);
+    List<Breed> lista = List<Breed>();
+    razaLista.breeds.forEach((element) {
+      var palabra = element.name;
+      bool contiene = palabra
+          .toLowerCase()
+          .contains(filter.toLowerCase()); //.contains(filter);
+      if (contiene) {
+        lista.add(element);
+      }
+    });
+
+    var models = lista;
+    return models;
+  }
+
+  _razasPet() {
+    return SelectDialog.showModal<Breed>(
+      context,
+      label: "Razas",
+      titleStyle: Theme.of(context).textTheme.subtitle1,
+      showSearchBox: true,
+      emptyBuilder: (context) => Center(
+        child: Text('No se encontró'),
+      ),
+      errorBuilder: (context, exception) => Center(
+        child: Text('Oops!'),
+      ),
+      items: razaLista.breeds,
+      selectedValue: datoSeleccionado,
+      searchBoxDecoration: InputDecoration(
+        hintText: 'Buscar raza',
+        prefixIcon: Icon(Icons.search, color: colorMain),
+      ),
+      onFind: (String filter) => _getData(filter),
+      itemBuilder: (BuildContext context, Breed item, bool isSelected) {
+        return Container(
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: colorMain,
+                ),
+          child: ListTile(
+            selected: isSelected,
+            title: Text(
+              item.name,
+              style: isSelected
+                  ? Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .copyWith(color: Colors.white)
+                  : Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        );
+      },
+      onChange: (selected) {
+        setState(() {
+          datoSeleccionado = selected;
+          _inputPetController.text = selected.name;
+          mascotaData.breedId = selected.id;
+        });
+      },
     );
   }
 
@@ -342,7 +433,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
 
   void _onAdd() async {
     try {
-      print(foto);
+      // print(foto);
 
       setState(() {
         formKey.currentState.save();

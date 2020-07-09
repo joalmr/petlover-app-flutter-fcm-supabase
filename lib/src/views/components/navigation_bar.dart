@@ -51,12 +51,12 @@ class _NavigationBarState extends State<NavigationBar> {
       onPush(message);
     }, onLaunch: (Map<String, dynamic> message) async {
       // print(message);
-      print('======== onLaunch ========');
+      // print('======== onLaunch ========');
       if (message.isNotEmpty) onPush(message);
       message = null;
     }, onResume: (Map<String, dynamic> message) async {
       // print(message);
-      print('======== onResume ========');
+      // print('======== onResume ========');
       if (message.isNotEmpty) onPush(message);
       message = null;
     });
@@ -98,6 +98,24 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Puntos', style: TextStyle(fontSize: 10.5)), //
       ),
     ];
+
+    // final bottomNavBar = SnakeNavigationBar(
+    //   style: SnakeBarStyle.floating,
+    //   snakeShape: SnakeShape.indicator,
+    //   snakeColor: colorMain,
+    //   backgroundColor: Theme.of(context).backgroundColor,
+    //   showUnselectedLabels: true,
+    //   showSelectedLabels: true,
+    //   selectedItemColor: colorMain,
+    //   padding: EdgeInsets.zero,
+    //   items: _kBottmonNavBarItems,
+    //   currentIndex: currentTabIndex,
+    //   onPositionChanged: (int index) {
+    //     setState(() {
+    //       currentTabIndex = index;
+    //     });
+    //   },
+    // );
 
     final bottomNavBar = BottomNavigationBar(
       iconSize: 28.0,

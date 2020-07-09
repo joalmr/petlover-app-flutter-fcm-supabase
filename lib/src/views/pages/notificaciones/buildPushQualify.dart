@@ -99,7 +99,7 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
   }
 
   _onRate() async {
-    print("llega");
+    // print("llega");
 
     AtencionModel atencion = new AtencionModel();
     atencion.id = widget.noti['id'];
@@ -107,7 +107,7 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
     atencion.comment = _inputComentController.text;
     bool resp = await atencionProvider.calificar(atencion);
 
-    print(resp);
+    // print(resp);
     // bool resp = await atencionProvider.calificar(atencion);
 
     if (resp) {

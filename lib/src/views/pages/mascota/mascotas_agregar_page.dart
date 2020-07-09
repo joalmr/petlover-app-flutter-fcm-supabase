@@ -21,6 +21,8 @@ import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
 
+import 'package:select_dialog/select_dialog.dart';
+
 final tipopet = [
   {
     'id': '1',
@@ -53,7 +55,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   bool btnBool = true;
   File foto;
   String datoPet = tipopet[0]['id'];
-  String opcRaza = ''; //'390|Gatos Mestizo de pelo corto';
+
   MascotaModel mascotaData = new MascotaModel();
 
   String fechaEdit = '';
@@ -62,10 +64,16 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
   Future<RazaModel> traeRazas() => razaProvider.getBreed(datoPet);
 
+  TextEditingController _inputPetController = new TextEditingController();
+  Breed datoSeleccionado;
+  // String opcRaza = ''; //'390|Gatos Mestizo de pelo corto';
+
   obtenerRaza() async {
     razaLista = await razaProvider.getBreed(datoPet);
+    datoSeleccionado = razaLista.breeds.first;
+    _inputPetController.text = datoSeleccionado.name;
     // mascotaData.breedId = razaLista.breeds.first.id;
-    opcRaza = "${razaLista.breeds.first.id}|${razaLista.breeds.first.name}";
+    // opcRaza = "${razaLista.breeds.first.id}|${razaLista.breeds.first.name}";
     setState(() {});
   }
 
@@ -79,7 +87,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   @override
   Widget build(BuildContext context) {
     mascotaData.specieId = int.tryParse(datoPet);
-    mascotaData.breedId = int.tryParse(opcRaza.split("|")[0]);
+    // mascotaData.breedId = int.tryParse(opcRaza.split("|")[0]);
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(
@@ -172,7 +180,8 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                             child: ddlMain(context, datoPet, tipopet, (opt) {
                               setState(() {
                                 datoPet = opt;
-                                opcRaza = '';
+                                // opcRaza = '';
+                                _inputPetController.text = '';
                                 mascotaData.specieId = int.tryParse(opt);
                                 obtenerRaza();
                               });
@@ -186,14 +195,32 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                         ),
                         Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5.0),
-                            child: ddlFutureSearch(
-                                context, opcRaza, razaLista.breeds, (opt) {
-                              setState(() {
-                                opcRaza = opt.toString();
-                                mascotaData.breedId =
-                                    int.tryParse(opt.split("|")[0]);
-                              });
-                            })),
+                            child: TextField(
+                              enableInteractiveSelection: false,
+                              controller: _inputPetController,
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(new FocusNode());
+                                _razasPet();
+                              },
+                              cursorColor: colorMain,
+                              decoration: InputDecoration(
+                                suffixIcon: Padding(
+                                  padding: const EdgeInsets.only(right: 10),
+                                  child: Icon(Icons.keyboard_arrow_down,
+                                      color: colorMain),
+                                ),
+                              ),
+                            )
+                            // ddlFutureSearch(
+                            //     context, opcRaza, razaLista.breeds, (opt) {
+                            //   setState(() {
+                            //     opcRaza = opt.toString();
+                            //     mascotaData.breedId =
+                            //         int.tryParse(opt.split("|")[0]);
+                            //   });
+                            // }),
+                            ),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -229,6 +256,74 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                 ),
               ),
             ),
+    );
+  }
+
+  Future<List<Breed>> _getData(String filter) async {
+    // print(filter);
+    List<Breed> lista = List<Breed>();
+    razaLista.breeds.forEach((element) {
+      var palabra = element.name;
+      bool contiene = palabra
+          .toLowerCase()
+          .contains(filter.toLowerCase()); //.contains(filter);
+      if (contiene) {
+        lista.add(element);
+      }
+    });
+
+    var models = lista;
+    return models;
+  }
+
+  _razasPet() {
+    return SelectDialog.showModal<Breed>(
+      context,
+      label: "Razas",
+      titleStyle: Theme.of(context).textTheme.subtitle1,
+      showSearchBox: true,
+      emptyBuilder: (context) => Center(
+        child: Text('No se encontró'),
+      ),
+      errorBuilder: (context, exception) => Center(
+        child: Text('Oops!'),
+      ),
+      items: razaLista.breeds,
+      selectedValue: datoSeleccionado,
+      searchBoxDecoration: InputDecoration(
+        hintText: 'Buscar raza',
+        prefixIcon: Icon(Icons.search, color: colorMain),
+      ),
+      onFind: (String filter) => _getData(filter),
+      itemBuilder: (BuildContext context, Breed item, bool isSelected) {
+        return Container(
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: colorMain,
+                ),
+          child: ListTile(
+            selected: isSelected,
+            title: Text(
+              item.name,
+              style: isSelected
+                  ? Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .copyWith(color: Colors.white)
+                  : Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        );
+      },
+      onChange: (selected) {
+        setState(() {
+          datoSeleccionado = selected;
+          _inputPetController.text = selected.name;
+          mascotaData.breedId = selected.id;
+        });
+      },
     );
   }
 
@@ -387,7 +482,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
   }
 
   boolSave(resp) {
-    print(resp); //
+    // print(resp); //
     if (resp['ok']) {
       Navigator.push(
           context,

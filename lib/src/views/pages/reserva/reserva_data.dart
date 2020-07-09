@@ -9,9 +9,13 @@ import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/global_variables.dart';
+import 'package:proypet/icon_proypet_icons.dart';
+import 'package:proypet/proypet_icons.dart';
 import 'package:proypet/src/models/booking/booking_model.dart';
+import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
+import 'package:proypet/src/models/servicio_reserva.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
@@ -26,6 +30,7 @@ import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:proypet/src/utils/add_msg.dart';
+import 'package:select_dialog/select_dialog.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'dart:math' as Math;
 
@@ -70,6 +75,7 @@ class _Data extends State<DataReserva> {
   String _hora = '';
   TextEditingController _inputFechaController = new TextEditingController();
   TextEditingController _inputHoraController = new TextEditingController();
+  TextEditingController _inputServController = new TextEditingController();
   TextEditingController _inputObservacioController =
       new TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -80,37 +86,6 @@ class _Data extends State<DataReserva> {
   BookingModel booking = BookingModel();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _prefs = new PreferenciasUsuario();
-
-  List _atencion = [
-    {
-      'id': '1',
-      'name': 'Consulta',
-    },
-    {
-      'id': '7',
-      'name': 'Chequeo preventivo',
-    },
-    {
-      'id': '4',
-      'name': 'Desparasitación',
-    },
-    {
-      'id': '2',
-      'name': 'Vacuna',
-    },
-    {
-      'id': '3',
-      'name': 'Baño',
-    },
-    {
-      'id': '5',
-      'name': 'Baño y corte',
-    },
-    {
-      'id': '6',
-      'name': 'Otro servicio',
-    },
-  ];
 
   List _delivery = [
     {
@@ -131,7 +106,9 @@ class _Data extends State<DataReserva> {
     },
   ];
 
-  String resarvaId = "1";
+  ServicioReserva ex3 = servicioReservaList.first;
+  String resarvaId = servicioReservaList.first.id.toString();
+
   String deliveryId = "1";
   String observacion = "";
   bool boolPet = false;
@@ -147,8 +124,9 @@ class _Data extends State<DataReserva> {
   //direccion de delivery
   @override
   void initState() {
+    print(resarvaId);
     _inputDireccionController.text = _prefs.myAddress;
-    print(_prefs.myAddressLatLng);
+    // print(_prefs.myAddressLatLng);
     if (_prefs.myAddressLatLng.toString().trim() != "") {
       setState(() {
         lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
@@ -172,6 +150,7 @@ class _Data extends State<DataReserva> {
       _mapStyle = string;
     });
 
+    _inputServController.text = servicioReservaList.first.name;
     super.initState();
   }
 
@@ -209,11 +188,29 @@ class _Data extends State<DataReserva> {
               height: 12.0,
             ),
             Text('Servicio'),
-            ddlMain(context, resarvaId, _atencion, (opt) {
-              setState(() {
-                resarvaId = opt;
-              });
-            }),
+            // ddlMain(context, resarvaId, _atencion, (opt) {
+            //   setState(() {
+            //     resarvaId = opt;
+            //   });
+            // }),
+            // SizedBox(
+            //   height: 12.0,
+            // ),
+            TextField(
+              enableInteractiveSelection: false,
+              controller: _inputServController,
+              onTap: () {
+                FocusScope.of(context).requestFocus(new FocusNode());
+                _servicios();
+              },
+              cursorColor: colorMain,
+              decoration: InputDecoration(
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Icon(Icons.keyboard_arrow_down, color: colorMain),
+                ),
+              ),
+            ),
             SizedBox(
               height: 12.0,
             ),
@@ -294,12 +291,6 @@ class _Data extends State<DataReserva> {
             SizedBox(height: 7.5),
             buttonFlat(
                 "Cancelar", () => Navigator.of(context).pop(), colorMain),
-            // FlatButton(
-            //   child: new Text("Cancelar", style: TextStyle(color: colorMain)),
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //   },
-            // ),
           ],
         ),
       ),
@@ -332,6 +323,91 @@ class _Data extends State<DataReserva> {
           padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
           child: Text(address.name,
               style: TextStyle(fontWeight: FontWeight.bold))),
+    );
+  }
+
+  Future<List<ServicioReserva>> _getData(String filter) async {
+    print(filter);
+    List<ServicioReserva> lista = List<ServicioReserva>();
+    servicioReservaList.forEach((element) {
+      var palabra = element.name + '' + element.subtitle;
+      bool contiene = palabra
+          .toLowerCase()
+          .contains(filter.toLowerCase()); //.contains(filter);
+      if (contiene) {
+        lista.add(element);
+      }
+    });
+
+    var models = lista;
+    return models;
+  }
+
+  _servicios() {
+    return SelectDialog.showModal<ServicioReserva>(
+      context,
+      label: "Servicios",
+      titleStyle: Theme.of(context).textTheme.subtitle1,
+      showSearchBox: true,
+      emptyBuilder: (context) => Center(
+        child: Text('No se encontró'),
+      ),
+      errorBuilder: (context, exception) => Center(
+        child: Text('Oops!'),
+      ),
+      items: servicioReservaList,
+      selectedValue: ex3,
+      searchBoxDecoration: InputDecoration(
+        hintText: 'Buscar servicio',
+        prefixIcon: Icon(Icons.search, color: colorMain),
+      ),
+      onFind: (String filter) => _getData(filter),
+      itemBuilder:
+          (BuildContext context, ServicioReserva item, bool isSelected) {
+        return Container(
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: colorMain,
+                ),
+          child: ListTile(
+            leading: Icon(item.icon,
+                color: isSelected
+                    ? Colors.white
+                    : Theme.of(context).textTheme.subtitle2.color),
+            selected: isSelected,
+            title: Text(
+              item.name,
+              style: isSelected
+                  ? Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .copyWith(color: Colors.white)
+                  : Theme.of(context).textTheme.subtitle2,
+            ),
+            subtitle: Text(
+              item.subtitle,
+              style: isSelected
+                  ? Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .copyWith(color: Colors.white, fontSize: 12)
+                  : Theme.of(context)
+                      .textTheme
+                      .subtitle2
+                      .copyWith(fontSize: 12),
+            ),
+          ),
+        );
+      },
+      onChange: (selected) {
+        setState(() {
+          ex3 = selected;
+          _inputServController.text = selected.name;
+          resarvaId = selected.id.toString();
+        });
+      },
     );
   }
 

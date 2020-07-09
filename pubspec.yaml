@@ -36,8 +36,15 @@ dependencies:
   
   # flutter_local_notifications: ^1.4.3
 
-  simple_autocomplete_formfield: ^0.2.7
+  simple_autocomplete_formfield: ^0.2.7 #buscar con autocomplete
   google_maps_webservice: ^0.0.16
+
+  #nuevos
+  #textfield_search: ^0.6.1
+  flutter_snake_navigationbar: ^0.4.0+1
+  select_dialog: ^1.1.0
+  dio: ^3.0.9
+  #fin nuevos
 
   animate_do: ^1.6.3
   cached_network_image: ^2.0.0

@@ -46,7 +46,7 @@ class EstablecimientoProvider {
       headers: headersToken(),
     );
 
-    print(resp.statusCode);
+    // print(resp.statusCode);
 
     if (resp.statusCode == 200) {
       final jsonResp = json.decode(resp.body);
