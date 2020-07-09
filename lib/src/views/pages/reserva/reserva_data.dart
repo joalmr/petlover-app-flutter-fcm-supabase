@@ -107,7 +107,8 @@ class _Data extends State<DataReserva> {
   ];
 
   ServicioReserva ex3 = servicioReservaList.first;
-  String resarvaId = servicioReservaList.first.id.toString();
+  String resarvaId =
+      servicioReservaList.where((x) => x.id == 1).first.id.toString();
 
   String deliveryId = "1";
   String observacion = "";
