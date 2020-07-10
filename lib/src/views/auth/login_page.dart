@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/models/login/login_model.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
@@ -119,8 +118,12 @@ class _LoginSevenPageState extends State<LoginPage> {
         builder: (BuildContext context) {
           return FadeIn(
             child: AlertDialog(
+              title: Text('Oops..'),
               content: Container(
-                  height: 60.0, child: Center(child: Text(resp['message']))),
+                child: Center(
+                  child: Text(resp['message']),
+                ),
+              ),
               actions: <Widget>[
                 FlatButton(
                   onPressed: () => Navigator.pop(context),
@@ -132,12 +135,40 @@ class _LoginSevenPageState extends State<LoginPage> {
         },
       );
     }
-    // {
-    //   if (resp['verify'] != null) {
-    //     Navigator.pushReplacementNamed(context, 'navInicio');
-    //   } else {
-
-    //   }
-    // }
   }
+
+  // void _onToken() async {
+  //   formKey.currentState.save();
+  //   setState(() {});
+
+  //   Map resp = await loginProvider.loginToken(userModel);
+
+  //   if (resp['ok']==200) {
+  //     mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
+  //   } else {
+  //     if (resp['verify'] != null) {
+  //       Navigator.pushReplacementNamed(context, 'navInicio');
+  //     } else {
+  //       showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return FadeIn(
+  //             child: AlertDialog(
+  //               // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+  //               // title: Text('Error'),
+  //               content: Container(
+  //                   height: 60.0,
+  //                   child: Center(child: Text('Verifique su correo.'))),
+  //               actions: <Widget>[
+  //                 FlatButton(
+  //                     onPressed: () => Navigator.pop(context),
+  //                     child: Text('Continuar')),
+  //               ],
+  //             ),
+  //           );
+  //         },
+  //       );
+  //     }
+  //   }
+  // }
 }
