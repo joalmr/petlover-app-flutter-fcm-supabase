@@ -13,8 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 */
 
 class PreferenciasUsuario {
-
-  static final PreferenciasUsuario _instancia = new PreferenciasUsuario._internal();
+  static final PreferenciasUsuario _instancia =
+      new PreferenciasUsuario._internal();
 
   factory PreferenciasUsuario() {
     return _instancia;
@@ -33,7 +33,7 @@ class PreferenciasUsuario {
     return _prefs.getString('token') ?? '';
   }
 
-  set token( String value ) {
+  set token(String value) {
     _prefs.setString('token', value);
   }
 
@@ -41,25 +41,25 @@ class PreferenciasUsuario {
     return _prefs.getString('position') ?? '0';
   }
 
-  set position( String value ) {
+  set position(String value) {
     _prefs.setString('position', value);
   }
 
+//se usa para guardar la direccion de la ultima reserva realizada
   get myAddress {
     return _prefs.getString('address') ?? '';
   }
 
-  set myAddress( String value ) {
+  set myAddress(String value) {
     _prefs.setString('address', value);
   }
 
+//se usa para guardar la posicion de la ultima reserva realizada
   get myAddressLatLng {
     return _prefs.getString('mylatlng') ?? '';
   }
 
-  set myAddressLatLng( String value ) {
+  set myAddressLatLng(String value) {
     _prefs.setString('mylatlng', value);
   }
-  
 }
-

@@ -19,13 +19,15 @@ class UserProvider {
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
 
+      var jsonRespuesta;
+
       if (resp.statusCode == 200) {
         _prefs.token = decodedResp['token'];
-        return {'code': 200, 'token': decodedResp['token']};
+        jsonRespuesta = {'code': 200, 'token': decodedResp['token']};
       } else if (resp.statusCode == 401) {
-        return {'code': 401, 'message': decodedResp['message']};
+        jsonRespuesta = {'code': 401, 'message': decodedResp['message']};
       }
-
+      return jsonRespuesta;
       // final Map<String, dynamic> decodedResp = json.decode(resp.body);
 
       // if (decodedResp.containsKey('token')) {
