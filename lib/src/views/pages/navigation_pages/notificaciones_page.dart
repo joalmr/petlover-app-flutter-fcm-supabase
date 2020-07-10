@@ -111,7 +111,10 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                           ),
                         ),
                       )
-                    : Swiper(
+                    :
+                    // FractionPaginationBuilder(
+                    // )
+                    Swiper(
                         itemCount: notification.length,
                         itemBuilder: (BuildContext context, int index) {
                           return _notificacionCase(notification[index]);
@@ -121,13 +124,24 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                         scale: 1,
                         loop: false,
                         physics: BouncingScrollPhysics(),
-                        pagination: new SwiperPagination(
-                            margin: new EdgeInsets.only(top: 15.0),
-                            builder: new DotSwiperPaginationBuilder(
-                                activeColor: colorMain,
-                                color: Theme.of(context).backgroundColor,
-                                activeSize: 8.0,
-                                size: 6.0)),
+                        control: SwiperControl(
+                          size: 14,
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                        ),
+                        // pagination: new SwiperPagination(
+                        //     margin: new EdgeInsets.only(top: 15.0),
+                        //     builder: new FractionPaginationBuilder(
+                        //         activeColor: colorMain,
+                        //         color: Theme.of(context).backgroundColor,
+                        //         activeFontSize: 8.0,
+                        //         fontSize: 6.0)
+
+                        //     // new DotSwiperPaginationBuilder(
+                        //     //     activeColor: colorMain,
+                        //     //     color: Theme.of(context).backgroundColor,
+                        //     //     activeSize: 8.0,
+                        //     //     size: 6.0)
+                        //     ),
                       ),
               ),
               Container(

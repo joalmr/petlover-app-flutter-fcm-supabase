@@ -139,36 +139,41 @@ class _LoginSevenPageState extends State<LoginPage> {
 
   // void _onToken() async {
   //   formKey.currentState.save();
-  //   setState(() {});
+  //   setState(() { });
 
   //   Map resp = await loginProvider.loginToken(userModel);
 
-  //   if (resp['ok']==200) {
+  //   if(!resp['ok']){
   //     mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
-  //   } else {
-  //     if (resp['verify'] != null) {
+  //   }
+  //   else{
+  //     if(resp['verify']!=null){
   //       Navigator.pushReplacementNamed(context, 'navInicio');
-  //     } else {
+  //     }
+  //     else{
   //       showDialog(
   //         context: context,
-  //         builder: (BuildContext context) {
+  //         builder: (BuildContext context){
   //           return FadeIn(
   //             child: AlertDialog(
-  //               // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+  //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
   //               // title: Text('Error'),
   //               content: Container(
-  //                   height: 60.0,
-  //                   child: Center(child: Text('Verifique su correo.'))),
+  //                 height: 60.0,
+  //                 child: Center(child: Text('Verifique su correo.'))
+  //               ),
   //               actions: <Widget>[
   //                 FlatButton(
-  //                     onPressed: () => Navigator.pop(context),
-  //                     child: Text('Continuar')),
+  //                   onPressed: ()=>Navigator.pop(context),
+  //                   child: Text('Continuar')
+  //                 ),
   //               ],
   //             ),
   //           );
-  //         },
+  //         }
   //       );
   //     }
+
   //   }
   // }
 }

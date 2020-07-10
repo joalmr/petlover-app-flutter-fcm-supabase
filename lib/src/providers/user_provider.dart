@@ -22,7 +22,10 @@ class UserProvider {
       var jsonRespuesta;
 
       if (resp.statusCode == 200) {
+        //guarda en prefs
         _prefs.token = decodedResp['token'];
+        _prefs.verify = decodedResp['verify'];
+        //
         jsonRespuesta = {'code': 200, 'token': decodedResp['token']};
       } else if (resp.statusCode == 401) {
         jsonRespuesta = {'code': 401, 'message': decodedResp['message']};
@@ -60,6 +63,7 @@ class UserProvider {
       url,
       headers: headersToken(),
     );
+    print('=== logOut ===');
     print(resp.statusCode);
   }
 

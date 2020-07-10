@@ -2,6 +2,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/posicion.dart';
+import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/notificaciones_page.dart';
@@ -37,6 +39,8 @@ class _NavigationBarState extends State<NavigationBar> {
   //TODO: firebase
   @override
   void initState() {
+    fnGetPosition();
+
     super.initState();
     _firebaseMessaging.requestNotificationPermissions();
     _firebaseMessaging.getToken().then((token) {
@@ -53,7 +57,7 @@ class _NavigationBarState extends State<NavigationBar> {
       // print(message);
       // print('======== onLaunch ========');
       if (message.isNotEmpty) onPush(message);
-      message = null;
+      message = null; //TODO: verificar
     }, onResume: (Map<String, dynamic> message) async {
       // print(message);
       // print('======== onResume ========');

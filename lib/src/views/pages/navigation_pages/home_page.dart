@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     // _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
     // _controller.forward();
 
-    fnGetPosition();
+    // fnGetPosition();
     _onRefresh();
 
     super.initState();

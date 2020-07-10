@@ -37,8 +37,17 @@ class PreferenciasUsuario {
     _prefs.setString('token', value);
   }
 
+//verificado
+  get verify {
+    return _prefs.getString('verify') ?? null;
+  }
+
+  set verify(String value) {
+    _prefs.setString('verify', value);
+  }
+
   get position {
-    return _prefs.getString('position') ?? '0';
+    return _prefs.getString('position') ?? '0,0';
   }
 
   set position(String value) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
+import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/components/navigation_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -23,14 +25,25 @@ class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> navigatorKey =
       new GlobalKey<NavigatorState>();
 
+  final loginProvider = UserProvider();
+  var rutaInicio = 'login';
+
+  //TODO: FractionPaginationBuilder
+  @override
+  void initState() {
+    if (!fnGetVerify()) {
+      loginProvider.logOut();
+    } else {
+      if (prefs.token.trim() != null && prefs.token.trim() != '') {
+        // loginProvider.validateMain();
+        rutaInicio = 'navInicio';
+      }
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var rutaInicio = 'login';
-    if (prefs.token != '') {
-      // loginProvider.validateMain();
-      rutaInicio = 'navInicio';
-    }
-
     const MaterialColor newteal = MaterialColor(
       0xFF00A48C,
       <int, Color>{

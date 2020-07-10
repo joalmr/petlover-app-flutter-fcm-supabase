@@ -13,5 +13,5 @@ Future<Position> fnPosition() async {
 fnGetPosition() async {
   final datoPosicion = await fnPosition();
   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-  // print(_prefs.position);
+  print('=== guarda gps ===');
 }
