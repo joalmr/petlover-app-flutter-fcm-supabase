@@ -17,21 +17,28 @@ class UserProvider {
       final loginData = {"email": login.email, "password": login.password};
       final resp = await http.post(url, body: loginData);
 
-      // print(resp.body);
-
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
 
-      if (decodedResp.containsKey('token')) {
+      if (resp.statusCode == 200) {
         _prefs.token = decodedResp['token'];
-        // print(_prefs.token);
-        return {
-          'ok': true,
-          'verify': decodedResp['verify'],
-          'token': decodedResp['token']
-        };
-      } else {
-        return {'ok': false, 'mensaje': 'Usuario o clave incorrecta'};
+        return {'code': 200, 'token': decodedResp['token']};
+      } else if (resp.statusCode == 401) {
+        return {'code': 401, 'message': decodedResp['message']};
       }
+
+      // final Map<String, dynamic> decodedResp = json.decode(resp.body);
+
+      // if (decodedResp.containsKey('token')) {
+      //   _prefs.token = decodedResp['token'];
+      //   // print(_prefs.token);
+      //   return {
+      //     'ok': true,
+      //     'verify': decodedResp['verify'],
+      //     'token': decodedResp['token']
+      //   };
+      // } else {
+      //   return {'ok': false, 'mensaje': 'Usuario o clave incorrecta'};
+      // }
     } catch (ex) {
       return {'ok': false, 'mensaje': 'Usuario o clave incorrecta'};
     }
