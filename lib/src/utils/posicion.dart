@@ -10,8 +10,15 @@ Future<Position> fnPosition() async {
   return position;
 }
 
-fnGetPosition() async {
+// fnGetPosition() async {
+//   final datoPosicion = await fnPosition();
+//   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
+//   print('=== guarda gps ===');
+// }
+Future<void> fnGetPosition() async {
+  print('=== entra position ===');
   final datoPosicion = await fnPosition();
+  print(datoPosicion);
   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
   print('=== guarda gps ===');
 }
