@@ -14,7 +14,8 @@ import 'package:proypet/src/views/components/form_control/text_field.dart';
 class BuildPushQualify extends StatefulWidget {
   // const name({Key key}) : super(key: key);
   final dynamic noti;
-  BuildPushQualify({@required this.noti});
+  final String mensaje;
+  BuildPushQualify({@required this.noti, @required this.mensaje});
 
   @override
   _BuildPushQualifyState createState() => _BuildPushQualifyState();
@@ -47,7 +48,7 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('${widget.noti['message']}'),
+                child: Text('${widget.mensaje}'),
               )),
             ],
           ),

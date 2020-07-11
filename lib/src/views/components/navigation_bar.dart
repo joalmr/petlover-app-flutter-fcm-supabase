@@ -85,24 +85,6 @@ class _NavigationBarState extends State<NavigationBar> {
       ),
     ];
 
-    // final bottomNavBar = SnakeNavigationBar(
-    //   style: SnakeBarStyle.floating,
-    //   snakeShape: SnakeShape.indicator,
-    //   snakeColor: colorMain,
-    //   backgroundColor: Theme.of(context).backgroundColor,
-    //   showUnselectedLabels: true,
-    //   showSelectedLabels: true,
-    //   selectedItemColor: colorMain,
-    //   padding: EdgeInsets.zero,
-    //   items: _kBottmonNavBarItems,
-    //   currentIndex: currentTabIndex,
-    //   onPositionChanged: (int index) {
-    //     setState(() {
-    //       currentTabIndex = index;
-    //     });
-    //   },
-    // );
-
     final bottomNavBar = BottomNavigationBar(
       iconSize: 28.0,
       selectedItemColor: colorMain,
@@ -119,7 +101,6 @@ class _NavigationBarState extends State<NavigationBar> {
     );
 
     return Scaffold(
-      // key: scaffoldKey,
       body: _kTabPages[currentTabIndex],
       bottomNavigationBar: bottomNavBar,
     );
@@ -147,13 +128,16 @@ class _NavigationBarState extends State<NavigationBar> {
   }
 
   onPush(message) {
+    print('== llega ==');
     if (message['data']['type'] == "qualify") {
       showDialog(
         context: context,
         builder: (context) => SimpleDialog(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           children: <Widget>[
-            BuildPushQualify(noti: message['data'])
+            BuildPushQualify(
+                noti: message['data'],
+                mensaje: message['notification']['body']),
             // buildPushQualify(context, message['data']),
           ],
         ),
@@ -164,7 +148,8 @@ class _NavigationBarState extends State<NavigationBar> {
         builder: (context) => SimpleDialog(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           children: <Widget>[
-            BuildPushNoti(noti: message['data'])
+            BuildPushNoti(
+                noti: message['data'], mensaje: message['notification']['body'])
             // buildPushNoti(context, message['data']),
           ],
         ),
