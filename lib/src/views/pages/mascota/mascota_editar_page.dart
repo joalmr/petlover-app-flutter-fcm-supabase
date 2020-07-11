@@ -209,17 +209,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
                                       color: colorMain),
                                 ),
                               ),
-                            )
-                            // ddlFutureSearch(
-                            //     context, opcRaza, razaLista.breeds, (opt) {
-                            //   setState(() {
-                            //     opcRaza = opt.toString();
-                            //     mascotaData.breedId =
-                            //         int.tryParse(opt.split("|")[0]);
-                            //     // mascotaData.breedId=int.tryParse(opt);
-                            //   });
-                            // }),
-                            ),
+                            )),
                         SizedBox(
                           height: 10.0,
                         ),

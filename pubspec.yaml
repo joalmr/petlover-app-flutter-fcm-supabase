@@ -42,8 +42,8 @@ dependencies:
   #nuevos
   #textfield_search: ^0.6.1
   flutter_snake_navigationbar: ^0.4.0+1
-  select_dialog: ^1.1.0
-  dio: ^3.0.9
+  select_dialog: ^1.1.0 #dialogo tipo lista con opcion de buscar elementos
+  # dio: ^3.0.9
   #fin nuevos
 
   animate_do: ^1.6.3
@@ -58,7 +58,7 @@ dependencies:
   map_launcher: ^0.4.5
   mime_type:
   rxdart: ^0.23.1
-  searchable_dropdown: ^1.1.3  
+  # searchable_dropdown: ^1.1.3  
   share: ^0.6.4+3
   shared_preferences: ^0.5.7+3
   url_launcher: ^5.4.11

@@ -120,28 +120,65 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                           return _notificacionCase(notification[index]);
                           //buildNoti(notification[index]);
                         },
-                        viewportFraction: 1,
-                        scale: 1,
+                        // viewportFraction: 0.91,
+                        // scale: 0.91,
                         loop: false,
-                        physics: BouncingScrollPhysics(),
-                        control: SwiperControl(
-                          size: 14,
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                        ),
-                        // pagination: new SwiperPagination(
-                        //     margin: new EdgeInsets.only(top: 15.0),
-                        //     builder: new FractionPaginationBuilder(
-                        //         activeColor: colorMain,
-                        //         color: Theme.of(context).backgroundColor,
-                        //         activeFontSize: 8.0,
-                        //         fontSize: 6.0)
+                        // physics: BouncingScrollPhysics(),
+                        // control: SwiperControl(
+                        //   size: 14,
+                        //   padding: EdgeInsets.symmetric(horizontal: 15),
+                        // ),
 
-                        //     // new DotSwiperPaginationBuilder(
-                        //     //     activeColor: colorMain,
-                        //     //     color: Theme.of(context).backgroundColor,
-                        //     //     activeSize: 8.0,
-                        //     //     size: 6.0)
-                        //     ),
+                        // layout: SwiperLayout.TINDER,
+
+                        itemWidth: double.maxFinite,
+                        itemHeight: double.maxFinite,
+
+                        layout: SwiperLayout.CUSTOM,
+
+                        customLayoutOption: new CustomLayoutOption(
+                                startIndex: -1, stateCount: 3)
+                            .addRotate([-0.0, 0.0, 0.0]).addTranslate([
+                          new Offset(-375.0, -10.0),
+                          new Offset(0.0, 0.0),
+                          new Offset(375.0, -10.0)
+                        ]),
+
+                        // customLayoutOption: new CustomLayoutOption(
+                        //         startIndex: -1,
+
+                        //         /// Which index is the first item of array below
+                        //         stateCount: 3
+
+                        //         /// array length
+                        //         )
+                        //     .addRotate([
+                        //   // rotation of every item
+                        //   -45.0 / 180,
+                        //   0.0,
+                        //   45.0 / 180
+                        // ]).addTranslate([
+                        //   /// offset of every item
+                        //   new Offset(-370.0, -40.0),
+                        //   new Offset(0.0, 0.0),
+                        //   new Offset(370.0, -40.0)
+                        // ]),
+
+                        // pagination: new SwiperPagination(
+                        //   margin: new EdgeInsets.only(top: 15.0),
+                        //   builder:
+                        //    new FractionPaginationBuilder(
+                        //       activeColor: colorMain,
+                        //       color: Theme.of(context).backgroundColor,
+                        //       activeFontSize: 8.0,
+                        //       fontSize: 6.0)
+                        // // new DotSwiperPaginationBuilder(
+                        // //     activeColor: colorMain,
+                        // //     color: Theme.of(context).backgroundColor,
+                        // //     activeSize: 8.0,
+                        // //     size: 6.0)
+                        // //     ),
+                        // ),
                       ),
               ),
               Container(

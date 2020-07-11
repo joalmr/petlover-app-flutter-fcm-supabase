@@ -211,16 +211,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                                       color: colorMain),
                                 ),
                               ),
-                            )
-                            // ddlFutureSearch(
-                            //     context, opcRaza, razaLista.breeds, (opt) {
-                            //   setState(() {
-                            //     opcRaza = opt.toString();
-                            //     mascotaData.breedId =
-                            //         int.tryParse(opt.split("|")[0]);
-                            //   });
-                            // }),
-                            ),
+                            )),
                         SizedBox(
                           height: 10.0,
                         ),
