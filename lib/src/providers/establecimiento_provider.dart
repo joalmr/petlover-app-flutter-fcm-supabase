@@ -12,6 +12,7 @@ class EstablecimientoProvider {
   //List<int> filtros
   Future<List<EstablecimientoModel>> getVets(dynamic filtros) async {
     //String latlng
+    print('=== gps ===');
     print(_prefs.position.toString());
     String lat = _prefs.position.toString().split(',')[0];
     String lng = _prefs.position.toString().split(',')[1];
