@@ -39,7 +39,10 @@ class _NavigationBarState extends State<NavigationBar> {
   //TODO: firebase
   @override
   void initState() {
-    fnGetPosition();
+    fnPosition().then((value) {
+      _prefs.position = '${value.latitude},${value.longitude}';
+      print(_prefs.position);
+    });
 
     super.initState();
     _firebaseMessaging.requestNotificationPermissions();
