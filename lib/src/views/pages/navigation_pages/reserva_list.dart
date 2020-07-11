@@ -39,7 +39,6 @@ class _ReservaListState extends State<ReservaList> {
 
   @override
   void initState() {
-    //implement initState
     _onRefresh();
     super.initState();
   }

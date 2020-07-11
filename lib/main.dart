@@ -30,14 +30,23 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    if (!fnGetVerify()) {
-      loginProvider.logOut();
-    } else {
-      if (prefs.token.trim() != null && prefs.token.trim() != '') {
-        // loginProvider.validateMain();
+    if (prefs.token.trim() != null && prefs.token.trim() != '') {
+      if (!fnGetVerify()) {
+        print('== pasa log out ==');
+        loginProvider.logOut();
+      } else {
+        print('== pasa ok ==');
         rutaInicio = 'navInicio';
       }
     }
+    // if (!fnGetVerify()) {
+    //   loginProvider.logOut();
+    // } else {
+    //   if (prefs.token.trim() != null && prefs.token.trim() != '') {
+    //     // loginProvider.validateMain();
+    //     rutaInicio = 'navInicio';
+    //   }
+    // }
     super.initState();
   }
 
