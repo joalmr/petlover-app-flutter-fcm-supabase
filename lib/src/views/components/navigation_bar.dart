@@ -41,12 +41,12 @@ class _NavigationBarState extends State<NavigationBar> {
   //TODO: firebase
   @override
   void initState() {
+    super.initState();
     fnPosition().then((value) {
       _prefs.position = '${value.latitude},${value.longitude}';
       print(_prefs.position);
     });
 
-    super.initState();
     _firebaseMessaging.requestNotificationPermissions();
     _firebaseMessaging.getToken().then((token) {
       //los tokens a agregar en la bd deben ser un arreglo de tokens
