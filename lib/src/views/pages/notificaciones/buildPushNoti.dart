@@ -1,14 +1,10 @@
-import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/models/notificacion/push_model.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
 
-import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/views/pages/reserva/vet_detalle_page.dart';
 
 class BuildPushNoti extends StatefulWidget {
@@ -150,7 +146,6 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
             return FadeIn(
               child: SimpleDialog(
                 contentPadding: EdgeInsets.all(20.0),
-                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 children: <Widget>[
                   SizedBox(height: 10.0),
                   Text(
