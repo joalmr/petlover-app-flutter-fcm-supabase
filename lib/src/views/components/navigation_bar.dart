@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/posicion.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/utils/utils.dart';
+// import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/home_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/notificaciones_page.dart';
@@ -15,8 +15,6 @@ import 'package:proypet/src/views/pages/notificaciones/buildPushNoti.dart';
 import 'package:proypet/src/views/pages/notificaciones/buildPushQualify.dart';
 
 FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
-
-// final scaffoldKey = GlobalKey<ScaffoldState>();
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
@@ -44,31 +42,10 @@ class _NavigationBarState extends State<NavigationBar> {
     super.initState();
     fnPosition().then((value) {
       _prefs.position = '${value.latitude},${value.longitude}';
-      print(_prefs.position);
+      // print(_prefs.position);
     });
-
-    _firebaseMessaging.requestNotificationPermissions();
-    _firebaseMessaging.getToken().then((token) {
-      //los tokens a agregar en la bd deben ser un arreglo de tokens
-      print("======== token ========");
-      print(token);
-      loginProvider.sendTokenFire(token);
-    });
-
-    _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) async {
-      onPush(message);
-    }, onLaunch: (Map<String, dynamic> message) async {
-      // print(message);
-      // print('======== onLaunch ========');
-      if (message.isNotEmpty) onPush(message);
-      message = null; //TODO: verificar
-    }, onResume: (Map<String, dynamic> message) async {
-      // print(message);
-      // print('======== onResume ========');
-      if (message.isNotEmpty) onPush(message);
-      message = null;
-    });
+    //ejecuta firebase
+    _fnFireBaseEjec();
   }
 
   @override
@@ -146,6 +123,27 @@ class _NavigationBarState extends State<NavigationBar> {
       body: _kTabPages[currentTabIndex],
       bottomNavigationBar: bottomNavBar,
     );
+  }
+
+  _fnFireBaseEjec() {
+    _firebaseMessaging.requestNotificationPermissions();
+    _firebaseMessaging.getToken().then((token) {
+      //los tokens a agregar en la bd deben ser un arreglo de tokens
+      print("======== token ========");
+      print(token);
+      loginProvider.sendTokenFire(token);
+    });
+
+    _firebaseMessaging.configure(
+        onMessage: (Map<String, dynamic> message) async {
+      onPush(message);
+    }, onLaunch: (Map<String, dynamic> message) async {
+      if (message.isNotEmpty) onPush(message);
+      message = null; //TODO: verificar
+    }, onResume: (Map<String, dynamic> message) async {
+      if (message.isNotEmpty) onPush(message);
+      message = null;
+    });
   }
 
   onPush(message) {
