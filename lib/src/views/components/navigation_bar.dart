@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/posicion.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/pages/navigation_pages/destacados_page.dart';
 import 'package:proypet/src/views/pages/navigation_pages/home_page.dart';
@@ -35,6 +36,7 @@ class _NavigationBarState extends State<NavigationBar> {
   _NavigationBarState({@required this.currentTabIndex});
 
   final loginProvider = UserProvider();
+  final _prefs = new PreferenciasUsuario();
 
   //TODO: firebase
   @override
