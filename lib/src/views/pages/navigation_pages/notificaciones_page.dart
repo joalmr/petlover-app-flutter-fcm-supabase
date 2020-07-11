@@ -118,31 +118,39 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                         itemCount: notification.length,
                         itemBuilder: (BuildContext context, int index) {
                           return _notificacionCase(notification[index]);
-                          //buildNoti(notification[index]);
                         },
+                        loop: false,
                         // viewportFraction: 0.91,
                         // scale: 0.91,
-                        loop: false,
-                        // physics: BouncingScrollPhysics(),
-                        // control: SwiperControl(
-                        //   size: 14,
-                        //   padding: EdgeInsets.symmetric(horizontal: 15),
-                        // ),
-
+                        physics: BouncingScrollPhysics(),
+                        pagination: SwiperPagination(
+                          margin: new EdgeInsets.only(
+                              top: 15.0, left: 20, right: 20),
+                          builder: new DotSwiperPaginationBuilder(
+                              activeColor: colorMain,
+                              color: Theme.of(context).backgroundColor,
+                              activeSize: 8.0,
+                              size: 6.0),
+                        ),
                         // layout: SwiperLayout.TINDER,
 
                         itemWidth: double.maxFinite,
                         itemHeight: double.maxFinite,
 
-                        layout: SwiperLayout.CUSTOM,
+                        // control: SwiperControl(
+                        //   size: 14,
+                        //   padding: EdgeInsets.symmetric(horizontal: 15),
+                        // ),
 
-                        customLayoutOption: new CustomLayoutOption(
-                                startIndex: -1, stateCount: 3)
-                            .addRotate([0.0, 0.0, 0.0]).addTranslate([
-                          new Offset(-355.0, -5.0),
-                          new Offset(0.0, 0.0),
-                          new Offset(355.0, -5.0)
-                        ]),
+                        // layout: SwiperLayout.CUSTOM,
+
+                        // customLayoutOption: new CustomLayoutOption(
+                        //         startIndex: -1, stateCount: 3)
+                        //     .addRotate([0.0, 0.0, 0.0]).addTranslate([
+                        //   new Offset(-355.0, -5.0),
+                        //   new Offset(0.0, 0.0),
+                        //   new Offset(355.0, -5.0)
+                        // ]),
 
                         // customLayoutOption: new CustomLayoutOption(
                         //         startIndex: -1,
