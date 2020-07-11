@@ -17,7 +17,7 @@ import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
 import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/utils/posicion.dart';
+// import 'package:proypet/src/utils/posicion.dart';
 
 class HomePage extends StatefulWidget {
   @override
