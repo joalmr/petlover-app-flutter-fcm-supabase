@@ -138,10 +138,10 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
                         customLayoutOption: new CustomLayoutOption(
                                 startIndex: -1, stateCount: 3)
-                            .addRotate([-0.0, 0.0, 0.0]).addTranslate([
-                          new Offset(-375.0, -10.0),
+                            .addRotate([0.0, 0.0, 0.0]).addTranslate([
+                          new Offset(-355.0, -5.0),
                           new Offset(0.0, 0.0),
-                          new Offset(375.0, -10.0)
+                          new Offset(355.0, -5.0)
                         ]),
 
                         // customLayoutOption: new CustomLayoutOption(
