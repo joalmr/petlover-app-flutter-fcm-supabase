@@ -28,7 +28,6 @@ class _MyAppState extends State<MyApp> {
   final loginProvider = UserProvider();
   var rutaInicio = 'login';
 
-  //TODO: FractionPaginationBuilder
   @override
   void initState() {
     if (!fnGetVerify()) {

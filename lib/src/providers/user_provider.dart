@@ -31,19 +31,6 @@ class UserProvider {
         jsonRespuesta = {'code': 401, 'message': decodedResp['message']};
       }
       return jsonRespuesta;
-      // final Map<String, dynamic> decodedResp = json.decode(resp.body);
-
-      // if (decodedResp.containsKey('token')) {
-      //   _prefs.token = decodedResp['token'];
-      //   // print(_prefs.token);
-      //   return {
-      //     'ok': true,
-      //     'verify': decodedResp['verify'],
-      //     'token': decodedResp['token']
-      //   };
-      // } else {
-      //   return {'ok': false, 'mensaje': 'Usuario o clave incorrecta'};
-      // }
     } catch (ex) {
       return {'ok': false, 'mensaje': 'Usuario o clave incorrecta'};
     }
