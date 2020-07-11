@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         children: <Widget>[
                           Expanded(
                             child: Text(
-                              "Reservas",
+                              "Mis Reservas",
                               style:
                                   Theme.of(context).textTheme.headline6.apply(
                                         fontWeightDelta: 2,
