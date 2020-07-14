@@ -48,7 +48,7 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('${widget.mensaje}'),
+                child: Text(widget.noti['message']),
               )),
             ],
           ),

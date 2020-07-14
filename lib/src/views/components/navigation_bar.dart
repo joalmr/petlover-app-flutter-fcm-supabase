@@ -129,11 +129,12 @@ class _NavigationBarState extends State<NavigationBar> {
 
   onPush(message) {
     print('== llega ==');
-    if (message['data']['type'] == "qualify") {
+    //AttentionFinished = qualify
+    if (message['data']['type'] == "AttentionFinished") {
       showDialog(
         context: context,
         builder: (context) => SimpleDialog(
-          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          // contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           children: <Widget>[
             BuildPushQualify(
                 noti: message['data'],
@@ -146,7 +147,7 @@ class _NavigationBarState extends State<NavigationBar> {
       showDialog(
         context: context,
         builder: (context) => SimpleDialog(
-          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
           children: <Widget>[
             BuildPushNoti(
                 noti: message['data'], mensaje: message['notification']['body'])

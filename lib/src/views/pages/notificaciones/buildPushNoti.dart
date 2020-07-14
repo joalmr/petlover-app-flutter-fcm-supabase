@@ -22,7 +22,99 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
   Widget build(BuildContext context) {
     // Data dataPush = Data.fromJson(widget.noti);
     // print(dataPush);
+    return _fnNoti(widget.noti, context);
+  }
+
+  _fnNoti(noti, context) {
+    switch (noti['type']) {
+      case "ComingBooking":
+        return notificacionAct(Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FlatButton(
+              child: Text('Omitir'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text('Ir'),
+              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
+            ),
+          ],
+        ));
+        break;
+      case "NextDate":
+        return notificacionAct(Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FlatButton(
+              child: Text('Omitir'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text('Ir'),
+              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
+              // _fnEstablecimiento(noti['options']['establishment_id']),
+            ),
+          ],
+        ));
+        break;
+      case "Recordatory":
+        return notificacionAct(Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FlatButton(
+              child: Text('Omitir'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            FlatButton(
+              child: Text('Ir'),
+              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
+            ),
+          ],
+        ));
+        break;
+      case "BookingConfirmed":
+        return Container(
+          height: 210,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage('images/fondo1.png'),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 10),
+              Text(widget.noti['message'],
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                child: Image(
+                  image: CachedNetworkImageProvider(widget.noti['pet_picture']),
+                  height: 70,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
+        );
+        break;
+      default:
+        return SizedBox(
+          height: 0.0,
+        );
+        break;
+    }
+  }
+
+  Widget notificacionAct(Widget dataWidget) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         children: <Widget>[
           Row(
@@ -39,7 +131,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    '${widget.mensaje} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
+                    '${widget.noti['message']} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
               )),
             ],
           ),
@@ -56,77 +148,10 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               fit: BoxFit.cover,
             ),
           ),
-          _fnNoti(widget.noti, context),
+          dataWidget,
         ],
       ),
     );
-  }
-
-  _fnNoti(noti, context) {
-    switch (noti['type']) {
-      case "ComingBooking":
-        return Row(
-          // crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            FlatButton(
-              child: Text('Omitir'),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            FlatButton(
-              child: Text('Ir'),
-              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
-            ),
-          ],
-        );
-        break;
-      case "NextDate":
-        {
-          // print(noti['options']);
-          return Row(
-            // crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                child: Text('Omitir'),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              FlatButton(
-                child: Text('Ir'),
-                onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
-                // _fnEstablecimiento(noti['options']['establishment_id']),
-              ),
-            ],
-          );
-        }
-        break;
-      case "Recordatory":
-        {
-          return Row(
-            // crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                child: Text('Omitir'),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              FlatButton(
-                child: Text('Ir'),
-                onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
-                //     Navigator.pushNamed(context, 'navLista', arguments: {
-                //   "filtros": [slugNum[noti['options']['slug']]]
-                // }),
-              ),
-            ],
-          );
-        }
-        break;
-      default:
-        return SizedBox(
-          height: 0.0,
-        );
-        break;
-    }
   }
 
   _fnEstablecimiento(id) async {
