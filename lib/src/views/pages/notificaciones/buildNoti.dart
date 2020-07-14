@@ -23,10 +23,11 @@ Widget buildNoti(Notificacion noti, funcion) {
                     ),
                   ),
                   Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(noti.message),
-                  ))
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(noti.message),
+                    ),
+                  )
                 ],
               ),
               Padding(
