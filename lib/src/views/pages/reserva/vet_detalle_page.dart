@@ -77,7 +77,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Stack(
           children: <Widget>[
             Container(
-              height: 240.0,
+              height: 260.0,
               width: double.infinity,
               child: (vet.slides.length > 0)
                   ? _swiperVets(vet.slides, true)
@@ -102,7 +102,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
         ),
 
         Container(
-          padding: EdgeInsets.only(top: 240.0, bottom: 60.0),
+          padding: EdgeInsets.only(top: 260.0, bottom: 60.0),
           child: _onDetail(vet),
         ),
 
