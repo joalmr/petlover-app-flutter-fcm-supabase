@@ -32,10 +32,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     if (prefs.token.trim() != null && prefs.token.trim() != '') {
       if (!fnGetVerify()) {
-        print('== pasa log out ==');
+        print('== log out ==');
         loginProvider.logOut();
       } else {
-        print('== pasa ok ==');
+        // print('== pasa ok ==');
         rutaInicio = 'navInicio';
       }
     }

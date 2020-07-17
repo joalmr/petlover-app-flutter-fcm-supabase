@@ -26,6 +26,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
   }
 
   _fnNoti(noti, context) {
+    print("== fnNoti ==");
     switch (noti['type']) {
       case "ComingBooking":
         return notificacionAct(Row(
