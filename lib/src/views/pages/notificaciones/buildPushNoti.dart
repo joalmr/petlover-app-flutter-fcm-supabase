@@ -105,6 +105,37 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
           ),
         );
         break;
+      case "Reprogramado": //reprogramacion
+        return Container(
+          height: 210,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage('images/fondo2.png'),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 10),
+              Text(widget.noti['message'],
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                child: Image(
+                  image: CachedNetworkImageProvider(widget.noti['pet_picture']),
+                  height: 70,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
+        );
+        break;
       default:
         return SizedBox(
           height: 0.0,

@@ -68,11 +68,11 @@ class _MyAppState extends State<MyApp> {
       },
     );
 
-    //com.example.user2 //prueba
-    //com.example.user2 //produccion
+    //com.example.user //prueba
+    //com.example.user //produccion
     return MaterialApp(
       debugShowCheckedModeBanner:
-          true, // TODO: cambiar antes de lanzar y tambien cambiar el com.example.user2 para produccion es false
+          true, // TODO: cambiar antes de lanzar y tambien cambiar el com.example.user para produccion es false
       navigatorKey: navigatorKey,
       title: 'Proypet',
       theme: ThemeData(

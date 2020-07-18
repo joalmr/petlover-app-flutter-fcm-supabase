@@ -1,4 +1,4 @@
-package com.example.user2
+package com.example.user
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

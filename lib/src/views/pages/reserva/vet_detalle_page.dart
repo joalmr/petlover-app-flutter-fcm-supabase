@@ -61,10 +61,11 @@ class _VetDetallePageState extends State<VetDetallePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
-        body: FadeView2(
-          child: _onStack(vet),
-        ));
+      key: scaffoldKey,
+      body: FadeView2(
+        child: _onStack(vet),
+      ),
+    );
   }
 
   Widget _onStack(vet) {
@@ -126,38 +127,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
                     ),
                     onPressed: _launchPhone,
                   ),
-                  // Column(
-                  //   children: <Widget>[
-                  //     // Row(
-                  //     //   children: <Widget>[
-                  //     //     Icon(Icons.star, color: Colors.white, size: 16.0),
-                  //     //     Text(
-                  //     //       vet.stars.toString(),
-                  //     //       style: TextStyle(
-                  //     //         fontSize: 20.0,
-                  //     //         fontWeight: FontWeight.bold,
-                  //     //         color: Colors.white,
-                  //     //       ),
-                  //     //     ),
-                  //     //   ],
-                  //     // ),
-                  //     Text(
-                  //       '${vet.stars.toString()} ★',
-                  //       style: TextStyle(
-                  //         fontSize: 20.0,
-                  //         fontWeight: FontWeight.bold,
-                  //         color: colorYellow,
-                  //       ),
-                  //     ),
-                  //     Text(
-                  //       '${vet.attentions.toString()}  aten.',
-                  //       style: TextStyle(
-                  //           fontSize: sizeSmall,
-                  //           fontWeight: FontWeight.bold,
-                  //           color: colorGray3),
-                  //     ),
-                  //   ],
-                  // ),
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.725,
