@@ -79,6 +79,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Lato',
         brightness: Brightness.light,
         primarySwatch: newteal,
+        accentColor: colorMain,
         backgroundColor: colorGray1,
         appBarTheme: AppBarTheme(
           textTheme: TextTheme(
@@ -123,6 +124,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Lato',
         brightness: Brightness.dark,
         primarySwatch: newteal,
+        accentColor: colorMain,
         backgroundColor: colorDark3,
         floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: colorMain, foregroundColor: Colors.white),
@@ -133,7 +135,7 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-        dialogBackgroundColor: colorDark3,
+        dialogBackgroundColor: Colors.grey[850],
         dialogTheme: DialogTheme(
           shape: shape10,
         ),

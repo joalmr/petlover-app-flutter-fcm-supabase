@@ -370,10 +370,6 @@ class _Data extends State<DataReserva> {
                   color: colorMain,
                 ),
           child: ListTile(
-            // leading: Icon(item.icon,
-            //     color: isSelected
-            //         ? Colors.white
-            //         : Theme.of(context).textTheme.subtitle2.color),
             selected: isSelected,
             title: Text(
               item.name,

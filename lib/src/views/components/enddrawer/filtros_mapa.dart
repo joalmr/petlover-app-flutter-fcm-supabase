@@ -294,13 +294,6 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         Location latlng = value.result.geometry.location;
         _prefs.position = "${latlng.lat},${latlng.lng}";
       });
-      // Geolocator().placemarkFromAddress(dato).then((result){
-      //   if(result!=null){
-      //     latlng = result[0].position;
-      //     _prefs.position = '${latlng.latitude},${latlng.longitude}';
-      //     print(_prefs.position);
-      //   }
-      // });
     }
   }
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/models/maps/address.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/pages/reserva/buildVets/buildVet.dart';
 import 'package:proypet/src/views/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
@@ -10,6 +14,9 @@ import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/posicion.dart';
+import 'package:select_dialog/select_dialog.dart';
+import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+import 'package:http/http.dart' as http;
 
 class ReservaList extends StatefulWidget {
   @override
@@ -23,6 +30,8 @@ class _ReservaListState extends State<ReservaList> {
   // final _prefs = new PreferenciasUsuario();
   List<int> listaFiltros = [];
   var stream;
+  String searchAddr = "";
+  final _prefs = new PreferenciasUsuario();
 
   Future<List<EstablecimientoModel>> newFuture() =>
       vetProvider.getVets(listaFiltros); //, _prefs.position
@@ -57,47 +66,115 @@ class _ReservaListState extends State<ReservaList> {
       listaFiltros = filtrosData["filtros"];
     }
 
-    return FutureBuilder(
+    return Scaffold(
+      appBar: AppBar(
+        // leading: leadingH,
+        title: TextField(
+          enableInteractiveSelection: false,
+          cursorColor: colorMain,
+          decoration: InputDecoration(
+            prefixIcon: Icon(
+              Icons.search,
+            ),
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            padding: EdgeInsets.all(0),
+            icon: Icon(Icons.filter_list),
+            onPressed: () => showDialog(
+              context: context,
+              child: AlertDialog(
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      _autocompleteAddress(),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      'Cerrar',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2
+                          .apply(fontWeightDelta: 2),
+                    ),
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Buscar',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2
+                          .apply(fontWeightDelta: 2, color: colorMain),
+                    ),
+                  )
+                ],
+              ),
+            ), // => _key.currentState.openEndDrawer(),
+          ),
+          // IconButton(
+          //   icon: Icon(Icons.filter_list),
+          //   onPressed: () {}, // => _key.currentState.openEndDrawer(),
+          // ),
+        ],
+      ),
+      body: FutureBuilder(
         future: stream,
         builder: (BuildContext context,
             AsyncSnapshot<List<EstablecimientoModel>> snapshot) {
           if (snapshot.connectionState != ConnectionState.done)
-            return Scaffold(
-              appBar: appbar(leadingH, 'Buscar veterinarias', null),
-              body: LinearProgressIndicator(),
-            );
+            return LinearProgressIndicator();
           else {
             if (snapshot.hasError) {
               return errorInternet();
             }
-
-            return Scaffold(
-                key: _key,
-                endDrawer: FiltrosMapa(
-                  filtros: listaFiltros,
-                ), //listaFiltros
-                appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.filter_list),
-                    onPressed: () => _key.currentState.openEndDrawer(),
-                  ),
-                ]),
-                body: FadeView(child: _onTab(snapshot.data)),
-                floatingActionButton: FloatingActionButton(
-                  onPressed: (snapshot.data.length == 0)
-                      ? null
-                      : () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VetMapaPage(
-                                  establecimientos: snapshot.data))),
-                  child: Icon(Icons.location_on),
-                  // backgroundColor: Theme.of(context).primaryColor,
-                ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.endFloat);
+            return FadeView(child: _onTab(snapshot.data));
           }
-        });
+        },
+      ),
+    );
+  }
+
+  _autocompleteAddress() {
+    return SimpleAutocompleteFormField<Prediction2>(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.location_searching),
+      ),
+      autofocus: true,
+      maxSuggestions: 5,
+      onSearch: (filter) async {
+        var response = await http.get(
+            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        var models = addressFromJson(response.body);
+        return models.predictions;
+      },
+      onChanged: (Prediction2 data) {
+        searchAddr = data.name;
+        searchandNavigate(data);
+        // Navigator.of(context).pop();
+        // _onRefresh();
+      },
+      resetIcon: null,
+      itemBuilder: (context, address) => Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+          child: Text(address.name,
+              style: TextStyle(fontWeight: FontWeight.bold))),
+    );
+  }
+
+  searchandNavigate(dato) {
+    if (searchAddr.trim() != "") {
+      final places = new GoogleMapsPlaces(apiKey: keyMap);
+      places.getDetailsByPlaceId(dato.placeId).then((value) {
+        Location latlng = value.result.geometry.location;
+        _prefs.position = "${latlng.lat},${latlng.lng}";
+      });
+    }
   }
 
   _onTab(List<EstablecimientoModel> vetLocales) {
@@ -108,16 +185,6 @@ class _ReservaListState extends State<ReservaList> {
           onRefresh: _onRefresh,
           child: CustomScrollView(
             slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, left: 20, right: 20, bottom: 5),
-                  child: TextField(
-                    enableInteractiveSelection: false,
-                    cursorColor: colorMain,
-                  ),
-                ),
-              ),
               (listaFiltros.length > 0)
                   ? _listarChip(listaFiltros)
                   : SliverToBoxAdapter(
@@ -151,6 +218,22 @@ class _ReservaListState extends State<ReservaList> {
             ],
           ),
         ),
+        Positioned(
+          bottom: 15,
+          right: 10,
+          child: FloatingActionButton(
+            onPressed: (vetLocales.length == 0)
+                ? null
+                : () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            VetMapaPage(establecimientos: vetLocales),
+                      ),
+                    ),
+            child: Icon(Icons.location_on),
+          ),
+        )
       ],
     );
   }
