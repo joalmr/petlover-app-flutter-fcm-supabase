@@ -108,7 +108,23 @@ class _ReservaListState extends State<ReservaList> {
           onRefresh: _onRefresh,
           child: CustomScrollView(
             slivers: <Widget>[
-              _listarChip(listaFiltros),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 10, left: 20, right: 20, bottom: 5),
+                  child: TextField(
+                    enableInteractiveSelection: false,
+                    cursorColor: colorMain,
+                  ),
+                ),
+              ),
+              (listaFiltros.length > 0)
+                  ? _listarChip(listaFiltros)
+                  : SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 0.0,
+                      ),
+                    ),
               (vetLocales.length < 1)
                   ? SliverToBoxAdapter(
                       child: SizedBox(
