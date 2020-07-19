@@ -74,7 +74,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
         Container(
           height: MediaQuery.of(context).size.height,
         ),
-
         Stack(
           children: <Widget>[
             Container(
@@ -101,13 +100,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
             )
           ],
         ),
-
         Container(
           padding: EdgeInsets.only(top: 260.0, bottom: 60.0),
           child: _onDetail(vet),
         ),
-
-        // _botonPrincipal(context),
         Positioned(
           bottom: 0,
           child: Container(
@@ -116,9 +112,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             padding: EdgeInsets.symmetric(vertical: 5.0),
             child: Row(
               children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.025,
-                ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.025),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.2,
                   child: FloatingActionButton(
@@ -130,30 +124,14 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.725,
-                  child: RaisedButton(
-                    shape: shape20,
-                    color: colorMain,
-                    elevation: 2.0,
-                    textColor: Colors.white,
-                    child: Text(
-                      'Reservar servicio',
-                      // style: _textstyle,
-                    ),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-                    onPressed: reservarClic ? _reservar : null,
-                  ),
-                  // child: buttonPri(
-                  //     'Reservar servicio', reservarClic ? _reservar : null),
+                  child: buttonPri(
+                      'Reservar servicio', reservarClic ? _reservar : null),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.05,
-                ),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.05),
               ],
             ),
           ),
         ),
-
         Positioned(
           top: 0,
           left: 0,
@@ -193,14 +171,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                   style: TextStyle(
                       color: Theme.of(context).textTheme.subtitle2.color),
                 ),
-                trailing:
-                    // FloatingActionButton(
-                    //   child: Icon(
-                    //     Icons.phone,
-                    //   ),
-                    //   onPressed: _launchPhone,
-                    // ),
-                    Stack(
+                trailing: Stack(
                   children: <Widget>[
                     Container(height: 56.0, width: 60.0),
                     Container(
@@ -237,105 +208,22 @@ class _VetDetallePageState extends State<VetDetallePage> {
                           height: 25.0,
                           width: 25.0,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: colorMain //Color(0xFFFE7050)
-                              ),
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: colorMain,
+                          ),
                           child: Center(
-                            child: Text(localVet.attentions.toString(),
-                                style: TextStyle(
-                                    fontSize: sizeSmall, color: Colors.white)),
+                            child: Text(
+                              localVet.attentions.toString(),
+                              style: TextStyle(
+                                  fontSize: sizeSmall, color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-                // Container(
-                //   height: 55.0,
-                //   width: 55.0,
-                //   decoration: BoxDecoration(
-                //     color: colorGray1,
-                //     borderRadius: BorderRadius.circular(100.0),
-                //     image: DecorationImage(
-                //         image: CachedNetworkImageProvider(localVet.logo),
-                //         fit: BoxFit.cover),
-                //   ),
-                // ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    // Text('Atenciones',
-                    //     style: Theme.of(context)
-                    //         .textTheme
-                    //         .subtitle1
-                    //         .apply(fontWeightDelta: 2)),
-                    SizedBox(width: 15.0),
-                    // Stack(
-                    //   children: <Widget>[
-                    //     Container(height: 56.0, width: 60.0),
-                    //     Container(
-                    //       height: 50.0,
-                    //       width: 50.0,
-                    //       padding: EdgeInsets.symmetric(horizontal: 5.0),
-                    //       decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(100.0),
-                    //           color: colorYellow),
-                    //       child: Center(
-                    //         child: Row(
-                    //           mainAxisAlignment: MainAxisAlignment.center,
-                    //           children: <Widget>[
-                    //             Icon(Icons.star,
-                    //                 color: Colors.white, size: 12.0),
-                    //             // SizedBox(width: 5.0),
-                    //             Text(localVet.stars.toString(),
-                    //                 style: TextStyle(
-                    //                     fontSize: 14.0,
-                    //                     fontWeight: FontWeight.bold,
-                    //                     color: Colors.white))
-                    //           ],
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Positioned(
-                    //       bottom: 0.0,
-                    //       right: 0.0,
-                    //       child: Container(
-                    //         height: 25.0,
-                    //         width: 25.0,
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(20.0),
-                    //             color: colorMain //Color(0xFFFE7050)
-                    //             ),
-                    //         child: Center(
-                    //           child: Text(localVet.attentions.toString(),
-                    //               style: TextStyle(
-                    //                   fontSize: sizeSmall,
-                    //                   color: Colors.white)),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
-                ),
-                // Padding(
-                //   padding: const EdgeInsets.only(right: 15.0),
-                //   child: FloatingActionButton(
-                //     // backgroundColor: colorMain,
-                //     child: Icon(
-                //       Icons.phone,
-                //     ), //color: Colors.white,
-                //     onPressed: _launchPhone,
-                //   ),
-                // )
-              ],
             ),
           ),
           SizedBox(
@@ -453,15 +341,17 @@ class _VetDetallePageState extends State<VetDetallePage> {
           reservarClic = true;
         });
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DataReserva(
-                      establecimientoID: vet.id,
-                      misMascotas: misMascotas,
-                      mascotaID: misMascotas[0].id,
-                      establecimientoName: vet.name,
-                      delivery: delivery,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => DataReserva(
+              establecimientoID: vet.id,
+              misMascotas: misMascotas,
+              mascotaID: misMascotas[0].id,
+              establecimientoName: vet.name,
+              delivery: delivery,
+            ),
+          ),
+        );
       }
     } else {
       setState(() {

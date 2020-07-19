@@ -105,7 +105,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
           ),
         );
         break;
-      case "Reprogramado": //reprogramacion
+      case "BookingRescheduled": //reprogramacion
         return Container(
           height: 210,
           decoration: BoxDecoration(
