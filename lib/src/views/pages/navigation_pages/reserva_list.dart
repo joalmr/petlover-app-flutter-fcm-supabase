@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_webservice/places.dart';
-import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/views/components/filtro_veterinarias.dart';
 import 'package:proypet/src/views/pages/reserva/buildVets/buildVet.dart';
 import 'package:proypet/src/views/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/enddrawer/filtros_mapa.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/posicion.dart';
-import 'package:select_dialog/select_dialog.dart';
-import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
-import 'package:http/http.dart' as http;
 
 class ReservaList extends StatefulWidget {
   @override
@@ -25,13 +19,13 @@ class ReservaList extends StatefulWidget {
 
 class _ReservaListState extends State<ReservaList> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-  var refreshKey = GlobalKey<RefreshIndicatorState>();
-  EstablecimientoProvider vetProvider = EstablecimientoProvider();
+  final refreshKey = GlobalKey<RefreshIndicatorState>();
   // final _prefs = new PreferenciasUsuario();
+  EstablecimientoProvider vetProvider = EstablecimientoProvider();
   List<int> listaFiltros = [];
-  var stream;
   String searchAddr = "";
-  final _prefs = new PreferenciasUsuario();
+  var stream;
+  bool filtro = false;
 
   Future<List<EstablecimientoModel>> newFuture() =>
       vetProvider.getVets(listaFiltros); //, _prefs.position
@@ -67,62 +61,45 @@ class _ReservaListState extends State<ReservaList> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        // leading: leadingH,
-        title: TextField(
-          enableInteractiveSelection: false,
-          cursorColor: colorMain,
-          decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
+      key: _key,
+      // endDrawer: FiltrosMapa(
+      //   filtros: listaFiltros,
+      // ),
+      appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
+        IconButton(
+          icon: Icon(Icons.filter_list),
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => FiltraVets(
+                filtros: listaFiltros,
+              ),
             ),
           ),
         ),
-        actions: <Widget>[
-          IconButton(
-            padding: EdgeInsets.all(0),
-            icon: Icon(Icons.filter_list),
-            onPressed: () => showDialog(
-              context: context,
-              child: AlertDialog(
-                content: SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      _autocompleteAddress(),
-                    ],
-                  ),
-                ),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Cerrar',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2
-                          .apply(fontWeightDelta: 2),
-                    ),
-                  ),
-                  FlatButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Buscar',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2
-                          .apply(fontWeightDelta: 2, color: colorMain),
-                    ),
-                  )
-                ],
-              ),
-            ), // => _key.currentState.openEndDrawer(),
-          ),
-          // IconButton(
-          //   icon: Icon(Icons.filter_list),
-          //   onPressed: () {}, // => _key.currentState.openEndDrawer(),
-          // ),
-        ],
-      ),
+      ]),
+      // appBar: AppBar(
+      //   title: TextField(
+      //     enableInteractiveSelection: false,
+      //     cursorColor: colorMain,
+      //     decoration: InputDecoration(
+      //       prefixIcon: Icon(
+      //         Icons.search,
+      //       ),
+      //     ),
+      //   ),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       icon: Icon(Icons.filter_list),
+      //       onPressed: () => Navigator.of(context).push(
+      //         MaterialPageRoute(
+      //           builder: (context) => FiltraVets(
+      //             filtros: listaFiltros,
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: FutureBuilder(
         future: stream,
         builder: (BuildContext context,
@@ -138,43 +115,6 @@ class _ReservaListState extends State<ReservaList> {
         },
       ),
     );
-  }
-
-  _autocompleteAddress() {
-    return SimpleAutocompleteFormField<Prediction2>(
-      decoration: InputDecoration(
-        prefixIcon: Icon(Icons.location_searching),
-      ),
-      autofocus: true,
-      maxSuggestions: 5,
-      onSearch: (filter) async {
-        var response = await http.get(
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
-        var models = addressFromJson(response.body);
-        return models.predictions;
-      },
-      onChanged: (Prediction2 data) {
-        searchAddr = data.name;
-        searchandNavigate(data);
-        // Navigator.of(context).pop();
-        // _onRefresh();
-      },
-      resetIcon: null,
-      itemBuilder: (context, address) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-          child: Text(address.name,
-              style: TextStyle(fontWeight: FontWeight.bold))),
-    );
-  }
-
-  searchandNavigate(dato) {
-    if (searchAddr.trim() != "") {
-      final places = new GoogleMapsPlaces(apiKey: keyMap);
-      places.getDetailsByPlaceId(dato.placeId).then((value) {
-        Location latlng = value.result.geometry.location;
-        _prefs.position = "${latlng.lat},${latlng.lng}";
-      });
-    }
   }
 
   _onTab(List<EstablecimientoModel> vetLocales) {
@@ -233,7 +173,7 @@ class _ReservaListState extends State<ReservaList> {
                     ),
             child: Icon(Icons.location_on),
           ),
-        )
+        ),
       ],
     );
   }

@@ -33,6 +33,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: dataList(),
             ),
           ),
