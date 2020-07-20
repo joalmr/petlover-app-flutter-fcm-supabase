@@ -78,6 +78,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         fontFamily: 'Lato',
         brightness: Brightness.light,
+        cursorColor: colorMain,
         primarySwatch: newteal,
         accentColor: colorMain,
         backgroundColor: colorGray1,
@@ -123,6 +124,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData(
         fontFamily: 'Lato',
         brightness: Brightness.dark,
+        cursorColor: colorMain,
         primarySwatch: newteal,
         accentColor: colorMain,
         backgroundColor: colorDark3,

@@ -32,7 +32,12 @@ class _FiltraVetsState extends State<FiltraVets> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filtrar veterinarias'),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).textTheme.subtitle2.color),
+        title: Text(
+          'Filtrar veterinarias',
+          style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -298,7 +303,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                   width: ancho,
                   color: Theme.of(context).dialogBackgroundColor,
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: buttonOutLine("Filtrar", filtrar, colorMain)),
+                  child: buttonPri("Filtrar", filtrar)),
             )
           ],
         ),
@@ -316,7 +321,14 @@ class _FiltraVetsState extends State<FiltraVets> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
       child: FlatButton(
-        child: Text(texto),
+        child: Text(
+          texto,
+          style: TextStyle(
+            color: (filtros.contains(numero))
+                ? Colors.white
+                : Theme.of(context).textTheme.bodyText2.color,
+          ),
+        ),
         onPressed: () {
           setState(() {
             (filtros.contains(numero))
@@ -324,7 +336,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                 : filtros.add(numero);
           });
         },
-        color: (filtros.contains(numero)) ? colorMain : Colors.transparent,
+        color: (filtros.contains(numero)) ? colorGreen2 : Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(20.0),
           side: BorderSide(color: colorMain),

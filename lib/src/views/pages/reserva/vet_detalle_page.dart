@@ -116,8 +116,11 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.2,
                   child: FloatingActionButton(
+                    backgroundColor: Theme.of(context)
+                        .backgroundColor, //TODO: cambio de color
                     child: Icon(
                       Icons.phone,
+                      color: colorMain, //TODO: cambio de color
                     ),
                     onPressed: _launchPhone,
                   ),
