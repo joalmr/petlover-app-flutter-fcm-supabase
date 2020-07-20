@@ -53,7 +53,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
-                        'Dirección',
+                        'Ubicación',
                         style: Theme.of(context)
                             .textTheme
                             .subtitle2
