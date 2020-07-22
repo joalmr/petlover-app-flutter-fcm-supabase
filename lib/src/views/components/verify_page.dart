@@ -86,15 +86,6 @@ class VerifyPage extends StatelessWidget {
                     child: buttonOutLine('Ya validé mi cuenta', () {
                       return Navigator.of(context).pushNamedAndRemoveUntil(
                           'login', ModalRoute.withName('/'));
-                      //             return Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (context) => VerifyPage(
-                      //       textomail: user.email,
-                      //     ),
-                      //   ),
-                      // );
-                      // return Navigator.of(context).pushNamedAndRemoveUntil(
-                      //     '/login', ModalRoute.withName('/login'));
                     }, Colors.white),
                   )
                 ],

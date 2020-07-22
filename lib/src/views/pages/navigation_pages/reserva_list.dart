@@ -52,11 +52,12 @@ class _ReservaListState extends State<ReservaList> {
     super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   fnGetPosition();
-  //   super.dispose();
-  // }
+//obtiene posicion cuando salgo de la pagina
+  @override
+  void dispose() {
+    fnGetPosition();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
