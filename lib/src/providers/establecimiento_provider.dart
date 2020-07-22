@@ -10,31 +10,46 @@ class EstablecimientoProvider {
   final _prefs = new PreferenciasUsuario();
 
   //List<int> filtros
-  Future<List<EstablecimientoModel>> getVets(dynamic filtros) async {
-    //String latlng
+  Future<dynamic> getVets(dynamic filtros) async {
     print('=== gps ===');
     print(_prefs.position.toString());
-    String lat = _prefs.position.toString().split(',')[0];
-    String lng = _prefs.position.toString().split(',')[1];
-    var filtroServicio;
-    if (filtros.length > 0) {
-      filtroServicio = filtros;
-    } else {
-      filtroServicio = "";
+
+    int estado = 200;
+    List<EstablecimientoModel> establecimientos = [];
+
+    if (_prefs.position == null || _prefs.position.trim() == "") {
+      estado = 211; //no tiene ubicacion
     }
-    final url =
-        '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
-    final resp = await http.get(
-      url,
-      headers: headersToken(),
-    );
+    if (estado == 200) {
+      String lat = _prefs.position.split(',')[0];
+      String lng = _prefs.position.split(',')[1];
 
-    final jsonResp = json.decode(resp.body);
-    EstablecimientoList vets = EstablecimientoList.fromJson(jsonResp);
-    if (vets.establecimientos == null) return [];
+      var filtroServicio;
+      if (filtros.length > 0) {
+        filtroServicio = filtros;
+      } else {
+        filtroServicio = "";
+      }
+      final url =
+          '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
-    return vets.establecimientos;
+      final resp = await http.get(
+        url,
+        headers: headersToken(),
+      );
+
+      final jsonResp = json.decode(resp.body);
+      EstablecimientoList vets = EstablecimientoList.fromJson(jsonResp);
+      if (vets.establecimientos != null)
+        establecimientos = vets.establecimientos;
+    }
+
+    // return vets.establecimientos;
+    return {
+      'code': estado,
+      'establecimientos': establecimientos,
+    };
   }
 
   Future<dynamic> getVet(String idVet) async {

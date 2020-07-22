@@ -7,6 +7,7 @@ import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/verify_page.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -199,25 +200,32 @@ class _SingupPageState extends State<SingupPage> {
       } else {
         bool resp = await userProvider.registerUser(user);
         if (resp) {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return FadeIn(
-                  child: AlertDialog(
-                    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    title: Text('Gracias por registrarte'),
-                    content: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text(
-                          'Te hemos enviado un correo electrónico para confirmar la cuenta'),
-                    ),
-                  ),
-                );
-              });
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => VerifyPage(
+                textomail: user.email,
+              ),
+            ),
+          );
+          // showDialog(
+          //     context: context,
+          //     builder: (BuildContext context) {
+          //       return FadeIn(
+          //         child: AlertDialog(
+          //           // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          //           title: Text('Gracias por registrarte'),
+          //           content: Padding(
+          //             padding: const EdgeInsets.symmetric(vertical: 5.0),
+          //             child: Text(
+          //                 'Te hemos enviado un correo electrónico para confirmar la cuenta'),
+          //           ),
+          //         ),
+          //       );
+          //     });
 
-          Timer(Duration(milliseconds: 3500), () {
-            Navigator.of(context).popUntil((route) => route.isFirst);
-          });
+          // Timer(Duration(milliseconds: 3500), () {
+          //   Navigator.of(context).popUntil((route) => route.isFirst);
+          // });
         }
         //Navigator.of(context).pushNamedAndRemoveUntil('/login', ModalRoute.withName('/login')); //
         else {

@@ -40,10 +40,9 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   void initState() {
     super.initState();
-    fnPosition().then((value) {
-      _prefs.position = '${value.latitude},${value.longitude}';
-      // print(_prefs.position);
-    });
+    // fnPosition().then((value) {
+    //   _prefs.position = '${value.latitude},${value.longitude}';
+    // });
     //ejecuta firebase
     _fnFireBaseEjec();
   }
@@ -111,7 +110,6 @@ class _NavigationBarState extends State<NavigationBar> {
     _firebaseMessaging.getToken().then((token) {
       //los tokens a agregar en la bd deben ser un arreglo de tokens
       print("======== token ========");
-      print(token);
       loginProvider.sendTokenFire(token);
     });
 

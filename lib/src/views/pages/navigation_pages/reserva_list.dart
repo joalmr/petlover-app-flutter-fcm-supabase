@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/components/filtro_veterinarias.dart';
+import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/pages/reserva/buildVets/buildVet.dart';
 import 'package:proypet/src/views/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
@@ -11,6 +15,8 @@ import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/posicion.dart';
+import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
+import 'package:http/http.dart' as http;
 
 class ReservaList extends StatefulWidget {
   @override
@@ -20,14 +26,14 @@ class ReservaList extends StatefulWidget {
 class _ReservaListState extends State<ReservaList> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   final refreshKey = GlobalKey<RefreshIndicatorState>();
-  // final _prefs = new PreferenciasUsuario();
+  final _prefs = new PreferenciasUsuario();
   EstablecimientoProvider vetProvider = EstablecimientoProvider();
   List<int> listaFiltros = [];
   String searchAddr = "";
   var stream;
   bool filtro = false;
 
-  Future<List<EstablecimientoModel>> newFuture() =>
+  Future<dynamic> newFuture() =>
       vetProvider.getVets(listaFiltros); //, _prefs.position
 
   Future<Null> _onRefresh() async {
@@ -46,11 +52,11 @@ class _ReservaListState extends State<ReservaList> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    fnGetPosition();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   fnGetPosition();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -102,15 +108,45 @@ class _ReservaListState extends State<ReservaList> {
       // ),
       body: FutureBuilder(
         future: stream,
-        builder: (BuildContext context,
-            AsyncSnapshot<List<EstablecimientoModel>> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState != ConnectionState.done)
             return LinearProgressIndicator();
           else {
             if (snapshot.hasError) {
               return errorInternet();
+            } else {
+              Map resp = snapshot.data;
+              if (resp['code'] == 200)
+                return FadeView(child: _onTab(resp['establecimientos']));
+              else
+                return FadeView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        // Center(
+                        //   child: Image(
+                        //       height: 120,
+                        //       width: 120,
+                        //       image: AssetImage("images/gato-error.png")),
+                        // ),
+                        Text(
+                          'No pudimos detectar tu ubicación',
+                          style: Theme.of(context).textTheme.subtitle1,
+                        ),
+                        SizedBox(height: 10),
+                        _autocompleteAddress(),
+                        SizedBox(height: 10),
+                        buttonPri('Buscar', _onRefresh)
+                      ],
+                    ),
+                  ),
+                );
             }
-            return FadeView(child: _onTab(snapshot.data));
+            // else
+            // return FadeView(child: _onTab(snapshot.data));
           }
         },
       ),
@@ -224,5 +260,41 @@ class _ReservaListState extends State<ReservaList> {
                 TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
       ),
     );
+  }
+
+  _autocompleteAddress() {
+    return SimpleAutocompleteFormField<Prediction2>(
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.location_on),
+        hintText: 'Ingrese una dirección',
+      ),
+      maxSuggestions: 3,
+      onSearch: (filter) async {
+        var response = await http.get(
+            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        var models = addressFromJson(response.body);
+        return models.predictions;
+      },
+      minSearchLength: 3,
+      onChanged: (Prediction2 data) {
+        searchAddr = data.name;
+        searchandNavigate(data);
+      },
+      resetIcon: null,
+      itemBuilder: (context, address) => Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+          child: Text(address.name,
+              style: TextStyle(fontWeight: FontWeight.bold))),
+    );
+  }
+
+  searchandNavigate(dato) {
+    if (searchAddr.trim() != "") {
+      final places = new GoogleMapsPlaces(apiKey: keyMap);
+      places.getDetailsByPlaceId(dato.placeId).then((value) {
+        Location latlng = value.result.geometry.location;
+        _prefs.position = "${latlng.lat},${latlng.lng}";
+      });
+    }
   }
 }

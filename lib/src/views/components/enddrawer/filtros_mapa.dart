@@ -260,6 +260,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
     return SimpleAutocompleteFormField<Prediction2>(
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.location_on, color: colorMain),
+        hintText: 'Ingrese una dirección',
       ),
       // suggestionsHeight: 100.0,
       maxSuggestions: 5,

@@ -17,12 +17,6 @@ class ThxPage extends StatelessWidget {
         backgroundColor: colorMain,
         body: FadeView(
           child: Container(
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: AssetImage("images/confirmado.png"),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
             height: MediaQuery.of(context).size.height,
             child: Center(
               child: Column(

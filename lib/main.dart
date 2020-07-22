@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/posicion.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
 import 'package:proypet/src/utils/utils.dart';
@@ -8,10 +9,10 @@ import 'package:proypet/src/views/components/navigation_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:proypet/src/styles/styles.dart';
 
-final prefs = new PreferenciasUsuario();
+final _prefs = new PreferenciasUsuario();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await prefs.initPrefs();
+  await _prefs.initPrefs();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MyApp()));
   // runApp(MyApp());
@@ -30,23 +31,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    if (prefs.token.trim() != null && prefs.token.trim() != '') {
+    if (_prefs.token.trim() != null && _prefs.token.trim() != '') {
       if (!fnGetVerify()) {
-        print('== log out ==');
+        //== log out ==
         loginProvider.logOut();
       } else {
-        // print('== pasa ok ==');
+        fnPosition().then((value) {
+          _prefs.position = '${value.latitude},${value.longitude}'; //null
+        });
         rutaInicio = 'navInicio';
       }
     }
-    // if (!fnGetVerify()) {
-    //   loginProvider.logOut();
-    // } else {
-    //   if (prefs.token.trim() != null && prefs.token.trim() != '') {
-    //     // loginProvider.validateMain();
-    //     rutaInicio = 'navInicio';
-    //   }
-    // }
     super.initState();
   }
 
@@ -69,7 +64,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     //com.example.user //prueba
-    //com.example.user //produccion
+    //com.proypet.user //produccion
     return MaterialApp(
       debugShowCheckedModeBanner:
           true, // TODO: cambiar antes de lanzar y tambien cambiar el com.example.user para produccion es false

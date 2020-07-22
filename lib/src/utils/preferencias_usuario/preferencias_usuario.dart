@@ -47,7 +47,7 @@ class PreferenciasUsuario {
   }
 
   get position {
-    return _prefs.getString('position') ?? '0,0';
+    return _prefs.getString('position') ?? null;
   }
 
   set position(String value) {
