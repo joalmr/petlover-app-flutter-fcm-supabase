@@ -11,7 +11,7 @@ import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/views/components/enddrawer/config_drawer.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/navigation_bar.dart';
+import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -48,21 +48,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // // _controller = AnimationController(duration: const Duration(milliseconds: 1500), vsync: this);
-    // // _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
-    // // _controller.forward();
-
-    // fnGetPosition();
     _onRefresh();
 
     super.initState();
   }
-
-  // @override
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -409,7 +398,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         buttonModal('Cancelar', () => Navigator.pop(context),
                             Theme.of(context).textTheme.subtitle2.color),
                         buttonModal(
-                            'Cancelar',
+                            'Eliminar',
                             () => _deleteBooking(atenciones[index].id),
                             colorRed),
                       ],

@@ -1,18 +1,15 @@
-// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-// import 'package:proypet/src/utils/posicion.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-// import 'package:proypet/src/utils/utils.dart';
-import 'package:proypet/src/views/pages/_navigation_pages/destacados_page.dart';
-import 'package:proypet/src/views/pages/_navigation_pages/home_page.dart';
-import 'package:proypet/src/views/pages/_navigation_pages/notificaciones_page.dart';
-import 'package:proypet/src/views/pages/_navigation_pages/recompensas_page.dart';
-import 'package:proypet/src/views/pages/veterinariasView/reserva_list.dart';
 import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/views/pages/notificaciones/buildPushNoti.dart';
-import 'package:proypet/src/views/pages/notificaciones/buildPushQualify.dart';
+import 'package:proypet/src/views/pages/viewDestacados/destacados_page.dart';
+import 'package:proypet/src/views/pages/viewHome/home_page.dart';
+import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones/buildPushNoti.dart';
+import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones/buildPushQualify.dart';
+import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.dart';
+import 'package:proypet/src/views/pages/viewRecompensas/recompensas_page.dart';
+import 'package:proypet/src/views/pages/viewVeterinarias/reserva_list.dart';
 
 FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
 
@@ -116,6 +113,7 @@ class _NavigationBarState extends State<NavigationBar> {
     _firebaseMessaging.configure(
         onMessage: (Map<String, dynamic> message) async {
       onPush(message);
+      message = null;
     }, onLaunch: (Map<String, dynamic> message) async {
       if (message.isNotEmpty) onPush(message);
       message = null; //TODO: verificar

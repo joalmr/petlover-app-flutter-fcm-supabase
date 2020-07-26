@@ -1,13 +1,9 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
-// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 import 'package:proypet/src/models/notificacion/tip_model.dart';
-import 'package:proypet/src/views/pages/notificaciones/buildNoti.dart';
-import 'package:proypet/src/views/pages/notificaciones/buildTip.dart';
-import 'package:proypet/src/views/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/notificacion_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
@@ -15,6 +11,10 @@ import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
+
+import 'notificaciones/buildNoti.dart';
+import 'notificaciones/buildTip.dart';
 
 final List imagen = ['images/elegante1.jpg', 'images/royal1.jpg'];
 final List imagen2 = ['images/royal1.jpg', 'images/elegante1.jpg'];

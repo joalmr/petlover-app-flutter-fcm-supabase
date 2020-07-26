@@ -7,10 +7,10 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/views/pages/reserva/vet_detalle_page.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 class VetMapaPage extends StatefulWidget {
   final establecimientos;

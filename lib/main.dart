@@ -5,7 +5,7 @@ import 'package:proypet/src/utils/posicion.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
 import 'package:proypet/src/utils/utils.dart';
-import 'package:proypet/src/views/components/navigation_bar.dart';
+import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:proypet/src/styles/styles.dart';
 

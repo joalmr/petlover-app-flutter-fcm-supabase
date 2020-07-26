@@ -31,6 +31,8 @@ import 'package:select_dialog/select_dialog.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'dart:math' as Math;
 
+import 'components/dataDelivery.dart';
+
 String direccionDelivery = "";
 
 class DataReserva extends StatefulWidget {
@@ -84,24 +86,7 @@ class _Data extends State<DataReserva> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _prefs = new PreferenciasUsuario();
 
-  List _delivery = [
-    {
-      'id': '1',
-      'name': 'No deseo',
-    },
-    {
-      'id': '2',
-      'name': 'Recojo y entrega a domicilio',
-    },
-    {
-      'id': '3',
-      'name': 'Solo recojo a domicilio',
-    },
-    {
-      'id': '4',
-      'name': 'Solo entrega a domicilio',
-    },
-  ];
+  List _delivery = deliveryList;
 
   ServicioReserva ex3 = servicioReservaList.first;
   String resarvaId =
@@ -186,14 +171,6 @@ class _Data extends State<DataReserva> {
               height: 12.0,
             ),
             Text('Servicio'),
-            // ddlMain(context, resarvaId, _atencion, (opt) {
-            //   setState(() {
-            //     resarvaId = opt;
-            //   });
-            // }),
-            // SizedBox(
-            //   height: 12.0,
-            // ),
             TextField(
               enableInteractiveSelection: false,
               controller: _inputServController,

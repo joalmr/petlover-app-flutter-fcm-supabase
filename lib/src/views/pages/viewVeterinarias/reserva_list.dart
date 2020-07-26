@@ -6,19 +6,17 @@ import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/components/filtro_veterinarias.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/pages/reserva/buildVets/buildVet.dart';
-import 'package:proypet/src/views/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
-// import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
-// import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/posicion.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:http/http.dart' as http;
 
+import 'components/buildVet.dart';
 import 'components/listarChip.dart';
+import 'mapaView/vet_mapa_page.dart';
 
 class ReservaList extends StatefulWidget {
   @override

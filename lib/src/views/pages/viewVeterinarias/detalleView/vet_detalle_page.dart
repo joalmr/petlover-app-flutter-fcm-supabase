@@ -5,11 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
-// import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_comentario.dart';
-import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_general.dart';
-import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_horario.dart';
-import 'package:proypet/src/views/pages/reserva/buildVets/verDetalle/view_precio.dart';
-import 'package:proypet/src/views/pages/reserva/reserva_data.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/providers/mascota_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
@@ -21,7 +16,12 @@ import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/regex.dart';
+import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/tabsDetalle/view_general.dart';
+import 'package:proypet/src/views/pages/viewVeterinarias/reservaView/reserva_data.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'tabsDetalle/view_horario.dart';
+import 'tabsDetalle/view_precio.dart';
 
 class VetDetallePage extends StatefulWidget {
   // final String vetID;
