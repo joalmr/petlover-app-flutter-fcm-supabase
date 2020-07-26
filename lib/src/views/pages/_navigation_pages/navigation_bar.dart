@@ -105,9 +105,8 @@ class _NavigationBarState extends State<NavigationBar> {
   _fnFireBaseEjec() {
     _firebaseMessaging.requestNotificationPermissions();
     _firebaseMessaging.getToken().then((token) {
-      //los tokens a agregar en la bd deben ser un arreglo de tokens
       print("======== token ========");
-      print(token);
+      // print(token);
       loginProvider.sendTokenFire(token);
     });
 
@@ -117,7 +116,7 @@ class _NavigationBarState extends State<NavigationBar> {
       message = null;
     }, onLaunch: (Map<String, dynamic> message) async {
       if (message.isNotEmpty) onPush(message);
-      message = null; //TODO: verificar
+      message = null;
     }, onResume: (Map<String, dynamic> message) async {
       if (message.isNotEmpty) onPush(message);
       message = null;

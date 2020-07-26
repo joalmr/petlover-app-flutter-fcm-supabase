@@ -70,8 +70,8 @@ class _MyAppState extends State<MyApp> {
       routes: getRoutes(),
       initialRoute: rutaInicio,
       onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
-          builder: (BuildContext context) =>
-              NavigationBar(currentTabIndex: 0)), //ruta general
+        builder: (BuildContext context) => NavigationBar(currentTabIndex: 0),
+      ), //ruta general
     );
   }
 }

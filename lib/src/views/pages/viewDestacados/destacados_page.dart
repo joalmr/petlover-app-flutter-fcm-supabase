@@ -32,63 +32,58 @@ class _DestacadosPageState extends State<DestacadosPage> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       child: InkWell(
-          onTap: () => Navigator.pushNamed(context, 'detalledestacado',
-              arguments: destacado),
-          child: Card(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image(
-                      fit: BoxFit.cover,
-                      height: 300,
-                      width: double.infinity,
-                      image: AssetImage(destacado.image)),
+        onTap: () => Navigator.pushNamed(context, 'detalledestacado',
+            arguments: destacado),
+        child: Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image(
+                    fit: BoxFit.cover,
+                    height: 300,
+                    width: double.infinity,
+                    image: AssetImage(destacado.image)),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                child: Text(destacado.title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle2
+                        .apply(fontWeightDelta: 2)
+                    // tituloH4clasico,
+                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  destacado.text,
+                  maxLines: 3,
+                  textAlign: TextAlign.justify,
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                  child: Text(destacado.title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2
-                          .apply(fontWeightDelta: 2)
-                      // tituloH4clasico,
-                      ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Text(
-                    destacado.text,
-                    maxLines: 3,
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    FlatButton(
-                        onPressed: () => Navigator.pushNamed(
-                            context, 'detalledestacado',
-                            arguments: destacado),
-                        child: Text(
-                          "Leer más",
-                          style: TextStyle(
-                            color: colorMain,
-                          ),
-                        )),
-                  ],
-                ),
-              ],
-            ),
-          )
-          // Material(
-          //   color: Theme.of(context).backgroundColor,
-          //   borderRadius: BorderRadius.circular(10.0),
-          //   child: ,
-          // ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  FlatButton(
+                      onPressed: () => Navigator.pushNamed(
+                          context, 'detalledestacado',
+                          arguments: destacado),
+                      child: Text(
+                        "Leer más",
+                        style: TextStyle(
+                          color: colorMain,
+                        ),
+                      )),
+                ],
+              ),
+            ],
           ),
+        ),
+      ),
     );
   }
 }
