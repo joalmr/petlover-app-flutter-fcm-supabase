@@ -11,12 +11,14 @@ import 'package:proypet/src/views/pages/reserva/vet_mapa_page.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
-import 'package:proypet/src/styles/styles.dart';
+// import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/utils/icons_map.dart';
+// import 'package:proypet/src/utils/icons_map.dart';
 import 'package:proypet/src/utils/posicion.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:http/http.dart' as http;
+
+import 'components/listarChip.dart';
 
 class ReservaList extends StatefulWidget {
   @override
@@ -69,9 +71,6 @@ class _ReservaListState extends State<ReservaList> {
 
     return Scaffold(
       key: _key,
-      // endDrawer: FiltrosMapa(
-      //   filtros: listaFiltros,
-      // ),
       appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
         IconButton(
           icon: Icon(Icons.filter_list),
@@ -84,29 +83,6 @@ class _ReservaListState extends State<ReservaList> {
           ),
         ),
       ]),
-      // appBar: AppBar(
-      //   title: TextField(
-      //     enableInteractiveSelection: false,
-      //     cursorColor: colorMain,
-      //     decoration: InputDecoration(
-      //       prefixIcon: Icon(
-      //         Icons.search,
-      //       ),
-      //     ),
-      //   ),
-      //   actions: <Widget>[
-      //     IconButton(
-      //       icon: Icon(Icons.filter_list),
-      //       onPressed: () => Navigator.of(context).push(
-      //         MaterialPageRoute(
-      //           builder: (context) => FiltraVets(
-      //             filtros: listaFiltros,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
       body: FutureBuilder(
         future: stream,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -127,12 +103,6 @@ class _ReservaListState extends State<ReservaList> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        // Center(
-                        //   child: Image(
-                        //       height: 120,
-                        //       width: 120,
-                        //       image: AssetImage("images/gato-error.png")),
-                        // ),
                         Text(
                           'No pudimos detectar tu ubicación',
                           style: Theme.of(context).textTheme.subtitle1,
@@ -163,7 +133,7 @@ class _ReservaListState extends State<ReservaList> {
           child: CustomScrollView(
             slivers: <Widget>[
               (listaFiltros.length > 0)
-                  ? _listarChip(listaFiltros)
+                  ? listarChip(listaFiltros)
                   : SliverToBoxAdapter(
                       child: SizedBox(
                         height: 0.0,
@@ -215,53 +185,53 @@ class _ReservaListState extends State<ReservaList> {
     );
   }
 
-  _listarChip(dynamic chips) {
-    if (chips != null) {
-      return SliverToBoxAdapter(
-        child: SizedBox(
-          height: 35.0,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: chips.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  _chip(chips[index]),
-            ),
-          ),
-        ),
-      );
-    } else {
-      return SliverToBoxAdapter(
-        child: SizedBox(
-          height: 0.0,
-        ),
-      );
-    }
-  }
+  // _listarChip(dynamic chips) {
+  //   if (chips != null) {
+  //     return SliverToBoxAdapter(
+  //       child: SizedBox(
+  //         height: 35.0,
+  //         child: SingleChildScrollView(
+  //           scrollDirection: Axis.horizontal,
+  //           padding: EdgeInsets.symmetric(horizontal: 20.0),
+  //           child: ListView.builder(
+  //             shrinkWrap: true,
+  //             scrollDirection: Axis.horizontal,
+  //             itemCount: chips.length,
+  //             itemBuilder: (BuildContext context, int index) =>
+  //                 _chip(chips[index]),
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   } else {
+  //     return SliverToBoxAdapter(
+  //       child: SizedBox(
+  //         height: 0.0,
+  //       ),
+  //     );
+  //   }
+  // }
 
-  _chip(int servicio) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5.0,
-      ),
-      child: Chip(
-        labelStyle: TextStyle(fontSize: sizeLite, color: Colors.black54),
-        labelPadding: EdgeInsets.only(left: 5.0, right: 2.5),
-        // padding: EdgeInsets.zero,
-        avatar: CircleAvatar(
-          radius: 12.5,
-          backgroundColor: colorMain, //colorBlue, //Colors.grey.shade800,
-          child: Icon(iconNum[servicio], size: sizeSmall, color: Colors.white),
-        ),
-        label: Text(textMap[servicio],
-            style:
-                TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
-      ),
-    );
-  }
+  // _chip(int servicio) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(
+  //       horizontal: 5.0,
+  //     ),
+  //     child: Chip(
+  //       labelStyle: TextStyle(fontSize: sizeLite, color: Colors.black54),
+  //       labelPadding: EdgeInsets.only(left: 5.0, right: 2.5),
+  //       // padding: EdgeInsets.zero,
+  //       avatar: CircleAvatar(
+  //         radius: 12.5,
+  //         backgroundColor: colorMain, //colorBlue, //Colors.grey.shade800,
+  //         child: Icon(iconNum[servicio], size: sizeSmall, color: Colors.white),
+  //       ),
+  //       label: Text(textMap[servicio],
+  //           style:
+  //               TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
+  //     ),
+  //   );
+  // }
 
   _autocompleteAddress() {
     return SimpleAutocompleteFormField<Prediction2>(
