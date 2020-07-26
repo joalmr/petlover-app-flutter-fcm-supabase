@@ -41,7 +41,7 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Image(
                   image: CachedNetworkImageProvider(widget.noti['pet_picture']),
-                  height: 50,
+                  height: 65,
                   fit: BoxFit.cover,
                 ),
               ),

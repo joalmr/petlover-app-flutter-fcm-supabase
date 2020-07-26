@@ -154,7 +154,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
 
   Widget notificacionAct(Widget dataWidget) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       child: Column(
         children: <Widget>[
           Row(
@@ -163,7 +163,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Image(
                   image: CachedNetworkImageProvider(widget.noti['pet_picture']),
-                  height: 50,
+                  height: 65,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -175,17 +175,18 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               )),
             ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            child: Image(
-              image:
-                  CachedNetworkImageProvider(widget.noti['notification_image']),
-              height: 140,
-              width: double.maxFinite,
-              fit: BoxFit.cover,
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              child: Image(
+                image: CachedNetworkImageProvider(
+                    widget.noti['notification_image']),
+                height: 140,
+                width: double.maxFinite,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           dataWidget,

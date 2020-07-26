@@ -5,8 +5,8 @@ import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/views/pages/viewDestacados/destacados_page.dart';
 import 'package:proypet/src/views/pages/viewHome/home_page.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones/buildPushNoti.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones/buildPushQualify.dart';
+import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
+import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushQualify.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.dart';
 import 'package:proypet/src/views/pages/viewRecompensas/recompensas_page.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/reserva_list.dart';
@@ -107,6 +107,7 @@ class _NavigationBarState extends State<NavigationBar> {
     _firebaseMessaging.getToken().then((token) {
       //los tokens a agregar en la bd deben ser un arreglo de tokens
       print("======== token ========");
+      print(token);
       loginProvider.sendTokenFire(token);
     });
 
@@ -130,7 +131,6 @@ class _NavigationBarState extends State<NavigationBar> {
       showDialog(
         context: context,
         builder: (context) => SimpleDialog(
-          // contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           children: <Widget>[
             BuildPushQualify(
                 noti: message['data'],
