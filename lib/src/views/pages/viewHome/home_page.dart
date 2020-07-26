@@ -1,18 +1,9 @@
 import 'dart:async';
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/home_model.dart';
-import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/views/components/enddrawer/config_drawer.dart';
-import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/pagina_app.dart';
-import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 
 import 'components/atenciones.dart';
