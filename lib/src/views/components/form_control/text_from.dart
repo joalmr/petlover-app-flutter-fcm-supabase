@@ -3,26 +3,64 @@ import 'package:proypet/src/styles/styles.dart';
 
 // final _shape = BorderRadius.circular(10.0);
 
-class FormularioText extends StatelessWidget {
-  final hintText;
-  final icon;
+class FormularioText extends StatefulWidget {
+  final String labelText;
+  final String hintText;
+  final IconData icon;
+  final iconSuf;
   final obscureText;
-  final onSaved;
-  final textCap;
-  final valorInicial;
-  final boardType;
-  final labelText;
+  final Function onSaved;
+  final TextCapitalization textCap;
+  final String valorInicial;
+  final TextInputType boardType;
 
   FormularioText(
       {this.labelText,
       this.hintText,
       this.icon,
+      this.iconSuf,
       this.obscureText,
       this.onSaved,
       this.textCap,
       this.valorInicial,
       this.boardType});
 
+  @override
+  _FormularioTextState createState() => _FormularioTextState(
+        labelText: labelText,
+        hintText: hintText,
+        icon: icon,
+        iconSuf: iconSuf,
+        obscureText: obscureText,
+        onSaved: onSaved,
+        textCap: textCap,
+        valorInicial: valorInicial,
+        boardType: boardType,
+      );
+}
+
+class _FormularioTextState extends State<FormularioText> {
+  String labelText;
+  String hintText;
+  IconData icon;
+  dynamic iconSuf;
+  bool obscureText;
+  Function onSaved;
+  TextCapitalization textCap;
+  String valorInicial;
+  TextInputType boardType;
+
+  _FormularioTextState({
+    this.labelText,
+    this.hintText,
+    this.icon,
+    this.iconSuf,
+    this.obscureText,
+    this.onSaved,
+    this.textCap,
+    this.valorInicial,
+    this.boardType,
+  });
   @override
   Widget build(BuildContext context) {
     return (labelText == null)
@@ -42,6 +80,26 @@ class FormularioText extends StatelessWidget {
                         icon,
                         color: colorMain,
                       )
+                    : null,
+                suffixIcon: (iconSuf != null && iconSuf == Icons.remove_red_eye)
+                    ? Container(
+                        child: IconButton(
+                            icon: Icon(iconSuf,
+                                color: obscureText
+                                    ? Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        .color
+                                    : colorMain),
+                            onPressed: () {
+                              obscureText
+                                  ? setState(() {
+                                      obscureText = false;
+                                    })
+                                  : setState(() {
+                                      obscureText = true;
+                                    });
+                            }))
                     : null,
               ),
             ),
@@ -69,6 +127,27 @@ class FormularioText extends StatelessWidget {
                             color: colorMain,
                           )
                         : null,
+                    suffixIcon:
+                        (iconSuf != null && iconSuf == Icons.remove_red_eye)
+                            ? Container(
+                                child: IconButton(
+                                    icon: Icon(iconSuf,
+                                        color: obscureText
+                                            ? Theme.of(context)
+                                                .textTheme
+                                                .subtitle2
+                                                .color
+                                            : colorMain),
+                                    onPressed: () {
+                                      obscureText
+                                          ? setState(() {
+                                              obscureText = false;
+                                            })
+                                          : setState(() {
+                                              obscureText = true;
+                                            });
+                                    }))
+                            : null,
                   ),
                 ),
               ],

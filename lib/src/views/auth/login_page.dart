@@ -34,27 +34,34 @@ class _LoginSevenPageState extends State<LoginPage> {
         child: Form(
           key: formKey,
           child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            // padding: const EdgeInsets.symmetric(horizontal: 20),
             children: <Widget>[
               WaveClipper(300.0, 180.0),
               SizedBox(height: 50.0),
-              FormularioText(
-                hintText: 'Email',
-                icon: Icons.alternate_email,
-                obscureText: false,
-                onSaved: (value) => userModel.email = value,
-                textCap: TextCapitalization.none,
-                valorInicial: null,
-                boardType: TextInputType.text,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: FormularioText(
+                  hintText: 'Email',
+                  icon: Icons.alternate_email,
+                  obscureText: false,
+                  onSaved: (value) => userModel.email = value,
+                  textCap: TextCapitalization.none,
+                  valorInicial: null,
+                  boardType: TextInputType.text,
+                ),
               ),
-              FormularioText(
-                hintText: 'Contraseña',
-                icon: Icons.lock,
-                obscureText: true,
-                onSaved: (value) => userModel.password = value,
-                textCap: TextCapitalization.none,
-                valorInicial: null,
-                boardType: TextInputType.text,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: FormularioText(
+                  hintText: 'Contraseña',
+                  icon: Icons.lock,
+                  iconSuf: Icons.remove_red_eye,
+                  obscureText: true,
+                  onSaved: (value) => userModel.password = value,
+                  textCap: TextCapitalization.none,
+                  valorInicial: null,
+                  boardType: TextInputType.text,
+                ),
               ),
               SizedBox(height: 25.0),
               Padding(
@@ -74,9 +81,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 15.0,
-              ),
+              SizedBox(height: 15.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
