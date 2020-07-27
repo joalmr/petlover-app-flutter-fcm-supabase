@@ -11,26 +11,71 @@ class FormularioText extends StatelessWidget {
   final textCap;
   final valorInicial;
   final boardType;
+  final labelText;
 
-  FormularioText({this.hintText, this.icon, this.obscureText, this.onSaved, this.textCap, this.valorInicial, this.boardType});
+  FormularioText(
+      {this.labelText,
+      this.hintText,
+      this.icon,
+      this.obscureText,
+      this.onSaved,
+      this.textCap,
+      this.valorInicial,
+      this.boardType});
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      keyboardType: boardType,
-      initialValue: valorInicial,
-      textCapitalization: textCap,
-      obscureText: obscureText,
-      onSaved: onSaved,
-      cursorColor: colorMain,
-      decoration: InputDecoration(
-        hintText: hintText,          
-        prefixIcon: (icon!=null) ? Icon( icon, color: colorMain, ) : null,
-      ),
-    );
+    return (labelText == null)
+        ? Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: TextFormField(
+              keyboardType: boardType,
+              initialValue: valorInicial,
+              textCapitalization: textCap,
+              obscureText: obscureText,
+              onSaved: onSaved,
+              cursorColor: colorMain,
+              decoration: InputDecoration(
+                hintText: hintText,
+                prefixIcon: (icon != null)
+                    ? Icon(
+                        icon,
+                        color: colorMain,
+                      )
+                    : null,
+              ),
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(labelText),
+                SizedBox(height: 7.5),
+                TextFormField(
+                  keyboardType: boardType,
+                  initialValue: valorInicial,
+                  textCapitalization: textCap,
+                  obscureText: obscureText,
+                  onSaved: onSaved,
+                  cursorColor: colorMain,
+                  decoration: InputDecoration(
+                    hintText: hintText,
+                    prefixIcon: (icon != null)
+                        ? Icon(
+                            icon,
+                            color: colorMain,
+                          )
+                        : null,
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }
-
 
 // Widget textForm(String _hinttext, _icon,
 //   bool _obscuretext, _onsaved,TextCapitalization _textCap,
@@ -64,7 +109,6 @@ class FormularioText extends StatelessWidget {
 //   );
 // }
 
-
 // Widget textFormLess(String _hinttext, _onsaved){
 //   return Material(
 //     elevation: 0.0,
@@ -83,7 +127,6 @@ class FormularioText extends StatelessWidget {
 //     ),
 //   );
 // }
-
 
 // Widget textArea(String _hinttext, _icon,bool _obscuretext, _onsaved,TextCapitalization _textCap,String _valorInicial){
 //   return Material(
@@ -107,7 +150,6 @@ class FormularioText extends StatelessWidget {
 //     ),
 //   );
 // }
-
 
 // Widget textBtn(_hinttext, _icon, _funtion){
 //     return Material(

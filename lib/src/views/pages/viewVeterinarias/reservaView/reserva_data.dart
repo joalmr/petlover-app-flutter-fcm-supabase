@@ -159,64 +159,89 @@ class _Data extends State<DataReserva> {
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
-            Text('Mascota'),
-            ddlFutureImg(context, mascotaID, misMascotas, (opt) {
-              setState(() {
-                mascotaID = opt.toString();
-              });
-            }),
-            SizedBox(
-              height: 12.0,
-            ),
-            Text('Servicio'),
-            TextField(
-              enableInteractiveSelection: false,
-              controller: _inputServController,
-              onTap: () {
-                FocusScope.of(context).requestFocus(new FocusNode());
-                _servicios();
-              },
-              cursorColor: colorMain,
-              decoration: InputDecoration(
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Icon(Icons.keyboard_arrow_down, color: colorMain),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Mascota'),
+                  SizedBox(height: 7.5),
+                  ddlFutureImg(context, mascotaID, misMascotas, (opt) {
+                    setState(() {
+                      mascotaID = opt.toString();
+                    });
+                  }),
+                ],
               ),
             ),
-            SizedBox(
-              height: 12.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Servicio'),
+                  SizedBox(height: 7.5),
+                  TextField(
+                    enableInteractiveSelection: false,
+                    controller: _inputServController,
+                    onTap: () {
+                      FocusScope.of(context).requestFocus(new FocusNode());
+                      _servicios();
+                    },
+                    cursorColor: colorMain,
+                    decoration: InputDecoration(
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child:
+                            Icon(Icons.keyboard_arrow_down, color: colorMain),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text('Fecha'),
-            _crearFecha(context),
-            SizedBox(
-              height: 12.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Fecha'),
+                  SizedBox(height: 7.5),
+                  _crearFecha(context),
+                ],
+              ),
             ),
-            Text('Hora'),
-            _crearHora(context),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Hora'),
+                  SizedBox(height: 7.5),
+                  _crearHora(context),
+                ],
+              ),
+            ),
+            delivery ? SizedBox(height: 10.0) : SizedBox(height: 0.0),
             delivery
-                ? SizedBox(
-                    height: 12.0,
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text('Movilidad'),
                   )
-                : SizedBox(
-                    height: 0.0,
-                  ),
-            delivery
-                ? Text('Movilidad')
-                : SizedBox(
-                    height: 0.0,
-                  ),
+                : SizedBox(height: 0.0),
             delivery
                 ? ddlMain(context, deliveryId, _delivery, (opt) {
                     setState(() {
                       deliveryId = opt;
                     });
                   })
-                : SizedBox(
-                    height: 0.0,
-                  ),
+                : SizedBox(height: 0.0),
             (delivery && deliveryId != "1")
                 ? Column(
                     children: <Widget>[
@@ -237,26 +262,34 @@ class _Data extends State<DataReserva> {
                 : SizedBox(
                     height: 0.0,
                   ),
-            SizedBox(
-              height: 12.0,
-            ),
-            Text('Observación'),
-            textfieldArea(_inputObservacioController,
-                'Ingrese observación (opcional)', null, null),
-            Text.rich(
-              TextSpan(
-                text: '*Si seleccionó ', // default text style
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'Otro servicio',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('Observación'),
+                  SizedBox(height: 7.5),
+                  textfieldArea(_inputObservacioController,
+                      'Ingrese observación (opcional)', null, null),
+                  Text.rich(
+                    TextSpan(
+                      text: '*Si seleccionó ', // default text style
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Otro servicio',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                            text: ', especifíquelo en observaciones',
+                            style: TextStyle()),
+                      ],
+                    ),
+                    style: TextStyle(fontSize: sizeSmall),
                   ),
-                  TextSpan(
-                      text: ', especifíquelo en observaciones',
-                      style: TextStyle()),
                 ],
               ),
-              style: TextStyle(fontSize: sizeSmall),
             ),
             SizedBox(
               height: 20.0,

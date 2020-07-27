@@ -38,7 +38,7 @@ class _UserPageState extends State<UserPage> {
               return FadeView(
                 child: SingleChildScrollView(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Form(
                       key: formKey,
                       child: Column(
@@ -48,11 +48,8 @@ class _UserPageState extends State<UserPage> {
                           SizedBox(
                             height: 25.0,
                           ),
-                          Text('Nombre'),
-                          SizedBox(
-                            height: 10.0,
-                          ),
                           FormularioText(
+                            labelText: 'Nombre',
                             hintText: 'Ingrese nombre',
                             icon: Icons.person,
                             obscureText: false,
@@ -61,15 +58,8 @@ class _UserPageState extends State<UserPage> {
                             valorInicial: user.name,
                             boardType: TextInputType.text,
                           ),
-                          // textForm('Ingrese nombre', Icons.person, false, (value)=>user.name=value, TextCapitalization.words, user.name,TextInputType.text),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Text('Apellido'),
-                          SizedBox(
-                            height: 10.0,
-                          ),
                           FormularioText(
+                            labelText: 'Apellido',
                             hintText: 'Ingrese apellido',
                             icon: Icons.person,
                             obscureText: false,
@@ -78,15 +68,8 @@ class _UserPageState extends State<UserPage> {
                             valorInicial: user.lastname,
                             boardType: TextInputType.text,
                           ),
-                          // textForm('Ingrese apellido', Icons.person, false, (value)=>user.lastname=value, TextCapitalization.words, user.lastname,TextInputType.text),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Text('Teléfono'),
-                          SizedBox(
-                            height: 10.0,
-                          ),
                           FormularioText(
+                            labelText: 'Teléfono',
                             hintText: 'Ingrese teléfono',
                             icon: Icons.phone,
                             obscureText: false,
@@ -95,14 +78,11 @@ class _UserPageState extends State<UserPage> {
                             valorInicial: user.phone,
                             boardType: TextInputType.phone,
                           ),
-                          // textForm('Ingrese teléfono', Icons.phone, false, (value)=>user.phone=value, TextCapitalization.words, user.phone,TextInputType.phone),
                           Text(
                             'Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
-                            style: TextStyle(fontSize: sizeLite),
+                            style: TextStyle(fontSize: sizeSmall),
                           ),
-                          SizedBox(
-                            height: 35.0,
-                          ),
+                          SizedBox(height: 25.0),
                           Center(
                               child: buttonPri(
                                   'Guardar cambios',
