@@ -5,7 +5,8 @@ import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(null, 'Cambiar contraseña', null),
-      body: FadeView(
+      body: FadeViewSafeArea(
         child: Form(
           key: formKey,
           child: ListView(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/destacado/destacado_model.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 
 class DetalleDestacadoPage extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class DetalleDestacadoPage extends StatelessWidget {
     final Destacado destacado = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: appbar(null, 'Destacados', null),
-        body: FadeView(child: _onDestacado(destacado, context)));
+        body: FadeViewSafeArea(child: _onDestacado(destacado, context)));
   }
 
   _onDestacado(Destacado destacado, context) {

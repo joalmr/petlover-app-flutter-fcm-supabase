@@ -6,7 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/models/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/providers/bonificacion_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/error_internet.dart';
 
@@ -43,7 +44,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(leadingH, 'Puntos', null),
-      body: FadeView(
+      body: FadeViewSafeArea(
         child: RefreshIndicator(
             key: refreshKey, onRefresh: _onRefresh, child: _onPage()),
       ),

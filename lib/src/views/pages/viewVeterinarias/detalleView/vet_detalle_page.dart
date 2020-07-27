@@ -13,7 +13,8 @@ import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/modal_bottom.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeView.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/tabsDetalle/view_general.dart';
@@ -62,7 +63,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      body: FadeView2(
+      body: FadeView(
         child: _onStack(vet),
       ),
     );

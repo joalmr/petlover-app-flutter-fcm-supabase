@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icon_proypet_icons.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 
 class HistoriaPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class HistoriaPage extends StatelessWidget {
 
     return Scaffold(
         appBar: appbar(null, 'Detalle de atención', null),
-        body: FadeView(
+        body: FadeViewSafeArea(
           child: SingleChildScrollView(
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),

@@ -17,7 +17,7 @@ import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 
 import 'package:proypet/src/styles/styles.dart';
 import 'package:select_dialog/select_dialog.dart';
@@ -96,7 +96,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
       appBar: appbar(null, 'Editar mascota', null),
       body: (razaLista == null)
           ? LinearProgressIndicator()
-          : FadeView(
+          : FadeViewSafeArea(
               child: SingleChildScrollView(
                 child: Form(
                   key: formKey,

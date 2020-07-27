@@ -5,7 +5,8 @@ import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:http/http.dart' as http;
 
@@ -42,7 +43,7 @@ class _FiltraVetsState extends State<FiltraVets> {
         elevation: 0,
       ),
       //  appbar(null, 'Filtrar veterinarias', null),
-      body: FadeView(
+      body: FadeViewSafeArea(
         child: Stack(
           children: <Widget>[
             Container(height: alto),

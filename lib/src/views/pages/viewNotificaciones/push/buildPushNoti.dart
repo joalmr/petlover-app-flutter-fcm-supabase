@@ -1,11 +1,11 @@
-import 'package:animate_do/animate_do.dart';
+// import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/providers/establecimiento_provider.dart';
+// import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
 
-import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
+// import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 class BuildPushNoti extends StatefulWidget {
   // const BuildPushNoti({Key key}) : super(key: key);
@@ -195,31 +195,32 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
     );
   }
 
-  _fnEstablecimiento(id) async {
-    final establecimientoProvider = EstablecimientoProvider();
-    Map veterinaria = await establecimientoProvider.getVet(id);
-    if (veterinaria['status'] == 200) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                VetDetallePage(vet: veterinaria['establishment']),
-          ));
-    } else {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return FadeIn(
-              child: SimpleDialog(
-                contentPadding: EdgeInsets.all(20.0),
-                children: <Widget>[
-                  SizedBox(height: 10.0),
-                  Text(
-                      'Lo sentimos, esta veterinaria ya no forma parte de proypet'),
-                ],
-              ),
-            );
-          });
-    }
-  }
+  // _fnEstablecimiento(id) async {
+  //   final establecimientoProvider = EstablecimientoProvider();
+  //   Map veterinaria = await establecimientoProvider.getVet(id);
+  //   if (veterinaria['status'] == 200) {
+  //     Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) =>
+  //               VetDetallePage(vet: veterinaria['establishment']),
+  //         ));
+  //   } else {
+  //     showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //           return FadeIn(
+  //             child: SimpleDialog(
+  //               contentPadding: EdgeInsets.all(20.0),
+  //               children: <Widget>[
+  //                 SizedBox(height: 10.0),
+  //                 Text(
+  //                     'Lo sentimos, esta veterinaria ya no forma parte de proypet'),
+  //               ],
+  //             ),
+  //           );
+  //         });
+  //   }
+  // }
+
 }

@@ -6,7 +6,8 @@ import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/regex.dart';
 
@@ -35,7 +36,7 @@ class _UserPageState extends State<UserPage> {
               return LinearProgressIndicator();
             } else {
               user = snapshot.data.user;
-              return FadeView(
+              return FadeViewSafeArea(
                 child: SingleChildScrollView(
                     padding:
                         EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),

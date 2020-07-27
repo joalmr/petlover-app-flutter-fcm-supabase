@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/models/destacado/destacado_model.dart';
 import 'package:proypet/src/providers/destacado_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 
 class DestacadosPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _DestacadosPageState extends State<DestacadosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appbar(leadingH, 'Destacados', null),
-        body: FadeView(child: _onDestacado()));
+        body: FadeViewSafeArea(child: _onDestacado()));
   }
 
   _onDestacado() {

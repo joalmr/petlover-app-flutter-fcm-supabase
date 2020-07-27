@@ -7,7 +7,8 @@ import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,7 +23,7 @@ class DetalleReservado extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       appBar: appbar(null, 'Detalle de reserva', null),
-      body: FadeView(
+      body: FadeViewSafeArea(
         child: SingleChildScrollView(
           child: Stack(
             children: <Widget>[

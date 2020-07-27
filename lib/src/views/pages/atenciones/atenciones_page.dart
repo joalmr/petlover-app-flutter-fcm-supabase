@@ -8,7 +8,8 @@ import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/text_field.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/providers/atencion_provider.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 
 class AtencionesPage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
               ),
             );
           } else {
-            return FadeView(
+            return FadeViewSafeArea(
               child: SingleChildScrollView(
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),

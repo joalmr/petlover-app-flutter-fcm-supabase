@@ -22,7 +22,8 @@ import 'package:proypet/src/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/views/components/form_control/text_field.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/thx_page.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
@@ -142,7 +143,7 @@ class _Data extends State<DataReserva> {
     return Scaffold(
         key: scaffoldKey,
         appBar: appbar(null, 'Reservar servicio', null),
-        body: FadeView(
+        body: FadeViewSafeArea(
           child: _onFuture(),
         ));
   }

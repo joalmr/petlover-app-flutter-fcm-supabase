@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/models/home_model.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/views/components/enddrawer/config_drawer.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/utils/error_internet.dart';
 
 import 'components/atenciones.dart';
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             if (snapshot.hasError) {
               return errorInternet();
             }
-            return FadeView(
+            return FadeViewSafeArea(
               child: Stack(
                 children: <Widget>[
                   ListView(

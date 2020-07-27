@@ -16,7 +16,8 @@ import 'package:proypet/src/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/thx_page.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
@@ -92,7 +93,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
       appBar: appbar(null, 'Agregar mascota', null),
       body: (razaLista == null)
           ? LinearProgressIndicator()
-          : FadeView(
+          : FadeViewSafeArea(
               child: SingleChildScrollView(
                 child: Form(
                   key: formKey,

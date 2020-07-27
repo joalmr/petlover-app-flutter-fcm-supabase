@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+
 import 'package:proypet/src/styles/styles.dart';
+
+import 'transicion/fadeViewSafeArea.dart';
 
 class VerifyPage extends StatelessWidget {
   final String textomail;
@@ -14,7 +16,7 @@ class VerifyPage extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: colorMain,
-        body: FadeView(
+        body: FadeViewSafeArea(
           child: Container(
             height: MediaQuery.of(context).size.height,
             child: Center(

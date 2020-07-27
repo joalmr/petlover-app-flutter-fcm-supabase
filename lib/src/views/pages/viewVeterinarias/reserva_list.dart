@@ -8,9 +8,9 @@ import 'package:proypet/src/views/components/filtro_veterinarias.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/utils/posicion.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,12 +52,12 @@ class _ReservaListState extends State<ReservaList> {
     super.initState();
   }
 
-//obtiene posicion cuando salgo de la pagina
-  @override
-  void dispose() {
-    fnGetPosition();
-    super.dispose();
-  }
+// //obtiene posicion cuando salgo de la pagina
+//   @override
+//   void dispose() {
+//     fnGetPosition();
+//     super.dispose();
+//   }
 
   @override
   Widget build(BuildContext context) {
@@ -92,9 +92,10 @@ class _ReservaListState extends State<ReservaList> {
             } else {
               Map resp = snapshot.data;
               if (resp['code'] == 200)
-                return FadeView(child: _onTab(resp['establecimientos']));
+                return FadeViewSafeArea(
+                    child: _onTab(resp['establecimientos']));
               else
-                return FadeView(
+                return FadeViewSafeArea(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(

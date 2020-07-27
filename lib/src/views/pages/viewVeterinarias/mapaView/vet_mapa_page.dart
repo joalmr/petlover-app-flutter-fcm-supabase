@@ -8,7 +8,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/pagina_app.dart';
+import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
@@ -74,8 +75,9 @@ class _VetMapaPageState extends State<VetMapaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appbar(null, 'Mapa veterinarias', null),
-        body:
-            mapToggle ? FadeView(child: _onBody()) : LinearProgressIndicator());
+        body: mapToggle
+            ? FadeViewSafeArea(child: _onBody())
+            : LinearProgressIndicator());
   }
 
   Widget _onBody() {
