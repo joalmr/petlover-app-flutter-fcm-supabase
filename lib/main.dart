@@ -8,6 +8,7 @@ import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
 import 'package:flutter/services.dart';
 
+import 'global_variables.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
 
@@ -52,8 +53,7 @@ class _MyAppState extends State<MyApp> {
     //com.example.user //prueba
     //com.proypet.user //produccion
     return MaterialApp(
-      debugShowCheckedModeBanner:
-          true, // TODO: cambiar antes de lanzar y tambien cambiar el com.example.user para produccion es false
+      debugShowCheckedModeBanner: appProduccion,
       navigatorKey: navigatorKey,
       title: 'Proypet',
       theme: temaClaro,

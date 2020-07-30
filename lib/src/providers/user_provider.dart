@@ -7,7 +7,7 @@ import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class UserProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
   final _prefs = new PreferenciasUsuario();
 
   Future<Map<String, dynamic>> loginToken(UserDato login) async {

@@ -3,7 +3,7 @@ import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/booking/booking_model.dart';
 
 class BookingProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
 
   Future<bool> booking(
       BookingModel booking, dynamic delivery, String direccion) async {

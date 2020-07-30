@@ -6,7 +6,7 @@ import 'package:proypet/src/models/establecimiento/lista_establecimiento_model.d
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablecimientoProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
   final _prefs = new PreferenciasUsuario();
 
   //List<int> filtros

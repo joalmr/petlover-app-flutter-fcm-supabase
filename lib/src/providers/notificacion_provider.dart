@@ -5,7 +5,7 @@ import 'dart:math' as Math;
 import 'package:proypet/src/utils/add_msg.dart';
 
 class NotificacionProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
 
   Future<NotificacionModel> getNotificacion() async {
     final url = '$_url/notifications';

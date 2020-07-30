@@ -1,20 +1,25 @@
 import 'dart:io';
-
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
-final String keyMap = 'AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844';
+const pruebas = {
+  'keyMap': 'AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844',
+  'url': 'http://18.188.214.204',
+  'urlApi': 'http://18.188.214.204/api',
+};
 
-final String urlDev = 'http://18.188.214.204';
-final String urlPro = 'https://proypet.com';
+const produccion = {
+  'keyMap': 'AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844',
+  'url': 'https://proypet.com',
+  'urlApi': 'https://proypet.com/api',
+};
 
-final String urlPruebas = '$urlDev/api';
-final String urlProduccion = '$urlPro/api';
+final bool appProduccion = false; //TODO: cambiar a true cuando sea produccion
 
-//TODO: revisar que este en urlProduccion antes de subir apk
-final String urlDir =
-    urlPruebas.split('/api')[0]; // TODO: cambiar servicio para produccion
+final environment = appProduccion ? produccion : pruebas;
 
-final String urlGlobal = urlPruebas; // TODO: cambiar servicio para produccion
+final String keyMap = environment['keyMap'];
+final String urlName = environment['url'];
+final String urlApi = environment['urlApi'];
 
 final _prefs = new PreferenciasUsuario();
 

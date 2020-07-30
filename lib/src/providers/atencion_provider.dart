@@ -3,7 +3,7 @@ import 'package:proypet/src/models/antecion/atencion_model.dart';
 import 'package:http/http.dart' as http;
 
 class AtencionProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
 
   Future<List<AtencionModel>> getAtenciones() async {
     final url = '$_url/attentions';

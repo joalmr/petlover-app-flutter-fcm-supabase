@@ -7,7 +7,7 @@ import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
 
 class MascotaProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
   // final _prefs = new PreferenciasUsuario();
 
   Future<List<MascotaModel>> getPets() async {
@@ -72,7 +72,7 @@ class MascotaProvider {
       final idkey = decodedResp['pet']['id'];
       final urlpet = '$_url/pets/$idkey/base64';
 
-      String petImg = "$urlDir/img/favicon.png";
+      String petImg = "$urlName/img/favicon.png";
       if (imagen != null) {
         petImg = await upImage(imagen, urlpet);
       }

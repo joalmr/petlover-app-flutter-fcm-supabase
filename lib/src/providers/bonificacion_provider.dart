@@ -3,7 +3,7 @@ import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/bonificacion/bonificacion_model.dart';
 
 class BonificacionProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
 
   Future<BonificacionModel> getBonificacion() async {
     final url = '$_url/bonifications';

@@ -3,7 +3,7 @@ import 'package:proypet/global_variables.dart';
 import 'package:proypet/src/models/raza/raza_model.dart';
 
 class RazaProvider {
-  final _url = urlGlobal;
+  final _url = urlApi;
 
   Future<RazaModel> getBreed(String idRaza) async {
     final url = '$_url/breeds/?specie=$idRaza';
