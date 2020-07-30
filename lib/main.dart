@@ -8,7 +8,7 @@ import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
 import 'package:flutter/services.dart';
 
-import 'global_variables.dart';
+import 'config/global_variables.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
 

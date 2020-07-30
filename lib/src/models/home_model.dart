@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final homeModel = homeModelFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:proypet/src/models/booking/booking_home.dart';

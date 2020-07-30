@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:proypet/global_variables.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/raza/raza_model.dart';
 
 class RazaProvider {

@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:proypet/global_variables.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 import 'dart:math' as Math;
 import 'package:proypet/src/utils/add_msg.dart';

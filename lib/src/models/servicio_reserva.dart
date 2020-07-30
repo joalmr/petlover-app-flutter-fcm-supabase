@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/icon_proypet_icons.dart';
-import 'package:proypet/proypet_icons.dart';
+import 'package:proypet/icons/icon_proypet_icons.dart';
+import 'package:proypet/icons/proypet_icons.dart';
 
 class ServicioReserva {
   int id;

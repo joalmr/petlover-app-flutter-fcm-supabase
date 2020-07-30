@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
-import 'package:proypet/global_variables.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/booking/booking_model.dart';
 import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';

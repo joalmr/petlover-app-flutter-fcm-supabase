@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
-import 'package:proypet/global_variables.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
 
