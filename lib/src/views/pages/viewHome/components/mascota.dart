@@ -83,14 +83,14 @@ Widget mascotas(List<MascotaModel> mascotas, context) {
                           Row(
                             children: <Widget>[
                               (mascotas[index].status == 0)
-                                  ? Icon(Icons.bookmark, color: colorGray2)
-                                  : Icon(Icons.cake, color: colorGray2),
+                                  ? Icon(Icons.bookmark, color: Colors.white)
+                                  : Icon(Icons.cake, color: Colors.white),
                               SizedBox(width: 5.0),
                               (mascotas[index].status == 0)
                                   ? Text(
                                       "Fallecido",
                                       style: TextStyle(
-                                        color: colorGray2,
+                                        color: Colors.white,
                                       ),
                                     )
                                   : Text(
@@ -99,7 +99,7 @@ Widget mascotas(List<MascotaModel> mascotas, context) {
                                       style: Theme.of(context)
                                           .textTheme
                                           .subtitle2
-                                          .apply(color: colorGray2),
+                                          .apply(color: Colors.white),
                                     )
                             ],
                           ),

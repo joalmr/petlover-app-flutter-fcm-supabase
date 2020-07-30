@@ -79,6 +79,8 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                   child: SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         datoMascota(mascota),
                         listaHistorial(context, petModel.history),
@@ -116,8 +118,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
 
   datoMascota(pet) {
     return Padding(
-      padding:
-          const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0, bottom: 0.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -138,9 +139,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                             fontWeightDelta: 2,
                           ))
                   // TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),)
-                  : SizedBox(
-                      height: 0,
-                    )
+                  : SizedBox(height: 0)
             ],
           ),
           Column(
@@ -157,9 +156,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                           .subtitle2
                           .apply(fontWeightDelta: 2)
                           .copyWith(fontStyle: FontStyle.italic))
-                  : SizedBox(
-                      height: 0,
-                    )
+                  : SizedBox(height: 0)
             ],
           )
         ],
