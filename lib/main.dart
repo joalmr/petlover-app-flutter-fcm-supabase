@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
     //com.example.user //prueba
     //com.proypet.user //produccion
     return MaterialApp(
-      debugShowCheckedModeBanner: appProduccion,
+      debugShowCheckedModeBanner: appPruebas,
       navigatorKey: navigatorKey,
       title: 'Proypet',
       theme: temaClaro,

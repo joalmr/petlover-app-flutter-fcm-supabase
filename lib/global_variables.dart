@@ -13,9 +13,9 @@ const produccion = {
   'urlApi': 'https://proypet.com/api',
 };
 
-final bool appProduccion = false; //TODO: cambiar a true cuando sea produccion
+final bool appPruebas = true; //TODO: cambiar a true cuando sea produccion
 
-final environment = appProduccion ? produccion : pruebas;
+final environment = appPruebas ? pruebas : produccion;
 
 final String keyMap = environment['keyMap'];
 final String urlName = environment['url'];
