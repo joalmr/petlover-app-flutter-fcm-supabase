@@ -81,7 +81,7 @@ class _UserPageState extends State<UserPage> {
                           ),
                           Text(
                             'Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
-                            style: TextStyle(fontSize: sizeSmall),
+                            style: TextStyle(fontSize: sizeSmallx1),
                           ),
                           SizedBox(height: 25.0),
                           Center(

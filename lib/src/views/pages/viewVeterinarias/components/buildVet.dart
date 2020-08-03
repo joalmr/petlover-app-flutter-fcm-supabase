@@ -59,7 +59,7 @@ Widget buildVets(BuildContext context, EstablecimientoModel vetLocales) {
                             '${vet.distance}km de distancia',
                             maxLines: 1,
                             style: TextStyle(
-                                fontSize: sizeSmall,
+                                fontSize: sizeSmallx1,
                                 color: colorGray3,
                                 fontWeight: FontWeight.w400),
                           ),

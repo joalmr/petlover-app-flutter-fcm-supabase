@@ -33,7 +33,7 @@ emergencia(BuildContext context) {
             children: <Widget>[
               Text('Emergencia', style: TextStyle(color: Colors.white)),
               Text('24 horas',
-                  style: TextStyle(color: Colors.white, fontSize: sizeLite)),
+                  style: TextStyle(color: Colors.white, fontSize: sizeSmallx2)),
             ],
           ),
         )

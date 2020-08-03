@@ -217,7 +217,7 @@ class _ReservaListState extends State<ReservaList> {
   //       horizontal: 5.0,
   //     ),
   //     child: Chip(
-  //       labelStyle: TextStyle(fontSize: sizeLite, color: Colors.black54),
+  //       labelStyle: TextStyle(fontSize: , color: Colors.black54),
   //       labelPadding: EdgeInsets.only(left: 5.0, right: 2.5),
   //       // padding: EdgeInsets.zero,
   //       avatar: CircleAvatar(

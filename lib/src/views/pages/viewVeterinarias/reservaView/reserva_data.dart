@@ -287,7 +287,7 @@ class _Data extends State<DataReserva> {
                             style: TextStyle()),
                       ],
                     ),
-                    style: TextStyle(fontSize: sizeSmall),
+                    style: TextStyle(fontSize: sizeSmallx1),
                   ),
                 ],
               ),

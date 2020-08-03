@@ -164,17 +164,24 @@ class _VetDetallePageState extends State<VetDetallePage> {
               width: MediaQuery.of(context).size.width - 0.0,
               // height: MediaQuery.of(context).size.height * 0.1 ,
               child: ListTile(
-                title: Text(localVet.name, //nombreVet(0),
-                    maxLines: 2,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .apply(fontWeightDelta: 2)),
-                subtitle: Text(
-                  '${localVet.address} ${localVet.distance}km',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.subtitle2.color),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '${localVet.distance}km de distancia',
+                      style: TextStyle(fontSize: sizeSmallx2),
+                    ),
+                    Text(localVet.name, //nombreVet(0),
+                        maxLines: 2,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .apply(fontWeightDelta: 2)),
+                  ],
                 ),
+                subtitle: Text('${localVet.address} ',
+                    style: TextStyle(fontSize: sizeSmallx1)),
                 trailing: Stack(
                   children: <Widget>[
                     Container(height: 56.0, width: 60.0),
@@ -218,8 +225,8 @@ class _VetDetallePageState extends State<VetDetallePage> {
                           child: Center(
                             child: Text(
                               localVet.attentions.toString(),
-                              style: TextStyle(
-                                  fontSize: sizeSmall, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 10, color: Colors.white),
                             ),
                           ),
                         ),

@@ -84,7 +84,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
                                   _atencion.createdAt,
                                   style: TextStyle(
                                       color: colorMain,
-                                      fontSize: sizeSmall,
+                                      fontSize: sizeSmallx1,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],

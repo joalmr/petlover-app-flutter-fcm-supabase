@@ -93,7 +93,7 @@ class HistoriaPage extends StatelessWidget {
                       Text("Próxima cita",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: sizeLite,
+                              fontSize: sizeSmallx2,
                               color:
                                   Theme.of(context).textTheme.subtitle2.color)),
                       Text(proximacita,
@@ -107,7 +107,7 @@ class HistoriaPage extends StatelessWidget {
                       Text("Motivo",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: sizeLite,
+                              fontSize: sizeSmallx2,
                               color:
                                   Theme.of(context).textTheme.subtitle2.color)),
                       Text(motivo,
@@ -150,7 +150,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Recomendación",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
         SizedBox(
@@ -158,7 +158,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Atendido por",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
@@ -194,7 +194,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Recomendación",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["recommendations"]) != null ? data["recommendations"] : "-"),
         SizedBox(
@@ -202,7 +202,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Atendido por",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
@@ -240,7 +240,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Recomendación",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
         SizedBox(
@@ -248,7 +248,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Atendido por",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
@@ -286,12 +286,12 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Recomendación",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
         Text(
           "Atendido por",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
@@ -329,12 +329,12 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text(
           "Recomendación",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
         Text(
           "Atendido por",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeLite),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),

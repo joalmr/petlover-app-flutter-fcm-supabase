@@ -38,7 +38,7 @@ class _ViewPrecioState extends State<ViewPrecio> {
                           .subtitle2
                           .apply(fontWeightDelta: 2)),
                   Text("*Sujeto a revisión física de mascota",
-                      style: TextStyle(fontSize: sizeLite)),
+                      style: TextStyle(fontSize: sizeSmallx2)),
                   if (localVet.prices.length > 0)
                     _listaPrecio(localVet.prices)
                   else

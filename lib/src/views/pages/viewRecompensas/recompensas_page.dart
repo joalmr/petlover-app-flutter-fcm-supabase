@@ -111,7 +111,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
                                       'Puntos acumulados',
                                       style: TextStyle(
                                           color: Colors.white60,
-                                          fontSize: sizeSmall,
+                                          fontSize: sizeSmallx1,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
@@ -173,7 +173,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
                   child: Text(
                     '+${bonificados[index].points}',
                     style: TextStyle(
-                        fontSize: sizeSmall, fontWeight: FontWeight.bold),
+                        fontSize: sizeSmallx1, fontWeight: FontWeight.bold),
                   )),
             ),
           );
