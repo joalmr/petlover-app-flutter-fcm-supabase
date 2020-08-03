@@ -81,10 +81,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           children: <Widget>[
                             Text(
                               ' Servicios frecuentes',
-                              style:
-                                  Theme.of(context).textTheme.headline6.apply(
-                                        fontWeightDelta: 2,
-                                      ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .apply(fontWeightDelta: 2),
                             ),
                             SizedBox(height: 15.0),
                             SingleChildScrollView(

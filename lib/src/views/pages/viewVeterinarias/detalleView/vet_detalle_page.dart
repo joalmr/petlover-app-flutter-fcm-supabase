@@ -21,6 +21,7 @@ import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/tabsDetalle
 import 'package:proypet/src/views/pages/viewVeterinarias/reservaView/reserva_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'tabsDetalle/view_comentario.dart';
 import 'tabsDetalle/view_horario.dart';
 import 'tabsDetalle/view_precio.dart';
 
@@ -152,7 +153,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
 
   Widget _onDetail(EstablecimientoModel localVet) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -243,7 +244,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
               Tab(text: "General"),
               Tab(text: "Precios"),
               Tab(text: "Horarios"),
-              // Tab(text: "Comentarios"),
+              Tab(text: "Comentarios"),
             ],
           ),
           Expanded(
@@ -252,7 +253,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 ViewGeneral(localVet: localVet),
                 ViewPrecio(localVet: localVet),
                 ViewHorario(localVet: localVet),
-                // ViewComentario(localVet: localVet),
+                ViewComentario(idVet: localVet.id),
               ],
             ),
           ),
