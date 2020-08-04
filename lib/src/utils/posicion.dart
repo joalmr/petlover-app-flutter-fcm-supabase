@@ -5,8 +5,9 @@ import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart
 final _prefs = new PreferenciasUsuario();
 
 Future<Position> fnPosition() async {
-  Position position = await Geolocator()
-      .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  Position position = await Geolocator().getCurrentPosition(
+    desiredAccuracy: LocationAccuracy.high,
+  );
   return position;
 }
 

@@ -36,12 +36,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     if (_prefs.token.trim() != null && _prefs.token.trim() != '') {
       if (!fnGetVerify()) {
-        //== log out ==
+        //log out
         loginProvider.logOut();
       } else {
-        fnPosition().then((value) {
-          _prefs.position = '${value.latitude},${value.longitude}'; //null
-        });
+        // fnPosition().then((value) {
+        //   _prefs.position = '${value.latitude},${value.longitude}';
+        // });
         rutaInicio = 'navInicio';
       }
     }

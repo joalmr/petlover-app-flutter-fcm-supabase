@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/models/login/login_model.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
+import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/fadeView.dart';
-
 import 'package:proypet/src/views/components/wave_clipper.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -107,35 +107,39 @@ class _LoginSevenPageState extends State<LoginPage> {
   }
 
   void _onToken() async {
-    formKey.currentState.save();
-    setState(() {});
+    setState(() {
+      formKey.currentState.save();
+    });
 
-    Map resp = await loginProvider.loginToken(userModel);
-
-    if (resp['code'] == 200) {
-      Navigator.pushReplacementNamed(context, 'navInicio');
-    } else if (resp['code'] != 200) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return FadeIn(
-            child: AlertDialog(
-              title: Text('Oops..'),
-              content: Container(
-                child: Center(
-                  child: Text(resp['message']),
+    if (userModel.email.trim() == "" || userModel.password.trim() == "") {
+      mostrarSnackbar("Debe completar los campos", colorRed, scaffoldKey);
+    } else {
+      Map resp = await loginProvider.loginToken(userModel);
+      if (resp['code'] == 200) {
+        Navigator.pushReplacementNamed(context, 'navInicio');
+      } else if (resp['code'] != 200) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return FadeIn(
+              child: AlertDialog(
+                title: Text('Oops..'),
+                content: Container(
+                  child: Center(
+                    child: Text(resp['message']),
+                  ),
                 ),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('Continuar'),
+                  ),
+                ],
               ),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text('Continuar'),
-                ),
-              ],
-            ),
-          );
-        },
-      );
+            );
+          },
+        );
+      }
     }
   }
 

@@ -2,6 +2,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src/utils/posicion.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/pages/viewDestacados/destacados_page.dart';
 import 'package:proypet/src/views/pages/viewHome/home_page.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
@@ -30,15 +32,16 @@ class _NavigationBarState extends State<NavigationBar> {
   _NavigationBarState({@required this.currentTabIndex});
 
   final loginProvider = UserProvider();
-  // final _prefs = new PreferenciasUsuario();
+  final _prefs = new PreferenciasUsuario();
 
   //TODO: firebase
   @override
   void initState() {
     super.initState();
-    // fnPosition().then((value) {
-    //   _prefs.position = '${value.latitude},${value.longitude}';
-    // });
+    fnPosition().then((value) {
+      print('==gps==');
+      _prefs.position = '${value.latitude},${value.longitude}';
+    });
     //ejecuta firebase
     _fnFireBaseEjec();
   }

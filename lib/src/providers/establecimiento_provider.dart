@@ -12,8 +12,8 @@ class EstablecimientoProvider {
 
   //List<int> filtros
   Future<dynamic> getVets(dynamic filtros) async {
-    print('=== gps ===');
-    print(_prefs.position.toString());
+    // print('=== gps ===');
+    // print(_prefs.position.toString());
 
     int estado = 200;
     List<EstablecimientoModel> establecimientos = [];

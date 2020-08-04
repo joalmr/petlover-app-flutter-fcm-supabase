@@ -54,8 +54,7 @@ class DataReserva extends StatefulWidget {
       misMascotas: misMascotas,
       mascotaID: mascotaID,
       establecimientoName: establecimientoName,
-      delivery:
-          delivery); //establecimientoID: this.establecimientoID,misMascotas: this.misMascotas
+      delivery: delivery);
 }
 
 class _Data extends State<DataReserva> {
@@ -110,13 +109,12 @@ class _Data extends State<DataReserva> {
   void initState() {
     print(resarvaId);
     _inputDireccionController.text = _prefs.myAddress;
-    // print(_prefs.myAddressLatLng);
     if (_prefs.myAddressLatLng.toString().trim() != "") {
       setState(() {
         lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
         lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
         zoomIn = 16.0;
-
+        direccionDelivery = _prefs.myAddress;
         marcador.add(Marker(
           markerId: MarkerId("1"),
           position: LatLng(lat, lng),
@@ -313,7 +311,6 @@ class _Data extends State<DataReserva> {
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.location_on, color: colorMain),
       ),
-      // suggestionsHeight: 100.0,
       maxSuggestions: 5,
       onSearch: (filter) async {
         var response = await http.get(
@@ -330,8 +327,10 @@ class _Data extends State<DataReserva> {
       resetIcon: null,
       itemBuilder: (context, address) => Padding(
           padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-          child: Text(address.name,
-              style: TextStyle(fontWeight: FontWeight.bold))),
+          child: Text(
+            address.name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          )),
     );
   }
 
@@ -564,15 +563,14 @@ class _Data extends State<DataReserva> {
           'Solo entrega a domicilio'
         ];
         var deliveryText = "";
-        var direccionText = "";
+        // var direccionText = "";
         if (delivery == true && deliveryId != "1") {
           deliveryText = deliveryArray[int.parse(deliveryId) - 1];
-          direccionText =
-              direccionDelivery.toString(); //_inputDireccionController.text;
+          // direccionDelivery = direccionDelivery.toString();
         }
         if (delivery == true &&
             deliveryId != "1" &&
-            (direccionText.trim() == "" ||
+            (direccionDelivery.trim() == "" ||
                 _inputDireccionController.text.trim() == "")) {
           setState(() {
             clickReservar = true;
@@ -583,16 +581,19 @@ class _Data extends State<DataReserva> {
               scaffoldKey);
         } else {
           bool resp = await bookingProvider.booking(
-              booking, deliveryText, direccionText);
+              booking, deliveryText, direccionDelivery); //direccionText
 
           if (resp) {
-            mascotaProvider.getPet(mascotaID).then((value) => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => ThxPage(
-                        CachedNetworkImageProvider(value.pet.picture),
-                        thxReserva[
-                            Math.Random().nextInt(thxReserva.length)]))));
+            mascotaProvider.getPet(mascotaID).then(
+                  (value) => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ThxPage(
+                          CachedNetworkImageProvider(value.pet.picture),
+                          thxReserva[Math.Random().nextInt(thxReserva.length)]),
+                    ),
+                  ),
+                );
           }
         }
       }

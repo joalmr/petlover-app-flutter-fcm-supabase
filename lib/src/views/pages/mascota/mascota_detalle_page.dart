@@ -126,19 +126,18 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(pet.name,
-                  style: Theme.of(context).textTheme.headline6.apply(
-                        fontWeightDelta: 2,
-                      )),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(fontWeight: FontWeight.w900)),
               Text(pet.breedName,
-                  style: Theme.of(context).textTheme.subtitle1.apply(
-                        fontWeightDelta: 2,
-                      )),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      .copyWith(fontWeight: FontWeight.bold)),
               (pet.status != 0)
                   ? Text(calculateAge(DateTime.parse(pet.birthdate)),
-                      style: Theme.of(context).textTheme.subtitle2.apply(
-                            fontWeightDelta: 2,
-                          ))
-                  // TextStyle(fontSize: sizeH4,fontWeight: FontWeight.w600, color: Colors.grey[500]),)
+                      style: Theme.of(context).textTheme.subtitle2)
                   : SizedBox(height: 0)
             ],
           ),
