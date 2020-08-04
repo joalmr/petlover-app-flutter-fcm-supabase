@@ -70,8 +70,11 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
             },
           ),
           SizedBox(height: 10),
-          textfieldArea(_inputComentController,
-              "Ingrese comentario de la atención recibida", 250, 3),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: textfieldArea(_inputComentController,
+                "Ingrese comentario de la atención recibida", 250, 3),
+          ),
           Row(
             // crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
