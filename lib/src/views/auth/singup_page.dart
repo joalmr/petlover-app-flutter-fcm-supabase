@@ -101,7 +101,7 @@ class _SingupPageState extends State<SingupPage> {
                     child: FormularioText(
                       hintText: 'Contraseña',
                       icon: Icons.lock,
-                      iconSuf: Icons.remove_red_eye,
+                      // iconSuf: Icons.visibility,
                       obscureText: true,
                       onSaved: (value) => user.password = value,
                       textCap: TextCapitalization.none,

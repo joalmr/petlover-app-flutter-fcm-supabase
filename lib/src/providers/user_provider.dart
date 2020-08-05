@@ -32,7 +32,7 @@ class UserProvider {
       }
       return jsonRespuesta;
     } catch (ex) {
-      return {'ok': false, 'mensaje': 'Usuario o clave incorrecta'};
+      return {'code': 500, 'message': 'Usuario o clave incorrecta'};
     }
   }
 

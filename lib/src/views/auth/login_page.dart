@@ -1,12 +1,12 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/models/login/login_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
+import 'package:proypet/src/provider/login_store.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/fadeView.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
-import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,8 +18,33 @@ class _LoginSevenPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  UserDato userModel = UserDato();
-  final loginProvider = UserProvider();
+  LoginStore loginStore = LoginStore();
+  ReactionDisposer disposer;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    disposer = reaction((_) => loginStore.respLogin, (respLogin) {
+      if (respLogin['code'] == 200) {
+        Navigator.pushReplacementNamed(context, 'navInicio');
+      } else {
+        mostrarSnackbar(respLogin['message'], colorRed, scaffoldKey);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    disposer();
+    super.dispose();
+  }
+
+  void _onLogin() {
+    setState(() {
+      formKey.currentState.save();
+      loginStore.getLogin();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,40 +60,49 @@ class _LoginSevenPageState extends State<LoginPage> {
         child: Form(
           key: formKey,
           child: ListView(
-            // padding: const EdgeInsets.symmetric(horizontal: 20),
             children: <Widget>[
               WaveClipper(300.0, 180.0),
               SizedBox(height: 50.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: FormularioText(
-                  hintText: 'Email',
-                  icon: Icons.alternate_email,
-                  obscureText: false,
-                  onSaved: (value) => userModel.email = value,
-                  textCap: TextCapitalization.none,
-                  valorInicial: null,
-                  boardType: TextInputType.text,
+              Observer(
+                builder: (_) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FormularioText(
+                    hintText: 'Email',
+                    icon: Icons.alternate_email,
+                    onSaved: loginStore.setEmail,
+                    valorInicial: null,
+                    activo: !loginStore.loading,
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: FormularioText(
-                  hintText: 'Contraseña',
-                  icon: Icons.lock,
-                  iconSuf: Icons.remove_red_eye,
-                  obscureText: true,
-                  onSaved: (value) => userModel.password = value,
-                  textCap: TextCapitalization.none,
-                  valorInicial: null,
-                  boardType: TextInputType.text,
+              Observer(
+                builder: (_) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: FormularioText(
+                    hintText: 'Contraseña',
+                    icon: Icons.lock,
+                    obscureText: !loginStore.passwordVisible,
+                    iconSuf: InkWell(
+                      child: Icon(loginStore.passwordVisible
+                          ? Icons.visibility_off
+                          : Icons.visibility),
+                      onTap: loginStore.togglePasswordVisibility,
+                    ),
+                    onSaved: loginStore.setPassword,
+                    valorInicial: null,
+                    activo: !loginStore.loading,
+                  ),
                 ),
               ),
               SizedBox(height: 25.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: buttonPri('Iniciar sesión', _onToken),
-              ),
+              Observer(builder: (_) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: buttonPri(
+                      loginStore.loading ? 'Cargando..' : 'Iniciar sesión',
+                      loginStore.loading ? null : _onLogin),
+                );
+              }),
               SizedBox(height: 20.0),
               Center(
                 child: FlatButton(
@@ -105,81 +139,4 @@ class _LoginSevenPageState extends State<LoginPage> {
       ),
     );
   }
-
-  void _onToken() async {
-    setState(() {
-      formKey.currentState.save();
-    });
-
-    if (userModel.email.trim() == "" || userModel.password.trim() == "") {
-      mostrarSnackbar("Debe completar los campos", colorRed, scaffoldKey);
-    } else {
-      Map resp = await loginProvider.loginToken(userModel);
-      if (resp['code'] == 200) {
-        Navigator.pushReplacementNamed(context, 'navInicio');
-      } else if (resp['code'] != 200) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return FadeIn(
-              child: AlertDialog(
-                title: Text('Oops..'),
-                content: Container(
-                  child: Center(
-                    child: Text(resp['message']),
-                  ),
-                ),
-                actions: <Widget>[
-                  FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('Continuar'),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      }
-    }
-  }
-
-  // void _onToken() async {
-  //   formKey.currentState.save();
-  //   setState(() { });
-
-  //   Map resp = await loginProvider.loginToken(userModel);
-
-  //   if(!resp['ok']){
-  //     mostrarSnackbar(resp['mensaje'], colorRed, scaffoldKey);
-  //   }
-  //   else{
-  //     if(resp['verify']!=null){
-  //       Navigator.pushReplacementNamed(context, 'navInicio');
-  //     }
-  //     else{
-  //       showDialog(
-  //         context: context,
-  //         builder: (BuildContext context){
-  //           return FadeIn(
-  //             child: AlertDialog(
-  //               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-  //               // title: Text('Error'),
-  //               content: Container(
-  //                 height: 60.0,
-  //                 child: Center(child: Text('Verifique su correo.'))
-  //               ),
-  //               actions: <Widget>[
-  //                 FlatButton(
-  //                   onPressed: ()=>Navigator.pop(context),
-  //                   child: Text('Continuar')
-  //                 ),
-  //               ],
-  //             ),
-  //           );
-  //         }
-  //       );
-  //     }
-
-  //   }
-  // }
 }

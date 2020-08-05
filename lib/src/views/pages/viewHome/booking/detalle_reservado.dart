@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:map_launcher/map_launcher.dart';
+import 'package:provider/provider.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
@@ -12,9 +14,27 @@ import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DetalleReservado extends StatelessWidget {
+// import 'mobx/counter_store.dart';
+import 'mobx/counter_widget.dart';
+import 'mobx/storeMain_store.dart';
+
+class DetalleReservado extends StatefulWidget {
+  @override
+  _DetalleReservadoState createState() => _DetalleReservadoState();
+}
+
+class _DetalleReservadoState extends State<DetalleReservado> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   final bookingProvider = BookingProvider();
+
+  MainStore _store;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _store ??= Provider.of<MainStore>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +203,33 @@ class DetalleReservado extends StatelessWidget {
                 SizedBox(
                   height: 10.0,
                 ),
+                // Center(
+                //   child: buttonOutLine(
+                //     "Ir a mobx",
+                //     () => Navigator.of(context).push(MaterialPageRoute(
+                //         builder: (context) => CounterExample())),
+                //     colorBlue,
+                //   ),
+                // ),
+                // Center(
+                //   child: Observer(
+                //     builder: (_) => Text(_store.value.toString()),
+                //   ),
+                // ),
+                // Center(
+                //   child: buttonOutLine(
+                //     "Count mobx",
+                //     _store.increment,
+                //     colorBlue,
+                //   ),
+                // ),
+                // Center(
+                //   child: buttonOutLine(
+                //     "Count2 mobx",
+                //     _store.increment2,
+                //     colorBlue,
+                //   ),
+                // ),
               ],
             ),
           )
@@ -201,17 +248,16 @@ class DetalleReservado extends StatelessWidget {
               title: Text('Eliminar'),
               content: Text('Seguro que desea eliminar esta reserva?'),
               actions: <Widget>[
-                buttonModal('Cancelar', () => Navigator.pop(context),
-                    Theme.of(context).textTheme.subtitle2.color),
-                buttonModal('Sí, eliminar', () => _deleteBooking(id, context),
-                    colorRed),
-                // FlatButton(
-                //     onPressed: () => Navigator.pop(context),
-                //     child: Text('Cancelar',
-                //         style: Theme.of(context)
-                //             .textTheme
-                //             .subtitle2
-                //             .apply(fontWeightDelta: 2))),
+                buttonModal(
+                  'Cancelar',
+                  () => Navigator.pop(context),
+                  Theme.of(context).textTheme.subtitle2.color,
+                ),
+                buttonModal(
+                  'Sí, eliminar',
+                  () => _deleteBooking(id, context),
+                  colorRed,
+                ),
               ],
             ),
           );
