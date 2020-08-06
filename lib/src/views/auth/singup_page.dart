@@ -25,6 +25,7 @@ class _SingupPageState extends State<SingupPage> {
   UserDato user = UserDato();
   bool btnBool = true;
 
+  bool clave = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,8 +102,16 @@ class _SingupPageState extends State<SingupPage> {
                     child: FormularioText(
                       hintText: 'Contraseña',
                       icon: Icons.lock,
-                      // iconSuf: Icons.visibility,
-                      obscureText: true,
+                      iconSuf: InkWell(
+                        child: Icon(
+                            !clave ? Icons.visibility_off : Icons.visibility),
+                        onTap: () {
+                          setState(() {
+                            clave = !clave;
+                          });
+                        },
+                      ),
+                      obscureText: clave,
                       onSaved: (value) => user.password = value,
                       textCap: TextCapitalization.none,
                       valorInicial: null,

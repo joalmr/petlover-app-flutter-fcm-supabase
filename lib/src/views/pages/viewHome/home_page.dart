@@ -2,13 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:proypet/src/models/home_model.dart';
 import 'package:proypet/src/provider/home_store.dart';
-import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/views/components/enddrawer/config_drawer.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
-
-import 'package:proypet/src/utils/error_internet.dart';
 
 import 'components/atenciones.dart';
 import 'components/frecuentes.dart';
@@ -27,16 +23,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   HomeStore homeStore;
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     homeStore ??= Provider.of<HomeStore>(context);
+    homeStore.getSummary();
   }
 
   Future _refresh() => homeStore.refresh();
 
   @override
   Widget build(BuildContext context) {
-    homeStore.getSummary();
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: ConfigDrawer(),

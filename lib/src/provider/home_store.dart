@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
-// import 'package:proypet/src/models/home_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
@@ -80,13 +80,61 @@ abstract class _HomeStore with Store {
   final bookingProvider = BookingProvider();
 
   @action
-  void eliminaAtencion(id) {
-    deleteBooking(id);
-    bookings();
-  }
-
-  @action
   Future deleteBooking(id) async {
     await bookingProvider.deleteBooking(id);
   }
+
+  @action
+  void eliminaAtencion(BuildContext context, id) {
+    deleteBooking(id);
+    bookings();
+    espera();
+    volver(context);
+  }
+
+  @action
+  void volver(BuildContext context) {
+    volverVoid(context);
+  }
+
+  @action
+  Future<void> volverVoid(BuildContext context) async {
+    Navigator.pop(context);
+  }
+
+  @action
+  void reservar(BuildContext context) {
+    reservaVoid(context);
+  }
+
+  @action
+  Future<void> reservaVoid(BuildContext context) async {
+    Navigator.pushNamed(context, 'navLista');
+  }
+
+  @action
+  void agregarMascota(BuildContext context) {
+    reservaVoid(context);
+  }
+
+  @action
+  Future<void> agregarMascotaVoid(BuildContext context) async {
+    Navigator.pushNamed(context, 'agregarmascota');
+  }
+
+  @action
+  void detalleMascota(BuildContext context, id) {
+    detalleMascotaVoid(context, id);
+  }
+
+  @action
+  Future<void> detalleMascotaVoid(BuildContext context, id) async {
+    Navigator.pushNamed(context, 'detallemascota', arguments: id);
+  }
+
+  @computed
+  bool get sinAtenciones => atenciones.length == 0;
+
+  @computed
+  bool get sinMascotas => mascotas.length == 0;
 }

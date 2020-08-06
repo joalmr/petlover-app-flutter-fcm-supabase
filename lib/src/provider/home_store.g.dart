@@ -9,6 +9,21 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStore, Store {
+  Computed<bool> _$sinAtencionesComputed;
+
+  @override
+  bool get sinAtenciones =>
+      (_$sinAtencionesComputed ??= Computed<bool>(() => super.sinAtenciones,
+              name: '_HomeStore.sinAtenciones'))
+          .value;
+  Computed<bool> _$sinMascotasComputed;
+
+  @override
+  bool get sinMascotas =>
+      (_$sinMascotasComputed ??= Computed<bool>(() => super.sinMascotas,
+              name: '_HomeStore.sinMascotas'))
+          .value;
+
   final _$usuarioAtom = Atom(name: '_HomeStore.usuario');
 
   @override
@@ -81,6 +96,38 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$deleteBookingAsyncAction.run(() => super.deleteBooking(id));
   }
 
+  final _$volverVoidAsyncAction = AsyncAction('_HomeStore.volverVoid');
+
+  @override
+  Future<void> volverVoid(BuildContext context) {
+    return _$volverVoidAsyncAction.run(() => super.volverVoid(context));
+  }
+
+  final _$reservaVoidAsyncAction = AsyncAction('_HomeStore.reservaVoid');
+
+  @override
+  Future<void> reservaVoid(BuildContext context) {
+    return _$reservaVoidAsyncAction.run(() => super.reservaVoid(context));
+  }
+
+  final _$agregarMascotaVoidAsyncAction =
+      AsyncAction('_HomeStore.agregarMascotaVoid');
+
+  @override
+  Future<void> agregarMascotaVoid(BuildContext context) {
+    return _$agregarMascotaVoidAsyncAction
+        .run(() => super.agregarMascotaVoid(context));
+  }
+
+  final _$detalleMascotaVoidAsyncAction =
+      AsyncAction('_HomeStore.detalleMascotaVoid');
+
+  @override
+  Future<void> detalleMascotaVoid(BuildContext context, dynamic id) {
+    return _$detalleMascotaVoidAsyncAction
+        .run(() => super.detalleMascotaVoid(context, id));
+  }
+
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
@@ -95,11 +142,55 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void eliminaAtencion(dynamic id) {
+  void eliminaAtencion(BuildContext context, dynamic id) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.eliminaAtencion');
     try {
-      return super.eliminaAtencion(id);
+      return super.eliminaAtencion(context, id);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void volver(BuildContext context) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.volver');
+    try {
+      return super.volver(context);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void reservar(BuildContext context) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.reservar');
+    try {
+      return super.reservar(context);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void agregarMascota(BuildContext context) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.agregarMascota');
+    try {
+      return super.agregarMascota(context);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void detalleMascota(BuildContext context, dynamic id) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.detalleMascota');
+    try {
+      return super.detalleMascota(context, id);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -109,7 +200,9 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 usuario: ${usuario},
-loading: ${loading}
+loading: ${loading},
+sinAtenciones: ${sinAtenciones},
+sinMascotas: ${sinMascotas}
     ''';
   }
 }

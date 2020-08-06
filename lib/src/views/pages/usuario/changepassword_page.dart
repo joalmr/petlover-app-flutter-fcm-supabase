@@ -24,6 +24,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   String passNueva;
 
   bool clickPassword = true;
+  bool clave1 = true;
+  bool clave2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +45,16 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 labelText: 'Contraseña actual',
                 hintText: 'Ingrese contraseña actual',
                 icon: Icons.lock,
-                // iconSuf: Icons.visibility,
-                obscureText: true,
+                iconSuf: InkWell(
+                  child:
+                      Icon(!clave1 ? Icons.visibility_off : Icons.visibility),
+                  onTap: () {
+                    setState(() {
+                      clave1 = !clave1;
+                    });
+                  },
+                ),
+                obscureText: clave1,
                 onSaved: (value) => passAntigua = value,
                 textCap: TextCapitalization.none,
                 valorInicial: null,
@@ -54,8 +64,16 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 labelText: 'Nueva contraseña',
                 hintText: 'Ingrese contraseña nueva',
                 icon: Icons.lock,
-                // iconSuf: Icons.visibility,
-                obscureText: true,
+                iconSuf: InkWell(
+                  child:
+                      Icon(!clave2 ? Icons.visibility_off : Icons.visibility),
+                  onTap: () {
+                    setState(() {
+                      clave2 = !clave2;
+                    });
+                  },
+                ),
+                obscureText: clave2,
                 onSaved: (value) => passNueva = value,
                 textCap: TextCapitalization.none,
                 valorInicial: null,

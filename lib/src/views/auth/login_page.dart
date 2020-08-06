@@ -22,6 +22,12 @@ class _LoginSevenPageState extends State<LoginPage> {
   ReactionDisposer disposer;
 
   @override
+  void dispose() {
+    disposer();
+    super.dispose();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     disposer = reaction((_) => loginStore.respLogin, (respLogin) {
@@ -31,12 +37,6 @@ class _LoginSevenPageState extends State<LoginPage> {
         mostrarSnackbar(respLogin['message'], colorRed, scaffoldKey);
       }
     });
-  }
-
-  @override
-  void dispose() {
-    disposer();
-    super.dispose();
   }
 
   void _onLogin() {

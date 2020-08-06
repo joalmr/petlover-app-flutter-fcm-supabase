@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/login/login_model.dart';
-import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/providers/user_provider.dart';
 
 part 'login_store.g.dart';
@@ -48,8 +47,6 @@ abstract class _LoginStore with Store {
   void getLogin() {
     login();
   }
-
-  HomeStore homeStore = HomeStore();
 
   @action
   Future login() async {

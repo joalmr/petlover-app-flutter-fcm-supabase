@@ -30,6 +30,7 @@ final shape20 =
     RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0));
 
 final borderRadius = BorderRadius.circular(10.0);
+final borderRadius20 = BorderRadius.circular(20.0);
 
 final sizeSmallx1 = 12.0;
 final sizeSmallx2 = 10.0;

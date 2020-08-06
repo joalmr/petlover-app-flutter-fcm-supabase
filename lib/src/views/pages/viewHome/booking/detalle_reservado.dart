@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+// import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:map_launcher/map_launcher.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/providers/booking_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
@@ -15,8 +15,8 @@ import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // import 'mobx/counter_store.dart';
-import 'mobx/counter_widget.dart';
-import 'mobx/storeMain_store.dart';
+// import 'mobx/counter_widget.dart';
+// import 'mobx/storeMain_store.dart';
 
 class DetalleReservado extends StatefulWidget {
   @override
@@ -28,13 +28,13 @@ class _DetalleReservadoState extends State<DetalleReservado> {
 
   final bookingProvider = BookingProvider();
 
-  MainStore _store;
+  // MainStore _store;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _store ??= Provider.of<MainStore>(context);
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   _store ??= Provider.of<MainStore>(context);
+  // }
 
   @override
   Widget build(BuildContext context) {

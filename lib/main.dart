@@ -13,7 +13,7 @@ import 'config/global_variables.dart';
 import 'src/provider/home_store.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
-import 'src/views/pages/viewHome/booking/mobx/storeMain_store.dart';
+// import 'src/views/pages/viewHome/booking/mobx/storeMain_store.dart';
 
 final _prefs = new PreferenciasUsuario();
 void main() async {
