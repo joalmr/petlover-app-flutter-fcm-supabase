@@ -114,7 +114,7 @@ abstract class _HomeStore with Store {
 
   @action
   void agregarMascota(BuildContext context) {
-    reservaVoid(context);
+    agregarMascotaVoid(context);
   }
 
   @action
