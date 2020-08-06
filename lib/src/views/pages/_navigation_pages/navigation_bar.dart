@@ -1,18 +1,16 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/providers/user_provider.dart';
+import 'package:mobx/mobx.dart';
+import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/posicion.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/pages/viewDestacados/destacados_page.dart';
 import 'package:proypet/src/views/pages/viewHome/home_page.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushQualify.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.dart';
 import 'package:proypet/src/views/pages/viewRecompensas/recompensas_page.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/reserva_list.dart';
 
-FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
+// FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
@@ -31,8 +29,11 @@ class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
   _NavigationBarState({@required this.currentTabIndex});
 
-  final loginProvider = UserProvider();
+  // final loginProvider = UserProvider();
   final _prefs = new PreferenciasUsuario();
+
+  ReactionDisposer disposer;
+  PushStore pushStore = PushStore();
 
   //TODO: firebase
   @override
@@ -43,7 +44,20 @@ class _NavigationBarState extends State<NavigationBar> {
       _prefs.position = '${value.latitude},${value.longitude}';
     });
     //ejecuta firebase
-    _fnFireBaseEjec();
+    pushStore.firebase();
+
+    disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
+      if (notificacion) {
+        pushStore.push(context);
+        pushStore.notificacionPush = false;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    disposer();
+    super.dispose();
   }
 
   @override
@@ -102,64 +116,5 @@ class _NavigationBarState extends State<NavigationBar> {
       body: _kTabPages[currentTabIndex],
       bottomNavigationBar: bottomNavBar,
     );
-  }
-
-  _fnFireBaseEjec() {
-    _firebaseMessaging.requestNotificationPermissions();
-    _firebaseMessaging.getToken().then((token) {
-      print("======== token ========");
-      // print(token);
-      loginProvider.sendTokenFire(token);
-    });
-
-    _firebaseMessaging.configure(
-        onMessage: (Map<String, dynamic> message) async {
-      onPush(message);
-      message = null;
-    }, onLaunch: (Map<String, dynamic> message) async {
-      if (message.isNotEmpty) onPush(message);
-      message = null;
-    }, onResume: (Map<String, dynamic> message) async {
-      if (message.isNotEmpty) onPush(message);
-      message = null;
-    });
-  }
-
-  onPush(message) {
-    print('== llega ==');
-    //AttentionFinished = qualify
-    if (message['data']['type'] == "AttentionFinished") {
-      showDialog(
-        context: context,
-        builder: (context) => SimpleDialog(
-          children: <Widget>[
-            BuildPushQualify(
-                noti: message['data'],
-                mensaje: message['notification']['body']),
-            // buildPushQualify(context, message['data']),
-          ],
-        ),
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) => SimpleDialog(
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-          children: <Widget>[
-            BuildPushNoti(
-                noti: message['data'], mensaje: message['notification']['body'])
-            // buildPushNoti(context, message['data']),
-          ],
-        ),
-      );
-    }
-    // switch (message['data']['type']) {
-    //   case "qualify":
-    //     return;
-    //     break;
-    //   default:
-    //     return;
-    //     break;
-    // }
   }
 }

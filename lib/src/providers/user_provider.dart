@@ -39,18 +39,12 @@ class UserProvider {
   Future<void> sendTokenFire(String fireToken) async {
     final url = '$_url/firebase';
     final fireData = {"token": fireToken};
-    // var resp =
     await http.post(url, headers: headersToken(), body: fireData);
-    // print('===== guarda firebase =====');
-    // print(resp.statusCode);
   }
 
   Future<void> logOut() async {
     final url = '$_url/logout';
-    // var resp =
     await http.post(url, headers: headersToken());
-    // print('=== logOut ===');
-    // print(resp.statusCode);
   }
 
   Future<int> changePassword(String passAntigua, String passNueva) async {
@@ -63,7 +57,6 @@ class UserProvider {
     };
     final resp =
         await http.post(url, headers: headersToken(), body: changePass);
-    // print(resp.statusCode);
     return resp.statusCode;
   }
 
@@ -75,24 +68,9 @@ class UserProvider {
     return resp.statusCode;
   }
 
-  // bool validateMain() {
-  //   var valor;
-  //   getUserSummary().then((dato)=>
-  //     valor = dato
-  //   );
-
-  //   // if(valor==null){
-  //   //   return false;
-  //   // }
-  //   // else{
-  //   //   return true;
-  //   // }
-  // }
-
   //summary
   Future<HomeModel> getUserSummary() async {
     final url = '$_url/summary';
-    // print(_prefs.token);
     final resp = await http.get(
       url,
       headers: headersToken(),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:proypet/src/providers/user_provider.dart';
-// import 'package:proypet/src/utils/posicion.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
 import 'package:proypet/src/utils/utils.dart';
@@ -11,9 +10,9 @@ import 'package:flutter/services.dart';
 
 import 'config/global_variables.dart';
 import 'src/provider/home_store.dart';
+import 'src/provider/push_store.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
-// import 'src/views/pages/viewHome/booking/mobx/storeMain_store.dart';
 
 final _prefs = new PreferenciasUsuario();
 void main() async {
@@ -59,6 +58,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         // Provider<MainStore>(create: (_) => MainStore()),
         Provider<HomeStore>(create: (_) => HomeStore()),
+        Provider<PushStore>(create: (_) => PushStore()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: appPruebas,
@@ -82,27 +82,5 @@ class _MyAppState extends State<MyApp> {
         ), //ruta general
       ),
     );
-
-    // return MaterialApp(
-    //   debugShowCheckedModeBanner: appPruebas,
-    //   navigatorKey: navigatorKey,
-    //   title: 'Proypet',
-    //   theme: temaClaro,
-    //   darkTheme: temaOscuro,
-    //   localizationsDelegates: [
-    //     GlobalMaterialLocalizations.delegate,
-    //     GlobalWidgetsLocalizations.delegate,
-    //     GlobalCupertinoLocalizations.delegate,
-    //   ],
-    //   supportedLocales: [
-    //     const Locale('en', 'US'),
-    //     const Locale('es', 'ES'), //PE
-    //   ],
-    //   routes: getRoutes(),
-    //   initialRoute: rutaInicio,
-    //   onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
-    //     builder: (BuildContext context) => NavigationBar(currentTabIndex: 0),
-    //   ), //ruta general
-    // );
   }
 }
