@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:provider/provider.dart';
+import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/posicion.dart';
@@ -10,15 +12,12 @@ import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.d
 import 'package:proypet/src/views/pages/viewRecompensas/recompensas_page.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/reserva_list.dart';
 
-// FirebaseMessaging _firebaseMessaging = FirebaseMessaging(); //TODO: firebase
-
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
 
-  // final int marcar;
   NavigationBar({
     @required this.currentTabIndex,
-  }); //this.marcar
+  });
 
   @override
   _NavigationBarState createState() =>
@@ -29,11 +28,11 @@ class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
   _NavigationBarState({@required this.currentTabIndex});
 
-  // final loginProvider = UserProvider();
   final _prefs = new PreferenciasUsuario();
 
   ReactionDisposer disposer;
-  PushStore pushStore = PushStore();
+  PushStore pushStore;
+  HomeStore homeStore;
 
   @override
   void initState() {
@@ -42,21 +41,29 @@ class _NavigationBarState extends State<NavigationBar> {
       print('==gps==');
       _prefs.position = '${value.latitude},${value.longitude}';
     });
-    //TODO: ejecuta firebase
-    pushStore.firebase();
-
-    disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
-      if (notificacion) {
-        pushStore.push(context);
-        pushStore.notificacionPush = false;
-      }
-    });
   }
 
   @override
   void dispose() {
     disposer();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    homeStore ??= Provider.of<HomeStore>(context);
+    pushStore ??= Provider.of<PushStore>(context);
+    homeStore.getSummary();
+    //TODO: ejecuta firebase
+    pushStore.firebase();
+    // print('==ejecuta==');
+    disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
+      if (notificacion) {
+        pushStore.push(context);
+        pushStore.notificacionPush = false;
+      }
+    });
   }
 
   @override

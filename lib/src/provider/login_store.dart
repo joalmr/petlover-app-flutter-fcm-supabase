@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/login/login_model.dart';
 import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/utils/utils.dart';
 
 part 'login_store.g.dart';
 
@@ -31,6 +34,9 @@ abstract class _LoginStore with Store {
   @observable
   Map<String, dynamic> respLogin;
 
+  @observable
+  String rutaInicio = 'login';
+
   @action
   void setEmail(String value) => email = value;
 
@@ -42,6 +48,7 @@ abstract class _LoginStore with Store {
 
   UserDato userModel = UserDato();
   final loginProvider = UserProvider();
+  final _prefs = new PreferenciasUsuario();
 
   @action
   void getLogin() {
@@ -51,7 +58,6 @@ abstract class _LoginStore with Store {
   @action
   Future login() async {
     loading = true;
-    // await Future.delayed(Duration(seconds: 1));
     if (isFormValid) {
       userModel.email = email;
       userModel.password = password;
@@ -61,6 +67,38 @@ abstract class _LoginStore with Store {
     }
     loading = false;
   }
+
+  @action
+  void evaluaIngreso() {
+    evaluaLogin();
+  }
+
+  @action
+  Future<void> evaluaLogin() async {
+    if (hasToken) {
+      if (!isLogin) {
+        loginProvider.logOut();
+      } else {
+        navInicio();
+      }
+    }
+  }
+
+  @action
+  void navInicio() {
+    rutaInicio = 'navInicio';
+  }
+
+  // @action
+  // Future<void> navInicioVoid(BuildContext context) async {
+  //   Navigator.pushNamed(context, 'navInicio');
+  // }
+
+  @computed
+  bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
+
+  @computed
+  bool get isLogin => _prefs.verify != null && _prefs.verify.trim() != "";
 
   @computed
   bool get isEmailValid => email.trim().length > 0;

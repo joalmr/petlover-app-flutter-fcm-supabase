@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 
 import 'config/global_variables.dart';
 import 'src/provider/home_store.dart';
+import 'src/provider/login_store.dart';
 import 'src/provider/push_store.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
@@ -20,7 +21,6 @@ void main() async {
   await _prefs.initPrefs();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MyApp()));
-  // runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -31,23 +31,12 @@ class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> navigatorKey =
       new GlobalKey<NavigatorState>();
 
-  final loginProvider = UserProvider();
-  var rutaInicio = 'login';
+  LoginStore loginStore = LoginStore();
 
   @override
   void initState() {
-    if (_prefs.token.trim() != null && _prefs.token.trim() != '') {
-      if (!fnGetVerify()) {
-        //log out
-        loginProvider.logOut();
-      } else {
-        // fnPosition().then((value) {
-        //   _prefs.position = '${value.latitude},${value.longitude}';
-        // });
-        rutaInicio = 'navInicio';
-      }
-    }
     super.initState();
+    loginStore.evaluaIngreso();
   }
 
   @override
@@ -56,9 +45,8 @@ class _MyAppState extends State<MyApp> {
     //com.proypet.user //produccion
     return MultiProvider(
       providers: [
-        // Provider<MainStore>(create: (_) => MainStore()),
         Provider<HomeStore>(create: (_) => HomeStore()),
-        // Provider<PushStore>(create: (_) => PushStore()),
+        Provider<PushStore>(create: (_) => PushStore()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: appPruebas,
@@ -76,7 +64,7 @@ class _MyAppState extends State<MyApp> {
           const Locale('es', 'ES'), //PE
         ],
         routes: getRoutes(),
-        initialRoute: rutaInicio,
+        initialRoute: loginStore.rutaInicio,
         onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
           builder: (BuildContext context) => NavigationBar(currentTabIndex: 0),
         ), //ruta general

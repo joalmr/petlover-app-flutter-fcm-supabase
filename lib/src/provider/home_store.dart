@@ -133,7 +133,7 @@ abstract class _HomeStore with Store {
   }
 
   @computed
-  bool get sinAtenciones => atenciones.length == 0;
+  bool get sinAtenciones => atenciones.length == 0 || atenciones == null;
 
   @computed
   bool get sinMascotas => mascotas.length == 0;

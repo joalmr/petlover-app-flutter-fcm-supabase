@@ -21,6 +21,12 @@ class _LoginSevenPageState extends State<LoginPage> {
   LoginStore loginStore = LoginStore();
   ReactionDisposer disposer;
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   loginStore.evaluaIngreso(context);
+  // }
+
   @override
   void dispose() {
     disposer();

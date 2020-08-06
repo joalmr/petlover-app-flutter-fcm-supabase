@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void didChangeDependencies() {
     super.didChangeDependencies();
     homeStore ??= Provider.of<HomeStore>(context);
-    homeStore.getSummary();
+    // homeStore.getSummary();
   }
 
   Future _refresh() => homeStore.refresh();

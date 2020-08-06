@@ -22,9 +22,7 @@ class _AtencionesState extends State<Atenciones> {
     homeStore ??= Provider.of<HomeStore>(context);
   }
 
-  _deleteBooking(String id) {
-    homeStore.eliminaAtencion(context, id);
-  }
+  _deleteBooking(String id) => homeStore.eliminaAtencion(context, id);
 
   @override
   Widget build(BuildContext context) {

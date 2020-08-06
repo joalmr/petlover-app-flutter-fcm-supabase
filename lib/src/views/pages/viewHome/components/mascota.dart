@@ -30,33 +30,33 @@ class _MascotasState extends State<Mascotas> {
 
   @override
   Widget build(BuildContext context) {
-    return homeStore.sinMascotas
-        ? Container(
-            height: 250.0,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Se parte de la comunidad responsable',
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                buttonOutLine('Agregar mascota',
-                    () => homeStore.agregarMascota(context), colorMain),
-              ],
-            ),
-          )
-        : Container(
-            height: 250.0,
-            width: double.infinity,
-            child: Stack(
-              children: <Widget>[
-                Observer(
-                  builder: (_) => Swiper(
+    return Observer(
+      builder: (_) => homeStore.sinMascotas
+          ? Container(
+              height: 250.0,
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Se parte de la comunidad responsable',
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  buttonOutLine('Agregar mascota',
+                      () => homeStore.agregarMascota(context), colorMain),
+                ],
+              ),
+            )
+          : Container(
+              height: 250.0,
+              width: double.infinity,
+              child: Stack(
+                children: <Widget>[
+                  Swiper(
                     physics: BouncingScrollPhysics(),
                     itemCount: homeStore.mascotas.length, //mascotaList.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -168,17 +168,17 @@ class _MascotasState extends State<Mascotas> {
                     scale: 0.77,
                     loop: false,
                   ),
-                ),
-                Positioned(
-                  top: 0.0,
-                  right: 0.0,
-                  child: FloatingActionButton(
-                    onPressed: () => homeStore.agregarMascota(context),
-                    child: Icon(Icons.playlist_add),
+                  Positioned(
+                    top: 0.0,
+                    right: 0.0,
+                    child: FloatingActionButton(
+                      onPressed: () => homeStore.agregarMascota(context),
+                      child: Icon(Icons.playlist_add),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          );
+    );
   }
 }
