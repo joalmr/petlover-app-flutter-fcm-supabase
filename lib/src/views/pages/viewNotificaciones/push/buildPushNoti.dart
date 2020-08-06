@@ -1,11 +1,7 @@
-// import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-// import 'package:proypet/src/providers/establecimiento_provider.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
-
-// import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 class BuildPushNoti extends StatefulWidget {
   // const BuildPushNoti({Key key}) : super(key: key);
@@ -20,14 +16,15 @@ class BuildPushNoti extends StatefulWidget {
 class _BuildPushNotiState extends State<BuildPushNoti> {
   @override
   Widget build(BuildContext context) {
-    // Data dataPush = Data.fromJson(widget.noti);
-    // print(dataPush);
     return _fnNoti(widget.noti, context);
   }
 
   _fnNoti(noti, context) {
     print("== fnNoti ==");
     switch (noti['type']) {
+      case "Marketing":
+        return notificacionOther();
+        break;
       case "ComingBooking":
         return notificacionAct(Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -152,9 +149,46 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
     }
   }
 
+  Widget notificacionOther() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                child: Image(
+                  image: CachedNetworkImageProvider(widget.noti['pet_picture']),
+                  height: 65,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.noti['message']),
+              )),
+            ],
+          ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FlatButton(
+                child: Text('Omitir'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
   Widget notificacionAct(Widget dataWidget) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
       child: Column(
         children: <Widget>[
           Row(

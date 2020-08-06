@@ -35,7 +35,6 @@ class _NavigationBarState extends State<NavigationBar> {
   ReactionDisposer disposer;
   PushStore pushStore = PushStore();
 
-  //TODO: firebase
   @override
   void initState() {
     super.initState();
@@ -43,7 +42,7 @@ class _NavigationBarState extends State<NavigationBar> {
       print('==gps==');
       _prefs.position = '${value.latitude},${value.longitude}';
     });
-    //ejecuta firebase
+    //TODO: ejecuta firebase
     pushStore.firebase();
 
     disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
@@ -76,9 +75,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Inicio', style: TextStyle(fontSize: 10.5)), //
       ),
       BottomNavigationBarItem(
-        icon: Icon(
-          Icons.notifications_active,
-        ),
+        icon: Icon(Icons.notifications_active),
         title: Text('Notificaciones', style: TextStyle(fontSize: 10.5)), //
       ),
       BottomNavigationBarItem(
@@ -90,9 +87,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Destacados', style: TextStyle(fontSize: 10.5)), //
       ),
       BottomNavigationBarItem(
-        icon: Icon(
-          Icons.monetization_on,
-        ),
+        icon: Icon(Icons.monetization_on),
         title: Text('Puntos', style: TextStyle(fontSize: 10.5)), //
       ),
     ];

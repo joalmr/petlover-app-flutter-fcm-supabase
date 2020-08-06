@@ -81,8 +81,9 @@ abstract class _PushStore with Store {
         builder: (context) => SimpleDialog(
           children: <Widget>[
             BuildPushQualify(
-                noti: mensaje['data'],
-                mensaje: mensaje['notification']['body']),
+              noti: mensaje['data'],
+              mensaje: mensaje['notification']['body'],
+            ),
           ],
         ),
       );
@@ -93,7 +94,9 @@ abstract class _PushStore with Store {
           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
           children: <Widget>[
             BuildPushNoti(
-                noti: mensaje['data'], mensaje: mensaje['notification']['body'])
+              noti: mensaje['data'],
+              mensaje: mensaje['notification']['body'],
+            ),
           ],
         ),
       );

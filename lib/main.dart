@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         // Provider<MainStore>(create: (_) => MainStore()),
         Provider<HomeStore>(create: (_) => HomeStore()),
-        Provider<PushStore>(create: (_) => PushStore()),
+        // Provider<PushStore>(create: (_) => PushStore()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: appPruebas,
