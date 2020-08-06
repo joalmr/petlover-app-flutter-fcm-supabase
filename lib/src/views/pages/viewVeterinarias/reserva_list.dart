@@ -6,7 +6,7 @@ import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/views/components/filtro_veterinarias.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/services/establecimiento_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 

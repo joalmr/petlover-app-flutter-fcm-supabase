@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:proypet/src/models/antecion/atencion_model.dart';
-import 'package:proypet/src/providers/atencion_provider.dart';
+import 'package:proypet/src/services/atencion_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/views/components/form_control/text_field.dart';
 

@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/login/login_model.dart';
-import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/utils/utils.dart';
 
 part 'login_store.g.dart';
 

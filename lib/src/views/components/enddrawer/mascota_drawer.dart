@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/views/pages/mascota/mascota_editar_page.dart';
-import 'package:proypet/src/providers/mascota_provider.dart';
+import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 class MascotaDrawer extends StatefulWidget {

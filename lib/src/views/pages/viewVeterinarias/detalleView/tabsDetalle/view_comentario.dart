@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/comentarios_model.dart';
-import 'package:proypet/src/providers/establecimiento_provider.dart';
+import 'package:proypet/src/services/establecimiento_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
 // import 'package:proypet/src/utils/error_internet.dart';
 

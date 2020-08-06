@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/providers/booking_provider.dart';
-import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/services/booking_provider.dart';
+import 'package:proypet/src/services/user_provider.dart';
 
 part 'home_store.g.dart';
 

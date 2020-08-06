@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushQualify.dart';
 

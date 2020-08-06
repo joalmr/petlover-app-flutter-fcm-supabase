@@ -9,7 +9,7 @@ import 'package:proypet/src/views/components/transicion/fadeView.dart';
 
 import 'package:proypet/src/views/components/verify_page.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
-import 'package:proypet/src/providers/user_provider.dart';
+import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 

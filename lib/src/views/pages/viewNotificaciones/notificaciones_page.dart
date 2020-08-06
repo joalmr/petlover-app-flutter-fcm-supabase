@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 import 'package:proypet/src/models/notificacion/tip_model.dart';
-import 'package:proypet/src/providers/establecimiento_provider.dart';
-import 'package:proypet/src/providers/notificacion_provider.dart';
+import 'package:proypet/src/services/establecimiento_provider.dart';
+import 'package:proypet/src/services/notificacion_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 

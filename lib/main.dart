@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:proypet/src/providers/user_provider.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
-import 'package:proypet/src/utils/utils.dart';
 import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
 import 'package:flutter/services.dart';
 

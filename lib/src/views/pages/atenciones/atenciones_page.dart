@@ -7,7 +7,7 @@ import 'package:proypet/src/models/antecion/atencion_model.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/text_field.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/providers/atencion_provider.dart';
+import 'package:proypet/src/services/atencion_provider.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 
 import 'package:proypet/src/styles/styles.dart';
