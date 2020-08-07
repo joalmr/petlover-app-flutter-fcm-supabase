@@ -17,20 +17,16 @@ final _prefs = new PreferenciasUsuario();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _prefs.initPrefs();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(MyApp()));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
 }
 
 class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+LoginStore loginStore = LoginStore();
+
 class _MyAppState extends State<MyApp> {
-  final GlobalKey<NavigatorState> navigatorKey =
-      new GlobalKey<NavigatorState>();
-
-  LoginStore loginStore = LoginStore();
-
   @override
   void initState() {
     super.initState();
@@ -48,7 +44,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: appPruebas,
-        navigatorKey: navigatorKey,
+        // navigatorKey: navigatorKey,
         title: 'Proypet',
         theme: temaClaro,
         darkTheme: temaOscuro,

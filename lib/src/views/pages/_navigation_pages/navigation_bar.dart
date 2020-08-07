@@ -57,7 +57,6 @@ class _NavigationBarState extends State<NavigationBar> {
     homeStore.getSummary();
     //TODO: ejecuta firebase
     pushStore.firebase();
-    // print('==ejecuta==');
     disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
       if (notificacion) {
         pushStore.push(context);

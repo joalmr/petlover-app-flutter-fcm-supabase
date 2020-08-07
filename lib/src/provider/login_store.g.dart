@@ -9,18 +9,6 @@ part of 'login_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginStore on _LoginStore, Store {
-  Computed<bool> _$hasTokenComputed;
-
-  @override
-  bool get hasToken => (_$hasTokenComputed ??=
-          Computed<bool>(() => super.hasToken, name: '_LoginStore.hasToken'))
-      .value;
-  Computed<bool> _$isLoginComputed;
-
-  @override
-  bool get isLogin => (_$isLoginComputed ??=
-          Computed<bool>(() => super.isLogin, name: '_LoginStore.isLogin'))
-      .value;
   Computed<bool> _$isEmailValidComputed;
 
   @override
@@ -42,6 +30,18 @@ mixin _$LoginStore on _LoginStore, Store {
       (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
               name: '_LoginStore.isFormValid'))
           .value;
+  Computed<bool> _$hasTokenComputed;
+
+  @override
+  bool get hasToken => (_$hasTokenComputed ??=
+          Computed<bool>(() => super.hasToken, name: '_LoginStore.hasToken'))
+      .value;
+  Computed<bool> _$isVerifyComputed;
+
+  @override
+  bool get isVerify => (_$isVerifyComputed ??=
+          Computed<bool>(() => super.isVerify, name: '_LoginStore.isVerify'))
+      .value;
 
   final _$emailAtom = Atom(name: '_LoginStore.email');
 
@@ -220,17 +220,6 @@ mixin _$LoginStore on _LoginStore, Store {
   }
 
   @override
-  void navInicio() {
-    final _$actionInfo = _$_LoginStoreActionController.startAction(
-        name: '_LoginStore.navInicio');
-    try {
-      return super.navInicio();
-    } finally {
-      _$_LoginStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 email: ${email},
@@ -240,11 +229,11 @@ loading: ${loading},
 loggedIn: ${loggedIn},
 respLogin: ${respLogin},
 rutaInicio: ${rutaInicio},
-hasToken: ${hasToken},
-isLogin: ${isLogin},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
-isFormValid: ${isFormValid}
+isFormValid: ${isFormValid},
+hasToken: ${hasToken},
+isVerify: ${isVerify}
     ''';
   }
 }

@@ -39,6 +39,36 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$mascotasAtom = Atom(name: '_HomeStore.mascotas');
+
+  @override
+  ObservableList<MascotaModel> get mascotas {
+    _$mascotasAtom.reportRead();
+    return super.mascotas;
+  }
+
+  @override
+  set mascotas(ObservableList<MascotaModel> value) {
+    _$mascotasAtom.reportWrite(value, super.mascotas, () {
+      super.mascotas = value;
+    });
+  }
+
+  final _$atencionesAtom = Atom(name: '_HomeStore.atenciones');
+
+  @override
+  ObservableList<BookingHome> get atenciones {
+    _$atencionesAtom.reportRead();
+    return super.atenciones;
+  }
+
+  @override
+  set atenciones(ObservableList<BookingHome> value) {
+    _$atencionesAtom.reportWrite(value, super.atenciones, () {
+      super.atenciones = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: '_HomeStore.loading');
 
   @override
@@ -59,6 +89,13 @@ mixin _$HomeStore on _HomeStore, Store {
   @override
   Future<Null> espera() {
     return _$esperaAsyncAction.run(() => super.espera());
+  }
+
+  final _$summaryAsyncAction = AsyncAction('_HomeStore.summary');
+
+  @override
+  Future<dynamic> summary() {
+    return _$summaryAsyncAction.run(() => super.summary());
   }
 
   final _$userAsyncAction = AsyncAction('_HomeStore.user');
@@ -200,6 +237,8 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 usuario: ${usuario},
+mascotas: ${mascotas},
+atenciones: ${atenciones},
 loading: ${loading},
 sinAtenciones: ${sinAtenciones},
 sinMascotas: ${sinMascotas}

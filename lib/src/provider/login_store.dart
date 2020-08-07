@@ -14,6 +14,10 @@ abstract class _LoginStore with Store {
   //   });
   // }
 
+  UserDato userModel = UserDato();
+  final loginProvider = UserProvider();
+  final _prefs = new PreferenciasUsuario();
+
   @observable
   String email = '';
 
@@ -44,10 +48,6 @@ abstract class _LoginStore with Store {
   @action
   void togglePasswordVisibility() => passwordVisible = !passwordVisible;
 
-  UserDato userModel = UserDato();
-  final loginProvider = UserProvider();
-  final _prefs = new PreferenciasUsuario();
-
   @action
   void getLogin() {
     login();
@@ -66,38 +66,6 @@ abstract class _LoginStore with Store {
     loading = false;
   }
 
-  @action
-  void evaluaIngreso() {
-    evaluaLogin();
-  }
-
-  @action
-  Future<void> evaluaLogin() async {
-    if (hasToken) {
-      if (!isLogin) {
-        loginProvider.logOut();
-      } else {
-        navInicio();
-      }
-    }
-  }
-
-  @action
-  void navInicio() {
-    rutaInicio = 'navInicio';
-  }
-
-  // @action
-  // Future<void> navInicioVoid(BuildContext context) async {
-  //   Navigator.pushNamed(context, 'navInicio');
-  // }
-
-  @computed
-  bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
-
-  @computed
-  bool get isLogin => _prefs.verify != null && _prefs.verify.trim() != "";
-
   @computed
   bool get isEmailValid => email.trim().length > 0;
 
@@ -106,4 +74,27 @@ abstract class _LoginStore with Store {
 
   @computed
   bool get isFormValid => isEmailValid && isPasswordValid;
+
+  @action
+  void evaluaIngreso() {
+    evaluaLogin();
+  }
+
+  @action
+  Future<void> evaluaLogin() async {
+    final loginProvider = UserProvider();
+    if (hasToken) {
+      if (!isVerify) {
+        loginProvider.logOut();
+      } else {
+        rutaInicio = "navInicio";
+      }
+    }
+  }
+
+  @computed
+  bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
+
+  @computed
+  bool get isVerify => _prefs.verify != null && _prefs.verify.trim() != "";
 }

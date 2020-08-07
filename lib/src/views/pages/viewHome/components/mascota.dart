@@ -28,6 +28,9 @@ class _MascotasState extends State<Mascotas> {
     homeStore ??= Provider.of<HomeStore>(context);
   }
 
+  _agregarMascota() => homeStore.agregarMascota(context);
+  _detalleMascota(id) => homeStore.detalleMascota(context, id);
+
   @override
   Widget build(BuildContext context) {
     return Observer(
@@ -43,11 +46,8 @@ class _MascotasState extends State<Mascotas> {
                     'Se parte de la comunidad responsable',
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  buttonOutLine('Agregar mascota',
-                      () => homeStore.agregarMascota(context), colorMain),
+                  SizedBox(height: 10.0),
+                  buttonOutLine('Agregar mascota', _agregarMascota, colorMain),
                 ],
               ),
             )
@@ -156,8 +156,8 @@ class _MascotasState extends State<Mascotas> {
                               right: 10.0,
                               child: buttonOutLine(
                                   'Ver más',
-                                  () => homeStore.detalleMascota(
-                                      context, homeStore.mascotas[index].id),
+                                  () => _detalleMascota(
+                                      homeStore.mascotas[index].id),
                                   colorGray1),
                             ),
                           ],
@@ -172,7 +172,7 @@ class _MascotasState extends State<Mascotas> {
                     top: 0.0,
                     right: 0.0,
                     child: FloatingActionButton(
-                      onPressed: () => homeStore.agregarMascota(context),
+                      onPressed: _agregarMascota,
                       child: Icon(Icons.playlist_add),
                     ),
                   ),

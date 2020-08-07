@@ -582,7 +582,7 @@ class _Data extends State<DataReserva> {
         } else {
           bool resp = await bookingProvider.booking(
               booking, deliveryText, direccionDelivery); //direccionText
-
+          print(resp);
           if (resp) {
             mascotaProvider.getPet(mascotaID).then(
                   (value) => Navigator.push(

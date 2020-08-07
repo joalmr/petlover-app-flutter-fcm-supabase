@@ -30,8 +30,7 @@ class BookingProvider {
     }
 
     final resp = await http.post(url, headers: headersToken(), body: bodyData);
-
-    // print(resp.statusCode);
+    print(resp.statusCode);
 
     if (resp.statusCode == 200 || resp.statusCode == 201) {
       return true;

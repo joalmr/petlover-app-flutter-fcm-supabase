@@ -22,7 +22,11 @@ class _AtencionesState extends State<Atenciones> {
     homeStore ??= Provider.of<HomeStore>(context);
   }
 
-  _deleteBooking(String id) => homeStore.eliminaAtencion(context, id);
+  _reservar() => homeStore.reservar(context);
+  _agregarMascota() => homeStore.agregarMascota(context);
+  _deleteBooking(id) => homeStore.eliminaAtencion(context, id);
+  _detalleReservado(atencion) => homeStore.detalleReservado(context, atencion);
+  _volver() => homeStore.volver(context);
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +50,9 @@ class _AtencionesState extends State<Atenciones> {
                   homeStore.loading
                       ? Container()
                       : (homeStore.mascotas.length > 0)
-                          ? buttonOutLine('Reservar',
-                              () => homeStore.reservar(context), colorMain)
+                          ? buttonOutLine('Reservar', _reservar, colorMain)
                           : buttonOutLine(
-                              'Agregar mascota',
-                              () => homeStore.agregarMascota(context),
-                              colorMain)
+                              'Agregar mascota', _agregarMascota, colorMain)
                 ],
               ),
             )
@@ -63,36 +64,30 @@ class _AtencionesState extends State<Atenciones> {
               itemBuilder: (BuildContext context, int index) {
                 var dismissible = Dismissible(
                   key: UniqueKey(),
-                  background: Container(
-                    color: colorRed,
-                  ),
+                  background: Container(color: colorRed),
                   direction: DismissDirection.endToStart,
                   confirmDismiss: (fn) => showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return FadeIn(
-                          child: AlertDialog(
-                            title: Text('Eliminar'),
-                            content:
-                                Text('Seguro que desea eliminar esta reserva?'),
-                            actions: <Widget>[
-                              buttonModal(
-                                  'Cancelar',
-                                  () => homeStore.volver(context),
-                                  Theme.of(context).textTheme.subtitle2.color),
-                              buttonModal(
-                                  'Eliminar',
-                                  () => _deleteBooking(
-                                      homeStore.atenciones[index].id),
-                                  colorRed),
-                            ],
-                          ),
-                        );
-                      }),
+                    context: context,
+                    builder: (BuildContext context) => FadeIn(
+                      child: AlertDialog(
+                        title: Text('Eliminar'),
+                        content:
+                            Text('Seguro que desea eliminar esta reserva?'),
+                        actions: <Widget>[
+                          buttonModal('Cancelar', _volver,
+                              Theme.of(context).textTheme.subtitle2.color),
+                          buttonModal(
+                              'Eliminar',
+                              () => _deleteBooking(
+                                  homeStore.atenciones[index].id),
+                              colorRed),
+                        ],
+                      ),
+                    ),
+                  ),
                   child: FlatButton(
-                    onPressed: () => Navigator.pushNamed(
-                        context, 'detallereservado',
-                        arguments: homeStore.atenciones[index]),
+                    onPressed: () =>
+                        _detalleReservado(homeStore.atenciones[index]),
                     child: Column(
                       children: <Widget>[
                         ListTile(

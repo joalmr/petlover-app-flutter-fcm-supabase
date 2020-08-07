@@ -4,6 +4,7 @@ import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/user_provider.dart';
+import 'package:proypet/src/views/pages/viewHome/booking/detalle_reservado.dart';
 
 part 'home_store.g.dart';
 
@@ -13,23 +14,24 @@ abstract class _HomeStore with Store {
   @observable
   String usuario = '';
 
-  // @observable
+  @observable
   ObservableList<MascotaModel> mascotas = ObservableList<MascotaModel>();
 
-  // @observable
+  @observable
   ObservableList<BookingHome> atenciones = ObservableList<BookingHome>();
 
   @observable
   bool loading = true;
 
-  final loginProvider = UserProvider();
+  // final loginProvider = UserProvider();
 
   @action
   void getSummary() {
-    user();
-    pets();
-    bookings();
-    espera();
+    summary();
+    print(mascotas);
+    print(atenciones);
+    loading = false;
+    // espera();
   }
 
   @action
@@ -38,36 +40,60 @@ abstract class _HomeStore with Store {
     loading = false;
   }
 
+  // @action
+  // Future provider() async {
+  //   respService = await UserProvider().getUserSummary();
+  // }
+
+  @action
+  Future summary() async {
+    var resp = await UserProvider().getUserSummary();
+    //usuario
+    usuario = resp.user.name;
+    //mascotas
+    mascotas.clear();
+    mascotas.addAll(resp.pets);
+    //atenciones
+    atenciones.clear();
+    DateTime now = DateTime.now();
+    resp.bookings.forEach((booking) {
+      var fechaAt = booking.date.split('-');
+      bool vencido = false;
+      if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
+        vencido = true;
+      }
+      booking.vencido = vencido;
+      atenciones.add(booking);
+    });
+  }
+
   @action
   Future user() async {
-    var resp = await loginProvider.getUserSummary();
+    var resp = await UserProvider().getUserSummary();
     usuario = resp.user.name;
   }
 
   @action
   Future pets() async {
     mascotas.clear();
-    var resp = await loginProvider.getUserSummary();
+    var resp = await UserProvider().getUserSummary();
     mascotas.addAll(resp.pets);
   }
 
   @action
   Future bookings() async {
+    var resp = await UserProvider().getUserSummary();
     atenciones.clear();
     DateTime now = DateTime.now();
-    var resp = await loginProvider.getUserSummary();
     resp.bookings.forEach((booking) {
       var fechaAt = booking.date.split('-');
       bool vencido = false;
-      if (int.parse(fechaAt[0]) < now.day &&
-          int.parse(fechaAt[1]) == now.month &&
-          int.parse(fechaAt[2]) == now.year) {
+      if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
         vencido = true;
       }
       booking.vencido = vencido;
       atenciones.add(booking);
     });
-    // atenciones = resp.bookings;
   }
 
   @action
@@ -80,16 +106,16 @@ abstract class _HomeStore with Store {
   final bookingProvider = BookingProvider();
 
   @action
-  Future deleteBooking(id) async {
-    await bookingProvider.deleteBooking(id);
-  }
-
-  @action
   void eliminaAtencion(BuildContext context, id) {
     deleteBooking(id);
     bookings();
-    espera();
+    loading = false;
     volver(context);
+  }
+
+  @action
+  Future deleteBooking(id) async {
+    await bookingProvider.deleteBooking(id);
   }
 
   @action
@@ -130,6 +156,16 @@ abstract class _HomeStore with Store {
   @action
   Future<void> detalleMascotaVoid(BuildContext context, id) async {
     Navigator.pushNamed(context, 'detallemascota', arguments: id);
+  }
+
+  @action
+  void detalleReservado(BuildContext context, atencion) {
+    detalleReservadoVoid(context, atencion);
+  }
+
+  @action
+  Future<void> detalleReservadoVoid(BuildContext context, atencion) async {
+    Navigator.pushNamed(context, 'detallereservado', arguments: atencion);
   }
 
   @computed
