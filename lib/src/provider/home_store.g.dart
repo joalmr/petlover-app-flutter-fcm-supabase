@@ -94,28 +94,28 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$summaryAsyncAction = AsyncAction('_HomeStore.summary');
 
   @override
-  Future<dynamic> summary() {
+  Future<void> summary() {
     return _$summaryAsyncAction.run(() => super.summary());
   }
 
   final _$userAsyncAction = AsyncAction('_HomeStore.user');
 
   @override
-  Future<dynamic> user() {
+  Future<void> user() {
     return _$userAsyncAction.run(() => super.user());
   }
 
   final _$petsAsyncAction = AsyncAction('_HomeStore.pets');
 
   @override
-  Future<dynamic> pets() {
+  Future<void> pets() {
     return _$petsAsyncAction.run(() => super.pets());
   }
 
   final _$bookingsAsyncAction = AsyncAction('_HomeStore.bookings');
 
   @override
-  Future<dynamic> bookings() {
+  Future<void> bookings() {
     return _$bookingsAsyncAction.run(() => super.bookings());
   }
 
@@ -129,7 +129,7 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$deleteBookingAsyncAction = AsyncAction('_HomeStore.deleteBooking');
 
   @override
-  Future<dynamic> deleteBooking(dynamic id) {
+  Future<void> deleteBooking(dynamic id) {
     return _$deleteBookingAsyncAction.run(() => super.deleteBooking(id));
   }
 
@@ -163,6 +163,15 @@ mixin _$HomeStore on _HomeStore, Store {
   Future<void> detalleMascotaVoid(BuildContext context, dynamic id) {
     return _$detalleMascotaVoidAsyncAction
         .run(() => super.detalleMascotaVoid(context, id));
+  }
+
+  final _$detalleReservadoVoidAsyncAction =
+      AsyncAction('_HomeStore.detalleReservadoVoid');
+
+  @override
+  Future<void> detalleReservadoVoid(BuildContext context, dynamic atencion) {
+    return _$detalleReservadoVoidAsyncAction
+        .run(() => super.detalleReservadoVoid(context, atencion));
   }
 
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
@@ -228,6 +237,17 @@ mixin _$HomeStore on _HomeStore, Store {
         name: '_HomeStore.detalleMascota');
     try {
       return super.detalleMascota(context, id);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void detalleReservado(BuildContext context, dynamic atencion) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.detalleReservado');
+    try {
+      return super.detalleReservado(context, atencion);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }

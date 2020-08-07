@@ -1,6 +1,6 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:proypet/src/provider/home_store.dart';
@@ -16,11 +16,8 @@ class Mascotas extends StatefulWidget {
 
 class _MascotasState extends State<Mascotas> {
   HomeStore homeStore;
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // ReactionDisposer disposer;
+  // bool ejec = true;
 
   @override
   void didChangeDependencies() {
@@ -28,14 +25,20 @@ class _MascotasState extends State<Mascotas> {
     homeStore ??= Provider.of<HomeStore>(context);
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   _agregarMascota() => homeStore.agregarMascota(context);
   _detalleMascota(id) => homeStore.detalleMascota(context, id);
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) => homeStore.sinMascotas
-          ? Container(
+    print('mascotas');
+    return homeStore.sinMascotas
+        ? FadeIn(
+            child: Container(
               height: 250.0,
               width: double.infinity,
               child: Column(
@@ -50,8 +53,10 @@ class _MascotasState extends State<Mascotas> {
                   buttonOutLine('Agregar mascota', _agregarMascota, colorMain),
                 ],
               ),
-            )
-          : Container(
+            ),
+          )
+        : FadeIn(
+            child: Container(
               height: 250.0,
               width: double.infinity,
               child: Stack(
@@ -60,6 +65,8 @@ class _MascotasState extends State<Mascotas> {
                     physics: BouncingScrollPhysics(),
                     itemCount: homeStore.mascotas.length, //mascotaList.length,
                     itemBuilder: (BuildContext context, int index) {
+                      final mascota = homeStore.mascotas[index];
+                      // return Observer(builder: (_) {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         child: Stack(
@@ -71,8 +78,7 @@ class _MascotasState extends State<Mascotas> {
                                 color: Colors.black.withOpacity(0.15),
                               ),
                               child: Image(
-                                image: CachedNetworkImageProvider(
-                                    homeStore.mascotas[index].picture),
+                                image: CachedNetworkImageProvider(mascota.picture),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -83,18 +89,8 @@ class _MascotasState extends State<Mascotas> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(homeStore.mascotas[index].name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline6
-                                          .apply(
-                                              color: Colors.white,
-                                              fontWeightDelta: 2)),
-                                  Text(homeStore.mascotas[index].breedName,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2
-                                          .apply(color: Colors.white)),
+                                  Text(mascota.name, style: Theme.of(context).textTheme.headline6.apply(color: Colors.white, fontWeightDelta: 2)),
+                                  Text(mascota.breedName, style: Theme.of(context).textTheme.subtitle2.apply(color: Colors.white)),
                                 ],
                               ),
                             ),
@@ -109,14 +105,8 @@ class _MascotasState extends State<Mascotas> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: homeStore.mascotas[index].weight
-                                              .toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline4
-                                              .apply(
-                                                  color: Colors.white,
-                                                  fontWeightDelta: 2),
+                                          text: mascota.weight.toString(),
+                                          style: Theme.of(context).textTheme.headline4.apply(color: Colors.white, fontWeightDelta: 2),
                                         ),
                                         TextSpan(text: " kg.")
                                       ],
@@ -124,13 +114,9 @@ class _MascotasState extends State<Mascotas> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      (homeStore.mascotas[index].status == 0)
-                                          ? Icon(Icons.bookmark,
-                                              color: Colors.white)
-                                          : Icon(Icons.cake,
-                                              color: Colors.white),
+                                      (mascota.status == 0) ? Icon(Icons.bookmark, color: Colors.white) : Icon(Icons.cake, color: Colors.white),
                                       SizedBox(width: 5.0),
-                                      (homeStore.mascotas[index].status == 0)
+                                      (mascota.status == 0)
                                           ? Text(
                                               "Fallecido",
                                               style: TextStyle(
@@ -138,13 +124,8 @@ class _MascotasState extends State<Mascotas> {
                                               ),
                                             )
                                           : Text(
-                                              calculateAge(DateTime.parse(
-                                                  homeStore.mascotas[index]
-                                                      .birthdate)),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .subtitle2
-                                                  .apply(color: Colors.white),
+                                              calculateAge(DateTime.parse(mascota.birthdate)),
+                                              style: Theme.of(context).textTheme.subtitle2.apply(color: Colors.white),
                                             )
                                     ],
                                   ),
@@ -154,15 +135,12 @@ class _MascotasState extends State<Mascotas> {
                             Positioned(
                               bottom: 10.0,
                               right: 10.0,
-                              child: buttonOutLine(
-                                  'Ver más',
-                                  () => _detalleMascota(
-                                      homeStore.mascotas[index].id),
-                                  colorGray1),
+                              child: buttonOutLine('Ver más', () => _detalleMascota(mascota.id), colorGray1),
                             ),
                           ],
                         ),
                       );
+                      // });
                     },
                     viewportFraction: 0.79,
                     scale: 0.77,
@@ -179,6 +157,6 @@ class _MascotasState extends State<Mascotas> {
                 ],
               ),
             ),
-    );
+          );
   }
 }

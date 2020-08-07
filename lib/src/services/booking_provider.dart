@@ -5,8 +5,7 @@ import 'package:proypet/src/models/booking/booking_model.dart';
 class BookingProvider {
   final _url = urlApi;
 
-  Future<bool> booking(
-      BookingModel booking, dynamic delivery, String direccion) async {
+  Future<bool> booking(BookingModel booking, dynamic delivery, String direccion) async {
     final url = '$_url/bookings';
     var bodyData;
     if (delivery != null) {
@@ -42,15 +41,11 @@ class BookingProvider {
   Future<bool> deleteBooking(String idBooking) async {
     final url = '$_url/bookings/$idBooking/delete';
 
-    final resp = await http.post(
-      url,
-      headers: headersToken(),
-    );
-
-    if (resp.statusCode == 200 || resp.statusCode == 201) {
+    final resp = await http.post(url, headers: headersToken());
+    // print(resp.statusCode);
+    if (resp.statusCode == 200)
       return true;
-    } else {
+    else
       return false;
-    }
   }
 }

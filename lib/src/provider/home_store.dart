@@ -4,7 +4,6 @@ import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/user_provider.dart';
-import 'package:proypet/src/views/pages/viewHome/booking/detalle_reservado.dart';
 
 part 'home_store.g.dart';
 
@@ -28,8 +27,6 @@ abstract class _HomeStore with Store {
   @action
   void getSummary() {
     summary();
-    print(mascotas);
-    print(atenciones);
     loading = false;
     // espera();
   }
@@ -40,13 +37,8 @@ abstract class _HomeStore with Store {
     loading = false;
   }
 
-  // @action
-  // Future provider() async {
-  //   respService = await UserProvider().getUserSummary();
-  // }
-
   @action
-  Future summary() async {
+  Future<void> summary() async {
     var resp = await UserProvider().getUserSummary();
     //usuario
     usuario = resp.user.name;
@@ -68,20 +60,20 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  Future user() async {
+  Future<void> user() async {
     var resp = await UserProvider().getUserSummary();
     usuario = resp.user.name;
   }
 
   @action
-  Future pets() async {
+  Future<void> pets() async {
     mascotas.clear();
     var resp = await UserProvider().getUserSummary();
     mascotas.addAll(resp.pets);
   }
 
   @action
-  Future bookings() async {
+  Future<void> bookings() async {
     var resp = await UserProvider().getUserSummary();
     atenciones.clear();
     DateTime now = DateTime.now();
@@ -108,14 +100,16 @@ abstract class _HomeStore with Store {
   @action
   void eliminaAtencion(BuildContext context, id) {
     deleteBooking(id);
-    bookings();
     loading = false;
     volver(context);
   }
 
   @action
-  Future deleteBooking(id) async {
-    await bookingProvider.deleteBooking(id);
+  Future<void> deleteBooking(id) async {
+    var resp = await bookingProvider.deleteBooking(id);
+    if (resp) {
+      getSummary();
+    }
   }
 
   @action

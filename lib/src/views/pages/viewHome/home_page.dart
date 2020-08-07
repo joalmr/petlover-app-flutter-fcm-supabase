@@ -28,10 +28,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     homeStore ??= Provider.of<HomeStore>(context);
-    // homeStore.getSummary();
   }
 
   Future _refresh() => homeStore.refresh();
@@ -73,10 +77,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             children: <Widget>[
                               Text(
                                 ' Servicios frecuentes',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6
-                                    .apply(fontWeightDelta: 2),
+                                style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2),
                               ),
                               SizedBox(height: 15.0),
                               SingleChildScrollView(
@@ -105,17 +106,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             Expanded(
                               child: Text(
                                 "Mis Reservas",
-                                style:
-                                    Theme.of(context).textTheme.headline6.apply(
-                                          fontWeightDelta: 2,
-                                        ),
+                                style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2),
                               ),
                             ),
-                            Icon(Icons.timelapse,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2
-                                    .color),
+                            Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
                           ],
                         ),
                         Atenciones(),
@@ -132,21 +126,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             children: <Widget>[
                               Text(
                                 "Hola,",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4
-                                    .copyWith(fontWeight: FontWeight.normal),
+                                style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.normal),
                               ),
                               IconButton(
                                   icon: Icon(
                                     Icons.settings,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .subtitle2
-                                        .color,
+                                    color: Theme.of(context).textTheme.subtitle2.color,
                                   ),
-                                  onPressed: () =>
-                                      _scaffoldKey.currentState.openEndDrawer())
+                                  onPressed: () => _scaffoldKey.currentState.openEndDrawer())
                             ],
                           ),
                           usuario(homeStore.usuario, context),

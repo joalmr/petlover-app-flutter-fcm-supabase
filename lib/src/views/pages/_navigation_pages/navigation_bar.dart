@@ -20,8 +20,7 @@ class NavigationBar extends StatefulWidget {
   });
 
   @override
-  _NavigationBarState createState() =>
-      _NavigationBarState(currentTabIndex: currentTabIndex); //, marcar: marcar
+  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: currentTabIndex); //, marcar: marcar
 }
 
 class _NavigationBarState extends State<NavigationBar> {
