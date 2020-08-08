@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:provider/provider.dart';
 import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -29,13 +29,27 @@ class _NavigationBarState extends State<NavigationBar> {
 
   final _prefs = new PreferenciasUsuario();
 
-  ReactionDisposer disposer;
   PushStore pushStore;
   HomeStore homeStore;
+
+  ReactionDisposer disposer;
 
   @override
   void initState() {
     super.initState();
+    homeStore = GetIt.I.get<HomeStore>();
+    pushStore = GetIt.I.get<PushStore>();
+
+    homeStore.getSummary();
+    pushStore.firebase(); //TODO: ejecuta firebase
+
+    disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
+      if (notificacion) {
+        pushStore.push(context);
+        pushStore.notificacionPush = false;
+      }
+    });
+
     fnPosition().then((value) {
       print('==gps==');
       _prefs.position = '${value.latitude},${value.longitude}';
@@ -48,21 +62,10 @@ class _NavigationBarState extends State<NavigationBar> {
     super.dispose();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    homeStore ??= Provider.of<HomeStore>(context);
-    pushStore ??= Provider.of<PushStore>(context);
-    homeStore.getSummary();
-    //TODO: ejecuta firebase
-    pushStore.firebase();
-    disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
-      if (notificacion) {
-        pushStore.push(context);
-        pushStore.notificacionPush = false;
-      }
-    });
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {

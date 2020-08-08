@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
@@ -19,10 +19,16 @@ class _MascotasState extends State<Mascotas> {
   // ReactionDisposer disposer;
   // bool ejec = true;
 
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   homeStore ??= Provider.of<HomeStore>(context);
+  // }
+
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    homeStore ??= Provider.of<HomeStore>(context);
+  void initState() {
+    super.initState();
+    homeStore = GetIt.I.get<HomeStore>();
   }
 
   @override

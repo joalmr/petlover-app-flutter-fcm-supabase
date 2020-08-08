@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_messaging: ^6.0.15
   
+  get_it:
   # flutter_local_notifications: ^1.4.3
 
   simple_autocomplete_formfield: ^0.2.7 #buscar con autocomplete

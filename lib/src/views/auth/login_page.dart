@@ -89,9 +89,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                     icon: Icons.lock,
                     obscureText: !loginStore.passwordVisible,
                     iconSuf: InkWell(
-                      child: Icon(loginStore.passwordVisible
-                          ? Icons.visibility_off
-                          : Icons.visibility),
+                      child: Icon(loginStore.passwordVisible ? Icons.visibility_off : Icons.visibility),
                       onTap: loginStore.togglePasswordVisibility,
                     ),
                     onSaved: loginStore.setPassword,
@@ -104,9 +102,7 @@ class _LoginSevenPageState extends State<LoginPage> {
               Observer(builder: (_) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: buttonPri(
-                      loginStore.loading ? 'Cargando..' : 'Iniciar sesión',
-                      loginStore.loading ? null : _onLogin),
+                  child: buttonPri(loginStore.loading ? 'Cargando..' : 'Iniciar sesión', loginStore.loading ? null : _onLogin),
                 );
               }),
               SizedBox(height: 20.0),
@@ -115,10 +111,7 @@ class _LoginSevenPageState extends State<LoginPage> {
                   onPressed: () => Navigator.pushNamed(context, 'olvidopass'),
                   child: Text(
                     "Olvidaste tu contraseña?".toUpperCase(),
-                    style: TextStyle(
-                        color: colorMain,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700),
+                    style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700),
                   ),
                 ),
               ),
@@ -126,16 +119,11 @@ class _LoginSevenPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text("Nuevo en Proypet?",
-                      style: Theme.of(context).textTheme.subtitle2),
+                  Text("Nuevo en Proypet?", style: Theme.of(context).textTheme.subtitle2),
                   FlatButton(
                     onPressed: () => Navigator.pushNamed(context, 'registro'),
                     child: Text("Registrarse",
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .apply(color: colorMain)
-                            .copyWith(decoration: TextDecoration.underline)),
+                        style: Theme.of(context).textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline)),
                   ),
                 ],
               )

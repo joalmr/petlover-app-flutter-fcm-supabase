@@ -34,9 +34,10 @@ abstract class _PushStore with Store {
 
   @action
   void firebaseToken() {
-    _firebaseMessaging
-        .getToken()
-        .then((token) => loginProvider.sendTokenFire(token));
+    _firebaseMessaging.getToken().then((token) {
+      print(token); //TODO: token cel
+      loginProvider.sendTokenFire(token);
+    });
   }
 
   @action
