@@ -30,30 +30,26 @@ class _NavigationBarState extends State<NavigationBar> {
   final _prefs = new PreferenciasUsuario();
 
   PushStore pushStore;
-  HomeStore homeStore;
+  // HomeStore homeStore;
 
   ReactionDisposer disposer;
 
   @override
   void initState() {
     super.initState();
-    homeStore = GetIt.I.get<HomeStore>();
+    // homeStore = GetIt.I.get<HomeStore>();
     pushStore = GetIt.I.get<PushStore>();
 
-    homeStore.getSummary();
+    // homeStore.getSummary();
     pushStore.firebase(); //TODO: ejecuta firebase
 
-    disposer = reaction((_) => pushStore.notificacionPush, (notificacion) {
-      if (notificacion) {
-        pushStore.push(context);
-        pushStore.notificacionPush = false;
-      }
-    });
+    fnPosition().then((value) => _prefs.position = '${value.latitude},${value.longitude}');
+  }
 
-    fnPosition().then((value) {
-      print('==gps==');
-      _prefs.position = '${value.latitude},${value.longitude}';
-    });
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    pushStore.firebaseConfigure(context);
   }
 
   @override
@@ -61,11 +57,6 @@ class _NavigationBarState extends State<NavigationBar> {
     disposer();
     super.dispose();
   }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,26 +69,11 @@ class _NavigationBarState extends State<NavigationBar> {
     ];
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: Icon(Icons.pets),
-        title: Text('Inicio', style: TextStyle(fontSize: 10.5)), //
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_active),
-        title: Text('Notificaciones', style: TextStyle(fontSize: 10.5)), //
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.search), //Proypet.proypet
-        title: Text('Veterinarias', style: TextStyle(fontSize: 10.5)), //
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.favorite),
-        title: Text('Destacados', style: TextStyle(fontSize: 10.5)), //
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.monetization_on),
-        title: Text('Puntos', style: TextStyle(fontSize: 10.5)), //
-      ),
+      BottomNavigationBarItem(icon: Icon(Icons.pets), title: Text('Inicio', style: TextStyle(fontSize: 10.5))),
+      BottomNavigationBarItem(icon: Icon(Icons.notifications_active), title: Text('Notificaciones', style: TextStyle(fontSize: 10.5))),
+      BottomNavigationBarItem(icon: Icon(Icons.search), title: Text('Veterinarias', style: TextStyle(fontSize: 10.5))),
+      BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5))),
+      BottomNavigationBarItem(icon: Icon(Icons.monetization_on), title: Text('Puntos', style: TextStyle(fontSize: 10.5))),
     ];
 
     final bottomNavBar = BottomNavigationBar(
@@ -108,11 +84,7 @@ class _NavigationBarState extends State<NavigationBar> {
       currentIndex: currentTabIndex,
       type: BottomNavigationBarType.fixed,
       backgroundColor: Theme.of(context).backgroundColor,
-      onTap: (int index) {
-        setState(() {
-          currentTabIndex = index;
-        });
-      },
+      onTap: (int index) => setState(() => currentTabIndex = index),
     );
 
     return Scaffold(

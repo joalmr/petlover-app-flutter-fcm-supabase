@@ -9,6 +9,13 @@ part of 'push_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PushStore on _PushStore, Store {
+  Computed<bool> _$hasPushComputed;
+
+  @override
+  bool get hasPush => (_$hasPushComputed ??=
+          Computed<bool>(() => super.hasPush, name: '_PushStore.hasPush'))
+      .value;
+
   final _$notificacionPushAtom = Atom(name: '_PushStore.notificacionPush');
 
   @override
@@ -39,13 +46,6 @@ mixin _$PushStore on _PushStore, Store {
     });
   }
 
-  final _$esperaAsyncAction = AsyncAction('_PushStore.espera');
-
-  @override
-  Future<Null> espera() {
-    return _$esperaAsyncAction.run(() => super.espera());
-  }
-
   final _$pushVoidAsyncAction = AsyncAction('_PushStore.pushVoid');
 
   @override
@@ -54,6 +54,28 @@ mixin _$PushStore on _PushStore, Store {
   }
 
   final _$_PushStoreActionController = ActionController(name: '_PushStore');
+
+  @override
+  void setFalsePush() {
+    final _$actionInfo = _$_PushStoreActionController.startAction(
+        name: '_PushStore.setFalsePush');
+    try {
+      return super.setFalsePush();
+    } finally {
+      _$_PushStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setClearPush() {
+    final _$actionInfo = _$_PushStoreActionController.startAction(
+        name: '_PushStore.setClearPush');
+    try {
+      return super.setClearPush();
+    } finally {
+      _$_PushStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void firebase() {
@@ -89,11 +111,11 @@ mixin _$PushStore on _PushStore, Store {
   }
 
   @override
-  void firebaseConfigure() {
+  void firebaseConfigure(BuildContext context) {
     final _$actionInfo = _$_PushStoreActionController.startAction(
         name: '_PushStore.firebaseConfigure');
     try {
-      return super.firebaseConfigure();
+      return super.firebaseConfigure(context);
     } finally {
       _$_PushStoreActionController.endAction(_$actionInfo);
     }
@@ -114,7 +136,8 @@ mixin _$PushStore on _PushStore, Store {
   String toString() {
     return '''
 notificacionPush: ${notificacionPush},
-mensaje: ${mensaje}
+mensaje: ${mensaje},
+hasPush: ${hasPush}
     ''';
   }
 }

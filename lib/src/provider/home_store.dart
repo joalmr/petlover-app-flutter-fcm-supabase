@@ -25,28 +25,30 @@ abstract class _HomeStore with Store {
   // final loginProvider = UserProvider();
 
   @action
+  void setStopLoading() => loading = false;
+
+  @action
   void getSummary() {
     summary();
-    loading = false;
+    espera();
+    // setStopLoading();
+    // loading = false;
     // espera();
   }
 
   @action
   Future<Null> espera() async {
-    await Future.delayed(Duration(milliseconds: 900));
+    await Future.delayed(Duration(milliseconds: 9));
     loading = false;
   }
 
   @action
   Future<void> summary() async {
     var resp = await UserProvider().getUserSummary();
-    //usuario
-    usuario = resp.user.name;
-    //mascotas
-    mascotas.clear();
+    usuario = resp.user.name; //usuario
+    mascotas.clear(); //mascotas
     mascotas.addAll(resp.pets);
-    //atenciones
-    atenciones.clear();
+    atenciones.clear(); //atenciones
     DateTime now = DateTime.now();
     resp.bookings.forEach((booking) {
       var fechaAt = booking.date.split('-');
@@ -163,7 +165,7 @@ abstract class _HomeStore with Store {
   }
 
   @computed
-  bool get sinAtenciones => atenciones.length == 0 || atenciones == null;
+  bool get sinAtenciones => atenciones.length == 0;
 
   @computed
   bool get sinMascotas => mascotas.length == 0;

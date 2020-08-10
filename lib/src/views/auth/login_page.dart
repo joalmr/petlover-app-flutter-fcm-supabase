@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
+import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/provider/login_store.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
@@ -21,11 +23,13 @@ class _LoginSevenPageState extends State<LoginPage> {
   LoginStore loginStore = LoginStore();
   ReactionDisposer disposer;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   loginStore.evaluaIngreso(context);
-  // }
+  HomeStore homeStore;
+
+  @override
+  void initState() {
+    super.initState();
+    homeStore = GetIt.I.get<HomeStore>();
+  }
 
   @override
   void dispose() {
@@ -38,6 +42,7 @@ class _LoginSevenPageState extends State<LoginPage> {
     super.didChangeDependencies();
     disposer = reaction((_) => loginStore.respLogin, (respLogin) {
       if (respLogin['code'] == 200) {
+        homeStore.getSummary(); //ejecuto datos de pagina home
         Navigator.pushReplacementNamed(context, 'navInicio');
       } else {
         mostrarSnackbar(respLogin['message'], colorRed, scaffoldKey);

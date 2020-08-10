@@ -19,10 +19,16 @@ abstract class _PushStore with Store {
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   @action
+  void setFalsePush() => notificacionPush = false;
+
+  @action
+  void setClearPush() => mensaje.clear();
+
+  @action
   void firebase() {
     firebasePermiso();
     firebaseToken();
-    firebaseConfigure();
+    // firebaseConfigure();
   }
 
   @action
@@ -41,31 +47,30 @@ abstract class _PushStore with Store {
   }
 
   @action
-  void firebaseConfigure() {
+  void firebaseConfigure(BuildContext context) {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
-        notificacionPush = true;
         mensaje = message;
-        // espera();
+        push(context);
       },
       onLaunch: (Map<String, dynamic> message) async {
-        notificacionPush = true;
         mensaje = message;
-        // espera();
+        push(context);
       },
       onResume: (Map<String, dynamic> message) async {
-        notificacionPush = true;
         mensaje = message;
-        // espera();
+        push(context);
       },
     );
   }
 
-  @action
-  Future<Null> espera() async {
-    await Future.delayed(Duration(milliseconds: 900));
-    notificacionPush = false;
-  }
+  @computed
+  bool get hasPush => mensaje.keys.contains('data');
+
+  // @action
+  // Future<Null> espera() async {
+  //   await Future.delayed(Duration(milliseconds: 900));
+  // }
 
   @action
   void push(BuildContext context) {

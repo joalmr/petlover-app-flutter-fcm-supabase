@@ -15,23 +15,16 @@ Map<String, WidgetBuilder> getRoutes() {
     'registro': (BuildContext context) => SingupPage(),
     'olvidopass': (BuildContext context) => ForgotPage(),
     //nav abre
-    'navInicio': (BuildContext context) =>
-        NavigationBar(currentTabIndex: 0), //home
-    'navNotifica': (BuildContext context) =>
-        NavigationBar(currentTabIndex: 1), //lista de notificaciones
-    'navLista': (BuildContext context) =>
-        NavigationBar(currentTabIndex: 2), //lista de veterinarias
-    'navDestacado': (BuildContext context) =>
-        NavigationBar(currentTabIndex: 3), //destacados
-    'navRecompensa': (BuildContext context) =>
-        NavigationBar(currentTabIndex: 4), //puntos
+    'navInicio': (BuildContext context) => NavigationBar(currentTabIndex: 0), //home
+    'navNotifica': (BuildContext context) => NavigationBar(currentTabIndex: 1), //lista de notificaciones
+    'navLista': (BuildContext context) => NavigationBar(currentTabIndex: 2), //lista de veterinarias
+    'navDestacado': (BuildContext context) => NavigationBar(currentTabIndex: 3), //destacados
+    'navRecompensa': (BuildContext context) => NavigationBar(currentTabIndex: 4), //puntos
     //nav cierra
     'agregarmascota': (BuildContext context) => MascotaAgregarPage(),
     'detallemascota': (BuildContext context) => MascotaDetallePage(),
     'detallehistoriamascota': (BuildContext context) => HistoriaPage(),
-    'detalledestacado': (BuildContext context) =>
-        DetalleDestacadoPage(), //detalle destacado
-    'detallereservado': (BuildContext context) =>
-        DetalleReservado(), //detalle de la reserva
+    'detalledestacado': (BuildContext context) => DetalleDestacadoPage(), //detalle destacado
+    'detallereservado': (BuildContext context) => DetalleReservado(), //detalle de la reserva
   };
 }

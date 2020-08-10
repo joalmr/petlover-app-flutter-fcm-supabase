@@ -36,7 +36,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   // @override
   // void didChangeDependencies() {
   //   super.didChangeDependencies();
-  //   homeStore ??= Provider.of<HomeStore>(context);
+  // }
+
+  // @override
+  // void didUpdateWidget(oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   homeStore.setStopLoading();
   // }
 
   Future _refresh() => homeStore.refresh();
@@ -55,95 +60,74 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       key: refreshKey,
       onRefresh: _refresh,
       child: Observer(
-        builder: (_) => homeStore.loading
-            ? Container(
-                child: LinearProgressIndicator(),
-              )
-            : FadeViewSafeArea(
-                child: Stack(
-                  children: <Widget>[
-                    ListView(
-                      padding: EdgeInsets.only(top: 95, left: 20, right: 20),
+        builder: (_) => FadeViewSafeArea(
+          child: Stack(
+            children: <Widget>[
+              ListView(
+                padding: EdgeInsets.only(top: 95, left: 20, right: 20),
+                children: <Widget>[
+                  SizedBox(height: 25.0),
+                  Mascotas(),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(
-                          height: 25.0,
-                        ),
-                        // mascotas(homeStore.mascotas, context),
-                        Mascotas(),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 25.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                        Text(' Servicios frecuentes', style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)),
+                        SizedBox(height: 15.0),
+                        SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
                             children: <Widget>[
-                              Text(
-                                ' Servicios frecuentes',
-                                style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2),
-                              ),
-                              SizedBox(height: 15.0),
-                              SingleChildScrollView(
-                                physics: BouncingScrollPhysics(),
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: <Widget>[
-                                    emergencia(context),
-                                    SizedBox(width: 15.0),
-                                    banio(context),
-                                    SizedBox(width: 15.0),
-                                    vacuna(context),
-                                    SizedBox(width: 15.0),
-                                    desparasita(context),
-                                    SizedBox(width: 15.0),
-                                    consulta(context),
-                                  ],
-                                ),
-                              )
+                              emergencia(context),
+                              SizedBox(width: 15.0),
+                              banio(context),
+                              SizedBox(width: 15.0),
+                              vacuna(context),
+                              SizedBox(width: 15.0),
+                              desparasita(context),
+                              SizedBox(width: 15.0),
+                              consulta(context),
                             ],
                           ),
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                "Mis Reservas",
-                                style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2),
-                              ),
-                            ),
-                            Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
-                          ],
-                        ),
-                        Atenciones(),
+                        )
                       ],
                     ),
-                    Container(
-                      height: 95,
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "Hola,",
-                                style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.normal),
-                              ),
-                              IconButton(
-                                  icon: Icon(
-                                    Icons.settings,
-                                    color: Theme.of(context).textTheme.subtitle2.color,
-                                  ),
-                                  onPressed: () => _scaffoldKey.currentState.openEndDrawer())
-                            ],
-                          ),
-                          usuario(homeStore.usuario, context),
-                        ],
-                      ),
-                    )
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    children: <Widget>[
+                      Expanded(child: Text("Mis Reservas", style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2))),
+                      Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
+                    ],
+                  ),
+                  Atenciones(),
+                ],
+              ),
+              Container(
+                height: 95,
+                color: Theme.of(context).scaffoldBackgroundColor,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text("Hola,", style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.normal)),
+                        IconButton(
+                            icon: Icon(Icons.settings, color: Theme.of(context).textTheme.subtitle2.color),
+                            onPressed: () => _scaffoldKey.currentState.openEndDrawer())
+                      ],
+                    ),
+                    usuario(homeStore.usuario, context),
                   ],
                 ),
-              ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

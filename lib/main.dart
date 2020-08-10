@@ -34,7 +34,11 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    final homeStore = GetIt.I.get<HomeStore>();
     loginStore.evaluaIngreso();
+    if (loginStore.rutaInicio == 'navInicio') {
+      homeStore.getSummary(); //ejecuto datos de pagina home
+    }
   }
 
   @override
@@ -43,7 +47,6 @@ class _MyAppState extends State<MyApp> {
     //com.proypet.user //produccion
     return MaterialApp(
       debugShowCheckedModeBanner: appPruebas,
-      // navigatorKey: navigatorKey,
       title: 'Proypet',
       theme: temaClaro,
       darkTheme: temaOscuro,

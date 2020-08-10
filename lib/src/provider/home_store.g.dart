@@ -177,6 +177,17 @@ mixin _$HomeStore on _HomeStore, Store {
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
+  void setStopLoading() {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setStopLoading');
+    try {
+      return super.setStopLoading();
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void getSummary() {
     final _$actionInfo =
         _$_HomeStoreActionController.startAction(name: '_HomeStore.getSummary');

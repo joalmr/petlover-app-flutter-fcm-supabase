@@ -15,12 +15,6 @@ class Atenciones extends StatefulWidget {
 class _AtencionesState extends State<Atenciones> {
   HomeStore homeStore;
 
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   homeStore ??= Provider.of<HomeStore>(context);
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -40,95 +34,101 @@ class _AtencionesState extends State<Atenciones> {
 
   @override
   Widget build(BuildContext context) {
-    print('atenciones');
-    return homeStore.sinAtenciones
-        ? FadeIn(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 30.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    (homeStore.mascotas.length > 0)
-                        ? 'Haz una reserva en la veterinaria de tu agrado'
-                        : 'Vamos, agrega a tu mascota y se parte de la comunidad responsable',
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  homeStore.loading
-                      ? Container()
-                      : (homeStore.mascotas.length > 0)
-                          ? buttonOutLine('Reservar', _reservar, colorMain)
-                          : buttonOutLine('Agregar mascota', _agregarMascota, colorMain)
-                ],
-              ),
+    return homeStore.loading
+        ? Container(
+            width: double.infinity,
+            child: Center(
+              child: CircularProgressIndicator(),
             ),
           )
-        : FadeIn(
-            child: ListView.separated(
-              itemCount: homeStore.atenciones.length,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              separatorBuilder: (BuildContext context, int index) {
-                return Divider();
-              },
-              itemBuilder: (BuildContext context, int index) {
-                final atencion = homeStore.atenciones[index];
-                // return Observer(builder: (_) {
-                return Dismissible(
-                  key: UniqueKey(),
-                  background: Container(color: colorRed),
-                  direction: DismissDirection.endToStart,
-                  confirmDismiss: (fn) => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => FadeIn(
-                      child: AlertDialog(
-                        title: Text('Eliminar'),
-                        content: Text('Seguro que desea eliminar esta reserva?'),
-                        actions: <Widget>[
-                          buttonModal('Cancelar', _volver, Theme.of(context).textTheme.subtitle2.color),
-                          buttonModal('Eliminar', () => _deleteBooking(atencion.id), colorRed),
-                        ],
+        : homeStore.sinAtenciones
+            ? FadeIn(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 30.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        (homeStore.mascotas.length > 0)
+                            ? 'Haz una reserva en la veterinaria de tu agrado'
+                            : 'Vamos, agrega a tu mascota y se parte de la comunidad responsable',
+                        textAlign: TextAlign.center,
                       ),
-                    ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      homeStore.loading
+                          ? Container()
+                          : (homeStore.mascotas.length > 0)
+                              ? buttonOutLine('Reservar', _reservar, colorMain)
+                              : buttonOutLine('Agregar mascota', _agregarMascota, colorMain)
+                    ],
                   ),
-                  child: FlatButton(
-                    onPressed: () => _detalleReservado(homeStore.atenciones[index]),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: colorMain,
-                        backgroundImage: CachedNetworkImageProvider(atencion.petPicture),
-                        radius: 25.0,
-                      ),
-                      title: Text(atencion.establishmentName), //(!vencido) ?
-                      subtitle: Text(
-                        (!atencion.vencido) ? atencion.status : '${atencion.status} - Vencido',
-                        style: (!atencion.vencido)
-                            ? (atencion.statusId == 3 || atencion.statusId == 6)
-                                ? TextStyle(fontWeight: FontWeight.bold, color: colorMain)
-                                : TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color)
-                            : TextStyle(fontWeight: FontWeight.bold, color: colorRed),
-                      ),
-                      trailing: Column(
-                        children: <Widget>[
-                          Text(atencion.date, style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12.0).apply(fontWeightDelta: 2)),
-                          Text(
-                            atencion.time,
-                            style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain),
-                            textAlign: TextAlign.center,
+                ),
+              )
+            : FadeIn(
+                child: ListView.separated(
+                  itemCount: homeStore.atenciones.length,
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider();
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    final atencion = homeStore.atenciones[index];
+                    // return Observer(builder: (_) {
+                    return Dismissible(
+                      key: UniqueKey(),
+                      background: Container(color: colorRed),
+                      direction: DismissDirection.endToStart,
+                      confirmDismiss: (fn) => showDialog(
+                        context: context,
+                        builder: (BuildContext context) => FadeIn(
+                          child: AlertDialog(
+                            title: Text('Eliminar'),
+                            content: Text('Seguro que desea eliminar esta reserva?'),
+                            actions: <Widget>[
+                              buttonModal('Cancelar', _volver, Theme.of(context).textTheme.subtitle2.color),
+                              buttonModal('Eliminar', () => _deleteBooking(atencion.id), colorRed),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    ),
-                  ),
-                );
-                // });
-              },
-            ),
-          );
+                      child: FlatButton(
+                        onPressed: () => _detalleReservado(homeStore.atenciones[index]),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: colorMain,
+                            backgroundImage: CachedNetworkImageProvider(atencion.petPicture),
+                            radius: 25.0,
+                          ),
+                          title: Text(atencion.establishmentName), //(!vencido) ?
+                          subtitle: Text(
+                            (!atencion.vencido) ? atencion.status : '${atencion.status} - Vencido',
+                            style: (!atencion.vencido)
+                                ? (atencion.statusId == 3 || atencion.statusId == 6)
+                                    ? TextStyle(fontWeight: FontWeight.bold, color: colorMain)
+                                    : TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color)
+                                : TextStyle(fontWeight: FontWeight.bold, color: colorRed),
+                          ),
+                          trailing: Column(
+                            children: <Widget>[
+                              Text(atencion.date, style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12.0).apply(fontWeightDelta: 2)),
+                              Text(
+                                atencion.time,
+                                style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                        ),
+                      ),
+                    );
+                    // });
+                  },
+                ),
+              );
   }
 }

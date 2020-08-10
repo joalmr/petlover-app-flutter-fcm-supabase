@@ -34,8 +34,7 @@ class ThxPage extends StatelessWidget {
                           Stack(
                             children: <Widget>[
                               ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(100)),
+                                borderRadius: BorderRadius.all(Radius.circular(100)),
                                 child: Image(
                                   image: image,
                                   height: 150,
@@ -55,10 +54,7 @@ class ThxPage extends StatelessWidget {
                           SizedBox(height: 25),
                           Text(
                             texto,
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle1
-                                .copyWith(fontSize: 18, color: Colors.white),
+                            style: Theme.of(context).textTheme.subtitle1.copyWith(fontSize: 18, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -68,8 +64,7 @@ class ThxPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: buttonOutLine('Ir a inicio', () {
-                      return Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/navInicio', ModalRoute.withName('/navInicio'));
+                      return Navigator.of(context).pushNamedAndRemoveUntil('navInicio', ModalRoute.withName('navInicio'));
                     }, Colors.white),
                   )
                 ],

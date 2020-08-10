@@ -43,18 +43,10 @@ class DataReserva extends StatefulWidget {
   final String mascotaID;
   final bool delivery;
   DataReserva(
-      {@required this.establecimientoID,
-      @required this.misMascotas,
-      @required this.mascotaID,
-      @required this.establecimientoName,
-      @required this.delivery});
+      {@required this.establecimientoID, @required this.misMascotas, @required this.mascotaID, @required this.establecimientoName, @required this.delivery});
   @override
-  _Data createState() => _Data(
-      establecimientoID: establecimientoID,
-      misMascotas: misMascotas,
-      mascotaID: mascotaID,
-      establecimientoName: establecimientoName,
-      delivery: delivery);
+  _Data createState() =>
+      _Data(establecimientoID: establecimientoID, misMascotas: misMascotas, mascotaID: mascotaID, establecimientoName: establecimientoName, delivery: delivery);
 }
 
 class _Data extends State<DataReserva> {
@@ -63,20 +55,14 @@ class _Data extends State<DataReserva> {
   List<MascotaModel> misMascotas;
   String mascotaID;
   bool delivery;
-  _Data(
-      {@required this.establecimientoID,
-      this.misMascotas,
-      this.mascotaID,
-      this.establecimientoName,
-      this.delivery});
+  _Data({@required this.establecimientoID, this.misMascotas, this.mascotaID, this.establecimientoName, this.delivery});
 
   String _fecha = '';
   String _hora = '';
   TextEditingController _inputFechaController = new TextEditingController();
   TextEditingController _inputHoraController = new TextEditingController();
   TextEditingController _inputServController = new TextEditingController();
-  TextEditingController _inputObservacioController =
-      new TextEditingController();
+  TextEditingController _inputObservacioController = new TextEditingController();
   final formKey = GlobalKey<FormState>();
   TextEditingController _inputDireccionController = new TextEditingController();
 
@@ -89,8 +75,7 @@ class _Data extends State<DataReserva> {
   List _delivery = deliveryList;
 
   ServicioReserva ex3 = servicioReservaList.first;
-  String resarvaId =
-      servicioReservaList.where((x) => x.id == 1).first.id.toString();
+  String resarvaId = servicioReservaList.where((x) => x.id == 1).first.id.toString();
 
   String deliveryId = "1";
   String observacion = "";
@@ -195,8 +180,7 @@ class _Data extends State<DataReserva> {
                     decoration: InputDecoration(
                       suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: 10),
-                        child:
-                            Icon(Icons.keyboard_arrow_down, color: colorMain),
+                        child: Icon(Icons.keyboard_arrow_down, color: colorMain),
                       ),
                     ),
                   ),
@@ -270,8 +254,7 @@ class _Data extends State<DataReserva> {
                 children: <Widget>[
                   Text('Observación'),
                   SizedBox(height: 7.5),
-                  textfieldArea(_inputObservacioController,
-                      'Ingrese observación (opcional)', null, null),
+                  textfieldArea(_inputObservacioController, 'Ingrese observación (opcional)', null, null),
                   Text.rich(
                     TextSpan(
                       text: '*Si seleccionó ', // default text style
@@ -280,9 +263,7 @@ class _Data extends State<DataReserva> {
                           text: 'Otro servicio',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        TextSpan(
-                            text: ', especifíquelo en observaciones',
-                            style: TextStyle()),
+                        TextSpan(text: ', especifíquelo en observaciones', style: TextStyle()),
                       ],
                     ),
                     style: TextStyle(fontSize: sizeSmallx1),
@@ -293,11 +274,9 @@ class _Data extends State<DataReserva> {
             SizedBox(
               height: 20.0,
             ),
-            buttonPri(
-                'Confirmar reserva', clickReservar ? reservaDialog : null),
+            buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null),
             SizedBox(height: 7.5),
-            buttonFlat(
-                "Cancelar", () => Navigator.of(context).pop(), colorMain),
+            buttonFlat("Cancelar", () => Navigator.of(context).pop(), colorMain),
           ],
         ),
       ),
@@ -313,8 +292,7 @@ class _Data extends State<DataReserva> {
       ),
       maxSuggestions: 5,
       onSearch: (filter) async {
-        var response = await http.get(
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
         var models = addressFromJson(response.body);
         return models.predictions;
       },
@@ -339,9 +317,7 @@ class _Data extends State<DataReserva> {
     List<ServicioReserva> lista = List<ServicioReserva>();
     servicioReservaList.forEach((element) {
       var palabra = element.name + '' + element.subtitle;
-      bool contiene = palabra
-          .toLowerCase()
-          .contains(filter.toLowerCase()); //.contains(filter);
+      bool contiene = palabra.toLowerCase().contains(filter.toLowerCase()); //.contains(filter);
       if (contiene) {
         lista.add(element);
       }
@@ -370,8 +346,7 @@ class _Data extends State<DataReserva> {
         prefixIcon: Icon(Icons.search, color: colorMain),
       ),
       onFind: (String filter) => _getData(filter),
-      itemBuilder:
-          (BuildContext context, ServicioReserva item, bool isSelected) {
+      itemBuilder: (BuildContext context, ServicioReserva item, bool isSelected) {
         return Container(
           decoration: !isSelected
               ? null
@@ -383,24 +358,13 @@ class _Data extends State<DataReserva> {
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected
-                  ? Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .copyWith(color: Colors.white)
-                  : Theme.of(context).textTheme.subtitle2,
+              style: isSelected ? Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white) : Theme.of(context).textTheme.subtitle2,
             ),
             subtitle: Text(
               item.subtitle,
               style: isSelected
-                  ? Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .copyWith(color: Colors.white, fontSize: 12)
-                  : Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .copyWith(fontSize: 12),
+                  ? Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white, fontSize: 12)
+                  : Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12),
             ),
           ),
         );
@@ -436,10 +400,8 @@ class _Data extends State<DataReserva> {
     DateTime picked = await showDatePicker(
       context: context,
       initialDate: new DateTime.now(),
-      firstDate: new DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day),
-      lastDate: new DateTime(
-          DateTime.now().year + 1, DateTime.now().month, DateTime.now().day),
+      firstDate: new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
+      lastDate: new DateTime(DateTime.now().year + 1, DateTime.now().month, DateTime.now().day),
       builder: (context, child) => Theme(
           data: ThemeData.light().copyWith(
               accentColor: colorMain,
@@ -473,10 +435,7 @@ class _Data extends State<DataReserva> {
           backgroundColor: Theme.of(context).backgroundColor,
           context: context,
           builder: (context) => Theme(
-              data: ThemeData(
-                  colorScheme: ColorScheme.light(primary: colorMain),
-                  buttonTheme:
-                      ButtonThemeData(textTheme: ButtonTextTheme.primary)),
+              data: ThemeData(colorScheme: ColorScheme.light(primary: colorMain), buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
               child: Container(
                   height: 275.0,
                   child: Column(
@@ -527,8 +486,7 @@ class _Data extends State<DataReserva> {
     });
 
     if (_inputFechaController.text == "" || _inputHoraController.text == "") {
-      mostrarSnackbar(
-          'Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
+      mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
       Timer(Duration(milliseconds: 1500), () {
         setState(() {
           clickReservar = true;
@@ -537,12 +495,10 @@ class _Data extends State<DataReserva> {
     } else {
       DateTime now = DateTime.now();
       String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-      var fechaTime = DateTime.parse(
-          _inputFechaController.text + " " + _inputHoraController.text);
+      var fechaTime = DateTime.parse(_inputFechaController.text + " " + _inputHoraController.text);
       String fechaTimeAt = DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
 
-      if (formattedDate == fechaTimeAt.split(' ')[0] &&
-          fechaTime.hour < (now.hour - 1)) {
+      if (formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour < (now.hour - 1)) {
         mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
         Timer(Duration(milliseconds: 1500), () {
           setState(() {
@@ -556,41 +512,27 @@ class _Data extends State<DataReserva> {
         booking.typeId = resarvaId;
         booking.observation = _inputObservacioController.text;
 
-        var deliveryArray = [
-          null,
-          'Recojo y entrega a domicilio',
-          'Solo recojo a domicilio',
-          'Solo entrega a domicilio'
-        ];
+        var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
         var deliveryText = "";
         // var direccionText = "";
         if (delivery == true && deliveryId != "1") {
           deliveryText = deliveryArray[int.parse(deliveryId) - 1];
           // direccionDelivery = direccionDelivery.toString();
         }
-        if (delivery == true &&
-            deliveryId != "1" &&
-            (direccionDelivery.trim() == "" ||
-                _inputDireccionController.text.trim() == "")) {
+        if (delivery == true && deliveryId != "1" && (direccionDelivery.trim() == "" || _inputDireccionController.text.trim() == "")) {
           setState(() {
             clickReservar = true;
           });
-          mostrarSnackbar(
-              'Debe ingresar la dirección para el servicio de movilidad',
-              colorRed,
-              scaffoldKey);
+          mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
         } else {
-          bool resp = await bookingProvider.booking(
-              booking, deliveryText, direccionDelivery); //direccionText
+          bool resp = await bookingProvider.booking(booking, deliveryText, direccionDelivery); //direccionText
           print(resp);
           if (resp) {
             mascotaProvider.getPet(mascotaID).then(
                   (value) => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => ThxPage(
-                          CachedNetworkImageProvider(value.pet.picture),
-                          thxReserva[Math.Random().nextInt(thxReserva.length)]),
+                      builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Math.Random().nextInt(thxReserva.length)]),
                     ),
                   ),
                 );
@@ -612,8 +554,7 @@ class _Data extends State<DataReserva> {
 
       _prefs.myAddressLatLng = "$lat,$lng";
 
-      _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-          target: LatLng(lat, lng), zoom: 16.0, bearing: 45.0, tilt: 45.0)));
+      _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(lat, lng), zoom: 16.0, bearing: 45.0, tilt: 45.0)));
 
       _prefs.myAddress = dato.name;
       _inputDireccionController.text = dato.name;
@@ -650,8 +591,7 @@ class _Data extends State<DataReserva> {
       zoomGesturesEnabled: true,
       tiltGesturesEnabled: true,
       mapType: MapType.normal,
-      initialCameraPosition:
-          CameraPosition(target: LatLng(lat, lng), zoom: zoomIn),
+      initialCameraPosition: CameraPosition(target: LatLng(lat, lng), zoom: zoomIn),
       markers: Set.from(marcador),
       onMapCreated: mapCreated,
     );
