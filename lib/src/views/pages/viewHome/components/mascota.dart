@@ -51,6 +51,8 @@ class _MascotasState extends State<Mascotas> {
           )
         : homeStore.sinMascotas
             ? FadeIn(
+                delay: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 500),
                 child: Container(
                   height: 250.0,
                   width: double.infinity,
@@ -66,6 +68,8 @@ class _MascotasState extends State<Mascotas> {
                 ),
               )
             : FadeIn(
+                delay: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 500),
                 child: Container(
                   height: 250.0,
                   width: double.infinity,

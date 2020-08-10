@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/posicion.dart';

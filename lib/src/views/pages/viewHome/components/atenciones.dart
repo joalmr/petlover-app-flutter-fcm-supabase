@@ -43,6 +43,8 @@ class _AtencionesState extends State<Atenciones> {
           )
         : homeStore.sinAtenciones
             ? FadeIn(
+                delay: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 500),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 30.0),
                   child: Column(
@@ -68,6 +70,8 @@ class _AtencionesState extends State<Atenciones> {
                 ),
               )
             : FadeIn(
+                delay: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 500),
                 child: ListView.separated(
                   itemCount: homeStore.atenciones.length,
                   physics: NeverScrollableScrollPhysics(),
