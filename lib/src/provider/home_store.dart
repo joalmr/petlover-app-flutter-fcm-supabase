@@ -423,7 +423,10 @@ abstract class _HomeStore with Store {
   }
 
   @computed
-  bool get isDeliveryOk => conDelivery && deliveryTipo != null && deliveryDireccion.trim().isNotEmpty;
+  bool get hasDelivery => conDelivery && deliveryTipo != '';
+
+  @computed
+  bool get isDeliveryOk => conDelivery && deliveryTipo != '' && deliveryDireccion.trim().isNotEmpty;
   // '' quiza en vez de null
 
   @action
@@ -431,36 +434,41 @@ abstract class _HomeStore with Store {
     reservarBooking(context, scaffoldKey);
   }
 
-  Future<void> reservarBooking(BuildContext context, scaffoldKey) async {
+  void reservarBooking(BuildContext context, scaffoldKey) {
     if (hasFechaHora) {
       //bla bla
       mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
     } else {
       if (!isDateOk) {
-        print('fecha ok');
-        print(isDateOk);
         //bla bla
         mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
       } else {
-        if (!isDeliveryOk) {
-          //blabla
-          mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
-        } else {
-          BookingModel booking = BookingModel();
-          booking.bookingAt = fechaTimeAt;
-          booking.establishmentId = establecimientoId;
-          booking.petId = mascotaId; //
-          booking.typeId = reservaId;
-          booking.observation = observacion;
-          bool resp = await bookingProvider.booking(booking, deliveryTipo, deliveryDireccion);
-          if (resp) {
-            // ir a pagina de agradecimiento
-            getSummary();
-            MascotaProvider().getPet(mascotaId).then((value) => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)]))));
+        if (hasDelivery) {
+          if (!isDeliveryOk) {
+            //blabla
+            mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
+          } else {
+            ejecutaReserva(context);
           }
+        } else {
+          ejecutaReserva(context);
         }
       }
+    }
+  }
+
+  Future<void> ejecutaReserva(BuildContext context) async {
+    BookingModel booking = BookingModel();
+    booking.bookingAt = fechaTimeAt;
+    booking.establishmentId = establecimientoId;
+    booking.petId = mascotaId; //
+    booking.typeId = reservaId;
+    booking.observation = observacion;
+    bool resp = await bookingProvider.booking(booking, deliveryTipo, deliveryDireccion);
+    if (resp) {
+      getSummary();
+      MascotaProvider().getPet(mascotaId).then((value) => Navigator.push(
+          context, MaterialPageRoute(builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)]))));
     }
   }
 //////////////////////////////////////////////////////

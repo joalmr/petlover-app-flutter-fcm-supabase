@@ -70,6 +70,13 @@ mixin _$HomeStore on _HomeStore, Store {
   bool get isDateOk => (_$isDateOkComputed ??=
           Computed<bool>(() => super.isDateOk, name: '_HomeStore.isDateOk'))
       .value;
+  Computed<bool> _$hasDeliveryComputed;
+
+  @override
+  bool get hasDelivery =>
+      (_$hasDeliveryComputed ??= Computed<bool>(() => super.hasDelivery,
+              name: '_HomeStore.hasDelivery'))
+          .value;
   Computed<bool> _$isDeliveryOkComputed;
 
   @override
@@ -804,6 +811,7 @@ fechaTime: ${fechaTime},
 fechaTimeAt: ${fechaTimeAt},
 hasFechaHora: ${hasFechaHora},
 isDateOk: ${isDateOk},
+hasDelivery: ${hasDelivery},
 isDeliveryOk: ${isDeliveryOk}
     ''';
   }
