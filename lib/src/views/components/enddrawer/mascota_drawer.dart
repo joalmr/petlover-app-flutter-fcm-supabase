@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
+import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/views/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -10,8 +12,7 @@ class MascotaDrawer extends StatefulWidget {
   MascotaDrawer({@required this.modelMascota});
 
   @override
-  _MascotaDrawerState createState() =>
-      _MascotaDrawerState(mascota: modelMascota);
+  _MascotaDrawerState createState() => _MascotaDrawerState(mascota: modelMascota);
 }
 
 class _MascotaDrawerState extends State<MascotaDrawer> {
@@ -21,15 +22,20 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   final Color divider = Colors.grey.shade600;
   final mascotaProvider = MascotaProvider();
 
+  HomeStore homeStore;
+  @override
+  void initState() {
+    super.initState();
+    homeStore = GetIt.I.get<HomeStore>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipPath(
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              boxShadow: [BoxShadow(color: Colors.black45)]),
+          decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
@@ -45,9 +51,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   dataList() {
     return Column(
       children: <Widget>[
-        SizedBox(
-          height: 40.0,
-        ),
+        SizedBox(height: 40.0),
         Text(
           mascota.name,
           style: TextStyle(
@@ -57,32 +61,19 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
             color: Theme.of(context).textTheme.subtitle2.color,
           ),
         ),
-        SizedBox(
-          height: 20.0,
-        ),
+        SizedBox(height: 20.0),
         Divider(),
         ListTile(
-            leading: Icon(
-              Icons.edit,
-              color: Theme.of(context).textTheme.subtitle2.color,
-            ),
+            leading: Icon(Icons.edit, color: Theme.of(context).textTheme.subtitle2.color),
             title: Text(
               'Editar datos',
-              style: TextStyle(
-                fontWeight: FontWeight.w400,
-              ),
+              style: TextStyle(fontWeight: FontWeight.w400),
             ),
-            onTap:
-                // ()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
-                () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => MascotaEditarPage(
-                        mascotaData: mascota,
-                      ),
-                    ))
-            //()=>Navigator.pushNamed(context, 'editarmascota', arguments: mascota),
-            ),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => MascotaEditarPage(mascotaData: mascota),
+                ))),
         ListTile(
           leading: Icon(
             Icons.bookmark,
@@ -90,9 +81,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
           ),
           title: Text(
             'Fallecido',
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-            ),
+            style: TextStyle(fontWeight: FontWeight.w400),
           ),
           onTap: () => showDialog(
               context: context,
@@ -101,22 +90,15 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
               }),
         ),
         ListTile(
-            leading: Icon(
-              Icons.delete_forever,
-              color: colorRed,
-            ),
+            leading: Icon(Icons.delete_forever, color: colorRed),
             title: Text(
               'Eliminar mascota',
-              style: TextStyle(
-                color: colorRed,
-                fontWeight: FontWeight.w400,
-              ),
+              style: TextStyle(color: colorRed, fontWeight: FontWeight.w400),
             ),
             onTap: () => showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return _eliminar();
-                }))
+                  context: context,
+                  builder: (BuildContext context) => _eliminar(),
+                ))
       ],
     );
   }
@@ -129,30 +111,10 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         title: Text('Eliminar'),
         content: Text('Seguro que desea eliminar a ${mascota.name}?'),
         actions: <Widget>[
+          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
           FlatButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('Cancelar',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2))),
-          FlatButton(
-              onPressed: () async {
-                bool resp = await mascotaProvider.deletePet(mascota.id);
-                if (resp) {
-                  return Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/navInicio', ModalRoute.withName('/navInicio'));
-                  // Navigator.pushNamedAndRemoveUntil(
-                  //     context, '/navInicio', (route) => false);
-                } else {
-                  return Navigator.pop(context);
-                }
-              },
-              child: Text('Sí, eliminar',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2, color: colorRed))),
+              onPressed: () => homeStore.eliminaMascota(context, mascota.id),
+              child: Text('Sí, eliminar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
         ],
       ),
     );
@@ -166,31 +128,10 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         title: null, //Text('Fallecido'),
         content: Text('Lamentamos la perdida de tu ser querido.'),
         actions: <Widget>[
+          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
           FlatButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('Cancelar',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2))),
-          FlatButton(
-              onPressed: () async {
-                mascota.status = 0;
-                bool resp = await mascotaProvider.muerePet(mascota);
-                if (resp) {
-                  // Navigator.of(context).popUntil((route) => route.isFirst);
-                  // Navigator.of(context).pushReplacementNamed('routeName')
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/navInicio', ModalRoute.withName('/navInicio'));
-                } else {
-                  Navigator.pop(context);
-                }
-              },
-              child: Text('Falleció mi mascota',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2, color: colorRed))),
+              onPressed: () => homeStore.falleceMascota(context, mascota, true),
+              child: Text('Falleció mi mascota', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
         ],
       ),
     );
@@ -199,34 +140,13 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   _errorFallecido() {
     return FadeIn(
       child: AlertDialog(
-        // backgroundColor: Theme.of(context).backgroundColor,
-        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         title: null, //Text('Fallecido'),
         content: Text('Cometiste un error?'),
         actions: <Widget>[
+          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
           FlatButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('Cancelar',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2))),
-          FlatButton(
-              onPressed: () async {
-                mascota.status = 1;
-                bool resp = await mascotaProvider.muerePet(mascota);
-                if (resp) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/navInicio', ModalRoute.withName('/navInicio'));
-                } else {
-                  Navigator.pop(context);
-                }
-              },
-              child: Text('Sí, cometí un error',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2, color: colorMain))),
+              onPressed: () => homeStore.falleceMascota(context, mascota, false),
+              child: Text('Sí, cometí un error', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain))),
         ],
       ),
     );

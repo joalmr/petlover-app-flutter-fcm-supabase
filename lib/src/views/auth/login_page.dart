@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/provider/login_store.dart';
+import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
@@ -24,11 +25,13 @@ class _LoginSevenPageState extends State<LoginPage> {
   ReactionDisposer disposer;
 
   HomeStore homeStore;
+  PushStore pushStore;
 
   @override
   void initState() {
     super.initState();
     homeStore = GetIt.I.get<HomeStore>();
+    pushStore = GetIt.I.get<PushStore>();
   }
 
   @override
@@ -42,7 +45,8 @@ class _LoginSevenPageState extends State<LoginPage> {
     super.didChangeDependencies();
     disposer = reaction((_) => loginStore.respLogin, (respLogin) {
       if (respLogin['code'] == 200) {
-        homeStore.getSummary(); //ejecuto datos de pagina home
+        pushStore.firebase(); //TODO: ejecuta firebase
+        homeStore.getSummary();
         Navigator.pushReplacementNamed(context, 'navInicio');
       } else {
         mostrarSnackbar(respLogin['message'], colorRed, scaffoldKey);

@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
@@ -13,24 +14,20 @@ import 'package:proypet/src/models/booking/booking_model.dart';
 import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/servicio_reserva.dart';
+import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/ddl_control.dart';
-import 'package:proypet/src/views/components/form_control/text_field.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/thx_page.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 
 import 'package:proypet/src/styles/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:proypet/src/utils/add_msg.dart';
 import 'package:select_dialog/select_dialog.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
-import 'dart:math' as Math;
 
 import 'components/dataDelivery.dart';
 
@@ -89,11 +86,25 @@ class _Data extends State<DataReserva> {
   double lng = 0;
   double zoomIn = 10.0;
 
+  final deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
+
+  HomeStore homeStore;
+
   //direccion de delivery
   @override
   void initState() {
-    print(resarvaId);
+    homeStore = GetIt.I.get<HomeStore>();
+
+    // print(resarvaId);
     _inputDireccionController.text = _prefs.myAddress;
+    //
+    homeStore.setDireccion(_prefs.myAddress);
+    homeStore.setReserva(resarvaId);
+    homeStore.setEstablecimiento(establecimientoID);
+    homeStore.setPetReserva(mascotaID);
+    homeStore.setConDelivery(delivery);
+// this.establecimientoID, this.misMascotas, this.mascotaID, this.establecimientoName, this.delivery
+
     if (_prefs.myAddressLatLng.toString().trim() != "") {
       setState(() {
         lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
@@ -138,13 +149,8 @@ class _Data extends State<DataReserva> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              establecimientoName,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
+            Text(establecimientoName, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10.0),
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: Column(
@@ -153,11 +159,11 @@ class _Data extends State<DataReserva> {
                 children: <Widget>[
                   Text('Mascota'),
                   SizedBox(height: 7.5),
-                  ddlFutureImg(context, mascotaID, misMascotas, (opt) {
-                    setState(() {
-                      mascotaID = opt.toString();
-                    });
-                  }),
+                  Observer(
+                    builder: (_) => ddlFutureImg(context, homeStore.mascotaId, misMascotas, (opt) {
+                      homeStore.setPetReserva(opt.toString());
+                    }),
+                  ),
                 ],
               ),
             ),
@@ -222,29 +228,22 @@ class _Data extends State<DataReserva> {
                 ? ddlMain(context, deliveryId, _delivery, (opt) {
                     setState(() {
                       deliveryId = opt;
+                      if (delivery == true && deliveryId != "1") {
+                        homeStore.setDelivery(deliveryArray[int.parse(deliveryId) - 1]);
+                      }
                     });
                   })
                 : SizedBox(height: 0.0),
             (delivery && deliveryId != "1")
                 ? Column(
                     children: <Widget>[
-                      SizedBox(
-                        height: 5.0,
-                      ),
+                      SizedBox(height: 5.0),
                       _direccion(),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Container(
-                        height: 250.0,
-                        width: double.infinity,
-                        child: _mapa(),
-                      )
+                      SizedBox(height: 5.0),
+                      Container(height: 250.0, width: double.infinity, child: _mapa())
                     ],
                   )
-                : SizedBox(
-                    height: 0.0,
-                  ),
+                : SizedBox(height: 0.0),
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -254,7 +253,17 @@ class _Data extends State<DataReserva> {
                 children: <Widget>[
                   Text('Observación'),
                   SizedBox(height: 7.5),
-                  textfieldArea(_inputObservacioController, 'Ingrese observación (opcional)', null, null),
+                  // textfieldArea(_inputObservacioController, 'Ingrese observación (opcional)', null, null),
+                  TextField(
+                    enableInteractiveSelection: false,
+                    controller: _inputObservacioController,
+                    textCapitalization: TextCapitalization.sentences,
+                    maxLength: 250,
+                    keyboardType: TextInputType.multiline,
+                    cursorColor: colorMain,
+                    decoration: InputDecoration(hintText: 'Ingrese observación (opcional)'),
+                    onChanged: (value) => homeStore.setObservacion(value),
+                  ),
                   Text.rich(
                     TextSpan(
                       text: '*Si seleccionó ', // default text style
@@ -274,7 +283,7 @@ class _Data extends State<DataReserva> {
             SizedBox(
               height: 20.0,
             ),
-            buttonPri('Confirmar reserva', clickReservar ? reservaDialog : null),
+            buttonPri('Confirmar reserva', clickReservar ? _reservaDialog : null),
             SizedBox(height: 7.5),
             buttonFlat("Cancelar", () => Navigator.of(context).pop(), colorMain),
           ],
@@ -336,9 +345,7 @@ class _Data extends State<DataReserva> {
       emptyBuilder: (context) => Center(
         child: Text('No se encontró'),
       ),
-      errorBuilder: (context, exception) => Center(
-        child: Text('Oops!'),
-      ),
+      errorBuilder: (context, exception) => Center(child: Text('Oops!')),
       items: servicioReservaList,
       selectedValue: ex3,
       searchBoxDecoration: InputDecoration(
@@ -348,12 +355,7 @@ class _Data extends State<DataReserva> {
       onFind: (String filter) => _getData(filter),
       itemBuilder: (BuildContext context, ServicioReserva item, bool isSelected) {
         return Container(
-          decoration: !isSelected
-              ? null
-              : BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: colorMain,
-                ),
+          decoration: !isSelected ? null : BoxDecoration(borderRadius: BorderRadius.circular(5), color: colorMain),
           child: ListTile(
             selected: isSelected,
             title: Text(
@@ -374,6 +376,7 @@ class _Data extends State<DataReserva> {
           ex3 = selected;
           _inputServController.text = selected.name;
           resarvaId = selected.id.toString();
+          homeStore.setReserva(resarvaId);
         });
       },
     );
@@ -421,6 +424,7 @@ class _Data extends State<DataReserva> {
       setState(() {
         _fecha = f.format(picked);
         _inputFechaController.text = _fecha;
+        homeStore.setFecha(_fecha);
       });
     }
   }
@@ -458,9 +462,8 @@ class _Data extends State<DataReserva> {
     );
   }
 
-  Duration initialtimer = new Duration();
-
   Widget _time() {
+    Duration initialtimer = new Duration();
     return CupertinoTimerPicker(
       mode: CupertinoTimerPickerMode.hm,
       minuteInterval: 10,
@@ -474,73 +477,14 @@ class _Data extends State<DataReserva> {
             } else
               _hora = initialtimer.toString().split(':00.')[0];
             _inputHoraController.text = _hora;
+            homeStore.setHora(_hora);
           }
         });
       },
     );
   }
 
-  reservaDialog() async {
-    setState(() {
-      clickReservar = false;
-    });
-
-    if (_inputFechaController.text == "" || _inputHoraController.text == "") {
-      mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
-      Timer(Duration(milliseconds: 1500), () {
-        setState(() {
-          clickReservar = true;
-        });
-      });
-    } else {
-      DateTime now = DateTime.now();
-      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-      var fechaTime = DateTime.parse(_inputFechaController.text + " " + _inputHoraController.text);
-      String fechaTimeAt = DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
-
-      if (formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour < (now.hour - 1)) {
-        mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
-        Timer(Duration(milliseconds: 1500), () {
-          setState(() {
-            clickReservar = true;
-          });
-        });
-      } else {
-        booking.bookingAt = fechaTimeAt;
-        booking.establishmentId = widget.establecimientoID;
-        booking.petId = mascotaID; //
-        booking.typeId = resarvaId;
-        booking.observation = _inputObservacioController.text;
-
-        var deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
-        var deliveryText = "";
-        // var direccionText = "";
-        if (delivery == true && deliveryId != "1") {
-          deliveryText = deliveryArray[int.parse(deliveryId) - 1];
-          // direccionDelivery = direccionDelivery.toString();
-        }
-        if (delivery == true && deliveryId != "1" && (direccionDelivery.trim() == "" || _inputDireccionController.text.trim() == "")) {
-          setState(() {
-            clickReservar = true;
-          });
-          mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
-        } else {
-          bool resp = await bookingProvider.booking(booking, deliveryText, direccionDelivery); //direccionText
-          print(resp);
-          if (resp) {
-            mascotaProvider.getPet(mascotaID).then(
-                  (value) => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Math.Random().nextInt(thxReserva.length)]),
-                    ),
-                  ),
-                );
-          }
-        }
-      }
-    }
-  }
+  _reservaDialog() => homeStore.reservarAtencion(context, scaffoldKey);
 
 ///////////////////////////////////////////////////
   searchandNavigate(Prediction2 dato) async {
@@ -558,6 +502,9 @@ class _Data extends State<DataReserva> {
 
       _prefs.myAddress = dato.name;
       _inputDireccionController.text = dato.name;
+
+      homeStore.setDireccion(dato.name);
+
       setState(() {
         marcador.add(Marker(
           markerId: MarkerId("1"),

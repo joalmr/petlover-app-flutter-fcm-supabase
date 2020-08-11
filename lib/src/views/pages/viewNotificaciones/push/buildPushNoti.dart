@@ -20,7 +20,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
   }
 
   _fnNoti(noti, context) {
-    print("== fnNoti ==");
+    // print("== fnNoti ==");
     switch (noti['type']) {
       case "Marketing":
         return notificacionOther();
@@ -88,15 +88,12 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: 10),
-                Text(widget.noti['message'],
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold)),
+                Text(widget.noti['message'], style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
                 ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(100)),
                   child: Image(
-                    image:
-                        CachedNetworkImageProvider(widget.noti['pet_picture']),
+                    image: CachedNetworkImageProvider(widget.noti['pet_picture']),
                     height: 70,
                     fit: BoxFit.cover,
                   ),
@@ -123,15 +120,12 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: 10),
-                Text(widget.noti['message'],
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold)),
+                Text(widget.noti['message'], style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
                 ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(100)),
                   child: Image(
-                    image:
-                        CachedNetworkImageProvider(widget.noti['pet_picture']),
+                    image: CachedNetworkImageProvider(widget.noti['pet_picture']),
                     height: 70,
                     fit: BoxFit.cover,
                   ),
@@ -204,8 +198,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               Expanded(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                    '${widget.noti['message']} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
+                child: Text('${widget.noti['message']} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}'),
               )),
             ],
           ),
@@ -215,8 +208,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               child: Image(
-                image: CachedNetworkImageProvider(
-                    widget.noti['notification_image']),
+                image: CachedNetworkImageProvider(widget.noti['notification_image']),
                 height: 140,
                 width: double.maxFinite,
                 fit: BoxFit.cover,

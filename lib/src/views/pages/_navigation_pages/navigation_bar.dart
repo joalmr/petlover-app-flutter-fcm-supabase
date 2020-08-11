@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:proypet/src/utils/posicion.dart';
@@ -29,18 +28,11 @@ class _NavigationBarState extends State<NavigationBar> {
   final _prefs = new PreferenciasUsuario();
 
   PushStore pushStore;
-  // HomeStore homeStore;
-
-  ReactionDisposer disposer;
 
   @override
   void initState() {
     super.initState();
-    // homeStore = GetIt.I.get<HomeStore>();
     pushStore = GetIt.I.get<PushStore>();
-
-    // homeStore.getSummary();
-    pushStore.firebase(); //TODO: ejecuta firebase
 
     fnPosition().then((value) => _prefs.position = '${value.latitude},${value.longitude}');
   }
@@ -53,7 +45,7 @@ class _NavigationBarState extends State<NavigationBar> {
 
   @override
   void dispose() {
-    disposer();
+    // disposer();
     super.dispose();
   }
 

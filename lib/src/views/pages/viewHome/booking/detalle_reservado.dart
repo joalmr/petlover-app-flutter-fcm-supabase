@@ -1,12 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
+import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 
 import 'package:proypet/src/styles/styles.dart';
@@ -20,7 +21,17 @@ class DetalleReservado extends StatefulWidget {
 class _DetalleReservadoState extends State<DetalleReservado> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
+  HomeStore homeStore;
+
   final bookingProvider = BookingProvider();
+
+  @override
+  void initState() {
+    super.initState();
+    homeStore = GetIt.I.get<HomeStore>();
+  }
+
+  _deleteBooking(id) => homeStore.eliminaAtencionToHome(context, id, _scaffoldKey);
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +53,7 @@ class _DetalleReservadoState extends State<DetalleReservado> {
                 ),
               ),
               Card(
-                margin: EdgeInsets.only(
-                    top: 280.0, bottom: 7.5, left: 5.0, right: 5.0),
+                margin: EdgeInsets.only(top: 280.0, bottom: 7.5, left: 5.0, right: 5.0),
                 child: _listaDatos(arg, context),
               ),
             ],
@@ -57,9 +67,7 @@ class _DetalleReservadoState extends State<DetalleReservado> {
     DateTime now = DateTime.now();
     var fechaAt = arg.date.split('-');
     bool vencido = false;
-    if (int.parse(fechaAt[0]) < now.day &&
-        int.parse(fechaAt[1]) == now.month &&
-        int.parse(fechaAt[2]) == now.year) {
+    if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
       vencido = true;
     }
 
@@ -75,16 +83,8 @@ class _DetalleReservadoState extends State<DetalleReservado> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  arg.petName,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline5
-                      .apply(fontWeightDelta: 2),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
+                Text(arg.petName, style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2)),
+                SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -92,99 +92,39 @@ class _DetalleReservadoState extends State<DetalleReservado> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          "Estado de la reserva",
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2
-                              .apply(fontWeightDelta: 2),
-                        ),
+                        Text("Estado de la reserva", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
                         (!vencido)
                             ? Text(arg.status,
                                 style: (arg.statusId == 3 || arg.statusId == 6)
-                                    ? Theme.of(context)
-                                        .textTheme
-                                        .subtitle1
-                                        .apply(
-                                            fontWeightDelta: 2,
-                                            color: colorMain)
-                                    : Theme.of(context)
-                                        .textTheme
-                                        .subtitle1
-                                        .apply(fontWeightDelta: 2))
-                            : Text('${arg.status} - Vencido',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1
-                                    .apply(fontWeightDelta: 2, color: colorRed))
+                                    ? Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorMain)
+                                    : Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2))
+                            : Text('${arg.status} - Vencido', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorRed))
                       ],
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 15.0),
                       child: FloatingActionButton(
                         mini: true,
-                        child: Icon(
-                          Icons.phone,
-                        ),
+                        child: Icon(Icons.phone),
                         onPressed: () => _launchPhone(arg.establishmentPhone),
                       ),
                     )
                   ],
                 ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  "Veterinaria",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2),
-                ),
-                Text(arg.establishmentName,
-                    style: Theme.of(context).textTheme.subtitle1),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  "Dirección de veterinaria",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2),
-                ),
+                SizedBox(height: 10.0),
+                Text("Veterinaria", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                Text(arg.establishmentName, style: Theme.of(context).textTheme.subtitle1),
+                SizedBox(height: 10.0),
+                Text("Dirección de veterinaria", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 Text(arg.address),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  "Fecha y hora",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .apply(fontWeightDelta: 2),
-                ),
+                SizedBox(height: 10.0),
+                Text("Fecha y hora", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 Text('${arg.date} ${arg.time}'),
-                SizedBox(
-                  height: 20.0,
-                ),
-                buttonPri(
-                    "Ver en mapa",
-                    () => _openMapsSheet(
-                        context,
-                        arg.establishmentName,
-                        arg.address,
-                        arg.establishmentLat,
-                        arg.establishmentLng)),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Center(
-                    child: buttonOutLine("Eliminar reserva",
-                        () => _alertaEliminar(arg.id, context), colorRed)),
-                SizedBox(
-                  height: 10.0,
-                ),
+                SizedBox(height: 20.0),
+                buttonPri("Ver en mapa", () => _openMapsSheet(context, arg.establishmentName, arg.address, arg.establishmentLat, arg.establishmentLng)),
+                SizedBox(height: 20.0),
+                Center(child: buttonOutLine("Eliminar reserva", () => _alertaEliminar(arg.id, context), colorRed)),
+                SizedBox(height: 10.0),
               ],
             ),
           )
@@ -202,31 +142,12 @@ class _DetalleReservadoState extends State<DetalleReservado> {
               title: Text('Eliminar'),
               content: Text('Seguro que desea eliminar esta reserva?'),
               actions: <Widget>[
-                buttonModal(
-                  'Cancelar',
-                  () => Navigator.pop(context),
-                  Theme.of(context).textTheme.subtitle2.color,
-                ),
-                buttonModal(
-                  'Sí, eliminar',
-                  () => _deleteBooking(id, context),
-                  colorRed,
-                ),
+                buttonModal('Cancelar', () => Navigator.pop(context), Theme.of(context).textTheme.subtitle2.color),
+                buttonModal('Sí, eliminar', () => _deleteBooking(id), colorRed),
               ],
             ),
           );
         });
-  }
-
-  _deleteBooking(String id, context) async {
-    bool resp = await bookingProvider.deleteBooking(id);
-    Navigator.pop(context);
-    if (resp) {
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/nav', ModalRoute.withName('/nav')); //
-    } else {
-      mostrarSnackbar("No se eliminó la atención", colorRed, _scaffoldKey);
-    }
   }
 
   _launchPhone(String phone) async {

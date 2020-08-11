@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/styles/styles.dart';
 // final _shape = BorderRadius.circular(10.0);
 
-Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){
+Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines) {
   return TextField(
     enableInteractiveSelection: false,
     controller: _inputController,
@@ -11,13 +11,9 @@ Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){
     maxLines: _maxLines,
     keyboardType: TextInputType.multiline,
     cursorColor: colorMain,
-    decoration: InputDecoration(
-      hintText: _hinttext,
-      // hintStyle: TextStyle(fontSize: 14.0),
-    ),
+    decoration: InputDecoration(hintText: _hinttext),
   );
 }
-  
 
 // Widget textfield(_hinttext, _icon, _obscuretext){
 //   return Padding(
@@ -49,4 +45,3 @@ Widget textfieldArea(_inputController, String _hinttext, _maxLength, _maxLines){
 //     ),
 //   );
 // }
-

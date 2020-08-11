@@ -19,8 +19,7 @@ class MascotaProvider {
       );
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
-      final datosMascota =
-          decodedResp['pets']; //mascotaModelFromJson(decodedResp['pets']);
+      final datosMascota = decodedResp['pets']; //mascotaModelFromJson(decodedResp['pets']);
       final List<MascotaModel> mascotas = new List();
 
       if (datosMascota == null) return [];
@@ -39,17 +38,13 @@ class MascotaProvider {
   Future<PetModel> getPet(String idPet) async {
     final url = '$_url/pets/$idPet';
 
-    final resp = await http.get(
-      url,
-      headers: headersToken(),
-    );
+    final resp = await http.get(url, headers: headersToken());
     final petModel = petModelFromJson(resp.body);
 
     return petModel;
   }
 
-  Future<Map<String, dynamic>> savePet(
-      MascotaModel mascota, File imagen) async {
+  Future<Map<String, dynamic>> savePet(MascotaModel mascota, File imagen) async {
     //create
     final url = '$_url/pets';
 
@@ -61,11 +56,7 @@ class MascotaProvider {
       'genre': mascota.genre.toString(), //int
     };
 
-    final resp = await http.post(
-      url,
-      headers: headersToken(),
-      body: data,
-    );
+    final resp = await http.post(url, headers: headersToken(), body: data);
 
     if (resp.statusCode == 200 || resp.statusCode == 201) {
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
@@ -83,9 +74,21 @@ class MascotaProvider {
   }
 
   Future<bool> editPet(MascotaModel mascota, File imagen) async {
+    // print(' nombre ' + mascota);
+    print('nombre: ' + mascota.name);
+    print('fecha: ' + mascota.birthdate);
+    print('especie: ' + mascota.specieId.toString());
+    print('raza: ' + mascota.breedId.toString());
+    print('genero: ' + mascota.genre.toString());
+    print('imagen: ' + imagen.toString());
+    print(mascota.id);
+
     final idkey = mascota.id;
     final urlpet = '$_url/pets/$idkey/base64';
-    upImage(imagen, urlpet);
+    if (imagen != null) {
+      print('edita con imagen');
+      upImage(imagen, urlpet);
+    }
 
     final url = '$_url/pets/$idkey';
 
@@ -95,15 +98,10 @@ class MascotaProvider {
       'specie': mascota.specieId.toString(), //int
       'breed': mascota.breedId.toString(), //int
       'genre': mascota.genre.toString(), //int
-      // 'status': mascota.status.toString(), //int
     };
 
-    final resp = await http.post(
-      url,
-      headers: headersToken(),
-      body: data,
-    );
-
+    final resp = await http.post(url, headers: headersToken(), body: data);
+    print(resp.statusCode);
     if (resp.statusCode == 200)
       return true;
     else
@@ -160,8 +158,7 @@ class MascotaProvider {
 
     String sendPic = 'data:$part0/$part1;base64,$pic';
 
-    var img = await http
-        .post(url, headers: headersToken(), body: {'base64': sendPic});
+    var img = await http.post(url, headers: headersToken(), body: {'base64': sendPic});
 
     // print(img.statusCode);
 

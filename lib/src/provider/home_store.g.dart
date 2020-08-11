@@ -16,12 +16,66 @@ mixin _$HomeStore on _HomeStore, Store {
       (_$sinAtencionesComputed ??= Computed<bool>(() => super.sinAtenciones,
               name: '_HomeStore.sinAtenciones'))
           .value;
+  Computed<bool> _$sinDatosComputed;
+
+  @override
+  bool get sinDatos => (_$sinDatosComputed ??=
+          Computed<bool>(() => super.sinDatos, name: '_HomeStore.sinDatos'))
+      .value;
+  Computed<bool> _$sinNombreMascotaComputed;
+
+  @override
+  bool get sinNombreMascota => (_$sinNombreMascotaComputed ??= Computed<bool>(
+          () => super.sinNombreMascota,
+          name: '_HomeStore.sinNombreMascota'))
+      .value;
+  Computed<bool> _$sinFechaMascotaComputed;
+
+  @override
+  bool get sinFechaMascota =>
+      (_$sinFechaMascotaComputed ??= Computed<bool>(() => super.sinFechaMascota,
+              name: '_HomeStore.sinFechaMascota'))
+          .value;
   Computed<bool> _$sinMascotasComputed;
 
   @override
   bool get sinMascotas =>
       (_$sinMascotasComputed ??= Computed<bool>(() => super.sinMascotas,
               name: '_HomeStore.sinMascotas'))
+          .value;
+  Computed<DateTime> _$fechaTimeComputed;
+
+  @override
+  DateTime get fechaTime =>
+      (_$fechaTimeComputed ??= Computed<DateTime>(() => super.fechaTime,
+              name: '_HomeStore.fechaTime'))
+          .value;
+  Computed<String> _$fechaTimeAtComputed;
+
+  @override
+  String get fechaTimeAt =>
+      (_$fechaTimeAtComputed ??= Computed<String>(() => super.fechaTimeAt,
+              name: '_HomeStore.fechaTimeAt'))
+          .value;
+  Computed<bool> _$hasFechaHoraComputed;
+
+  @override
+  bool get hasFechaHora =>
+      (_$hasFechaHoraComputed ??= Computed<bool>(() => super.hasFechaHora,
+              name: '_HomeStore.hasFechaHora'))
+          .value;
+  Computed<bool> _$isDateOkComputed;
+
+  @override
+  bool get isDateOk => (_$isDateOkComputed ??=
+          Computed<bool>(() => super.isDateOk, name: '_HomeStore.isDateOk'))
+      .value;
+  Computed<bool> _$isDeliveryOkComputed;
+
+  @override
+  bool get isDeliveryOk =>
+      (_$isDeliveryOkComputed ??= Computed<bool>(() => super.isDeliveryOk,
+              name: '_HomeStore.isDeliveryOk'))
           .value;
 
   final _$usuarioAtom = Atom(name: '_HomeStore.usuario');
@@ -36,36 +90,6 @@ mixin _$HomeStore on _HomeStore, Store {
   set usuario(String value) {
     _$usuarioAtom.reportWrite(value, super.usuario, () {
       super.usuario = value;
-    });
-  }
-
-  final _$mascotasAtom = Atom(name: '_HomeStore.mascotas');
-
-  @override
-  ObservableList<MascotaModel> get mascotas {
-    _$mascotasAtom.reportRead();
-    return super.mascotas;
-  }
-
-  @override
-  set mascotas(ObservableList<MascotaModel> value) {
-    _$mascotasAtom.reportWrite(value, super.mascotas, () {
-      super.mascotas = value;
-    });
-  }
-
-  final _$atencionesAtom = Atom(name: '_HomeStore.atenciones');
-
-  @override
-  ObservableList<BookingHome> get atenciones {
-    _$atencionesAtom.reportRead();
-    return super.atenciones;
-  }
-
-  @override
-  set atenciones(ObservableList<BookingHome> value) {
-    _$atencionesAtom.reportWrite(value, super.atenciones, () {
-      super.atenciones = value;
     });
   }
 
@@ -84,53 +108,311 @@ mixin _$HomeStore on _HomeStore, Store {
     });
   }
 
+  final _$atencionesAtom = Atom(name: '_HomeStore.atenciones');
+
+  @override
+  ObservableList<BookingHome> get atenciones {
+    _$atencionesAtom.reportRead();
+    return super.atenciones;
+  }
+
+  @override
+  set atenciones(ObservableList<BookingHome> value) {
+    _$atencionesAtom.reportWrite(value, super.atenciones, () {
+      super.atenciones = value;
+    });
+  }
+
+  final _$mascotasAtom = Atom(name: '_HomeStore.mascotas');
+
+  @override
+  ObservableList<MascotaModel> get mascotas {
+    _$mascotasAtom.reportRead();
+    return super.mascotas;
+  }
+
+  @override
+  set mascotas(ObservableList<MascotaModel> value) {
+    _$mascotasAtom.reportWrite(value, super.mascotas, () {
+      super.mascotas = value;
+    });
+  }
+
+  final _$miPetAtom = Atom(name: '_HomeStore.miPet');
+
+  @override
+  PetModel get miPet {
+    _$miPetAtom.reportRead();
+    return super.miPet;
+  }
+
+  @override
+  set miPet(PetModel value) {
+    _$miPetAtom.reportWrite(value, super.miPet, () {
+      super.miPet = value;
+    });
+  }
+
+  final _$miMascotaAtom = Atom(name: '_HomeStore.miMascota');
+
+  @override
+  MascotaModel get miMascota {
+    _$miMascotaAtom.reportRead();
+    return super.miMascota;
+  }
+
+  @override
+  set miMascota(MascotaModel value) {
+    _$miMascotaAtom.reportWrite(value, super.miMascota, () {
+      super.miMascota = value;
+    });
+  }
+
+  final _$cargandoMiPetAtom = Atom(name: '_HomeStore.cargandoMiPet');
+
+  @override
+  bool get cargandoMiPet {
+    _$cargandoMiPetAtom.reportRead();
+    return super.cargandoMiPet;
+  }
+
+  @override
+  set cargandoMiPet(bool value) {
+    _$cargandoMiPetAtom.reportWrite(value, super.cargandoMiPet, () {
+      super.cargandoMiPet = value;
+    });
+  }
+
+  final _$mascotaIdpetAtom = Atom(name: '_HomeStore.mascotaIdpet');
+
+  @override
+  String get mascotaIdpet {
+    _$mascotaIdpetAtom.reportRead();
+    return super.mascotaIdpet;
+  }
+
+  @override
+  set mascotaIdpet(String value) {
+    _$mascotaIdpetAtom.reportWrite(value, super.mascotaIdpet, () {
+      super.mascotaIdpet = value;
+    });
+  }
+
+  final _$mascotaNombreAtom = Atom(name: '_HomeStore.mascotaNombre');
+
+  @override
+  String get mascotaNombre {
+    _$mascotaNombreAtom.reportRead();
+    return super.mascotaNombre;
+  }
+
+  @override
+  set mascotaNombre(String value) {
+    _$mascotaNombreAtom.reportWrite(value, super.mascotaNombre, () {
+      super.mascotaNombre = value;
+    });
+  }
+
+  final _$fechaMascotaAtom = Atom(name: '_HomeStore.fechaMascota');
+
+  @override
+  String get fechaMascota {
+    _$fechaMascotaAtom.reportRead();
+    return super.fechaMascota;
+  }
+
+  @override
+  set fechaMascota(String value) {
+    _$fechaMascotaAtom.reportWrite(value, super.fechaMascota, () {
+      super.fechaMascota = value;
+    });
+  }
+
+  final _$especieMascotaIDAtom = Atom(name: '_HomeStore.especieMascotaID');
+
+  @override
+  int get especieMascotaID {
+    _$especieMascotaIDAtom.reportRead();
+    return super.especieMascotaID;
+  }
+
+  @override
+  set especieMascotaID(int value) {
+    _$especieMascotaIDAtom.reportWrite(value, super.especieMascotaID, () {
+      super.especieMascotaID = value;
+    });
+  }
+
+  final _$razaMascotaIDAtom = Atom(name: '_HomeStore.razaMascotaID');
+
+  @override
+  int get razaMascotaID {
+    _$razaMascotaIDAtom.reportRead();
+    return super.razaMascotaID;
+  }
+
+  @override
+  set razaMascotaID(int value) {
+    _$razaMascotaIDAtom.reportWrite(value, super.razaMascotaID, () {
+      super.razaMascotaID = value;
+    });
+  }
+
+  final _$generoMascotaAtom = Atom(name: '_HomeStore.generoMascota');
+
+  @override
+  int get generoMascota {
+    _$generoMascotaAtom.reportRead();
+    return super.generoMascota;
+  }
+
+  @override
+  set generoMascota(int value) {
+    _$generoMascotaAtom.reportWrite(value, super.generoMascota, () {
+      super.generoMascota = value;
+    });
+  }
+
+  final _$fechaAtom = Atom(name: '_HomeStore.fecha');
+
+  @override
+  String get fecha {
+    _$fechaAtom.reportRead();
+    return super.fecha;
+  }
+
+  @override
+  set fecha(String value) {
+    _$fechaAtom.reportWrite(value, super.fecha, () {
+      super.fecha = value;
+    });
+  }
+
+  final _$horaAtom = Atom(name: '_HomeStore.hora');
+
+  @override
+  String get hora {
+    _$horaAtom.reportRead();
+    return super.hora;
+  }
+
+  @override
+  set hora(String value) {
+    _$horaAtom.reportWrite(value, super.hora, () {
+      super.hora = value;
+    });
+  }
+
+  final _$establecimientoIdAtom = Atom(name: '_HomeStore.establecimientoId');
+
+  @override
+  String get establecimientoId {
+    _$establecimientoIdAtom.reportRead();
+    return super.establecimientoId;
+  }
+
+  @override
+  set establecimientoId(String value) {
+    _$establecimientoIdAtom.reportWrite(value, super.establecimientoId, () {
+      super.establecimientoId = value;
+    });
+  }
+
+  final _$mascotaIdAtom = Atom(name: '_HomeStore.mascotaId');
+
+  @override
+  String get mascotaId {
+    _$mascotaIdAtom.reportRead();
+    return super.mascotaId;
+  }
+
+  @override
+  set mascotaId(String value) {
+    _$mascotaIdAtom.reportWrite(value, super.mascotaId, () {
+      super.mascotaId = value;
+    });
+  }
+
+  final _$reservaIdAtom = Atom(name: '_HomeStore.reservaId');
+
+  @override
+  String get reservaId {
+    _$reservaIdAtom.reportRead();
+    return super.reservaId;
+  }
+
+  @override
+  set reservaId(String value) {
+    _$reservaIdAtom.reportWrite(value, super.reservaId, () {
+      super.reservaId = value;
+    });
+  }
+
+  final _$observacionAtom = Atom(name: '_HomeStore.observacion');
+
+  @override
+  String get observacion {
+    _$observacionAtom.reportRead();
+    return super.observacion;
+  }
+
+  @override
+  set observacion(String value) {
+    _$observacionAtom.reportWrite(value, super.observacion, () {
+      super.observacion = value;
+    });
+  }
+
+  final _$conDeliveryAtom = Atom(name: '_HomeStore.conDelivery');
+
+  @override
+  bool get conDelivery {
+    _$conDeliveryAtom.reportRead();
+    return super.conDelivery;
+  }
+
+  @override
+  set conDelivery(bool value) {
+    _$conDeliveryAtom.reportWrite(value, super.conDelivery, () {
+      super.conDelivery = value;
+    });
+  }
+
+  final _$deliveryTipoAtom = Atom(name: '_HomeStore.deliveryTipo');
+
+  @override
+  String get deliveryTipo {
+    _$deliveryTipoAtom.reportRead();
+    return super.deliveryTipo;
+  }
+
+  @override
+  set deliveryTipo(String value) {
+    _$deliveryTipoAtom.reportWrite(value, super.deliveryTipo, () {
+      super.deliveryTipo = value;
+    });
+  }
+
+  final _$deliveryDireccionAtom = Atom(name: '_HomeStore.deliveryDireccion');
+
+  @override
+  String get deliveryDireccion {
+    _$deliveryDireccionAtom.reportRead();
+    return super.deliveryDireccion;
+  }
+
+  @override
+  set deliveryDireccion(String value) {
+    _$deliveryDireccionAtom.reportWrite(value, super.deliveryDireccion, () {
+      super.deliveryDireccion = value;
+    });
+  }
+
   final _$esperaAsyncAction = AsyncAction('_HomeStore.espera');
 
   @override
   Future<Null> espera() {
     return _$esperaAsyncAction.run(() => super.espera());
-  }
-
-  final _$summaryAsyncAction = AsyncAction('_HomeStore.summary');
-
-  @override
-  Future<void> summary() {
-    return _$summaryAsyncAction.run(() => super.summary());
-  }
-
-  final _$userAsyncAction = AsyncAction('_HomeStore.user');
-
-  @override
-  Future<void> user() {
-    return _$userAsyncAction.run(() => super.user());
-  }
-
-  final _$petsAsyncAction = AsyncAction('_HomeStore.pets');
-
-  @override
-  Future<void> pets() {
-    return _$petsAsyncAction.run(() => super.pets());
-  }
-
-  final _$bookingsAsyncAction = AsyncAction('_HomeStore.bookings');
-
-  @override
-  Future<void> bookings() {
-    return _$bookingsAsyncAction.run(() => super.bookings());
-  }
-
-  final _$refreshAsyncAction = AsyncAction('_HomeStore.refresh');
-
-  @override
-  Future<Null> refresh() {
-    return _$refreshAsyncAction.run(() => super.refresh());
-  }
-
-  final _$deleteBookingAsyncAction = AsyncAction('_HomeStore.deleteBooking');
-
-  @override
-  Future<void> deleteBooking(dynamic id) {
-    return _$deleteBookingAsyncAction.run(() => super.deleteBooking(id));
   }
 
   final _$volverVoidAsyncAction = AsyncAction('_HomeStore.volverVoid');
@@ -140,38 +422,18 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$volverVoidAsyncAction.run(() => super.volverVoid(context));
   }
 
-  final _$reservaVoidAsyncAction = AsyncAction('_HomeStore.reservaVoid');
+  final _$refreshAsyncAction = AsyncAction('_HomeStore.refresh');
 
   @override
-  Future<void> reservaVoid(BuildContext context) {
-    return _$reservaVoidAsyncAction.run(() => super.reservaVoid(context));
+  Future<Null> refresh() {
+    return _$refreshAsyncAction.run(() => super.refresh());
   }
 
-  final _$agregarMascotaVoidAsyncAction =
-      AsyncAction('_HomeStore.agregarMascotaVoid');
+  final _$summaryAsyncAction = AsyncAction('_HomeStore.summary');
 
   @override
-  Future<void> agregarMascotaVoid(BuildContext context) {
-    return _$agregarMascotaVoidAsyncAction
-        .run(() => super.agregarMascotaVoid(context));
-  }
-
-  final _$detalleMascotaVoidAsyncAction =
-      AsyncAction('_HomeStore.detalleMascotaVoid');
-
-  @override
-  Future<void> detalleMascotaVoid(BuildContext context, dynamic id) {
-    return _$detalleMascotaVoidAsyncAction
-        .run(() => super.detalleMascotaVoid(context, id));
-  }
-
-  final _$detalleReservadoVoidAsyncAction =
-      AsyncAction('_HomeStore.detalleReservadoVoid');
-
-  @override
-  Future<void> detalleReservadoVoid(BuildContext context, dynamic atencion) {
-    return _$detalleReservadoVoidAsyncAction
-        .run(() => super.detalleReservadoVoid(context, atencion));
+  Future<void> summary() {
+    return _$summaryAsyncAction.run(() => super.summary());
   }
 
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
@@ -182,6 +444,17 @@ mixin _$HomeStore on _HomeStore, Store {
         name: '_HomeStore.setStopLoading');
     try {
       return super.setStopLoading();
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void volver(BuildContext context) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.volver');
+    try {
+      return super.volver(context);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -210,22 +483,156 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void volver(BuildContext context) {
-    final _$actionInfo =
-        _$_HomeStoreActionController.startAction(name: '_HomeStore.volver');
+  void eliminaAtencionToHome(
+      BuildContext context, dynamic id, dynamic scaffoldKey) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.eliminaAtencionToHome');
     try {
-      return super.volver(context);
+      return super.eliminaAtencionToHome(context, id, scaffoldKey);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void reservar(BuildContext context) {
-    final _$actionInfo =
-        _$_HomeStoreActionController.startAction(name: '_HomeStore.reservar');
+  void detalleReservado(BuildContext context, dynamic atencion) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.detalleReservado');
     try {
-      return super.reservar(context);
+      return super.detalleReservado(context, atencion);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void reservarGo(BuildContext context) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.reservarGo');
+    try {
+      return super.reservarGo(context);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMascotaIdPet(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setMascotaIdPet');
+    try {
+      return super.setMascotaIdPet(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMascotaNombre(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setMascotaNombre');
+    try {
+      return super.setMascotaNombre(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMascotaFecha(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setMascotaFecha');
+    try {
+      return super.setMascotaFecha(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMascotaEspecie(int value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setMascotaEspecie');
+    try {
+      return super.setMascotaEspecie(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMascotaRaza(int value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setMascotaRaza');
+    try {
+      return super.setMascotaRaza(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setMascotaGenero(int value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setMascotaGenero');
+    try {
+      return super.setMascotaGenero(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void verMiMascota(dynamic id) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.verMiMascota');
+    try {
+      return super.verMiMascota(id);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void mascotaAdd(dynamic foto, BuildContext context, dynamic scaffoldKey) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.mascotaAdd');
+    try {
+      return super.mascotaAdd(foto, context, scaffoldKey);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void mascotaEdit(dynamic foto, BuildContext context, dynamic scaffoldKey) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.mascotaEdit');
+    try {
+      return super.mascotaEdit(foto, context, scaffoldKey);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void eliminaMascota(BuildContext context, dynamic id) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.eliminaMascota');
+    try {
+      return super.eliminaMascota(context, id);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void falleceMascota(
+      BuildContext context, MascotaModel mascota, bool fallecido) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.falleceMascota');
+    try {
+      return super.falleceMascota(context, mascota, fallecido);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -254,11 +661,110 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void detalleReservado(BuildContext context, dynamic atencion) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.detalleReservado');
+  void setFecha(String value) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.setFecha');
     try {
-      return super.detalleReservado(context, atencion);
+      return super.setFecha(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setHora(String value) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.setHora');
+    try {
+      return super.setHora(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEstablecimiento(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setEstablecimiento');
+    try {
+      return super.setEstablecimiento(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPetReserva(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setPetReserva');
+    try {
+      return super.setPetReserva(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setReserva(String value) {
+    final _$actionInfo =
+        _$_HomeStoreActionController.startAction(name: '_HomeStore.setReserva');
+    try {
+      return super.setReserva(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setObservacion(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setObservacion');
+    try {
+      return super.setObservacion(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setConDelivery(bool value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setConDelivery');
+    try {
+      return super.setConDelivery(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDelivery(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setDelivery');
+    try {
+      return super.setDelivery(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDireccion(String value) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.setDireccion');
+    try {
+      return super.setDireccion(value);
+    } finally {
+      _$_HomeStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void reservarAtencion(BuildContext context, dynamic scaffoldKey) {
+    final _$actionInfo = _$_HomeStoreActionController.startAction(
+        name: '_HomeStore.reservarAtencion');
+    try {
+      return super.reservarAtencion(context, scaffoldKey);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -268,11 +774,37 @@ mixin _$HomeStore on _HomeStore, Store {
   String toString() {
     return '''
 usuario: ${usuario},
-mascotas: ${mascotas},
-atenciones: ${atenciones},
 loading: ${loading},
+atenciones: ${atenciones},
+mascotas: ${mascotas},
+miPet: ${miPet},
+miMascota: ${miMascota},
+cargandoMiPet: ${cargandoMiPet},
+mascotaIdpet: ${mascotaIdpet},
+mascotaNombre: ${mascotaNombre},
+fechaMascota: ${fechaMascota},
+especieMascotaID: ${especieMascotaID},
+razaMascotaID: ${razaMascotaID},
+generoMascota: ${generoMascota},
+fecha: ${fecha},
+hora: ${hora},
+establecimientoId: ${establecimientoId},
+mascotaId: ${mascotaId},
+reservaId: ${reservaId},
+observacion: ${observacion},
+conDelivery: ${conDelivery},
+deliveryTipo: ${deliveryTipo},
+deliveryDireccion: ${deliveryDireccion},
 sinAtenciones: ${sinAtenciones},
-sinMascotas: ${sinMascotas}
+sinDatos: ${sinDatos},
+sinNombreMascota: ${sinNombreMascota},
+sinFechaMascota: ${sinFechaMascota},
+sinMascotas: ${sinMascotas},
+fechaTime: ${fechaTime},
+fechaTimeAt: ${fechaTimeAt},
+hasFechaHora: ${hasFechaHora},
+isDateOk: ${isDateOk},
+isDeliveryOk: ${isDeliveryOk}
     ''';
   }
 }

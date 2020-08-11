@@ -14,11 +14,13 @@ class Atenciones extends StatefulWidget {
 
 class _AtencionesState extends State<Atenciones> {
   HomeStore homeStore;
+  // Booking bookingStore;
 
   @override
   void initState() {
     super.initState();
     homeStore = GetIt.I.get<HomeStore>();
+    // bookingStore = GetIt.I.get<Booking>();
   }
 
   @override
@@ -26,7 +28,7 @@ class _AtencionesState extends State<Atenciones> {
     super.dispose();
   }
 
-  _reservar() => homeStore.reservar(context);
+  _reservar() => homeStore.reservarGo(context);
   _agregarMascota() => homeStore.agregarMascota(context);
   _deleteBooking(id) => homeStore.eliminaAtencion(context, id);
   _detalleReservado(atencion) => homeStore.detalleReservado(context, atencion);
@@ -37,9 +39,7 @@ class _AtencionesState extends State<Atenciones> {
     return homeStore.loading
         ? Container(
             width: double.infinity,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
+            child: Center(child: CircularProgressIndicator()),
           )
         : homeStore.sinAtenciones
             ? FadeIn(

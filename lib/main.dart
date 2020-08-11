@@ -20,6 +20,7 @@ void main() async {
   GetIt getIt = GetIt.I;
   getIt.registerSingleton<PushStore>(PushStore());
   getIt.registerSingleton<HomeStore>(HomeStore());
+  // getIt.registerSingleton<Booking>(Booking());
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
 }
@@ -35,9 +36,13 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     final homeStore = GetIt.I.get<HomeStore>();
+    final pushStore = GetIt.I.get<PushStore>();
+
     loginStore.evaluaIngreso();
+
     if (loginStore.rutaInicio == 'navInicio') {
-      homeStore.getSummary(); //ejecuto datos de pagina home
+      pushStore.firebase(); //TODO: ejecuta firebase
+      homeStore.getSummary();
     }
   }
 
