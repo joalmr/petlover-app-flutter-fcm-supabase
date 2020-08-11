@@ -95,7 +95,6 @@ class _Data extends State<DataReserva> {
   void initState() {
     homeStore = GetIt.I.get<HomeStore>();
 
-    // print(resarvaId);
     _inputDireccionController.text = _prefs.myAddress;
     //
     homeStore.setDireccion(_prefs.myAddress);
@@ -103,7 +102,6 @@ class _Data extends State<DataReserva> {
     homeStore.setEstablecimiento(establecimientoID);
     homeStore.setPetReserva(mascotaID);
     homeStore.setConDelivery(delivery);
-// this.establecimientoID, this.misMascotas, this.mascotaID, this.establecimientoName, this.delivery
 
     if (_prefs.myAddressLatLng.toString().trim() != "") {
       setState(() {
@@ -258,7 +256,7 @@ class _Data extends State<DataReserva> {
                     enableInteractiveSelection: false,
                     controller: _inputObservacioController,
                     textCapitalization: TextCapitalization.sentences,
-                    maxLength: 250,
+                    // maxLength: 250,
                     keyboardType: TextInputType.multiline,
                     cursorColor: colorMain,
                     decoration: InputDecoration(hintText: 'Ingrese observación (opcional)'),
