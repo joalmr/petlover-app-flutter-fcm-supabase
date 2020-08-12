@@ -36,8 +36,8 @@ class _MascotasState extends State<Mascotas> {
     super.dispose();
   }
 
-  _agregarMascota() => homeStore.agregarMascota(context);
-  _detalleMascota(id) => homeStore.detalleMascota(context, id);
+  _agregarMascota() => homeStore.agregarMascota();
+  _detalleMascota(id) => homeStore.detalleMascota(id);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/provider/home_store.dart';
@@ -52,53 +53,26 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
     return Column(
       children: <Widget>[
         SizedBox(height: 40.0),
-        Text(
-          mascota.name,
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 24.0,
-            letterSpacing: 3.0,
-            color: Theme.of(context).textTheme.subtitle2.color,
-          ),
-        ),
+        Text(mascota.name,
+            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 24.0, letterSpacing: 3.0, color: Theme.of(context).textTheme.subtitle2.color)),
         SizedBox(height: 20.0),
         Divider(),
         ListTile(
             leading: Icon(Icons.edit, color: Theme.of(context).textTheme.subtitle2.color),
-            title: Text(
-              'Editar datos',
-              style: TextStyle(fontWeight: FontWeight.w400),
-            ),
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => MascotaEditarPage(mascotaData: mascota),
-                ))),
+            title: Text('Editar datos', style: TextStyle(fontWeight: FontWeight.w400)),
+            onTap: () => Get.to(MascotaEditarPage(mascotaData: mascota))),
         ListTile(
-          leading: Icon(
-            Icons.bookmark,
-            color: Theme.of(context).textTheme.subtitle2.color,
-          ),
-          title: Text(
-            'Fallecido',
-            style: TextStyle(fontWeight: FontWeight.w400),
-          ),
-          onTap: () => showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return (mascota.status != 0) ? _fallecido() : _errorFallecido();
-              }),
-        ),
+            leading: Icon(Icons.bookmark, color: Theme.of(context).textTheme.subtitle2.color),
+            title: Text('Fallecido', style: TextStyle(fontWeight: FontWeight.w400)),
+            onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return (mascota.status != 0) ? _fallecido() : _errorFallecido();
+                })),
         ListTile(
             leading: Icon(Icons.delete_forever, color: colorRed),
-            title: Text(
-              'Eliminar mascota',
-              style: TextStyle(color: colorRed, fontWeight: FontWeight.w400),
-            ),
-            onTap: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) => _eliminar(),
-                ))
+            title: Text('Eliminar mascota', style: TextStyle(color: colorRed, fontWeight: FontWeight.w400)),
+            onTap: () => showDialog(context: context, builder: (BuildContext context) => _eliminar()))
       ],
     );
   }
@@ -111,9 +85,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         title: Text('Eliminar'),
         content: Text('Seguro que desea eliminar a ${mascota.name}?'),
         actions: <Widget>[
-          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
+          FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
           FlatButton(
-              onPressed: () => homeStore.eliminaMascota(context, mascota.id),
+              onPressed: () => homeStore.eliminaMascota(mascota.id),
               child: Text('Sí, eliminar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
         ],
       ),
@@ -128,9 +102,9 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         title: null, //Text('Fallecido'),
         content: Text('Lamentamos la perdida de tu ser querido.'),
         actions: <Widget>[
-          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
+          FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
           FlatButton(
-              onPressed: () => homeStore.falleceMascota(context, mascota, true),
+              onPressed: () => homeStore.falleceMascota(mascota, true),
               child: Text('Falleció mi mascota', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
         ],
       ),
@@ -143,9 +117,12 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
         title: null, //Text('Fallecido'),
         content: Text('Cometiste un error?'),
         actions: <Widget>[
-          FlatButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
           FlatButton(
-              onPressed: () => homeStore.falleceMascota(context, mascota, false),
+            onPressed: () => Get.back(),
+            child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+          ),
+          FlatButton(
+              onPressed: () => homeStore.falleceMascota(mascota, false),
               child: Text('Sí, cometí un error', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain))),
         ],
       ),

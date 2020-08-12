@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/geocoding.dart';
@@ -283,7 +284,8 @@ class _Data extends State<DataReserva> {
             ),
             buttonPri('Confirmar reserva', clickReservar ? _reservaDialog : null),
             SizedBox(height: 7.5),
-            buttonFlat("Cancelar", () => Navigator.of(context).pop(), colorMain),
+            buttonFlat("Cancelar", () => Get.back(), colorMain),
+            // Navigator.of(context).pop(), colorMain),
           ],
         ),
       ),
@@ -445,7 +447,8 @@ class _Data extends State<DataReserva> {
                       _time(),
                       FlatButton(
                         child: new Text("Cerrar"),
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () => Get.back(),
+                        // Navigator.of(context).pop(),
                       ),
                     ],
                   ))),
@@ -482,7 +485,7 @@ class _Data extends State<DataReserva> {
     );
   }
 
-  _reservaDialog() => homeStore.reservarAtencion(context, scaffoldKey);
+  _reservaDialog() => homeStore.reservarAtencion();
 
 ///////////////////////////////////////////////////
   searchandNavigate(Prediction2 dato) async {

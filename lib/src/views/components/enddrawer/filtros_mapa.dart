@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/maps/address.dart';
@@ -33,9 +34,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              boxShadow: [BoxShadow(color: Colors.black45)]),
+          decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
@@ -55,8 +54,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       height: 10,
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(1)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(1)) ? true : false, //petReq.genre,
                       title: Text('Baños / Grooming'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -67,8 +65,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(3)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(3)) ? true : false, //petReq.genre,
                       title: Text('Cirugía'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -79,8 +76,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(2)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(2)) ? true : false, //petReq.genre,
                       title: Text('Consulta'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -91,8 +87,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(11)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(11)) ? true : false, //petReq.genre,
                       title: Text('Desparasitación'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -103,8 +98,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(12)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(12)) ? true : false, //petReq.genre,
                       title: Text('Ecografía'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -115,8 +109,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(6)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(6)) ? true : false, //petReq.genre,
                       title: Text('Electrocardiograma'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -127,8 +120,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(8)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(8)) ? true : false, //petReq.genre,
                       title: Text('Emergencia 24 horas'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -139,8 +131,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(15)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(15)) ? true : false, //petReq.genre,
                       title: Text('Farmacia'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -151,8 +142,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(9)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(9)) ? true : false, //petReq.genre,
                       title: Text('Hospedaje'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -163,8 +153,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(16)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(16)) ? true : false, //petReq.genre,
                       title: Text('Hospitalización'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -175,8 +164,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(7)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(7)) ? true : false, //petReq.genre,
                       title: Text('Laboratorio'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -187,8 +175,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(5)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(5)) ? true : false, //petReq.genre,
                       title: Text('Movilidad'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -199,8 +186,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(10)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(10)) ? true : false, //petReq.genre,
                       title: Text('Petshop'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -211,8 +197,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(13)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(13)) ? true : false, //petReq.genre,
                       title: Text('Rayos x'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -223,8 +208,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(14)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(14)) ? true : false, //petReq.genre,
                       title: Text('Resonancia'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -235,8 +219,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
                       }),
                     ),
                     SwitchListTile(
-                      value:
-                          (filtros.contains(4)) ? true : false, //petReq.genre,
+                      value: (filtros.contains(4)) ? true : false, //petReq.genre,
                       title: Text('Vacuna'),
                       activeColor: colorMain,
                       onChanged: (value) => setState(() {
@@ -265,8 +248,7 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
       // suggestionsHeight: 100.0,
       maxSuggestions: 5,
       onSearch: (filter) async {
-        var response = await http.get(
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
         var models = addressFromJson(response.body);
         return models.predictions;
       },
@@ -275,17 +257,16 @@ class _FiltrosMapaState extends State<FiltrosMapa> {
         searchandNavigate(data);
       },
       resetIcon: null,
-      itemBuilder: (context, address) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-          child: Text(address.name,
-              style: TextStyle(fontWeight: FontWeight.bold))),
+      itemBuilder: (context, address) =>
+          Padding(padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0), child: Text(address.name, style: TextStyle(fontWeight: FontWeight.bold))),
     );
   }
 
   filtrar() {
-    Navigator.pushNamedAndRemoveUntil(
-        context, 'navLista', ModalRoute.withName("navLista"),
-        arguments: {"filtros": filtros});
+    Get.offNamed('navLista', arguments: {"filtros": filtros});
+    // Navigator.pushNamedAndRemoveUntil(
+    //     context, 'navLista', ModalRoute.withName("navLista"),
+    //     arguments: {"filtros": filtros});
   }
 
   searchandNavigate(dato) {

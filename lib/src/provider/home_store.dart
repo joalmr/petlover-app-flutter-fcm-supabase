@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
@@ -40,14 +40,15 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  void volver(BuildContext context) {
-    volverVoid(context);
+  void volver() {
+    // volverVoid();
+    Get.back();
   }
 
-  @action
-  Future<void> volverVoid(BuildContext context) async {
-    Navigator.pop(context);
-  }
+  // @action
+  // Future<void> volverVoid() async {
+  //   Get.back();
+  // }
   /* fin comunes */
 
 //////////////////////////////////////////////////////
@@ -98,10 +99,10 @@ abstract class _HomeStore with Store {
   bool get sinAtenciones => atenciones.length == 0;
 
   @action
-  void eliminaAtencion(BuildContext context, id) {
+  void eliminaAtencion(id) {
     deleteBooking(id);
     loading = false;
-    volver(context);
+    volver();
   }
 
   Future<void> deleteBooking(id) async {
@@ -112,39 +113,39 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  void eliminaAtencionToHome(BuildContext context, id, scaffoldKey) {
-    deleteBookingToHome(context, id, scaffoldKey);
+  void eliminaAtencionToHome(id) {
+    deleteBookingToHome(id);
     loading = false;
   }
 
-  Future<void> deleteBookingToHome(BuildContext context, id, scaffoldKey) async {
+  Future<void> deleteBookingToHome(id) async {
     var resp = await bookingProvider.deleteBooking(id);
     print('elimina..');
     print(resp);
     if (resp) {
       getSummary();
-      Navigator.pushNamedAndRemoveUntil(context, '/nav', ModalRoute.withName('/nav'));
+      await Get.offAllNamed('navInicio');
     } else {
-      mostrarSnackbar("No se eliminó la atención", colorRed, scaffoldKey);
+      mostrarSnackbar("No se eliminó la atención", colorRed);
     }
   }
 
   @action
-  void detalleReservado(BuildContext context, atencion) {
-    detalleReservadoVoid(context, atencion);
+  void detalleReservado(atencion) {
+    detalleReservadoVoid(atencion);
   }
 
-  Future<void> detalleReservadoVoid(BuildContext context, atencion) async {
-    Navigator.pushNamed(context, 'detallereservado', arguments: atencion);
+  Future<void> detalleReservadoVoid(atencion) async {
+    await Get.toNamed('detallereservado', arguments: atencion);
   }
 
   @action
-  void reservarGo(BuildContext context) {
-    reservaVoid(context);
+  void reservarGo() {
+    reservaVoid();
   }
 
-  Future<void> reservaVoid(BuildContext context) async {
-    Navigator.pushNamed(context, 'navLista');
+  Future<void> reservaVoid() async {
+    await Get.toNamed('navLista');
   }
   /* fin atenciones */
 
@@ -162,10 +163,6 @@ abstract class _HomeStore with Store {
 
   @observable
   bool cargandoMiPet = true;
-  // @observable
-  // bool loadingPet = false;
-  // @action
-  // void setCargaPet(bool value) => loadingPet = value;
 
   @observable
   String mascotaIdpet = '';
@@ -221,16 +218,16 @@ abstract class _HomeStore with Store {
   }
 
   @action
-  void mascotaAdd(foto, BuildContext context, scaffoldKey) {
-    mascotaAddVoid(foto, context, scaffoldKey);
+  void mascotaAdd(foto) {
+    mascotaAddVoid(foto);
   }
 
-  Future<void> mascotaAddVoid(foto, BuildContext context, scaffoldKey) async {
+  Future<void> mascotaAddVoid(foto) async {
     if (sinDatos) {
-      mostrarSnackbar('Ingrese datos de la mascota.', colorRed, scaffoldKey);
+      mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
     } else if (sinNombreMascota || sinFechaMascota) {
-      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed, scaffoldKey);
-      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed, scaffoldKey);
+      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
+      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
     } else {
       MascotaModel mascotaData = new MascotaModel();
       mascotaData.name = mascotaNombre;
@@ -238,29 +235,28 @@ abstract class _HomeStore with Store {
       mascotaData.genre = generoMascota;
       mascotaData.specieId = especieMascotaID;
       mascotaData.breedId = razaMascotaID;
-      // print(mascotaData);
+
       Map resp = await mascotaProvider.savePet(mascotaData, foto);
       if (resp['ok']) {
         getSummary();
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => ThxPage(CachedNetworkImageProvider(resp['petImg']), thxPet[Random().nextInt(thxPet.length)])));
+        await Get.to(ThxPage(CachedNetworkImageProvider(resp['petImg']), thxPet[Random().nextInt(thxPet.length)]));
       } else {
-        mostrarSnackbar('Oops, intentalo más tarde.', colorRed, scaffoldKey);
+        mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
       }
     }
   }
 
   @action
-  void mascotaEdit(foto, BuildContext context, scaffoldKey) {
-    mascotaEditVoid(foto, context, scaffoldKey);
+  void mascotaEdit(foto) {
+    mascotaEditVoid(foto);
   }
 
-  Future<void> mascotaEditVoid(foto, BuildContext context, scaffoldKey) async {
+  Future<void> mascotaEditVoid(foto) async {
     if (sinDatos) {
-      mostrarSnackbar('Ingrese datos de la mascota.', colorRed, scaffoldKey);
+      mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
     } else if (sinNombreMascota || sinFechaMascota) {
-      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed, scaffoldKey);
-      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed, scaffoldKey);
+      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
+      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
     } else {
       MascotaModel mascotaData = new MascotaModel();
       mascotaData.id = mascotaIdpet;
@@ -274,46 +270,52 @@ abstract class _HomeStore with Store {
       if (resp) {
         verMiMascota(mascotaData.id);
         getSummary();
-        Navigator.pop(context);
-        Navigator.pop(context);
+        Get.back();
+        Get.back();
+        // Navigator.pop(context);
+        // Navigator.pop(context);
       } else {
-        mostrarSnackbar('Oops, intentalo más tarde.', colorRed, scaffoldKey);
+        mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
       }
     }
   }
 
   @action
-  void eliminaMascota(BuildContext context, id) {
-    eliminaMascotaVoid(context, id);
+  void eliminaMascota(id) {
+    eliminaMascotaVoid(id);
   }
 
-  Future<void> eliminaMascotaVoid(BuildContext context, id) async {
+  Future<void> eliminaMascotaVoid(id) async {
     bool resp = await mascotaProvider.deletePet(id);
     if (resp) {
       getSummary();
-      Navigator.pushNamedAndRemoveUntil(context, 'navInicio', ModalRoute.withName('navInicio'));
+      Get.offAllNamed('navInicio');
+      // Navigator.pushNamedAndRemoveUntil(context, 'navInicio', ModalRoute.withName('navInicio'));
     } else
-      Navigator.pop(context);
+      Get.back();
+    // Navigator.pop(context);
   }
 
   @action
-  void falleceMascota(BuildContext context, MascotaModel mascota, bool fallecido) {
+  void falleceMascota(MascotaModel mascota, bool fallecido) {
     mascota.status = 0;
     if (!fallecido) {
       mascota.status = 1;
     }
 
-    falleceMascotaVoid(context, mascota);
+    falleceMascotaVoid(mascota);
   }
 
-  Future<void> falleceMascotaVoid(BuildContext context, MascotaModel mascota) async {
+  Future<void> falleceMascotaVoid(MascotaModel mascota) async {
     bool resp = await mascotaProvider.muerePet(mascota);
     if (resp) {
       verMiMascota(mascota.id);
-      Navigator.pop(context);
-      Navigator.pop(context);
+      Get.back();
+      // Navigator.pop(context);
+      // Navigator.pop(context);
     } else
-      Navigator.pop(context);
+      Get.back();
+    // Navigator.pop(context);
   }
 
 ////
@@ -322,21 +324,21 @@ abstract class _HomeStore with Store {
   bool get sinMascotas => mascotas.length == 0;
 
   @action
-  void agregarMascota(BuildContext context) {
-    agregarMascotaVoid(context);
+  void agregarMascota() {
+    agregarMascotaVoid();
   }
 
-  Future<void> agregarMascotaVoid(BuildContext context) async {
-    Navigator.pushNamed(context, 'agregarmascota');
+  Future<void> agregarMascotaVoid() async {
+    await Get.toNamed('agregarmascota');
   }
 
   @action
-  void detalleMascota(BuildContext context, id) {
-    detalleMascotaVoid(context, id);
+  void detalleMascota(id) {
+    detalleMascotaVoid(id);
   }
 
-  Future<void> detalleMascotaVoid(BuildContext context, id) async {
-    Navigator.pushNamed(context, 'detallemascota', arguments: id);
+  Future<void> detalleMascotaVoid(id) async {
+    await Get.toNamed('detallemascota', arguments: id);
   }
   /* fin mascotas */
 
@@ -430,34 +432,34 @@ abstract class _HomeStore with Store {
   // '' quiza en vez de null
 
   @action
-  void reservarAtencion(BuildContext context, scaffoldKey) {
-    reservarBooking(context, scaffoldKey);
+  void reservarAtencion() {
+    reservarBooking();
   }
 
-  void reservarBooking(BuildContext context, scaffoldKey) {
+  void reservarBooking() {
     if (hasFechaHora) {
       //bla bla
-      mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed, scaffoldKey);
+      mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed);
     } else {
       if (!isDateOk) {
         //bla bla
-        mostrarSnackbar('La hora debe ser mayor', colorRed, scaffoldKey);
+        mostrarSnackbar('La hora debe ser mayor', colorRed);
       } else {
         if (hasDelivery) {
           if (!isDeliveryOk) {
             //blabla
-            mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed, scaffoldKey);
+            mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed);
           } else {
-            ejecutaReserva(context);
+            ejecutaReserva();
           }
         } else {
-          ejecutaReserva(context);
+          ejecutaReserva();
         }
       }
     }
   }
 
-  Future<void> ejecutaReserva(BuildContext context) async {
+  Future<void> ejecutaReserva() async {
     BookingModel booking = BookingModel();
     booking.bookingAt = fechaTimeAt;
     booking.establishmentId = establecimientoId;
@@ -467,8 +469,12 @@ abstract class _HomeStore with Store {
     bool resp = await bookingProvider.booking(booking, deliveryTipo, deliveryDireccion);
     if (resp) {
       getSummary();
-      MascotaProvider().getPet(mascotaId).then((value) => Navigator.push(
-          context, MaterialPageRoute(builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)]))));
+      MascotaProvider()
+          .getPet(mascotaId)
+          .then((value) => Get.to(ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)])));
+
+      //  Navigator.push(
+      //     context, MaterialPageRoute(builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)]))));
     }
   }
 //////////////////////////////////////////////////////

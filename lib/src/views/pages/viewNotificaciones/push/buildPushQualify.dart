@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/antecion/atencion_model.dart';
 import 'package:proypet/src/services/atencion_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -72,28 +73,20 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
           SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: textfieldArea(_inputComentController,
-                "Ingrese comentario de la atención recibida", 250, 3),
+            child: textfieldArea(_inputComentController, "Ingrese comentario de la atención recibida", 250, 3),
           ),
           Row(
             // crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FlatButton(
-                child: Text('Omitir',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        .apply(fontWeightDelta: 2)),
-                onPressed: () => Navigator.of(context).pop(),
+                child: Text('Omitir', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                onPressed: () => Get.back(),
+                // Navigator.of(context).pop(),
               ),
               FlatButton(
-                child: Text('Calificar',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        .apply(fontWeightDelta: 2, color: colorMain)),
-                onPressed: () => _onRate(), // => Navigator.of(context).pop(),
+                child: Text('Calificar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain)),
+                onPressed: () => _onRate(),
               ),
             ],
           ),
@@ -115,36 +108,28 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
     // bool resp = await atencionProvider.calificar(atencion);
 
     if (resp) {
-      Navigator.pop(context);
+      // Navigator.pop(context);
+      Get.back();
       showDialog(
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
                   // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  content: Container(
-                      height: 100.0,
-                      child: Center(
-                          child: Text('Se calificó la atención.',
-                              style: TextStyle(fontSize: 14.0)))),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  content: Container(height: 100.0, child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: true);
     } else {
-      Navigator.pop(context);
+      // Navigator.pop(context);
+      Get.back();
       showDialog(
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
                   // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  content: Container(
-                      height: 100.0,
-                      child: Center(
-                          child: Text('No se calificó la atención.',
-                              style: TextStyle(fontSize: 14.0)))),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  content: Container(height: 100.0, child: Center(child: Text('No se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: true);

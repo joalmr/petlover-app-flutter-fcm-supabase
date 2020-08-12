@@ -28,11 +28,11 @@ class _AtencionesState extends State<Atenciones> {
     super.dispose();
   }
 
-  _reservar() => homeStore.reservarGo(context);
-  _agregarMascota() => homeStore.agregarMascota(context);
-  _deleteBooking(id) => homeStore.eliminaAtencion(context, id);
-  _detalleReservado(atencion) => homeStore.detalleReservado(context, atencion);
-  _volver() => homeStore.volver(context);
+  _reservar() => homeStore.reservarGo();
+  _agregarMascota() => homeStore.agregarMascota();
+  _deleteBooking(id) => homeStore.eliminaAtencion(id);
+  _detalleReservado(atencion) => homeStore.detalleReservado(atencion);
+  _volver() => homeStore.volver();
 
   @override
   Widget build(BuildContext context) {

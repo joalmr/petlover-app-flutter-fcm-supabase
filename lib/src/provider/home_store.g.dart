@@ -422,13 +422,6 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$esperaAsyncAction.run(() => super.espera());
   }
 
-  final _$volverVoidAsyncAction = AsyncAction('_HomeStore.volverVoid');
-
-  @override
-  Future<void> volverVoid(BuildContext context) {
-    return _$volverVoidAsyncAction.run(() => super.volverVoid(context));
-  }
-
   final _$refreshAsyncAction = AsyncAction('_HomeStore.refresh');
 
   @override
@@ -457,11 +450,11 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void volver(BuildContext context) {
+  void volver() {
     final _$actionInfo =
         _$_HomeStoreActionController.startAction(name: '_HomeStore.volver');
     try {
-      return super.volver(context);
+      return super.volver();
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -479,45 +472,44 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void eliminaAtencion(BuildContext context, dynamic id) {
+  void eliminaAtencion(dynamic id) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.eliminaAtencion');
     try {
-      return super.eliminaAtencion(context, id);
+      return super.eliminaAtencion(id);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void eliminaAtencionToHome(
-      BuildContext context, dynamic id, dynamic scaffoldKey) {
+  void eliminaAtencionToHome(dynamic id) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.eliminaAtencionToHome');
     try {
-      return super.eliminaAtencionToHome(context, id, scaffoldKey);
+      return super.eliminaAtencionToHome(id);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void detalleReservado(BuildContext context, dynamic atencion) {
+  void detalleReservado(dynamic atencion) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.detalleReservado');
     try {
-      return super.detalleReservado(context, atencion);
+      return super.detalleReservado(atencion);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void reservarGo(BuildContext context) {
+  void reservarGo() {
     final _$actionInfo =
         _$_HomeStoreActionController.startAction(name: '_HomeStore.reservarGo');
     try {
-      return super.reservarGo(context);
+      return super.reservarGo();
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -601,67 +593,66 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void mascotaAdd(dynamic foto, BuildContext context, dynamic scaffoldKey) {
+  void mascotaAdd(dynamic foto) {
     final _$actionInfo =
         _$_HomeStoreActionController.startAction(name: '_HomeStore.mascotaAdd');
     try {
-      return super.mascotaAdd(foto, context, scaffoldKey);
+      return super.mascotaAdd(foto);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void mascotaEdit(dynamic foto, BuildContext context, dynamic scaffoldKey) {
+  void mascotaEdit(dynamic foto) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.mascotaEdit');
     try {
-      return super.mascotaEdit(foto, context, scaffoldKey);
+      return super.mascotaEdit(foto);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void eliminaMascota(BuildContext context, dynamic id) {
+  void eliminaMascota(dynamic id) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.eliminaMascota');
     try {
-      return super.eliminaMascota(context, id);
+      return super.eliminaMascota(id);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void falleceMascota(
-      BuildContext context, MascotaModel mascota, bool fallecido) {
+  void falleceMascota(MascotaModel mascota, bool fallecido) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.falleceMascota');
     try {
-      return super.falleceMascota(context, mascota, fallecido);
+      return super.falleceMascota(mascota, fallecido);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void agregarMascota(BuildContext context) {
+  void agregarMascota() {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.agregarMascota');
     try {
-      return super.agregarMascota(context);
+      return super.agregarMascota();
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void detalleMascota(BuildContext context, dynamic id) {
+  void detalleMascota(dynamic id) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.detalleMascota');
     try {
-      return super.detalleMascota(context, id);
+      return super.detalleMascota(id);
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -767,11 +758,11 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void reservarAtencion(BuildContext context, dynamic scaffoldKey) {
+  void reservarAtencion() {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.reservarAtencion');
     try {
-      return super.reservarAtencion(context, scaffoldKey);
+      return super.reservarAtencion();
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }

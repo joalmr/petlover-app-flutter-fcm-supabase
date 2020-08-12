@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 import 'package:proypet/src/models/notificacion/tip_model.dart';
 import 'package:proypet/src/services/establecimiento_provider.dart';
@@ -30,8 +31,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
 
-  Future<NotificacionModel> newFuture() =>
-      notificacionProvider.getNotificacion();
+  Future<NotificacionModel> newFuture() => notificacionProvider.getNotificacion();
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -71,8 +71,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   _onFuture() {
     return FutureBuilder(
       future: stream, //notificacionProvider.getNotificacion(),
-      builder:
-          (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return LinearProgressIndicator();
         } else {
@@ -87,35 +86,22 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                 height: 355,
                 child: (notification.length < 1)
                     ? Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 20.0),
+                        margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                         child: Card(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Image(
-                                  image: AssetImage('images/noti-img.png'),
-                                  height: 220,
-                                  fit: BoxFit.cover,
-                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                child: Image(image: AssetImage('images/noti-img.png'), height: 220, fit: BoxFit.cover),
                               ),
-                              Expanded(
-                                  child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text("No tienes notificaciones"),
-                              ))
+                              Expanded(child: Padding(padding: const EdgeInsets.all(10.0), child: Text("No tienes notificaciones")))
                             ],
                           ),
                         ),
                       )
-                    :
-                    // FractionPaginationBuilder(
-                    // )
-                    Swiper(
+                    : Swiper(
                         itemCount: notification.length,
                         itemBuilder: (BuildContext context, int index) {
                           return _notificacionCase(notification[index]);
@@ -124,19 +110,10 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                         itemWidth: double.maxFinite,
                         itemHeight: double.maxFinite,
                         physics: BouncingScrollPhysics(),
-                        control: SwiperControl(
-                          size: 20,
-                          color: colorMain,
-                          padding: EdgeInsets.symmetric(horizontal: 0),
-                        ),
-                        // pagination: SwiperPagination(
-                        //   margin: new EdgeInsets.only(
-                        //       top: 15.0, left: 20, right: 20),
-                        //   builder: new DotSwiperPaginationBuilder(
-                        //       activeColor: colorMain,
-                        //       color: Theme.of(context).backgroundColor,
-                        //       activeSize: 8.0,
-                        //       size: 6.0),
+                        // control: SwiperControl(
+                        //   size: 20,
+                        //   color: colorMain,
+                        //   padding: EdgeInsets.symmetric(horizontal: 0),
                         // ),
                       ),
               ),
@@ -153,11 +130,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                   physics: BouncingScrollPhysics(),
                   pagination: new SwiperPagination(
                       margin: new EdgeInsets.only(top: 15.0),
-                      builder: new DotSwiperPaginationBuilder(
-                          activeColor: colorMain,
-                          color: Theme.of(context).backgroundColor,
-                          activeSize: 8.0,
-                          size: 6.0)),
+                      builder: new DotSwiperPaginationBuilder(activeColor: colorMain, color: Theme.of(context).backgroundColor, activeSize: 8.0, size: 6.0)),
                 ),
               ),
             ],
@@ -193,26 +166,19 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   //proxima cita
   _nextDate(Notificacion notification) {
-    return buildNoti(notification,
-        () => _fnEstablecimiento(notification.options["establishment_id"]));
+    return buildNoti(notification, () => _fnEstablecimiento(notification.options["establishment_id"]));
   }
 
   //vacuna, desparasitacion
   _recordatory(Notificacion notification) {
-    return buildNoti(
-        notification, () => _fnRecordatorio(notification.options["slug"]));
+    return buildNoti(notification, () => _fnRecordatorio(notification.options["slug"]));
   }
 
   _fnEstablecimiento(id) async {
     final establecimientoProvider = EstablecimientoProvider();
     Map veterinaria = await establecimientoProvider.getVet(id);
     if (veterinaria['status'] == 200) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                VetDetallePage(vet: veterinaria['establishment']),
-          ));
+      await Get.to(VetDetallePage(vet: veterinaria['establishment']));
     } else {
       showDialog(
           context: context,
@@ -220,17 +186,10 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
             return FadeIn(
               child: SimpleDialog(
                 contentPadding: EdgeInsets.all(20.0),
-                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                 children: <Widget>[
                   SizedBox(height: 10.0),
-                  Text(
-                      'Lo sentimos, esta veterinaria ya no forma parte de proypet'),
-                  Center(
-                    child: Image(
-                        height: 200,
-                        width: 200,
-                        image: AssetImage("images/gato-error.png")),
-                  ),
+                  Text('Lo sentimos, esta veterinaria ya no forma parte de proypet'),
+                  Center(child: Image(height: 200, width: 200, image: AssetImage("images/gato-error.png"))),
                 ],
               ),
             );
@@ -239,7 +198,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   }
 
   _fnRecordatorio(String slug) {
-    Navigator.pushNamed(context, 'navLista', arguments: {
+    Get.toNamed('navLista', arguments: {
       "filtros": [slugNum[slug]]
     });
   }

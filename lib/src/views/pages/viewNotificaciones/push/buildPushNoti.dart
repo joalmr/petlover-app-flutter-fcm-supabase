@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
 
@@ -31,11 +32,11 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
           children: <Widget>[
             FlatButton(
               child: Text('Omitir'),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
             ),
             FlatButton(
               child: Text('Ir'),
-              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
+              onPressed: () => Get.toNamed('navNotifica'),
             ),
           ],
         ));
@@ -46,12 +47,11 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
           children: <Widget>[
             FlatButton(
               child: Text('Omitir'),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
             ),
             FlatButton(
               child: Text('Ir'),
-              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
-              // _fnEstablecimiento(noti['options']['establishment_id']),
+              onPressed: () => Get.toNamed('navNotifica'),
             ),
           ],
         ));
@@ -62,11 +62,11 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
           children: <Widget>[
             FlatButton(
               child: Text('Omitir'),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
             ),
             FlatButton(
               child: Text('Ir'),
-              onPressed: () => Navigator.pushNamed(context, 'navNotifica'),
+              onPressed: () => Get.toNamed('navNotifica'),
             ),
           ],
         ));
@@ -171,7 +171,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
             children: <Widget>[
               FlatButton(
                 child: Text('Omitir'),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => Get.back(),
               ),
             ],
           )
@@ -220,33 +220,4 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
       ),
     );
   }
-
-  // _fnEstablecimiento(id) async {
-  //   final establecimientoProvider = EstablecimientoProvider();
-  //   Map veterinaria = await establecimientoProvider.getVet(id);
-  //   if (veterinaria['status'] == 200) {
-  //     Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) =>
-  //               VetDetallePage(vet: veterinaria['establishment']),
-  //         ));
-  //   } else {
-  //     showDialog(
-  //         context: context,
-  //         builder: (BuildContext context) {
-  //           return FadeIn(
-  //             child: SimpleDialog(
-  //               contentPadding: EdgeInsets.all(20.0),
-  //               children: <Widget>[
-  //                 SizedBox(height: 10.0),
-  //                 Text(
-  //                     'Lo sentimos, esta veterinaria ya no forma parte de proypet'),
-  //               ],
-  //             ),
-  //           );
-  //         });
-  //   }
-  // }
-
 }

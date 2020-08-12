@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -389,8 +390,9 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     }
 
     setState(() => foto = croppedFile);
-    Navigator.pop(context);
+    Get.back();
+    // Navigator.pop(context);
   }
 
-  void _onAdd() => homeStore.mascotaAdd(foto, context, scaffoldKey);
+  void _onAdd() => homeStore.mascotaAdd(foto);
 }

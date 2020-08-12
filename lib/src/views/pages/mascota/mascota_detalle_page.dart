@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/models/mascota/historia_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
@@ -24,7 +25,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
   final mascotaProvider = MascotaProvider();
 
   HomeStore homeStore;
-  bool cargandoBuild = true;
+  // bool cargandoBuild = true;
 
   @override
   void initState() {
@@ -151,7 +152,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
         itemCount: historias.length,
         itemBuilder: (context, int index) {
           return FlatButton(
-            onPressed: () => Navigator.pushNamed(context, 'detallehistoriamascota', arguments: {
+            onPressed: () => Get.toNamed('detallehistoriamascota', arguments: {
               "detalle": historias[index].details,
               "precio": historias[index].amount,
               "proximacita": historias[index].nextdate,

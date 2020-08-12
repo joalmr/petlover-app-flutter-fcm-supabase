@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
@@ -33,8 +34,7 @@ class _ReservaListState extends State<ReservaList> {
   var stream;
   bool filtro = false;
 
-  Future<dynamic> newFuture() =>
-      vetProvider.getVets(listaFiltros); //, _prefs.position
+  Future<dynamic> newFuture() => vetProvider.getVets(listaFiltros); //, _prefs.position
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -72,13 +72,7 @@ class _ReservaListState extends State<ReservaList> {
       appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
         IconButton(
           icon: Icon(Icons.filter_list),
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => FiltraVets(
-                filtros: listaFiltros,
-              ),
-            ),
-          ),
+          onPressed: () => Get.to(FiltraVets(filtros: listaFiltros)),
         ),
       ]),
       body: FutureBuilder(
@@ -92,8 +86,7 @@ class _ReservaListState extends State<ReservaList> {
             } else {
               Map resp = snapshot.data;
               if (resp['code'] == 200)
-                return FadeViewSafeArea(
-                    child: _onTab(resp['establecimientos']));
+                return FadeViewSafeArea(child: _onTab(resp['establecimientos']));
               else
                 return FadeViewSafeArea(
                   child: Padding(
@@ -168,69 +161,13 @@ class _ReservaListState extends State<ReservaList> {
           bottom: 15,
           right: 10,
           child: FloatingActionButton(
-            onPressed: (vetLocales.length == 0)
-                ? null
-                : () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            VetMapaPage(establecimientos: vetLocales),
-                      ),
-                    ),
+            onPressed: (vetLocales.length == 0) ? null : () => Get.to(VetMapaPage(establecimientos: vetLocales)),
             child: Icon(Icons.location_on),
           ),
         ),
       ],
     );
   }
-
-  // _listarChip(dynamic chips) {
-  //   if (chips != null) {
-  //     return SliverToBoxAdapter(
-  //       child: SizedBox(
-  //         height: 35.0,
-  //         child: SingleChildScrollView(
-  //           scrollDirection: Axis.horizontal,
-  //           padding: EdgeInsets.symmetric(horizontal: 20.0),
-  //           child: ListView.builder(
-  //             shrinkWrap: true,
-  //             scrollDirection: Axis.horizontal,
-  //             itemCount: chips.length,
-  //             itemBuilder: (BuildContext context, int index) =>
-  //                 _chip(chips[index]),
-  //           ),
-  //         ),
-  //       ),
-  //     );
-  //   } else {
-  //     return SliverToBoxAdapter(
-  //       child: SizedBox(
-  //         height: 0.0,
-  //       ),
-  //     );
-  //   }
-  // }
-
-  // _chip(int servicio) {
-  //   return Padding(
-  //     padding: const EdgeInsets.symmetric(
-  //       horizontal: 5.0,
-  //     ),
-  //     child: Chip(
-  //       labelStyle: TextStyle(fontSize: , color: Colors.black54),
-  //       labelPadding: EdgeInsets.only(left: 5.0, right: 2.5),
-  //       // padding: EdgeInsets.zero,
-  //       avatar: CircleAvatar(
-  //         radius: 12.5,
-  //         backgroundColor: colorMain, //colorBlue, //Colors.grey.shade800,
-  //         child: Icon(iconNum[servicio], size: sizeSmall, color: Colors.white),
-  //       ),
-  //       label: Text(textMap[servicio],
-  //           style:
-  //               TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
-  //     ),
-  //   );
-  // }
 
   _autocompleteAddress() {
     return SimpleAutocompleteFormField<Prediction2>(
@@ -240,8 +177,7 @@ class _ReservaListState extends State<ReservaList> {
       ),
       maxSuggestions: 3,
       onSearch: (filter) async {
-        var response = await http.get(
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
         var models = addressFromJson(response.body);
         return models.predictions;
       },
@@ -251,10 +187,8 @@ class _ReservaListState extends State<ReservaList> {
         searchandNavigate(data);
       },
       resetIcon: null,
-      itemBuilder: (context, address) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-          child: Text(address.name,
-              style: TextStyle(fontWeight: FontWeight.bold))),
+      itemBuilder: (context, address) =>
+          Padding(padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0), child: Text(address.name, style: TextStyle(fontWeight: FontWeight.bold))),
     );
   }
 

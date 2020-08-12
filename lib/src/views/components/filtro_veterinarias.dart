@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/maps/address.dart';
@@ -33,8 +34,7 @@ class _FiltraVetsState extends State<FiltraVets> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme:
-            IconThemeData(color: Theme.of(context).textTheme.subtitle2.color),
+        iconTheme: IconThemeData(color: Theme.of(context).textTheme.subtitle2.color),
         title: Text(
           'Filtrar veterinarias',
           style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
@@ -60,10 +60,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                         'Ubicación',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .apply(fontWeightDelta: 2),
+                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
                       ),
                     ),
                     _autocompleteAddress(),
@@ -74,10 +71,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                         'Servicios',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .apply(fontWeightDelta: 2),
+                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
                       ),
                     ),
                     Wrap(
@@ -131,9 +125,8 @@ class _FiltraVetsState extends State<FiltraVets> {
   }
 
   filtrar() {
-    Navigator.pushNamedAndRemoveUntil(
-        context, 'navLista', ModalRoute.withName("navInicio"),
-        arguments: {"filtros": filtros});
+    Get.offAllNamed('navLista', arguments: {"filtros": filtros});
+    // Navigator.pushNamedAndRemoveUntil(context, 'navLista', ModalRoute.withName("navInicio"), arguments: {"filtros": filtros});
   }
 
   _servicioFlat(String texto, int numero) {
@@ -142,17 +135,11 @@ class _FiltraVetsState extends State<FiltraVets> {
       child: FlatButton(
         child: Text(
           texto,
-          style: TextStyle(
-            color: (filtros.contains(numero))
-                ? Colors.white
-                : Theme.of(context).textTheme.bodyText2.color,
-          ),
+          style: TextStyle(color: (filtros.contains(numero)) ? Colors.white : Theme.of(context).textTheme.bodyText2.color),
         ),
         onPressed: () {
           setState(() {
-            (filtros.contains(numero))
-                ? filtros.remove(numero)
-                : filtros.add(numero);
+            (filtros.contains(numero)) ? filtros.remove(numero) : filtros.add(numero);
           });
         },
         color: (filtros.contains(numero)) ? colorGreen2 : Colors.transparent,
@@ -173,8 +160,7 @@ class _FiltraVetsState extends State<FiltraVets> {
       // autofocus: true,
       maxSuggestions: 5,
       onSearch: (filter) async {
-        var response = await http.get(
-            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
         var models = addressFromJson(response.body);
         return models.predictions;
       },
@@ -185,10 +171,8 @@ class _FiltraVetsState extends State<FiltraVets> {
         // _onRefresh();
       },
       resetIcon: null,
-      itemBuilder: (context, address) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-          child: Text(address.name,
-              style: TextStyle(fontWeight: FontWeight.bold))),
+      itemBuilder: (context, address) =>
+          Padding(padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0), child: Text(address.name, style: TextStyle(fontWeight: FontWeight.bold))),
     );
   }
 

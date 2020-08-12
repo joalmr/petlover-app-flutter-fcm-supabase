@@ -1,5 +1,5 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/views/pages/atenciones/atenciones_page.dart';
 import 'package:proypet/src/views/pages/usuario/changepassword_page.dart';
 import 'package:proypet/src/views/pages/usuario/user_page.dart';
@@ -17,18 +17,14 @@ class ConfigDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-        decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            boxShadow: [BoxShadow(color: Colors.black45)]),
+        decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, boxShadow: [BoxShadow(color: Colors.black45)]),
         width: 300,
         child: SafeArea(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
               children: <Widget>[
-                SizedBox(
-                  height: 40.0,
-                ),
+                SizedBox(height: 40.0),
                 Text(
                   'Configuración',
                   style: TextStyle(
@@ -38,9 +34,7 @@ class ConfigDrawer extends StatelessWidget {
                     color: Theme.of(context).textTheme.subtitle2.color,
                   ),
                 ),
-                SizedBox(
-                  height: 20.0,
-                ),
+                SizedBox(height: 20.0),
                 //FormControl().buttonSec('Buscar',(){})
                 //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
@@ -50,72 +44,29 @@ class ConfigDrawer extends StatelessWidget {
                     ),
                     title: Text(
                       'Calificar atenciones',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.w400),
                     ),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AtencionesPage()))),
+                    onTap: () => Get.to(AtencionesPage())),
                 ListTile(
-                    leading: Icon(
-                      Icons.person,
-                      color: Theme.of(context).textTheme.subtitle2.color,
-                    ),
-                    title: Text(
-                      'Editar usuario',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => UserPage()))),
+                    leading: Icon(Icons.person, color: Theme.of(context).textTheme.subtitle2.color),
+                    title: Text('Editar usuario', style: TextStyle(fontWeight: FontWeight.w400)),
+                    onTap: () => Get.to(UserPage())),
                 ListTile(
-                    leading: Icon(
-                      Icons.lock,
-                      color: Theme.of(context).textTheme.subtitle2.color,
-                    ),
-                    title: Text(
-                      'Cambiar contraseña',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ChangePasswordPage()))),
+                    leading: Icon(Icons.lock, color: Theme.of(context).textTheme.subtitle2.color),
+                    title: Text('Cambiar contraseña', style: TextStyle(fontWeight: FontWeight.w400)),
+                    onTap: () => Get.to(ChangePasswordPage())),
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePasswordPage()))),
                 ListTile(
-                  leading: Icon(
-                    Icons.share,
-                    color: Theme.of(context).textTheme.subtitle2.color,
-                  ),
-                  title: Text(
-                    'Compartir con mis amigos',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
+                  leading: Icon(Icons.share, color: Theme.of(context).textTheme.subtitle2.color),
+                  title: Text('Compartir con mis amigos', style: TextStyle(fontWeight: FontWeight.w400)),
                   onTap: () => Share.share(
-                    '¿Conoces Proypet? Descubre la nueva App para reservar citas en veterinarias y acceder a beneficios. Entérate más en: https://www.proypet.com',
-                    subject: 'Registrate hoy a Proypet',
-                  ),
+                      '¿Conoces Proypet? Descubre la nueva App para reservar citas en veterinarias y acceder a beneficios. Entérate más en: https://www.proypet.com',
+                      subject: 'Registrate hoy a Proypet'),
                 ),
                 ListTile(
-                  leading: Icon(
-                    Icons.person_outline,
-                    color: colorRed,
-                  ),
-                  title: Text(
-                    'Cerrar sesión',
-                    style: TextStyle(
-                      color: colorRed,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  onTap: () => _cerrarSesion(context),
-                ),
+                    leading: Icon(Icons.person_outline, color: colorRed),
+                    title: Text('Cerrar sesión', style: TextStyle(color: colorRed, fontWeight: FontWeight.w400)),
+                    onTap: () => _cerrarSesion(context)),
               ],
             ),
           ),
@@ -125,45 +76,39 @@ class ConfigDrawer extends StatelessWidget {
   }
 
   _cerrarSesion(context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return FadeIn(
-            child: AlertDialog(
-              // backgroundColor: Theme.of(context).backgroundColor,
-              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              title: null, //Text('Cerrar sesión'),
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-              titlePadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-              content: Text("Desea cerrar sesión?"),
-              actions: <Widget>[
-                FlatButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('Cancelar',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .apply(fontWeightDelta: 2))),
-                FlatButton(
-                    onPressed: () => _outToken(context),
-                    child: Text('Cerrar sesión',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .apply(fontWeightDelta: 2, color: colorRed))),
-              ],
-            ),
-          );
-        });
+    Get.defaultDialog(
+      content: Text("Desea cerrar sesión?"),
+      textConfirm: 'Cerrar sesión',
+      confirmTextColor: colorRed,
+      onConfirm: () => _outToken,
+      textCancel: 'Cancelar',
+      onCancel: () => Get.back(),
+    );
+    // showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return FadeIn(
+    //         child: AlertDialog(
+    //           title: null, //Text('Cerrar sesión'),
+    //           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+    //           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+    //           content: Text("Desea cerrar sesión?"),
+    //           actions: <Widget>[
+    //             FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
+    //             FlatButton(
+    //                 onPressed: () => _outToken(),
+    //                 child: Text('Cerrar sesión', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
+    //           ],
+    //         ),
+    //       );
+    //     });
   }
 
-  void _outToken(BuildContext context) async {
+  void _outToken() async {
     loginProvider.logOut();
     _prefs.token = '';
     _prefs.position = '';
-    Navigator.pushNamedAndRemoveUntil(
-        context, 'login', ModalRoute.withName('/'));
+    Get.offAllNamed('login');
+    // Navigator.pushNamedAndRemoveUntil(context, 'login', ModalRoute.withName('/'));
   }
 }

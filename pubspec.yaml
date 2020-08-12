@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_messaging: ^6.0.15
   
+  get: 
   get_it:
   # flutter_local_notifications: ^1.4.3
 
@@ -131,3 +132,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+# scripts:
+#   mobxb: flutter pub get & flutter packages pub run build_runner build
+#   mobxw: flutter pub get & flutter packages pub run build_runner watch

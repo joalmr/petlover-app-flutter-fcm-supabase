@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/styles/styles.dart';
 
 emergencia(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
-    onTap: () => Navigator.pushNamed(context, 'navLista', arguments: {
+    onTap: () => Get.toNamed('navLista', arguments: {
       "filtros": [8]
     }),
+    // Navigator.pushNamed(context, 'navLista', arguments: {
+    //   "filtros": [8]
+    // }),
     child: Stack(
       children: <Widget>[
         Container(
@@ -32,8 +36,7 @@ emergencia(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text('Emergencia', style: TextStyle(color: Colors.white)),
-              Text('24 horas',
-                  style: TextStyle(color: Colors.white, fontSize: sizeSmallx2)),
+              Text('24 horas', style: TextStyle(color: Colors.white, fontSize: sizeSmallx2)),
             ],
           ),
         )
@@ -45,9 +48,12 @@ emergencia(BuildContext context) {
 consulta(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
-    onTap: () => Navigator.pushNamed(context, 'navLista', arguments: {
+    onTap: () => Get.toNamed('navLista', arguments: {
       "filtros": [2]
     }),
+    // Navigator.pushNamed(context, 'navLista', arguments: {
+    //   "filtros": [2]
+    // }),
     child: Stack(
       children: <Widget>[
         Container(
@@ -80,9 +86,12 @@ consulta(BuildContext context) {
 vacuna(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
-    onTap: () => Navigator.pushNamed(context, 'navLista', arguments: {
+    onTap: () => Get.toNamed('navLista', arguments: {
       "filtros": [4]
     }),
+    // Navigator.pushNamed(context, 'navLista', arguments: {
+    //   "filtros": [4]
+    // }),
     child: Stack(
       children: <Widget>[
         Container(
@@ -115,9 +124,12 @@ vacuna(BuildContext context) {
 banio(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
-    onTap: () => Navigator.pushNamed(context, 'navLista', arguments: {
+    onTap: () => Get.toNamed('navLista', arguments: {
       "filtros": [1]
     }),
+    // Navigator.pushNamed(context, 'navLista', arguments: {
+    //   "filtros": [1]
+    // }),
     child: Stack(
       children: <Widget>[
         Container(
@@ -150,9 +162,12 @@ banio(BuildContext context) {
 desparasita(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
-    onTap: () => Navigator.pushNamed(context, 'navLista', arguments: {
+    onTap: () => Get.toNamed('navLista', arguments: {
       "filtros": [11]
     }),
+    // Navigator.pushNamed(context, 'navLista', arguments: {
+    //   "filtros": [11]
+    // }),
     child: Stack(
       children: <Widget>[
         Container(
@@ -174,8 +189,7 @@ desparasita(BuildContext context) {
           width: 120.0,
           height: 100.0,
           child: Center(
-            child:
-                Text('Desparasitación', style: TextStyle(color: Colors.white)),
+            child: Text('Desparasitación', style: TextStyle(color: Colors.white)),
           ),
         )
       ],

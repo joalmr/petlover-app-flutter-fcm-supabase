@@ -3,6 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/antecion/atencion_model.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/text_field.dart';
@@ -37,8 +38,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
   Widget _listaAtenciones() {
     return FutureBuilder(
       future: atencionProvider.getAtenciones(),
-      builder:
-          (BuildContext context, AsyncSnapshot<List<AtencionModel>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<AtencionModel>> snapshot) {
         if (!snapshot.hasData) {
           return LinearProgressIndicator();
         } else {
@@ -67,8 +67,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
                           ListTile(
                             leading: CircleAvatar(
                               backgroundColor: colorMain,
-                              backgroundImage: CachedNetworkImageProvider(_atencion
-                                  .establishmentLogo), //AssetImage('images/greco.png'),//
+                              backgroundImage: CachedNetworkImageProvider(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
                               radius: 25.0,
                             ),
                             title: Text(_atencion.establishmentName),
@@ -82,25 +81,17 @@ class _AtencionesPageState extends State<AtencionesPage> {
                                 ),
                                 Text(
                                   _atencion.createdAt,
-                                  style: TextStyle(
-                                      color: colorMain,
-                                      fontSize: sizeSmallx1,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(color: colorMain, fontSize: sizeSmallx1, fontWeight: FontWeight.w600),
                                 ),
                               ],
                             ),
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.star_border,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      .color,
+                                  color: Theme.of(context).textTheme.subtitle2.color,
                                 ),
-                                onPressed: () =>
-                                    _calificar(context, _atencion)),
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 0, vertical: 0),
+                                onPressed: () => _calificar(context, _atencion)),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                           ),
                           Divider(),
                         ],
@@ -126,10 +117,8 @@ class _AtencionesPageState extends State<AtencionesPage> {
           return FadeIn(
             child: SimpleDialog(
               title: Text('Calificar atención'),
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              titlePadding:
-                  EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
               children: <Widget>[
                 Text(atencion.establishmentName),
                 SizedBox(
@@ -155,26 +144,15 @@ class _AtencionesPageState extends State<AtencionesPage> {
                 SizedBox(
                   height: 10.0,
                 ),
-                textfieldArea(_inputComentController,
-                    "Ingrese comentario de la atención recibida", 250, 3),
+                textfieldArea(_inputComentController, "Ingrese comentario de la atención recibida", 250, 3),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    FlatButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text('Cancelar',
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2
-                                .apply(fontWeightDelta: 2))),
+                    FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
                     FlatButton(
                         onPressed: () => _onRate(atencion),
-                        child: Text('Calificar',
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2
-                                .apply(fontWeightDelta: 2, color: colorMain))),
+                        child: Text('Calificar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain))),
                   ],
                 ),
               ],
@@ -195,22 +173,17 @@ class _AtencionesPageState extends State<AtencionesPage> {
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
                   // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  content: Container(
-                      height: 100.0,
-                      child: Center(
-                          child: Text('Se calificó la atención.',
-                              style: TextStyle(fontSize: 14.0)))),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  content: Container(height: 100.0, child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: false);
       // mostrarSnackbar('Se calificó la atención.', colorMain, scaffoldKey);
       Timer(Duration(milliseconds: 2000), () {
-        // Navigator.popUntil(context, ModalRoute.withName("/navInicio"));
-        Navigator.of(context).popUntil((route) => route.isFirst);
+        Get.until((route) => route.isFirst);
+        // Navigator.of(context).popUntil((route) => route.isFirst);
       });
     } else
-      mostrarSnackbar('No se calificó la atención.', colorRed, scaffoldKey);
+      mostrarSnackbar('No se calificó la atención.', colorRed);
   }
 }

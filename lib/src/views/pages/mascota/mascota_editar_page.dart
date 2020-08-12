@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,7 +19,6 @@ import 'package:proypet/src/views/components/appbar_menu.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
 
 import 'package:proypet/src/styles/styles.dart';
@@ -327,7 +327,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
     }
 
     setState(() => foto = croppedFile);
-    Navigator.pop(context);
+    Get.back();
+    // Navigator.pop(context);
   }
 
   Widget _sexoEdit() {
@@ -375,50 +376,50 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
     );
   }
 
-  void _onEdit() => homeStore.mascotaEdit(foto, context, scaffoldKey);
+  void _onEdit() => homeStore.mascotaEdit(foto);
 
-  void _onAdd() async {
-    try {
-      setState(() {
-        formKey.currentState.save();
-        btnBool = false;
-      });
+  // void _onAdd() async {
+  //   try {
+  //     setState(() {
+  //       formKey.currentState.save();
+  //       btnBool = false;
+  //     });
 
-      if (mascotaData.name.trim() == '') {
-        mostrarSnackbar('Ingrese nombre de la mascota.', colorRed, scaffoldKey);
-        Timer(Duration(milliseconds: 1500), () {
-          setState(() {
-            btnBool = true;
-          });
-        });
-      } else {
-        // mascotaData.birthdate = currentValue;
-        bool resp;
-        if (mascotaData.birthdate.trim() == '')
-          setState(() {
-            mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed, scaffoldKey);
-            Timer(Duration(milliseconds: 1500), () {
-              setState(() {
-                btnBool = true;
-              });
-            });
-          });
-        else {
-          resp = await mascotaProvider.editPet(mascotaData, foto);
-          // boolEdit(resp);
-        }
-      }
-    } catch (e) {
-      setState(() {
-        mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed, scaffoldKey);
-        Timer(Duration(milliseconds: 1500), () {
-          setState(() {
-            btnBool = true;
-          });
-        });
-      });
-    }
-  }
+  //     if (mascotaData.name.trim() == '') {
+  //       mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
+  //       Timer(Duration(milliseconds: 1500), () {
+  //         setState(() {
+  //           btnBool = true;
+  //         });
+  //       });
+  //     } else {
+  //       // mascotaData.birthdate = currentValue;
+  //       bool resp;
+  //       if (mascotaData.birthdate.trim() == '')
+  //         setState(() {
+  //           mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
+  //           Timer(Duration(milliseconds: 1500), () {
+  //             setState(() {
+  //               btnBool = true;
+  //             });
+  //           });
+  //         });
+  //       else {
+  //         resp = await mascotaProvider.editPet(mascotaData, foto);
+  //         // boolEdit(resp);
+  //       }
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed);
+  //       Timer(Duration(milliseconds: 1500), () {
+  //         setState(() {
+  //           btnBool = true;
+  //         });
+  //       });
+  //     });
+  //   }
+  // }
 
   // boolEdit(resp) {
   //   if (resp) {

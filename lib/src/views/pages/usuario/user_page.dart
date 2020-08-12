@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
@@ -38,8 +39,7 @@ class _UserPageState extends State<UserPage> {
               user = snapshot.data.user;
               return FadeViewSafeArea(
                 child: SingleChildScrollView(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Form(
                       key: formKey,
                       child: Column(
@@ -84,12 +84,7 @@ class _UserPageState extends State<UserPage> {
                             style: TextStyle(fontSize: sizeSmallx1),
                           ),
                           SizedBox(height: 25.0),
-                          Center(
-                              child: buttonPri(
-                                  'Guardar cambios',
-                                  btnBool
-                                      ? _onEdit
-                                      : null) //()=>agregarDialog()
+                          Center(child: buttonPri('Guardar cambios', btnBool ? _onEdit : null) //()=>agregarDialog()
                               )
                         ],
                       ),
@@ -108,7 +103,7 @@ class _UserPageState extends State<UserPage> {
 
     //&& user.phone.trim()!=""
     if (user.name.trim() == "" || user.lastname.trim() == "") {
-      mostrarSnackbar('Complete los datos.', colorRed, scaffoldKey);
+      mostrarSnackbar('Complete los datos.', colorRed);
       Timer(Duration(milliseconds: 2000), () {
         setState(() {
           btnBool = true;
@@ -118,7 +113,7 @@ class _UserPageState extends State<UserPage> {
       if (user.phone != "") {
         bool valida = phoneRegex(user.phone);
         if (!valida) {
-          mostrarSnackbar('Número telefónico invalido.', colorRed, scaffoldKey);
+          mostrarSnackbar('Número telefónico invalido.', colorRed);
           Timer(Duration(milliseconds: 2000), () {
             setState(() {
               btnBool = true;
@@ -144,13 +139,13 @@ class _UserPageState extends State<UserPage> {
   _registraUsuario(user) async {
     bool resp = await userProvider.editUser(user);
     if (resp) {
-      mostrarSnackbar('Se guardaron los datos.', colorMain, scaffoldKey);
+      mostrarSnackbar('Se guardaron los datos.', colorMain);
       Timer(Duration(milliseconds: 2000), () {
-        Navigator.of(context).popUntil((route) => route.isFirst);
+        Get.until((route) => route.isFirst);
+        // Navigator.of(context).popUntil((route) => route.isFirst);
       });
     } else {
-      mostrarSnackbar(
-          'No se guardaron los datos ingresados.', colorRed, scaffoldKey);
+      mostrarSnackbar('No se guardaron los datos ingresados.', colorRed);
 
       setState(() {
         btnBool = true;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/provider/home_store.dart';
@@ -19,7 +20,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginSevenPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   LoginStore loginStore = LoginStore();
   ReactionDisposer disposer;
@@ -47,30 +47,23 @@ class _LoginSevenPageState extends State<LoginPage> {
       if (respLogin['code'] == 200) {
         pushStore.firebase(); //TODO: ejecuta firebase
         homeStore.getSummary();
-        Navigator.pushReplacementNamed(context, 'navInicio');
+        Get.toNamed("navInicio");
       } else {
-        mostrarSnackbar(respLogin['message'], colorRed, scaffoldKey);
+        mostrarSnackbar(respLogin['message'], colorRed);
       }
     });
   }
 
   void _onLogin() {
-    setState(() {
-      formKey.currentState.save();
-      loginStore.getLogin();
-    });
+    setState(() {});
+    formKey.currentState.save();
+    loginStore.getLogin();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(0),
-          child: AppBar(
-            backgroundColor: colorMain,
-            elevation: 0,
-          )),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(backgroundColor: colorMain, elevation: 0)),
       body: FadeView(
         child: Form(
           key: formKey,
@@ -117,12 +110,8 @@ class _LoginSevenPageState extends State<LoginPage> {
               SizedBox(height: 20.0),
               Center(
                 child: FlatButton(
-                  onPressed: () => Navigator.pushNamed(context, 'olvidopass'),
-                  child: Text(
-                    "Olvidaste tu contraseña?".toUpperCase(),
-                    style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700),
-                  ),
-                ),
+                    onPressed: () => Get.toNamed("olvidopass"),
+                    child: Text("Olvidaste tu contraseña?".toUpperCase(), style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700))),
               ),
               SizedBox(height: 15.0),
               Row(
@@ -130,10 +119,9 @@ class _LoginSevenPageState extends State<LoginPage> {
                 children: <Widget>[
                   Text("Nuevo en Proypet?", style: Theme.of(context).textTheme.subtitle2),
                   FlatButton(
-                    onPressed: () => Navigator.pushNamed(context, 'registro'),
-                    child: Text("Registrarse",
-                        style: Theme.of(context).textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline)),
-                  ),
+                      onPressed: () => Get.toNamed("registro"),
+                      child: Text("Registrarse",
+                          style: Theme.of(context).textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
                 ],
               )
             ],

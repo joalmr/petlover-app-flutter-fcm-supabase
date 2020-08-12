@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
@@ -42,18 +43,12 @@ class _ForgotPageState extends State<ForgotPage> {
                   WaveClipperOut(120.0),
                   SizedBox(height: 10.0),
                   Center(
-                    child: Text('¿Olvidaste tu contraseña?',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5
-                            .apply(fontWeightDelta: 2)
-                            .copyWith(fontSize: 24.0)),
+                    child: Text('¿Olvidaste tu contraseña?', style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
                   ),
                   SizedBox(height: 10.0),
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                          'Ingresa tu dirección de correo electrónico para reestablecer contraseña')),
+                      child: Text('Ingresa tu dirección de correo electrónico para reestablecer contraseña')),
                   SizedBox(height: 20.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -71,8 +66,7 @@ class _ForgotPageState extends State<ForgotPage> {
                   SizedBox(height: 30.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: buttonPri('Enviar correo electrónico',
-                        enviarClic ? _forgot : null),
+                    child: buttonPri('Enviar correo electrónico', enviarClic ? _forgot : null),
                   ),
                   SizedBox(height: 20.0),
                 ],
@@ -114,28 +108,20 @@ class _ForgotPageState extends State<ForgotPage> {
       int resp = await loginProvider.forgotPassword(val);
 
       if (resp == 200) {
-        _fnResponse(
-          "Se le envío un correo electrónico a la dirección ingresada",
-          colorMain,
-        );
+        _fnResponse("Se le envío un correo electrónico a la dirección ingresada", colorMain);
         Timer(Duration(milliseconds: 3500), () {
-          Navigator.of(context).popUntil((route) => route.isFirst);
+          Get.until((route) => route.isFirst);
+          // Navigator.of(context).popUntil((route) => route.isFirst);
         });
       } else if (resp == 205) {
-        _fnResponse(
-          "Este correo no esta registrado en Proypet",
-          colorRed,
-        );
+        _fnResponse("Este correo no esta registrado en Proypet", colorRed);
         Timer(Duration(milliseconds: 1500), () {
           setState(() {
             enviarClic = true;
           });
         });
       } else {
-        _fnResponse(
-          "Error, ejecución denegada",
-          colorRed,
-        );
+        _fnResponse("Error, ejecución denegada", colorRed);
         Timer(Duration(milliseconds: 1500), () {
           setState(() {
             enviarClic = true;
@@ -150,7 +136,7 @@ class _ForgotPageState extends State<ForgotPage> {
     Color color,
   ) {
     //dynamic fnExecute
-    mostrarSnackbar(texto, color, scaffoldKey);
+    mostrarSnackbar(texto, color);
     // fnExecute;
   }
 }

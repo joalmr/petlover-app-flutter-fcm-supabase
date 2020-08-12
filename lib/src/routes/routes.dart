@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/views/auth/forgot_page.dart';
 import 'package:proypet/src/views/auth/login_page.dart';
 import 'package:proypet/src/views/auth/singup_page.dart';
@@ -28,3 +29,45 @@ Map<String, WidgetBuilder> getRoutes() {
     'detallereservado': (BuildContext context) => DetalleReservado(), //detalle de la reserva
   };
 }
+
+List<GetPage> getRutas() {
+  return [
+    GetPage(name: 'login', page: () => LoginPage()),
+    GetPage(name: 'registro', page: () => SingupPage()),
+    GetPage(name: 'olvidopass', page: () => ForgotPage()),
+    //
+    GetPage(name: 'navInicio', page: () => NavigationBar(currentTabIndex: 0)),
+    GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),
+    GetPage(name: 'navLista', page: () => NavigationBar(currentTabIndex: 2)),
+    GetPage(name: 'navDestacado', page: () => NavigationBar(currentTabIndex: 3)),
+    GetPage(name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 4)),
+    //
+    GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
+    GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
+    GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
+    //
+    GetPage(name: 'detalledestacado', page: () => DetalleDestacadoPage()),
+    GetPage(name: 'detallereservado', page: () => DetalleReservado()),
+  ];
+}
+
+// [
+// GetPage(
+// name: '/',
+// page: () => MyHomePage(),
+// ),
+// GetPage(
+// name: '/profile/',
+// page: () => MyProfile(),
+// ),
+// //You can define a different page for routes with arguments, and another without arguments, but for that you must use the slash '/' on the route that will not receive arguments as above.
+// GetPage(
+// name: '/profile/:user',
+// page: () => UserProfile(),
+// ),
+// GetPage(
+// name: '/third',
+// page: () => Third(),
+// transition: Transition.cupertino
+// ),
+// ]

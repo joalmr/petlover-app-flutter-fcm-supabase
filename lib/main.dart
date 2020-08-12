@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/route_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
-import 'package:proypet/src/views/pages/_navigation_pages/navigation_bar.dart';
 import 'package:flutter/services.dart';
+
+import 'package:get/get.dart';
 
 import 'config/global_variables.dart';
 import 'src/provider/home_store.dart';
@@ -22,7 +24,11 @@ void main() async {
   getIt.registerSingleton<HomeStore>(HomeStore());
   // getIt.registerSingleton<Booking>(Booking());
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (value) => runApp(
+      MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -50,7 +56,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     //com.example.user //prueba
     //com.proypet.user //produccion
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: appPruebas,
       title: 'Proypet',
       theme: temaClaro,
@@ -62,13 +68,33 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: [
         const Locale('en', 'US'),
-        const Locale('es', 'ES'), //PE
+        const Locale('es', 'ES'),
       ],
-      routes: getRoutes(),
       initialRoute: loginStore.rutaInicio,
-      onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
-        builder: (BuildContext context) => NavigationBar(currentTabIndex: 0),
-      ), //ruta general
+      defaultTransition: Transition.fadeIn,
+      getPages: getRutas(),
+      // onGenerateInitialRoutes: (initialRoute) => ,
     );
+
+    // MaterialApp(
+    //   debugShowCheckedModeBanner: appPruebas,
+    //   title: 'Proypet',
+    //   theme: temaClaro,
+    //   darkTheme: temaOscuro,
+    //   localizationsDelegates: [
+    //     GlobalMaterialLocalizations.delegate,
+    //     GlobalWidgetsLocalizations.delegate,
+    //     GlobalCupertinoLocalizations.delegate,
+    //   ],
+    //   supportedLocales: [
+    //     const Locale('en', 'US'),
+    //     const Locale('es', 'ES'), //PE
+    //   ],
+    //   routes: getRoutes(),
+    //   initialRoute: loginStore.rutaInicio,
+    //   onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
+    //     builder: (BuildContext context) => NavigationBar(currentTabIndex: 0),
+    //   ), //ruta general
+    // );
   }
 }

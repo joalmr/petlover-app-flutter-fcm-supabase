@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
@@ -81,9 +82,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             Container(
               height: 260.0,
               width: double.infinity,
-              child: (vet.slides.length > 0)
-                  ? _swiperVets(vet.slides, true)
-                  : _swiperVets(["images/vet_prueba.jpg"], false),
+              child: (vet.slides.length > 0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false),
             ),
             Positioned(
               right: 7.5,
@@ -94,9 +93,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 decoration: BoxDecoration(
                   color: colorGray1,
                   borderRadius: BorderRadius.circular(100.0),
-                  image: DecorationImage(
-                      image: CachedNetworkImageProvider(vet.logo),
-                      fit: BoxFit.cover),
+                  image: DecorationImage(image: CachedNetworkImageProvider(vet.logo), fit: BoxFit.cover),
                 ),
               ),
             )
@@ -128,8 +125,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.725,
-                  child: buttonPri(
-                      'Reservar servicio', reservarClic ? _reservar : null),
+                  child: buttonPri('Reservar servicio', reservarClic ? _reservar : null),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width * 0.05),
               ],
@@ -174,14 +170,10 @@ class _VetDetallePageState extends State<VetDetallePage> {
                     ),
                     Text(localVet.name, //nombreVet(0),
                         maxLines: 2,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6
-                            .apply(fontWeightDelta: 2)),
+                        style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)),
                   ],
                 ),
-                subtitle: Text('${localVet.address} ',
-                    style: TextStyle(fontSize: sizeSmallx1)),
+                subtitle: Text('${localVet.address} ', style: TextStyle(fontSize: sizeSmallx1)),
                 trailing: Stack(
                   children: <Widget>[
                     Container(height: 56.0, width: 60.0),
@@ -189,9 +181,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                       height: 50.0,
                       width: 50.0,
                       padding: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100.0),
-                          color: colorYellow),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.0), color: colorYellow),
                       child: Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -225,8 +215,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                           child: Center(
                             child: Text(
                               localVet.attentions.toString(),
-                              style:
-                                  TextStyle(fontSize: 10, color: Colors.white),
+                              style: TextStyle(fontSize: 10, color: Colors.white),
                             ),
                           ),
                         ),
@@ -305,8 +294,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
           builder: (BuildContext context) => FadeIn(
             child: AlertDialog(
               // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               content: Container(
                   height: 200.0,
                   child: Form(
@@ -316,8 +304,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                         SizedBox(
                           height: 10.0,
                         ),
-                        Text('Debe ingresar un número de teléfono',
-                            style: Theme.of(context).textTheme.subtitle2),
+                        Text('Debe ingresar un número de teléfono', style: Theme.of(context).textTheme.subtitle2),
                         SizedBox(
                           height: 10.0,
                         ),
@@ -351,25 +338,19 @@ class _VetDetallePageState extends State<VetDetallePage> {
         setState(() {
           reservarClic = true;
         });
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DataReserva(
-              establecimientoID: vet.id,
-              misMascotas: misMascotas,
-              mascotaID: misMascotas[0].id,
-              establecimientoName: vet.name,
-              delivery: delivery,
-            ),
-          ),
-        );
+        Get.to(DataReserva(
+          establecimientoID: vet.id,
+          misMascotas: misMascotas,
+          mascotaID: misMascotas[0].id,
+          establecimientoName: vet.name,
+          delivery: delivery,
+        ));
       }
     } else {
       setState(() {
         reservarClic = true;
       });
-      mostrarSnackbar('No puede generar una reserva, debe agregar una mascota',
-          colorRed, scaffoldKey);
+      mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed);
     }
   }
 
@@ -382,9 +363,9 @@ class _VetDetallePageState extends State<VetDetallePage> {
     bool phone = phoneRegex(user.phone);
     if (phone) {
       await userProvider.editUser(user); //
-      Navigator.pop(context);
+      Get.back();
     } else {
-      mostrarSnackbar('Número telefónico inválido', colorRed, scaffoldKey);
+      mostrarSnackbar('Número telefónico inválido', colorRed);
     }
   }
 
@@ -392,6 +373,6 @@ class _VetDetallePageState extends State<VetDetallePage> {
     setState(() {
       reservarClic = true;
     });
-    Navigator.pop(context);
+    Get.back();
   }
 }

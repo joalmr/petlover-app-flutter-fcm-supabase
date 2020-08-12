@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
@@ -31,7 +32,7 @@ class _DetalleReservadoState extends State<DetalleReservado> {
     homeStore = GetIt.I.get<HomeStore>();
   }
 
-  _deleteBooking(id) => homeStore.eliminaAtencionToHome(context, id, _scaffoldKey);
+  _deleteBooking(id) => homeStore.eliminaAtencionToHome(id);
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +143,11 @@ class _DetalleReservadoState extends State<DetalleReservado> {
               title: Text('Eliminar'),
               content: Text('Seguro que desea eliminar esta reserva?'),
               actions: <Widget>[
-                buttonModal('Cancelar', () => Navigator.pop(context), Theme.of(context).textTheme.subtitle2.color),
+                buttonModal(
+                    'Cancelar',
+                    () => Get.back(),
+                    // Navigator.pop(context),
+                    Theme.of(context).textTheme.subtitle2.color),
                 buttonModal('Sí, eliminar', () => _deleteBooking(id), colorRed),
               ],
             ),

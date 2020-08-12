@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/destacado/destacado_model.dart';
 import 'package:proypet/src/services/destacado_provider.dart';
 import 'package:proypet/src/views/components/appbar_menu.dart';
@@ -16,9 +17,7 @@ class _DestacadosPageState extends State<DestacadosPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: appbar(leadingH, 'Destacados', null),
-        body: FadeViewSafeArea(child: _onDestacado()));
+    return Scaffold(appBar: appbar(leadingH, 'Destacados', null), body: FadeViewSafeArea(child: _onDestacado()));
   }
 
   _onDestacado() {
@@ -33,28 +32,18 @@ class _DestacadosPageState extends State<DestacadosPage> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       child: InkWell(
-        onTap: () => Navigator.pushNamed(context, 'detalledestacado',
-            arguments: destacado),
+        onTap: () => Get.toNamed('detalledestacado', arguments: destacado),
         child: Card(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image(
-                    fit: BoxFit.cover,
-                    height: 300,
-                    width: double.infinity,
-                    image: AssetImage(destacado.image)),
+                child: Image(fit: BoxFit.cover, height: 300, width: double.infinity, image: AssetImage(destacado.image)),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                child: Text(destacado.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        .apply(fontWeightDelta: 2)
+                padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                child: Text(destacado.title, style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
                     // tituloH4clasico,
                     ),
               ),
@@ -70,15 +59,9 @@ class _DestacadosPageState extends State<DestacadosPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   FlatButton(
-                      onPressed: () => Navigator.pushNamed(
-                          context, 'detalledestacado',
-                          arguments: destacado),
-                      child: Text(
-                        "Leer más",
-                        style: TextStyle(
-                          color: colorMain,
-                        ),
-                      )),
+                    onPressed: () => Get.toNamed('detalledestacado', arguments: destacado),
+                    child: Text("Leer más", style: TextStyle(color: colorMain)),
+                  ),
                 ],
               ),
             ],

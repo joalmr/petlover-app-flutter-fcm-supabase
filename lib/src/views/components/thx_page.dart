@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 
 import 'package:proypet/src/styles/styles.dart';
@@ -63,9 +64,10 @@ class ThxPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: buttonOutLine('Ir a inicio', () {
-                      return Navigator.of(context).pushNamedAndRemoveUntil('navInicio', ModalRoute.withName('navInicio'));
-                    }, Colors.white),
+                    child: buttonOutLine('Ir a inicio', () => Get.offAllNamed('navInicio'), Colors.white),
+                    // {
+                    //   return Navigator.of(context).pushNamedAndRemoveUntil('navInicio', ModalRoute.withName('navInicio'));
+                    // }, Colors.white),
                   )
                 ],
               ),

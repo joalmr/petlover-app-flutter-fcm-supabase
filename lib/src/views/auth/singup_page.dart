@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/login/login_model.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
@@ -46,19 +47,10 @@ class _SingupPageState extends State<SingupPage> {
                   WaveClipperOut(120.0),
                   SizedBox(height: 10),
                   Center(
-                    child: Text('Bienvenido a Proypet',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5
-                            .apply(fontWeightDelta: 2)
-                            .copyWith(fontSize: 24.0)),
+                    child: Text('Bienvenido a Proypet', style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
                   ),
                   Center(
-                    child: Text('Crear cuenta',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle1
-                            .apply(fontWeightDelta: 2)),
+                    child: Text('Crear cuenta', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
                   ),
                   SizedBox(height: 20),
                   Padding(
@@ -103,8 +95,7 @@ class _SingupPageState extends State<SingupPage> {
                       hintText: 'Contraseña',
                       icon: Icons.lock,
                       iconSuf: InkWell(
-                        child: Icon(
-                            !clave ? Icons.visibility_off : Icons.visibility),
+                        child: Icon(!clave ? Icons.visibility_off : Icons.visibility),
                         onTap: () {
                           setState(() {
                             clave = !clave;
@@ -122,13 +113,11 @@ class _SingupPageState extends State<SingupPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text.rich(
                       TextSpan(
-                        text:
-                            'Al registrarse en Proypet, acepta los ', // default text style
+                        text: 'Al registrarse en Proypet, acepta los ', // default text style
                         children: <TextSpan>[
                           TextSpan(
                             text: 'Términos y Condiciones',
-                            style: TextStyle(
-                                color: colorBlue, fontWeight: FontWeight.bold),
+                            style: TextStyle(color: colorBlue, fontWeight: FontWeight.bold),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
                                 launch('https://proypet.com/terminos');
@@ -136,10 +125,8 @@ class _SingupPageState extends State<SingupPage> {
                           ),
                           TextSpan(text: ' y ', style: TextStyle()),
                           TextSpan(
-                            text:
-                                'Políticas de Privacidad y Protección de Datos Personales.',
-                            style: TextStyle(
-                                color: colorBlue, fontWeight: FontWeight.bold),
+                            text: 'Políticas de Privacidad y Protección de Datos Personales.',
+                            style: TextStyle(color: colorBlue, fontWeight: FontWeight.bold),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
                                 launch('https://proypet.com/politicas');
@@ -162,11 +149,7 @@ class _SingupPageState extends State<SingupPage> {
               top: 0,
               left: 0,
               right: 0,
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                centerTitle: true,
-              ),
+              child: AppBar(backgroundColor: Colors.transparent, elevation: 0, centerTitle: true),
             )
           ],
         ),
@@ -180,63 +163,25 @@ class _SingupPageState extends State<SingupPage> {
       formKey.currentState.save();
     });
 
-    if (user.name.trim() == "" ||
-        user.lastname.trim() == "" ||
-        user.email.trim() == "" ||
-        user.password.trim() == "") {
-      mostrarSnackbar("Debe completar los campos", colorRed, scaffoldKey);
+    if (user.name.trim() == "" || user.lastname.trim() == "" || user.email.trim() == "" || user.password.trim() == "") {
+      mostrarSnackbar("Debe completar los campos", colorRed);
       Timer(Duration(milliseconds: 1500), () {
-        setState(() {
-          btnBool = true;
-        });
+        setState(() => btnBool = true);
       });
     } else {
       if (user.password.length < 5) {
-        mostrarSnackbar("La contraseña debe ser no menor a 5 dígitos", colorRed,
-            scaffoldKey);
+        mostrarSnackbar("La contraseña debe ser no menor a 5 dígitos", colorRed);
         Timer(Duration(milliseconds: 1500), () {
-          setState(() {
-            btnBool = true;
-          });
+          setState(() => btnBool = true);
         });
       } else {
         bool resp = await userProvider.registerUser(user);
         if (resp) {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => VerifyPage(
-                textomail: user.email,
-              ),
-            ),
-          );
-          // showDialog(
-          //     context: context,
-          //     builder: (BuildContext context) {
-          //       return FadeIn(
-          //         child: AlertDialog(
-          //           // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          //           title: Text('Gracias por registrarte'),
-          //           content: Padding(
-          //             padding: const EdgeInsets.symmetric(vertical: 5.0),
-          //             child: Text(
-          //                 'Te hemos enviado un correo electrónico para confirmar la cuenta'),
-          //           ),
-          //         ),
-          //       );
-          //     });
-
-          // Timer(Duration(milliseconds: 3500), () {
-          //   Navigator.of(context).popUntil((route) => route.isFirst);
-          // });
-        }
-        //Navigator.of(context).pushNamedAndRemoveUntil('/login', ModalRoute.withName('/login')); //
-        else {
-          mostrarSnackbar("No se registró el usuario, correo existente",
-              colorRed, scaffoldKey);
+          Get.to(VerifyPage(textomail: user.email));
+        } else {
+          mostrarSnackbar("No se registró el usuario, correo existente", colorRed);
           Timer(Duration(milliseconds: 1500), () {
-            setState(() {
-              btnBool = true;
-            });
+            setState(() => btnBool = true);
           });
         }
       }
