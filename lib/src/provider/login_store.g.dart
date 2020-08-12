@@ -9,6 +9,13 @@ part of 'login_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginStore on _LoginStore, Store {
+  Computed<bool> _$hasEmailDataComputed;
+
+  @override
+  bool get hasEmailData =>
+      (_$hasEmailDataComputed ??= Computed<bool>(() => super.hasEmailData,
+              name: '_LoginStore.hasEmailData'))
+          .value;
   Computed<bool> _$isEmailValidComputed;
 
   @override
@@ -29,6 +36,13 @@ mixin _$LoginStore on _LoginStore, Store {
   bool get isFormValid =>
       (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
               name: '_LoginStore.isFormValid'))
+          .value;
+  Computed<bool> _$formCompleteComputed;
+
+  @override
+  bool get formComplete =>
+      (_$formCompleteComputed ??= Computed<bool>(() => super.formComplete,
+              name: '_LoginStore.formComplete'))
           .value;
   Computed<bool> _$hasTokenComputed;
 
@@ -73,18 +87,33 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
-  final _$passwordVisibleAtom = Atom(name: '_LoginStore.passwordVisible');
+  final _$nombreAtom = Atom(name: '_LoginStore.nombre');
 
   @override
-  bool get passwordVisible {
-    _$passwordVisibleAtom.reportRead();
-    return super.passwordVisible;
+  String get nombre {
+    _$nombreAtom.reportRead();
+    return super.nombre;
   }
 
   @override
-  set passwordVisible(bool value) {
-    _$passwordVisibleAtom.reportWrite(value, super.passwordVisible, () {
-      super.passwordVisible = value;
+  set nombre(String value) {
+    _$nombreAtom.reportWrite(value, super.nombre, () {
+      super.nombre = value;
+    });
+  }
+
+  final _$apellidoAtom = Atom(name: '_LoginStore.apellido');
+
+  @override
+  String get apellido {
+    _$apellidoAtom.reportRead();
+    return super.apellido;
+  }
+
+  @override
+  set apellido(String value) {
+    _$apellidoAtom.reportWrite(value, super.apellido, () {
+      super.apellido = value;
     });
   }
 
@@ -148,6 +177,21 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
+  final _$passwordVisibleAtom = Atom(name: '_LoginStore.passwordVisible');
+
+  @override
+  bool get passwordVisible {
+    _$passwordVisibleAtom.reportRead();
+    return super.passwordVisible;
+  }
+
+  @override
+  set passwordVisible(bool value) {
+    _$passwordVisibleAtom.reportWrite(value, super.passwordVisible, () {
+      super.passwordVisible = value;
+    });
+  }
+
   final _$evaluaLoginAsyncAction = AsyncAction('_LoginStore.evaluaLogin');
 
   @override
@@ -180,11 +224,55 @@ mixin _$LoginStore on _LoginStore, Store {
   }
 
   @override
+  void setNombre(String value) {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.setNombre');
+    try {
+      return super.setNombre(value);
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setApellido(String value) {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.setApellido');
+    try {
+      return super.setApellido(value);
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void passNotVisible() {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.passNotVisible');
+    try {
+      return super.passNotVisible();
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void togglePasswordVisibility() {
     final _$actionInfo = _$_LoginStoreActionController.startAction(
         name: '_LoginStore.togglePasswordVisibility');
     try {
       return super.togglePasswordVisibility();
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void disposeSingUp() {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.disposeSingUp');
+    try {
+      return super.disposeSingUp();
     } finally {
       _$_LoginStoreActionController.endAction(_$actionInfo);
     }
@@ -213,6 +301,17 @@ mixin _$LoginStore on _LoginStore, Store {
   }
 
   @override
+  void registraUser() {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.registraUser');
+    try {
+      return super.registraUser();
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void evaluaIngreso() {
     final _$actionInfo = _$_LoginStoreActionController.startAction(
         name: '_LoginStore.evaluaIngreso');
@@ -228,14 +327,18 @@ mixin _$LoginStore on _LoginStore, Store {
     return '''
 email: ${email},
 password: ${password},
-passwordVisible: ${passwordVisible},
+nombre: ${nombre},
+apellido: ${apellido},
 loading: ${loading},
 loggedIn: ${loggedIn},
 respLogin: ${respLogin},
 rutaInicio: ${rutaInicio},
+passwordVisible: ${passwordVisible},
+hasEmailData: ${hasEmailData},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
 isFormValid: ${isFormValid},
+formComplete: ${formComplete},
 hasToken: ${hasToken},
 isVerify: ${isVerify}
     ''';

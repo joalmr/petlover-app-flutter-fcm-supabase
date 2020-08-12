@@ -54,11 +54,16 @@ abstract class _LoginStore with Store {
   String rutaInicio = 'login';
 
   @observable
+  bool passwordVisibleReg = false;
+  @action
+  void togglePasswordVisibilityReg() => passwordVisible = !passwordVisible;
+
+  @observable
   bool passwordVisible = false;
   @action
-  void passNotVisible() => passwordVisible = false;
-  @action
   void togglePasswordVisibility() => passwordVisible = !passwordVisible;
+  @action
+  void passNotVisible() => passwordVisible = false;
 
   @action
   void disposeSingUp() {

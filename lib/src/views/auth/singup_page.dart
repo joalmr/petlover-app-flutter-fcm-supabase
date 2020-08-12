@@ -1,16 +1,12 @@
-import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/provider/login_store.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/fadeView.dart';
 
-import 'package:proypet/src/views/components/verify_page.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -103,10 +99,10 @@ class _SingupPageState extends State<SingupPage> {
                               hintText: 'Contraseña',
                               icon: Icons.lock,
                               iconSuf: InkWell(
-                                child: Icon(loginStore.passwordVisible ? Icons.visibility_off : Icons.visibility),
-                                onTap: loginStore.togglePasswordVisibility,
+                                child: Icon(loginStore.passwordVisibleReg ? Icons.visibility_off : Icons.visibility),
+                                onTap: loginStore.togglePasswordVisibilityReg,
                               ),
-                              obscureText: !loginStore.passwordVisible,
+                              obscureText: !loginStore.passwordVisibleReg,
                               onChanged: (value) => loginStore.setPassword(value),
                               textCap: TextCapitalization.none,
                               valorInicial: null,

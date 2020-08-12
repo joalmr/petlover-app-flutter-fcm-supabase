@@ -14,13 +14,13 @@ class Atenciones extends StatefulWidget {
 
 class _AtencionesState extends State<Atenciones> {
   HomeStore homeStore;
-  // Booking bookingStore;
+  // BookingStore bookingStore;
 
   @override
   void initState() {
     super.initState();
     homeStore = GetIt.I.get<HomeStore>();
-    // bookingStore = GetIt.I.get<Booking>();
+    // bookingStore = GetIt.I.get<BookingStore>();
   }
 
   @override

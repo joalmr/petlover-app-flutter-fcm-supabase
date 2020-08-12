@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_it/get_it.dart';
+import 'package:proypet/src/provider/booking_store.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/routes/routes.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +25,7 @@ void main() async {
   getIt.registerSingleton<LoginStore>(LoginStore());
   getIt.registerSingleton<PushStore>(PushStore());
   getIt.registerSingleton<HomeStore>(HomeStore());
-  // getIt.registerSingleton<Booking>(Booking());
+  // getIt.registerSingleton<BookingStore>(BookingStore());
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(MyApp()),
