@@ -8,7 +8,6 @@ import 'package:proypet/src/provider/login_store.dart';
 import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
 import 'package:proypet/src/views/components/transicion/fadeView.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
 import 'package:proypet/src/styles/styles.dart';
@@ -21,7 +20,7 @@ class LoginPage extends StatefulWidget {
 class _LoginSevenPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
 
-  LoginStore loginStore = LoginStore();
+  LoginStore loginStore;
   ReactionDisposer disposer;
 
   HomeStore homeStore;
@@ -30,6 +29,7 @@ class _LoginSevenPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    loginStore = GetIt.I.get<LoginStore>();
     homeStore = GetIt.I.get<HomeStore>();
     pushStore = GetIt.I.get<PushStore>();
   }
@@ -37,6 +37,8 @@ class _LoginSevenPageState extends State<LoginPage> {
   @override
   void dispose() {
     disposer();
+    loginStore.passNotVisible();
+    loginStore.setPassword('');
     super.dispose();
   }
 
@@ -48,8 +50,6 @@ class _LoginSevenPageState extends State<LoginPage> {
         pushStore.firebase(); //TODO: ejecuta firebase
         homeStore.getSummary();
         Get.toNamed("navInicio");
-      } else {
-        mostrarSnackbar(respLogin['message'], colorRed);
       }
     });
   }

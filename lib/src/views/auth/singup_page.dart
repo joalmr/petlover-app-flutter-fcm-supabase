@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/models/login/login_model.dart';
+import 'package:get_it/get_it.dart';
+import 'package:proypet/src/provider/login_store.dart';
 import 'package:proypet/src/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/views/components/form_control/text_from.dart';
 import 'package:proypet/src/views/components/snackbar.dart';
@@ -10,7 +12,6 @@ import 'package:proypet/src/views/components/transicion/fadeView.dart';
 
 import 'package:proypet/src/views/components/verify_page.dart';
 import 'package:proypet/src/views/components/wave_clipper.dart';
-import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,17 +21,23 @@ class SingupPage extends StatefulWidget {
 }
 
 class _SingupPageState extends State<SingupPage> {
-  final formKey = GlobalKey<FormState>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  final userProvider = UserProvider();
-  UserDato user = UserDato();
-  bool btnBool = true;
+  LoginStore loginStore;
 
-  bool clave = true;
+  @override
+  void initState() {
+    super.initState();
+    loginStore = GetIt.I.get<LoginStore>();
+  }
+
+  @override
+  void dispose() {
+    loginStore.disposeSingUp();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(0),
           child: AppBar(
@@ -41,7 +48,7 @@ class _SingupPageState extends State<SingupPage> {
         child: Stack(
           children: <Widget>[
             Form(
-              key: formKey,
+              // key: formKey,
               child: ListView(
                 children: <Widget>[
                   WaveClipperOut(120.0),
@@ -59,7 +66,7 @@ class _SingupPageState extends State<SingupPage> {
                       hintText: 'Nombre',
                       icon: Icons.person,
                       obscureText: false,
-                      onSaved: (value) => user.name = value,
+                      onChanged: (value) => loginStore.setNombre(value),
                       textCap: TextCapitalization.words,
                       valorInicial: null,
                       boardType: TextInputType.text,
@@ -71,7 +78,7 @@ class _SingupPageState extends State<SingupPage> {
                       hintText: 'Apellido',
                       icon: Icons.person_outline,
                       obscureText: false,
-                      onSaved: (value) => user.lastname = value,
+                      onChanged: (value) => loginStore.setApellido(value),
                       textCap: TextCapitalization.words,
                       valorInicial: null,
                       boardType: TextInputType.text,
@@ -83,7 +90,7 @@ class _SingupPageState extends State<SingupPage> {
                       hintText: 'Email',
                       icon: Icons.alternate_email,
                       obscureText: false,
-                      onSaved: (value) => user.email = value,
+                      onChanged: (value) => loginStore.setEmail(value),
                       textCap: TextCapitalization.none,
                       valorInicial: null,
                       boardType: TextInputType.text,
@@ -91,23 +98,20 @@ class _SingupPageState extends State<SingupPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: FormularioText(
-                      hintText: 'Contraseña',
-                      icon: Icons.lock,
-                      iconSuf: InkWell(
-                        child: Icon(!clave ? Icons.visibility_off : Icons.visibility),
-                        onTap: () {
-                          setState(() {
-                            clave = !clave;
-                          });
-                        },
-                      ),
-                      obscureText: clave,
-                      onSaved: (value) => user.password = value,
-                      textCap: TextCapitalization.none,
-                      valorInicial: null,
-                      boardType: TextInputType.text,
-                    ),
+                    child: Observer(
+                        builder: (_) => FormularioText(
+                              hintText: 'Contraseña',
+                              icon: Icons.lock,
+                              iconSuf: InkWell(
+                                child: Icon(loginStore.passwordVisible ? Icons.visibility_off : Icons.visibility),
+                                onTap: loginStore.togglePasswordVisibility,
+                              ),
+                              obscureText: !loginStore.passwordVisible,
+                              onChanged: (value) => loginStore.setPassword(value),
+                              textCap: TextCapitalization.none,
+                              valorInicial: null,
+                              boardType: TextInputType.text,
+                            )),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -139,7 +143,8 @@ class _SingupPageState extends State<SingupPage> {
                   SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: buttonPri('Registrarse', btnBool ? _onSaved : null),
+                    child: Observer(builder: (_) => buttonPri('Registrarse', !loginStore.loading ? _onSaved : null)),
+                    // child: buttonPri('Registrarse', btnBool ? _onSaved : null),
                   ),
                   SizedBox(height: 20.0),
                 ],
@@ -157,34 +162,5 @@ class _SingupPageState extends State<SingupPage> {
     );
   }
 
-  _onSaved() async {
-    setState(() {
-      btnBool = false;
-      formKey.currentState.save();
-    });
-
-    if (user.name.trim() == "" || user.lastname.trim() == "" || user.email.trim() == "" || user.password.trim() == "") {
-      mostrarSnackbar("Debe completar los campos", colorRed);
-      Timer(Duration(milliseconds: 1500), () {
-        setState(() => btnBool = true);
-      });
-    } else {
-      if (user.password.length < 5) {
-        mostrarSnackbar("La contraseña debe ser no menor a 5 dígitos", colorRed);
-        Timer(Duration(milliseconds: 1500), () {
-          setState(() => btnBool = true);
-        });
-      } else {
-        bool resp = await userProvider.registerUser(user);
-        if (resp) {
-          Get.to(VerifyPage(textomail: user.email));
-        } else {
-          mostrarSnackbar("No se registró el usuario, correo existente", colorRed);
-          Timer(Duration(milliseconds: 1500), () {
-            setState(() => btnBool = true);
-          });
-        }
-      }
-    }
-  }
+  _onSaved() => loginStore.registraUser();
 }

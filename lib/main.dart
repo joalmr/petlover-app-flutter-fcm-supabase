@@ -14,20 +14,20 @@ import 'src/provider/login_store.dart';
 import 'src/provider/push_store.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
+import 'src/views/pages/_navigation_pages/navigation_bar.dart';
 
 final _prefs = new PreferenciasUsuario();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _prefs.initPrefs();
   GetIt getIt = GetIt.I;
+  getIt.registerSingleton<LoginStore>(LoginStore());
   getIt.registerSingleton<PushStore>(PushStore());
   getIt.registerSingleton<HomeStore>(HomeStore());
   // getIt.registerSingleton<Booking>(Booking());
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (value) => runApp(
-      MyApp(),
-    ),
+    (value) => runApp(MyApp()),
   );
 }
 
@@ -74,27 +74,7 @@ class _MyAppState extends State<MyApp> {
       defaultTransition: Transition.fadeIn,
       getPages: getRutas(),
       // onGenerateInitialRoutes: (initialRoute) => ,
+      onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(builder: (_) => NavigationBar(currentTabIndex: 0)),
     );
-
-    // MaterialApp(
-    //   debugShowCheckedModeBanner: appPruebas,
-    //   title: 'Proypet',
-    //   theme: temaClaro,
-    //   darkTheme: temaOscuro,
-    //   localizationsDelegates: [
-    //     GlobalMaterialLocalizations.delegate,
-    //     GlobalWidgetsLocalizations.delegate,
-    //     GlobalCupertinoLocalizations.delegate,
-    //   ],
-    //   supportedLocales: [
-    //     const Locale('en', 'US'),
-    //     const Locale('es', 'ES'), //PE
-    //   ],
-    //   routes: getRoutes(),
-    //   initialRoute: loginStore.rutaInicio,
-    //   onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(
-    //     builder: (BuildContext context) => NavigationBar(currentTabIndex: 0),
-    //   ), //ruta general
-    // );
   }
 }

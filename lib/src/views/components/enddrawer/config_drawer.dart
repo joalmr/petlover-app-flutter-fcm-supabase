@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/views/pages/atenciones/atenciones_page.dart';
@@ -76,32 +77,22 @@ class ConfigDrawer extends StatelessWidget {
   }
 
   _cerrarSesion(context) {
-    Get.defaultDialog(
-      content: Text("Desea cerrar sesión?"),
-      textConfirm: 'Cerrar sesión',
-      confirmTextColor: colorRed,
-      onConfirm: () => _outToken,
-      textCancel: 'Cancelar',
-      onCancel: () => Get.back(),
+    Get.dialog(
+      FadeIn(
+        child: AlertDialog(
+          title: null, //Text('Cerrar sesión'),
+          contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+          titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          content: Text("Desea cerrar sesión?"),
+          actions: <Widget>[
+            FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
+            FlatButton(
+                onPressed: () => _outToken(),
+                child: Text('Cerrar sesión', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
+          ],
+        ),
+      ),
     );
-    // showDialog(
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return FadeIn(
-    //         child: AlertDialog(
-    //           title: null, //Text('Cerrar sesión'),
-    //           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-    //           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-    //           content: Text("Desea cerrar sesión?"),
-    //           actions: <Widget>[
-    //             FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
-    //             FlatButton(
-    //                 onPressed: () => _outToken(),
-    //                 child: Text('Cerrar sesión', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
-    //           ],
-    //         ),
-    //       );
-    //     });
   }
 
   void _outToken() async {

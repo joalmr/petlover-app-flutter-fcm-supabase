@@ -148,13 +148,6 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
-  final _$loginAsyncAction = AsyncAction('_LoginStore.login');
-
-  @override
-  Future<dynamic> login() {
-    return _$loginAsyncAction.run(() => super.login());
-  }
-
   final _$evaluaLoginAsyncAction = AsyncAction('_LoginStore.evaluaLogin');
 
   @override
@@ -203,6 +196,17 @@ mixin _$LoginStore on _LoginStore, Store {
         _$_LoginStoreActionController.startAction(name: '_LoginStore.getLogin');
     try {
       return super.getLogin();
+    } finally {
+      _$_LoginStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void olvideClave() {
+    final _$actionInfo = _$_LoginStoreActionController.startAction(
+        name: '_LoginStore.olvideClave');
+    try {
+      return super.olvideClave();
     } finally {
       _$_LoginStoreActionController.endAction(_$actionInfo);
     }
