@@ -4,6 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushQualify.dart';
+import 'package:proypet/src2/data/services/auth_service.dart';
 
 part 'push_store.g.dart';
 
@@ -37,13 +38,15 @@ abstract class _PushStore with Store {
   }
 
   final loginProvider = UserProvider();
+  final loginApi = AuthService();
 
   @action
   void firebaseToken() {
     _firebaseMessaging.getToken().then((token) {
       print('==token==');
       print(token); //TODO: token cel
-      loginProvider.sendTokenFire(token);
+      // loginProvider.sendTokenFire(token);
+      loginApi.sendTokenFire(token);
     });
   }
 

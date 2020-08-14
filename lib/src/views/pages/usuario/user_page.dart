@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/services/user_provider.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/form_control/text_from.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
+import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
+import 'package:proypet/src2/app/views/components/snackbar.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/utils/regex.dart';
 
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/regex.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 class UserPage extends StatefulWidget {
   // const UserPage({Key key}) : super(key: key);

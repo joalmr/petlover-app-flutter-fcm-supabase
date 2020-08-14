@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/utils/add_msg.dart';
 import 'dart:math' as Math;
+
+import 'package:proypet/src2/utils/add_msg.dart';
 
 class BuildPushNoti extends StatefulWidget {
   // const BuildPushNoti({Key key}) : super(key: key);

@@ -15,13 +15,13 @@ import 'package:proypet/src/models/raza/raza_model.dart';
 import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src/services/raza_provider.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/form_control/ddl_control.dart';
-import 'package:proypet/src/views/components/form_control/text_from.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
+import 'package:proypet/src2/app/views/components/form_control/ddl_control.dart';
+import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:select_dialog/select_dialog.dart';
 
 final tipopet = [

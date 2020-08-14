@@ -1,51 +1,52 @@
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/home_model.dart';
-import 'package:proypet/src/models/login/login_model.dart';
-import 'dart:convert';
 import 'package:proypet/src/models/login/user_model.dart';
-import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class UserProvider {
   final _url = urlApi;
-  final _prefs = new PreferenciasUsuario();
+  // final _prefs = new PreferenciasUsuario();
 
-  Future<Map<String, dynamic>> loginToken(UserDato login) async {
-    final url = '$_url/login';
+  // Future<Map<String, dynamic>> loginToken(UserDato login) async {
+  //   final url = '$_url/login';
 
-    try {
-      final loginData = {"email": login.email, "password": login.password};
-      final resp = await http.post(url, body: loginData);
+  //   try {
+  //     final loginData = {"email": login.email, "password": login.password};
 
-      final Map<String, dynamic> decodedResp = json.decode(resp.body);
+  //     Response response;
+  //     Dio dio = new Dio();
+  //     response = await dio.post(url, data: loginData);
+  //     // final resp = await http.post(url, body: loginData);
 
-      var jsonRespuesta;
+  //     // final Map<String, dynamic> decodedResp = json.decode(resp.body);
 
-      if (resp.statusCode == 200) {
-        //guarda en prefs
-        _prefs.token = decodedResp['token'];
-        _prefs.verify = decodedResp['verify'];
-        //
-        jsonRespuesta = {'code': 200, 'token': decodedResp['token']};
-      } else if (resp.statusCode == 401) {
-        jsonRespuesta = {'code': 401, 'message': decodedResp['message']};
-      }
-      return jsonRespuesta;
-    } catch (ex) {
-      return {'code': 500, 'message': 'Usuario o clave incorrecta'};
-    }
-  }
+  //     var jsonRespuesta;
 
-  Future<void> sendTokenFire(String fireToken) async {
-    final url = '$_url/firebase';
-    final fireData = {"token": fireToken};
-    await http.post(url, headers: headersToken(), body: fireData);
-  }
+  //     if (response.statusCode == 200) {
+  //       //guarda en prefs
+  //       _prefs.token = response.data['token'];
+  //       _prefs.verify = response.data['verify'];
+  //       //
+  //       jsonRespuesta = {'code': 200, 'token': response.data['token']};
+  //     } else if (response.statusCode == 401) {
+  //       jsonRespuesta = {'code': 401, 'message': response.data['message']};
+  //     }
+  //     return jsonRespuesta;
+  //   } catch (ex) {
+  //     return {'code': 500, 'message': 'Usuario o clave incorrecta'};
+  //   }
+  // }
 
-  Future<void> logOut() async {
-    final url = '$_url/logout';
-    await http.post(url, headers: headersToken());
-  }
+  // Future<void> sendTokenFire(String fireToken) async {
+  //   final url = '$_url/firebase';
+  //   final fireData = {"token": fireToken};
+  //   await http.post(url, headers: headersToken(), body: fireData);
+  // }
+
+  // Future<void> logOut() async {
+  //   final url = '$_url/logout';
+  //   await http.post(url, headers: headersToken());
+  // }
 
   Future<int> changePassword(String passAntigua, String passNueva) async {
     final url = '$_url/settings/password';
@@ -55,8 +56,7 @@ class UserProvider {
       "password": passNueva,
       "password_confirmation": passNueva,
     };
-    final resp =
-        await http.post(url, headers: headersToken(), body: changePass);
+    final resp = await http.post(url, headers: headersToken(), body: changePass);
     return resp.statusCode;
   }
 
@@ -80,21 +80,16 @@ class UserProvider {
     return homeModel;
   }
 
-  Future<bool> registerUser(UserDato user) async {
-    final url = '$_url/register';
-    final userData = {
-      "name": user.name,
-      "lastname": user.lastname,
-      "email": user.email,
-      "password": user.password
-    };
-    final resp = await http.post(url, body: userData);
+  // Future<bool> registerUser(UserDato user) async {
+  //   final url = '$_url/register';
+  //   final userData = {"name": user.name, "lastname": user.lastname, "email": user.email, "password": user.password};
+  //   final resp = await http.post(url, body: userData);
 
-    if (resp.statusCode == 200 || resp.statusCode == 201)
-      return true;
-    else
-      return false;
-  }
+  //   if (resp.statusCode == 200 || resp.statusCode == 201)
+  //     return true;
+  //   else
+  //     return false;
+  // }
 
   Future<UserModel> getUser() async {
     final url = '$_url/profile';
@@ -110,11 +105,7 @@ class UserProvider {
 
   Future<bool> editUser(User user) async {
     final url = '$_url/profile';
-    final userData = {
-      "name": user.name,
-      "lastname": user.lastname,
-      "phone": user.phone
-    };
+    final userData = {"name": user.name, "lastname": user.lastname, "phone": user.phone};
     final resp = await http.post(
       url,
       body: userData,

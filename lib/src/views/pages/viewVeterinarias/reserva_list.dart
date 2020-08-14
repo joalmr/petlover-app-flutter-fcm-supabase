@@ -4,14 +4,14 @@ import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/models/maps/address.dart';
-import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/views/components/filtro_veterinarias.dart';
-import 'package:proypet/src/views/components/form_control/button_primary.dart';
+import 'package:proypet/src2/app/views/components/filtro_veterinarias.dart';
+import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/services/establecimiento_provider.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/utils/error_internet.dart';
+import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
 
-import 'package:proypet/src/utils/error_internet.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 import 'package:http/http.dart' as http;
 

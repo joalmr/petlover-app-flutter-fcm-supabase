@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/provider/home_store.dart';
-import 'package:proypet/src/views/components/enddrawer/config_drawer.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/enddrawer/config_drawer.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'components/atenciones.dart';
 import 'components/frecuentes.dart';

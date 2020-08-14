@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src2/utils/icons_map.dart';
 
 class ViewGeneral extends StatefulWidget {
   final dynamic localVet;
@@ -28,11 +28,7 @@ class _ViewGeneralState extends State<ViewGeneral> {
           Container(
             width: double.infinity,
             padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-            child: Text("Servicios",
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2
-                    .apply(fontWeightDelta: 2)
+            child: Text("Servicios", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
                 // tituloH4
                 ),
           ),
@@ -43,17 +39,12 @@ class _ViewGeneralState extends State<ViewGeneral> {
             child: _servicios(localVet.services),
           ),
           Container(
-            padding: EdgeInsets.only(
-                left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
+            padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0, bottom: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text('Descripción',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2
-                        .apply(fontWeightDelta: 2)
+                Text('Descripción', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
                     // tituloH4
                     ),
                 SizedBox(
@@ -81,8 +72,7 @@ class _ViewGeneralState extends State<ViewGeneral> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: servicios.length,
-        itemBuilder: (BuildContext context, int index) =>
-            _icoServicio(servicios[index].slug, servicios[index].name),
+        itemBuilder: (BuildContext context, int index) => _icoServicio(servicios[index].slug, servicios[index].name),
       ),
     );
   }
@@ -101,19 +91,12 @@ class _ViewGeneralState extends State<ViewGeneral> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
                 color: Theme.of(context).backgroundColor, //Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 3.0,
-                      spreadRadius: 2.0)
-                ],
+                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3.0, spreadRadius: 2.0)],
               ),
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Tooltip(
-                  child: Icon(iconMap[icon],
-                      size: 20,
-                      color: Theme.of(context).textTheme.subtitle2.color),
+                  child: Icon(iconMap[icon], size: 20, color: Theme.of(context).textTheme.subtitle2.color),
                   message: nombre,
                 ),
               )),

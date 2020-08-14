@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/provider/home_store.dart';
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/calcula_edad.dart';
-import 'package:proypet/src/views/components/form_control/button_primary.dart';
+import 'package:proypet/src2/utils/calcula_edad.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 
 class Mascotas extends StatefulWidget {
   // const Mascotas({Key key}) : super(key: key);

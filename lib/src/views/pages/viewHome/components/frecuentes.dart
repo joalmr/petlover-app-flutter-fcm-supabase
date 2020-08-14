@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 emergencia(BuildContext context) {
   return InkWell(

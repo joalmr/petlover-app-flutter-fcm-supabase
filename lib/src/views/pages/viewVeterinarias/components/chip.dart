@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src2/utils/icons_map.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 chip(int servicio, context) {
   return Padding(
@@ -16,8 +16,7 @@ chip(int servicio, context) {
         backgroundColor: colorMain, //colorBlue, //Colors.grey.shade800,
         child: Icon(iconNum[servicio], size: sizeSmallx1, color: Colors.white),
       ),
-      label: Text(textMap[servicio],
-          style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
+      label: Text(textMap[servicio], style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color)),
     ),
   );
 }

@@ -7,12 +7,12 @@ import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 import 'package:proypet/src/models/notificacion/tip_model.dart';
 import 'package:proypet/src/services/establecimiento_provider.dart';
 import 'package:proypet/src/services/notificacion_provider.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/utils/error_internet.dart';
+import 'package:proypet/src2/utils/icons_map.dart';
 
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/error_internet.dart';
-import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 import 'notificaciones/buildNoti.dart';

@@ -11,10 +11,11 @@ import 'package:proypet/src/models/mascota/pet_model.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src/services/user_provider.dart';
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/add_msg.dart';
-import 'package:proypet/src/views/components/snackbar.dart';
-import 'package:proypet/src/views/components/thx_page.dart';
+import 'package:proypet/src2/utils/add_msg.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
+
+import 'package:proypet/src2/app/views/components/snackbar.dart';
+import 'package:proypet/src2/app/views/components/thx_page.dart';
 
 part 'home_store.g.dart';
 

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/models/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src/services/bonificacion_provider.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/utils/error_internet.dart';
 
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/error_internet.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 class RecompensasPage extends StatefulWidget {
   @override
@@ -21,8 +21,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
 
-  Future<BonificacionModel> newFuture() =>
-      bonificacionProvider.getBonificacion();
+  Future<BonificacionModel> newFuture() => bonificacionProvider.getBonificacion();
 
   Future<Null> _onRefresh() async {
     refreshKey.currentState?.show();
@@ -45,8 +44,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
     return Scaffold(
       appBar: appbar(leadingH, 'Puntos', null),
       body: FadeViewSafeArea(
-        child: RefreshIndicator(
-            key: refreshKey, onRefresh: _onRefresh, child: _onPage()),
+        child: RefreshIndicator(key: refreshKey, onRefresh: _onRefresh, child: _onPage()),
       ),
     );
   }
@@ -54,8 +52,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
   Widget _onPage() {
     return FutureBuilder(
       future: stream, //bonificacionProvider.getBonificacion(),
-      builder:
-          (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return LinearProgressIndicator();
         } else {
@@ -69,8 +66,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
             children: <Widget>[
               FadeIn(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0, horizontal: 30.0),
+                  padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                   child: Row(
                     children: <Widget>[
                       Expanded(
@@ -109,10 +105,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
                                     ),
                                     Text(
                                       'Puntos acumulados',
-                                      style: TextStyle(
-                                          color: Colors.white60,
-                                          fontSize: sizeSmallx1,
-                                          fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Colors.white60, fontSize: sizeSmallx1, fontWeight: FontWeight.bold),
                                     ),
                                   ],
                                 ),
@@ -131,11 +124,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
               FadeIn(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text('Últimos puntos ganados',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2
-                          .apply(fontWeightDelta: 2)),
+                  child: Text('Últimos puntos ganados', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 ),
               ),
               FadeIn(child: _listaBonificacion(bonificacion.bonifications)),
@@ -165,15 +154,13 @@ class _RecompensasPageState extends State<RecompensasPage> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: ListTile(
-              title: Text('${bonificados[index].establishmentName}',
-                  style: Theme.of(context).textTheme.subtitle2),
+              title: Text('${bonificados[index].establishmentName}', style: Theme.of(context).textTheme.subtitle2),
               trailing: CircleAvatar(
                   backgroundColor: colorMain,
                   foregroundColor: Colors.white,
                   child: Text(
                     '+${bonificados[index].points}',
-                    style: TextStyle(
-                        fontSize: sizeSmallx1, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: sizeSmallx1, fontWeight: FontWeight.bold),
                   )),
             ),
           );

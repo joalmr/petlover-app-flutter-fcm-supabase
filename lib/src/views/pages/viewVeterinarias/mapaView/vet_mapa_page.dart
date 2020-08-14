@@ -8,10 +8,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 class VetMapaPage extends StatefulWidget {

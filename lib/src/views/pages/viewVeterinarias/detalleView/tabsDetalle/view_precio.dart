@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 class ViewPrecio extends StatefulWidget {
   final dynamic localVet;
@@ -32,17 +32,9 @@ class _ViewPrecioState extends State<ViewPrecio> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Precio referencial",
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle2
-                          .apply(fontWeightDelta: 2)),
-                  Text("*Sujeto a revisión física de mascota",
-                      style: TextStyle(fontSize: sizeSmallx2)),
-                  if (localVet.prices.length > 0)
-                    _listaPrecio(localVet.prices)
-                  else
-                    Text("No tiene precios registrados")
+                  Text("Precio referencial", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                  Text("*Sujeto a revisión física de mascota", style: TextStyle(fontSize: sizeSmallx2)),
+                  if (localVet.prices.length > 0) _listaPrecio(localVet.prices) else Text("No tiene precios registrados")
                 ],
               )),
         ],
@@ -61,22 +53,14 @@ class _ViewPrecioState extends State<ViewPrecio> {
           children: <Widget>[
             _precio(
               "Consulta",
-              precios["consultation"]["from"] == null
-                  ? ""
-                  : precios["consultation"]["from"],
-              precios["consultation"]["to"] == null
-                  ? ""
-                  : precios["consultation"]["to"],
+              precios["consultation"]["from"] == null ? "" : precios["consultation"]["from"],
+              precios["consultation"]["to"] == null ? "" : precios["consultation"]["to"],
               // colorBlue.withOpacity(0.75)
             ),
             _precio(
               "Vacunas",
-              precios["vaccination"]["from"] == null
-                  ? ""
-                  : precios["vaccination"]["from"],
-              precios["vaccination"]["to"] == null
-                  ? ""
-                  : precios["vaccination"]["to"],
+              precios["vaccination"]["from"] == null ? "" : precios["vaccination"]["from"],
+              precios["vaccination"]["to"] == null ? "" : precios["vaccination"]["to"],
               // colorBlue.withOpacity(0.75)
             ),
           ],
@@ -86,22 +70,14 @@ class _ViewPrecioState extends State<ViewPrecio> {
           children: <Widget>[
             _precio(
               "Baños",
-              precios["grooming"]["from"] == null
-                  ? ""
-                  : precios["grooming"]["from"],
-              precios["grooming"]["to"] == null
-                  ? ""
-                  : precios["grooming"]["to"],
+              precios["grooming"]["from"] == null ? "" : precios["grooming"]["from"],
+              precios["grooming"]["to"] == null ? "" : precios["grooming"]["to"],
               // colorBlue.withOpacity(0.75)
             ),
             _precio(
               "Desparasitación",
-              precios["deworming"]["from"] == null
-                  ? ""
-                  : precios["deworming"]["from"],
-              precios["deworming"]["to"] == null
-                  ? ""
-                  : precios["deworming"]["to"],
+              precios["deworming"]["from"] == null ? "" : precios["deworming"]["from"],
+              precios["deworming"]["to"] == null ? "" : precios["deworming"]["to"],
               // colorBlue.withOpacity(0.75)
             ),
           ],
@@ -130,16 +106,14 @@ class _ViewPrecioState extends State<ViewPrecio> {
                 children: <Widget>[
                   Text(
                     tipo,
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.subtitle2.color),
+                    style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
                   ),
                   SizedBox(
                     height: 5,
                   ),
                   Text(
                     "desde",
-                    style: TextStyle(
-                        color: Theme.of(context).textTheme.subtitle2.color),
+                    style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -153,11 +127,7 @@ class _ViewPrecioState extends State<ViewPrecio> {
                       (desde != "")
                           ? Text(
                               ' $desde ',
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      .color),
+                              style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
                             )
                           : SizedBox(
                               width: 0,
@@ -165,11 +135,7 @@ class _ViewPrecioState extends State<ViewPrecio> {
                       (desde != "" && hasta != "")
                           ? Text(
                               "-",
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      .color),
+                              style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
                             )
                           : SizedBox(
                               width: 0,
@@ -177,11 +143,7 @@ class _ViewPrecioState extends State<ViewPrecio> {
                       (desde == "" && hasta != "")
                           ? Text(
                               "0 -",
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      .color),
+                              style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
                             )
                           : SizedBox(
                               width: 0,
@@ -189,11 +151,7 @@ class _ViewPrecioState extends State<ViewPrecio> {
                       (hasta != "")
                           ? Text(
                               ' $hasta ',
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      .color),
+                              style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
                             )
                           : SizedBox(
                               width: 0,

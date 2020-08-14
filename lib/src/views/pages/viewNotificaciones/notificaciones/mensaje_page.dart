@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 
 class MensajePage extends StatelessWidget {
   @override

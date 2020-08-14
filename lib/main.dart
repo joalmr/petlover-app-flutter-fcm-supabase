@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_it/get_it.dart';
-import 'package:proypet/src/provider/booking_store.dart';
-import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/routes/routes.dart';
+import 'package:proypet/src2/routes/routes.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
@@ -13,19 +11,19 @@ import 'config/global_variables.dart';
 import 'src/provider/home_store.dart';
 import 'src/provider/login_store.dart';
 import 'src/provider/push_store.dart';
-import 'src/theme/theme.dart';
-import 'src/theme/themeDark.dart';
+import 'src2/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'src2/app/theme/theme.dart';
+import 'src2/app/theme/themeDark.dart';
 import 'src/views/pages/_navigation_pages/navigation_bar.dart';
 
 final _prefs = new PreferenciasUsuario();
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await _prefs.initPrefs();
+  _prefs.openPrefs();
   GetIt getIt = GetIt.I;
   getIt.registerSingleton<LoginStore>(LoginStore());
   getIt.registerSingleton<PushStore>(PushStore());
   getIt.registerSingleton<HomeStore>(HomeStore());
-  // getIt.registerSingleton<BookingStore>(BookingStore());
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
     (value) => runApp(MyApp()),
@@ -74,8 +72,15 @@ class _MyAppState extends State<MyApp> {
       initialRoute: loginStore.rutaInicio,
       defaultTransition: Transition.fadeIn,
       getPages: getRutas(),
-      // onGenerateInitialRoutes: (initialRoute) => ,
-      onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(builder: (_) => NavigationBar(currentTabIndex: 0)),
+      onGenerateRoute: (settings) => GetPageRoute(page: () => NavigationBar(currentTabIndex: 0)),
+      // onGenerateRoute: (RouteSettings settings) => MaterialPageRoute(builder: (_) => NavigationBar(currentTabIndex: 0)),
     );
   }
 }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp();
+//   }
+// }

@@ -9,47 +9,45 @@ UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
-    User user;
+  User user;
 
-    UserModel({
-        this.user,
-    });
+  UserModel({
+    this.user,
+  });
 
-    factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         user: User.fromJson(json["user"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "user": user.toJson(),
-    };
+      };
 }
 
 class User {
-    String id;
-    String name;
-    String lastname;
-    String phone;
-    String email;
-    DateTime emailVerifiedAt;
-    // String settings;
-    DateTime createdAt;
-    DateTime updatedAt;
-    dynamic deletedAt;
+  String id;
+  String name;
+  String lastname;
+  String phone;
+  String email;
+  DateTime emailVerifiedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
+  dynamic deletedAt;
 
-    User({
-        this.id,
-        this.name,
-        this.lastname,
-        this.phone,
-        this.email,
-        this.emailVerifiedAt,
-        // this.settings,
-        this.createdAt,
-        this.updatedAt,
-        this.deletedAt,
-    });
+  User({
+    this.id,
+    this.name,
+    this.lastname,
+    this.phone,
+    this.email,
+    this.emailVerifiedAt,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+  });
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         name: json["name"],
         lastname: json["lastname"],
@@ -60,18 +58,17 @@ class User {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         deletedAt: json["deleted_at"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "lastname": lastname,
         "phone": phone,
         "email": email,
         "email_verified_at": emailVerifiedAt.toIso8601String(),
-        // "settings": settings,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "deleted_at": deletedAt,
-    };
+      };
 }

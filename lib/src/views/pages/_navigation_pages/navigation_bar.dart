@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/provider/push_store.dart';
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/posicion.dart';
-import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src2/utils/posicion.dart';
+import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src/views/pages/viewDestacados/destacados_page.dart';
 import 'package:proypet/src/views/pages/viewHome/home_page.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.dart';

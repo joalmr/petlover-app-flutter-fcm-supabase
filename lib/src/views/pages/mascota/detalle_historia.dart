@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 class HistoriaPage extends StatelessWidget {
   const HistoriaPage({Key key}) : super(key: key);
@@ -19,58 +19,36 @@ class HistoriaPage extends StatelessWidget {
     var motivo = historiaData["motivo"];
 
     if (historiaData["proximacita"] != "") {
-      proximacita = DateFormat('dd-MM-yyyy')
-          .format(DateTime.parse(historiaData["proximacita"]));
+      proximacita = DateFormat('dd-MM-yyyy').format(DateTime.parse(historiaData["proximacita"]));
     }
 
     return Scaffold(
         appBar: appbar(null, 'Detalle de atención', null),
         body: FadeViewSafeArea(
           child: SingleChildScrollView(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
             child: Column(
               children: <Widget>[
-                (jsonText.toString().contains("grooming"))
-                    ? _banio(jsonText["grooming"], context)
-                    : SizedBox(),
-                (jsonText.toString().contains("deworming"))
-                    ? _desparasita(jsonText["deworming"], context)
-                    : SizedBox(),
-                (jsonText.toString().contains("vaccination"))
-                    ? _vacuna(jsonText["vaccination"], context)
-                    : SizedBox(),
-                (jsonText.toString().contains("consultation"))
-                    ? _consulta(jsonText["consultation"], context)
-                    : SizedBox(),
-                (jsonText.toString().contains("surgery"))
-                    ? _cirugia(jsonText["surgery"], context)
-                    : SizedBox(),
+                (jsonText.toString().contains("grooming")) ? _banio(jsonText["grooming"], context) : SizedBox(),
+                (jsonText.toString().contains("deworming")) ? _desparasita(jsonText["deworming"], context) : SizedBox(),
+                (jsonText.toString().contains("vaccination")) ? _vacuna(jsonText["vaccination"], context) : SizedBox(),
+                (jsonText.toString().contains("consultation")) ? _consulta(jsonText["consultation"], context) : SizedBox(),
+                (jsonText.toString().contains("surgery")) ? _cirugia(jsonText["surgery"], context) : SizedBox(),
                 Divider(
                   height: 30.0,
                   color: colorBrown1,
                 ),
                 Container(
                     width: double.infinity,
-                    padding: EdgeInsets.only(
-                        right: 20.0), //.symmetric(horizontal: 0.0),
+                    padding: EdgeInsets.only(right: 20.0), //.symmetric(horizontal: 0.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text("Precio",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2
-                                    .color)),
+                        Text("Precio", style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color)),
                         Text(
                           precio.toString(),
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.subtitle2.color),
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color),
                         ),
                       ],
                     )),
@@ -80,8 +58,7 @@ class HistoriaPage extends StatelessWidget {
                 // Divider(),
                 Container(
                   width: double.infinity,
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                   decoration: BoxDecoration(
                     borderRadius: borderRadius,
                     color: Theme.of(context).backgroundColor,
@@ -91,30 +68,13 @@ class HistoriaPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text("Próxima cita",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: sizeSmallx2,
-                              color:
-                                  Theme.of(context).textTheme.subtitle2.color)),
-                      Text(proximacita,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.subtitle2.color)),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2, color: Theme.of(context).textTheme.subtitle2.color)),
+                      Text(proximacita, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color)),
                       SizedBox(
                         height: 10.0,
                       ),
-                      Text("Motivo",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: sizeSmallx2,
-                              color:
-                                  Theme.of(context).textTheme.subtitle2.color)),
-                      Text(motivo,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  Theme.of(context).textTheme.subtitle2.color)),
+                      Text("Motivo", style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2, color: Theme.of(context).textTheme.subtitle2.color)),
+                      Text(motivo, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color)),
                     ],
                   ),
                 ),
@@ -131,17 +91,13 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(IconProypet.grooming,
-                size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
+            Icon(IconProypet.grooming, size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(
               width: 10.0,
             ),
             Text(
               'Baño',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .apply(fontWeightDelta: 2),
+              style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),
             ),
           ],
         ),
@@ -162,10 +118,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(data["amount"].toString(), textAlign: TextAlign.right)),
+        Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right)),
       ],
     );
   }
@@ -177,16 +130,11 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(IconProypet.desparasitacion,
-                size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
+            Icon(IconProypet.desparasitacion, size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(
               width: 10.0,
             ),
-            Text('Desparasitación',
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1
-                    .apply(fontWeightDelta: 2)),
+            Text('Desparasitación', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
           ],
         ),
         SizedBox(
@@ -206,10 +154,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+        Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
       ],
     );
   }
@@ -221,17 +166,13 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(IconProypet.vacuna,
-                size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
+            Icon(IconProypet.vacuna, size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(
               width: 10.0,
             ),
             Text(
               'Vacuna',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .apply(fontWeightDelta: 2),
+              style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),
             ),
           ],
         ),
@@ -252,10 +193,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+        Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
       ],
     );
   }
@@ -267,17 +205,13 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(IconProypet.consulta,
-                size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
+            Icon(IconProypet.consulta, size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(
               width: 10.0,
             ),
             Text(
               'Consulta',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .apply(fontWeightDelta: 2),
+              style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),
             ),
           ],
         ),
@@ -295,10 +229,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+        Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
       ],
     );
   }
@@ -310,17 +241,13 @@ class HistoriaPage extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            Icon(IconProypet.cirugia,
-                size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
+            Icon(IconProypet.cirugia, size: 16.0, color: Theme.of(context).textTheme.subtitle2.color),
             SizedBox(
               width: 10.0,
             ),
             Text(
               'Cirugía',
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  .apply(fontWeightDelta: 2),
+              style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2),
             ),
           ],
         ),
@@ -338,10 +265,7 @@ class HistoriaPage extends StatelessWidget {
         ),
         Text((data["employee"] != null) ? data["employee"] : "-"),
         Divider(),
-        Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+        Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
       ],
     );
   }

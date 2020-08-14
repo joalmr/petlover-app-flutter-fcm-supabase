@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/comentarios_model.dart';
 import 'package:proypet/src/services/establecimiento_provider.dart';
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 // import 'package:proypet/src/utils/error_internet.dart';
 
 class ViewComentario extends StatefulWidget {
@@ -38,8 +38,7 @@ class _ViewComentarioState extends State<ViewComentario> {
   viewComentario() {
     return FutureBuilder(
       future: stream,
-      builder:
-          (BuildContext context, AsyncSnapshot<List<Comentarios>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Comentarios>> snapshot) {
         final comentarios = snapshot.data;
         if (snapshot.connectionState != ConnectionState.done) {
           return Container();
@@ -55,8 +54,7 @@ class _ViewComentarioState extends State<ViewComentario> {
               // contentPadding: EdgeInsets.all(0),
               leading: CircleAvatar(
                 backgroundColor: colorMain,
-                backgroundImage:
-                    CachedNetworkImageProvider(comentarios[index].petPicture),
+                backgroundImage: CachedNetworkImageProvider(comentarios[index].petPicture),
                 radius: 20.0,
               ),
               title: Container(

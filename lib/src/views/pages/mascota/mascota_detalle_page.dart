@@ -8,12 +8,12 @@ import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
 import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
-import 'package:proypet/src/views/components/enddrawer/mascota_drawer.dart';
-import 'package:proypet/src/views/components/transicion/fadeView.dart';
+import 'package:proypet/src2/app/views/components/enddrawer/mascota_drawer.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
+import 'package:proypet/src2/utils/calcula_edad.dart';
+import 'package:proypet/src2/utils/icons_map.dart';
 
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/utils/calcula_edad.dart';
-import 'package:proypet/src/utils/icons_map.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 
 class MascotaDetallePage extends StatefulWidget {
   @override

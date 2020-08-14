@@ -5,8 +5,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/antecion/atencion_model.dart';
 import 'package:proypet/src/services/atencion_provider.dart';
-import 'package:proypet/src/styles/styles.dart';
-import 'package:proypet/src/views/components/form_control/text_field.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/app/views/components/form_control/text_field.dart';
 
 // import 'package:proypet/src/utils/add_msg.dart';
 // import 'dart:math' as Math;

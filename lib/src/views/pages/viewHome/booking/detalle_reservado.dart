@@ -7,11 +7,11 @@ import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/provider/home_store.dart';
 import 'package:proypet/src/services/booking_provider.dart';
-import 'package:proypet/src/views/components/appbar_menu.dart';
-import 'package:proypet/src/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/views/components/transicion/fadeViewSafeArea.dart';
+import 'package:proypet/src2/app/views/components/appbar_menu.dart';
+import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
+import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
-import 'package:proypet/src/styles/styles.dart';
+import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalleReservado extends StatefulWidget {
