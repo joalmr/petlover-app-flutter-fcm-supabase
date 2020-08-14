@@ -15,17 +15,17 @@ class SignController extends GetxController {
   final passwordVisible = false.obs;
   final loading = false.obs;
 
-  void setEmail(String value) => _email.value = value;
+  set email(String value) => _email.value = value;
   String get email => this._email.value;
 
-  void setPassword(String value) => _password.value = value;
+  set password(String value) => _password.value = value;
   String get password => this._password.value;
 
-  void setName(String value) => _name.value = value;
-  get name => _name.value;
+  set name(String value) => _name.value = value;
+  String get name => _name.value;
 
-  void setLastName(String value) => _lastname.value = value;
-  get lastname => _lastname.value;
+  set lastname(String value) => _lastname.value = value;
+  String get lastname => _lastname.value;
 
   void togglePasswordVisibility() => passwordVisible.value = !passwordVisible.value;
 
@@ -48,10 +48,10 @@ class SignController extends GetxController {
   }
 
   limpia() {
-    setEmail('');
-    setPassword('');
-    setName('');
-    setLastName('');
+    email = '';
+    password = '';
+    name = '';
+    lastname = '';
     loading.value = false;
   }
 

@@ -15,10 +15,10 @@ class LoginController extends GetxController {
   final passwordVisible = false.obs;
   final loading = false.obs;
 
-  void setEmail(String value) => _email.value = value;
+  set email(String value) => _email.value = value;
   String get email => this._email.value;
 
-  void setPassword(String value) => _password.value = value;
+  set password(String value) => _password.value = value;
   String get password => this._password.value;
 
   void togglePasswordVisibility() => passwordVisible.value = !passwordVisible.value;
@@ -51,8 +51,8 @@ class LoginController extends GetxController {
   }
 
   limpia() {
-    setEmail('');
-    setPassword('');
+    email = '';
+    password = '';
     loading.value = false;
   }
 

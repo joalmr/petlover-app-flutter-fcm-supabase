@@ -41,34 +41,45 @@ class ConfigDrawer extends StatelessWidget {
                 //FormControl().buttonSec('Buscar',(){})
                 //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
-                    leading: Icon(
-                      Icons.star,
-                      color: Theme.of(context).textTheme.subtitle2.color,
-                    ),
-                    title: Text(
-                      'Calificar atenciones',
-                      style: TextStyle(fontWeight: FontWeight.w400),
-                    ),
-                    onTap: () => Get.to(AtencionesPage())),
+                  leading: Icon(Icons.star),
+                  title: Text('Calificar atenciones'),
+                  onTap: () => Get.to(AtencionesPage()),
+                ),
                 ListTile(
-                    leading: Icon(Icons.person, color: Theme.of(context).textTheme.subtitle2.color),
-                    title: Text('Editar usuario', style: TextStyle(fontWeight: FontWeight.w400)),
-                    onTap: () => Get.to(UserPage())),
+                  leading: Icon(Icons.person),
+                  title: Text('Editar usuario'),
+                  onTap: () => Get.to(UserPage()),
+                ),
                 ListTile(
-                    leading: Icon(Icons.lock, color: Theme.of(context).textTheme.subtitle2.color),
-                    title: Text('Cambiar contraseña', style: TextStyle(fontWeight: FontWeight.w400)),
-                    onTap: () => Get.to(ChangePasswordPage())),
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePasswordPage()))),
+                  leading: Icon(Icons.lock),
+                  title: Text('Cambiar contraseña'),
+                  onTap: () => Get.to(ChangePasswordPage()),
+                ),
                 ListTile(
-                  leading: Icon(Icons.share, color: Theme.of(context).textTheme.subtitle2.color),
-                  title: Text('Compartir con mis amigos', style: TextStyle(fontWeight: FontWeight.w400)),
+                  leading: Icon(Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
+                  title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),
+                  onTap: () {
+                    if (Get.isDarkMode) {
+                      // Get.changeTheme(ThemeData.light());
+                      Get.changeThemeMode(ThemeMode.light);
+                      _prefs.themeMode = 'claro';
+                    } else {
+                      // Get.changeTheme(ThemeData.dark());
+                      Get.changeThemeMode(ThemeMode.dark);
+                      _prefs.themeMode = 'oscuro';
+                    }
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.share),
+                  title: Text('Compartir con mis amigos'),
                   onTap: () => Share.share(
                       '¿Conoces Proypet? Descubre la nueva App para reservar citas en veterinarias y acceder a beneficios. Entérate más en: https://www.proypet.com',
                       subject: 'Registrate hoy a Proypet'),
                 ),
                 ListTile(
                     leading: Icon(Icons.person_outline, color: colorRed),
-                    title: Text('Cerrar sesión', style: TextStyle(color: colorRed, fontWeight: FontWeight.w400)),
+                    title: Text('Cerrar sesión', style: TextStyle(color: colorRed)),
                     onTap: () => _cerrarSesion(context)),
               ],
             ),
@@ -99,8 +110,10 @@ class ConfigDrawer extends StatelessWidget {
 
   void _outToken() async {
     loginApi.logOut();
-    _prefs.token = '';
-    _prefs.position = '';
+    // _prefs.token = '';
+    // _prefs.position = '';
+    _prefs.tokenDel();
+    _prefs.positionDel();
     Get.offAllNamed('login');
     // Navigator.pushNamedAndRemoveUntil(context, 'login', ModalRoute.withName('/'));
   }

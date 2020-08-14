@@ -1,4 +1,3 @@
-// import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'preferencias_usuario/preferencias_usuario.dart';
@@ -12,11 +11,6 @@ Future<Position> fnPosition() async {
   return position;
 }
 
-// fnGetPosition() async {
-//   final datoPosicion = await fnPosition();
-//   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
-//   print('=== guarda gps ===');
-// }
 Future<void> fnGetPosition() async {
   print('=== entra position ===');
   final datoPosicion = await fnPosition();

@@ -39,7 +39,7 @@ class ForgotPage extends StatelessWidget {
                               hintText: 'Email',
                               icon: Icons.alternate_email,
                               obscureText: false,
-                              onChanged: (value) => _.setEmail(value),
+                              onChanged: (value) => _.email = value,
                               textCap: TextCapitalization.none,
                               valorInicial: null,
                               boardType: TextInputType.text,

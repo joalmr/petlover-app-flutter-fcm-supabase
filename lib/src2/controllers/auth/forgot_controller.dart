@@ -10,7 +10,7 @@ class ForgotController extends GetxController {
   final _email = ''.obs;
   final loading = false.obs;
 
-  void setEmail(String value) => _email.value = value;
+  set email(String value) => _email.value = value;
   String get email => this._email.value;
 
   bool get hasEmailData => email.trim().length > 0;
@@ -34,7 +34,7 @@ class ForgotController extends GetxController {
   }
 
   limpia() {
-    setEmail('');
+    email = '';
     loading.value = false;
   }
 

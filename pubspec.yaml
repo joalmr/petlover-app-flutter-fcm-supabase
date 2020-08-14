@@ -34,6 +34,7 @@ dependencies:
   
   dio: ^3.0.10
   get: 
+  get_storage:
   get_it:
   # flutter_local_notifications: ^1.4.3
 
@@ -61,7 +62,7 @@ dependencies:
   rxdart: ^0.23.1
   # searchable_dropdown: ^1.1.3  
   share: ^0.6.4+3
-  shared_preferences: ^0.5.7+3
+  # shared_preferences: ^0.5.7+3
   url_launcher: ^5.4.11
 
   provider: ^4.3.1 #mobx +

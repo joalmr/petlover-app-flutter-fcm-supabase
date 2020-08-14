@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
                     child: Obx(() => FormularioText(
                           hintText: 'Email',
                           icon: Icons.alternate_email,
-                          onChanged: (value) => _.setEmail(value),
+                          onChanged: (value) => _.email = value,
                           valorInicial: null,
                           activo: !_.loading.value,
                         )),
@@ -42,7 +42,7 @@ class LoginPage extends StatelessWidget {
                             child: Icon(_.passwordVisible.value ? Icons.visibility_off : Icons.visibility),
                             onTap: _.togglePasswordVisibility,
                           ),
-                          onChanged: (value) => _.setPassword(value),
+                          onChanged: (value) => _.password = value,
                           valorInicial: null,
                           activo: !_.loading.value,
                         )),

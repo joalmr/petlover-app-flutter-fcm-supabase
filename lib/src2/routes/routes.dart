@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:proypet/src/views/pages/mascota/detalle_historia.dart';
 import 'package:proypet/src/views/pages/mascota/mascota_detalle_page.dart';
@@ -11,8 +12,15 @@ import 'package:proypet/src2/app/views/auth/login_page.dart';
 import 'package:proypet/src2/app/views/auth/singup_page.dart';
 import 'package:proypet/src2/app/views/auth/forgot_page.dart';
 
+GetStorage box = GetStorage();
+
 List<GetPage> getRutas() {
   return [
+    GetPage(
+      name: '/',
+      page: () => box.hasData('token') && box.hasData('verify') ? NavigationBar(currentTabIndex: 0) : LoginPage(),
+    ),
+    //
     GetPage(name: 'login', page: () => LoginPage()),
     GetPage(name: 'registro', page: () => SingupPage()),
     GetPage(name: 'olvidopass', page: () => ForgotPage()),

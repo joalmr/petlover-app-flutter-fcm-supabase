@@ -37,26 +37,6 @@ mixin _$LoginStore on _LoginStore, Store {
     });
   }
 
-  final _$evaluaLoginAsyncAction = AsyncAction('_LoginStore.evaluaLogin');
-
-  @override
-  Future<void> evaluaLogin() {
-    return _$evaluaLoginAsyncAction.run(() => super.evaluaLogin());
-  }
-
-  final _$_LoginStoreActionController = ActionController(name: '_LoginStore');
-
-  @override
-  void evaluaIngreso() {
-    final _$actionInfo = _$_LoginStoreActionController.startAction(
-        name: '_LoginStore.evaluaIngreso');
-    try {
-      return super.evaluaIngreso();
-    } finally {
-      _$_LoginStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
