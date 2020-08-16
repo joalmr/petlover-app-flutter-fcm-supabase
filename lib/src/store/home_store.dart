@@ -4,14 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
-import 'package:proypet/src/models/booking/booking_home.dart';
+// import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/booking/booking_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 // import 'package:proypet/src/services/user_provider.dart';
-import 'package:proypet/src2/data/services/summary_service.dart';
+// import 'package:proypet/src2/data/services/summary_service.dart';
 import 'package:proypet/src2/utils/add_msg.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 
@@ -56,63 +56,63 @@ abstract class _HomeStore with Store {
 //////////////////////////////////////////////////////
 
   /* funciones iniciales */
-  @action
-  Future<Null> refresh() async {
-    await Future.delayed(Duration(milliseconds: 2));
-    getSummary();
-    return null;
-  }
+  // @action
+  // Future<Null> refresh() async {
+  //   await Future.delayed(Duration(milliseconds: 2));
+  //   getSummary();
+  //   return null;
+  // }
 
-  @action
-  void getSummary() {
-    summary();
-    espera();
-  }
+  // @action
+  // void getSummary() {
+  //   summary();
+  //   espera();
+  // }
 
-  @action
-  Future<void> summary() async {
-    var resp = await SummaryService().getUserSummary();
-    usuario = resp.user.name; //usuario
-    mascotas.clear(); //mascotas
-    mascotas.addAll(resp.pets);
-    atenciones.clear(); //atenciones
-    DateTime now = DateTime.now();
-    resp.bookings.forEach((booking) {
-      var fechaAt = booking.date.split('-');
-      bool vencido = false;
-      if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
-        vencido = true;
-      }
-      booking.vencido = vencido;
-      atenciones.add(booking);
-    });
-  }
+  // @action
+  // Future<void> summary() async {
+  //   var resp = await SummaryService().getUserSummary();
+  //   usuario = resp.user.name; //usuario
+  //   mascotas.clear(); //mascotas
+  //   mascotas.addAll(resp.pets);
+  //   atenciones.clear(); //atenciones
+  //   DateTime now = DateTime.now();
+  //   resp.bookings.forEach((booking) {
+  //     var fechaAt = booking.date.split('-');
+  //     bool vencido = false;
+  //     if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
+  //       vencido = true;
+  //     }
+  //     booking.vencido = vencido;
+  //     atenciones.add(booking);
+  //   });
+  // }
   /* fin iniciales */
 
 //////////////////////////////////////////////////////
 
   /* atenciones */
-  @observable
-  ObservableList<BookingHome> atenciones = ObservableList<BookingHome>();
+  // @observable
+  // ObservableList<BookingHome> atenciones = ObservableList<BookingHome>();
 
   final bookingProvider = BookingProvider();
 
-  @computed
-  bool get sinAtenciones => atenciones.length == 0;
+  // @computed
+  // bool get sinAtenciones => atenciones.length == 0;
 
-  @action
-  void eliminaAtencion(id) {
-    deleteBooking(id);
-    loading = false;
-    volver();
-  }
+  // @action
+  // void eliminaAtencion(id) {
+  //   deleteBooking(id);
+  //   loading = false;
+  //   volver();
+  // }
 
-  Future<void> deleteBooking(id) async {
-    var resp = await bookingProvider.deleteBooking(id);
-    if (resp) {
-      getSummary();
-    }
-  }
+  // Future<void> deleteBooking(id) async {
+  //   var resp = await bookingProvider.deleteBooking(id);
+  //   if (resp) {
+  //     getSummary();
+  //   }
+  // }
 
   @action
   void eliminaAtencionToHome(id) {
@@ -125,30 +125,30 @@ abstract class _HomeStore with Store {
     print('elimina..');
     print(resp);
     if (resp) {
-      getSummary();
+      // getSummary();
       await Get.offAllNamed('navInicio');
     } else {
       mostrarSnackbar("No se eliminó la atención", colorRed);
     }
   }
 
-  @action
-  void detalleReservado(atencion) {
-    detalleReservadoVoid(atencion);
-  }
+  // @action
+  // void detalleReservado(atencion) {
+  //   detalleReservadoVoid(atencion);
+  // }
 
-  Future<void> detalleReservadoVoid(atencion) async {
-    await Get.toNamed('detallereservado', arguments: atencion);
-  }
+  // Future<void> detalleReservadoVoid(atencion) async {
+  //   await Get.toNamed('detallereservado', arguments: atencion);
+  // }
 
-  @action
-  void reservarGo() {
-    reservaVoid();
-  }
+  // @action
+  // void reservarGo() {
+  //   reservaVoid();
+  // }
 
-  Future<void> reservaVoid() async {
-    await Get.toNamed('navLista');
-  }
+  // Future<void> reservaVoid() async {
+  //   await Get.toNamed('navLista');
+  // }
   /* fin atenciones */
 
 //////////////////////////////////////////////////////
@@ -240,7 +240,7 @@ abstract class _HomeStore with Store {
 
       Map resp = await mascotaProvider.savePet(mascotaData, foto);
       if (resp['ok']) {
-        getSummary();
+        // getSummary();
         await Get.to(ThxPage(CachedNetworkImageProvider(resp['petImg']), thxPet[Random().nextInt(thxPet.length)]));
       } else {
         mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
@@ -271,7 +271,7 @@ abstract class _HomeStore with Store {
       bool resp = await mascotaProvider.editPet(mascotaData, foto);
       if (resp) {
         verMiMascota(mascotaData.id);
-        getSummary();
+        // getSummary();
         Get.back();
         Get.back();
         // Navigator.pop(context);
@@ -290,7 +290,7 @@ abstract class _HomeStore with Store {
   Future<void> eliminaMascotaVoid(id) async {
     bool resp = await mascotaProvider.deletePet(id);
     if (resp) {
-      getSummary();
+      // getSummary();
       Get.offAllNamed('navInicio');
       // Navigator.pushNamedAndRemoveUntil(context, 'navInicio', ModalRoute.withName('navInicio'));
     } else
@@ -470,7 +470,7 @@ abstract class _HomeStore with Store {
     booking.observation = observacion;
     bool resp = await bookingProvider.booking(booking, deliveryTipo, deliveryDireccion);
     if (resp) {
-      getSummary();
+      // getSummary();
       MascotaProvider()
           .getPet(mascotaId)
           .then((value) => Get.to(ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)])));

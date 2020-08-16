@@ -9,13 +9,6 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on _HomeStore, Store {
-  Computed<bool> _$sinAtencionesComputed;
-
-  @override
-  bool get sinAtenciones =>
-      (_$sinAtencionesComputed ??= Computed<bool>(() => super.sinAtenciones,
-              name: '_HomeStore.sinAtenciones'))
-          .value;
   Computed<bool> _$sinDatosComputed;
 
   @override
@@ -112,21 +105,6 @@ mixin _$HomeStore on _HomeStore, Store {
   set loading(bool value) {
     _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
-    });
-  }
-
-  final _$atencionesAtom = Atom(name: '_HomeStore.atenciones');
-
-  @override
-  ObservableList<BookingHome> get atenciones {
-    _$atencionesAtom.reportRead();
-    return super.atenciones;
-  }
-
-  @override
-  set atenciones(ObservableList<BookingHome> value) {
-    _$atencionesAtom.reportWrite(value, super.atenciones, () {
-      super.atenciones = value;
     });
   }
 
@@ -422,20 +400,6 @@ mixin _$HomeStore on _HomeStore, Store {
     return _$esperaAsyncAction.run(() => super.espera());
   }
 
-  final _$refreshAsyncAction = AsyncAction('_HomeStore.refresh');
-
-  @override
-  Future<Null> refresh() {
-    return _$refreshAsyncAction.run(() => super.refresh());
-  }
-
-  final _$summaryAsyncAction = AsyncAction('_HomeStore.summary');
-
-  @override
-  Future<void> summary() {
-    return _$summaryAsyncAction.run(() => super.summary());
-  }
-
   final _$_HomeStoreActionController = ActionController(name: '_HomeStore');
 
   @override
@@ -461,55 +425,11 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void getSummary() {
-    final _$actionInfo =
-        _$_HomeStoreActionController.startAction(name: '_HomeStore.getSummary');
-    try {
-      return super.getSummary();
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void eliminaAtencion(dynamic id) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.eliminaAtencion');
-    try {
-      return super.eliminaAtencion(id);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void eliminaAtencionToHome(dynamic id) {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.eliminaAtencionToHome');
     try {
       return super.eliminaAtencionToHome(id);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void detalleReservado(dynamic atencion) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.detalleReservado');
-    try {
-      return super.detalleReservado(atencion);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void reservarGo() {
-    final _$actionInfo =
-        _$_HomeStoreActionController.startAction(name: '_HomeStore.reservarGo');
-    try {
-      return super.reservarGo();
     } finally {
       _$_HomeStoreActionController.endAction(_$actionInfo);
     }
@@ -773,7 +693,6 @@ mixin _$HomeStore on _HomeStore, Store {
     return '''
 usuario: ${usuario},
 loading: ${loading},
-atenciones: ${atenciones},
 mascotas: ${mascotas},
 miPet: ${miPet},
 miMascota: ${miMascota},
@@ -793,7 +712,6 @@ observacion: ${observacion},
 conDelivery: ${conDelivery},
 deliveryTipo: ${deliveryTipo},
 deliveryDireccion: ${deliveryDireccion},
-sinAtenciones: ${sinAtenciones},
 sinDatos: ${sinDatos},
 sinNombreMascota: ${sinNombreMascota},
 sinFechaMascota: ${sinFechaMascota},

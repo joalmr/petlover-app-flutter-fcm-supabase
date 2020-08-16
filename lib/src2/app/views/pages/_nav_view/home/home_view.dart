@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
       // init: HomeController(),
       builder: (_) {
         return Scaffold(
+          key: _scaffoldKey,
           endDrawer: ConfigDrawer(),
           body: RefreshIndicator(
             key: refreshKey,
