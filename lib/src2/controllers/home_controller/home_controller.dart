@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/services/booking_provider.dart';
-import 'package:proypet/src/services/user_provider.dart';
+import 'package:proypet/src2/data/services/summary_service.dart';
 
 class HomeController extends GetxController {
+  final summaryRepository = SummaryService();
   //
   RxString _usuario = ''.obs;
   set usuario(String value) => _usuario.value = value;
@@ -21,8 +21,7 @@ class HomeController extends GetxController {
   //   });
   // }
 
-  final bookingRepository = BookingProvider();
-  final userRepository = UserProvider();
+  // final bookingRepository = BookingProvider();
 
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
@@ -42,7 +41,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> _summary() async {
-    var resp = await userRepository.getUserSummary();
+    var resp = await summaryRepository.getUserSummary();
     usuario = resp.user.name;
     print('1 ' + usuario);
     mascotas.clear();

@@ -10,7 +10,8 @@ import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
-import 'package:proypet/src/services/user_provider.dart';
+// import 'package:proypet/src/services/user_provider.dart';
+import 'package:proypet/src2/data/services/summary_service.dart';
 import 'package:proypet/src2/utils/add_msg.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 
@@ -70,7 +71,7 @@ abstract class _HomeStore with Store {
 
   @action
   Future<void> summary() async {
-    var resp = await UserProvider().getUserSummary();
+    var resp = await SummaryService().getUserSummary();
     usuario = resp.user.name; //usuario
     mascotas.clear(); //mascotas
     mascotas.addAll(resp.pets);

@@ -14,7 +14,9 @@ class AuthProvider {
       final loginData = {"email": email, "password": password};
       Response response;
       response = await dio.post(url, data: loginData);
+
       var jsonRespuesta;
+
       if (response.statusCode == 200) {
         _prefs.token = response.data['token'];
         _prefs.verify = response.data['verify'];

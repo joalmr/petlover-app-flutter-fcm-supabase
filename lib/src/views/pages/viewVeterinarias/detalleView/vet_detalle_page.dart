@@ -8,13 +8,13 @@ import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/services/establecimiento_provider.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
-import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src2/app/views/components/card_swiper.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src2/app/views/components/modal_bottom.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
+import 'package:proypet/src2/data/services/user_service.dart';
 import 'package:proypet/src2/utils/regex.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
@@ -40,7 +40,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
   _VetDetallePageState({this.vet});
   final establecimientoProvider = EstablecimientoProvider();
   final mascotaProvider = MascotaProvider();
-  final userProvider = UserProvider();
+  final userProvider = UserService();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   User user = User(); //

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:proypet/src/views/pages/atenciones/atenciones_page.dart';
 import 'package:proypet/src/views/pages/usuario/changepassword_page.dart';
 import 'package:proypet/src/views/pages/usuario/user_page.dart';
-import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/data/services/auth_service.dart';
@@ -12,7 +11,6 @@ import 'package:share/share.dart';
 
 class ConfigDrawer extends StatelessWidget {
   final _prefs = new PreferenciasUsuario();
-  final loginProvider = UserProvider();
   final loginApi = AuthService();
 
   @override

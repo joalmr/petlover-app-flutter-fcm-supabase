@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:proypet/src/services/user_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
@@ -8,6 +7,7 @@ import 'package:proypet/src2/app/views/components/snackbar.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/services/user_service.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final userProvider = new UserProvider();
+  final userProvider = new UserService();
 
   String passAntigua;
   String passNueva;

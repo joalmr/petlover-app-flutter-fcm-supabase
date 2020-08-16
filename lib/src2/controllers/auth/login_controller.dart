@@ -67,8 +67,7 @@ class LoginController extends GetxController {
       } else {
         Map<String, dynamic> respLogin = await repository.login(email, password);
         if (respLogin['code'] == 200) {
-          // pushStore.firebase(); //TODO: ejecuta firebase
-          pushController.firebase();
+          pushController.firebase(); //TODO: ejecuta firebase
           //
           homeStore.getSummary();
           loading.value = false;
