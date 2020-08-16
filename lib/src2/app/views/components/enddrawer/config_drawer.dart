@@ -56,26 +56,24 @@ class ConfigDrawer extends StatelessWidget {
                   onTap: () => Get.to(ChangePasswordPage()),
                 ),
                 ListTile(
-                  leading: Icon(Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
-                  title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),
-                  onTap: () {
-                    if (Get.isDarkMode) {
-                      // Get.changeTheme(ThemeData.light());
-                      Get.changeThemeMode(ThemeMode.light);
-                      _prefs.themeMode = 'claro';
-                    } else {
-                      // Get.changeTheme(ThemeData.dark());
-                      Get.changeThemeMode(ThemeMode.dark);
-                      _prefs.themeMode = 'oscuro';
-                    }
-                  },
-                ),
-                ListTile(
                   leading: Icon(Icons.share),
                   title: Text('Compartir con mis amigos'),
                   onTap: () => Share.share(
                       '¿Conoces Proypet? Descubre la nueva App para reservar citas en veterinarias y acceder a beneficios. Entérate más en: https://www.proypet.com',
                       subject: 'Registrate hoy a Proypet'),
+                ),
+                ListTile(
+                  leading: Icon(Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
+                  title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),
+                  onTap: () {
+                    if (Get.isDarkMode) {
+                      Get.changeThemeMode(ThemeMode.light);
+                      _prefs.themeMode = 'claro';
+                    } else {
+                      Get.changeThemeMode(ThemeMode.dark);
+                      _prefs.themeMode = 'oscuro';
+                    }
+                  },
                 ),
                 ListTile(
                     leading: Icon(Icons.person_outline, color: colorRed),

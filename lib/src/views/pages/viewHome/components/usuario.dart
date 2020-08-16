@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:proypet/src/models/home_model.dart';
 
 Widget usuario(String usuario, context) {
   return Row(

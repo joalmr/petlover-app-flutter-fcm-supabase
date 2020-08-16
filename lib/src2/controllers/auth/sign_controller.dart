@@ -37,13 +37,11 @@ class SignController extends GetxController {
   void onInit() {
     super.onInit();
     limpia();
-    print('ejec');
   }
 
   @override
   void onClose() {
     limpia();
-    print('ejec');
     super.onClose();
   }
 

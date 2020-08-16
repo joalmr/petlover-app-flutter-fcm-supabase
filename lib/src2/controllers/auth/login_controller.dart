@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/provider/home_store.dart';
-import 'package:proypet/src/provider/push_store.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
+import 'package:proypet/src2/controllers/_push_controller.dart';
 import 'package:proypet/src2/data/services/auth_service.dart';
 
 class LoginController extends GetxController {
@@ -32,21 +32,21 @@ class LoginController extends GetxController {
   bool get isFormValid => hasEmailData && isPasswordValid;
 
   HomeStore homeStore;
-  PushStore pushStore;
+  // PushStore pushStore;
+
+  PushController pushController = PushController();
 
   @override
   void onInit() {
     super.onInit();
     limpia();
-    print('ejec');
     homeStore = GetIt.I.get<HomeStore>();
-    pushStore = GetIt.I.get<PushStore>();
+    // pushStore = GetIt.I.get<PushStore>();
   }
 
   @override
   void onClose() {
     limpia();
-    print('ejec');
     super.onClose();
   }
 
@@ -67,7 +67,9 @@ class LoginController extends GetxController {
       } else {
         Map<String, dynamic> respLogin = await repository.login(email, password);
         if (respLogin['code'] == 200) {
-          pushStore.firebase(); //TODO: ejecuta firebase
+          // pushStore.firebase(); //TODO: ejecuta firebase
+          pushController.firebase();
+          //
           homeStore.getSummary();
           loading.value = false;
           Get.offAllNamed('navInicio');

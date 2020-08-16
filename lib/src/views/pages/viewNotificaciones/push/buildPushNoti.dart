@@ -36,9 +36,11 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               onPressed: () => Get.back(),
             ),
             FlatButton(
-              child: Text('Ir'),
-              onPressed: () => Get.toNamed('navNotifica'),
-            ),
+                child: Text('Ir'),
+                onPressed: () {
+                  Get.back();
+                  Get.toNamed('navNotifica');
+                }),
           ],
         ));
         break;
@@ -52,7 +54,10 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
             ),
             FlatButton(
               child: Text('Ir'),
-              onPressed: () => Get.toNamed('navNotifica'),
+              onPressed: () {
+                Get.back();
+                Get.toNamed('navNotifica');
+              },
             ),
           ],
         ));
@@ -66,9 +71,11 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
               onPressed: () => Get.back(),
             ),
             FlatButton(
-              child: Text('Ir'),
-              onPressed: () => Get.toNamed('navNotifica'),
-            ),
+                child: Text('Ir'),
+                onPressed: () {
+                  Get.back();
+                  Get.toNamed('navNotifica');
+                }),
           ],
         ));
         break;
@@ -137,9 +144,7 @@ class _BuildPushNotiState extends State<BuildPushNoti> {
         );
         break;
       default:
-        return SizedBox(
-          height: 0.0,
-        );
+        return SizedBox(height: 0.0);
         break;
     }
   }

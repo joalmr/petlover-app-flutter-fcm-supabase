@@ -23,13 +23,11 @@ class ForgotController extends GetxController {
   void onInit() {
     super.onInit();
     limpia();
-    print('ejec');
   }
 
   @override
   void onClose() {
     limpia();
-    print('ejec');
     super.onClose();
   }
 
