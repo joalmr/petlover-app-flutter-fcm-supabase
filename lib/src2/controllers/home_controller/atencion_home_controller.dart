@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
+import 'package:proypet/src2/data/services/booking_service.dart';
 
 class BookingHomeController extends GetxController {
   final homeController = Get.find<HomeController>();
-  final bookingProvider = BookingProvider();
+  final bookingProvider = BookingService();
 
   RxBool loading = true.obs;
 

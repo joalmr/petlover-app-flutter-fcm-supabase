@@ -13,8 +13,6 @@ import 'package:intl/intl.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/raza/raza_model.dart';
 import 'package:proypet/src/store/home_store.dart';
-import 'package:proypet/src/services/mascota_provider.dart';
-import 'package:proypet/src/services/raza_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/form_control/ddl_control.dart';
@@ -22,6 +20,8 @@ import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/services/mascota_service.dart';
+import 'package:proypet/src2/data/services/raza_servicio.dart';
 import 'package:select_dialog/select_dialog.dart';
 
 final tipopet = [
@@ -47,8 +47,8 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
 
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final mascotaProvider = new MascotaProvider();
-  final razaProvider = new RazaProvider();
+  final mascotaProvider = new MascotaService();
+  final razaProvider = new RazaService();
 
   bool btnBool = true;
   File foto;

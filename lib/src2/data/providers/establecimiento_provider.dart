@@ -10,11 +10,7 @@ class EstablecimientoProvider {
   final _url = urlApi;
   final _prefs = new PreferenciasUsuario();
 
-  //List<int> filtros
   Future<dynamic> getVets(dynamic filtros) async {
-    // print('=== gps ===');
-    // print(_prefs.position.toString());
-
     int estado = 200;
     List<EstablecimientoModel> establecimientos = [];
 
@@ -44,7 +40,6 @@ class EstablecimientoProvider {
       if (vets.establecimientos != null) establecimientos = vets.establecimientos;
     }
 
-    // return vets.establecimientos;
     return {
       'code': estado,
       'establecimientos': establecimientos,
@@ -56,12 +51,7 @@ class EstablecimientoProvider {
     String lng = _prefs.position.toString().split(',')[1];
     final url = '$_url/establishments/$idVet?latitude=$lat&longitude=$lng';
 
-    final resp = await http.get(
-      url,
-      headers: headersToken(),
-    );
-
-    // print(resp.statusCode);
+    final resp = await http.get(url, headers: headersToken());
 
     if (resp.statusCode == 200) {
       final jsonResp = json.decode(resp.body);

@@ -8,10 +8,10 @@ import 'package:proypet/src/models/antecion/atencion_model.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/text_field.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
-import 'package:proypet/src/services/atencion_provider.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/services/atencion_servicio.dart';
 
 class AtencionesPage extends StatefulWidget {
   // const AtencionesPage({Key key}) : super(key: key);
@@ -22,7 +22,7 @@ class AtencionesPage extends StatefulWidget {
 class _AtencionesPageState extends State<AtencionesPage> {
   TextEditingController _inputComentController = new TextEditingController();
   double myrating = 0.0;
-  AtencionProvider atencionProvider = AtencionProvider();
+  AtencionService atencionProvider = AtencionService();
   // AtencionModel atencion = AtencionModel();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 

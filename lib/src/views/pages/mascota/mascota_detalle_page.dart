@@ -7,9 +7,9 @@ import 'package:proypet/src/models/mascota/historia_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
 import 'package:proypet/src/store/home_store.dart';
-import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src2/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
+import 'package:proypet/src2/data/services/mascota_service.dart';
 import 'package:proypet/src2/utils/calcula_edad.dart';
 import 'package:proypet/src2/utils/icons_map.dart';
 
@@ -22,7 +22,7 @@ class MascotaDetallePage extends StatefulWidget {
 
 class _MascotaDetallePageState extends State<MascotaDetallePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  final mascotaProvider = MascotaProvider();
+  final mascotaProvider = MascotaService();
 
   HomeStore homeStore;
   // bool cargandoBuild = true;

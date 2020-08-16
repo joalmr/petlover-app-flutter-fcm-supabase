@@ -1,14 +1,8 @@
-// To parse this JSON data, do
-//
-//     final notificacionPush = notificacionPushFromJson(jsonString);
-
 import 'dart:convert';
 
-NotificacionPush notificacionPushFromJson(String str) =>
-    NotificacionPush.fromJson(json.decode(str));
+NotificacionPush notificacionPushFromJson(String str) => NotificacionPush.fromJson(json.decode(str));
 
-String notificacionPushToJson(NotificacionPush data) =>
-    json.encode(data.toJson());
+String notificacionPushToJson(NotificacionPush data) => json.encode(data.toJson());
 
 class NotificacionPush {
   NotificacionPush({
@@ -21,8 +15,7 @@ class NotificacionPush {
   Notification notification;
   Data data;
 
-  factory NotificacionPush.fromJson(Map<String, dynamic> json) =>
-      NotificacionPush(
+  factory NotificacionPush.fromJson(Map<String, dynamic> json) => NotificacionPush(
         to: json["to"],
         notification: Notification.fromJson(json["notification"]),
         data: Data.fromJson(json["data"]),
@@ -101,8 +94,7 @@ class Options {
 
   Map<String, dynamic> toJson() => {
         "establishment_id": establishmentId,
-        "nextdate":
-            "${nextdate.year.toString().padLeft(4, '0')}-${nextdate.month.toString().padLeft(2, '0')}-${nextdate.day.toString().padLeft(2, '0')}",
+        "nextdate": "${nextdate.year.toString().padLeft(4, '0')}-${nextdate.month.toString().padLeft(2, '0')}-${nextdate.day.toString().padLeft(2, '0')}",
         "reason": reason,
         "slug": slug,
       };

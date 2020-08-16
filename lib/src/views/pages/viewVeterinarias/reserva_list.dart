@@ -6,9 +6,9 @@ import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src2/app/views/components/filtro_veterinarias.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/services/establecimiento_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/data/services/establecimiento_service.dart';
 import 'package:proypet/src2/utils/error_internet.dart';
 import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
 
@@ -28,7 +28,7 @@ class _ReservaListState extends State<ReservaList> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   final refreshKey = GlobalKey<RefreshIndicatorState>();
   final _prefs = new PreferenciasUsuario();
-  EstablecimientoProvider vetProvider = EstablecimientoProvider();
+  EstablecimientoService vetProvider = EstablecimientoService();
   List<int> listaFiltros = [];
   String searchAddr = "";
   var stream;

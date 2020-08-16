@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/antecion/atencion_model.dart';
-import 'package:proypet/src/services/atencion_provider.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/app/views/components/form_control/text_field.dart';
+import 'package:proypet/src2/data/services/atencion_servicio.dart';
 
 // import 'package:proypet/src/utils/add_msg.dart';
 // import 'dart:math' as Math;
@@ -23,7 +23,7 @@ class BuildPushQualify extends StatefulWidget {
 }
 
 class _BuildPushQualifyState extends State<BuildPushQualify> {
-  AtencionProvider atencionProvider = AtencionProvider();
+  AtencionService atencionProvider = AtencionService();
 
   TextEditingController _inputComentController = new TextEditingController();
 

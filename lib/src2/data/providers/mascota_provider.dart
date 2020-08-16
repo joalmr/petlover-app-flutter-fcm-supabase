@@ -8,7 +8,6 @@ import 'package:proypet/src/models/mascota/pet_model.dart';
 
 class MascotaProvider {
   final _url = urlApi;
-  // final _prefs = new PreferenciasUsuario();
 
   Future<List<MascotaModel>> getPets() async {
     final url = '$_url/pets';
@@ -67,22 +66,13 @@ class MascotaProvider {
       if (imagen != null) {
         petImg = await upImage(imagen, urlpet);
       }
-      // return true;
+
       return {'ok': true, 'petImg': petImg};
     } else
       return {'ok': false, 'petImg': ''};
   }
 
   Future<bool> editPet(MascotaModel mascota, File imagen) async {
-    // print(' nombre ' + mascota);
-    print('nombre: ' + mascota.name);
-    print('fecha: ' + mascota.birthdate);
-    print('especie: ' + mascota.specieId.toString());
-    print('raza: ' + mascota.breedId.toString());
-    print('genero: ' + mascota.genre.toString());
-    print('imagen: ' + imagen.toString());
-    print(mascota.id);
-
     final idkey = mascota.id;
     final urlpet = '$_url/pets/$idkey/base64';
     if (imagen != null) {
@@ -111,8 +101,6 @@ class MascotaProvider {
   Future<bool> muerePet(MascotaModel mascota) async {
     final url = '$_url/pets/${mascota.id}';
 
-    // int intMascota=0;
-    // if(mascota.genre) intMascota=1;
     final data = {
       'name': mascota.name,
       'birthdate': mascota.birthdate, //datetime
@@ -122,11 +110,7 @@ class MascotaProvider {
       'status': mascota.status.toString(), //int
     };
 
-    final resp = await http.post(
-      url,
-      headers: headersToken(),
-      body: data,
-    );
+    final resp = await http.post(url, headers: headersToken(), body: data);
 
     if (resp.statusCode == 200 || resp.statusCode == 201)
       return true;
@@ -147,9 +131,8 @@ class MascotaProvider {
     }
   }
 
+  //este es interno
   Future<String> upImage(File imagen, String url) async {
-    // print("subir imagen");
-
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
     final mimetype = mime(imagen.path).split('/');
@@ -160,10 +143,8 @@ class MascotaProvider {
 
     var img = await http.post(url, headers: headersToken(), body: {'base64': sendPic});
 
-    // print(img.statusCode);
-
     var decodeimg = json.decode(img.body);
-    // print(decodeimg["picture"]);
+
     return decodeimg["picture"];
   }
 }

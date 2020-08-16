@@ -5,10 +5,10 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 import 'package:proypet/src/models/notificacion/tip_model.dart';
-import 'package:proypet/src/services/establecimiento_provider.dart';
-import 'package:proypet/src/services/notificacion_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/data/services/establecimiento_service.dart';
+import 'package:proypet/src2/data/services/notificacion_servicio.dart';
 import 'package:proypet/src2/utils/error_internet.dart';
 import 'package:proypet/src2/utils/icons_map.dart';
 
@@ -27,7 +27,7 @@ class NotificacionesPage extends StatefulWidget {
 }
 
 class _NotificacionesPageState extends State<NotificacionesPage> {
-  NotificacionProvider notificacionProvider = NotificacionProvider();
+  NotificacionService notificacionProvider = NotificacionService();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
 
@@ -175,7 +175,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
   }
 
   _fnEstablecimiento(id) async {
-    final establecimientoProvider = EstablecimientoProvider();
+    final establecimientoProvider = EstablecimientoService();
     Map veterinaria = await establecimientoProvider.getVet(id);
     if (veterinaria['status'] == 200) {
       await Get.to(VetDetallePage(vet: veterinaria['establishment']));

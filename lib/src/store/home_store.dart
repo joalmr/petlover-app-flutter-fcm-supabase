@@ -8,8 +8,8 @@ import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/booking/booking_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
-import 'package:proypet/src/services/booking_provider.dart';
-import 'package:proypet/src/services/mascota_provider.dart';
+import 'package:proypet/src2/data/services/booking_service.dart';
+import 'package:proypet/src2/data/services/mascota_service.dart';
 // import 'package:proypet/src/services/user_provider.dart';
 // import 'package:proypet/src2/data/services/summary_service.dart';
 import 'package:proypet/src2/utils/add_msg.dart';
@@ -95,7 +95,7 @@ abstract class _HomeStore with Store {
   // @observable
   // ObservableList<BookingHome> atenciones = ObservableList<BookingHome>();
 
-  final bookingProvider = BookingProvider();
+  final bookingProvider = BookingService();
 
   // @computed
   // bool get sinAtenciones => atenciones.length == 0;
@@ -205,7 +205,7 @@ abstract class _HomeStore with Store {
   @computed
   bool get sinFechaMascota => mascotaNombre.trim().isNotEmpty && fechaMascota.trim().isEmpty;
 
-  final mascotaProvider = new MascotaProvider();
+  final mascotaProvider = new MascotaService();
 
   @action
   void verMiMascota(id) {
@@ -471,7 +471,7 @@ abstract class _HomeStore with Store {
     bool resp = await bookingProvider.booking(booking, deliveryTipo, deliveryDireccion);
     if (resp) {
       // getSummary();
-      MascotaProvider()
+      MascotaService()
           .getPet(mascotaId)
           .then((value) => Get.to(ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)])));
 

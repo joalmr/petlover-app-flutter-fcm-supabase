@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/models/bonificacion/bonificacion_model.dart';
-import 'package:proypet/src/services/bonificacion_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/data/services/bonificacion_servicio.dart';
 import 'package:proypet/src2/utils/error_internet.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
@@ -17,7 +17,7 @@ class RecompensasPage extends StatefulWidget {
 }
 
 class _RecompensasPageState extends State<RecompensasPage> {
-  final bonificacionProvider = BonificacionProvider();
+  final bonificacionProvider = BonificacionService();
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   var stream;
 

@@ -16,12 +16,12 @@ import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/servicio_reserva.dart';
 import 'package:proypet/src/store/home_store.dart';
-import 'package:proypet/src/services/booking_provider.dart';
-import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/data/services/booking_service.dart';
+import 'package:proypet/src2/data/services/mascota_service.dart';
 import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
@@ -64,8 +64,8 @@ class _Data extends State<DataReserva> {
   final formKey = GlobalKey<FormState>();
   TextEditingController _inputDireccionController = new TextEditingController();
 
-  final bookingProvider = BookingProvider();
-  final mascotaProvider = MascotaProvider();
+  final bookingProvider = BookingService();
+  final mascotaProvider = MascotaService();
   BookingModel booking = BookingModel();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _prefs = new PreferenciasUsuario();

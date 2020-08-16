@@ -29,7 +29,6 @@ class BookingProvider {
     }
 
     final resp = await http.post(url, headers: headersToken(), body: bodyData);
-    print(resp.statusCode);
 
     if (resp.statusCode == 200 || resp.statusCode == 201) {
       return true;
@@ -42,7 +41,7 @@ class BookingProvider {
     final url = '$_url/bookings/$idBooking/delete';
 
     final resp = await http.post(url, headers: headersToken());
-    // print(resp.statusCode);
+
     if (resp.statusCode == 200)
       return true;
     else

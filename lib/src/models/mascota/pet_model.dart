@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final petModel = petModelFromJson(jsonString);
-
 import 'dart:convert';
 
 import 'package:proypet/src/models/mascota/historia_model.dart';
@@ -22,8 +18,7 @@ class PetModel {
 
   factory PetModel.fromJson(Map<String, dynamic> json) => PetModel(
         pet: MascotaModel.fromJson(json["pet"]),
-        history: List<HistoriaModel>.from(
-            json["history"].map((x) => HistoriaModel.fromJson(x))),
+        history: List<HistoriaModel>.from(json["history"].map((x) => HistoriaModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

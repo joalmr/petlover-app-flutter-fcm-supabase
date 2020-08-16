@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/destacado/destacado_model.dart';
-import 'package:proypet/src/services/destacado_provider.dart';
+import 'package:proypet/src2/data/providers/destacado_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 

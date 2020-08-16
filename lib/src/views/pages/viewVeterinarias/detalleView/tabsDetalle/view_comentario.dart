@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/establecimiento/comentarios_model.dart';
-import 'package:proypet/src/services/establecimiento_provider.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/services/establecimiento_service.dart';
 // import 'package:proypet/src/utils/error_internet.dart';
 
 class ViewComentario extends StatefulWidget {
@@ -17,7 +17,7 @@ class _ViewComentarioState extends State<ViewComentario> {
   String idVet;
   _ViewComentarioState({@required this.idVet});
 
-  EstablecimientoProvider establecimiento = EstablecimientoProvider();
+  EstablecimientoService establecimiento = EstablecimientoService();
   var stream;
 
   Future<List<Comentarios>> newFuture() => establecimiento.getComents(idVet);

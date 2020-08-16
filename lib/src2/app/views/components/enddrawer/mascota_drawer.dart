@@ -5,8 +5,8 @@ import 'package:get_it/get_it.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/views/pages/mascota/mascota_editar_page.dart';
-import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/services/mascota_service.dart';
 
 class MascotaDrawer extends StatefulWidget {
   final MascotaModel modelMascota;
@@ -21,7 +21,7 @@ class _MascotaDrawerState extends State<MascotaDrawer> {
   _MascotaDrawerState({@required this.mascota});
   final Color active = Colors.grey.shade800;
   final Color divider = Colors.grey.shade600;
-  final mascotaProvider = MascotaProvider();
+  final mascotaProvider = MascotaService();
 
   HomeStore homeStore;
   @override

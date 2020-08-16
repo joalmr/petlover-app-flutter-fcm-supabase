@@ -8,12 +8,8 @@ class BonificacionProvider {
   Future<BonificacionModel> getBonificacion() async {
     final url = '$_url/bonifications';
 
-    final resp = await http.get(
-      url,
-      headers: headersToken(),
-    );
+    final resp = await http.get(url, headers: headersToken());
 
-    // final jsonResp = json.decode(resp.body);
     BonificacionModel bonificacion = bonificacionModelFromJson(resp.body);
     return bonificacion;
   }

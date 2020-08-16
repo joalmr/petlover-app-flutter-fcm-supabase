@@ -6,12 +6,12 @@ import 'package:get_it/get_it.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/store/home_store.dart';
-import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/services/booking_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalleReservado extends StatefulWidget {
@@ -24,7 +24,7 @@ class _DetalleReservadoState extends State<DetalleReservado> {
 
   HomeStore homeStore;
 
-  final bookingProvider = BookingProvider();
+  final bookingProvider = BookingService();
 
   @override
   void initState() {
