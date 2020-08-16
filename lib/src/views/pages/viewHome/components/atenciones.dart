@@ -93,7 +93,7 @@
 //                             title: Text('Eliminar'),
 //                             content: Text('Seguro que desea eliminar esta reserva?'),
 //                             actions: <Widget>[
-//                               buttonModal('Cancelar', _volver, Theme.of(context).textTheme.subtitle2.color),
+//                               buttonModal('Cancelar', _volver, Get.textTheme.subtitle2.color),
 //                               buttonModal('Eliminar', () => _deleteBooking(atencion.id), colorRed),
 //                             ],
 //                           ),
@@ -113,15 +113,15 @@
 //                             style: (!atencion.vencido)
 //                                 ? (atencion.statusId == 3 || atencion.statusId == 6)
 //                                     ? TextStyle(fontWeight: FontWeight.bold, color: colorMain)
-//                                     : TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.subtitle2.color)
+//                                     : TextStyle(fontWeight: FontWeight.bold, color: Get.textTheme.subtitle2.color)
 //                                 : TextStyle(fontWeight: FontWeight.bold, color: colorRed),
 //                           ),
 //                           trailing: Column(
 //                             children: <Widget>[
-//                               Text(atencion.date, style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12.0).apply(fontWeightDelta: 2)),
+//                               Text(atencion.date, style: Get.textTheme.subtitle2.copyWith(fontSize: 12.0).apply(fontWeightDelta: 2)),
 //                               Text(
 //                                 atencion.time,
-//                                 style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain),
+//                                 style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain),
 //                                 textAlign: TextAlign.center,
 //                               ),
 //                             ],

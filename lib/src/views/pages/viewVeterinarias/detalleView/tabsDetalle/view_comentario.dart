@@ -100,7 +100,7 @@ class _ViewComentarioState extends State<ViewComentario> {
     //       Container(
     //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
     //         width: double.infinity,
-    //         child: Text("Comentario", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))
+    //         child: Text("Comentario", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))
     //       ),
     //       Container(
     //         padding: const EdgeInsets.symmetric(horizontal: 20.0),

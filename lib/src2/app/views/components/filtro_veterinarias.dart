@@ -34,10 +34,10 @@ class _FiltraVetsState extends State<FiltraVets> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Theme.of(context).textTheme.subtitle2.color),
+        iconTheme: IconThemeData(color: Get.textTheme.subtitle2.color),
         title: Text(
           'Filtrar veterinarias',
-          style: TextStyle(color: Theme.of(context).textTheme.subtitle2.color),
+          style: TextStyle(color: Get.textTheme.subtitle2.color),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -60,7 +60,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                         'Ubicación',
-                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+                        style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                       ),
                     ),
                     _autocompleteAddress(),
@@ -71,7 +71,7 @@ class _FiltraVetsState extends State<FiltraVets> {
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                         'Servicios',
-                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+                        style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                       ),
                     ),
                     Wrap(
@@ -123,7 +123,7 @@ class _FiltraVetsState extends State<FiltraVets> {
       child: FlatButton(
         child: Text(
           texto,
-          style: TextStyle(color: (filtros.contains(numero)) ? Colors.white : Theme.of(context).textTheme.bodyText2.color),
+          style: TextStyle(color: (filtros.contains(numero)) ? Colors.white : Get.textTheme.bodyText2.color),
         ),
         onPressed: () {
           setState(() {

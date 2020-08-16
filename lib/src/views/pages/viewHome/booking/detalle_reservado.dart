@@ -84,7 +84,7 @@ class _DetalleReservadoState extends State<DetalleReservado> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text(arg.petName, style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2)),
+                Text(arg.petName, style: Get.textTheme.headline5.apply(fontWeightDelta: 2)),
                 SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,13 +93,13 @@ class _DetalleReservadoState extends State<DetalleReservado> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Estado de la reserva", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                        Text("Estado de la reserva", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                         (!vencido)
                             ? Text(arg.status,
                                 style: (arg.statusId == 3 || arg.statusId == 6)
-                                    ? Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorMain)
-                                    : Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2))
-                            : Text('${arg.status} - Vencido', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorRed))
+                                    ? Get.textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorMain)
+                                    : Get.textTheme.subtitle1.apply(fontWeightDelta: 2))
+                            : Text('${arg.status} - Vencido', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2, color: colorRed))
                       ],
                     ),
                     Padding(
@@ -113,13 +113,13 @@ class _DetalleReservadoState extends State<DetalleReservado> {
                   ],
                 ),
                 SizedBox(height: 10.0),
-                Text("Veterinaria", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
-                Text(arg.establishmentName, style: Theme.of(context).textTheme.subtitle1),
+                Text("Veterinaria", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                Text(arg.establishmentName, style: Get.textTheme.subtitle1),
                 SizedBox(height: 10.0),
-                Text("Dirección de veterinaria", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                Text("Dirección de veterinaria", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 Text(arg.address),
                 SizedBox(height: 10.0),
-                Text("Fecha y hora", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                Text("Fecha y hora", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 Text('${arg.date} ${arg.time}'),
                 SizedBox(height: 20.0),
                 buttonPri("Ver en mapa", () => _openMapsSheet(context, arg.establishmentName, arg.address, arg.establishmentLat, arg.establishmentLng)),
@@ -143,11 +143,7 @@ class _DetalleReservadoState extends State<DetalleReservado> {
               title: Text('Eliminar'),
               content: Text('Seguro que desea eliminar esta reserva?'),
               actions: <Widget>[
-                buttonModal(
-                    'Cancelar',
-                    () => Get.back(),
-                    // Navigator.pop(context),
-                    Theme.of(context).textTheme.subtitle2.color),
+                buttonModal('Cancelar', () => Get.back(), Get.textTheme.subtitle2.color),
                 buttonModal('Sí, eliminar', () => _deleteBooking(id), colorRed),
               ],
             ),

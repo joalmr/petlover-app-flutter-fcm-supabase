@@ -14,8 +14,7 @@ Widget buildNoti(Notificacion noti, funcion) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   ClipRRect(
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(10)),
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
                     child: Image(
                       image: CachedNetworkImageProvider(noti.petPicture),
                       height: 100,
@@ -34,26 +33,13 @@ Widget buildNoti(Notificacion noti, funcion) {
                 padding: const EdgeInsets.all(10.0),
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child:
-                        // Image.network(noti.notificationImg,
-                        //     height: 200, width: double.maxFinite, fit: BoxFit.cover,
-                        //     loadingBuilder: (context, child, loadingProgress) {
-                        //   if (loadingProgress == null) return child;
-                        //   return Container(
-                        //       height: 200,
-                        //       width: double.maxFinite,
-                        //       child: Center(child: CircularProgressIndicator()));
-                        // })
-                        CachedNetworkImage(
+                    child: CachedNetworkImage(
                       useOldImageOnUrlChange: false,
                       imageUrl: noti.notificationImg,
                       height: 200,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      placeholder: (context, text) => Container(
-                          height: 200,
-                          width: double.maxFinite,
-                          child: Center(child: CircularProgressIndicator())),
+                      placeholder: (context, text) => Container(height: 200, width: double.maxFinite, child: Center(child: CircularProgressIndicator())),
                     )),
               ),
             ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src2/utils/icons_map.dart';
 
@@ -22,20 +23,14 @@ class _ViewGeneralState extends State<ViewGeneral> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SizedBox(
-            height: 10.0,
-          ),
+          SizedBox(height: 10.0),
           Container(
             width: double.infinity,
             padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0),
-            child: Text("Servicios", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-                // tituloH4
-                ),
+            child: Text("Servicios", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
           ),
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.0,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
             child: _servicios(localVet.services),
           ),
           Container(
@@ -44,19 +39,13 @@ class _ViewGeneralState extends State<ViewGeneral> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text('Descripción', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
-                    // tituloH4
-                    ),
-                SizedBox(
-                  height: 5.0,
-                ),
+                Text('Descripción', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                SizedBox(height: 5.0),
                 Text(
                   localVet.description,
                   textAlign: TextAlign.justify,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                ),
+                SizedBox(width: double.infinity),
               ],
             ),
           ),
@@ -96,7 +85,7 @@ class _ViewGeneralState extends State<ViewGeneral> {
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: Tooltip(
-                  child: Icon(iconMap[icon], size: 20, color: Theme.of(context).textTheme.subtitle2.color),
+                  child: Icon(iconMap[icon], size: 20, color: Get.textTheme.subtitle2.color),
                   message: nombre,
                 ),
               )),

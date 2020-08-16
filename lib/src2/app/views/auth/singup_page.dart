@@ -29,10 +29,10 @@ class SingupPage extends StatelessWidget {
                         WaveClipperOut(120.0),
                         SizedBox(height: 10),
                         Center(
-                          child: Text('Bienvenido a Proypet', style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
+                          child: Text('Bienvenido a Proypet', style: Get.textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
                         ),
                         Center(
-                          child: Text('Crear cuenta', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
+                          child: Text('Crear cuenta', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
                         ),
                         SizedBox(height: 20),
                         Padding(

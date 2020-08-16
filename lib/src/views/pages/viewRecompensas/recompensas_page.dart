@@ -3,6 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/bonificacion/bonificacion_model.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
@@ -34,7 +35,6 @@ class _RecompensasPageState extends State<RecompensasPage> {
 
   @override
   void initState() {
-    //implement initState
     super.initState();
     _onRefresh();
   }
@@ -51,7 +51,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
 
   Widget _onPage() {
     return FutureBuilder(
-      future: stream, //bonificacionProvider.getBonificacion(),
+      future: stream,
       builder: (BuildContext context, AsyncSnapshot<BonificacionModel> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return LinearProgressIndicator();
@@ -124,7 +124,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
               FadeIn(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Text('Últimos puntos ganados', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                  child: Text('Últimos puntos ganados', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 ),
               ),
               FadeIn(child: _listaBonificacion(bonificacion.bonifications)),
@@ -140,9 +140,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
       return Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: Text(
-            "No tiene puntos ganados",
-          ),
+          child: Text("No tiene puntos ganados"),
         ),
       );
     else
@@ -154,7 +152,7 @@ class _RecompensasPageState extends State<RecompensasPage> {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: ListTile(
-              title: Text('${bonificados[index].establishmentName}', style: Theme.of(context).textTheme.subtitle2),
+              title: Text('${bonificados[index].establishmentName}', style: Get.textTheme.subtitle2),
               trailing: CircleAvatar(
                   backgroundColor: colorMain,
                   foregroundColor: Colors.white,

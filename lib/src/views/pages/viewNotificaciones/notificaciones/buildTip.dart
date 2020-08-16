@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/notificacion/tip_model.dart';
 
 Widget buildTip(context, Tip tip) {
@@ -14,26 +15,19 @@ Widget buildTip(context, Tip tip) {
                 children: <Widget>[
                   Container(
                       height: 50,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('ProypeTip:',
-                              style: Theme.of(context).textTheme.subtitle2),
-                          Text(tip.title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  .apply(fontWeightDelta: 2)),
+                          Text('ProypeTip:', style: Get.textTheme.subtitle2),
+                          Text(tip.title, style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
                         ],
                       ))
                 ],
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: Image(

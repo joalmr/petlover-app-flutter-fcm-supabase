@@ -44,7 +44,6 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   @override
   void initState() {
-    //implement initState
     super.initState();
     _onRefresh();
   }
@@ -70,7 +69,7 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
 
   _onFuture() {
     return FutureBuilder(
-      future: stream, //notificacionProvider.getNotificacion(),
+      future: stream,
       builder: (BuildContext context, AsyncSnapshot<NotificacionModel> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return LinearProgressIndicator();

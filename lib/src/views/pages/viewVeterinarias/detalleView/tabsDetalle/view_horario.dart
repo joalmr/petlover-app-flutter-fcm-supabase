@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ViewHorario extends StatefulWidget {
   final dynamic localVet;
@@ -29,17 +30,8 @@ class _ViewHorarioState extends State<ViewHorario> {
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  // Text("Horario", style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
-                  (localVet.schedule.length > 0)
-                      ? _listHorario(localVet.schedule)
-                      : Center(child: Text("No tiene horarios registrados"))
-                ],
+                children: <Widget>[(localVet.schedule.length > 0) ? _listHorario(localVet.schedule) : Center(child: Text("No tiene horarios registrados"))],
               )),
-          // Pading(
-          //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          //   child:
-          // ) d
         ],
       ),
     );
@@ -50,8 +42,7 @@ class _ViewHorarioState extends State<ViewHorario> {
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Column(
         children: <Widget>[
-          (horario["monday"]["attention"] ==
-                  "on") //&& horario["monday"]["time_start"]!=null && horario["monday"]["time_end"]!=null
+          (horario["monday"]["attention"] == "on")
               ? _horario(
                   'Lunes',
                   horario["monday"]["time_start"],
@@ -61,8 +52,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                   width: 0,
                   height: 0,
                 ),
-          (horario["tuesday"]["attention"] ==
-                  "on") //&& horario["tuesday"]["time_start"]!=null && horario["tuesday"]["time_end"]!=null
+          (horario["tuesday"]["attention"] == "on")
               ? _horario(
                   'Martes',
                   horario["tuesday"]["time_start"],
@@ -72,8 +62,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                   width: 0,
                   height: 0,
                 ),
-          (horario["wednesday"]["attention"] ==
-                  "on") //&& horario["wednesday"]["time_start"]!=null && horario["wednesday"]["time_end"]!=null
+          (horario["wednesday"]["attention"] == "on")
               ? _horario(
                   'Miércoles',
                   horario["wednesday"]["time_start"],
@@ -83,8 +72,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                   width: 0,
                   height: 0,
                 ),
-          (horario["thursday"]["attention"] ==
-                  "on") //&& horario["thursday"]["time_start"]!=null && horario["thursday"]["time_end"]!=null
+          (horario["thursday"]["attention"] == "on")
               ? _horario(
                   'Jueves',
                   horario["thursday"]["time_start"],
@@ -94,8 +82,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                   width: 0,
                   height: 0,
                 ),
-          (horario["friday"]["attention"] ==
-                  "on") //&& horario["friday"]["time_start"]!=null && horario["friday"]["time_end"]!=null
+          (horario["friday"]["attention"] == "on")
               ? _horario(
                   'Viernes',
                   horario["friday"]["time_start"],
@@ -105,8 +92,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                   width: 0,
                   height: 0,
                 ),
-          (horario["saturday"]["attention"] ==
-                  "on") //&& horario["saturday"]["time_start"]!=null && horario["saturday"]["time_end"]!=null
+          (horario["saturday"]["attention"] == "on")
               ? _horario(
                   'Sábado',
                   horario["saturday"]["time_start"],
@@ -116,8 +102,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                   width: 0,
                   height: 0,
                 ),
-          (horario["sunday"]["attention"] ==
-                  "on") //&& horario["sunday"]["time_start"]!=null && horario["sunday"]["time_end"]!=null
+          (horario["sunday"]["attention"] == "on")
               ? _horario(
                   'Domingo',
                   horario["sunday"]["time_start"],
@@ -145,9 +130,7 @@ class _ViewHorarioState extends State<ViewHorario> {
                 Expanded(
                     child: Row(
                   children: <Widget>[
-                    Icon(Icons.schedule,
-                        color: Theme.of(context).textTheme.subtitle2.color,
-                        size: 20.0),
+                    Icon(Icons.schedule, color: Get.textTheme.subtitle2.color, size: 20.0),
                     SizedBox(width: 5),
                     Text(inicio == null ? "-" : inicio),
                     SizedBox(width: 5),

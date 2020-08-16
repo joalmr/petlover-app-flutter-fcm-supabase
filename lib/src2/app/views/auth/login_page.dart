@@ -62,11 +62,10 @@ class LoginPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Nuevo en Proypet?", style: Theme.of(context).textTheme.subtitle2),
+                      Text("Nuevo en Proypet?", style: Get.textTheme.subtitle2),
                       FlatButton(
                           onPressed: () => Get.toNamed("registro"),
-                          child: Text("Registrarse",
-                              style: Theme.of(context).textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
+                          child: Text("Registrarse", style: Get.textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
                     ],
                   )
                 ],

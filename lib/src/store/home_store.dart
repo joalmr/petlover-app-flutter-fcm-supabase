@@ -274,8 +274,6 @@ abstract class _HomeStore with Store {
         // getSummary();
         Get.back();
         Get.back();
-        // Navigator.pop(context);
-        // Navigator.pop(context);
       } else {
         mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
       }
@@ -292,10 +290,8 @@ abstract class _HomeStore with Store {
     if (resp) {
       // getSummary();
       Get.offAllNamed('navInicio');
-      // Navigator.pushNamedAndRemoveUntil(context, 'navInicio', ModalRoute.withName('navInicio'));
     } else
       Get.back();
-    // Navigator.pop(context);
   }
 
   @action
@@ -313,11 +309,8 @@ abstract class _HomeStore with Store {
     if (resp) {
       verMiMascota(mascota.id);
       Get.back();
-      // Navigator.pop(context);
-      // Navigator.pop(context);
     } else
       Get.back();
-    // Navigator.pop(context);
   }
 
 ////
@@ -474,9 +467,6 @@ abstract class _HomeStore with Store {
       MascotaService()
           .getPet(mascotaId)
           .then((value) => Get.to(ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)])));
-
-      //  Navigator.push(
-      //     context, MaterialPageRoute(builder: (_) => ThxPage(CachedNetworkImageProvider(value.pet.picture), thxReserva[Random().nextInt(thxReserva.length)]))));
     }
   }
 //////////////////////////////////////////////////////

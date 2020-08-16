@@ -247,7 +247,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
     return SelectDialog.showModal<Breed>(
       context,
       label: "Razas",
-      titleStyle: Theme.of(context).textTheme.subtitle1,
+      titleStyle: Get.textTheme.subtitle1,
       showSearchBox: true,
       emptyBuilder: (context) => Center(child: Text('No se encontró')),
       errorBuilder: (context, exception) => Center(child: Text('Oops!')),
@@ -262,7 +262,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected ? Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white) : Theme.of(context).textTheme.subtitle2,
+              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
             ),
           ),
         );
@@ -328,7 +328,6 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
 
     setState(() => foto = croppedFile);
     Get.back();
-    // Navigator.pop(context);
   }
 
   Widget _sexoEdit() {
@@ -344,13 +343,13 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
     return DateTimeField(
       initialValue: currentValue,
       format: format,
-      onChanged: (dt) => homeStore.setMascotaFecha(dt.toString()), //setState(() => mascotaData.birthdate = dt.toString()),
+      onChanged: (dt) => homeStore.setMascotaFecha(dt.toString()),
       enableInteractiveSelection: false,
       cursorColor: colorMain,
       onShowPicker: (context, currentValue) {
         return showDatePicker(
           context: context,
-          initialDate: currentValue ?? DateTime.now(), //DateTime.parse(mascotaData.birthdate),
+          initialDate: currentValue ?? DateTime.now(),
           firstDate: new DateTime(DateTime.now().year - 25),
           lastDate: DateTime.now(),
           initialDatePickerMode: DatePickerMode.day,
@@ -361,7 +360,7 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
                     primary: colorMain,
                     onPrimary: Colors.white,
                     surface: colorMain,
-                    onSurface: Theme.of(context).textTheme.subtitle2.color,
+                    onSurface: Get.textTheme.subtitle2.color,
                   ),
                   dialogBackgroundColor: Theme.of(context).backgroundColor,
                   buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
@@ -377,63 +376,4 @@ class _MascotaEditarPageState extends State<MascotaEditarPage> {
   }
 
   void _onEdit() => homeStore.mascotaEdit(foto);
-
-  // void _onAdd() async {
-  //   try {
-  //     setState(() {
-  //       formKey.currentState.save();
-  //       btnBool = false;
-  //     });
-
-  //     if (mascotaData.name.trim() == '') {
-  //       mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
-  //       Timer(Duration(milliseconds: 1500), () {
-  //         setState(() {
-  //           btnBool = true;
-  //         });
-  //       });
-  //     } else {
-  //       // mascotaData.birthdate = currentValue;
-  //       bool resp;
-  //       if (mascotaData.birthdate.trim() == '')
-  //         setState(() {
-  //           mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
-  //           Timer(Duration(milliseconds: 1500), () {
-  //             setState(() {
-  //               btnBool = true;
-  //             });
-  //           });
-  //         });
-  //       else {
-  //         resp = await mascotaProvider.editPet(mascotaData, foto);
-  //         // boolEdit(resp);
-  //       }
-  //     }
-  //   } catch (e) {
-  //     setState(() {
-  //       mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed);
-  //       Timer(Duration(milliseconds: 1500), () {
-  //         setState(() {
-  //           btnBool = true;
-  //         });
-  //       });
-  //     });
-  //   }
-  // }
-
-  // boolEdit(resp) {
-  //   if (resp) {
-  //     mostrarSnackbar('Se guardó los datos de la mascota.', colorMain, scaffoldKey);
-  //     Navigator.of(context).pushNamedAndRemoveUntil('/navInicio', ModalRoute.withName('/navInicio'));
-  //     // Navigator.of(context).pushReplacementNamed('detallemascota', arguments: mascotaData.id);
-  //     //'detallemascota', arguments: mascotas[index].id
-  //   } else {
-  //     mostrarSnackbar('No se guardaron los datos de la mascota.', colorRed, scaffoldKey);
-  //     Timer(Duration(milliseconds: 1500), () {
-  //       setState(() {
-  //         btnBool = true;
-  //       });
-  //     });
-  //   }
-  // }
 }

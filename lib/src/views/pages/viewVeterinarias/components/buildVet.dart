@@ -56,14 +56,14 @@ Widget buildVets(BuildContext context, EstablecimientoModel vetLocales) {
                             children: <Widget>[
                               Icon(Icons.star, color: colorYellow, size: 12.0),
                               SizedBox(width: 0.5),
-                              Text(vet.stars.toString() + ' (' + vet.attentions.toString() + ')', style: Theme.of(context).textTheme.subtitle2)
+                              Text(vet.stars.toString() + ' (' + vet.attentions.toString() + ')', style: Get.textTheme.subtitle2)
                             ],
                           ),
                         ],
                       ),
                       Text(
                         vet.name,
-                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+                        style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                         maxLines: 1,
                       ),
                     ],

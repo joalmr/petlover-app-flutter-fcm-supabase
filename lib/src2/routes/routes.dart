@@ -10,7 +10,7 @@ import 'package:proypet/src/views/pages/viewHome/booking/detalle_reservado.dart'
 import 'package:proypet/src2/app/views/auth/login_page.dart';
 import 'package:proypet/src2/app/views/auth/singup_page.dart';
 import 'package:proypet/src2/app/views/auth/forgot_page.dart';
-import 'package:proypet/src2/app/views/pages/_nav/navigation_bar.dart';
+import 'package:proypet/src2/app/views/pages/_nav_bar/navigation_bar.dart';
 
 GetStorage box = GetStorage();
 

@@ -48,23 +48,23 @@ class VerifyPage extends StatelessWidget {
                         SizedBox(height: 25),
                         Text(
                           'Valida tu cuenta',
-                          style: Theme.of(context).textTheme.headline5.copyWith(color: Colors.white).apply(fontWeightDelta: 2),
+                          style: Get.textTheme.headline5.copyWith(color: Colors.white).apply(fontWeightDelta: 2),
                         ),
                         SizedBox(height: 5),
                         Text(
                           'Hemos enviado un correo para validar tu cuenta a:',
-                          style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.white),
+                          style: Get.textTheme.subtitle1.copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 10),
                         Text(
                           textomail,
-                          style: Theme.of(context).textTheme.headline5.apply(color: colorBrown1, fontWeightDelta: 2),
+                          style: Get.textTheme.headline5.apply(color: colorBrown1, fontWeightDelta: 2),
                         ),
                         SizedBox(height: 10),
                         Text(
                           'Recuerda revisar tu bandeja de correos no deseados',
-                          style: Theme.of(context).textTheme.subtitle1.copyWith(color: Colors.white),
+                          style: Get.textTheme.subtitle1.copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -73,10 +73,6 @@ class VerifyPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: buttonOutLine('Ya validé mi cuenta', () => Get.offNamed('login'), Colors.white),
-                    // {
-                    //   return Navigator.of(context).pushNamedAndRemoveUntil(
-                    //       'login', ModalRoute.withName('/'));
-                    // }, Colors.white),
                   )
                 ],
               ),

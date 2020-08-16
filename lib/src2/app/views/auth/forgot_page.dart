@@ -27,8 +27,7 @@ class ForgotPage extends StatelessWidget {
                         WaveClipperOut(120.0),
                         SizedBox(height: 10.0),
                         Center(
-                          child: Text('¿Olvidaste tu contraseña?',
-                              style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
+                          child: Text('¿Olvidaste tu contraseña?', style: Get.textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
                         ),
                         SizedBox(height: 10.0),
                         Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Text('Ingresa tu correo electrónico para reestablecer contraseña')),

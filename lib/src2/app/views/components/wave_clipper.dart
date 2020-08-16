@@ -15,8 +15,7 @@ class WaveClipper extends StatelessWidget {
             child: Column(),
             width: double.infinity,
             height: _alto,
-            decoration: BoxDecoration(color: colorMain.withAlpha(100) //Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
-                ),
+            decoration: BoxDecoration(color: colorMain.withAlpha(100)),
           ),
         ),
         ClipPath(
@@ -25,8 +24,7 @@ class WaveClipper extends StatelessWidget {
             child: Column(),
             width: double.infinity,
             height: _alto,
-            decoration: BoxDecoration(color: colorMain.withAlpha(200) //Color.fromRGBO(1, 165, 141, 0.4)
-                ),
+            decoration: BoxDecoration(color: colorMain.withAlpha(200)),
           ),
         ),
         ClipPath(
@@ -69,8 +67,7 @@ class WaveClipperOut extends StatelessWidget {
             child: Column(),
             width: double.infinity,
             height: _alto,
-            decoration: BoxDecoration(color: colorMain.withAlpha(100) //Color.fromRGBO(1, 165, 141, 0.5)//Colors.green[100]
-                ),
+            decoration: BoxDecoration(color: colorMain.withAlpha(100)),
           ),
         ),
         ClipPath(
@@ -79,8 +76,7 @@ class WaveClipperOut extends StatelessWidget {
             child: Column(),
             width: double.infinity,
             height: _alto,
-            decoration: BoxDecoration(color: colorMain.withAlpha(200) //Color.fromRGBO(1, 165, 141, 0.4)
-                ),
+            decoration: BoxDecoration(color: colorMain.withAlpha(200)),
           ),
         ),
         ClipPath(

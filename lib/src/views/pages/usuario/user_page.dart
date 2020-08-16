@@ -126,14 +126,6 @@ class _UserPageState extends State<UserPage> {
         _registraUsuario(user);
       }
     }
-    // else{
-    //   mostrarSnackbar('Complete los datos.', colorRed, scaffoldKey);
-    //   Timer(Duration(milliseconds: 2000), (){
-    //     setState(() {
-    //       btnBool = true;
-    //     });
-    //   });
-    // }
   }
 
   _registraUsuario(user) async {
@@ -142,7 +134,6 @@ class _UserPageState extends State<UserPage> {
       mostrarSnackbar('Se guardaron los datos.', colorMain);
       Timer(Duration(milliseconds: 2000), () {
         Get.until((route) => route.isFirst);
-        // Navigator.of(context).popUntil((route) => route.isFirst);
       });
     } else {
       mostrarSnackbar('No se guardaron los datos ingresados.', colorRed);

@@ -173,12 +173,12 @@ class _VetMapaPageState extends State<VetMapaPage> {
       title: Text(
         vetLocales.name,
         maxLines: 2,
-        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+        style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
       ),
       subtitle: Text(
         vetLocales.description,
         maxLines: 3,
-        style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12),
+        style: Get.textTheme.subtitle2.copyWith(fontSize: 12),
       ),
     );
   }

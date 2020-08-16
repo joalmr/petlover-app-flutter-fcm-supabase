@@ -10,10 +10,4 @@ void mostrarSnackbar(String mensaje, Color color) {
     snackPosition: SnackPosition.BOTTOM,
     duration: Duration(milliseconds: 2500),
   );
-  // final snackbar = SnackBar(
-  //   content: Text(mensaje),
-  //   duration: Duration(milliseconds: 2500),
-  //   backgroundColor: color,
-  // );
-  // scaffoldKey.currentState.showSnackBar(snackbar);
 }

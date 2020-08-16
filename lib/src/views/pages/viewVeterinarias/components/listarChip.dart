@@ -14,8 +14,7 @@ listarChip(dynamic chips) {
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: chips.length,
-            itemBuilder: (BuildContext context, int index) =>
-                chip(chips[index], context),
+            itemBuilder: (BuildContext context, int index) => chip(context, chips[index]),
           ),
         ),
       ),

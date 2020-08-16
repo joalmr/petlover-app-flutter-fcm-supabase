@@ -32,7 +32,7 @@ class ConfigDrawer extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 24.0,
                     letterSpacing: 3.0,
-                    color: Theme.of(context).textTheme.subtitle2.color,
+                    color: Get.textTheme.subtitle2.color,
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -94,10 +94,8 @@ class ConfigDrawer extends StatelessWidget {
           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           content: Text("Desea cerrar sesión?"),
           actions: <Widget>[
-            FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
-            FlatButton(
-                onPressed: () => _outToken(),
-                child: Text('Cerrar sesión', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
+            FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
+            FlatButton(onPressed: () => _outToken(), child: Text('Cerrar sesión', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
           ],
         ),
       ),

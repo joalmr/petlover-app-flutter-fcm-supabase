@@ -55,7 +55,7 @@ class ThxPage extends StatelessWidget {
                           SizedBox(height: 25),
                           Text(
                             texto,
-                            style: Theme.of(context).textTheme.subtitle1.copyWith(fontSize: 18, color: Colors.white),
+                            style: Get.textTheme.subtitle1.copyWith(fontSize: 18, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -65,9 +65,6 @@ class ThxPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: buttonOutLine('Ir a inicio', () => Get.offAllNamed('navInicio'), Colors.white),
-                    // {
-                    //   return Navigator.of(context).pushNamedAndRemoveUntil('navInicio', ModalRoute.withName('navInicio'));
-                    // }, Colors.white),
                   )
                 ],
               ),

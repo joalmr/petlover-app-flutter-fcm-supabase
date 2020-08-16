@@ -12,9 +12,9 @@ import 'package:get/get.dart';
 
 import 'config/global_variables.dart';
 // import 'src/provider/home_store.dart';
-import 'src2/app/theme/theme.dart';
-import 'src2/app/theme/themeDark.dart';
-import 'src2/app/views/pages/_nav/navigation_bar.dart';
+import 'src2/theme/theme.dart';
+import 'src2/theme/themeDark.dart';
+import 'src2/app/views/pages/_nav_bar/navigation_bar.dart';
 import 'src2/controllers/_global_controller.dart';
 
 main() async {

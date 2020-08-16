@@ -80,12 +80,11 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FlatButton(
-                child: Text('Omitir', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                child: Text('Omitir', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 onPressed: () => Get.back(),
-                // Navigator.of(context).pop(),
               ),
               FlatButton(
-                child: Text('Calificar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain)),
+                child: Text('Calificar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain)),
                 onPressed: () => _onRate(),
               ),
             ],
@@ -96,38 +95,29 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
   }
 
   _onRate() async {
-    // print("llega");
-
     AtencionModel atencion = new AtencionModel();
     atencion.id = widget.noti['id'];
     atencion.stars = myrating.toInt();
     atencion.comment = _inputComentController.text;
     bool resp = await atencionProvider.calificar(atencion);
 
-    // print(resp);
-    // bool resp = await atencionProvider.calificar(atencion);
-
     if (resp) {
-      // Navigator.pop(context);
       Get.back();
       showDialog(
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
-                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   content: Container(height: 100.0, child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: true);
     } else {
-      // Navigator.pop(context);
       Get.back();
       showDialog(
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
-                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   content: Container(height: 100.0, child: Center(child: Text('No se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
                 ),

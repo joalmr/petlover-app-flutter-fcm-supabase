@@ -50,22 +50,6 @@ Widget buttonModal(String _text, _funtion, Color _color) {
   return FlatButton(
     onPressed: _funtion,
     child: new Text(_text, style: _textstyle.copyWith(color: _color)),
-    // padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
     shape: shape20,
   );
 }
-
-// return InkWell(
-//     onTap: _funtion,
-//     borderRadius: borderRadius20,
-//     splashColor: _color.withOpacity(0.3),
-//     child: Container(
-//         padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-//         decoration: BoxDecoration(
-//           border: Border.all(color: _color),
-//           borderRadius: borderRadius20,
-//           shape: BoxShape.rectangle,
-//           color: Colors.black.withOpacity(0.15),
-//         ),
-//         child: Text(_text, style: _textstyle.copyWith(color: _color))),
-//   );

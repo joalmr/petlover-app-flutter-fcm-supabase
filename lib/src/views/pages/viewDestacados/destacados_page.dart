@@ -43,7 +43,7 @@ class _DestacadosPageState extends State<DestacadosPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                child: Text(destacado.title, style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+                child: Text(destacado.title, style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)
                     // tituloH4clasico,
                     ),
               ),

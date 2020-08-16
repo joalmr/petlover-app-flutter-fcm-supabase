@@ -92,7 +92,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
 
   @override
   Widget build(BuildContext context) {
-    // mascotaData.specieId = int.tryParse(datoPet);
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(null, 'Agregar mascota', null),
@@ -241,7 +240,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     List<Breed> lista = List<Breed>();
     razaLista.breeds.forEach((element) {
       var palabra = element.name;
-      bool contiene = palabra.toLowerCase().contains(filter.toLowerCase()); //.contains(filter);
+      bool contiene = palabra.toLowerCase().contains(filter.toLowerCase());
       if (contiene) {
         lista.add(element);
       }
@@ -255,7 +254,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
     return SelectDialog.showModal<Breed>(
       context,
       label: "Razas",
-      titleStyle: Theme.of(context).textTheme.subtitle1,
+      titleStyle: Get.textTheme.subtitle1,
       showSearchBox: true,
       emptyBuilder: (context) => Center(child: Text('No se encontró')),
       errorBuilder: (context, exception) => Center(child: Text('Oops!')),
@@ -273,7 +272,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected ? Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white) : Theme.of(context).textTheme.subtitle2,
+              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
             ),
           ),
         );
@@ -283,7 +282,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
         setState(() {
           datoSeleccionado = selected;
           _inputPetController.text = selected.name;
-          // mascotaData.breedId = selected.id;
         });
       },
     );
@@ -298,8 +296,6 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
           FocusScope.of(context).requestFocus(new FocusNode());
           _selectDate(context); //petData
         },
-        // onChanged: (value) => homeStore.setMascotaFecha(value),
-        // onSaved: (value) => homeStore.setMascotaFecha(value), //mascotaData.birthdate = value,
         cursorColor: colorMain,
         decoration: InputDecoration(
           hintText: 'Fecha de nacimiento',
@@ -322,7 +318,7 @@ class _MascotaAgregarPageState extends State<MascotaAgregarPage> {
                 primary: colorMain,
                 onPrimary: Colors.white,
                 surface: colorMain,
-                onSurface: Theme.of(context).textTheme.subtitle2.color,
+                onSurface: Get.textTheme.subtitle2.color,
               ),
               dialogBackgroundColor: Theme.of(context).backgroundColor,
               buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),

@@ -103,8 +103,8 @@
 //                                     crossAxisAlignment: CrossAxisAlignment.start,
 //                                     mainAxisAlignment: MainAxisAlignment.start,
 //                                     children: <Widget>[
-//                                       Text(mascota.name, style: Theme.of(context).textTheme.headline6.apply(color: Colors.white, fontWeightDelta: 2)),
-//                                       Text(mascota.breedName, style: Theme.of(context).textTheme.subtitle2.apply(color: Colors.white)),
+//                                       Text(mascota.name, style: Get.textTheme.headline6.apply(color: Colors.white, fontWeightDelta: 2)),
+//                                       Text(mascota.breedName, style: Get.textTheme.subtitle2.apply(color: Colors.white)),
 //                                     ],
 //                                   ),
 //                                 ),
@@ -120,7 +120,7 @@
 //                                           children: [
 //                                             TextSpan(
 //                                               text: mascota.weight.toString(),
-//                                               style: Theme.of(context).textTheme.headline4.apply(color: Colors.white, fontWeightDelta: 2),
+//                                               style: Get.textTheme.headline4.apply(color: Colors.white, fontWeightDelta: 2),
 //                                             ),
 //                                             TextSpan(text: " kg.")
 //                                           ],
@@ -139,7 +139,7 @@
 //                                                 )
 //                                               : Text(
 //                                                   calculateAge(DateTime.parse(mascota.birthdate)),
-//                                                   style: Theme.of(context).textTheme.subtitle2.apply(color: Colors.white),
+//                                                   style: Get.textTheme.subtitle2.apply(color: Colors.white),
 //                                                 )
 //                                         ],
 //                                       ),

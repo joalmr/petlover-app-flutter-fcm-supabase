@@ -6,7 +6,7 @@
 //     children: <Widget>[
 //       Text(
 //         usuario,
-//         style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
+//         style: Get.textTheme.headline4.apply(fontWeightDelta: 2),
 //       ),
 //     ],
 //   );

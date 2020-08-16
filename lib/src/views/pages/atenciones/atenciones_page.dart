@@ -77,7 +77,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
                               children: <Widget>[
                                 Text(
                                   _atencion.pet,
-                                  style: Theme.of(context).textTheme.subtitle2,
+                                  style: Get.textTheme.subtitle2,
                                 ),
                                 Text(
                                   _atencion.createdAt,
@@ -88,7 +88,7 @@ class _AtencionesPageState extends State<AtencionesPage> {
                             trailing: IconButton(
                                 icon: Icon(
                                   Icons.star_border,
-                                  color: Theme.of(context).textTheme.subtitle2.color,
+                                  color: Get.textTheme.subtitle2.color,
                                 ),
                                 onPressed: () => _calificar(context, _atencion)),
                             contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -125,7 +125,6 @@ class _AtencionesPageState extends State<AtencionesPage> {
                   height: 10.0,
                 ),
                 RatingBar(
-                  // unratedColor: Theme.of(context).textTheme.subtitle2.color,
                   initialRating: myrating,
                   minRating: 0,
                   direction: Axis.horizontal,
@@ -149,10 +148,10 @@ class _AtencionesPageState extends State<AtencionesPage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2))),
+                    FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
                     FlatButton(
                         onPressed: () => _onRate(atencion),
-                        child: Text('Calificar', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain))),
+                        child: Text('Calificar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain))),
                   ],
                 ),
               ],
@@ -167,21 +166,17 @@ class _AtencionesPageState extends State<AtencionesPage> {
     bool resp = await atencionProvider.calificar(atencion);
 
     if (resp) {
-      // Navigator.pop(context);
       showDialog(
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
-                  // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   content: Container(height: 100.0, child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: false);
-      // mostrarSnackbar('Se calificó la atención.', colorMain, scaffoldKey);
       Timer(Duration(milliseconds: 2000), () {
         Get.until((route) => route.isFirst);
-        // Navigator.of(context).popUntil((route) => route.isFirst);
       });
     } else
       mostrarSnackbar('No se calificó la atención.', colorRed);

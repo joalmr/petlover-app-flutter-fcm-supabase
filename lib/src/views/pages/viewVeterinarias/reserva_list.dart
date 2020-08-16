@@ -97,7 +97,7 @@ class _ReservaListState extends State<ReservaList> {
                       children: <Widget>[
                         Text(
                           'No pudimos detectar tu ubicación',
-                          style: Theme.of(context).textTheme.subtitle1,
+                          style: Get.textTheme.subtitle1,
                         ),
                         SizedBox(height: 10),
                         _autocompleteAddress(),

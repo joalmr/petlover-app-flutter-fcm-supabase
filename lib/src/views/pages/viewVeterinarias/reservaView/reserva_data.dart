@@ -340,7 +340,7 @@ class _Data extends State<DataReserva> {
     return SelectDialog.showModal<ServicioReserva>(
       context,
       label: "Servicios",
-      titleStyle: Theme.of(context).textTheme.subtitle1,
+      titleStyle: Get.textTheme.subtitle1,
       showSearchBox: true,
       emptyBuilder: (context) => Center(
         child: Text('No se encontró'),
@@ -360,13 +360,11 @@ class _Data extends State<DataReserva> {
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected ? Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white) : Theme.of(context).textTheme.subtitle2,
+              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
             ),
             subtitle: Text(
               item.subtitle,
-              style: isSelected
-                  ? Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white, fontSize: 12)
-                  : Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 12),
+              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white, fontSize: 12) : Get.textTheme.subtitle2.copyWith(fontSize: 12),
             ),
           ),
         );
@@ -412,7 +410,7 @@ class _Data extends State<DataReserva> {
                 primary: colorMain,
                 onPrimary: Colors.white,
                 surface: colorMain,
-                onSurface: Theme.of(context).textTheme.subtitle2.color,
+                onSurface: Get.textTheme.subtitle2.color,
               ),
               dialogBackgroundColor: Theme.of(context).backgroundColor,
               buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),

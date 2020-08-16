@@ -63,7 +63,7 @@
 //                       crossAxisAlignment: CrossAxisAlignment.start,
 //                       mainAxisAlignment: MainAxisAlignment.start,
 //                       children: <Widget>[
-//                         Text(' Servicios frecuentes', style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)),
+//                         Text(' Servicios frecuentes', style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
 //                         SizedBox(height: 15.0),
 //                         SingleChildScrollView(
 //                           physics: BouncingScrollPhysics(),
@@ -88,8 +88,8 @@
 //                   SizedBox(height: 10.0),
 //                   Row(
 //                     children: <Widget>[
-//                       Expanded(child: Text("Mis Reservas", style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2))),
-//                       Icon(Icons.timelapse, color: Theme.of(context).textTheme.subtitle2.color),
+//                       Expanded(child: Text("Mis Reservas", style: Get.textTheme.headline6.apply(fontWeightDelta: 2))),
+//                       Icon(Icons.timelapse, color: Get.textTheme.subtitle2.color),
 //                     ],
 //                   ),
 //                   Atenciones(),
@@ -104,9 +104,9 @@
 //                     Row(
 //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                       children: <Widget>[
-//                         Text("Hola,", style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.normal)),
+//                         Text("Hola,", style: Get.textTheme.headline4.copyWith(fontWeight: FontWeight.normal)),
 //                         IconButton(
-//                             icon: Icon(Icons.settings, color: Theme.of(context).textTheme.subtitle2.color),
+//                             icon: Icon(Icons.settings, color: Get.textTheme.subtitle2.color),
 //                             onPressed: () => _scaffoldKey.currentState.openEndDrawer())
 //                       ],
 //                     ),

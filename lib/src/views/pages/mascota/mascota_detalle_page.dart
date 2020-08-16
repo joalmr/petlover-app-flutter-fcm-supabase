@@ -65,7 +65,6 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
     return Stack(
       children: <Widget>[
         Container(
-          // height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             child: Stack(
               children: <Widget>[
@@ -108,7 +107,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            title: Text("", style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
+            title: Text("", style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
             actions: <Widget>[
               IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
             ],
@@ -127,16 +126,16 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(pet.name, style: Theme.of(context).textTheme.headline6.copyWith(fontWeight: FontWeight.w900)),
-              Text(pet.breedName, style: Theme.of(context).textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold)),
-              (pet.status != 0) ? Text(calculateAge(DateTime.parse(pet.birthdate)), style: Theme.of(context).textTheme.subtitle2) : SizedBox(height: 0)
+              Text(pet.name, style: Get.textTheme.headline6.copyWith(fontWeight: FontWeight.w900)),
+              Text(pet.breedName, style: Get.textTheme.subtitle1.copyWith(fontWeight: FontWeight.bold)),
+              (pet.status != 0) ? Text(calculateAge(DateTime.parse(pet.birthdate)), style: Get.textTheme.subtitle2) : SizedBox(height: 0)
             ],
           ),
           Column(
             children: <Widget>[
-              Text('${pet.weight} kg.', style: Theme.of(context).textTheme.subtitle1.apply(fontWeightDelta: 2)),
+              Text('${pet.weight} kg.', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
               (pet.status == 0)
-                  ? Text('Fallecido', style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2).copyWith(fontStyle: FontStyle.italic))
+                  ? Text('Fallecido', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2).copyWith(fontStyle: FontStyle.italic))
                   : SizedBox(height: 0)
             ],
           )
@@ -178,7 +177,7 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                           children: <Widget>[
                             Text(
                               historias[index].establishment,
-                              style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+                              style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                             ),
                             iconosHistoria(historias[index].details)
                           ],
@@ -190,11 +189,11 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
                     children: <Widget>[
                       Text(
                         historias[index].createdAt.toString().split(' ')[0],
-                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2).copyWith(fontSize: 12.0),
+                        style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2).copyWith(fontSize: 12.0),
                       ),
                       Text(
                         historias[index].createdAt.toString().split(' ')[1],
-                        style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2),
+                        style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -219,31 +218,31 @@ class _MascotaDetallePageState extends State<MascotaDetallePage> {
         (json.toString().contains("grooming"))
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-                child: Icon(iconMap["grooming"], size: 18.0, color: Theme.of(context).textTheme.subtitle2.color),
+                child: Icon(iconMap["grooming"], size: 18.0, color: Get.textTheme.subtitle2.color),
               )
             : SizedBox(),
         (json.toString().contains("surgery"))
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-                child: Icon(iconMap["surgery"], size: 18.0, color: Theme.of(context).textTheme.subtitle2.color),
+                child: Icon(iconMap["surgery"], size: 18.0, color: Get.textTheme.subtitle2.color),
               )
             : SizedBox(),
         (json.toString().contains("deworming"))
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-                child: Icon(iconMap["deworming"], size: 18.0, color: Theme.of(context).textTheme.subtitle2.color),
+                child: Icon(iconMap["deworming"], size: 18.0, color: Get.textTheme.subtitle2.color),
               )
             : SizedBox(),
         (json.toString().contains("vaccination"))
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-                child: Icon(iconMap["vaccination"], size: 18.0, color: Theme.of(context).textTheme.subtitle2.color),
+                child: Icon(iconMap["vaccination"], size: 18.0, color: Get.textTheme.subtitle2.color),
               )
             : SizedBox(),
         (json.toString().contains("consultation"))
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-                child: Icon(iconMap["consultation"], size: 18.0, color: Theme.of(context).textTheme.subtitle2.color),
+                child: Icon(iconMap["consultation"], size: 18.0, color: Get.textTheme.subtitle2.color),
               )
             : SizedBox(),
       ],

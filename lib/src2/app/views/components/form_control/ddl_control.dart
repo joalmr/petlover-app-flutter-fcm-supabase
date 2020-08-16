@@ -5,7 +5,6 @@ import 'package:proypet/src2/app/styles/styles.dart';
 Widget ddlMain(context, opcionSeleccionada, lista, cambiaOpc) {
   return Material(
     elevation: 0.0,
-    // borderRadius: borderRadius,
     shape: shape10,
     color: Theme.of(context).backgroundColor,
     child: Padding(
@@ -17,8 +16,7 @@ Widget ddlMain(context, opcionSeleccionada, lista, cambiaOpc) {
             isExpanded: true,
             value: opcionSeleccionada,
             items: getOpcionesDropdown(lista),
-            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
-            ),
+            onChanged: cambiaOpc),
       ),
     ),
   );
@@ -27,9 +25,8 @@ Widget ddlMain(context, opcionSeleccionada, lista, cambiaOpc) {
 Widget ddlMainOut(context, opcionSeleccionada, lista, cambiaOpc, String deshabilitado) {
   return Material(
     elevation: 0.0,
-    // borderRadius: borderRadius,
     shape: shape10,
-    color: Theme.of(context).backgroundColor, //Colors.grey[200],
+    color: Theme.of(context).backgroundColor,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: DropdownButtonHideUnderline(
@@ -40,8 +37,7 @@ Widget ddlMainOut(context, opcionSeleccionada, lista, cambiaOpc, String deshabil
             isExpanded: true,
             value: opcionSeleccionada,
             items: getOpcionesDropdown(lista),
-            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
-            ),
+            onChanged: cambiaOpc),
       ),
     ),
   );
@@ -50,7 +46,6 @@ Widget ddlMainOut(context, opcionSeleccionada, lista, cambiaOpc, String deshabil
 Widget ddlFutureImg(context, opcionSeleccionada, lista, cambiaOpc) {
   return Material(
     elevation: 0.0,
-    // borderRadius: borderRadius,
     shape: shape10,
     color: Theme.of(context).backgroundColor,
     child: Padding(
@@ -62,8 +57,7 @@ Widget ddlFutureImg(context, opcionSeleccionada, lista, cambiaOpc) {
             isExpanded: true,
             value: opcionSeleccionada,
             items: getOpcionesImgFuture(lista),
-            onChanged: cambiaOpc //(opt){ setState(() { opcionSeleccionada=opt; });},
-            ),
+            onChanged: cambiaOpc),
       ),
     ),
   );

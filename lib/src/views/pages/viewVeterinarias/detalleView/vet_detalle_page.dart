@@ -140,7 +140,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             centerTitle: true,
-            title: Text("", style: Theme.of(context).textTheme.subtitle1),
+            title: Text("", style: Get.textTheme.subtitle1),
           ),
         ),
       ],
@@ -170,7 +170,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                     ),
                     Text(localVet.name, //nombreVet(0),
                         maxLines: 2,
-                        style: Theme.of(context).textTheme.headline6.apply(fontWeightDelta: 2)),
+                        style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
                   ],
                 ),
                 subtitle: Text('${localVet.address} ', style: TextStyle(fontSize: sizeSmallx1)),
@@ -233,7 +233,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
             indicatorColor: colorMain,
             labelStyle: TextStyle(fontWeight: FontWeight.bold),
             labelColor: colorMain,
-            unselectedLabelColor: Theme.of(context).textTheme.subtitle2.color,
+            unselectedLabelColor: Get.textTheme.subtitle2.color,
             unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
             isScrollable: true,
             tabs: [
@@ -304,7 +304,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
                         SizedBox(
                           height: 10.0,
                         ),
-                        Text('Debe ingresar un número de teléfono', style: Theme.of(context).textTheme.subtitle2),
+                        Text('Debe ingresar un número de teléfono', style: Get.textTheme.subtitle2),
                         SizedBox(
                           height: 10.0,
                         ),

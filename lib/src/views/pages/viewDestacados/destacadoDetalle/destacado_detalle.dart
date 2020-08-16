@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/models/destacado/destacado_model.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
@@ -23,7 +24,7 @@ class DetalleDestacadoPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-            child: Text(destacado.title, style: Theme.of(context).textTheme.subtitle2.apply(fontWeightDelta: 2)
+            child: Text(destacado.title, style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)
                 // tituloH4clasico,
                 ),
           ),
