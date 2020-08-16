@@ -3,8 +3,6 @@ import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/user_provider.dart';
-import 'package:proypet/src2/app/styles/styles.dart';
-import 'package:proypet/src2/app/views/components/snackbar.dart';
 
 class HomeController extends GetxController {
   //

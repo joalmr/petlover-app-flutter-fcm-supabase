@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:proypet/src/models/mascota/historia_model.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/mascota/pet_model.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src2/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeView.dart';

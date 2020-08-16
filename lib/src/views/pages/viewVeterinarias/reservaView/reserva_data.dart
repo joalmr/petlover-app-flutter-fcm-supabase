@@ -15,7 +15,7 @@ import 'package:proypet/src/models/booking/booking_model.dart';
 import 'package:proypet/src/models/maps/address.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/servicio_reserva.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';

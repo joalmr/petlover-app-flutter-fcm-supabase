@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/views/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src2/app/styles/styles.dart';

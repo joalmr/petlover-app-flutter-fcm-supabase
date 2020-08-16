@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src2/routes/routes.dart';
 import 'package:flutter/services.dart';

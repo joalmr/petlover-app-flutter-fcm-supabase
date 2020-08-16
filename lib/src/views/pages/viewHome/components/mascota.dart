@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get_it/get_it.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src2/utils/calcula_edad.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';

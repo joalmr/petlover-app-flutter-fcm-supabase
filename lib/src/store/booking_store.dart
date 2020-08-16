@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mobx/mobx.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 part 'booking_store.g.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
 import 'package:proypet/src2/controllers/_push_controller.dart';

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/services/booking_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';

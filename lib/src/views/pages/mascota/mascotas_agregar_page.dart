@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src/models/raza/raza_model.dart';
-import 'package:proypet/src/provider/home_store.dart';
+import 'package:proypet/src/store/home_store.dart';
 import 'package:proypet/src/services/mascota_provider.dart';
 import 'package:proypet/src/services/raza_provider.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
