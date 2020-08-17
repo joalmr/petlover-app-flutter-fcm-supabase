@@ -535,17 +535,6 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void eliminaMascota(dynamic id) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.eliminaMascota');
-    try {
-      return super.eliminaMascota(id);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void agregarMascota() {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.agregarMascota');

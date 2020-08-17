@@ -280,19 +280,19 @@ abstract class _HomeStore with Store {
     }
   }
 
-  @action
-  void eliminaMascota(id) {
-    eliminaMascotaVoid(id);
-  }
+  // @action
+  // void eliminaMascota(id) {
+  //   eliminaMascotaVoid(id);
+  // }
 
-  Future<void> eliminaMascotaVoid(id) async {
-    bool resp = await mascotaProvider.deletePet(id);
-    if (resp) {
-      // getSummary();
-      Get.offAllNamed('navInicio');
-    } else
-      Get.back();
-  }
+  // Future<void> eliminaMascotaVoid(id) async {
+  //   bool resp = await mascotaProvider.deletePet(id);
+  //   if (resp) {
+  //     // getSummary();
+  //     Get.offAllNamed('navInicio');
+  //   } else
+  //     Get.back();
+  // }
 
   // @action
   // void falleceMascota(MascotaModel mascota, bool fallecido) {
