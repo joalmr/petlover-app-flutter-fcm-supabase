@@ -294,24 +294,24 @@ abstract class _HomeStore with Store {
       Get.back();
   }
 
-  @action
-  void falleceMascota(MascotaModel mascota, bool fallecido) {
-    mascota.status = 0;
-    if (!fallecido) {
-      mascota.status = 1;
-    }
+  // @action
+  // void falleceMascota(MascotaModel mascota, bool fallecido) {
+  //   mascota.status = 0;
+  //   if (!fallecido) {
+  //     mascota.status = 1;
+  //   }
 
-    falleceMascotaVoid(mascota);
-  }
+  //   falleceMascotaVoid(mascota);
+  // }
 
-  Future<void> falleceMascotaVoid(MascotaModel mascota) async {
-    bool resp = await mascotaProvider.muerePet(mascota);
-    if (resp) {
-      verMiMascota(mascota.id);
-      Get.back();
-    } else
-      Get.back();
-  }
+  // Future<void> falleceMascotaVoid(MascotaModel mascota) async {
+  //   bool resp = await mascotaProvider.muerePet(mascota);
+  //   if (resp) {
+  //     verMiMascota(mascota.id);
+  //     Get.back();
+  //   } else
+  //     Get.back();
+  // }
 
 ////
 ////

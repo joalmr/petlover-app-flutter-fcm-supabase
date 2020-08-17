@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src2/controllers/mascota_controller/detalle_mascota_controller.dart';
 
@@ -18,7 +19,7 @@ class MascotaDetallePage extends StatelessWidget {
       builder: (_) {
         return Scaffold(
           key: _scaffoldKey,
-          // endDrawer: MascotaDrawer(modelMascota: _.miMascota),
+          endDrawer: MascotaDrawer(),
           body: FadeView(
             child: Stack(
               children: <Widget>[

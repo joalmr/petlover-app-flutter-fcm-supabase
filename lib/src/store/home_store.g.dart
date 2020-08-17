@@ -546,17 +546,6 @@ mixin _$HomeStore on _HomeStore, Store {
   }
 
   @override
-  void falleceMascota(MascotaModel mascota, bool fallecido) {
-    final _$actionInfo = _$_HomeStoreActionController.startAction(
-        name: '_HomeStore.falleceMascota');
-    try {
-      return super.falleceMascota(mascota, fallecido);
-    } finally {
-      _$_HomeStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void agregarMascota() {
     final _$actionInfo = _$_HomeStoreActionController.startAction(
         name: '_HomeStore.agregarMascota');

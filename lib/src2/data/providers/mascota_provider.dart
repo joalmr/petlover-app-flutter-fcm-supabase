@@ -118,7 +118,7 @@ class MascotaProvider {
       return false;
   }
 
-  Future<bool> muerePet(MascotaModel mascota) async {
+  Future<bool> muerePet(MascotaModel2 mascota) async {
     final url = '$_url/pets/${mascota.id}';
 
     final data = {

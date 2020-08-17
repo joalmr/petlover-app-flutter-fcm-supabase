@@ -17,17 +17,17 @@ class MascotaDetalleController extends GetxController {
   void onInit() {
     super.onInit();
     mascotaId = Get.arguments;
-    print(mascotaId);
-    verMiMascota(mascotaId);
+    // print(mascotaId);
+    verMiMascota();
   }
 
-  void verMiMascota(id) {
-    _verMiMascota(id);
+  void verMiMascota() {
+    _verMiMascota();
   }
 
-  Future<void> _verMiMascota(id) async {
-    pet = await mascotaService.getPet(id);
-    await _verMiHistoria(id);
+  Future<void> _verMiMascota() async {
+    pet = await mascotaService.getPet(mascotaId);
+    await _verMiHistoria(mascotaId);
     loading.value = false;
   }
 

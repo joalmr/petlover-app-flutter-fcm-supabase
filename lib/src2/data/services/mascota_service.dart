@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:proypet/src/models/mascota/mascota_model.dart';
+import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/providers/mascota_provider.dart';
 
 class MascotaService {
@@ -26,7 +27,7 @@ class MascotaService {
     return mascotaProvider.editPet(mascota, imagen);
   }
 
-  muerePet(MascotaModel mascota) {
+  muerePet(MascotaModel2 mascota) {
     return mascotaProvider.muerePet(mascota);
   }
 
