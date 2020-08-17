@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'package:proypet/src/views/pages/mascota/detalle_historia.dart';
-import 'package:proypet/src/views/pages/mascota/mascota_detalle_page.dart';
+import 'package:proypet/src2/app/views/pages/mascota/historia/detalle_historia.dart';
 import 'package:proypet/src/views/pages/mascota/mascotas_agregar_page.dart';
 import 'package:proypet/src/views/pages/viewDestacados/destacadoDetalle/destacado_detalle.dart';
-import 'package:proypet/src/views/pages/viewHome/booking/detalle_reservado.dart';
 
 import 'package:proypet/src2/app/views/auth/login_page.dart';
 import 'package:proypet/src2/app/views/auth/singup_page.dart';
 import 'package:proypet/src2/app/views/auth/forgot_page.dart';
 import 'package:proypet/src2/app/views/pages/_nav_bar/navigation_bar.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/home/reserva/detalle_reserva.dart';
+import 'package:proypet/src2/app/views/pages/mascota/detalle/detalle_mascota.dart';
 
 GetStorage box = GetStorage();
 

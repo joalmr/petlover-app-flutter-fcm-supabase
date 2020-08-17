@@ -21,8 +21,6 @@ class HomeController extends GetxController {
   //   });
   // }
 
-  // final bookingRepository = BookingProvider();
-
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
 
@@ -43,10 +41,10 @@ class HomeController extends GetxController {
   Future<void> _summary() async {
     var resp = await summaryRepository.getUserSummary();
     usuario = resp.user.name;
-    print('1 ' + usuario);
+    // print('1 ' + usuario);
     mascotas.clear();
     mascotas.addAll(resp.pets);
-    print('mascotas ' + mascotas.length.toString());
+    // print('mascotas ' + mascotas.length.toString());
     atenciones.clear(); //atenciones
     DateTime now = DateTime.now();
     resp.bookings.forEach((booking) {

@@ -16,7 +16,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<HomeController>(
-      // init: HomeController(),
       builder: (_) {
         return Scaffold(
           key: _scaffoldKey,

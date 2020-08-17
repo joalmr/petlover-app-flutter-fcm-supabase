@@ -14,6 +14,10 @@ class MascotaService {
     return mascotaProvider.getPet(idPet);
   }
 
+  getPetHistory(String idPet) {
+    return mascotaProvider.getPetHistory(idPet);
+  }
+
   savePet(MascotaModel mascota, File imagen) {
     return mascotaProvider.savePet(mascota, imagen);
   }

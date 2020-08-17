@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/models/mascota/pet_model.dart';
+import 'package:proypet/src2/data/models/update/mascota/history_model.dart';
+import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 
 class MascotaProvider {
   final _url = urlApi;
@@ -34,15 +36,33 @@ class MascotaProvider {
     }
   }
 
-  Future<PetModel> getPet(String idPet) async {
+  Dio dio = new Dio();
+////////
+  Future<MascotaModel2> getPet(String idPet) async {
     final url = '$_url/pets/$idPet';
+    Response response;
+    response = await dio.get(
+      url,
+      options: Options(headers: headersToken()),
+    );
 
-    final resp = await http.get(url, headers: headersToken());
-    final petModel = petModelFromJson(resp.body);
-
-    return petModel;
+    final pet = MascotaModel2.fromJson(response.data['pet']);
+    return pet;
   }
 
+  Future<List<HistoriaModel2>> getPetHistory(String idPet) async {
+    final url = '$_url/pets/$idPet';
+    Response response;
+    response = await dio.get(
+      url,
+      options: Options(headers: headersToken()),
+    );
+
+    final listHistory = List<HistoriaModel2>.from(response.data['history'].map((x) => HistoriaModel2.fromJson(x)));
+    return listHistory;
+  }
+
+////////
   Future<Map<String, dynamic>> savePet(MascotaModel mascota, File imagen) async {
     //create
     final url = '$_url/pets';
@@ -131,7 +151,6 @@ class MascotaProvider {
     }
   }
 
-  //este es interno
   Future<String> upImage(File imagen, String url) async {
     final imageBytes = imagen.readAsBytesSync();
     final pic = base64.encode(imageBytes);
