@@ -20,6 +20,7 @@ import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/mascota_service.dart';
 import 'package:proypet/src2/data/services/raza_servicio.dart';
 import 'package:select_dialog/select_dialog.dart';
@@ -34,7 +35,7 @@ final tiposex = [
 ];
 
 class MascotaEditarPage extends StatefulWidget {
-  final MascotaModel mascotaData;
+  final MascotaModel2 mascotaData;
   MascotaEditarPage({@required this.mascotaData});
 
   @override
@@ -42,7 +43,7 @@ class MascotaEditarPage extends StatefulWidget {
 }
 
 class _MascotaEditarPageState extends State<MascotaEditarPage> {
-  MascotaModel mascotaData;
+  MascotaModel2 mascotaData;
   _MascotaEditarPageState({@required this.mascotaData});
 
   final formKey = GlobalKey<FormState>();

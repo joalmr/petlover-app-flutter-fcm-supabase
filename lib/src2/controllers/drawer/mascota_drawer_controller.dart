@@ -5,7 +5,6 @@ import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/mascota_service.dart';
 
 class MascotaDrawerController extends GetxController {
-  //
   final petC = Get.find<MascotaDetalleController>();
   final homeC = Get.find<HomeController>();
   final mascotaService = MascotaService();
