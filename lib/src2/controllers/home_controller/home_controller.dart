@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
 import 'package:proypet/src/models/mascota/mascota_model.dart';
+import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/summary_service.dart';
 
 class HomeController extends GetxController {
@@ -13,7 +14,7 @@ class HomeController extends GetxController {
   RxBool loading = true.obs;
 
   RxList<BookingHome> atenciones = List<BookingHome>().obs;
-  RxList<MascotaModel> mascotas = List<MascotaModel>().obs;
+  RxList<MascotaModel2> mascotas = List<MascotaModel2>().obs;
 
   // _init() {
   //   ever(_usuario, (_) {

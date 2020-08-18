@@ -20,6 +20,7 @@ import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/booking_service.dart';
 import 'package:proypet/src2/data/services/mascota_service.dart';
 import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
@@ -37,7 +38,7 @@ String direccionDelivery = "";
 class DataReserva extends StatefulWidget {
   final String establecimientoID;
   final String establecimientoName;
-  final List<MascotaModel> misMascotas;
+  final List<MascotaModel2> misMascotas;
   final String mascotaID;
   final bool delivery;
   DataReserva(
@@ -50,7 +51,7 @@ class DataReserva extends StatefulWidget {
 class _Data extends State<DataReserva> {
   String establecimientoID;
   String establecimientoName;
-  List<MascotaModel> misMascotas;
+  List<MascotaModel2> misMascotas;
   String mascotaID;
   bool delivery;
   _Data({@required this.establecimientoID, this.misMascotas, this.mascotaID, this.establecimientoName, this.delivery});

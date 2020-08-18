@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/views/pages/mascota/mascota_editar_page.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/app/views/pages/mascota/editar/editar_mascota.dart';
 import 'package:proypet/src2/controllers/drawer/mascota_drawer_controller.dart';
 
 class MascotaDrawer extends StatelessWidget {
@@ -38,7 +38,7 @@ class MascotaDrawer extends StatelessWidget {
                     ListTile(
                       leading: Icon(Icons.edit, color: Get.textTheme.subtitle2.color),
                       title: Text('Editar datos', style: TextStyle(fontWeight: FontWeight.w400)),
-                      onTap: () => Get.to(MascotaEditarPage(mascotaData: _.petC.pet)), //
+                      onTap: () => Get.to(MascotaEditarPage()), //mascotaData: _.petC.pet
                     ),
                     ListTile(
                       leading: Icon(Icons.bookmark, color: Get.textTheme.subtitle2.color),

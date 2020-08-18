@@ -77,7 +77,15 @@ class MascotaDetallePage extends StatelessWidget {
                     centerTitle: true,
                     title: Text("", style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
                     actions: <Widget>[
-                      IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
+                      Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10.0, spreadRadius: -10.0),
+                          ],
+                        ),
+                        child: IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
+                      )
+                      // IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
                     ],
                   ),
                 )

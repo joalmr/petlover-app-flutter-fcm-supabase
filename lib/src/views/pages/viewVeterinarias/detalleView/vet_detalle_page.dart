@@ -12,6 +12,7 @@ import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src2/app/views/components/modal_bottom.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
+import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/establecimiento_service.dart';
 import 'package:proypet/src2/data/services/mascota_service.dart';
 import 'package:proypet/src2/data/services/user_service.dart';
@@ -44,7 +45,7 @@ class _VetDetallePageState extends State<VetDetallePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   User user = User(); //
-  List<MascotaModel> misMascotas;
+  List<MascotaModel2> misMascotas;
   Modal modal = new Modal();
   bool delivery = false;
   String telefono = "";

@@ -36,8 +36,6 @@ class ConfigDrawer extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20.0),
-                //FormControl().buttonSec('Buscar',(){})
-                //buttonPri('Agregar mascota',()=>{}),
                 ListTile(
                   leading: Icon(Icons.star),
                   title: Text('Calificar atenciones'),
@@ -94,8 +92,14 @@ class ConfigDrawer extends StatelessWidget {
           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           content: Text("Desea cerrar sesión?"),
           actions: <Widget>[
-            FlatButton(onPressed: () => Get.back(), child: Text('Cancelar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
-            FlatButton(onPressed: () => _outToken(), child: Text('Cerrar sesión', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed))),
+            FlatButton(
+              onPressed: () => Get.back(),
+              child: Text('Cancelar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+            ),
+            FlatButton(
+              onPressed: () => _outToken(),
+              child: Text('Cerrar sesión', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed)),
+            ),
           ],
         ),
       ),
@@ -104,11 +108,8 @@ class ConfigDrawer extends StatelessWidget {
 
   void _outToken() async {
     loginApi.logOut();
-    // _prefs.token = '';
-    // _prefs.position = '';
     _prefs.tokenDel();
     _prefs.positionDel();
     Get.offAllNamed('login');
-    // Navigator.pushNamedAndRemoveUntil(context, 'login', ModalRoute.withName('/'));
   }
 }

@@ -11,7 +11,7 @@ import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 class MascotaProvider {
   final _url = urlApi;
 
-  Future<List<MascotaModel>> getPets() async {
+  Future<List<MascotaModel2>> getPets() async {
     final url = '$_url/pets';
     try {
       final resp = await http.get(
@@ -21,12 +21,12 @@ class MascotaProvider {
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
       final datosMascota = decodedResp['pets']; //mascotaModelFromJson(decodedResp['pets']);
-      final List<MascotaModel> mascotas = new List();
+      final List<MascotaModel2> mascotas = new List();
 
       if (datosMascota == null) return [];
 
       datosMascota.forEach((pet) {
-        final petTemp = MascotaModel.fromJson(pet);
+        final petTemp = MascotaModel2.fromJson(pet);
         mascotas.add(petTemp);
       });
 
@@ -63,7 +63,7 @@ class MascotaProvider {
   }
 
 ////////
-  Future<Map<String, dynamic>> savePet(MascotaModel mascota, File imagen) async {
+  Future<Map<String, dynamic>> savePet(MascotaModel2 mascota, File imagen) async {
     //create
     final url = '$_url/pets';
 
@@ -83,7 +83,7 @@ class MascotaProvider {
       final urlpet = '$_url/pets/$idkey/base64';
 
       String petImg = "$urlName/img/favicon.png";
-      if (imagen != null) {
+      if (imagen.path != '') {
         petImg = await upImage(imagen, urlpet);
       }
 
@@ -92,11 +92,11 @@ class MascotaProvider {
       return {'ok': false, 'petImg': ''};
   }
 
-  Future<bool> editPet(MascotaModel mascota, File imagen) async {
+  Future<bool> editPet(MascotaModel2 mascota, File imagen) async {
     final idkey = mascota.id;
     final urlpet = '$_url/pets/$idkey/base64';
-    if (imagen != null) {
-      print('edita con imagen');
+    print(imagen);
+    if (imagen.path != '') {
       upImage(imagen, urlpet);
     }
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/views/pages/viewDestacados/destacados_page.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.dart';
 import 'package:proypet/src/views/pages/viewRecompensas/recompensas_page.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/reserva_list.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/destacados/destacados_view.dart';
 import 'package:proypet/src2/controllers/_navigation_controller.dart';
 import 'package:proypet/src2/app/views/pages/_nav_view/home/home_view.dart';
 
