@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src2/data/models/update/mascota/history_model.dart';
 import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 

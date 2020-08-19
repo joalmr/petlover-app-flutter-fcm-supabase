@@ -81,34 +81,5 @@ class _ViewComentarioState extends State<ViewComentario> {
         );
       },
     );
-    // return Column(
-    //   children: <Widget>[
-    //     SizedBox(
-    //       height: 10.0,
-    //     ),
-    //     Container(
-    //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-    //         width: double.infinity,
-    //         child: Text("No tiene comentarios."))
-    //   ],
-    // );
-
-    // SingleChildScrollView(
-    //   child: Column(
-    //     children: <Widget>[
-    //       SizedBox(height: 10.0,),
-    //       Container(
-    //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-    //         width: double.infinity,
-    //         child: Text("Comentario", style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))
-    //       ),
-    //       Container(
-    //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-    //         width: double.infinity,
-    //         child: Text("Aqui vienen los comentarios")
-    //       )
-    //     ],
-    //   ),
-    // );
   }
 }

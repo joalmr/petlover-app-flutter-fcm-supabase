@@ -16,7 +16,8 @@ class NavigationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fnPosition().then((value) => _prefs.position = '${value.latitude},${value.longitude}');
+    // fnPosition().then((value) => _prefs.position = '${value.latitude},${value.longitude}');
+    fnGetPosition();
     pushController.firebaseConfigure();
   }
 }

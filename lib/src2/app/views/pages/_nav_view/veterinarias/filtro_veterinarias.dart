@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src2/controllers/veterinaria_controller/filtra_vets_controller.dart';

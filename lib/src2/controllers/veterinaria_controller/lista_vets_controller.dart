@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src2/data/services/establecimiento_service.dart';
 
+import 'filtra_vets_controller.dart';
+
 class VeterinariasController extends GetxController {
   final vetService = EstablecimientoService();
   RxList<EstablecimientoModel> vetLocales = List<EstablecimientoModel>().obs;
@@ -41,4 +43,9 @@ class VeterinariasController extends GetxController {
   }
 
   bool get gps => respVets.value == 200;
+
+  filtra() {
+    final f = Get.find<FiltraVetsController>();
+    f.filtrar();
+  }
 }

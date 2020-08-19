@@ -102,7 +102,7 @@ class ReservaList extends StatelessWidget {
                             SizedBox(height: 10),
                             autocompleteAddress(),
                             SizedBox(height: 10),
-                            buttonPri('Buscar', null) //_onRefresh
+                            buttonPri('Buscar', () => _.filtra()) //_onRefresh
                           ],
                         ),
                       ),

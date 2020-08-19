@@ -41,10 +41,8 @@ class HomeController extends GetxController {
   Future<void> _summary() async {
     var resp = await summaryRepository.getUserSummary();
     usuario = resp.user.name;
-    // print('1 ' + usuario);
     mascotas.clear();
     mascotas.addAll(resp.pets);
-    // print('mascotas ' + mascotas.length.toString());
     atenciones.clear(); //atenciones
     DateTime now = DateTime.now();
     resp.bookings.forEach((booking) {
@@ -56,7 +54,6 @@ class HomeController extends GetxController {
       booking.vencido = vencido;
       atenciones.add(booking);
     });
-    print('atenciones ' + atenciones.length.toString());
     loading.value = false;
   }
 

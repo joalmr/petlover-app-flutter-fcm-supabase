@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/models/login/user_model.dart';
-import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src2/app/views/components/card_swiper.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src2/app/views/components/modal_bottom.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
 import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/establecimiento_service.dart';
 import 'package:proypet/src2/data/services/mascota_service.dart';
@@ -20,7 +20,6 @@ import 'package:proypet/src2/utils/regex.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/tabsDetalle/view_general.dart';
-import 'package:proypet/src/views/pages/viewVeterinarias/reservaView/reserva_data.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'tabsDetalle/view_comentario.dart';

@@ -10,13 +10,12 @@ class GlobalController extends GetxController {
   final AuthService repository = AuthService();
   final _prefs = new PreferenciasUsuario();
   PushController pushController = PushController();
+  final homeController = Get.find<HomeController>();
 
   @override
   void onInit() {
     super.onInit();
     evaluaLogin();
-    print('evaluo');
-    print(_prefs.themeMode);
     if (_prefs.themeMode != null) {
       if (_prefs.themeMode == 'claro') {
         Get.changeThemeMode(ThemeMode.light);
@@ -27,11 +26,7 @@ class GlobalController extends GetxController {
   }
 
   bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
-
   bool get isVerify => _prefs.verify != null && _prefs.verify.trim() != "";
-
-  // HomeController homeController = HomeController();
-  final homeController = Get.find<HomeController>();
 
   evaluaLogin() {
     if (hasToken) {
