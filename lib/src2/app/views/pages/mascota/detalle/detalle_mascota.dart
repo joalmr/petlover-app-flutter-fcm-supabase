@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
@@ -29,7 +30,7 @@ class MascotaDetallePage extends StatelessWidget {
                           width: double.infinity,
                           height: double.infinity,
                           child: Center(
-                            child: CircularProgressIndicator(),
+                            child: CupertinoActivityIndicator(),
                           ),
                         )
                       : SingleChildScrollView(

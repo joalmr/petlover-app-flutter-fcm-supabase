@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/models/notificacion/notificacion_model.dart';
 
@@ -39,7 +40,7 @@ Widget buildNoti(Notificacion noti, funcion) {
                       height: 200,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      placeholder: (context, text) => Container(height: 200, width: double.maxFinite, child: Center(child: CircularProgressIndicator())),
+                      placeholder: (context, text) => Container(height: 200, width: double.maxFinite, child: Center(child: CupertinoActivityIndicator())),
                     )),
               ),
             ],

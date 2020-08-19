@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/models/booking/booking_home.dart';
-import 'package:proypet/src/models/mascota/mascota_model.dart';
 import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/services/summary_service.dart';
 

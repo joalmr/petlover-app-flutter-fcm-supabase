@@ -1,0 +1,44 @@
+import 'package:get/get.dart';
+import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src2/data/services/establecimiento_service.dart';
+
+class VeterinariasController extends GetxController {
+  final vetService = EstablecimientoService();
+  RxList<EstablecimientoModel> vetLocales = List<EstablecimientoModel>().obs;
+  RxList<int> listaFiltros = List<int>().obs;
+  RxInt respVets = 0.obs;
+  RxBool loading = true.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    getVets();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+  //
+  Future refresh() => _refresh();
+
+  Future<Null> _refresh() async {
+    await Future.delayed(Duration(milliseconds: 2));
+
+    return null;
+  }
+
+  getVets() => _getVets();
+
+  Future<void> _getVets() async {
+    loading.value = true;
+    var resp = await vetService.getVets([]);
+    respVets.value = resp['code']; // == 200
+    vetLocales.clear();
+    vetLocales.addAll(resp['establecimientos']);
+    loading.value = false;
+  }
+
+  bool get gps => respVets.value == 200;
+}

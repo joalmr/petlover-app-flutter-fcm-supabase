@@ -32,9 +32,6 @@ class LoginController extends GetxController {
 
   bool get isFormValid => hasEmailData && isPasswordValid;
 
-  HomeStore homeStore;
-  // PushStore pushStore;
-
   PushController pushController = PushController();
   final homeController = Get.find<HomeController>();
 
@@ -42,8 +39,6 @@ class LoginController extends GetxController {
   void onInit() {
     super.onInit();
     limpia();
-    homeStore = GetIt.I.get<HomeStore>();
-    // pushStore = GetIt.I.get<PushStore>();
   }
 
   @override

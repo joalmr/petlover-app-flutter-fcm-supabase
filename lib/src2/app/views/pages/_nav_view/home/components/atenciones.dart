@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
@@ -20,7 +21,7 @@ class Atenciones extends StatelessWidget {
               ? Container(
                   width: double.infinity,
                   height: 100,
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: CupertinoActivityIndicator()),
                 )
               : _home.sinAtenciones
                   ? FadeIn(

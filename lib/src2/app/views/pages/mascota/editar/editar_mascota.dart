@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
@@ -24,7 +25,7 @@ class MascotaEditarPage extends StatelessWidget {
             ? FadeIn(
                 child: Container(
                   child: Center(
-                    child: CircularProgressIndicator(),
+                    child: CupertinoActivityIndicator(),
                   ),
                 ),
               )
