@@ -12,7 +12,6 @@ import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
-import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 class VetMapaPage extends StatefulWidget {
   final establecimientos;
@@ -55,7 +54,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
         infoWindow: InfoWindow(
           title: element.name,
           snippet: '★ ${element.stars} (${element.attentions})',
-          onTap: () => Get.to(VetDetallePage(vet: element)),
+          onTap: () => Get.toNamed('vetdetalle', arguments: element), // Get.to(VetDetallePage(vet: element)),
         ),
         position: LatLng(element.latitude, element.longitude),
       ));
@@ -140,7 +139,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
         );
       },
       child: InkWell(
-          onTap: () => Get.to(VetDetallePage(vet: vetLocales[index])),
+          onTap: () => Get.toNamed('vetdetalle', arguments: vetLocales[index]), //Get.to(VetDetallePage(vet: vetLocales[index])),
           child: Stack(children: [
             Center(
                 child: Container(

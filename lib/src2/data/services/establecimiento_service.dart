@@ -1,3 +1,4 @@
+import 'package:proypet/src/models/establecimiento/comentarios_model.dart';
 import 'package:proypet/src2/data/providers/establecimiento_provider.dart';
 
 class EstablecimientoService {
@@ -11,7 +12,7 @@ class EstablecimientoService {
     return establecimientoProvider.getVet(idVet);
   }
 
-  getComents(String idVet) {
+  Future<List<Comentarios>> getComents(String idVet) {
     return establecimientoProvider.getComents(idVet);
   }
 }

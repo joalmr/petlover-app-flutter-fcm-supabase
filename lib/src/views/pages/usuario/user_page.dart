@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
-import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src2/app/views/components/snackbar.dart';
-import 'package:proypet/src2/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src2/data/services/user_service.dart';
 import 'package:proypet/src2/utils/regex.dart';
 
@@ -30,68 +27,69 @@ class _UserPageState extends State<UserPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: appbar(null, 'Editar usuario', null), //leadingH
-      body: FutureBuilder(
-          future: userProvider.getUser(),
-          builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
-            if (!snapshot.hasData) {
-              return LinearProgressIndicator();
-            } else {
-              user = snapshot.data.user;
-              return FadeViewSafeArea(
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                    child: Form(
-                      key: formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 25.0,
-                          ),
-                          FormularioText(
-                            labelText: 'Nombre',
-                            hintText: 'Ingrese nombre',
-                            icon: Icons.person,
-                            obscureText: false,
-                            onSaved: (value) => user.name = value,
-                            textCap: TextCapitalization.words,
-                            valorInicial: user.name,
-                            boardType: TextInputType.text,
-                          ),
-                          FormularioText(
-                            labelText: 'Apellido',
-                            hintText: 'Ingrese apellido',
-                            icon: Icons.person,
-                            obscureText: false,
-                            onSaved: (value) => user.lastname = value,
-                            textCap: TextCapitalization.words,
-                            valorInicial: user.lastname,
-                            boardType: TextInputType.text,
-                          ),
-                          FormularioText(
-                            labelText: 'Teléfono',
-                            hintText: 'Ingrese teléfono',
-                            icon: Icons.phone,
-                            obscureText: false,
-                            onSaved: (value) => user.phone = value,
-                            textCap: TextCapitalization.words,
-                            valorInicial: user.phone,
-                            boardType: TextInputType.phone,
-                          ),
-                          Text(
-                            'Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
-                            style: TextStyle(fontSize: sizeSmallx1),
-                          ),
-                          SizedBox(height: 25.0),
-                          Center(child: buttonPri('Guardar cambios', btnBool ? _onEdit : null) //()=>agregarDialog()
-                              )
-                        ],
-                      ),
-                    )),
-              );
-            }
-          }),
+      body: Container(),
+      // body: FutureBuilder(
+      //     future: userProvider.getUser(),
+      //     builder: (BuildContext context, AsyncSnapshot<UserModel> snapshot) {
+      //       if (!snapshot.hasData) {
+      //         return LinearProgressIndicator();
+      //       } else {
+      //         user = snapshot.data.user;
+      //         return FadeViewSafeArea(
+      //           child: SingleChildScrollView(
+      //               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      //               child: Form(
+      //                 key: formKey,
+      //                 child: Column(
+      //                   crossAxisAlignment: CrossAxisAlignment.start,
+      //                   mainAxisAlignment: MainAxisAlignment.start,
+      //                   children: <Widget>[
+      //                     SizedBox(
+      //                       height: 25.0,
+      //                     ),
+      //                     FormularioText(
+      //                       labelText: 'Nombre',
+      //                       hintText: 'Ingrese nombre',
+      //                       icon: Icons.person,
+      //                       obscureText: false,
+      //                       onSaved: (value) => user.name = value,
+      //                       textCap: TextCapitalization.words,
+      //                       valorInicial: user.name,
+      //                       boardType: TextInputType.text,
+      //                     ),
+      //                     FormularioText(
+      //                       labelText: 'Apellido',
+      //                       hintText: 'Ingrese apellido',
+      //                       icon: Icons.person,
+      //                       obscureText: false,
+      //                       onSaved: (value) => user.lastname = value,
+      //                       textCap: TextCapitalization.words,
+      //                       valorInicial: user.lastname,
+      //                       boardType: TextInputType.text,
+      //                     ),
+      //                     FormularioText(
+      //                       labelText: 'Teléfono',
+      //                       hintText: 'Ingrese teléfono',
+      //                       icon: Icons.phone,
+      //                       obscureText: false,
+      //                       onSaved: (value) => user.phone = value,
+      //                       textCap: TextCapitalization.words,
+      //                       valorInicial: user.phone,
+      //                       boardType: TextInputType.phone,
+      //                     ),
+      //                     Text(
+      //                       'Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
+      //                       style: TextStyle(fontSize: sizeSmallx1),
+      //                     ),
+      //                     SizedBox(height: 25.0),
+      //                     Center(child: buttonPri('Guardar cambios', btnBool ? _onEdit : null) //()=>agregarDialog()
+      //                         )
+      //                   ],
+      //                 ),
+      //               )),
+      //         );
+      //       }
+      //     }),
     );
   }
 

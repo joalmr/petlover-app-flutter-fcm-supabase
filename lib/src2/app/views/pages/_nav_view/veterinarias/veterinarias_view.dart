@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/views/pages/viewVeterinarias/mapaView/vet_mapa_page.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/filtro_veterinarias.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
@@ -24,7 +25,6 @@ class ReservaList extends StatelessWidget {
           appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
             IconButton(
               icon: Icon(Icons.filter_list),
-              // onPressed: null,
               onPressed: () => Get.to(FiltraVets()),
             ),
           ]),
@@ -82,7 +82,11 @@ class ReservaList extends StatelessWidget {
                           bottom: 15,
                           right: 10,
                           child: FloatingActionButton(
-                            onPressed: (_.vetLocales.length == 0) ? null : () => null, //Get.to(VetMapaPage(establecimientos: vetLocales)),
+                            onPressed: (_.vetLocales.length == 0)
+                                ? null
+                                : () => Get.to(
+                                      VetMapaPage(establecimientos: _.vetLocales.value),
+                                    ),
                             child: Icon(Icons.location_on),
                           ),
                         ),

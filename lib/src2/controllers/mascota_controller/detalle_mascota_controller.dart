@@ -17,7 +17,6 @@ class MascotaDetalleController extends GetxController {
   void onInit() {
     super.onInit();
     mascotaId = Get.arguments;
-    // print(mascotaId);
     verMiMascota();
   }
 

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:proypet/src2/app/views/pages/_nav_view/destacados/detalle/detalle_destacado.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/vet_detalle/detalle_vet.dart';
 import 'package:proypet/src2/app/views/pages/mascota/agregar/agregar_mascota.dart';
 
 import 'package:proypet/src2/app/views/pages/mascota/historia/detalle_historia.dart';
@@ -34,6 +36,9 @@ List<GetPage> getRutas() {
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
     GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
+    //
+    GetPage(name: 'vetdetalle', page: () => VetDetallePage()),
+    GetPage(name: 'vetreserva', page: () => DataReserva()),
     //
     GetPage(name: 'detalledestacado', page: () => DetalleDestacadoPage()),
     GetPage(name: 'detallereservado', page: () => DetalleReservado()),

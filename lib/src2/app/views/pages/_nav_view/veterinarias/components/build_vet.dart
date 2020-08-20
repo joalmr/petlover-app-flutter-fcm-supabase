@@ -5,14 +5,13 @@ import 'package:get/get.dart';
 import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src2/app/views/components/card_swiper.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
-import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 Widget buildVets(EstablecimientoModel vet) {
   return FadeIn(
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       child: InkWell(
-          onTap: () => Get.to(VetDetallePage(vet: vet)),
+          onTap: () => Get.toNamed('vetdetalle', arguments: vet), //Get.to(VetDetallePage(vet: vet)),
           child: Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

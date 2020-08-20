@@ -52,7 +52,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       defaultTransition: Transition.fadeIn,
       getPages: getRutas(),
-      onGenerateRoute: (settings) => GetPageRoute(page: () => NavigationBar(currentTabIndex: 0)),
+      onGenerateRoute: (settings) => GetPageRoute(
+        page: () => NavigationBar(currentTabIndex: 0),
+      ),
     );
   }
 }

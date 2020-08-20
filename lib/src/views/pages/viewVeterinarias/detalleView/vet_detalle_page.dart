@@ -1,378 +1,369 @@
-import 'dart:ui';
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/models/login/user_model.dart';
-import 'package:proypet/src2/app/views/components/card_swiper.dart';
-import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src2/app/views/components/modal_bottom.dart';
-import 'package:proypet/src2/app/views/components/snackbar.dart';
-import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
-import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
-import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
-import 'package:proypet/src2/data/services/establecimiento_service.dart';
-import 'package:proypet/src2/data/services/mascota_service.dart';
-import 'package:proypet/src2/data/services/user_service.dart';
-import 'package:proypet/src2/utils/regex.dart';
+// import 'dart:ui';
+// import 'package:animate_do/animate_do.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:proypet/src/models/establecimiento/establecimiento_model.dart';
+// import 'package:proypet/src/models/login/user_model.dart';
+// import 'package:proypet/src2/app/views/components/card_swiper.dart';
+// import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
+// import 'package:proypet/src2/app/views/components/form_control/text_from.dart';
+// import 'package:proypet/src2/app/views/components/modal_bottom.dart';
+// import 'package:proypet/src2/app/views/components/snackbar.dart';
+// import 'package:proypet/src2/app/views/components/transition/fadeView.dart';
+// import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
+// import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
+// import 'package:proypet/src2/data/services/establecimiento_service.dart';
+// import 'package:proypet/src2/data/services/mascota_service.dart';
+// import 'package:proypet/src2/data/services/user_service.dart';
+// import 'package:proypet/src2/utils/regex.dart';
 
-import 'package:proypet/src2/app/styles/styles.dart';
-import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/tabsDetalle/view_general.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:proypet/src2/app/styles/styles.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
-import 'tabsDetalle/view_comentario.dart';
-import 'tabsDetalle/view_horario.dart';
-import 'tabsDetalle/view_precio.dart';
+// class VetDetallePage2 extends StatefulWidget {
+//   // final String vetID;
+//   final EstablecimientoModel vet;
+//   VetDetallePage2({this.vet});
+//   @override
+//   _VetDetallePage2State createState() => _VetDetallePage2State(vet: vet);
+// }
 
-class VetDetallePage extends StatefulWidget {
-  // final String vetID;
-  final EstablecimientoModel vet;
-  VetDetallePage({this.vet});
-  @override
-  _VetDetallePageState createState() => _VetDetallePageState(vet: vet);
-}
+// class _VetDetallePage2State extends State<VetDetallePage2> {
+//   // String vetID;
+//   EstablecimientoModel vet;
+//   _VetDetallePage2State({this.vet});
+//   final establecimientoProvider = EstablecimientoService();
+//   final mascotaProvider = MascotaService();
+//   final userProvider = UserService();
+//   final scaffoldKey = GlobalKey<ScaffoldState>();
+//   final formKey = GlobalKey<FormState>();
+//   User user = User(); //
+//   List<MascotaModel2> misMascotas;
+//   Modal modal = new Modal();
+//   bool delivery = false;
+//   String telefono = "";
+//   bool reservarClic = true;
 
-class _VetDetallePageState extends State<VetDetallePage> {
-  // String vetID;
-  EstablecimientoModel vet;
-  _VetDetallePageState({this.vet});
-  final establecimientoProvider = EstablecimientoService();
-  final mascotaProvider = MascotaService();
-  final userProvider = UserService();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
-  User user = User(); //
-  List<MascotaModel2> misMascotas;
-  Modal modal = new Modal();
-  bool delivery = false;
-  String telefono = "";
-  bool reservarClic = true;
+//   @override
+//   void initState() {
+//     List<Service> servicios = vet.services;
+//     servicios.forEach((element) {
+//       if (element.slug == "delivery") {
+//         delivery = true;
+//       }
+//     });
+//     super.initState();
+//   }
 
-  @override
-  void initState() {
-    List<Service> servicios = vet.services;
-    servicios.forEach((element) {
-      if (element.slug == "delivery") {
-        delivery = true;
-      }
-    });
-    super.initState();
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       key: scaffoldKey,
+//       body: FadeView(
+//         child: _onStack(vet),
+//       ),
+//     );
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      body: FadeView(
-        child: _onStack(vet),
-      ),
-    );
-  }
+//   Widget _onStack(vet) {
+//     return Stack(
+//       children: <Widget>[
+//         Container(
+//           height: MediaQuery.of(context).size.height,
+//         ),
+//         Stack(
+//           children: <Widget>[
+//             Container(
+//               height: 260.0,
+//               width: double.infinity,
+//               child: (vet.slides.length > 0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false),
+//             ),
+//             Positioned(
+//               right: 7.5,
+//               bottom: 9.5,
+//               child: Container(
+//                 height: 55.0,
+//                 width: 55.0,
+//                 decoration: BoxDecoration(
+//                   color: colorGray1,
+//                   borderRadius: BorderRadius.circular(100.0),
+//                   image: DecorationImage(image: CachedNetworkImageProvider(vet.logo), fit: BoxFit.cover),
+//                 ),
+//               ),
+//             )
+//           ],
+//         ),
+//         Container(padding: EdgeInsets.only(top: 260.0, bottom: 60.0), child: Container() // _onDetail(vet),
+//             ),
+//         Positioned(
+//           bottom: 0,
+//           child: Container(
+//             height: 60,
+//             width: MediaQuery.of(context).size.width,
+//             padding: EdgeInsets.symmetric(vertical: 5.0),
+//             child: Row(
+//               children: <Widget>[
+//                 SizedBox(width: MediaQuery.of(context).size.width * 0.025),
+//                 SizedBox(
+//                   width: MediaQuery.of(context).size.width * 0.2,
+//                   child: FloatingActionButton(
+//                     backgroundColor: Theme.of(context).backgroundColor,
+//                     child: Icon(
+//                       Icons.phone,
+//                       color: colorMain,
+//                     ),
+//                     onPressed: _launchPhone,
+//                   ),
+//                 ),
+//                 SizedBox(
+//                   width: MediaQuery.of(context).size.width * 0.725,
+//                   child: buttonPri('Reservar servicio', reservarClic ? _reservar : null),
+//                 ),
+//                 SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+//               ],
+//             ),
+//           ),
+//         ),
+//         Positioned(
+//           top: 0,
+//           left: 0,
+//           right: 0,
+//           child: AppBar(
+//             backgroundColor: Colors.transparent,
+//             elevation: 0,
+//             centerTitle: true,
+//             title: Text("", style: Get.textTheme.subtitle1),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
 
-  Widget _onStack(vet) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height,
-        ),
-        Stack(
-          children: <Widget>[
-            Container(
-              height: 260.0,
-              width: double.infinity,
-              child: (vet.slides.length > 0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false),
-            ),
-            Positioned(
-              right: 7.5,
-              bottom: 9.5,
-              child: Container(
-                height: 55.0,
-                width: 55.0,
-                decoration: BoxDecoration(
-                  color: colorGray1,
-                  borderRadius: BorderRadius.circular(100.0),
-                  image: DecorationImage(image: CachedNetworkImageProvider(vet.logo), fit: BoxFit.cover),
-                ),
-              ),
-            )
-          ],
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 260.0, bottom: 60.0),
-          child: _onDetail(vet),
-        ),
-        Positioned(
-          bottom: 0,
-          child: Container(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(vertical: 5.0),
-            child: Row(
-              children: <Widget>[
-                SizedBox(width: MediaQuery.of(context).size.width * 0.025),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  child: FloatingActionButton(
-                    backgroundColor: Theme.of(context).backgroundColor,
-                    child: Icon(
-                      Icons.phone,
-                      color: colorMain,
-                    ),
-                    onPressed: _launchPhone,
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.725,
-                  child: buttonPri('Reservar servicio', reservarClic ? _reservar : null),
-                ),
-                SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            centerTitle: true,
-            title: Text("", style: Get.textTheme.subtitle1),
-          ),
-        ),
-      ],
-    );
-  }
+//   // Widget _onDetail(EstablecimientoModel localVet) {
+//   //   return DefaultTabController(
+//   //     length: 4,
+//   //     child: Column(
+//   //       crossAxisAlignment: CrossAxisAlignment.start,
+//   //       mainAxisAlignment: MainAxisAlignment.start,
+//   //       children: <Widget>[
+//   //         Padding(
+//   //           padding: const EdgeInsets.symmetric(horizontal: 0.0),
+//   //           child: Container(
+//   //             width: MediaQuery.of(context).size.width - 0.0,
+//   //             // height: MediaQuery.of(context).size.height * 0.1 ,
+//   //             child: ListTile(
+//   //               title: Column(
+//   //                 crossAxisAlignment: CrossAxisAlignment.start,
+//   //                 mainAxisAlignment: MainAxisAlignment.start,
+//   //                 children: <Widget>[
+//   //                   Text(
+//   //                     '${localVet.distance}km de distancia',
+//   //                     style: TextStyle(fontSize: sizeSmallx2),
+//   //                   ),
+//   //                   Text(localVet.name, //nombreVet(0),
+//   //                       maxLines: 2,
+//   //                       style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
+//   //                 ],
+//   //               ),
+//   //               subtitle: Text('${localVet.address} ', style: TextStyle(fontSize: sizeSmallx1)),
+//   //               trailing: Stack(
+//   //                 children: <Widget>[
+//   //                   Container(height: 56.0, width: 60.0),
+//   //                   Container(
+//   //                     height: 50.0,
+//   //                     width: 50.0,
+//   //                     padding: EdgeInsets.symmetric(horizontal: 5.0),
+//   //                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.0), color: colorYellow),
+//   //                     child: Center(
+//   //                       child: Row(
+//   //                         mainAxisAlignment: MainAxisAlignment.center,
+//   //                         children: <Widget>[
+//   //                           Icon(Icons.star, color: Colors.white, size: 12.0),
+//   //                           // SizedBox(width: 5.0),
+//   //                           Text(
+//   //                             localVet.stars.toString(),
+//   //                             style: TextStyle(
+//   //                               fontSize: 14.0,
+//   //                               fontWeight: FontWeight.bold,
+//   //                               color: Colors.white,
+//   //                             ),
+//   //                           )
+//   //                         ],
+//   //                       ),
+//   //                     ),
+//   //                   ),
+//   //                   Positioned(
+//   //                     bottom: 0.0,
+//   //                     right: 0.0,
+//   //                     child: Tooltip(
+//   //                       message: 'Atenciones',
+//   //                       child: Container(
+//   //                         height: 25.0,
+//   //                         width: 25.0,
+//   //                         decoration: BoxDecoration(
+//   //                           borderRadius: BorderRadius.circular(20.0),
+//   //                           color: colorMain,
+//   //                         ),
+//   //                         child: Center(
+//   //                           child: Text(
+//   //                             localVet.attentions.toString(),
+//   //                             style: TextStyle(fontSize: 10, color: Colors.white),
+//   //                           ),
+//   //                         ),
+//   //                       ),
+//   //                     ),
+//   //                   ),
+//   //                 ],
+//   //               ),
+//   //             ),
+//   //           ),
+//   //         ),
+//   //         SizedBox(
+//   //           height: 10.0,
+//   //         ),
+//   //         TabBar(
+//   //           indicatorColor: colorMain,
+//   //           labelStyle: TextStyle(fontWeight: FontWeight.bold),
+//   //           labelColor: colorMain,
+//   //           unselectedLabelColor: Get.textTheme.subtitle2.color,
+//   //           unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+//   //           isScrollable: true,
+//   //           tabs: [
+//   //             Tab(text: "General"),
+//   //             Tab(text: "Precios"),
+//   //             Tab(text: "Horarios"),
+//   //             Tab(text: "Comentarios"),
+//   //           ],
+//   //         ),
+//   //         Expanded(
+//   //           child: TabBarView(
+//   //             children: <Widget>[
+//   //               ViewGeneral(localVet: localVet),
+//   //               ViewPrecio(localVet: localVet),
+//   //               ViewHorario(localVet: localVet),
+//   //               ViewComentario(idVet: localVet.id),
+//   //             ],
+//   //           ),
+//   //         ),
+//   //       ],
+//   //     ),
+//   //   );
+//   // }
 
-  Widget _onDetail(EstablecimientoModel localVet) {
-    return DefaultTabController(
-      length: 4,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width - 0.0,
-              // height: MediaQuery.of(context).size.height * 0.1 ,
-              child: ListTile(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      '${localVet.distance}km de distancia',
-                      style: TextStyle(fontSize: sizeSmallx2),
-                    ),
-                    Text(localVet.name, //nombreVet(0),
-                        maxLines: 2,
-                        style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
-                  ],
-                ),
-                subtitle: Text('${localVet.address} ', style: TextStyle(fontSize: sizeSmallx1)),
-                trailing: Stack(
-                  children: <Widget>[
-                    Container(height: 56.0, width: 60.0),
-                    Container(
-                      height: 50.0,
-                      width: 50.0,
-                      padding: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.0), color: colorYellow),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.star, color: Colors.white, size: 12.0),
-                            // SizedBox(width: 5.0),
-                            Text(
-                              localVet.stars.toString(),
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0.0,
-                      right: 0.0,
-                      child: Tooltip(
-                        message: 'Atenciones',
-                        child: Container(
-                          height: 25.0,
-                          width: 25.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: colorMain,
-                          ),
-                          child: Center(
-                            child: Text(
-                              localVet.attentions.toString(),
-                              style: TextStyle(fontSize: 10, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          TabBar(
-            indicatorColor: colorMain,
-            labelStyle: TextStyle(fontWeight: FontWeight.bold),
-            labelColor: colorMain,
-            unselectedLabelColor: Get.textTheme.subtitle2.color,
-            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-            isScrollable: true,
-            tabs: [
-              Tab(text: "General"),
-              Tab(text: "Precios"),
-              Tab(text: "Horarios"),
-              Tab(text: "Comentarios"),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              children: <Widget>[
-                ViewGeneral(localVet: localVet),
-                ViewPrecio(localVet: localVet),
-                ViewHorario(localVet: localVet),
-                ViewComentario(idVet: localVet.id),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+//   Widget _swiperVets(imagen, bool urlBool) {
+//     return CardSwiper(
+//       imagenes: imagen,
+//       urlBool: urlBool,
+//       height: 145.0,
+//     );
+//   }
 
-  Widget _swiperVets(imagen, bool urlBool) {
-    return CardSwiper(
-      imagenes: imagen,
-      urlBool: urlBool,
-      height: 145.0,
-    );
-  }
+//   _launchPhone() async {
+//     var url = 'tel:${vet.phone}';
+//     if (await canLaunch(url)) {
+//       await launch(url);
+//     } else {
+//       throw 'No se pudo llamar $url';
+//     }
+//   }
 
-  _launchPhone() async {
-    var url = 'tel:${vet.phone}';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'No se pudo llamar $url';
-    }
-  }
+//   _reservar() async {
+//     setState(() {
+//       reservarClic = false;
+//     });
 
-  _reservar() async {
-    setState(() {
-      reservarClic = false;
-    });
+//     misMascotas = await mascotaProvider.getPets();
+//     misMascotas = misMascotas.where((x) => x.status != 0).toList();
+//     // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
+//     if (misMascotas.length > 0) {
+//       var usuario = await userProvider.getUser();
+//       // user = usuario.user;
 
-    misMascotas = await mascotaProvider.getPets();
-    misMascotas = misMascotas.where((x) => x.status != 0).toList();
-    // modal.mainModal(context,DataReserva(establecimientoID: widget.idvet, misMascotas: misMascotas, mascotaID: misMascotas[0].id));
-    if (misMascotas.length > 0) {
-      var usuario = await userProvider.getUser();
-      user = usuario.user;
+//       if (user.phone == null || user.phone.trim() == "") {
+//         showDialog(
+//           barrierDismissible: false,
+//           context: context,
+//           builder: (BuildContext context) => FadeIn(
+//             child: AlertDialog(
+//               contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+//               content: Container(
+//                   height: 200.0,
+//                   child: Form(
+//                     key: formKey,
+//                     child: Column(
+//                       children: <Widget>[
+//                         SizedBox(
+//                           height: 10.0,
+//                         ),
+//                         Text('Debe ingresar un número de teléfono', style: Get.textTheme.subtitle2),
+//                         SizedBox(
+//                           height: 10.0,
+//                         ),
+//                         FormularioText(
+//                           hintText: 'Ingrese teléfono',
+//                           icon: Icons.phone,
+//                           obscureText: false,
+//                           onSaved: (value) => user.phone = value,
+//                           textCap: TextCapitalization.words,
+//                           valorInicial: user.phone,
+//                           boardType: TextInputType.phone,
+//                         ),
+//                         SizedBox(
+//                           height: 10.0,
+//                         ),
+//                         buttonPri("Guardar teléfono", _onPhone),
+//                         FlatButton(
+//                           child: Text(
+//                             "Cancelar",
+//                             style: TextStyle(color: colorMain),
+//                           ),
+//                           onPressed: _cancelar,
+//                         )
+//                       ],
+//                     ),
+//                   )),
+//             ),
+//           ),
+//         );
+//       } else {
+//         setState(() {
+//           reservarClic = true;
+//         });
+//         Get.to(DataReserva());
+//         // establecimientoID: vet.id,
+//         // misMascotas: misMascotas,
+//         // mascotaID: misMascotas[0].id,
+//         // establecimientoName: vet.name,
+//         // delivery: delivery,
+//       }
+//     } else {
+//       setState(() {
+//         reservarClic = true;
+//       });
+//       mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed);
+//     }
+//   }
 
-      if (user.phone == null || user.phone.trim() == "") {
-        showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) => FadeIn(
-            child: AlertDialog(
-              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              content: Container(
-                  height: 200.0,
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text('Debe ingresar un número de teléfono', style: Get.textTheme.subtitle2),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        FormularioText(
-                          hintText: 'Ingrese teléfono',
-                          icon: Icons.phone,
-                          obscureText: false,
-                          onSaved: (value) => user.phone = value,
-                          textCap: TextCapitalization.words,
-                          valorInicial: user.phone,
-                          boardType: TextInputType.phone,
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        buttonPri("Guardar teléfono", _onPhone),
-                        FlatButton(
-                          child: Text(
-                            "Cancelar",
-                            style: TextStyle(color: colorMain),
-                          ),
-                          onPressed: _cancelar,
-                        )
-                      ],
-                    ),
-                  )),
-            ),
-          ),
-        );
-      } else {
-        setState(() {
-          reservarClic = true;
-        });
-        Get.to(DataReserva(
-          establecimientoID: vet.id,
-          misMascotas: misMascotas,
-          mascotaID: misMascotas[0].id,
-          establecimientoName: vet.name,
-          delivery: delivery,
-        ));
-      }
-    } else {
-      setState(() {
-        reservarClic = true;
-      });
-      mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed);
-    }
-  }
+//   void _onPhone() async {
+//     setState(() {
+//       reservarClic = true;
+//       formKey.currentState.save();
+//     });
 
-  void _onPhone() async {
-    setState(() {
-      reservarClic = true;
-      formKey.currentState.save();
-    });
+//     bool phone = phoneRegex(user.phone);
+//     if (phone) {
+//       await userProvider.editUser(user); //
+//       Get.back();
+//     } else {
+//       mostrarSnackbar('Número telefónico inválido', colorRed);
+//     }
+//   }
 
-    bool phone = phoneRegex(user.phone);
-    if (phone) {
-      await userProvider.editUser(user); //
-      Get.back();
-    } else {
-      mostrarSnackbar('Número telefónico inválido', colorRed);
-    }
-  }
-
-  _cancelar() {
-    setState(() {
-      reservarClic = true;
-    });
-    Get.back();
-  }
-}
+//   _cancelar() {
+//     setState(() {
+//       reservarClic = true;
+//     });
+//     Get.back();
+//   }
+// }

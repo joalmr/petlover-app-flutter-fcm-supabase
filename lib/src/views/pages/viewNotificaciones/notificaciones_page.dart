@@ -13,7 +13,6 @@ import 'package:proypet/src2/utils/error_internet.dart';
 import 'package:proypet/src2/utils/icons_map.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
-import 'package:proypet/src/views/pages/viewVeterinarias/detalleView/vet_detalle_page.dart';
 
 import 'notificaciones/buildNoti.dart';
 import 'notificaciones/buildTip.dart';
@@ -109,11 +108,6 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
                         itemWidth: double.maxFinite,
                         itemHeight: double.maxFinite,
                         physics: BouncingScrollPhysics(),
-                        // control: SwiperControl(
-                        //   size: 20,
-                        //   color: colorMain,
-                        //   padding: EdgeInsets.symmetric(horizontal: 0),
-                        // ),
                       ),
               ),
               Container(
@@ -177,7 +171,8 @@ class _NotificacionesPageState extends State<NotificacionesPage> {
     final establecimientoProvider = EstablecimientoService();
     Map veterinaria = await establecimientoProvider.getVet(id);
     if (veterinaria['status'] == 200) {
-      await Get.to(VetDetallePage(vet: veterinaria['establishment']));
+      // await Get.to(VetDetallePage(vet: veterinaria['establishment']));
+      await Get.toNamed('vetdetalle', arguments: veterinaria['establishment']);
     } else {
       showDialog(
           context: context,
