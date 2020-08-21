@@ -235,13 +235,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
-  flutter_snake_navigationbar:
-    dependency: "direct main"
-    description:
-      name: flutter_snake_navigationbar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0+1"
   flutter_swiper:
     dependency: "direct main"
     description:
@@ -287,13 +280,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.4.4"
-  get_it:
-    dependency: "direct main"
-    description:
-      name: get_it
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.4"
   get_storage:
     dependency: "direct main"
     description:
@@ -669,7 +655,7 @@ packages:
       name: textfield_state
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0+2"
+    version: "0.2.1"
   transformer_page_view:
     dependency: transitive
     description:
