@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/views/pages/viewVeterinarias/mapaView/vet_mapa_page.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/vet_mapa/vet_mapa_page.dart';
 import 'package:proypet/src2/app/views/components/appbar_menu.dart';
 import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/filtro_veterinarias.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';

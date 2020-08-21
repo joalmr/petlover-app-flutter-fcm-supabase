@@ -10,7 +10,7 @@ class FadeViewSafeArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: FadeIn(
-      delay: Duration(milliseconds: 75),
+      delay: Duration(milliseconds: 5),
       duration: Duration(seconds: 1),
       child: child,
     ));

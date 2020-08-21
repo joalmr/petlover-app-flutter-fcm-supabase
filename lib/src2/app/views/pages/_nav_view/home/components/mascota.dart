@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -9,6 +8,7 @@ import 'package:proypet/src2/app/views/components/form_control/button_primary.da
 import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src2/controllers/home_controller/mascota_home_controller.dart';
 import 'package:proypet/src2/utils/calcula_edad.dart';
+import 'package:websafe_network_image/websafe_network_image.dart';
 
 class Mascotas extends StatelessWidget {
   const Mascotas({Key key}) : super(key: key);
@@ -46,7 +46,7 @@ class Mascotas extends StatelessWidget {
                       ),
                     )
                   : FadeIn(
-                      delay: Duration(milliseconds: 500),
+                      // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: Container(
                         height: 250.0,
@@ -55,10 +55,9 @@ class Mascotas extends StatelessWidget {
                           children: <Widget>[
                             Swiper(
                               physics: BouncingScrollPhysics(),
-                              itemCount: _home.mascotas.length, //mascotaList.length,
+                              itemCount: _home.mascotas.length,
                               itemBuilder: (BuildContext context, int index) {
                                 final mascota = _home.mascotas[index];
-                                // return Observer(builder: (_) {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(15.0),
                                   child: Stack(
@@ -69,8 +68,8 @@ class Mascotas extends StatelessWidget {
                                         foregroundDecoration: BoxDecoration(
                                           color: Colors.black.withOpacity(0.15),
                                         ),
-                                        child: Image(
-                                          image: CachedNetworkImageProvider(mascota.picture),
+                                        child: WebsafeNetworkImage(
+                                          imageUrl: mascota.picture,
                                           fit: BoxFit.cover,
                                         ),
                                       ),

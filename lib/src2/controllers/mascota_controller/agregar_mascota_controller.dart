@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -279,7 +278,12 @@ class MascotaAgregarController extends GetxController {
       if (resp['ok']) {
         homeC.getSummary();
         btnCarga.value = false;
-        await Get.to(ThxPage(CachedNetworkImageProvider(resp['petImg']), thxPet[Random().nextInt(thxPet.length)]));
+        await Get.to(
+          ThxPage(
+            resp['petImg'],
+            thxPet[Random().nextInt(thxPet.length)],
+          ),
+        );
       } else {
         mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
         btnCarga.value = false;

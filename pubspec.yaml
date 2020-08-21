@@ -37,7 +37,9 @@ dependencies:
 
   get: 
   get_storage:
-
+  # nuevos utiles
+  websafe_network_image: ^1.0.5
+  ##
   get_it:
   # flutter_local_notifications: ^1.4.3
 

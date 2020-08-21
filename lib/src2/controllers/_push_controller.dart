@@ -4,16 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
 import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushQualify.dart';
+import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src2/data/services/auth_service.dart';
 
 class PushController extends GetxController {
   AuthService loginApi = AuthService();
-
-  // RxBool _notificacionPush = false.obs;
-  // bool _notificacionPush = false;
-  // set notificacionPush(bool value) => _notificacionPush = value;
-  // bool get notificacionPush => _notificacionPush;
-  // bool get hasPush => mensaje.keys.contains('data');
+  final homeC = Get.find<HomeController>();
 
   Map<String, dynamic> mensaje;
 
@@ -61,6 +57,7 @@ class PushController extends GetxController {
 
   Future<void> pushVoid() async {
     if (mensaje['data']['type'] == "AttentionFinished") {
+      homeC.getSummary();
       Get.dialog(FadeIn(
         child: SimpleDialog(
           children: <Widget>[

@@ -52,7 +52,7 @@ class Atenciones extends StatelessWidget {
                       ),
                     )
                   : FadeIn(
-                      delay: Duration(milliseconds: 500),
+                      // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: ListView.separated(
                         itemCount: _home.atenciones.length,

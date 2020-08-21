@@ -9,7 +9,7 @@ class FadeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeIn(
-      delay: Duration(milliseconds: 75),
+      delay: Duration(milliseconds: 5),
       duration: Duration(seconds: 1),
       child: child,
     );

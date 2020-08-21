@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,18 @@ class _VetMapaPageState extends State<VetMapaPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: appbar(null, 'Mapa veterinarias', null), body: mapToggle ? FadeViewSafeArea(child: _onBody()) : LinearProgressIndicator());
+    return Scaffold(
+      appBar: appbar(null, 'Mapa veterinarias', null),
+      body: mapToggle
+          ? FadeViewSafeArea(child: _onBody())
+          : FadeViewSafeArea(
+              child: Container(
+                child: Center(
+                  child: CupertinoActivityIndicator(),
+                ),
+              ),
+            ),
+    );
   }
 
   Widget _onBody() {

@@ -21,6 +21,7 @@ class VetDetalleController extends GetxController {
   final globalC = Get.find<GlobalController>();
 
   UserModel2 usuario;
+  // RxBool delivery = false.obs;
 
   @override
   void onInit() {
@@ -33,6 +34,16 @@ class VetDetalleController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  bool get hasDelivery {
+    bool delivery = false;
+    vet.services.forEach((element) {
+      if (element.slug == 'delivery') {
+        delivery = true;
+      }
+    });
+    return delivery;
   }
 
   traeMascotas() => misMascotas = homeC.mascotas.where((element) => element.status != 0).toList();

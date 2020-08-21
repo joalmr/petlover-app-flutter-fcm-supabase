@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:proypet/src2/app/views/components/form_control/button_primary.dart';
 
 import 'package:proypet/src2/app/styles/styles.dart';
+import 'package:websafe_network_image/websafe_network_image.dart';
 
 import 'transition/fadeViewSafeArea.dart';
 
 class ThxPage extends StatelessWidget {
-  final ImageProvider<dynamic> image;
+  final String image;
   final String texto;
   ThxPage(this.image, this.texto);
 
@@ -36,8 +37,8 @@ class ThxPage extends StatelessWidget {
                             children: <Widget>[
                               ClipRRect(
                                 borderRadius: BorderRadius.all(Radius.circular(100)),
-                                child: Image(
-                                  image: image,
+                                child: WebsafeNetworkImage(
+                                  imageUrl: image,
                                   height: 150,
                                   fit: BoxFit.cover,
                                 ),
