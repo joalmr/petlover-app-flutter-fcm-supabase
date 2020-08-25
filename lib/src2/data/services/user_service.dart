@@ -1,4 +1,3 @@
-import 'package:proypet/src/models/login/user_model.dart';
 import 'package:proypet/src2/data/models/update/usuario/user_model.dart';
 import 'package:proypet/src2/data/providers/user_provider.dart';
 
@@ -9,13 +8,13 @@ class UserService {
     return userProvider.getUser();
   }
 
-  editUser(User user) {
-    return userProvider.editUser(user);
+  editUser(String nombre, String apellido, String telefono) {
+    return userProvider.editUser(nombre, apellido, telefono);
   }
 
-  validaTelefono() {
-    return userProvider.validaTelefono();
-  }
+  // validaTelefono() {
+  //   return userProvider.validaTelefono();
+  // }
 
   changePassword(String passAntigua, String passNueva) {
     return userProvider.changePassword(passAntigua, passNueva);

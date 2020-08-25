@@ -2,8 +2,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushNoti.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/push/buildPushQualify.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/notificaciones/push/buildPushNoti.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/notificaciones/push/buildPushQualify.dart';
 import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src2/data/services/auth_service.dart';
 

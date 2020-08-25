@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/views/pages/atenciones/atenciones_page.dart';
-import 'package:proypet/src/views/pages/usuario/changepassword_page.dart';
-import 'package:proypet/src/views/pages/usuario/user_page.dart';
+import 'package:proypet/src2/app/views/pages/atencion/atencion_view.dart';
+import 'package:proypet/src2/app/views/pages/usuario/editar/editar_usuario.dart';
+import 'package:proypet/src2/app/views/pages/usuario/password/cambia_password.dart';
 import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/data/services/auth_service.dart';

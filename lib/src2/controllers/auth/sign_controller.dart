@@ -56,10 +56,6 @@ class SignController extends GetxController {
   void getSignUp() => signUp();
 
   Future<void> signUp() async {
-    print(name);
-    print(lastname);
-    print(email);
-    print(password);
     loading.value = true;
     if (formComplete) {
       if (isEmailValid) {

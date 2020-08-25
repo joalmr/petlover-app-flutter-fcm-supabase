@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/views/pages/viewNotificaciones/notificaciones_page.dart';
-import 'package:proypet/src/views/pages/viewRecompensas/recompensas_page.dart';
 import 'package:proypet/src2/app/styles/styles.dart';
-import 'package:proypet/src2/app/views/pages/_nav_view/destacados/destacados_view.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/notificaciones/notificaciones_view.dart';
+import 'package:proypet/src2/app/views/pages/_nav_view/recompensas/recompensas_view.dart';
 import 'package:proypet/src2/app/views/pages/_nav_view/veterinarias/veterinarias_view.dart';
 import 'package:proypet/src2/controllers/_navigation_controller.dart';
 import 'package:proypet/src2/app/views/pages/_nav_view/home/home_view.dart';
@@ -26,7 +25,7 @@ class _NavigationBarState extends State<NavigationBar> {
       HomePage(),
       NotificacionesPage(),
       ReservaList(),
-      DestacadosPage(),
+      // DestacadosPage(),
       RecompensasPage(),
     ];
 
@@ -34,7 +33,7 @@ class _NavigationBarState extends State<NavigationBar> {
       BottomNavigationBarItem(icon: Icon(Icons.pets), title: Text('Inicio', style: TextStyle(fontSize: 10.5))),
       BottomNavigationBarItem(icon: Icon(Icons.notifications_active), title: Text('Notificaciones', style: TextStyle(fontSize: 10.5))),
       BottomNavigationBarItem(icon: Icon(Icons.search), title: Text('Veterinarias', style: TextStyle(fontSize: 10.5))),
-      BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5))),
+      // BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5))),
       BottomNavigationBarItem(icon: Icon(Icons.monetization_on), title: Text('Puntos', style: TextStyle(fontSize: 10.5))),
     ];
 

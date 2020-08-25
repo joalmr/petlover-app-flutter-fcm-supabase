@@ -8,20 +8,28 @@ import 'package:proypet/src2/app/views/components/snackbar.dart';
 import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src2/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src2/data/models/update/usuario/user_model.dart';
+import 'package:proypet/src2/data/services/user_service.dart';
+import 'package:proypet/src2/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../_global_controller.dart';
 
 class VetDetalleController extends GetxController {
+  final userService = new UserService();
+
   EstablecimientoModel vet;
   RxBool reservaClic = true.obs;
   List<MascotaModel2> misMascotas = [];
+
+  RxString _telefono = "".obs;
+
+  set telefono(String value) => _telefono.value = value;
+  String get telefono => _telefono.value;
 
   final homeC = Get.find<HomeController>();
   final globalC = Get.find<GlobalController>();
 
   UserModel2 usuario;
-  // RxBool delivery = false.obs;
 
   @override
   void onInit() {
@@ -29,6 +37,7 @@ class VetDetalleController extends GetxController {
     vet = Get.arguments;
     traeMascotas();
     usuario = globalC.usuario;
+    telefono = usuario.phone;
   }
 
   @override
@@ -60,7 +69,8 @@ class VetDetalleController extends GetxController {
   }
 
   bool get mascotasCount => misMascotas.length > 0;
-  bool get hasTelefono => usuario.phone.trim().isNotEmpty;
+  bool get sinTelefono => telefono.isNullOrBlank;
+  // bool get sinTelefono => globalC.usuario.phone.isEmpty;
 
   final formKey = GlobalKey<FormState>();
 
@@ -69,14 +79,15 @@ class VetDetalleController extends GetxController {
   _reservar() async {
     reservaClic.value = false;
     if (mascotasCount) {
-      if (hasTelefono) {
+      if (!sinTelefono) {
         reservaClic.value = true;
         Get.toNamed('vetreserva');
       } else {
+        reservaClic.value = true;
         Get.dialog(AlertDialog(
           contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           content: Container(
-              height: 200.0,
+              height: 220.0,
               child: Form(
                 key: formKey,
                 child: Column(
@@ -88,13 +99,13 @@ class VetDetalleController extends GetxController {
                       hintText: 'Ingrese teléfono',
                       icon: Icons.phone,
                       obscureText: false,
-                      onSaved: (value) => usuario.phone = value,
+                      onChanged: (value) => telefono = value,
                       textCap: TextCapitalization.words,
-                      valorInicial: usuario.phone,
+                      valorInicial: telefono,
                       boardType: TextInputType.phone,
                     ),
                     SizedBox(height: 10.0),
-                    buttonPri("Guardar teléfono", null), //_onPhone
+                    buttonPri("Guardar teléfono", _onPhone),
                     FlatButton(
                       child: Text("Cancelar", style: TextStyle(color: colorMain)),
                       onPressed: () {
@@ -112,19 +123,22 @@ class VetDetalleController extends GetxController {
       mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed);
     }
   }
+
+  bool get telCambio => telefono.isNullOrBlank;
+
+  void _onPhone() async {
+    if (!telCambio) {
+      bool phone = phoneRegex(telefono);
+      if (phone) {
+        await userService.editUser(usuario.name, usuario.lastname, telefono);
+        globalC.getUsuario();
+        usuario = globalC.usuario;
+        Get.back();
+      } else {
+        mostrarSnackbar('Número telefónico inválido', colorRed);
+      }
+    } else {
+      mostrarSnackbar('Número telefónico inválido', colorRed);
+    }
+  }
 }
-
-// void _onPhone() async {
-//     setState(() {
-//       reservarClic = true;
-//       formKey.currentState.save();
-//     });
-
-//     bool phone = phoneRegex(user.phone);
-//     if (phone) {
-//       await userProvider.editUser(user); //
-//       Get.back();
-//     } else {
-//       mostrarSnackbar('Número telefónico inválido', colorRed);
-//     }
-//   }

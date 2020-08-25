@@ -8,12 +8,7 @@ import 'package:proypet/src2/app/styles/styles.dart';
 import 'package:proypet/src2/app/views/components/form_control/text_field.dart';
 import 'package:proypet/src2/data/services/atencion_servicio.dart';
 
-// import 'package:proypet/src/utils/add_msg.dart';
-// import 'dart:math' as Math;
-// //${thxNoti[Math.Random().nextInt(thxNoti.length)]}
-
 class BuildPushQualify extends StatefulWidget {
-  // const name({Key key}) : super(key: key);
   final dynamic noti;
   final String mensaje;
   BuildPushQualify({@required this.noti, @required this.mensaje});

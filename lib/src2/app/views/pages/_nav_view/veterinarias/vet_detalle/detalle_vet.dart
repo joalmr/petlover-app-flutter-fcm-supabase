@@ -12,7 +12,7 @@ import 'components/swiper_vet.dart';
 class VetDetallePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<VetDetalleController>(
+    return GetX<VetDetalleController>(
         init: VetDetalleController(),
         builder: (_) {
           return Scaffold(
