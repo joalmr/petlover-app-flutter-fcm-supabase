@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:proypet/src2/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src2/routes/routes.dart';
+import 'package:proypet/src/controllers/home_controller/home_controller.dart';
+import 'package:proypet/src/routes/routes.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
 import 'config/global_variables.dart';
 // import 'src/provider/home_store.dart';
-import 'src2/controllers/veterinaria_controller/filtra_vets_controller.dart';
-import 'src2/controllers/veterinaria_controller/lista_vets_controller.dart';
-import 'src2/theme/theme.dart';
-import 'src2/theme/themeDark.dart';
-import 'src2/app/views/pages/_nav_bar/navigation_bar.dart';
-import 'src2/controllers/_global_controller.dart';
+import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
+import 'src/controllers/veterinaria_controller/lista_vets_controller.dart';
+import 'src/theme/theme.dart';
+import 'src/theme/themeDark.dart';
+import 'src/app/views/pages/_nav_bar/navigation_bar.dart';
+import 'src/controllers/_global_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();

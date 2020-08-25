@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:proypet/src2/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 const pruebas = {
   'keyMap': 'AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844',
