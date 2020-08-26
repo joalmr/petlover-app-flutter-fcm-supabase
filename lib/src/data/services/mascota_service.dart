@@ -26,8 +26,12 @@ class MascotaService {
     return mascotaProvider.editPet(mascota, imagen);
   }
 
-  muerePet(MascotaModel2 mascota) {
-    return mascotaProvider.muerePet(mascota);
+  muerePet(String idMascota) {
+    return mascotaProvider.muerePet(idMascota);
+  }
+
+  revivePet(String idMascota) {
+    return mascotaProvider.revivePet(idMascota);
   }
 
   deletePet(String idPet) {

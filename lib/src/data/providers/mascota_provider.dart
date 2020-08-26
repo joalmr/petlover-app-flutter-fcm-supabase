@@ -117,21 +117,25 @@ class MascotaProvider {
       return false;
   }
 
-  Future<bool> muerePet(MascotaModel2 mascota) async {
-    final url = '$_url/pets/${mascota.id}';
+  Future<bool> muerePet(String idMascota) async {
+    final url = '$_url/pets/$idMascota/decease';
 
-    final data = {
-      'name': mascota.name,
-      'birthdate': mascota.birthdate, //datetime
-      'specie': mascota.specieId.toString(), //int
-      'breed': mascota.breedId.toString(), //int
-      'genre': mascota.genre.toString(), //int
-      'status': mascota.status.toString(), //int
-    };
+    final resp = await http.post(url, headers: headersToken());
+    print(resp.statusCode);
+    print(resp.body);
+    if (resp.statusCode == 200)
+      return true;
+    else
+      return false;
+  }
 
-    final resp = await http.post(url, headers: headersToken(), body: data);
+  Future<bool> revivePet(String idMascota) async {
+    final url = '$_url/pets/$idMascota/revive';
 
-    if (resp.statusCode == 200 || resp.statusCode == 201)
+    final resp = await http.post(url, headers: headersToken());
+    print(resp.statusCode);
+    print(resp.body);
+    if (resp.statusCode == 200)
       return true;
     else
       return false;

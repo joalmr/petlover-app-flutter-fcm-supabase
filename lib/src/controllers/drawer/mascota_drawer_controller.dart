@@ -16,16 +16,24 @@ class MascotaDrawerController extends GetxController {
   }
 
   void falleceMascota(bool fallecido) {
-    petC.pet.status = 0;
-    if (!fallecido) {
-      petC.pet.status = 1;
-    }
-
-    _falleceMascota(petC.pet);
+    // petC.pet.status = 0;
+    if (fallecido)
+      _falleceMascota(petC.pet.id);
+    else
+      _reviveMascota(petC.pet.id);
   }
 
-  Future<void> _falleceMascota(MascotaModel2 mascota) async {
+  Future<void> _falleceMascota(String mascota) async {
     bool resp = await mascotaService.muerePet(mascota);
+    if (resp) {
+      petC.verMiMascota();
+      Get.back();
+    } else
+      Get.back();
+  }
+
+  Future<void> _reviveMascota(String mascota) async {
+    bool resp = await mascotaService.revivePet(mascota);
     if (resp) {
       petC.verMiMascota();
       Get.back();
