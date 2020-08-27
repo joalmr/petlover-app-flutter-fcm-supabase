@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -56,13 +58,13 @@ class PushController extends GetxController {
   }
 
   Future<void> pushVoid() async {
-    if (mensaje['data']['type'] == "AttentionFinished") {
+    if (Platform.isAndroid ? mensaje['data']['type'] : mensaje['type'] == "AttentionFinished") {
       homeC.getSummary();
       Get.dialog(FadeIn(
         child: SimpleDialog(
           children: <Widget>[
             BuildPushQualify(
-              noti: mensaje['data'],
+              noti: Platform.isAndroid ? mensaje['data'] : mensaje,
               mensaje: mensaje['notification']['body'],
             ),
           ],
@@ -74,7 +76,7 @@ class PushController extends GetxController {
         contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         children: <Widget>[
           BuildPushNoti(
-            noti: mensaje['data'],
+            noti: Platform.isAndroid ? mensaje['data'] : mensaje,
             mensaje: mensaje['notification']['body'],
           ),
         ],

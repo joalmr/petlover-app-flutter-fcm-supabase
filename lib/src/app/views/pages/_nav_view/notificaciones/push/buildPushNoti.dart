@@ -19,6 +19,8 @@ class BuildPushNoti extends StatelessWidget {
   }
 
   _fnNoti(noti, context) {
+    print(noti);
+    print(noti['type']);
     switch (noti['type']) {
       case "Marketing":
         return notificacionOther();

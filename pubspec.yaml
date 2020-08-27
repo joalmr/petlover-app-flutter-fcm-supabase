@@ -65,7 +65,7 @@ dependencies:
   
   #lanzadores (para abrir apps u otro)
   map_launcher: ^0.4.5
-  url_launcher: ^5.4.11
+  url_launcher: ^5.5.0
   #lanzadores
 
   http:
