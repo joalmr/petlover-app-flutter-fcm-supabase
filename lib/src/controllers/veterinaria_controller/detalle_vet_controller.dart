@@ -53,7 +53,6 @@ class VetDetalleController extends GetxController {
   void onInit() {
     super.onInit();
     vet = Get.arguments;
-    // getVet();
     traeMascotas();
     usuario = globalC.usuario;
     telefono = usuario.phone;
@@ -106,7 +105,7 @@ class VetDetalleController extends GetxController {
 
   List<EstablecimientoModel> vetPremium = [];
   _getPremiumClose() {
-    vetPremium = vetsC.vetLocales.value.where((element) => element.premium == false && element != vet).take(2).toList(); //.take(2);
+    vetPremium = vetsC.vetLocales.value.where((element) => element.premium == true && element != vet).take(2).toList(); //.take(2);
     print(vetPremium.length);
   }
 
