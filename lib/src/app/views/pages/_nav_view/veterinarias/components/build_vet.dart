@@ -11,7 +11,7 @@ Widget buildVets(EstablecimientoModel vet) {
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       child: InkWell(
-          onTap: () => Get.toNamed('vetdetalle', arguments: vet), //Get.to(VetDetallePage(vet: vet)),
+          onTap: () => Get.toNamed('vetdetalle', arguments: vet),
           child: Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

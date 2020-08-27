@@ -30,8 +30,8 @@ List<GetPage> getRutas() {
     GetPage(name: 'navInicio', page: () => NavigationBar(currentTabIndex: 0)),
     GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),
     GetPage(name: 'navLista', page: () => NavigationBar(currentTabIndex: 2)),
-    GetPage(name: 'navDestacado', page: () => NavigationBar(currentTabIndex: 3)),
-    GetPage(name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 4)),
+    // GetPage(name: 'navDestacado', page: () => NavigationBar(currentTabIndex: 3)),
+    GetPage(name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 3)),
     //
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),

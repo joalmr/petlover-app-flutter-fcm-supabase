@@ -55,6 +55,9 @@ class FiltraVetsController extends GetxController {
   filtrar() => _filtrar();
 
   _filtrar() {
+    vetC.listaFiltros.clear();
+    vetC.listaFiltros.addAll(listaFiltros);
+    //
     dataDireccion = _dataDireccionInt;
     vetC.getVets();
     vetC.listaFiltros.clear();

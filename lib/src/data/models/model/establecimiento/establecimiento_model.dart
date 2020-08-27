@@ -1,45 +1,48 @@
 class EstablecimientoModel {
-    String id;
-    String name;
-    String phone;
-    String description;
-    String stars;
-    int votes;
-    int attentions;
-    String address;
-    double latitude;
-    double longitude;
-    List<String> slides;
-    String logo;
-    dynamic prices;
-    List<Service> services;
-    String distance;
-    dynamic schedule;
+  String id;
+  bool premium;
+  String name;
+  String phone;
+  String description;
+  String stars;
+  int votes;
+  int attentions;
+  String address;
+  double latitude;
+  double longitude;
+  List<String> slides;
+  String logo;
+  dynamic prices;
+  List<Service> services;
+  String distance;
+  dynamic schedule;
 
-    EstablecimientoModel({
-        this.id,
-        this.name,
-        this.phone,
-        this.description,
-        this.stars,
-        this.votes,
-        this.attentions,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.slides,
-        this.logo,
-        this.prices,
-        this.services,
-        this.distance,
-        this.schedule,
-    });
+  EstablecimientoModel({
+    this.id,
+    this.premium,
+    this.name,
+    this.phone,
+    this.description,
+    this.stars,
+    this.votes,
+    this.attentions,
+    this.address,
+    this.latitude,
+    this.longitude,
+    this.slides,
+    this.logo,
+    this.prices,
+    this.services,
+    this.distance,
+    this.schedule,
+  });
 
-    factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
+  factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
         id: json["id"],
+        premium: json["premium"],
         name: json["name"],
         phone: json["phone"] == null ? "" : json["phone"],
-        description: json["description"]  == null ? "Descripción no detallada" : json["description"],
+        description: json["description"] == null ? "Descripción no detallada" : json["description"],
         stars: json["stars"] == null ? "" : json["stars"],
         votes: json["votes"] == null ? "" : json["votes"],
         attentions: json["attentions"] == null ? 0 : json["attentions"],
@@ -52,10 +55,11 @@ class EstablecimientoModel {
         services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
         distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2),
         schedule: json["schedule"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
+        "premium": premium,
         "name": name,
         "phone": phone,
         "description": description,
@@ -69,33 +73,33 @@ class EstablecimientoModel {
         "prices": prices,
         "services": List<dynamic>.from(services.map((x) => x.toJson())),
         "distance": distance,
-    };
+      };
 }
 
 class Service {
-    int id;
-    String name;
-    String slug;
-    String description;
+  int id;
+  String name;
+  String slug;
+  String description;
 
-    Service({
-        this.id,
-        this.name,
-        this.slug,
-        this.description,
-    });
+  Service({
+    this.id,
+    this.name,
+    this.slug,
+    this.description,
+  });
 
-    factory Service.fromJson(Map<String, dynamic> json) => Service(
+  factory Service.fromJson(Map<String, dynamic> json) => Service(
         id: json["id"],
         name: json["name"],
         slug: json["slug"],
         description: json["description"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "slug": slug,
         "description": description,
-    };
+      };
 }

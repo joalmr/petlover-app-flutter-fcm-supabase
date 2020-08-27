@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/services/mascota_service.dart';
 
 class MascotaDrawerController extends GetxController {
@@ -16,7 +15,6 @@ class MascotaDrawerController extends GetxController {
   }
 
   void falleceMascota(bool fallecido) {
-    // petC.pet.status = 0;
     if (fallecido)
       _falleceMascota(petC.pet.id);
     else
