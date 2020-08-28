@@ -45,8 +45,6 @@ class FiltraVetsController extends GetxController {
       places.getDetailsByPlaceId(dato.placeId).then((value) {
         Location latlng = value.result.geometry.location;
         _prefs.position = "${latlng.lat},${latlng.lng}";
-        print("==latlng");
-        print(_prefs.position);
       });
     }
   }

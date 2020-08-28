@@ -71,6 +71,7 @@ class ReservaVetController extends GetxController {
   double zoomIn = 10.0;
   RxList<Marker> marcador = List<Marker>().obs;
 
+  RxBool actBtn = true.obs;
   String _mapStyle;
 
   set mascotaId(String value) => _mascotaId.value = value;
@@ -112,7 +113,6 @@ class ReservaVetController extends GetxController {
   }
 
   direccionInicial() {
-    print(_prefs.myAddressLatLng);
     if (_prefs.myAddressLatLng.toString().trim() != "") {
       lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
       lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
@@ -181,7 +181,6 @@ class ReservaVetController extends GetxController {
   }
 
   Future<List<ServicioReserva>> _getData(String filter) async {
-    // print(filter);
     List<ServicioReserva> lista = List<ServicioReserva>();
     servicioReservaList.forEach((element) {
       var palabra = element.name + '' + element.subtitle;
@@ -373,6 +372,7 @@ class ReservaVetController extends GetxController {
   }
 
   Future<void> ejecutaReserva() async {
+    actBtn.value = false;
     BookingModel booking = BookingModel();
     booking.bookingAt = fechaTimeAt;
     booking.establishmentId = vet.id;
@@ -385,6 +385,7 @@ class ReservaVetController extends GetxController {
     bool resp = await bookingService.booking(booking, deliveryTipo, deliveryDireccion);
     if (resp) {
       homeC.getSummary();
+      actBtn.value = true;
       MascotaService().getPet(mascotaId).then(
             (value) => Get.to(
               ThxPage(
@@ -394,5 +395,6 @@ class ReservaVetController extends GetxController {
             ),
           );
     }
+    actBtn.value = true;
   }
 }

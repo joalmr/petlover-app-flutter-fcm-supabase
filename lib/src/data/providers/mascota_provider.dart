@@ -94,7 +94,7 @@ class MascotaProvider {
   Future<bool> editPet(MascotaModel2 mascota, File imagen) async {
     final idkey = mascota.id;
     final urlpet = '$_url/pets/$idkey/base64';
-    print(imagen);
+
     if (imagen.path != '') {
       upImage(imagen, urlpet);
     }
@@ -110,7 +110,7 @@ class MascotaProvider {
     };
 
     final resp = await http.post(url, headers: headersToken(), body: data);
-    print(resp.statusCode);
+
     if (resp.statusCode == 200)
       return true;
     else
@@ -121,8 +121,7 @@ class MascotaProvider {
     final url = '$_url/pets/$idMascota/decease';
 
     final resp = await http.post(url, headers: headersToken());
-    print(resp.statusCode);
-    print(resp.body);
+
     if (resp.statusCode == 200)
       return true;
     else
@@ -133,8 +132,7 @@ class MascotaProvider {
     final url = '$_url/pets/$idMascota/revive';
 
     final resp = await http.post(url, headers: headersToken());
-    print(resp.statusCode);
-    print(resp.body);
+
     if (resp.statusCode == 200)
       return true;
     else

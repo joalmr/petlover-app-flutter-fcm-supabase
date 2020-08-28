@@ -253,11 +253,7 @@ class MascotaAgregarController extends GetxController {
 
   Future<void> _mascotaAdd() async {
     btnCarga.value = true;
-    print(nombre);
-    print(fecha);
-    print(sexo);
-    print(especie);
-    print(razaId);
+
     if (sinDatos) {
       mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
       btnCarga.value = false;
@@ -274,7 +270,7 @@ class MascotaAgregarController extends GetxController {
       mascotaData.breedId = razaId;
 
       Map resp = await mascotaService.savePet(mascotaData, foto);
-      print(resp);
+
       if (resp['ok']) {
         homeC.getSummary();
         btnCarga.value = false;

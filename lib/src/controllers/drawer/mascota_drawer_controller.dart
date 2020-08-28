@@ -11,7 +11,6 @@ class MascotaDrawerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print(petC.pet.name);
   }
 
   void falleceMascota(bool fallecido) {

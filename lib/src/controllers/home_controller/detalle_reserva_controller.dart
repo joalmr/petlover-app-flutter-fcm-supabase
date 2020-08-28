@@ -21,7 +21,6 @@ class DetalleRservadoController extends GetxController {
   void onInit() {
     super.onInit();
     argumentos = Get.arguments;
-    print(argumentos);
   }
 
   bool get vencido {

@@ -29,14 +29,9 @@ class EstablecimientoProvider {
         filtroServicio = "";
       }
 
-      print(filtroServicio);
-
       final url = '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
       final resp = await http.get(url, headers: headersToken());
-
-      print(resp.statusCode);
-      print(resp.body);
 
       final jsonResp = json.decode(resp.body);
       EstablecimientoList vets = EstablecimientoList.fromJson(jsonResp);

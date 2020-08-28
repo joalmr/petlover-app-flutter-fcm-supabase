@@ -58,14 +58,25 @@ class PushController extends GetxController {
   }
 
   Future<void> pushVoid() async {
-    if (Platform.isAndroid ? mensaje['data']['type'] : mensaje['type'] == "AttentionFinished") {
+    var tipoPush;
+    var dataPush;
+    var mensajePush = mensaje['notification']['body'];
+    if (Platform.isAndroid) {
+      tipoPush = mensaje['data']['type'];
+      dataPush = mensaje['data'];
+    } else {
+      tipoPush = mensaje['type'];
+      dataPush = mensaje;
+    }
+    //
+    if (tipoPush == "AttentionFinished") {
       homeC.getSummary();
       Get.dialog(FadeIn(
         child: SimpleDialog(
           children: <Widget>[
             BuildPushQualify(
-              noti: Platform.isAndroid ? mensaje['data'] : mensaje,
-              mensaje: mensaje['notification']['body'],
+              noti: dataPush,
+              mensaje: mensajePush,
             ),
           ],
         ),
@@ -76,8 +87,8 @@ class PushController extends GetxController {
         contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         children: <Widget>[
           BuildPushNoti(
-            noti: Platform.isAndroid ? mensaje['data'] : mensaje,
-            mensaje: mensaje['notification']['body'],
+            noti: dataPush,
+            mensaje: mensajePush,
           ),
         ],
       )));

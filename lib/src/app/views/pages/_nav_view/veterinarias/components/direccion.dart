@@ -21,7 +21,7 @@ autocompleteAddress() {
     onSearch: (filter) async {
       var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
       var models = addressFromJson(response.body);
-      print(models.status);
+
       return models.predictions;
     },
     minSearchLength: 2,
