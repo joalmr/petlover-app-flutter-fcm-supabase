@@ -1,9 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/data/models/model/booking/booking_model.dart';
 
 class BookingProvider {
   final _url = urlApi;
+
+  Dio dio = new Dio();
 
   Future<bool> booking(BookingModel booking, dynamic delivery, String direccion) async {
     final url = '$_url/bookings';
@@ -47,5 +50,13 @@ class BookingProvider {
       return true;
     else
       return false;
+  }
+
+  Future<void> tryBooking(String idEstablishment) async {
+    final url = '$_url/booking/attempt';
+
+    final _data = {"establishment_id": idEstablishment};
+    var resp = await dio.post(url, data: _data, options: Options(headers: headersToken()));
+    print(resp.data);
   }
 }

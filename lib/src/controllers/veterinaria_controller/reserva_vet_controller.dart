@@ -383,9 +383,9 @@ class ReservaVetController extends GetxController {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
     bool resp = await bookingService.booking(booking, deliveryTipo, deliveryDireccion);
+    print(resp);
     if (resp) {
       homeC.getSummary();
-      actBtn.value = true;
       MascotaService().getPet(mascotaId).then(
             (value) => Get.to(
               ThxPage(
@@ -394,7 +394,8 @@ class ReservaVetController extends GetxController {
               ),
             ),
           );
+    } else {
+      actBtn.value = true;
     }
-    actBtn.value = true;
   }
 }

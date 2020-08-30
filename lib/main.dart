@@ -7,9 +7,8 @@ import 'package:proypet/src/routes/routes.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-
 import 'config/global_variables.dart';
-// import 'src/provider/home_store.dart';
+
 import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
 import 'src/controllers/veterinaria_controller/lista_vets_controller.dart';
 import 'src/theme/theme.dart';

@@ -10,6 +10,7 @@ import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/models/update/usuario/user_model.dart';
+import 'package:proypet/src/data/services/booking_service.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
 import 'package:proypet/src/data/services/user_service.dart';
 import 'package:proypet/src/utils/regex.dart';
@@ -22,6 +23,7 @@ import 'lista_vets_controller.dart';
 class VetDetalleController extends GetxController {
   final userService = new UserService();
   final vetService = new EstablecimientoService();
+  final bookingService = new BookingService();
 
   // EstablecimientoModel vet;
   Rx<EstablecimientoModel> _vet = EstablecimientoModel().obs;
@@ -113,6 +115,9 @@ class VetDetalleController extends GetxController {
     if (!vet.premium) {
       _getPremiumClose();
       reservaClic.value = true;
+      //
+      bookingService.tryBooking(vet.id);
+      //
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [

@@ -11,4 +11,8 @@ class BookingService {
   deleteBooking(String idBooking) {
     return bookingProvider.deleteBooking(idBooking);
   }
+
+  tryBooking(String idEstablishment) {
+    return bookingProvider.tryBooking(idEstablishment);
+  }
 }
