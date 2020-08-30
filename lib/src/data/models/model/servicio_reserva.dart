@@ -6,13 +6,13 @@ class ServicioReserva {
   int id;
   IconData icon;
   String name;
-  String subtitle;
+  String category;
 
   ServicioReserva({
     this.id,
     this.icon,
     this.name,
-    this.subtitle,
+    this.category,
   });
 }
 
@@ -21,43 +21,43 @@ final List<ServicioReserva> servicioReservaList = [
     id: 1,
     icon: IconProypet.consulta,
     name: 'Consulta',
-    subtitle: 'Consulta',
+    category: 'Consulta',
   ),
   ServicioReserva(
     id: 7,
     icon: IconProypet.consulta,
     name: 'Chequeo preventivo',
-    subtitle: 'Consulta',
+    category: 'Consulta',
   ),
   ServicioReserva(
     id: 4,
     icon: IconProypet.desparasitacion,
     name: 'Desparasitación',
-    subtitle: 'Desparasitación',
+    category: 'Desparasitación',
   ),
   ServicioReserva(
     id: 2,
     icon: IconProypet.vacuna,
     name: 'Vacuna',
-    subtitle: 'Vacuna',
+    category: 'Vacuna',
   ),
   ServicioReserva(
     id: 3,
     icon: IconProypet.grooming,
     name: 'Baño',
-    subtitle: 'Grooming',
+    category: 'Grooming',
   ),
   ServicioReserva(
     id: 5,
     icon: IconProypet.grooming,
     name: 'Baño y corte',
-    subtitle: 'Grooming',
+    category: 'Grooming',
   ),
   ServicioReserva(
     id: 6,
     icon: Proypet.proypet,
     name: 'Otro servicio',
-    subtitle: 'Otro',
+    category: 'Otro',
   ),
 ];
 
@@ -67,6 +67,6 @@ final List<ServicioReserva> servicioReservaList = [
 //     id: 6,
 //     icon: Proypet.proypet,
 //     name: 'Otro servicio',
-//     subtitle: 'Otro',
+//     category: 'Otro',
 //   ),
 // ];

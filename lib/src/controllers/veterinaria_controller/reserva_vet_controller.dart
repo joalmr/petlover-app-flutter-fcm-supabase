@@ -166,7 +166,7 @@ class ReservaVetController extends GetxController {
               style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
             ),
             subtitle: Text(
-              item.subtitle,
+              item.category,
               style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white, fontSize: 12) : Get.textTheme.subtitle2.copyWith(fontSize: 12),
             ),
           ),
@@ -183,7 +183,7 @@ class ReservaVetController extends GetxController {
   Future<List<ServicioReserva>> _getData(String filter) async {
     List<ServicioReserva> lista = List<ServicioReserva>();
     servicioReservaList.forEach((element) {
-      var palabra = element.name + '' + element.subtitle;
+      var palabra = element.name + '' + element.category;
       bool contiene = palabra.toLowerCase().contains(filter.toLowerCase()); //.contains(filter);
       if (contiene) {
         lista.add(element);
