@@ -64,6 +64,15 @@ class NotificacionesPage extends StatelessWidget {
                                       itemWidth: double.maxFinite,
                                       itemHeight: double.maxFinite,
                                       physics: BouncingScrollPhysics(),
+                                      pagination: new SwiperPagination(
+                                        margin: new EdgeInsets.only(top: 15.0),
+                                        builder: new DotSwiperPaginationBuilder(
+                                          activeColor: colorMain,
+                                          color: Theme.of(context).backgroundColor,
+                                          activeSize: 8.0,
+                                          size: 6.0,
+                                        ),
+                                      ),
                                     ),
                             ),
                             Container(
@@ -78,9 +87,14 @@ class NotificacionesPage extends StatelessWidget {
                                 loop: false,
                                 physics: BouncingScrollPhysics(),
                                 pagination: new SwiperPagination(
-                                    margin: new EdgeInsets.only(top: 15.0),
-                                    builder: new DotSwiperPaginationBuilder(
-                                        activeColor: colorMain, color: Theme.of(context).backgroundColor, activeSize: 8.0, size: 6.0)),
+                                  margin: new EdgeInsets.only(top: 15.0),
+                                  builder: new DotSwiperPaginationBuilder(
+                                    activeColor: colorMain,
+                                    color: Theme.of(context).backgroundColor,
+                                    activeSize: 8.0,
+                                    size: 6.0,
+                                  ),
+                                ),
                               ),
                             ),
                           ],

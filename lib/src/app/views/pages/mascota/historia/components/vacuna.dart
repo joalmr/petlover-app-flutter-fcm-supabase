@@ -31,11 +31,11 @@ vacuna(data) {
       SizedBox(
         height: 10,
       ),
-      Text(
-        "Atendido por",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
-      ),
-      Text((data["employee"] != null) ? data["employee"] : "-"),
+      // Text(
+      //   "Atendido por",
+      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
+      // ),
+      // Text((data["employee"] != null) ? data["employee"] : "-"),
       Divider(),
       Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
     ],
