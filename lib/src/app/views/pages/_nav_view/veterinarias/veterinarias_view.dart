@@ -24,7 +24,10 @@ class ReservaList extends StatelessWidget {
         return Scaffold(
           appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
             IconButton(
-              icon: Icon(Icons.filter_list),
+              icon: Icon(
+                Icons.filter_list,
+                color: Get.textTheme.subtitle2.color,
+              ),
               onPressed: () => Get.to(FiltraVets()),
             ),
           ]),

@@ -126,7 +126,7 @@ class RecompensasPage extends StatelessWidget {
               title: Text('${bonificados[index].establishmentName}', style: Get.textTheme.subtitle2),
               trailing: CircleAvatar(
                   backgroundColor: colorMain,
-                  foregroundColor: Colors.white,
+                  foregroundColor: colorGray2,
                   child: Text(
                     '+${bonificados[index].points}',
                     style: TextStyle(fontSize: sizeSmallx1, fontWeight: FontWeight.bold),

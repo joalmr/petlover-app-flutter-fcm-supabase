@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
 final _textstyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
 
-Widget buttonPri(_text, _funtion) {
+Widget buttonPri(_text, _funtion, {bool cargando = false}) {
   return SizedBox(
     width: double.maxFinite,
     child: RaisedButton(
@@ -11,10 +12,17 @@ Widget buttonPri(_text, _funtion) {
       color: colorMain,
       elevation: 2.0,
       textColor: Colors.white,
-      child: Text(
-        _text,
-        style: _textstyle,
-      ),
+      child: cargando
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CupertinoActivityIndicator(),
+                SizedBox(width: 5),
+                Text(_text, style: _textstyle),
+              ],
+            )
+          : Text(_text, style: _textstyle),
       padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
       onPressed: _funtion,
     ),

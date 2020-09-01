@@ -1,4 +1,5 @@
 import 'package:proypet/src/data/models/model/booking/booking_model.dart';
+import 'package:proypet/src/data/models/model/servicio_reserva.dart';
 import 'package:proypet/src/data/providers/booking_provider.dart';
 
 class BookingService {
@@ -14,5 +15,9 @@ class BookingService {
 
   tryBooking(String idEstablishment) {
     return bookingProvider.tryBooking(idEstablishment);
+  }
+
+  Future<List<ServicioReserva>> typeBooking() async {
+    return bookingProvider.typeBooking();
   }
 }

@@ -44,7 +44,8 @@ class ReservaVetController extends GetxController {
   RxString _deliveryId = '1'.obs;
   RxString _mascotaId = ''.obs;
 
-  String reservaId = servicioReservaList.where((x) => x.id == 1).first.id.toString();
+  String reservaId;
+  RxList<ServicioReserva> servicioReservaLista = List<ServicioReserva>().obs; // = await bookingService.typeBooking();
   RxString _fecha = ''.obs;
   RxString _observacion = ''.obs;
 
@@ -90,16 +91,30 @@ class ReservaVetController extends GetxController {
   void onInit() {
     super.onInit();
     vet = vetdC.vet;
+    iniciales();
     misMascotas = vetdC.misMascotas;
     mascotaId = vetdC.misMascotas.first.id;
     hasDelivery = vetdC.hasDelivery;
-    ex3 = servicioReservaList.first;
-    inputServController.text = servicioReservaList.first.name;
-    fechaHoraInicial();
-    direccionInicial();
+
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
     });
+  }
+
+  iniciales() {
+    serviceInicial();
+    fechaHoraInicial();
+    direccionInicial();
+  }
+
+  serviceInicial() async {
+    servicioReservaLista.clear();
+    var dato = await bookingService.typeBooking();
+    servicioReservaLista.addAll(dato);
+    reservaId = servicioReservaLista.where((x) => x.id == 1).first.id.toString();
+    //
+    ex3 = servicioReservaLista.first;
+    inputServController.text = servicioReservaLista.first.name;
   }
 
   fechaHoraInicial() {
@@ -149,7 +164,7 @@ class ReservaVetController extends GetxController {
         child: Text('No se encontró'),
       ),
       errorBuilder: (context, exception) => Center(child: Text('Oops!')),
-      items: servicioReservaList,
+      items: servicioReservaLista.value,
       selectedValue: ex3,
       searchBoxDecoration: InputDecoration(
         hintText: 'Buscar servicio',
@@ -180,9 +195,20 @@ class ReservaVetController extends GetxController {
     );
   }
 
+  // Future<List<ServicioReserva>> _getData(filter) async {
+  //   var response = await Dio().get(
+  //     "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
+  //     queryParameters: {"filter": filter},
+  //   );
+
+  //   var models = UserModel.fromJsonList(response.data);
+  //   return models;
+  // }
+
   Future<List<ServicioReserva>> _getData(String filter) async {
+    // bookingService.typeBooking();
     List<ServicioReserva> lista = List<ServicioReserva>();
-    servicioReservaList.forEach((element) {
+    servicioReservaLista.forEach((element) {
       var palabra = element.name + '' + element.category;
       bool contiene = palabra.toLowerCase().contains(filter.toLowerCase()); //.contains(filter);
       if (contiene) {
@@ -382,6 +408,12 @@ class ReservaVetController extends GetxController {
     if (hasDelivery == true && deliveryId != "1") {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
+    print(booking);
+    print(booking.bookingAt);
+    print(booking.establishmentId);
+    print(booking.petId);
+    print(booking.typeId);
+    print(booking.observation);
     bool resp = await bookingService.booking(booking, deliveryTipo, deliveryDireccion);
     print(resp);
     if (resp) {

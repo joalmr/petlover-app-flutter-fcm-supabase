@@ -25,7 +25,21 @@ ThemeData temaClaro = ThemeData(
   accentColor: colorMain,
   backgroundColor: colorGray1,
   appBarTheme: AppBarTheme(
-    textTheme: TextTheme(headline6: TextStyle(fontSize: 18.0)),
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        fontSize: 18.0,
+        color: Colors.black54,
+      ),
+    ),
+    actionsIconTheme: IconThemeData(
+      color: Colors.black54,
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.black54,
+    ),
+    color: fondoScaffoldClaro,
+    elevation: 1,
+    // shadowColor: Colors.black,
   ),
   dialogTheme: DialogTheme(shape: shape10),
   cardTheme: CardTheme(shape: shape10, elevation: .05),

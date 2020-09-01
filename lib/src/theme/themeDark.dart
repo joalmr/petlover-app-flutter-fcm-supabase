@@ -26,7 +26,14 @@ ThemeData temaOscuro = ThemeData(
   backgroundColor: colorDark3,
   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: colorMain, foregroundColor: Colors.white),
   appBarTheme: AppBarTheme(
-    textTheme: TextTheme(headline6: TextStyle(fontSize: 18.0)),
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        fontSize: 18.0,
+        color: Colors.white,
+      ),
+    ),
+    color: fondoScaffoldOscuro,
+    elevation: 1,
   ),
   dialogBackgroundColor: Colors.grey[850],
   dialogTheme: DialogTheme(shape: shape10),

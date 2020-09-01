@@ -150,7 +150,9 @@ class DataReserva extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 30.0),
-                        buttonPri('Confirmar reserva', _.actBtn.value ? _.reservarAtencion : null),
+                        _.servicioReservaLista.length > 0
+                            ? buttonPri('Confirmar reserva', _.actBtn.value ? _.reservarAtencion : null)
+                            : buttonPri('Confirmar reserva', () {}, cargando: true),
                         SizedBox(height: 7.5),
                         buttonFlat("Cancelar", () => Get.back(), colorRed),
                       ],
