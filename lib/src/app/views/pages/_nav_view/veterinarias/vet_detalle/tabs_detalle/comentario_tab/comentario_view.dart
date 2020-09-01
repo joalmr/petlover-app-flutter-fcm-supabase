@@ -43,7 +43,7 @@ class ViewComentario extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
                                 leading: CircleAvatar(
-                                  backgroundColor: colorMain,
+                                  backgroundColor: Colors.transparent,
                                   backgroundImage: CachedNetworkImageProvider(_.comentarios[index].petPicture),
                                   radius: 20.0,
                                 ),

@@ -24,7 +24,10 @@ ThemeData temaOscuro = ThemeData(
   primarySwatch: newteal,
   accentColor: colorMain,
   backgroundColor: colorDark3,
-  floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: colorMain, foregroundColor: Colors.white),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: colorMain,
+    foregroundColor: Colors.white,
+  ),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(

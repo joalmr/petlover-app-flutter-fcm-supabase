@@ -84,7 +84,7 @@ class Atenciones extends StatelessWidget {
                               onPressed: () => _.detalleReservado(atencion), //_detalleReservado(_home.atenciones[index]),
                               child: ListTile(
                                 leading: CircleAvatar(
-                                  backgroundColor: colorMain,
+                                  backgroundColor: Colors.transparent,
                                   backgroundImage: CachedNetworkImageProvider(atencion.petPicture),
                                   radius: 25.0,
                                 ),

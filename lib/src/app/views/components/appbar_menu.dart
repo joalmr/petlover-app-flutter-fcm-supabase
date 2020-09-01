@@ -6,10 +6,10 @@ Widget appbar(logo, String texto, List<Widget> acc) {
     title: Row(
       children: [
         logo != null
-            ? ClipRRect(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
-                  child: Center(
+            ? Padding(
+                padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
+                child: Center(
+                  child: ClipRRect(
                     child: Image(
                       height: 32,
                       image: AssetImage('images/proypet.png'),

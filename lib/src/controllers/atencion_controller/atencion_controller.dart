@@ -57,6 +57,7 @@ class AtencionController extends GetxController {
             ),
           ),
         ),
+        barrierDismissible: false,
       );
       getAtenciones();
       Timer(Duration(milliseconds: 2000), () => Get.until((route) => route.isFirst));
