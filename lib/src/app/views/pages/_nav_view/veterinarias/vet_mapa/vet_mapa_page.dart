@@ -65,6 +65,11 @@ class _VetMapaPageState extends State<VetMapaPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(null, 'Mapa veterinarias', null),

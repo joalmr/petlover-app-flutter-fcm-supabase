@@ -26,7 +26,7 @@ class ReservaList extends StatelessWidget {
             IconButton(
               icon: Icon(
                 Icons.filter_list,
-                color: Get.textTheme.subtitle2.color,
+                // color: Get.textTheme.subtitle2.color,
               ),
               onPressed: () => Get.to(FiltraVets()),
             ),
