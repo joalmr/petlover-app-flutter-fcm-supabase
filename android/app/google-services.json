@@ -1,43 +1,50 @@
 {
   "project_info": {
-    "project_number": "957887873262",
-    "firebase_url": "https://login-app-28fdf.firebaseio.com",
-    "project_id": "login-app-28fdf",
-    "storage_bucket": "login-app-28fdf.appspot.com"
+    "project_number": "432865594898",
+    "firebase_url": "https://proypet-1554770838352.firebaseio.com",
+    "project_id": "proypet-1554770838352",
+    "storage_bucket": "proypet-1554770838352.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:957887873262:android:deed608d8677e31291b3ff",
+        "mobilesdk_app_id": "1:432865594898:android:83c675c66e6e2b5da2d2cb",
         "android_client_info": {
           "package_name": "com.example.user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "957887873262-fvln6fdm8ubjl4l17pfo05u9q9albu0e.apps.googleusercontent.com",
+          "client_id": "432865594898-182ektnuah9re5m89smtsklc3stj1484.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.user",
-            "certificate_hash": "9a5f4b0a37baaa1585e2228790b8612435fad324"
+            "certificate_hash": "0eb33e0d57f6672b9acfed8d2b79ad1f3d60560b"
           }
         },
         {
-          "client_id": "957887873262-o2iiraushoniu1iostr2g5gdhi1ok0hm.apps.googleusercontent.com",
+          "client_id": "432865594898-eo5367kt5dbt79ivf0mp9tdh5rduujts.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFU_GDc5eYCxgkN2TxvKNBjaGIupLHKU4"
+          "current_key": "AIzaSyAykp1jHI9FcsWPOBYYb3NNALglquBJ8uE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "957887873262-o2iiraushoniu1iostr2g5gdhi1ok0hm.apps.googleusercontent.com",
+              "client_id": "432865594898-eo5367kt5dbt79ivf0mp9tdh5rduujts.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "432865594898-v4dqpsonov9r28d0giguvq6v4vbgnkqc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.proypet.user"
+              }
             }
           ]
         }
@@ -45,36 +52,43 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:957887873262:android:7ccf869778b69fa391b3ff",
+        "mobilesdk_app_id": "1:432865594898:android:61a2f10fb886d0f4a2d2cb",
         "android_client_info": {
           "package_name": "com.proypet.user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "957887873262-ls907taou4onubsq9tm24hh23cicsn5n.apps.googleusercontent.com",
+          "client_id": "432865594898-2arek9jql890r37qmnfcdb9lh24qguip.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.proypet.user",
-            "certificate_hash": "c2867c39b264d1c301db5e1d9dd2b496efb4e748"
+            "certificate_hash": "0eb33e0d57f6672b9acfed8d2b79ad1f3d60560b"
           }
         },
         {
-          "client_id": "957887873262-o2iiraushoniu1iostr2g5gdhi1ok0hm.apps.googleusercontent.com",
+          "client_id": "432865594898-eo5367kt5dbt79ivf0mp9tdh5rduujts.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFU_GDc5eYCxgkN2TxvKNBjaGIupLHKU4"
+          "current_key": "AIzaSyAykp1jHI9FcsWPOBYYb3NNALglquBJ8uE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "957887873262-o2iiraushoniu1iostr2g5gdhi1ok0hm.apps.googleusercontent.com",
+              "client_id": "432865594898-eo5367kt5dbt79ivf0mp9tdh5rduujts.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "432865594898-v4dqpsonov9r28d0giguvq6v4vbgnkqc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.proypet.user"
+              }
             }
           ]
         }

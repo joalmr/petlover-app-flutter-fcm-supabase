@@ -126,7 +126,12 @@ class VetDetalleController extends GetxController {
           Text('Tenemos estas opciones cerca tuyo'),
           SizedBox(height: 10),
           vetPremium.length < 1
-              ? SizedBox(height: 0)
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Sin resultados'),
+                  ),
+                )
               : vetPremium.length == 1
                   ? _gotoVet(vetPremium[0])
                   : Column(

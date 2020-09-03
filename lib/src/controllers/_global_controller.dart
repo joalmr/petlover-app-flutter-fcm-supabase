@@ -46,8 +46,8 @@ class GlobalController extends GetxController {
         repository.logOut();
       } else {
         pushController.firebase();
-        homeController.getSummary();
         getUsuario();
+        homeController.getSummary();
       }
     }
   }
@@ -56,6 +56,6 @@ class GlobalController extends GetxController {
 
   _getUsuario() async {
     usuario = await userService.getUser();
-    // print(usuario.email);
+    print(usuario.phone);
   }
 }

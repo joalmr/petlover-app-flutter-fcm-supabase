@@ -195,16 +195,6 @@ class ReservaVetController extends GetxController {
     );
   }
 
-  // Future<List<ServicioReserva>> _getData(filter) async {
-  //   var response = await Dio().get(
-  //     "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
-  //     queryParameters: {"filter": filter},
-  //   );
-
-  //   var models = UserModel.fromJsonList(response.data);
-  //   return models;
-  // }
-
   Future<List<ServicioReserva>> _getData(String filter) async {
     // bookingService.typeBooking();
     List<ServicioReserva> lista = List<ServicioReserva>();

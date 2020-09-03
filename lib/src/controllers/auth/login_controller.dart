@@ -6,6 +6,8 @@ import 'package:proypet/src/controllers/_push_controller.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/services/auth_service.dart';
 
+import '../_global_controller.dart';
+
 class LoginController extends GetxController {
   final AuthService repository = AuthService();
 
@@ -30,8 +32,9 @@ class LoginController extends GetxController {
 
   bool get isFormValid => hasEmailData && isPasswordValid;
 
-  PushController pushController = PushController();
+  final pushController = PushController();
   final homeController = Get.find<HomeController>();
+  final globalController = Get.find<GlobalController>();
 
   @override
   void onInit() {
@@ -63,8 +66,7 @@ class LoginController extends GetxController {
         Map<String, dynamic> respLogin = await repository.login(email, password);
         if (respLogin['code'] == 200) {
           pushController.firebase(); //TODO: ejecuta firebase
-          //
-          // homeStore.getSummary();
+          globalController.getUsuario();
           homeController.getSummary();
           loading.value = false;
           Get.offAllNamed('navInicio');
