@@ -1,22 +1,13 @@
 # proypet
-#prueba
-A new Flutter project.
+# proypet Volviendo a github
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+## cambios en el main manejando el diseño
 
 #api para obtener ciudad, país, etc
+
+
+# revisar esto para mac
+In addition, you need to add the Background Modes capability to your XCode project (Project > Signing and Capabilties > "+ Capability" button) and select Location Updates.
 
 https://maps.googleapis.com/maps/api/geocode/json?latlng=-12.0166806,-77.09980399999999&key=AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844
 

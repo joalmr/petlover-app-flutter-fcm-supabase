@@ -1,82 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:proypet/src/bloc/provider.dart';
-import 'package:proypet/src/preferencias_usuario/preferencias_usuario.dart';
-// import 'package:proypet/src/push-providers/push_provider.dart';
+import 'package:get/route_manager.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/routes/routes.dart';
-import 'package:proypet/src/shared/navigation_bar.dart';
-
 import 'package:flutter/services.dart';
- 
- final prefs = new PreferenciasUsuario();
-void main() async {
+
+import 'package:get/get.dart';
+import 'config/global_variables.dart';
+
+import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
+import 'src/controllers/veterinaria_controller/lista_vets_controller.dart';
+import 'src/theme/theme.dart';
+import 'src/theme/themeDark.dart';
+import 'src/app/views/pages/_nav_bar/navigation_bar.dart';
+import 'src/controllers/_global_controller.dart';
+
+main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  await prefs.initPrefs();
-
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()) );
-  // runApp(MyApp());
-} 
-
-class MyApp extends StatefulWidget {
-
-  @override
-  _MyAppState createState() => _MyAppState();
+  await GetStorage.init();
+  // GetIt getIt = GetIt.I;
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
 }
 
-class _MyAppState extends State<MyApp> {
-  
-  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
-  
-  @override
-  void initState(){
-    super.initState();
-
-    // final pushProvider = new PushProvider();
-    // pushProvider.initNotificaciones();
-
-    // pushProvider.mensajes.listen((data) { 
-
-    //   print('===== Notificacion =====');
-    //   print(data);
-
-    //   navigatorKey.currentState.pushNamed('mensaje', arguments: data);
-
-    // });
-  }
-
-
+//com.example.user //prueba
+//com.proypet.user //produccion
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-   
-    var rutaInicio='login';
-    if(prefs.token!=''){
-      // loginProvider.validateMain();
-      rutaInicio='navInicio';
-    }
+    Get.put(HomeController());
+    Get.put(GlobalController());
+    Get.put(VeterinariasController());
+    Get.put(FiltraVetsController());
 
-    return MaterialApp(
-        debugShowCheckedModeBanner: false, 
-        navigatorKey: navigatorKey,
-        title: 'Proypet',
-        theme: ThemeData( 
-          fontFamily: 'Lato',
-          primarySwatch: Colors.teal,
-          cursorColor: Colors.teal
-        ),      
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-            const Locale('en','US'),
-            const Locale('es','ES'), //PE
-          ],     
-        routes: getRoutes(),
-        initialRoute: rutaInicio,
-        onGenerateRoute: (RouteSettings settings) => 
-          MaterialPageRoute(builder: (BuildContext context)=>NavigationBar(currentTabIndex: 0)), //ruta general
-      );
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: appPruebas,
+      title: 'Proypet',
+      theme: temaClaro,
+      darkTheme: temaOscuro,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('es', 'ES'),
+        const Locale('en', 'US'),
+      ],
+      initialRoute: '/',
+      defaultTransition: Transition.fadeIn,
+      getPages: getRutas(),
+      onGenerateRoute: (settings) => GetPageRoute(
+        page: () => NavigationBar(currentTabIndex: 0),
+      ),
+    );
   }
 }
