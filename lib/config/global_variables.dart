@@ -14,7 +14,7 @@ const produccion = {
   'urlApi': 'https://proypet.com/api',
 };
 
-final bool appPruebas = false; //TODO: cambiar a false cuando sea produccion
+final bool appPruebas = true; //TODO: cambiar a false cuando sea produccion
 
 final environment = appPruebas ? pruebas : produccion;
 
