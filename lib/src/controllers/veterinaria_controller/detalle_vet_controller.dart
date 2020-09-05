@@ -123,7 +123,7 @@ class VetDetalleController extends GetxController {
         children: [
           Text('Hola, disculpa este establecimiento aún no puede recibir reservas.'),
           SizedBox(height: 3),
-          Text('Tenemos estas opciones cerca tuyo'),
+          Text('Tenemos estas opciones cerca '),
           SizedBox(height: 10),
           vetPremium.length < 1
               ? Center(

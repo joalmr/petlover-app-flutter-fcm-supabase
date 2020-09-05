@@ -23,8 +23,6 @@ main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
 }
 
-//com.example.user //prueba
-//com.proypet.user //produccion
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
