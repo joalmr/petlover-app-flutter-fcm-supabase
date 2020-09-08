@@ -656,6 +656,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.1"
+  time_parser:
+    dependency: "direct main"
+    description:
+      name: time_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   transformer_page_view:
     dependency: transitive
     description:

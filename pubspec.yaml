@@ -38,6 +38,7 @@ dependencies:
   dio: ^3.0.10
   dio_http_cache: ^0.2.8
   websafe_network_image: ^1.0.5
+  time_parser: ^1.1.0
   #fin nuevos utiles
   
   #imagenes 

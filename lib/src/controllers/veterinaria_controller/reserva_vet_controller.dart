@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/directions.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/config/global_variables.dart';
@@ -24,7 +25,9 @@ import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart
 import 'package:select_dialog/select_dialog.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:time_parser/time_parser.dart';
 
+import 'data/horario.dart';
 import 'detalle_vet_controller.dart';
 
 class ReservaVetController extends GetxController {
@@ -310,6 +313,49 @@ class ReservaVetController extends GetxController {
 
   bool get isDeliveryOk => hasDelivery && deliveryId != '1' && deliveryDireccion.trim().isNotEmpty;
 
+  bool get isDayOk {
+    int day = fechaTime.weekday;
+    var horario = vet.schedule;
+    var takeHora = horario[textHorario[day]];
+
+    if (takeHora['attention'] == 'on')
+      return true;
+    else
+      return false;
+  }
+
+  bool get isHourOk {
+    int day = fechaTime.weekday;
+    var horario = vet.schedule;
+    var takeHora = horario[textHorario[day]];
+
+    var time0 = TimeParser.parse(_hora);
+    var time1 = TimeParser.parse(takeHora['time_start']);
+    var time2 = TimeParser.parse(takeHora['time_end']);
+
+    var hora0 = time0.hours * 60 + time0.minutes;
+    var hora1 = time1.hours * 60 + time1.minutes;
+    var hora2 = time2.hours * 60 + time2.minutes;
+
+    if (takeHora['attention'] == 'on') {
+      if (hora1 < hora0 && hora0 < hora2)
+        return true;
+      else
+        return false;
+    } else
+      return false;
+  }
+
+  String get takeHora {
+    int day = fechaTime.weekday;
+    var horario = vet.schedule;
+    var takeHora = horario[textHorario[day]];
+    var time1 = TimeParser.parse(takeHora['time_start']);
+    var time2 = TimeParser.parse(takeHora['time_end']);
+
+    return '$time1 - $time2';
+  }
+
   gpsDireccion(Prediction2 data) {
     deliveryDireccion = data.name;
     _searchandNavigate(data);
@@ -378,10 +424,26 @@ class ReservaVetController extends GetxController {
           if (!isDeliveryOk) {
             mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed);
           } else {
-            ejecutaReserva();
+            if (isDayOk) {
+              if (isHourOk) {
+                ejecutaReserva();
+              } else {
+                mostrarSnackbar('La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora', colorRed);
+              }
+            } else {
+              mostrarSnackbar('La veterinaria no atiende el día seleccionado', colorRed);
+            }
           }
         } else {
-          ejecutaReserva();
+          if (isDayOk) {
+            if (isHourOk) {
+              ejecutaReserva();
+            } else {
+              mostrarSnackbar('La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora', colorRed);
+            }
+          } else {
+            mostrarSnackbar('La veterinaria no atiende el día seleccionado', colorRed);
+          }
         }
       }
     }
