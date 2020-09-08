@@ -65,7 +65,7 @@ class LoginController extends GetxController {
       } else {
         Map<String, dynamic> respLogin = await repository.login(email, password);
         if (respLogin['code'] == 200) {
-          pushController.firebase(); //TODO: ejecuta firebase
+          pushController.firebase(); //TODO: el firebase de ios mantiene prod
           globalController.getUsuario();
           homeController.getSummary();
           loading.value = false;
