@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>es</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -31,17 +31,17 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Se necesita acceso a la cámara</string>
+	<string>$(PRODUCT_NAME) necesita acceso a la cámara</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open and in the background.</string>
+	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta y en segundo plano.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
+	<string>Esta aplicación necesita acceso a la ubicación cuando está en segundo plano.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
+	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Se necesita acceso al micrófono</string>
+	<string>$(PRODUCT_NAME) necesita acceso al micrófono</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Se necesita acceso al carrete</string>
+	<string>$(PRODUCT_NAME) necesita acceso al carrete</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
