@@ -20,9 +20,14 @@ class GlobalController extends GetxController {
   set usuario(UserModel2 value) => _usuario.value = value;
   UserModel2 get usuario => _usuario.value;
 
+  RxString _ubicacion = ''.obs;
+  set ubicacion(String value) => _ubicacion.value = value;
+  String get ubicacion => _ubicacion.value;
+
   @override
   void onInit() {
     super.onInit();
+    ubicacion = _prefs.ubicacion ?? '';
     getTema();
     evaluaLogin();
   }

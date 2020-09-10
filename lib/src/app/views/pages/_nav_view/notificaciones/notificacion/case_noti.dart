@@ -19,9 +19,7 @@ notificacionCase(Notificacion notificacion) {
       return _recordatory(notificacion);
       break;
     default:
-      return SizedBox(
-        height: 0.0,
-      );
+      return SizedBox(height: 0.0);
       break;
   }
 }

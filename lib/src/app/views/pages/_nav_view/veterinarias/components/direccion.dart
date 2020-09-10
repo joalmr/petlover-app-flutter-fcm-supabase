@@ -7,17 +7,17 @@ import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart
 
 import 'package:http/http.dart' as http;
 
-String searchAddr = "";
+// String searchAddr = "";
 final filtroC = Get.find<FiltraVetsController>();
 
 autocompleteAddress() {
   return SimpleAutocompleteFormField<Prediction2>(
     decoration: InputDecoration(
       prefixIcon: Icon(Icons.location_on),
-      hintText: 'Ingrese una dirección',
+      hintText: 'Ingrese dirección',
     ),
     maxSuggestions: 3,
-    initialValue: (filtroC.dataDireccion != null) ? filtroC.dataDireccion : null,
+    // initialValue: (filtroC.dataDireccion != null) ? filtroC.dataDireccion : null,
     onSearch: (filter) async {
       var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
       var models = addressFromJson(response.body);

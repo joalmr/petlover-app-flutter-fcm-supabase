@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/utils/posicion.dart';
+// import 'package:proypet/src/utils/posicion.dart';
 
 import '_push_controller.dart';
 
@@ -16,7 +16,7 @@ class NavigationController extends GetxController {
   void onInit() {
     super.onInit();
     // fnPosition().then((value) => _prefs.position = '${value.latitude},${value.longitude}');
-    fnGetPosition();
+    // fnGetPosition();
     pushController.firebaseConfigure();
   }
 }

@@ -30,11 +30,16 @@ Widget buildTip(context, Tip tip) {
                 padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  child: Image(
-                    image: AssetImage(tip.image),
-                    height: 230,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                  child: Expanded(
+                    child: AspectRatio(
+                      aspectRatio: 1.5,
+                      child: Image(
+                        image: AssetImage(tip.image),
+                        // height: 230,
+                        // width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -49,93 +49,89 @@ class Mascotas extends StatelessWidget {
                       // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: Container(
-                        height: 250.0,
-                        width: double.infinity,
+                        // height: 250.0,
+                        // width: double.infinity,
                         child: Stack(
                           children: <Widget>[
-                            Swiper(
-                              physics: BouncingScrollPhysics(),
-                              itemCount: _home.mascotas.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final mascota = _home.mascotas[index];
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Container(
-                                        height: 250.0,
-                                        width: double.infinity,
-                                        foregroundDecoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.15),
+                            AspectRatio(
+                              aspectRatio: 1.5,
+                              child: Swiper(
+                                physics: BouncingScrollPhysics(),
+                                itemCount: _home.mascotas.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  final mascota = _home.mascotas[index];
+                                  return ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Container(
+                                          height: double.maxFinite,
+                                          width: double.maxFinite,
+                                          foregroundDecoration: BoxDecoration(
+                                            color: Colors.black.withOpacity(0.15),
+                                          ),
+                                          child: WebsafeNetworkImage(
+                                            imageUrl: mascota.picture,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
-                                        child: WebsafeNetworkImage(
-                                          imageUrl: mascota.picture,
-                                          fit: BoxFit.cover,
+                                        Positioned(
+                                          top: 15.0,
+                                          left: 10.0,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(mascota.name, style: Get.textTheme.headline6.apply(color: Colors.white, fontWeightDelta: 2)),
+                                              Text(mascota.breedName, style: Get.textTheme.subtitle2.apply(color: Colors.white)),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Positioned(
-                                        top: 15.0,
-                                        left: 10.0,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(mascota.name, style: Get.textTheme.headline6.apply(color: Colors.white, fontWeightDelta: 2)),
-                                            Text(mascota.breedName, style: Get.textTheme.subtitle2.apply(color: Colors.white)),
-                                          ],
-                                        ),
-                                      ),
-                                      Positioned(
-                                        bottom: 10.0,
-                                        left: 10.0,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: <Widget>[
-                                            RichText(
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text: mascota.weight.toString(),
-                                                    style: Get.textTheme.headline4.apply(color: Colors.white, fontWeightDelta: 2),
-                                                  ),
-                                                  TextSpan(text: " kg.")
+                                        Positioned(
+                                          bottom: 10.0,
+                                          left: 10.0,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: mascota.weight.toString(),
+                                                      style: Get.textTheme.headline4.apply(color: Colors.white, fontWeightDelta: 2),
+                                                    ),
+                                                    TextSpan(text: " kg.")
+                                                  ],
+                                                ),
+                                              ),
+                                              Row(
+                                                children: <Widget>[
+                                                  (mascota.status == 0) ? Icon(Icons.bookmark, color: Colors.white) : Icon(Icons.cake, color: Colors.white),
+                                                  SizedBox(width: 5.0),
+                                                  (mascota.status == 0)
+                                                      ? Text("Fallecido", style: TextStyle(color: Colors.white))
+                                                      : Text(calculateAge(DateTime.parse(mascota.birthdate)),
+                                                          style: Get.textTheme.subtitle2.apply(color: Colors.white))
                                                 ],
                                               ),
-                                            ),
-                                            Row(
-                                              children: <Widget>[
-                                                (mascota.status == 0) ? Icon(Icons.bookmark, color: Colors.white) : Icon(Icons.cake, color: Colors.white),
-                                                SizedBox(width: 5.0),
-                                                (mascota.status == 0)
-                                                    ? Text(
-                                                        "Fallecido",
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                        ),
-                                                      )
-                                                    : Text(
-                                                        calculateAge(DateTime.parse(mascota.birthdate)),
-                                                        style: Get.textTheme.subtitle2.apply(color: Colors.white),
-                                                      )
-                                              ],
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Positioned(
-                                        bottom: 10.0,
-                                        right: 10.0,
-                                        child: buttonOutLine('Ver más', () => _.detalleMascota(mascota.id), colorGray1),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                                // });
-                              },
-                              viewportFraction: 0.79,
-                              scale: 0.77,
-                              loop: false,
+                                        Positioned(
+                                          bottom: 10.0,
+                                          right: 10.0,
+                                          child: buttonOutLine('Ver más', () => _.detalleMascota(mascota.id), colorGray1),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                  // });
+                                },
+                                viewportFraction: 0.79,
+                                scale: 0.77,
+                                loop: false,
+                              ),
                             ),
                             Positioned(
                               top: 0.0,

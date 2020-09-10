@@ -37,15 +37,18 @@ class MascotaDetallePage extends StatelessWidget {
                           child: Stack(
                             children: <Widget>[
                               Container(
-                                child: Image(
-                                  image: CachedNetworkImageProvider(_.pet.picture),
-                                  height: 350,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: Image(
+                                    image: CachedNetworkImageProvider(_.pet.picture),
+                                    // height: 350,
+                                    // width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: 330.0, bottom: 7.5, left: 5.0, right: 5.0),
+                                margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
                                 height: MediaQuery.of(context).size.height - 330.0,
                                 decoration: BoxDecoration(
                                   borderRadius: borderRadius,

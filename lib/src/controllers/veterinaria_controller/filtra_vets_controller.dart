@@ -4,11 +4,13 @@ import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/data/models/model/maps/address.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
+import '../_global_controller.dart';
 import 'lista_vets_controller.dart';
 
 class FiltraVetsController extends GetxController {
   final _prefs = new PreferenciasUsuario();
   final vetC = Get.find<VeterinariasController>();
+  final global = Get.find<GlobalController>();
   //
   List<int> listaFiltros = [];
   String _direccion = ''; //''.obs;
@@ -24,6 +26,11 @@ class FiltraVetsController extends GetxController {
 
   set dataDireccion(Prediction2 value) => _dataDireccion.value = value;
   Prediction2 get dataDireccion => _dataDireccion.value;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   add2List(numero) {
     if (!listaFiltros.contains(numero))
@@ -45,6 +52,7 @@ class FiltraVetsController extends GetxController {
       places.getDetailsByPlaceId(dato.placeId).then((value) {
         Location latlng = value.result.geometry.location;
         _prefs.position = "${latlng.lat},${latlng.lng}";
+        _prefs.ubicacion = _direccion;
       });
     }
   }
@@ -57,6 +65,8 @@ class FiltraVetsController extends GetxController {
     vetC.listaFiltros.addAll(listaFiltros);
     //
     dataDireccion = _dataDireccionInt;
+    global.ubicacion = _direccion;
+
     vetC.getVets();
     vetC.listaFiltros.clear();
     vetC.listaFiltros.addAll(listaFiltros);

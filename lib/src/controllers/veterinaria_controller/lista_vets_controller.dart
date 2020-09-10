@@ -2,15 +2,18 @@ import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
 
+import '../_global_controller.dart';
 import 'filtra_vets_controller.dart';
 
 class VeterinariasController extends GetxController {
   final vetService = EstablecimientoService();
   RxList<EstablecimientoModel> vetLocales = List<EstablecimientoModel>().obs;
-  // RxList<int> listaFiltros = List<int>().obs;
+
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
   RxBool loading = true.obs;
+
+  final global = Get.find<GlobalController>();
 
   @override
   void onInit() {

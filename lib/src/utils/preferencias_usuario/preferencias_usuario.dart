@@ -13,15 +13,21 @@ class PreferenciasUsuario {
   get verify => box.read('verify') ?? null;
   set verify(String value) => box.write('verify', value);
 
+  //se usa para los filtras de veterinarias
   get position => box.read('position') ?? null;
   set position(String value) => box.write('position', value);
   positionDel() => box.remove('position');
 
-  //se usa para guardar la direccion de la ultima reserva realizada
+  get ubicacion => box.read('ubicacion') ?? '';
+  set ubicacion(String value) => box.write('ubicacion', value);
+  ubicacionDel() => box.remove('ubicacion');
+  ////
+
+  //se usa para guardar la direccion de la ultima reserva realizada TEXTO
   get myAddress => box.read('address') ?? '';
   set myAddress(String value) => box.write('address', value);
 
-  //se usa para guardar la posicion de la ultima reserva realizada
+  //se usa para guardar la posicion de la ultima reserva realizada GPS
   get myAddressLatLng => box.read('mylatlng') ?? '';
   set myAddressLatLng(String value) => box.write('mylatlng', value);
 

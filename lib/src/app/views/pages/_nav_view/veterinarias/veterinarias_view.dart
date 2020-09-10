@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_mapa/vet_mapa_page.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/filtro_veterinarias.dart';
@@ -22,15 +23,16 @@ class ReservaList extends StatelessWidget {
       // init: VeterinariasController(),
       builder: (_) {
         return Scaffold(
-          appBar: appbar(leadingH, 'Buscar veterinarias', <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.filter_list,
-                // color: Get.textTheme.subtitle2.color,
+          appBar: appbar(
+            leadingH,
+            'Buscar veterinarias',
+            <Widget>[
+              IconButton(
+                icon: Icon(Icons.filter_list),
+                onPressed: () => Get.to(FiltraVets()),
               ),
-              onPressed: () => Get.to(FiltraVets()),
-            ),
-          ]),
+            ],
+          ),
           body: _.loading.value
               ? Container(
                   height: double.infinity,
@@ -48,6 +50,19 @@ class ReservaList extends StatelessWidget {
                           onRefresh: _.refresh,
                           child: CustomScrollView(
                             slivers: <Widget>[
+                              SliverToBoxAdapter(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 10, bottom: 5, left: 30, right: 30),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.location_on, color: colorMain),
+                                      Text(_.global.ubicacion),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               (_.listaFiltros.length > 0)
                                   ? listarChip(_.listaFiltros)
                                   : SliverToBoxAdapter(
@@ -102,14 +117,18 @@ class ReservaList extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              'No pudimos detectar tu ubicación',
-                              style: Get.textTheme.subtitle1,
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                              child: Text(
+                                'Ingresa una dirección para buscar veterinarias cercanas',
+                                style: Get.textTheme.subtitle1,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             SizedBox(height: 10),
                             autocompleteAddress(),
                             SizedBox(height: 10),
-                            buttonPri('Buscar', () => _.filtra()) //_onRefresh
+                            buttonOutLine('Buscar', () => _.filtra(), colorMain) //_onRefresh
                           ],
                         ),
                       ),

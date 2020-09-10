@@ -13,8 +13,8 @@ class FiltraVets extends StatelessWidget {
     final alto = context.height;
     final ancho = context.width;
 
-    return GetX<FiltraVetsController>(
-      // init: FiltraVetsController(),
+    //GetX
+    return GetBuilder<FiltraVetsController>(
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
@@ -58,7 +58,7 @@ class FiltraVets extends StatelessWidget {
                         ),
                         Wrap(
                           children: <Widget>[
-                            ServicioFlat('Baños / Grooming', 1),
+                            ServicioFlat('Baños/Grooming', 1),
                             ServicioFlat('Cirugía', 3),
                             ServicioFlat('Consulta', 2),
                             ServicioFlat('Desparasitación', 11),
