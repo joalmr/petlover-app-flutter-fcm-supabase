@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/data/models/model/maps/address.dart';
+
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import '../_global_controller.dart';
@@ -16,16 +17,14 @@ class FiltraVetsController extends GetxController {
   String _direccion = ''; //''.obs;
   Rx<Prediction2> __dataDireccion = Prediction2().obs;
   Rx<Prediction2> _dataDireccion = Prediction2().obs;
-  // Prediction2 dataDireccion = Prediction2();
-
-  // set direccion(String value) => _direccion.value = value;
-  // String get direccion => _direccion.value;
 
   set _dataDireccionInt(Prediction2 value) => __dataDireccion.value = value;
   Prediction2 get _dataDireccionInt => __dataDireccion.value;
 
   set dataDireccion(Prediction2 value) => _dataDireccion.value = value;
   Prediction2 get dataDireccion => _dataDireccion.value;
+
+  RxBool btnFiltra = false.obs;
 
   @override
   void onInit() {
@@ -57,15 +56,16 @@ class FiltraVetsController extends GetxController {
     }
   }
 
-  //
   filtrar() => _filtrar();
 
   _filtrar() {
     vetC.listaFiltros.clear();
     vetC.listaFiltros.addAll(listaFiltros);
-    //
+
     dataDireccion = _dataDireccionInt;
-    global.ubicacion = _direccion;
+    if (_direccion.isNotEmpty) {
+      global.ubicacion = _direccion;
+    }
 
     vetC.getVets();
     vetC.listaFiltros.clear();

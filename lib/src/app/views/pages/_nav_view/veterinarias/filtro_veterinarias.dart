@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/filtra_vets_controller.dart';
@@ -14,7 +15,7 @@ class FiltraVets extends StatelessWidget {
     final ancho = context.width;
 
     //GetX
-    return GetBuilder<FiltraVetsController>(
+    return GetX<FiltraVetsController>(
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
@@ -41,13 +42,14 @@ class FiltraVets extends StatelessWidget {
                         SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Text(
-                            'Ubicación',
-                            style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-                          ),
+                          child: Text('Ubicación', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                         ),
                         autocompleteAddress(),
-                        SizedBox(height: 10),
+                        SizedBox(height: 5),
+                        // InkWell(
+                        //   child: Text('Ubicación actual', style: TextStyle(color: colorMain)),
+                        //   onTap: _.ubicacionActual,
+                        // ),
                         SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
@@ -86,10 +88,7 @@ class FiltraVets extends StatelessWidget {
                       width: ancho,
                       color: Theme.of(context).dialogBackgroundColor,
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      child: buttonPri(
-                        "Filtrar",
-                        _.filtrar,
-                      ),
+                      child: buttonPri("Filtrar", _.filtrar, cargando: _.btnFiltra.value),
                     ))
               ],
             ),

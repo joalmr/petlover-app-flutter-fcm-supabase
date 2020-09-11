@@ -72,7 +72,7 @@ Widget _swiperVets(imagen, bool url) {
     imagenes: imagen,
     urlBool: url,
     radius: 10.0,
-    height: 175.0,
+    // height: 175.0,
     scale: 0.9,
   );
 }

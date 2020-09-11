@@ -24,7 +24,7 @@ Widget buttonPri(_text, _funtion, {bool cargando = false}) {
             )
           : Text(_text, style: _textstyle),
       padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-      onPressed: _funtion,
+      onPressed: !cargando ? _funtion : null,
     ),
   );
 }

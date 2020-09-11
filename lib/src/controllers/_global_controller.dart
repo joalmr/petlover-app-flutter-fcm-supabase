@@ -61,6 +61,5 @@ class GlobalController extends GetxController {
 
   _getUsuario() async {
     usuario = await userService.getUser();
-    print(usuario.phone);
   }
 }

@@ -32,13 +32,19 @@ Widget buildNoti(Notificacion noti, funcion) {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: CachedNetworkImage(
-                  useOldImageOnUrlChange: false,
-                  imageUrl: noti.notificationImg,
-                  height: 200,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  placeholder: (context, text) => Container(height: 200, width: double.maxFinite, child: Center(child: CupertinoActivityIndicator())),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  child: AspectRatio(
+                    aspectRatio: 1.5,
+                    child: CachedNetworkImage(
+                      useOldImageOnUrlChange: false,
+                      imageUrl: noti.notificationImg,
+                      // height: 200,
+                      // width: double.infinity,
+                      fit: BoxFit.cover,
+                      placeholder: (context, text) => Container(height: 200, width: double.maxFinite, child: Center(child: CupertinoActivityIndicator())),
+                    ),
+                  ),
                 ),
               ),
             ],

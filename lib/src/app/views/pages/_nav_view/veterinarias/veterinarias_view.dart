@@ -37,9 +37,7 @@ class ReservaList extends StatelessWidget {
               ? Container(
                   height: double.infinity,
                   width: double.infinity,
-                  child: Center(
-                    child: CupertinoActivityIndicator(),
-                  ),
+                  child: Center(child: CupertinoActivityIndicator()),
                 )
               : _.gps
                   ? FadeViewSafeArea(
@@ -57,8 +55,8 @@ class ReservaList extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.location_on, color: colorMain),
-                                      Text(_.global.ubicacion),
+                                      Icon(Icons.location_on, color: colorMain, size: 14),
+                                      Text(_.global.ubicacion, style: TextStyle(fontSize: 12)),
                                     ],
                                   ),
                                 ),
@@ -66,9 +64,7 @@ class ReservaList extends StatelessWidget {
                               (_.listaFiltros.length > 0)
                                   ? listarChip(_.listaFiltros)
                                   : SliverToBoxAdapter(
-                                      child: SizedBox(
-                                        height: 0.0,
-                                      ),
+                                      child: SizedBox(height: 0.0),
                                     ),
                               (_.vetLocales.length < 1)
                                   ? SliverToBoxAdapter(
@@ -128,7 +124,7 @@ class ReservaList extends StatelessWidget {
                             SizedBox(height: 10),
                             autocompleteAddress(),
                             SizedBox(height: 10),
-                            buttonOutLine('Buscar', () => _.filtra(), colorMain) //_onRefresh
+                            buttonOutLine('Buscar', () => _.filtra(), colorMain)
                           ],
                         ),
                       ),

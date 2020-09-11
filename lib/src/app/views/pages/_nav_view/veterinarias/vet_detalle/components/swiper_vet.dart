@@ -5,6 +5,6 @@ Widget swiperVets(imagen, bool urlBool) {
   return CardSwiper(
     imagenes: imagen,
     urlBool: urlBool,
-    height: 145.0,
+    // height: 145.0,
   );
 }

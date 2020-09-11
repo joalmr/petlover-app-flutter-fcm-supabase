@@ -74,10 +74,7 @@ class PushController extends GetxController {
       Get.dialog(FadeIn(
         child: SimpleDialog(
           children: <Widget>[
-            BuildPushQualify(
-              noti: dataPush,
-              mensaje: mensajePush,
-            ),
+            BuildPushQualify(noti: dataPush, mensaje: mensajePush),
           ],
         ),
       ));
@@ -86,10 +83,7 @@ class PushController extends GetxController {
           child: SimpleDialog(
         contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         children: <Widget>[
-          BuildPushNoti(
-            noti: dataPush,
-            mensaje: mensajePush,
-          ),
+          BuildPushNoti(noti: dataPush, mensaje: mensajePush),
         ],
       )));
     }

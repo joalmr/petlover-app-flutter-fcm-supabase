@@ -35,7 +35,7 @@ class VetDetallePage extends StatelessWidget {
                           Stack(
                             children: <Widget>[
                               Container(
-                                height: 260.0,
+                                height: context.height * 0.35,
                                 width: double.infinity,
                                 child: (_.vet.slides.length > 0) ? swiperVets(_.vet.slides, true) : swiperVets(["images/vet_prueba.jpg"], false),
                               ),
@@ -55,7 +55,7 @@ class VetDetallePage extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: 260.0, bottom: 60.0),
+                            padding: EdgeInsets.only(top: context.height * 0.35, bottom: 60.0),
                             child: DataVet(), //_onDetail(vet),
                           ),
                           Positioned(
