@@ -33,11 +33,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) necesita acceso a la cámara</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta y en segundo plano.</string>
+	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta y en segundo plano para mostrar las veterinarias más cercanas.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Esta aplicación necesita acceso a la ubicación cuando está en segundo plano.</string>
+	<string>Esta aplicación necesita acceso a la ubicación cuando está en segundo plano para mostrar las veterinarias más cercanas.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta.</string>
+	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta para mostrar las veterinarias más cercanas.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) necesita acceso al micrófono</string>
 	<key>NSPhotoLibraryUsageDescription</key>
