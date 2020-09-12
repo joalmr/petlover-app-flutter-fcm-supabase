@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/notificaciones_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/recompensas/recompensas_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/veterinarias_view.dart';
@@ -40,40 +43,41 @@ class _NavigationBarState extends State<NavigationBar> {
     return GetBuilder<NavigationController>(
       init: NavigationController(),
       builder: (_) {
-        return Scaffold(
-          body: _kTabPages[currentTabIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            iconSize: 28.0,
-            selectedItemColor: colorMain,
-            unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
-            items: _kBottmonNavBarItems,
-            currentIndex: currentTabIndex,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Theme.of(context).backgroundColor,
-            onTap: (int index) => setState(() => currentTabIndex = index),
-          ),
-        );
+        print(mediaAncho);
+        return mediaAncho < 600
+            ? Scaffold(
+                body: _kTabPages[currentTabIndex],
+                bottomNavigationBar: BottomNavigationBar(
+                  iconSize: 28.0,
+                  selectedItemColor: colorMain,
+                  unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
+                  items: _kBottmonNavBarItems,
+                  currentIndex: currentTabIndex,
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: Theme.of(context).backgroundColor,
+                  onTap: (int index) => setState(() => currentTabIndex = index),
+                ),
+              )
+            : Scaffold(
+                appBar: navbar(),
+                body: Container(child: _kTabPages[currentTabIndex]),
+              );
+
+        // return Scaffold(
+        //   body: _kTabPages[currentTabIndex],
+        //   // drawer: ,
+        //   bottomNavigationBar: BottomNavigationBar(
+        //     iconSize: 28.0,
+        //     selectedItemColor: colorMain,
+        //     unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
+        //     items: _kBottmonNavBarItems,
+        //     currentIndex: currentTabIndex,
+        //     type: BottomNavigationBarType.fixed,
+        //     backgroundColor: Theme.of(context).backgroundColor,
+        //     onTap: (int index) => setState(() => currentTabIndex = index),
+        //   ),
+        // );
       },
     );
-
-    // return GetX<NavigationController>(
-    //   init: NavigationController(),
-    //   builder: (_) {
-    //     // _.currentTabIndex = currentTabIndex;
-    //     return Scaffold(
-    //       body: _kTabPages[_.currentTabIndex],
-    //       bottomNavigationBar: BottomNavigationBar(
-    //         iconSize: 28.0,
-    //         selectedItemColor: colorMain,
-    //         unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
-    //         items: _kBottmonNavBarItems,
-    //         currentIndex: _.currentTabIndex,
-    //         type: BottomNavigationBarType.fixed,
-    //         backgroundColor: Theme.of(context).backgroundColor,
-    //         onTap: (int index) => _.currentTabIndex = index,
-    //       ),
-    //     );
-    //   },
-    // );
   }
 }

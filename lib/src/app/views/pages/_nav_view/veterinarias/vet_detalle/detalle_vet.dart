@@ -20,22 +20,16 @@ class VetDetallePage extends StatelessWidget {
           return Scaffold(
             body: FadeView(
               child: _.cargando.value
-                  ? Container(
-                      child: Center(
-                        child: CupertinoActivityIndicator(),
-                      ),
-                    )
+                  ? Container(child: Center(child: CupertinoActivityIndicator()))
                   : FadeIn(
                       duration: Duration(milliseconds: 500),
                       child: Stack(
                         children: <Widget>[
-                          Container(
-                            height: MediaQuery.of(context).size.height,
-                          ),
+                          Container(height: MediaQuery.of(context).size.height),
                           Stack(
                             children: <Widget>[
                               Container(
-                                height: context.height * 0.35,
+                                height: context.height * 0.3,
                                 width: double.infinity,
                                 child: (_.vet.slides.length > 0) ? swiperVets(_.vet.slides, true) : swiperVets(["images/vet_prueba.jpg"], false),
                               ),
@@ -55,7 +49,7 @@ class VetDetallePage extends StatelessWidget {
                             ],
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: context.height * 0.35, bottom: 60.0),
+                            padding: EdgeInsets.only(top: context.height * 0.3, bottom: 60.0),
                             child: DataVet(), //_onDetail(vet),
                           ),
                           Positioned(

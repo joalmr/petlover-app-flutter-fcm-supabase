@@ -1,6 +1,7 @@
 class EstablecimientoModel {
   String id;
   bool premium;
+  bool available;
   String name;
   String phone;
   String description;
@@ -20,6 +21,7 @@ class EstablecimientoModel {
   EstablecimientoModel({
     this.id,
     this.premium,
+    this.available,
     this.name,
     this.phone,
     this.description,
@@ -40,6 +42,7 @@ class EstablecimientoModel {
   factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
         id: json["id"],
         premium: json["premium"],
+        available: json["available"],
         name: json["name"],
         phone: json["phone"] == null ? "" : json["phone"],
         description: json["description"] == null ? "Descripción no detallada" : json["description"],
@@ -60,6 +63,7 @@ class EstablecimientoModel {
   Map<String, dynamic> toJson() => {
         "id": id,
         "premium": premium,
+        "available": available,
         "name": name,
         "phone": phone,
         "description": description,

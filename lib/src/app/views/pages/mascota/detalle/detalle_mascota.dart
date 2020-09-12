@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
@@ -38,7 +39,7 @@ class MascotaDetallePage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 child: AspectRatio(
-                                  aspectRatio: 1,
+                                  aspectRatio: (mediaAncho < 600) ? 1 : 12 / 8,
                                   child: Image(
                                     image: CachedNetworkImageProvider(_.pet.picture),
                                     // height: 350,
@@ -49,7 +50,7 @@ class MascotaDetallePage extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
-                                height: MediaQuery.of(context).size.height - 330.0,
+                                height: context.height - context.height * 0.4,
                                 decoration: BoxDecoration(
                                   borderRadius: borderRadius,
                                   color: Theme.of(context).backgroundColor,

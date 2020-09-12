@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 const pruebas = {
@@ -22,6 +22,8 @@ final environment = appPruebas ? pruebas : produccion;
 final String keyMap = environment['keyMap'];
 final String urlName = environment['url'];
 final String urlApi = environment['urlApi'];
+
+var mediaAncho = Get.width;
 
 final _prefs = new PreferenciasUsuario();
 

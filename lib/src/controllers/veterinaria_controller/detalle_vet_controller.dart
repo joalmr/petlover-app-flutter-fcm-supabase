@@ -112,26 +112,20 @@ class VetDetalleController extends GetxController {
 
   _reservar() async {
     reservaClic.value = false;
-    if (!vet.premium) {
+    if (!vet.premium && !vet.available) {
       _getPremiumClose();
       reservaClic.value = true;
-      //
       bookingService.tryBooking(vet.id);
       //
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [
-          Text('Hola, disculpa este establecimiento aún no puede recibir reservas.'),
+          Text('Hola, disculpa este establecimiento no puede recibir reservas.'),
           SizedBox(height: 3),
           Text('Tenemos estas opciones cerca '),
           SizedBox(height: 10),
           vetPremium.length < 1
-              ? Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Sin resultados'),
-                  ),
-                )
+              ? Center(child: Padding(padding: const EdgeInsets.all(8.0), child: Text('Sin resultados')))
               : vetPremium.length == 1
                   ? _gotoVet(vetPremium[0])
                   : Column(

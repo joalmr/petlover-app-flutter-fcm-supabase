@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
+
+import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/recompensas_controller/recompensas_controller.dart';
 import 'package:proypet/src/data/models/model/bonificacion/bonificacion_model.dart';
@@ -15,7 +16,10 @@ class RecompensasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(leadingH, 'Puntos', null),
+      appBar: appBar(
+        texto: 'Puntos',
+        acc: null,
+      ),
       body: GetX<RecompensasController>(
         init: RecompensasController(),
         builder: (_) {

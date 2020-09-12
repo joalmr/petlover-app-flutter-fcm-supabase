@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/src/app/styles/styles.dart';
 // import 'package:get/get.dart';
 
 Widget appbar(logo, String texto, List<Widget> acc) {
@@ -14,6 +17,69 @@ Widget appbar(logo, String texto, List<Widget> acc) {
       Text(texto)
     ]),
     actions: acc,
+  );
+}
+
+Widget appbarSec(String texto, List<Widget> acc) {
+  return AppBar(
+    leading: null,
+    centerTitle: false,
+    backgroundColor: Colors.transparent,
+    automaticallyImplyLeading: false,
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.w500,
+        color: Get.textTheme.subtitle2.color,
+      ),
+    ),
+    actionsIconTheme: IconThemeData(color: Get.textTheme.subtitle2.color),
+    iconTheme: IconThemeData(color: Get.textTheme.subtitle2.color),
+    title: Text(texto),
+    actions: acc,
+  );
+}
+
+Widget navbar() {
+  return PreferredSize(
+    preferredSize: Size(mediaAncho, 1000),
+    child: Container(
+      color: colorMain,
+      child: Padding(
+        padding: EdgeInsets.only(top: 25, bottom: 10, left: 20, right: 20),
+        child: Row(
+          children: [
+            ClipRRect(child: Image(height: 42, image: AssetImage('images/logo-proypet.png'))),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    child: Text('Inicio', style: TextStyle(color: colorBrown1)),
+                    onTap: () => Get.toNamed('navInicio'),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    child: Text('Notificaciones', style: TextStyle(color: colorBrown1)),
+                    onTap: () => Get.toNamed('navNotifica'),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    child: Text('Veterinarias', style: TextStyle(color: colorBrown1)),
+                    onTap: () => Get.toNamed('navLista'),
+                  ),
+                  SizedBox(width: 20),
+                  InkWell(
+                    child: Text('Puntos', style: TextStyle(color: colorBrown1)),
+                    onTap: () => Get.toNamed('navRecompensa'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
   );
 }
 

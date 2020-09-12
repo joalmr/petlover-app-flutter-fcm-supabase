@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_mapa/vet_mapa_page.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
+
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/filtro_veterinarias.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
@@ -20,13 +21,11 @@ class ReservaList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<VeterinariasController>(
-      // init: VeterinariasController(),
       builder: (_) {
         return Scaffold(
-          appBar: appbar(
-            leadingH,
-            'Buscar veterinarias',
-            <Widget>[
+          appBar: appBar(
+            texto: 'Buscar veterinarias',
+            acc: <Widget>[
               IconButton(
                 icon: Icon(Icons.filter_list),
                 onPressed: () => Get.to(FiltraVets()),
@@ -86,9 +85,7 @@ class ReservaList extends StatelessWidget {
                                         childCount: _.vetLocales.length,
                                       ),
                                     ),
-                              SliverToBoxAdapter(
-                                child: SizedBox(height: 50.0),
-                              ),
+                              SliverToBoxAdapter(child: SizedBox(height: 50.0)),
                             ],
                           ),
                         ),

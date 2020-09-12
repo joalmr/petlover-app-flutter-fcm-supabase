@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
+import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/notificacion_controller/notificacion_controller.dart';
 import 'package:proypet/src/data/models/model/notificacion/tip_model.dart';
@@ -17,7 +17,10 @@ class NotificacionesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(leadingH, 'Notificaciones', null),
+      appBar: appBar(
+        texto: 'Notificaciones',
+        acc: null,
+      ), //mediaAncho < 600 ? appbar(leadingH, 'Notificaciones', null) : appbarSec('Notificaciones', null),
       body: GetX<NotificacionController>(
         init: NotificacionController(),
         builder: (_) {
@@ -52,7 +55,7 @@ class NotificacionesPage extends StatelessWidget {
                                               child: Image(image: AssetImage('images/noti-img.png'), height: 220, fit: BoxFit.cover),
                                             ),
                                           ),
-                                          Expanded(child: Padding(padding: const EdgeInsets.all(10.0), child: Text("No tienes notificaciones")))
+                                          Padding(padding: const EdgeInsets.all(10.0), child: Text("No tienes notificaciones"))
                                         ],
                                       ),
                                     ),
