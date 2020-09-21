@@ -33,11 +33,23 @@ class _NavigationBarState extends State<NavigationBar> {
     ];
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(icon: Icon(Icons.pets), title: Text('Inicio', style: TextStyle(fontSize: 10.5))),
-      BottomNavigationBarItem(icon: Icon(Icons.notifications_active), title: Text('Notificaciones', style: TextStyle(fontSize: 10.5))),
-      BottomNavigationBarItem(icon: Icon(Icons.search), title: Text('Veterinarias', style: TextStyle(fontSize: 10.5))),
-      // BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5))),
-      BottomNavigationBarItem(icon: Icon(Icons.monetization_on), title: Text('Puntos', style: TextStyle(fontSize: 10.5))),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.pets),
+        title: Text('Inicio', style: TextStyle(fontSize: 10.5)),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.notifications_active),
+        title: Text('Notificaciones', style: TextStyle(fontSize: 10.5)),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.search),
+        title: Text('Veterinarias', style: TextStyle(fontSize: 10.5)),
+      ),
+      // BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5)),),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.monetization_on),
+        title: Text('Puntos', style: TextStyle(fontSize: 10.5)),
+      ),
     ];
 
     return GetBuilder<NavigationController>(

@@ -82,17 +82,23 @@ class WaveClipperOut extends StatelessWidget {
         ClipPath(
           clipper: WaveClipper1(),
           child: Container(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 40,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 40,
+                  ),
+                ],
+              ),
+              width: double.infinity,
+              height: _alto,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    colorMain,
+                    colorMain.withAlpha(250),
+                  ],
                 ),
-              ],
-            ),
-            width: double.infinity,
-            height: _alto,
-            decoration: BoxDecoration(gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(250)])),
-          ),
+              )),
         ),
       ],
     );

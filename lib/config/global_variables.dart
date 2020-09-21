@@ -15,7 +15,7 @@ const produccion = {
 };
 
 //····························//TODO: cambiar google-services para android
-final bool appPruebas = false; //TODO: cambiar a false cuando sea produccion
+final bool appPruebas = true; //TODO: cambiar a false cuando sea produccion
 
 final environment = appPruebas ? pruebas : produccion;
 

@@ -31,7 +31,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) necesita acceso a la cámara</string>
+	<string>$(PRODUCT_NAME) necesita acceso a la cámara para agregar imágenes al perfil de su mascota</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Esta aplicación necesita acceso a la ubicación cuando está abierta y en segundo plano para mostrar las veterinarias más cercanas.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -41,7 +41,7 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) necesita acceso al micrófono</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) necesita acceso al carrete</string>
+	<string>$(PRODUCT_NAME) necesita acceso al carrete para agregar imágenes al perfil de su mascota</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
