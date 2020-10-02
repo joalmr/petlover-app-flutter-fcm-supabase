@@ -47,7 +47,7 @@ ThemeData temaOscuro = ThemeData(
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: colorDark3,
+    fillColor: colorDark1,
     contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
     hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
     border: new OutlineInputBorder(

@@ -41,6 +41,8 @@ dependencies:
   time_parser: ^1.1.0
   #fin nuevos utiles
   
+  overflow_view:
+  
   #imagenes 
   cached_network_image: ^2.0.0
   image_cropper: ^1.2.1  

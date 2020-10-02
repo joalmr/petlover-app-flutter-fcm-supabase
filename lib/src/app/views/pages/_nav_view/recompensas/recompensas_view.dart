@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/recompensas_controller/recompensas_controller.dart';
-import 'package:proypet/src/data/models/model/bonificacion/bonificacion_model.dart';
+
+import 'data.dart';
 
 class RecompensasPage extends StatelessWidget {
   final refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -35,9 +35,22 @@ class RecompensasPage extends StatelessWidget {
                     ),
                   )
                 : FadeViewSafeArea(
-                    child: ListView(
-                      children: [
-                        FadeIn(
+                    child: Stack(
+                    children: [
+                      ListView(
+                        padding: EdgeInsets.only(top: 150),
+                        children: [
+                          SizedBox(height: 20.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Text('Ranking de puntos'),
+                          ),
+                          topList(),
+                        ],
+                      ),
+                      FadeIn(
+                        child: Container(
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
                             child: Row(
@@ -91,53 +104,72 @@ class RecompensasPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20.0),
-                        FadeIn(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Text('Últimos puntos ganados', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
-                          ),
-                        ),
-                        FadeIn(
-                          child: _listaBonificacion(_.bonificacion.bonifications),
-                        )
-                      ],
-                    ),
-                  ),
+                      ),
+                    ],
+                  )),
           );
         },
       ),
     );
   }
 
-  Widget _listaBonificacion(List<Bonification> bonificados) {
-    if (bonificados.length < 1)
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: Text("No tiene puntos ganados"),
+  Widget topList() {
+    int numero = 5;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: DataTable(
+        columnSpacing: 1,
+        horizontalMargin: 10,
+        columns: const <DataColumn>[
+          DataColumn(label: Text('Nombre')),
+          DataColumn(label: Text('Mascota')),
+          DataColumn(label: Text('Puntos')),
+          DataColumn(label: Text('')),
+        ],
+        rows: List<DataRow>.generate(
+          listaTop.length,
+          (index) => DataRow(
+            cells: [
+              DataCell(
+                Text(listaTop[index]['name']),
+              ),
+              DataCell(
+                Stack(
+                  children: List<Widget>.generate(
+                    4,
+                    (index) => Positioned(
+                      top: 3,
+                      left: index.toDouble() * 8,
+                      child: index < 3
+                          ? CircleAvatar(
+                              radius: 20,
+                              backgroundColor: colorMain,
+                              backgroundImage: AssetImage('images/fre-vacuna.jpeg'),
+                            )
+                          : CircleAvatar(
+                              radius: 20,
+                              backgroundColor: colorMain,
+                              child: Center(
+                                child: Text(
+                                  '+${numero - 3}',
+                                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                                ),
+                              ),
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+              DataCell(
+                Text(listaTop[index]['points'].toString()),
+              ),
+              DataCell(
+                listaTop[index]['cup'] ? Icon(Icons.star) : SizedBox(width: 0),
+              ),
+            ],
+          ),
         ),
-      );
-    else
-      return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: bonificados.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: ListTile(
-              title: Text('${bonificados[index].establishmentName}', style: Get.textTheme.subtitle2),
-              trailing: CircleAvatar(
-                  backgroundColor: colorMain,
-                  foregroundColor: colorGray2,
-                  child: Text(
-                    '+${bonificados[index].points}',
-                    style: TextStyle(fontSize: sizeSmallx1, fontWeight: FontWeight.bold),
-                  )),
-            ),
-          );
-        },
-      );
+      ),
+    );
   }
 }

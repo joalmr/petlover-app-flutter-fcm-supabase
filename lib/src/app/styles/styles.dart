@@ -22,7 +22,8 @@ final colorBrown1 = Color(0xFF5A4B46);
 final colorBrown2 = Color(0xFF403432);
 //
 final colorDark2 = Color(0xFF303030); //para el fondo
-final colorDark3 = Color(0xFF444444); //oscuro claro
+final colorDark3 = Color(0xFF444444); //claro
+final colorDark1 = Color(0xFF4E4E4E); //mas claro
 //
 final colorMain = colorGreen;
 //
