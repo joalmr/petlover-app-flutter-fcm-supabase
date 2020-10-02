@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,14 +8,15 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/recompensas_controller/recompensas_controller.dart';
-
-import 'data.dart';
+import 'package:proypet/src/data/models/model/bonificacion/bonificacion_top_model.dart';
 
 class RecompensasPage extends StatelessWidget {
   final refreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
+    int numero = 5;
+
     return Scaffold(
       appBar: appBar(
         texto: 'Puntos',
@@ -45,7 +47,72 @@ class RecompensasPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             child: Text('Ranking de puntos'),
                           ),
-                          topList(),
+                          // topList(_.top.value),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: DataTable(
+                              columnSpacing: 1,
+                              horizontalMargin: 10,
+                              columns: const <DataColumn>[
+                                DataColumn(label: Text('Nombre')),
+                                DataColumn(label: Text('Mascota')),
+                                DataColumn(label: Text('Puntos')),
+                                DataColumn(label: Text('')),
+                              ],
+                              rows: List<DataRow>.generate(
+                                _.top.length,
+                                (index) {
+                                  BonificacionTop dataTop = _.top[index];
+                                  int petsCount = dataTop.pets == null ? 0 : dataTop.pets.length;
+                                  return DataRow(
+                                    cells: [
+                                      DataCell(
+                                        Text(dataTop.user),
+                                      ),
+                                      DataCell(
+                                        petsCount > 0
+                                            ? Stack(
+                                                children: List<Widget>.generate(
+                                                  petsCount,
+                                                  (index) {
+                                                    var pet = dataTop.pets[index];
+                                                    return Positioned(
+                                                      top: 3,
+                                                      left: index.toDouble() * 12,
+                                                      child: index < 3
+                                                          ? CircleAvatar(
+                                                              radius: 20,
+                                                              backgroundColor: Colors.white,
+                                                              backgroundImage: CachedNetworkImageProvider(pet),
+                                                            )
+                                                          : CircleAvatar(
+                                                              radius: 20,
+                                                              backgroundColor: colorMain,
+                                                              child: Center(
+                                                                child: Text(
+                                                                  '+${numero - 3}',
+                                                                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                    );
+                                                  },
+                                                ),
+                                              )
+                                            : SizedBox(width: 0),
+                                      ),
+                                      DataCell(
+                                        Text(dataTop.points.toString()),
+                                      ),
+                                      DataCell(
+                                        dataTop.cup ? Icon(Icons.star) : SizedBox(width: 0),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                          )
                         ],
                       ),
                       FadeIn(
@@ -113,63 +180,8 @@ class RecompensasPage extends StatelessWidget {
     );
   }
 
-  Widget topList() {
-    int numero = 5;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: DataTable(
-        columnSpacing: 1,
-        horizontalMargin: 10,
-        columns: const <DataColumn>[
-          DataColumn(label: Text('Nombre')),
-          DataColumn(label: Text('Mascota')),
-          DataColumn(label: Text('Puntos')),
-          DataColumn(label: Text('')),
-        ],
-        rows: List<DataRow>.generate(
-          listaTop.length,
-          (index) => DataRow(
-            cells: [
-              DataCell(
-                Text(listaTop[index]['name']),
-              ),
-              DataCell(
-                Stack(
-                  children: List<Widget>.generate(
-                    4,
-                    (index) => Positioned(
-                      top: 3,
-                      left: index.toDouble() * 8,
-                      child: index < 3
-                          ? CircleAvatar(
-                              radius: 20,
-                              backgroundColor: colorMain,
-                              backgroundImage: AssetImage('images/fre-vacuna.jpeg'),
-                            )
-                          : CircleAvatar(
-                              radius: 20,
-                              backgroundColor: colorMain,
-                              child: Center(
-                                child: Text(
-                                  '+${numero - 3}',
-                                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                                ),
-                              ),
-                            ),
-                    ),
-                  ),
-                ),
-              ),
-              DataCell(
-                Text(listaTop[index]['points'].toString()),
-              ),
-              DataCell(
-                listaTop[index]['cup'] ? Icon(Icons.star) : SizedBox(width: 0),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget topList(List<BonificacionTop> top) {
+  //   int numero = 5;
+  //   return;
+  // }
 }

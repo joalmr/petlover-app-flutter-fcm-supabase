@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/bonificacion/bonificacion_model.dart';
+import 'package:proypet/src/data/models/model/bonificacion/bonificacion_top_model.dart';
 import 'package:proypet/src/data/services/bonificacion_servicio.dart';
 
 class RecompensasController extends GetxController {
   final bonificacionService = BonificacionService();
 
   BonificacionModel bonificacion;
+  RxList<BonificacionTop> top = List<BonificacionTop>().obs;
 
   RxBool loading = true.obs;
 
@@ -26,10 +28,16 @@ class RecompensasController extends GetxController {
 
   void getRecompensa() {
     _recompensa();
+    _top();
   }
 
   Future<void> _recompensa() async {
     bonificacion = await bonificacionService.getBonificacion();
     loading.value = false;
+  }
+
+  Future<void> _top() async {
+    top.clear();
+    top.addAll(await bonificacionService.getTop());
   }
 }
