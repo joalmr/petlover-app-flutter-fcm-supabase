@@ -49,7 +49,7 @@ class ReservaList extends StatelessWidget {
                             slivers: <Widget>[
                               SliverToBoxAdapter(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 10, bottom: 5, left: 30, right: 30),
+                                  padding: const EdgeInsets.only(top: 10, bottom: 5, left: 20, right: 20),
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.start,

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/notificacion/notificacion_model.dart';
 
 Widget buildNoti(Notificacion noti, funcion) {
   return Container(
-    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
     child: InkWell(
         onTap: funcion,
         child: Card(
@@ -14,13 +15,22 @@ Widget buildNoti(Notificacion noti, funcion) {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
-                    child: Image(
-                      image: CachedNetworkImageProvider(noti.petPicture),
-                      height: 100,
-                      fit: BoxFit.cover,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
+                        child: Image(
+                          image: CachedNetworkImageProvider(noti.petPicture),
+                          height: 80,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Text(
+                        noti.notificationDate,
+                        style: TextStyle(fontSize: 8, color: Get.textTheme.subtitle2.color.withOpacity(.6)),
+                      )
+                    ],
                   ),
                   Expanded(
                     child: Padding(
@@ -31,11 +41,11 @@ Widget buildNoti(Notificacion noti, funcion) {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   child: AspectRatio(
-                    aspectRatio: 1.5,
+                    aspectRatio: 3 / 2,
                     child: CachedNetworkImage(
                       useOldImageOnUrlChange: false,
                       imageUrl: noti.notificationImg,

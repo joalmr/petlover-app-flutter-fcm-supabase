@@ -27,6 +27,7 @@ class Notificacion {
   String petPicture;
   String message;
   dynamic options;
+  String notificationDate;
 
   Notificacion({
     this.id,
@@ -35,6 +36,7 @@ class Notificacion {
     this.petPicture,
     this.message,
     this.options,
+    this.notificationDate,
   });
 
   factory Notificacion.fromJson(Map<String, dynamic> json) => Notificacion(
@@ -44,6 +46,7 @@ class Notificacion {
         petPicture: json["pet_picture"],
         message: json["message"],
         options: json["options"],
+        notificationDate: json["notification_date"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {

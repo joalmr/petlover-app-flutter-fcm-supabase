@@ -9,7 +9,7 @@ import 'package:proypet/src/data/models/model/establecimiento/establecimiento_mo
 Widget buildVets(EstablecimientoModel vet) {
   return FadeIn(
     child: Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       child: InkWell(
           onTap: () => Get.toNamed('vetdetalle', arguments: vet),
           child: Card(
