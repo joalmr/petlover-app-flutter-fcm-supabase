@@ -16,7 +16,7 @@ class CardSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 2 / 1,
+      aspectRatio: 16 / 9,
       child: Container(
         // height: height,
         width: double.infinity,
