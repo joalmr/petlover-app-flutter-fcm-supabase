@@ -111,6 +111,12 @@ class ConfigDrawer extends StatelessWidget {
     _prefs.tokenDel();
     _prefs.positionDel();
     _prefs.ubicacionDel();
+    _prefs.myAddressDel();
+    _prefs.myAddressLatLngDel();
+    // print('==position==');
+    // print(_prefs.position);
+    // print('==ubica==');
+    // print(_prefs.ubicacion);
     Get.offAllNamed('login');
   }
 }

@@ -26,10 +26,12 @@ class PreferenciasUsuario {
   //se usa para guardar la direccion de la ultima reserva realizada TEXTO
   get myAddress => box.read('address') ?? '';
   set myAddress(String value) => box.write('address', value);
+  myAddressDel() => box.remove('address');
 
   //se usa para guardar la posicion de la ultima reserva realizada GPS
   get myAddressLatLng => box.read('mylatlng') ?? '';
   set myAddressLatLng(String value) => box.write('mylatlng', value);
+  myAddressLatLngDel() => box.remove('address');
 
   //tema app
   get themeMode => box.read('theme');

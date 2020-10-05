@@ -36,21 +36,19 @@ class NotificacionesPage extends StatelessWidget {
                     child: (_.notifications.length < 1)
                         ? Container(
                             margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                            child: Card(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    child: AspectRatio(
-                                      aspectRatio: 2,
-                                      child: Image(image: AssetImage('images/noti-img.png'), height: 220, fit: BoxFit.cover),
-                                    ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  child: AspectRatio(
+                                    aspectRatio: 2,
+                                    child: Image(image: AssetImage('images/noti-img.png'), height: 220, fit: BoxFit.cover),
                                   ),
-                                  Padding(padding: const EdgeInsets.all(10.0), child: Text("No tienes notificaciones"))
-                                ],
-                              ),
+                                ),
+                                Padding(padding: const EdgeInsets.all(10.0), child: Text("No tienes notificaciones"))
+                              ],
                             ),
                           )
                         : ListView.builder(
