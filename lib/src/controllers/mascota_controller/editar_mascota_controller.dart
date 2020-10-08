@@ -132,6 +132,8 @@ class MascotaEditarController extends GetxController {
   }
 
   _mostrarFoto() {
+    print('==foto==');
+    print(foto);
     if (foto.path != '')
       return FileImage(foto);
     else
@@ -143,6 +145,7 @@ class MascotaEditarController extends GetxController {
   }
 
   _seleccionarFoto() async {
+    print('==sel');
     _procesarImagen(ImageSource.gallery);
   }
 
@@ -155,6 +158,7 @@ class MascotaEditarController extends GetxController {
   }
 
   _procesarImagen(ImageSource origen) async {
+    print(origen);
     var imagen = await ImagePicker.pickImage(source: origen);
 
     File croppedFile = await ImageCropper.cropImage(

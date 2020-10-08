@@ -80,7 +80,13 @@ class HomePage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text("Hola,", style: Get.textTheme.headline4.copyWith(fontWeight: FontWeight.normal)),
+                            Text(
+                              "Hola,",
+                              style: TextStyle(
+                                fontSize: 34,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
                             IconButton(
                                 icon: Icon(Icons.settings, color: Get.textTheme.subtitle2.color), onPressed: () => _scaffoldKey.currentState.openEndDrawer())
                           ],

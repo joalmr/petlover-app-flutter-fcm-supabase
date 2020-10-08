@@ -28,15 +28,29 @@ ThemeData temaOscuro = ThemeData(
     backgroundColor: colorMain,
     foregroundColor: Colors.white,
   ),
+  // appBarTheme: AppBarTheme(
+  //   textTheme: TextTheme(
+  //     headline6: TextStyle(
+  //       fontSize: 18.0,
+  //       color: Colors.white,
+  //     ),
+  //   ),
+  //   // color: fondoScaffoldOscuro,
+  //   elevation: 0,
+  // ),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(
-        fontSize: 18.0,
-        color: Colors.white,
+        fontSize: 26.0, //28
+        fontWeight: FontWeight.w300,
+        color: Colors.white38,
       ),
     ),
-    // color: fondoScaffoldOscuro,
+    centerTitle: false,
+    iconTheme: IconThemeData(color: Colors.white38),
+    actionsIconTheme: IconThemeData(color: Colors.white38),
     elevation: 0,
+    color: Colors.transparent,
   ),
   dialogBackgroundColor: Colors.grey[850],
   dialogTheme: DialogTheme(shape: shape10),

@@ -8,16 +8,17 @@ Widget appBar({@required String texto, @required List<Widget> acc, bool logo = t
       leading: null,
       centerTitle: false,
       title: Row(children: [
-        logo
-            ? Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
-                child: Center(child: ClipRRect(child: Image(height: 32, image: AssetImage('images/proypet.png')))))
-            : SizedBox(width: 0),
+        // logo
+        //     ? Padding(
+        //         padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
+        //         child: Center(child: ClipRRect(child: Image(height: 32, image: AssetImage('images/proypet.png')))))
+        //     : SizedBox(width: 0),
         Text(texto)
       ]),
       actions: acc,
     );
   } else {
+    //pantallas grandes
     return AppBar(
       leading: null,
       centerTitle: false,

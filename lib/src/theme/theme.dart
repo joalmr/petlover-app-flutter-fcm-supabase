@@ -24,18 +24,32 @@ ThemeData temaClaro = ThemeData(
   primarySwatch: newteal,
   accentColor: colorMain,
   backgroundColor: colorGray1,
+  // appBarTheme: AppBarTheme(
+  //   textTheme: TextTheme(
+  //     headline6: TextStyle(
+  //       fontSize: 18.0,
+  //       fontWeight: FontWeight.w500,
+  //       // color: Colors.black54,
+  //     ),
+  //   ),
+  //   // actionsIconTheme: IconThemeData(color: Colors.black54),
+  //   // iconTheme: IconThemeData(color: Colors.black54),
+  //   // color: Colors.white,
+  //   elevation: 0,
+  // ),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.w500,
-        // color: Colors.black54,
+        fontSize: 26, //28,
+        fontWeight: FontWeight.w300,
+        color: Colors.black38,
       ),
     ),
-    // actionsIconTheme: IconThemeData(color: Colors.black54),
-    // iconTheme: IconThemeData(color: Colors.black54),
-    // color: Colors.white,
+    centerTitle: false,
+    iconTheme: IconThemeData(color: Colors.black38),
+    actionsIconTheme: IconThemeData(color: Colors.black38),
     elevation: 0,
+    color: Colors.transparent,
   ),
   dialogTheme: DialogTheme(shape: shape10),
   cardTheme: CardTheme(shape: shape10, elevation: .05),
