@@ -19,6 +19,12 @@ class VeterinariasController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // var data = Get.arguments;
+    // print(data);
+    // if (data != null) {
+    //   listaFiltros = Get.arguments;
+    // }
+
     getVets();
   }
 

@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/controllers/veterinaria_controller/filtra_vets_controller.dart';
 
 // final control = Get.find<NavigationController>();
+final filtros = Get.find<FiltraVetsController>();
 
 emergencia() {
+  // final filtros = Get.find<FiltraVetsController>();
+
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
-      // control.currentTabIndex = 2;
-      Get.toNamed('navLista', arguments: {
-        "filtros": [8]
-      });
+      filtros.listaFiltros.clear();
+      filtros.listaFiltros.addAll([8]);
+
+      filtros.filtrar();
+      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -48,13 +53,17 @@ emergencia() {
 }
 
 consulta() {
+  // final filtros = Get.find<FiltraVetsController>();
+
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
       // control.currentTabIndex = 2;
-      Get.toNamed('navLista', arguments: {
-        "filtros": [2]
-      });
+      filtros.listaFiltros.clear();
+      filtros.listaFiltros.addAll([2]);
+
+      filtros.filtrar();
+      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -86,13 +95,17 @@ consulta() {
 }
 
 vacuna() {
+  // final filtros = Get.find<FiltraVetsController>();
+
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
       // control.currentTabIndex = 2;
-      Get.toNamed('navLista', arguments: {
-        "filtros": [4]
-      });
+      filtros.listaFiltros.clear();
+      filtros.listaFiltros.addAll([4]);
+
+      filtros.filtrar();
+      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -124,13 +137,17 @@ vacuna() {
 }
 
 banio() {
+  // final filtros = Get.find<FiltraVetsController>();
+
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
       // control.currentTabIndex = 2;
-      Get.toNamed('navLista', arguments: {
-        "filtros": [1]
-      });
+      filtros.listaFiltros.clear();
+      filtros.listaFiltros.addAll([1]);
+
+      filtros.filtrar();
+      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -162,13 +179,17 @@ banio() {
 }
 
 desparasita() {
+  // final filtros = Get.find<FiltraVetsController>();
+
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
       // control.currentTabIndex = 2;
-      Get.toNamed('navLista', arguments: {
-        "filtros": [11]
-      });
+      filtros.listaFiltros.clear();
+      filtros.listaFiltros.addAll([11]);
+
+      filtros.filtrar();
+      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
