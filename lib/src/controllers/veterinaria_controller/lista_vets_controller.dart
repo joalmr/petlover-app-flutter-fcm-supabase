@@ -38,6 +38,7 @@ class VeterinariasController extends GetxController {
 
   Future<Null> _refresh() async {
     await Future.delayed(Duration(milliseconds: 2));
+    getVets();
     return null;
   }
 

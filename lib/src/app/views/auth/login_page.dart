@@ -27,9 +27,9 @@ class LoginPage extends StatelessWidget {
                     image: AssetImage('images/icon/logo-proypet.png'),
                     height: 52,
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 15),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25, bottom: 20, left: 50, right: 50),
+                    padding: const EdgeInsets.only(top: 25, bottom: 5, left: 50, right: 50),
                     child: Container(
                       height: 240,
                       padding: const EdgeInsets.only(bottom: 10),
