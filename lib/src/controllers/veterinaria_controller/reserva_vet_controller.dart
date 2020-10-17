@@ -460,12 +460,7 @@ class ReservaVetController extends GetxController {
     if (hasDelivery == true && deliveryId != "1") {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
-    print(booking);
-    print(booking.bookingAt);
-    print(booking.establishmentId);
-    print(booking.petId);
-    print(booking.typeId);
-    print(booking.observation);
+
     bool resp = await bookingService.booking(booking, deliveryTipo, deliveryDireccion);
     print(resp);
     if (resp) {

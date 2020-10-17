@@ -42,7 +42,7 @@ class FiltraVets extends StatelessWidget {
                         SizedBox(height: 10),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Text('Ubicación', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                          child: Text('Actualizar ubicación', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                         ),
                         autocompleteAddress(),
                         SizedBox(height: 5),

@@ -45,7 +45,7 @@ class RecompensasPage extends StatelessWidget {
                           SizedBox(height: 20.0),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Text('Ranking de puntos'),
+                            child: Text('Ranking de puntos', style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
                           ),
                           // topList(_.top.value),
                           Padding(
@@ -57,7 +57,11 @@ class RecompensasPage extends StatelessWidget {
                                 DataColumn(label: Text('Nombre')),
                                 DataColumn(label: Text('Mascota')),
                                 DataColumn(label: Text('Puntos')),
-                                DataColumn(label: Text('')),
+                                DataColumn(
+                                    label: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text('Premio'),
+                                )),
                               ],
                               rows: List<DataRow>.generate(
                                 _.top.length,
@@ -105,7 +109,14 @@ class RecompensasPage extends StatelessWidget {
                                         Text(dataTop.points.toString()),
                                       ),
                                       DataCell(
-                                        dataTop.cup ? Icon(Icons.star) : SizedBox(width: 0),
+                                        dataTop.cup
+                                            ? Center(
+                                                child: Image(
+                                                  image: AssetImage('images/cup.png'),
+                                                  width: 26,
+                                                ),
+                                              )
+                                            : SizedBox(width: 0),
                                       ),
                                     ],
                                   );

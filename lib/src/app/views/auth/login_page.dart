@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
-import 'package:proypet/src/app/views/components/wave_clipper.dart';
 import 'package:proypet/src/controllers/auth/login_controller.dart';
+
+import 'data/icons_login.dart';
 
 class LoginPage extends StatelessWidget {
   // const LoginPage({Key key}) : super(key: key);
@@ -16,14 +18,60 @@ class LoginPage extends StatelessWidget {
         init: LoginController(),
         builder: (_) {
           return Scaffold(
-            appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(backgroundColor: colorMain, elevation: 0)),
+            appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(elevation: 0)),
             body: FadeView(
               child: ListView(
                 children: [
-                  WaveClipper(300.0, 180.0),
-                  SizedBox(height: 50.0),
+                  SizedBox(height: 30),
+                  Image(
+                    image: AssetImage('images/icon/logo-proypet.png'),
+                    height: 52,
+                  ),
+                  SizedBox(height: 5),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.only(top: 25, bottom: 20, left: 50, right: 50),
+                    child: Container(
+                      height: 240,
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Swiper(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: 3,
+                        autoplay: true,
+                        autoplayDelay: 3000,
+                        pagination: new SwiperPagination(
+                            builder: new DotSwiperPaginationBuilder(
+                          activeColor: colorMain,
+                          color: colorGray3,
+                        )),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Image(
+                                image: AssetImage(iconLogin[index]['image']),
+                                height: 80,
+                              ),
+                              SizedBox(height: 20),
+                              Text(
+                                iconLogin[index]['title'],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                iconLogin[index]['text'],
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  // SizedBox(height: 10.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => FormularioText(
                           hintText: 'Email',
                           icon: Icons.alternate_email,
@@ -33,7 +81,7 @@ class LoginPage extends StatelessWidget {
                         )),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => FormularioText(
                           hintText: 'Contraseña',
                           icon: Icons.lock,
@@ -49,7 +97,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 25.0),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => buttonPri(_.loading.value ? 'Cargando..' : 'Iniciar sesión', _.loading.value ? null : _.getLogin)),
                   ),
                   SizedBox(height: 20.0),

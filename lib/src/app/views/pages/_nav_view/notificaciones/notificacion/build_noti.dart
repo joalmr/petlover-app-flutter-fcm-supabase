@@ -50,7 +50,7 @@ Widget buildNoti(Notificacion noti, funcion) {
                         children: [
                           Text(noti.message),
                           Text(
-                            noti.notificationDate,
+                            'Enviado el ${noti.notificationDate}',
                             style: TextStyle(fontSize: 8, color: Get.textTheme.subtitle2.color.withOpacity(.6)),
                           )
                         ],
