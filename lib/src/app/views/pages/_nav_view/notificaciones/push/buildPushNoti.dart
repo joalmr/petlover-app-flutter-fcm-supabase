@@ -22,7 +22,7 @@ class BuildPushNoti extends StatelessWidget {
   _fnNoti(noti, context) {
     switch (noti['type']) {
       case "Marketing":
-        return notificacionOther();
+        return notificacionMarketing();
         break;
       case "ComingBooking":
         return notificacionAct(Row(
@@ -243,6 +243,43 @@ class BuildPushNoti extends StatelessWidget {
         return SizedBox(height: 0.0);
         break;
     }
+  }
+
+  Widget notificacionMarketing() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(9.0),
+            child: Text(noti['message']),
+          ),
+          SizedBox(height: 5.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              child: Image(
+                image: CachedNetworkImageProvider(noti['notification_image']),
+                height: 140,
+                width: double.maxFinite,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(height: 5.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              FlatButton(
+                child: Text('Omitir'),
+                onPressed: () => Get.back(),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 
   Widget notificacionOther() {

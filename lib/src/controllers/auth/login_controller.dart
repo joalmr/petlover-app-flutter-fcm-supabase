@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
@@ -26,7 +27,7 @@ class LoginController extends GetxController {
 
   bool get hasEmailData => email.trim().length > 0;
 
-  bool get isEmailValid => GetUtils.isEmail(email);
+  bool get isEmailValid => EmailValidator.validate(email);
 
   bool get isPasswordValid => password.trim().length > 0;
 

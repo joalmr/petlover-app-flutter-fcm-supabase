@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
@@ -29,7 +30,7 @@ class SignController extends GetxController {
 
   void togglePasswordVisibility() => passwordVisible.value = !passwordVisible.value;
 
-  bool get isEmailValid => GetUtils.isEmail(email);
+  bool get isEmailValid => EmailValidator.validate(email);
 
   bool get formComplete => name.trim() != "" && lastname.trim() != "" && email.trim() != "" && password.trim() != "";
 
@@ -64,6 +65,7 @@ class SignController extends GetxController {
           Timer(Duration(milliseconds: 500), () => loading.value = false);
         } else {
           int resp = await repository.registerUser(name, lastname, email, password);
+          print(resp);
           if (resp == 200 || resp == 201) {
             loading.value = false;
             Get.offAll(VerifyPage(textomail: email));
@@ -73,7 +75,7 @@ class SignController extends GetxController {
           }
         }
       } else {
-        mostrarSnackbar("Ingrese un correo valido", colorRed);
+        mostrarSnackbar("Ingrese un correo valido, contiene espacios u otros carácteres", colorRed);
         Timer(Duration(milliseconds: 500), () => loading.value = false);
       }
     } else {

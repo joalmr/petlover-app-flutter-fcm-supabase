@@ -54,10 +54,15 @@ class AuthProvider {
 
   Future<int> registerUser(String name, String lastname, String email, String password) async {
     final url = '$_url/register';
-    final userData = {"name": name, "lastname": lastname, "email": email, "password": password};
-    Response response;
-    response = await dio.post(url, data: userData);
+    try {
+      final userData = {"name": name, "lastname": lastname, "email": email, "password": password};
+      Response response;
+      response = await dio.post(url, data: userData);
+      print(response.statusCode);
 
-    return response.statusCode;
+      return response.statusCode;
+    } catch (ex) {
+      return 0;
+    }
   }
 }
