@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
 final _textstyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
@@ -61,3 +62,55 @@ Widget buttonModal(String _text, _funtion, Color _color) {
     shape: shape20,
   );
 }
+
+Widget btnFace({@required text, @required funtion}) {
+  return SizedBox(
+    width: double.maxFinite,
+    child: RaisedButton(
+      shape: shape20,
+      color: Color(0xFF3b5998),
+      elevation: 2.0,
+      textColor: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            FontAwesomeIcons.facebook,
+            size: 22,
+          ),
+          SizedBox(width: 10),
+          Text(text, style: _textstyle),
+        ],
+      ),
+      padding: EdgeInsets.symmetric(vertical: 9.0, horizontal: 20.0),
+      onPressed: funtion,
+    ),
+  );
+}
+//, bool cargando = false
+
+// cargando
+//     ? Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           CupertinoActivityIndicator(),
+//           SizedBox(width: 10),
+//           Text(text, style: _textstyle),
+//         ],
+//       )
+//     : Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           Icon(
+//             FontAwesomeIcons.facebook,
+//             size: 20,
+//           ),
+//           SizedBox(width: 10),
+//           Text(text, style: _textstyle),
+//         ],
+//       ),
+
+// !cargando ? funtion : null,

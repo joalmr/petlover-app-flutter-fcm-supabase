@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(
+    return GetX<LoginController>(
         init: LoginController(),
         builder: (_) {
           return Scaffold(
@@ -95,11 +95,21 @@ class LoginPage extends StatelessWidget {
                           activo: !_.loading.value,
                         )),
                   ),
-                  SizedBox(height: 25.0),
+                  SizedBox(height: 5.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => buttonPri(_.loading.value ? 'Cargando..' : 'Iniciar sesión', _.loading.value ? null : _.getLogin)),
                   ),
+                  SizedBox(height: 5.0),
+                  _.isLoggedIn.value
+                      ? Text('Hola :)')
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: btnFace(
+                            text: 'Ingresar con Facebook',
+                            funtion: _.initFacebookLogin,
+                          ),
+                        ),
                   SizedBox(height: 20.0),
                   Center(
                     child: FlatButton(

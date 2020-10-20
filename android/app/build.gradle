@@ -25,12 +25,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
-// //TODO: esto debe estar activo para produccion
-// def keystoreProperties = new Properties()
-// def keystorePropertiesFile = rootProject.file('key.properties')
-// if (keystorePropertiesFile.exists()) {
-//     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-// }
+//TODO: esto debe estar activo para produccion
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 android {
     compileSdkVersion 28
@@ -97,4 +97,5 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging:20.2.0' //para pruebas
     // implementation 'com.google.firebase:firebase-analytics:17.5.0' //para produccion
+     implementation 'com.facebook.android:facebook-login:[5,6)'
 }

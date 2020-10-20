@@ -15,12 +15,6 @@ class HomeController extends GetxController {
   RxList<BookingHome> atenciones = List<BookingHome>().obs;
   RxList<MascotaModel2> mascotas = List<MascotaModel2>().obs;
 
-  // _init() {
-  //   ever(_usuario, (_) {
-  //     print('cambio name');
-  //   });
-  // }
-
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
 

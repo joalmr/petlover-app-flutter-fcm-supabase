@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
@@ -17,6 +20,8 @@ class LoginController extends GetxController {
   final passwordVisible = false.obs;
   final loading = false.obs;
 
+  RxBool isLoggedIn = false.obs;
+
   set email(String value) => _email.value = value;
   String get email => this._email.value;
 
@@ -26,11 +31,8 @@ class LoginController extends GetxController {
   void togglePasswordVisibility() => passwordVisible.value = !passwordVisible.value;
 
   bool get hasEmailData => email.trim().length > 0;
-
   bool get isEmailValid => EmailValidator.validate(email);
-
   bool get isPasswordValid => password.trim().length > 0;
-
   bool get isFormValid => hasEmailData && isPasswordValid;
 
   final pushController = PushController();
@@ -80,5 +82,41 @@ class LoginController extends GetxController {
       Timer(Duration(milliseconds: 500), () => loading.value = false);
       mostrarSnackbar('Complete los datos', colorRed);
     }
+  }
+
+  //
+  void initFacebookLogin() async {
+    var login = FacebookLogin();
+    var result = await login.logIn(['email']);
+    print(result.status);
+    switch (result.status) {
+      case FacebookLoginStatus.error:
+        print('error');
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print('canceló los permisos');
+        break;
+      case FacebookLoginStatus.loggedIn:
+        {
+          Dio dio = new Dio();
+          final token = result.accessToken.token;
+          final url = 'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token';
+          Response response;
+          response = await dio.get(url);
+          print(response.data);
+          final resp = jsonDecode(response.data);
+          print(resp['id']);
+          print(resp['email']);
+          print(resp['first_name']);
+          print(resp['last_name']);
+          onLoginStatusChange(true);
+        }
+        break;
+    }
+  }
+
+  void onLoginStatusChange(bool isLogged) {
+    isLoggedIn.value = isLogged;
+    print(isLoggedIn.value);
   }
 }

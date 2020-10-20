@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeController());
     Get.put(GlobalController());
+
     Get.put(VeterinariasController());
     Get.put(FiltraVetsController());
 
