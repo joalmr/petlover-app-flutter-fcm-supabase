@@ -249,6 +249,8 @@ class BuildPushNoti extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(9.0),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
@@ -19,6 +20,7 @@ class LoginPage extends StatelessWidget {
         builder: (_) {
           return Scaffold(
             appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(elevation: 0)),
+            // backgroundColor: appPruebas ? colorRed : null,
             body: FadeView(
               child: ListView(
                 children: [
