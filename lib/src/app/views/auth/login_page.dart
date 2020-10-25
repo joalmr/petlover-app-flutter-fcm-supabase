@@ -103,31 +103,38 @@ class LoginPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => buttonPri(_.loading.value ? 'Cargando..' : 'Iniciar sesión', _.loading.value ? null : _.getLogin)),
                   ),
-                  // Platform.isIOS ?  : null,
-                  SizedBox(height: 5.0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: btnFace(
-                      text: 'Ingresar con Facebook',
-                      funtion: _.initFacebookLogin,
-                    ),
-                  ),
-                  SizedBox(height: 20.0),
-                  Center(
-                    child: FlatButton(
-                        onPressed: () => Get.toNamed("olvidopass"),
-                        child: Text("Olvidaste tu contraseña?".toUpperCase(), style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700))),
-                  ),
-                  SizedBox(height: 15.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text("Nuevo en Proypet?", style: Get.textTheme.subtitle2),
-                      FlatButton(
-                          onPressed: () => Get.toNamed("registro"),
-                          child: Text("Registrarse", style: Get.textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
-                    ],
-                  )
+                  Platform.isIOS
+                      ? null
+                      : Column(
+                          children: [
+                            SizedBox(height: 5.0),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 40),
+                              child: btnFace(
+                                text: 'Ingresar con Facebook',
+                                funtion: _.initFacebookLogin,
+                              ),
+                            ),
+                            SizedBox(height: 20.0),
+                            Center(
+                              child: FlatButton(
+                                  onPressed: () => Get.toNamed("olvidopass"),
+                                  child: Text("Olvidaste tu contraseña?".toUpperCase(),
+                                      style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700))),
+                            ),
+                            SizedBox(height: 15.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text("Nuevo en Proypet?", style: Get.textTheme.subtitle2),
+                                FlatButton(
+                                    onPressed: () => Get.toNamed("registro"),
+                                    child: Text("Registrarse",
+                                        style: Get.textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
+                              ],
+                            )
+                          ],
+                        ),
                 ],
               ),
             ),

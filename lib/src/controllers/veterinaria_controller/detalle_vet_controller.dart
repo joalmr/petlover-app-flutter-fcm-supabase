@@ -72,16 +72,19 @@ class VetDetalleController extends GetxController {
   //   vet = respVet['establishment'];
   //   cargando.value = false;
   // }
-
   bool get hasDelivery {
     //usado en reserva controller
-    bool delivery = false;
+    int existe = 0;
     vet.services.forEach((element) {
+      // print(element.slug);
       if (element.slug == 'delivery') {
-        delivery = true;
+        existe++;
       }
     });
-    return delivery;
+    if (existe != 0) {
+      return true;
+    }
+    return false;
   }
 
   traeMascotas() => misMascotas = homeC.mascotas.where((element) => element.status != 0).toList();

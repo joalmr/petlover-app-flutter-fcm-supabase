@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
@@ -68,11 +67,8 @@ class LoginController extends GetxController {
       } else {
         Map<String, dynamic> respLogin = await repository.login(email, password);
         if (respLogin['code'] == 200) {
-          pushController.firebase(); //TODO: el firebase de ios mantiene prod
-          globalController.getUsuario();
-          homeController.getSummary();
           loading.value = false;
-          Get.offAllNamed('navInicio');
+          ejecutaFirebase();
         } else {
           Timer(Duration(milliseconds: 500), () => loading.value = false);
           mostrarSnackbar(respLogin['message'], colorRed);
@@ -86,46 +82,51 @@ class LoginController extends GetxController {
 
   //
   void initFacebookLogin() async {
-    var login = FacebookLogin();
-    var result = await login.logIn(['email']);
+    final fb = FacebookLogin();
+    // var result = await login.logIn(['email']);
+    final result = await fb.logIn(permissions: [
+      FacebookPermission.publicProfile,
+      FacebookPermission.email,
+    ]);
     print(result.status);
     switch (result.status) {
-      case FacebookLoginStatus.error:
+      case FacebookLoginStatus.Success:
         {
-          Timer(Duration(milliseconds: 500), () => loading.value = false);
-          mostrarSnackbar('Acceso denegado', colorRed);
+          // final FacebookAccessToken accessToken = result.accessToken;
+
+          final fbProfile = await fb.getUserProfile();
+          final fbEmail = await fb.getUserEmail();
+          final fbImageUrl = await fb.getProfileImageUrl(width: 100);
+
+          var nombre = fbProfile.firstName;
+          var apellido = fbProfile.lastName;
+          var email = fbEmail;
+          var fbId = fbProfile.userId;
+
+          print('===fb id===');
+          print(fbId);
+          print('===fb img===');
+          print(fbImageUrl);
+
+          Map<String, dynamic> respLogin = await repository.loginFb(nombre, apellido, email, fbId);
+          if (respLogin['code'] == 200) {
+            ejecutaFirebase();
+          } else {
+            Timer(Duration(milliseconds: 500), () => loading.value = false);
+            mostrarSnackbar(respLogin['message'], colorRed);
+          }
         }
         break;
-      case FacebookLoginStatus.cancelledByUser:
+      case FacebookLoginStatus.Cancel:
         {
           Timer(Duration(milliseconds: 500), () => loading.value = false);
           mostrarSnackbar('El usuario canceló los permisos', colorRed);
         }
         break;
-      case FacebookLoginStatus.loggedIn:
+      case FacebookLoginStatus.Error:
         {
-          Dio dio = new Dio();
-          final token = result.accessToken.token;
-          final url = 'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token';
-          Response response;
-          response = await dio.get(url);
-
-          final resp = jsonDecode(response.data);
-          onLoginStatusChange(true);
-          var nombre = resp['first_name'];
-          var apellido = resp['last_name'];
-          var email = resp['email'];
-          var fbId = resp['id'];
-          Map<String, dynamic> respLogin = await repository.loginFb(nombre, apellido, email, fbId);
-          if (respLogin['code'] == 200) {
-            pushController.firebase(); //TODO: el firebase de ios mantiene prod
-            globalController.getUsuario();
-            homeController.getSummary();
-            Get.offAllNamed('navInicio');
-          } else {
-            Timer(Duration(milliseconds: 500), () => loading.value = false);
-            mostrarSnackbar(respLogin['message'], colorRed);
-          }
+          Timer(Duration(milliseconds: 500), () => loading.value = false);
+          mostrarSnackbar('Acceso denegado', colorRed);
         }
         break;
     }
@@ -133,6 +134,12 @@ class LoginController extends GetxController {
 
   void onLoginStatusChange(bool isLogged) {
     isLoggedIn.value = isLogged;
-    print(isLoggedIn.value);
+  }
+
+  void ejecutaFirebase() {
+    pushController.firebase(); //TODO: el firebase de ios mantiene prod
+    globalController.getUsuario();
+    homeController.getSummary();
+    Get.offAllNamed('navInicio');
   }
 }

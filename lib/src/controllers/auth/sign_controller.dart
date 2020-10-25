@@ -6,6 +6,8 @@ import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/app/views/components/verify_page.dart';
 import 'package:proypet/src/data/services/auth_service.dart';
 
+import 'login_controller.dart';
+
 class SignController extends GetxController {
   final AuthService repository = AuthService();
 
@@ -82,5 +84,10 @@ class SignController extends GetxController {
       mostrarSnackbar("Debe completar los campos", colorRed);
       Timer(Duration(milliseconds: 500), () => loading.value = false);
     }
+  }
+
+  void signFacebook() {
+    final login = LoginController();
+    login.initFacebookLogin();
   }
 }

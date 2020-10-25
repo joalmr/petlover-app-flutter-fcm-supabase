@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -118,19 +120,29 @@ class SingupPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Obx(() => buttonPri('Registrarse', !_.loading.value ? _.getSignUp : null))),
                         SizedBox(height: 20.0),
-                        Divider(),
-                        SizedBox(height: 20),
-                        Center(
-                          child: Text('Regístrate con Facebook', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
-                        ),
-                        SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
-                          child: btnFace(
-                            text: 'Ingresar con Facebook',
-                            funtion: () {},
-                          ),
-                        ),
+                        Platform.isIOS
+                            ? null
+                            : Column(
+                                children: [
+                                  Divider(
+                                    indent: 65,
+                                    endIndent: 65,
+                                    thickness: 2.5,
+                                  ),
+                                  SizedBox(height: 20),
+                                  Center(
+                                    child: Text('Regístrate con Facebook', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                                    child: btnFace(
+                                      text: 'Ingresar con Facebook',
+                                      funtion: _.signFacebook,
+                                    ),
+                                  ),
+                                ],
+                              )
                       ],
                     ),
                   ),

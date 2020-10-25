@@ -97,7 +97,8 @@ class ReservaVetController extends GetxController {
     misMascotas = vetdC.misMascotas;
     mascotaId = vetdC.misMascotas.first.id;
     hasDelivery = vetdC.hasDelivery;
-
+    print('===tiene delivery===');
+    print(hasDelivery);
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
     });
@@ -130,13 +131,15 @@ class ReservaVetController extends GetxController {
   }
 
   direccionInicial() {
-    if (_prefs.myAddressLatLng.toString().trim() != "") {
+    if (_prefs.hasMyAddressLatLng()) {
       lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
       lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
       zoomIn = 16.0;
 
       // deliveryDireccion = _prefs.myAddress;
-      inputDireccionController.text = _prefs.myAddress;
+      if (_prefs.hasMyAddress()) {
+        inputDireccionController.text = _prefs.myAddress;
+      }
 
       marcador.add(Marker(
         markerId: MarkerId("1"),
@@ -308,9 +311,9 @@ class ReservaVetController extends GetxController {
     return respuesta;
   }
 
-  bool get conDelivery => hasDelivery && deliveryTipo != '';
+  bool get conDelivery => hasDelivery && deliveryId != '1';
 
-  bool get isDeliveryOk => hasDelivery && deliveryId != '1' && inputDireccionController.text.trim().isNotEmpty;
+  bool get isDeliveryOk => hasDelivery && deliveryId != '1' && inputDireccionController.text.trim() != '';
 
   bool get isDayOk {
     int day = fechaTime.weekday;
@@ -420,9 +423,7 @@ class ReservaVetController extends GetxController {
         mostrarSnackbar('La hora debe ser mayor', colorRed);
       } else {
         if (conDelivery) {
-          if (!isDeliveryOk) {
-            mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed);
-          } else {
+          if (isDeliveryOk) {
             if (isDayOk) {
               if (isHourOk) {
                 ejecutaReserva();
@@ -432,6 +433,8 @@ class ReservaVetController extends GetxController {
             } else {
               mostrarSnackbar('La veterinaria no atiende el día seleccionado', colorRed);
             }
+          } else {
+            mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed);
           }
         } else {
           if (isDayOk) {
@@ -459,8 +462,9 @@ class ReservaVetController extends GetxController {
     if (hasDelivery == true && deliveryId != "1") {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
-
-    bool resp = await bookingService.booking(booking, deliveryTipo, inputDireccionController.text);
+    print(inputDireccionController.text);
+    print(_prefs.myAddress);
+    bool resp = await bookingService.booking(booking, deliveryTipo, _prefs.myAddress);
     print(resp);
     if (resp) {
       homeC.getSummary();
