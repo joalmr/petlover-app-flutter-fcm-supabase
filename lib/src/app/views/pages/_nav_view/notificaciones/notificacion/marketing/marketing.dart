@@ -24,8 +24,8 @@ Widget marketing(Notificacion noti) {
                           Divider(
                             color: colorMain,
                             height: 2,
-                            indent: 5,
-                            endIndent: 5,
+                            indent: 65,
+                            endIndent: 65,
                             thickness: 1,
                           ),
                           // Text(
