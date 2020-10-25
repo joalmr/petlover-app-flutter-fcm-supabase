@@ -15,25 +15,6 @@ Widget buildNoti(Notificacion noti, funcion) {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.end,
-                  //   children: [
-                  //     ClipRRect(
-                  //       borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
-                  //       child: Image(
-                  //         image: CachedNetworkImageProvider(noti.petPicture),
-                  //         height: 80,
-                  //         fit: BoxFit.cover,
-                  //       ),
-                  //     ),
-                  //     noti.notificationDate != ''
-                  //         ? Text(
-                  //             noti.notificationDate,
-                  //             style: TextStyle(fontSize: 8, color: Get.textTheme.subtitle2.color.withOpacity(.6)),
-                  //           )
-                  //         : SizedBox(height: 0)
-                  //   ],
-                  // ),
                   ClipRRect(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
                     child: Image(

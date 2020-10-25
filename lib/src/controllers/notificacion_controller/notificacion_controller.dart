@@ -6,7 +6,7 @@ class NotificacionController extends GetxController {
   final notificacionService = NotificacionService();
 
   NotificacionModel notificationModel;
-  List<Notificacion> notifications;
+  RxList<Notificacion> notifications = List<Notificacion>().obs;
   RxBool loading = true.obs;
 
   @override
@@ -23,13 +23,14 @@ class NotificacionController extends GetxController {
     return null;
   }
 
-  void getNotificacion() {
-    _notificacion();
-  }
+  void getNotificacion() => _notificacion();
 
   Future<void> _notificacion() async {
     notificationModel = await notificacionService.getNotificacion();
-    notifications = notificationModel.notifications;
+
+    notifications.clear();
+    notifications.addAll(notificationModel.notifications);
+
     loading.value = false;
   }
 }
