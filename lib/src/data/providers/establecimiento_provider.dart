@@ -13,8 +13,8 @@ class EstablecimientoProvider {
   Future<dynamic> getVets(dynamic filtros) async {
     int estado = 200;
     List<EstablecimientoModel> establecimientos = [];
-
-    if (_prefs.position == null || _prefs.position.trim() == "") {
+    print(_prefs.position);
+    if (!_prefs.hasPosition()) {
       estado = 211; //no tiene ubicacion
     }
 

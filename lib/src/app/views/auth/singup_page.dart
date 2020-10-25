@@ -118,6 +118,19 @@ class SingupPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Obx(() => buttonPri('Registrarse', !_.loading.value ? _.getSignUp : null))),
                         SizedBox(height: 20.0),
+                        Divider(),
+                        SizedBox(height: 20),
+                        Center(
+                          child: Text('Regístrate con Facebook', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
+                        ),
+                        SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: btnFace(
+                            text: 'Ingresar con Facebook',
+                            funtion: () {},
+                          ),
+                        ),
                       ],
                     ),
                   ),

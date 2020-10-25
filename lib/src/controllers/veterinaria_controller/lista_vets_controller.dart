@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
-// import 'package:proypet/src/utils/posicion.dart';
 
 import '../_global_controller.dart';
 import 'filtra_vets_controller.dart';
@@ -19,12 +18,6 @@ class VeterinariasController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // var data = Get.arguments;
-    // print(data);
-    // if (data != null) {
-    //   listaFiltros = Get.arguments;
-    // }
-
     getVets();
   }
 
@@ -33,7 +26,6 @@ class VeterinariasController extends GetxController {
     super.onClose();
   }
 
-  //
   Future refresh() => _refresh();
 
   Future<Null> _refresh() async {

@@ -68,7 +68,6 @@ class ReservaVetController extends GetxController {
 
   String _hora = '';
   String deliveryTipo = '';
-  String deliveryDireccion = '';
 
   double lat = 0;
   double lng = 0;
@@ -136,8 +135,8 @@ class ReservaVetController extends GetxController {
       lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
       zoomIn = 16.0;
 
-      deliveryDireccion = _prefs.myAddress;
-      inputDireccionController.text = deliveryDireccion;
+      // deliveryDireccion = _prefs.myAddress;
+      inputDireccionController.text = _prefs.myAddress;
 
       marcador.add(Marker(
         markerId: MarkerId("1"),
@@ -311,7 +310,7 @@ class ReservaVetController extends GetxController {
 
   bool get conDelivery => hasDelivery && deliveryTipo != '';
 
-  bool get isDeliveryOk => hasDelivery && deliveryId != '1' && deliveryDireccion.trim().isNotEmpty;
+  bool get isDeliveryOk => hasDelivery && deliveryId != '1' && inputDireccionController.text.trim().isNotEmpty;
 
   bool get isDayOk {
     int day = fechaTime.weekday;
@@ -357,12 +356,12 @@ class ReservaVetController extends GetxController {
   }
 
   gpsDireccion(Prediction2 data) {
-    deliveryDireccion = data.name;
+    // deliveryDireccion = data.name;
     _searchandNavigate(data);
   }
 
   _searchandNavigate(Prediction2 dato) async {
-    if (deliveryDireccion.trim() != "") {
+    if (inputDireccionController.text.trim() != "") {
       marcador.clear();
       final places = new GoogleMapsPlaces(apiKey: keyMap);
       final mapdata = await places.getDetailsByPlaceId(dato.placeId);
@@ -461,7 +460,7 @@ class ReservaVetController extends GetxController {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
 
-    bool resp = await bookingService.booking(booking, deliveryTipo, deliveryDireccion);
+    bool resp = await bookingService.booking(booking, deliveryTipo, inputDireccionController.text);
     print(resp);
     if (resp) {
       homeC.getSummary();

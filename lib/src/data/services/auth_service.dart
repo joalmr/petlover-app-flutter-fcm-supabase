@@ -4,6 +4,10 @@ class AuthService {
   // LoginService({ this.loginProvider}) : assert(loginProvider != null);
   final AuthProvider loginProvider = AuthProvider();
 
+  loginFb(String name, String lastname, String email, String fbId) {
+    return loginProvider.loginFb(name, lastname, email, fbId);
+  }
+
   login(String email, String password) {
     return loginProvider.loginToken(email, password);
   }

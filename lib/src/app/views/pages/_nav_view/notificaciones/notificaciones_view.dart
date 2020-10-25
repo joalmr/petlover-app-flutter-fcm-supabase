@@ -52,7 +52,6 @@ class NotificacionesPage extends StatelessWidget {
                         : ListView.builder(
                             itemCount: _.notifications.length,
                             itemBuilder: (BuildContext context, int index) {
-                              print(_.notifications.length);
                               return notificacionCase(_.notifications[index]);
                             },
                           ),

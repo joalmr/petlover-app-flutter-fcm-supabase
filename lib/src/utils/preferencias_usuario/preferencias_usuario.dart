@@ -8,30 +8,36 @@ class PreferenciasUsuario {
   get token => box.read('token') ?? '';
   set token(String value) => box.write('token', value);
   tokenDel() => box.remove('token');
+  hasToken() => box.hasData('token');
 
   //verificado
   get verify => box.read('verify') ?? null;
   set verify(String value) => box.write('verify', value);
+  hasVerify() => box.hasData('verify');
 
   //se usa para los filtras de veterinarias
   get position => box.read('position') ?? null;
   set position(String value) => box.write('position', value);
   positionDel() => box.remove('position');
+  hasPosition() => box.hasData('position');
 
   get ubicacion => box.read('ubicacion') ?? '';
   set ubicacion(String value) => box.write('ubicacion', value);
   ubicacionDel() => box.remove('ubicacion');
+  hasUbicacion() => box.hasData('ubicacion');
   ////
 
   //se usa para guardar la direccion de la ultima reserva realizada TEXTO
   get myAddress => box.read('address') ?? '';
   set myAddress(String value) => box.write('address', value);
   myAddressDel() => box.remove('address');
+  hasMyAddress() => box.hasData('address');
 
   //se usa para guardar la posicion de la ultima reserva realizada GPS
   get myAddressLatLng => box.read('mylatlng') ?? '';
   set myAddressLatLng(String value) => box.write('mylatlng', value);
-  myAddressLatLngDel() => box.remove('address');
+  myAddressLatLngDel() => box.remove('mylatlng');
+  hasMyAddressLatLng() => box.hasData('mylatlng');
 
   //tema app
   get themeMode => box.read('theme');

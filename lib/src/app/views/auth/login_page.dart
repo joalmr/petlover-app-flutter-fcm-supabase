@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<LoginController>(
+    return GetBuilder<LoginController>(
         init: LoginController(),
         builder: (_) {
           return Scaffold(
@@ -101,16 +103,15 @@ class LoginPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => buttonPri(_.loading.value ? 'Cargando..' : 'Iniciar sesión', _.loading.value ? null : _.getLogin)),
                   ),
+                  // Platform.isIOS ?  : null,
                   SizedBox(height: 5.0),
-                  _.isLoggedIn.value
-                      ? Text('Hola :)')
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
-                          child: btnFace(
-                            text: 'Ingresar con Facebook',
-                            funtion: _.initFacebookLogin,
-                          ),
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: btnFace(
+                      text: 'Ingresar con Facebook',
+                      funtion: _.initFacebookLogin,
+                    ),
+                  ),
                   SizedBox(height: 20.0),
                   Center(
                     child: FlatButton(

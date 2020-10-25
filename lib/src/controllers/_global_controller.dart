@@ -24,6 +24,10 @@ class GlobalController extends GetxController {
   set ubicacion(String value) => _ubicacion.value = value;
   String get ubicacion => _ubicacion.value;
 
+  // RxString _position = ''.obs;
+  // set position(String value) => _position.value = value;
+  // String get position => _position.value;
+
   @override
   void onInit() {
     super.onInit();
