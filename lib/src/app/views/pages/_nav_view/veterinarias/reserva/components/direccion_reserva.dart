@@ -7,8 +7,6 @@ import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart
 
 import 'package:http/http.dart' as http;
 
-// final _ = Get.find<ReservaVetController>();
-
 Widget autoDireccion() {
   return GetBuilder<ReservaVetController>(
     builder: (_) {
