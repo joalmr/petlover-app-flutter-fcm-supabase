@@ -108,15 +108,14 @@ class ConfigDrawer extends StatelessWidget {
 
   void _outToken() async {
     loginApi.logOut();
-    _prefs.tokenDel();
-    _prefs.positionDel();
-    _prefs.ubicacionDel();
-    _prefs.myAddressDel();
-    _prefs.myAddressLatLngDel();
-    // print('==position==');
-    // print(_prefs.position);
-    // print('==ubica==');
-    // print(_prefs.ubicacion);
+    //limpiando storage
+    _prefs.tokenDel(); //limpia token
+    _prefs.verifyDel(); //limpia verificado
+    _prefs.positionDel(); //limpia gps para lista vets
+    _prefs.ubicacionDel(); //limpia direccion para lista vets
+    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
+    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
+
     Get.offAllNamed('login');
   }
 }

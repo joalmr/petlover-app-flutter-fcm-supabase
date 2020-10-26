@@ -46,7 +46,7 @@ class FiltraVetsController extends GetxController {
   }
 
   _gpsDireccion(dato) {
-    if (_direccion.trim() != "") {
+    if (_direccion.isNotEmpty) {
       final places = new GoogleMapsPlaces(apiKey: keyMap);
       places.getDetailsByPlaceId(dato.placeId).then((value) {
         Location latlng = value.result.geometry.location;
@@ -68,7 +68,7 @@ class FiltraVetsController extends GetxController {
     }
 
     vetC.getVets();
-    vetC.listaFiltros.clear();
+    // vetC.listaFiltros.clear();
     vetC.listaFiltros.addAll(listaFiltros);
     Get.offAllNamed('navLista');
   }

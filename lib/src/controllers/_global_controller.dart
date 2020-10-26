@@ -24,9 +24,8 @@ class GlobalController extends GetxController {
   set ubicacion(String value) => _ubicacion.value = value;
   String get ubicacion => _ubicacion.value;
 
-  // RxString _position = ''.obs;
-  // set position(String value) => _position.value = value;
-  // String get position => _position.value;
+  bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
+  bool get isVerify => _prefs.verify != null && _prefs.verify.trim() != "";
 
   @override
   void onInit() {
@@ -35,9 +34,6 @@ class GlobalController extends GetxController {
     getTema();
     evaluaLogin();
   }
-
-  bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
-  bool get isVerify => _prefs.verify != null && _prefs.verify.trim() != "";
 
   getTema() {
     if (_prefs.themeMode != null) {

@@ -4,15 +4,16 @@ import 'package:get_storage/get_storage.dart';
 class PreferenciasUsuario {
   GetStorage box = GetStorage();
 
-  //token app
+  //token de usuario
   get token => box.read('token') ?? '';
   set token(String value) => box.write('token', value);
   tokenDel() => box.remove('token');
   hasToken() => box.hasData('token');
 
-  //verificado
+  //usuario verificado
   get verify => box.read('verify') ?? null;
   set verify(String value) => box.write('verify', value);
+  verifyDel() => box.remove('verify');
   hasVerify() => box.hasData('verify');
 
   //se usa para los filtras de veterinarias
