@@ -136,7 +136,7 @@ class LoginController extends GetxController {
     isLoggedIn.value = isLogged;
   }
 
-  void ejecutaFirebase() {
+  ejecutaFirebase() {
     pushController.firebase(); //TODO: el firebase de ios mantiene prod
     globalController.getUsuario();
     homeController.getSummary();

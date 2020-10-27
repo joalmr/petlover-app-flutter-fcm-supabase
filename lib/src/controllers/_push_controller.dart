@@ -38,14 +38,17 @@ class PushController extends GetxController {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         mensaje = message;
+        print(mensaje);
         push();
       },
       onLaunch: (Map<String, dynamic> message) async {
         mensaje = message;
+        print(mensaje);
         push();
       },
       onResume: (Map<String, dynamic> message) async {
         mensaje = message;
+        print(mensaje);
         push();
       },
     );
@@ -58,16 +61,19 @@ class PushController extends GetxController {
   }
 
   Future<void> pushVoid() async {
-    var tipoPush;
-    var dataPush;
-    var mensajePush = mensaje['notification']['body'];
-    if (Platform.isAndroid) {
-      tipoPush = mensaje['data']['type'];
-      dataPush = mensaje['data'];
-    } else {
-      tipoPush = mensaje['type'];
-      dataPush = mensaje;
-    }
+    // var tipoPush;
+    // var dataPush;
+    var mensajePush = mensaje['data']['message'];
+    var tipoPush = mensaje['data']['type'];
+    var dataPush = mensaje['data'];
+    // if (Platform.isAndroid) {
+    //   tipoPush = mensaje['data']['type'];
+    //   dataPush = mensaje['data'];
+    // }
+    // else {
+    //   tipoPush = mensaje['type'];
+    //   dataPush = mensaje;
+    // }
     //
     if (tipoPush == "AttentionFinished") {
       homeC.getSummary();

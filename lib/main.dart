@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'config/global_variables.dart';
 
+import 'src/controllers/notificacion_controller/notificacion_controller.dart';
 import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
 import 'src/controllers/veterinaria_controller/lista_vets_controller.dart';
 import 'src/theme/theme.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
 
     Get.put(VeterinariasController());
     Get.put(FiltraVetsController());
+    Get.put(NotificacionController());
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: appPruebas,
