@@ -18,7 +18,7 @@ class BuildPushNoti extends StatelessWidget {
   BuildPushNoti({@required this.noti, @required this.mensaje});
 
   final homeC = Get.find<HomeController>();
-  final notificacionC = Get.find<NotificacionController>();
+  // final notificacionC = Get.find<NotificacionController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class BuildPushNoti extends StatelessWidget {
     switch (noti['type']) {
       case "Marketing":
         {
-          notificacionC.getNotificacion();
+          // notificacionC.getNotificacion();
           return marketing(noti);
         }
         break;

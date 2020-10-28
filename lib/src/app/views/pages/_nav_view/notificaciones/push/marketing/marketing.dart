@@ -10,12 +10,13 @@ Widget marketing(noti) {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Divider(
-          color: colorMain,
-          height: 2,
-          indent: 5,
-          endIndent: 5,
-          thickness: 10,
+        Padding(
+          padding: const EdgeInsets.only(left: 4),
+          child: Container(
+            height: 5,
+            width: 20,
+            color: colorMain,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 9, right: 9, top: 9, bottom: 5),
@@ -42,15 +43,15 @@ Widget marketing(noti) {
           ),
         ),
         SizedBox(height: 5.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            FlatButton(
-              child: Text('Omitir'),
-              onPressed: () => Get.back(),
-            ),
-          ],
-        )
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   children: <Widget>[
+        //     FlatButton(
+        //       child: Text('Salir'),
+        //       onPressed: () => Get.back(),
+        //     ),
+        //   ],
+        // )
       ],
     ),
   );

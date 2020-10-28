@@ -21,17 +21,18 @@ Widget marketing(Notificacion noti) {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Divider(
+                          Container(
+                            height: 5,
+                            width: 20,
                             color: colorMain,
-                            height: 2,
-                            indent: 85,
-                            endIndent: 85,
-                            thickness: 1,
                           ),
-                          // Text(
-                          //   noti.options['title'],
-                          //   style: TextStyle(fontWeight: FontWeight.bold),
-                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2.5),
+                            child: Text(
+                              noti.options['title'],
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 2.5),
                             child: Text(noti.message),

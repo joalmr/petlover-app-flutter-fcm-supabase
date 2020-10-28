@@ -18,7 +18,7 @@ class NotificacionesPage extends StatelessWidget {
         acc: null,
       ), //mediaAncho < 600 ? appbar(leadingH, 'Notificaciones', null) : appbarSec('Notificaciones', null),
       body: GetX<NotificacionController>(
-        // init: NotificacionController(),
+        init: NotificacionController(),
         builder: (_) {
           return RefreshIndicator(
             key: refreshKey,

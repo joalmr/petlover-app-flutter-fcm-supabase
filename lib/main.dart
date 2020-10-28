@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
     Get.put(VeterinariasController());
     Get.put(FiltraVetsController());
-    Get.put(NotificacionController());
+    // Get.put(NotificacionController());
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: appPruebas,
