@@ -88,25 +88,19 @@ class LoginController extends GetxController {
       FacebookPermission.publicProfile,
       FacebookPermission.email,
     ]);
-    print(result.status);
+
     switch (result.status) {
       case FacebookLoginStatus.Success:
         {
           // final FacebookAccessToken accessToken = result.accessToken;
-
           final fbProfile = await fb.getUserProfile();
           final fbEmail = await fb.getUserEmail();
-          final fbImageUrl = await fb.getProfileImageUrl(width: 100);
+          // final fbImageUrl = await fb.getProfileImageUrl(width: 100);
 
           var nombre = fbProfile.firstName;
           var apellido = fbProfile.lastName;
           var email = fbEmail;
           var fbId = fbProfile.userId;
-
-          print('===fb id===');
-          print(fbId);
-          print('===fb img===');
-          print(fbImageUrl);
 
           Map<String, dynamic> respLogin = await repository.loginFb(nombre, apellido, email, fbId);
           if (respLogin['code'] == 200) {

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
