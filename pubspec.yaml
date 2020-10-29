@@ -21,6 +21,9 @@ dependencies:
     sdk: flutter    
   flutter_localizations:
     sdk: flutter
+
+  # flutter_package_manager: ^0.2.0
+  
   google_maps_flutter: ^0.5.28+1
   geolocator: ^5.2.0
   google_maps_webservice: ^0.0.16

@@ -35,6 +35,11 @@ class GlobalController extends GetxController {
     evaluaLogin();
   }
 
+  // Future<PackageInfo> getPackageInfo() async {
+  //   final PackageInfo info = await FlutterPackageManager.getPackageInfo('com.proypet.user');
+  //   return info;
+  // }
+
   getTema() {
     if (_prefs.themeMode != null) {
       if (_prefs.themeMode == 'claro') {
