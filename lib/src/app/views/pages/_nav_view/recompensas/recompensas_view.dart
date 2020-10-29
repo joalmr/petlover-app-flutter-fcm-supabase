@@ -139,7 +139,7 @@ class RecompensasPage extends StatelessWidget {
                                     height: 120.0,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.0),
-                                      color: colorGreen2,
+                                      color: colorMain,
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
