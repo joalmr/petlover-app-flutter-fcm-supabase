@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Brightness brightness ??= Brightness.light;
-final bool esOscuro = Brightness.light == Brightness.dark;
-
 final fondoScaffoldClaro = Colors.grey[50];
 final fondoScaffoldOscuro = Colors.grey[850];
 //

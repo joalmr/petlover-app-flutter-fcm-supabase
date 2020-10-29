@@ -28,16 +28,6 @@ ThemeData temaOscuro = ThemeData(
     backgroundColor: colorMain,
     foregroundColor: Colors.white,
   ),
-  // appBarTheme: AppBarTheme(
-  //   textTheme: TextTheme(
-  //     headline6: TextStyle(
-  //       fontSize: 18.0,
-  //       color: Colors.white,
-  //     ),
-  //   ),
-  //   // color: fondoScaffoldOscuro,
-  //   elevation: 0,
-  // ),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(
