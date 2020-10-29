@@ -121,7 +121,7 @@ class SingupPage extends StatelessWidget {
                             child: Obx(() => buttonPri('Registrarse', !_.loading.value ? _.getSignUp : null))),
                         SizedBox(height: 20.0),
                         Platform.isIOS
-                            ? null
+                            ? SizedBox(height: 0)
                             : Column(
                                 children: [
                                   Divider(

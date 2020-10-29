@@ -21,7 +21,6 @@ class LoginPage extends StatelessWidget {
         builder: (_) {
           return Scaffold(
             appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(elevation: 0)),
-            // backgroundColor: appPruebas ? colorRed : null,
             body: FadeView(
               child: ListView(
                 children: [
@@ -104,7 +103,7 @@ class LoginPage extends StatelessWidget {
                     child: Obx(() => buttonPri(_.loading.value ? 'Cargando..' : 'Iniciar sesión', _.loading.value ? null : _.getLogin)),
                   ),
                   Platform.isIOS
-                      ? null
+                      ? SizedBox(height: 0)
                       : Column(
                           children: [
                             SizedBox(height: 5.0),
