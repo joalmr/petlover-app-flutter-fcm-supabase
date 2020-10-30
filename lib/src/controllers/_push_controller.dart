@@ -6,10 +6,13 @@ import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/push/buildP
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/push/buildPushQualify.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/services/auth_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class PushController extends GetxController {
   AuthService loginApi = AuthService();
   final homeC = Get.find<HomeController>();
+
+  final _prefs = new PreferenciasUsuario();
 
   Map<String, dynamic> mensaje;
 
@@ -37,16 +40,19 @@ class PushController extends GetxController {
       onMessage: (Map<String, dynamic> message) async {
         mensaje = message;
         print(mensaje);
+        _prefs.notificaAviso = true;
         push();
       },
       onLaunch: (Map<String, dynamic> message) async {
         mensaje = message;
         print(mensaje);
+        _prefs.notificaAviso = true;
         push();
       },
       onResume: (Map<String, dynamic> message) async {
         mensaje = message;
         print(mensaje);
+        _prefs.notificaAviso = true;
         push();
       },
     );

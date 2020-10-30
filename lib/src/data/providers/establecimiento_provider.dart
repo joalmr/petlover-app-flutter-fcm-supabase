@@ -67,8 +67,7 @@ class EstablecimientoProvider {
     List<Comentarios> comentarios = [];
 
     final resp = await http.get(url, headers: headersToken());
-    print('===comentarios===');
-    print(resp.statusCode);
+
     if (resp.statusCode == 200) {
       comentarios = comentariosFromJson(resp.body);
     }

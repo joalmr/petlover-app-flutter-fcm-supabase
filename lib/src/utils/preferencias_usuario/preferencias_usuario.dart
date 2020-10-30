@@ -40,6 +40,12 @@ class PreferenciasUsuario {
   myAddressLatLngDel() => box.remove('mylatlng');
   hasMyAddressLatLng() => box.hasData('mylatlng');
 
+  //aviso notificacion
+  get notificaAviso => box.read('notifica') ?? false;
+  set notificaAviso(bool value) => box.write('notifica', value);
+  notificaAvisoDel() => box.remove('notifica');
+  hasnotificaAviso() => box.hasData('notifica');
+
   //tema app
   get themeMode => box.read('theme');
   set themeMode(String value) => box.write('theme', value);

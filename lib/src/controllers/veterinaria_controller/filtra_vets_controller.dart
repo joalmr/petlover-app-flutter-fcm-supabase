@@ -68,7 +68,7 @@ class FiltraVetsController extends GetxController {
     }
 
     vetC.getVets();
-    // vetC.listaFiltros.clear();
+    vetC.listaFiltros.clear();
     vetC.listaFiltros.addAll(listaFiltros);
     Get.offAllNamed('navLista');
   }
