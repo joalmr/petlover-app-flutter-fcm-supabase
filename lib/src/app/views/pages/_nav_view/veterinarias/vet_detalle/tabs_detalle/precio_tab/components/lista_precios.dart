@@ -5,9 +5,8 @@ Widget listaPrecio(precios) {
   return Column(
     children: <Widget>[
       SizedBox(height: 10.0),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
+      Wrap(
+        children: [
           precio(
             "Consulta",
             precios["consultation"]["from"] == null ? "" : precios["consultation"]["from"],
@@ -18,11 +17,6 @@ Widget listaPrecio(precios) {
             precios["vaccination"]["from"] == null ? "" : precios["vaccination"]["from"],
             precios["vaccination"]["to"] == null ? "" : precios["vaccination"]["to"],
           ),
-        ],
-      ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
           precio(
             "Baños",
             precios["grooming"]["from"] == null ? "" : precios["grooming"]["from"],

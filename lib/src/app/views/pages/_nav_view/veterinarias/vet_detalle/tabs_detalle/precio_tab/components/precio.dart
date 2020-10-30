@@ -14,7 +14,7 @@ Widget precio(tipo, desde, hasta) {
         child: Card(
           elevation: 2.0,
           child: Container(
-            width: 130,
+            width: 145,
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

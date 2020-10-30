@@ -10,7 +10,7 @@ class ComentarioVetController extends GetxController {
 
   RxBool cargando = true.obs;
   RxList<Comentarios> comentarios = List<Comentarios>().obs;
-  List<Comentarios> comentarios10 = [];
+  // List<Comentarios> comentarios10 = [];
 
   @override
   void onInit() {

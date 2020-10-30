@@ -5,6 +5,7 @@ import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/t
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/general_tab/general_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/horario_tab/horario_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/precio_tab/precio_view.dart';
+import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/promocion_tab/promocion_view.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/detalle_vet_controller.dart';
 
 class DataVet extends StatelessWidget {
@@ -12,7 +13,7 @@ class DataVet extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<VetDetalleController>(builder: (_) {
       return DefaultTabController(
-        length: 4,
+        length: 5,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -101,6 +102,7 @@ class DataVet extends StatelessWidget {
               isScrollable: true,
               tabs: [
                 Tab(text: "General"),
+                Tab(text: "Promociones"),
                 Tab(text: "Precios"),
                 Tab(text: "Horarios"),
                 Tab(text: "Comentarios"),
@@ -110,6 +112,7 @@ class DataVet extends StatelessWidget {
               child: TabBarView(
                 children: <Widget>[
                   ViewGeneral(),
+                  ViewPromocion(),
                   ViewPrecio(),
                   ViewHorario(),
                   ViewComentario(),
