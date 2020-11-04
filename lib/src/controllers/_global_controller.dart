@@ -50,6 +50,7 @@ class GlobalController extends GetxController {
         repository.logOut();
       } else {
         pushController.firebase();
+        getUsuario();
       }
     }
   }

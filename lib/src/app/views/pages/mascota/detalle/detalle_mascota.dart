@@ -50,64 +50,43 @@ class MascotaDetallePage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                  margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
-                                  height: context.height - context.height * 0.4,
-                                  decoration: BoxDecoration(
-                                    borderRadius: borderRadius,
-                                    color: Theme.of(context).backgroundColor,
-                                  ),
-                                  child: DefaultTabController(
-                                    length: 2,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        datoMascota(_.pet),
-                                        TabBar(
-                                          indicatorColor: colorMain,
-                                          labelStyle: TextStyle(fontWeight: FontWeight.bold),
-                                          labelColor: colorMain,
-                                          unselectedLabelColor: Get.textTheme.subtitle2.color,
-                                          unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-                                          isScrollable: true,
-                                          tabs: [
-                                            Tab(text: "Atenciones"),
-                                            Tab(text: "Vacunas"),
+                                margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
+                                height: context.height - context.height * 0.4,
+                                decoration: BoxDecoration(
+                                  borderRadius: borderRadius,
+                                  color: Theme.of(context).backgroundColor,
+                                ),
+                                child: DefaultTabController(
+                                  length: 2,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      datoMascota(_.pet),
+                                      TabBar(
+                                        indicatorColor: colorMain,
+                                        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                                        labelColor: colorMain,
+                                        unselectedLabelColor: Get.textTheme.subtitle2.color,
+                                        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+                                        isScrollable: true,
+                                        tabs: [
+                                          Tab(text: "Atenciones"),
+                                          Tab(text: "Vacunas"),
+                                        ],
+                                      ),
+                                      Expanded(
+                                        child: TabBarView(
+                                          children: <Widget>[
+                                            listaHistorial(context, _.history),
+                                            cartillaDigital(),
                                           ],
                                         ),
-                                        Expanded(
-                                          child: TabBarView(
-                                            children: <Widget>[
-                                              listaHistorial(context, _.history),
-                                              cartillaDigital(),
-                                              // SingleChildScrollView(
-                                              //   child: Column(
-                                              //     children: [
-                                              //       Text('data'),
-                                              //       Text('data'),
-                                              //     ],
-                                              //   ),
-                                              // ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-
-                                  // SingleChildScrollView(
-                                  //   physics: BouncingScrollPhysics(),
-                                  //   child: Column(
-                                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                                  //     mainAxisAlignment: MainAxisAlignment.start,
-                                  //     children: <Widget>[
-
-                                  //       listaHistorial(context, _.history),
-                                  //       //
-                                  //     ],
-                                  //   ),
-                                  // ),
+                                      ),
+                                    ],
                                   ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
