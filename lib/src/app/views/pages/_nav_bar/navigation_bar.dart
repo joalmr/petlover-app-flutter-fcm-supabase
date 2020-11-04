@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,6 @@ import 'package:proypet/src/app/views/pages/_nav_view/recompensas/recompensas_vi
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/veterinarias_view.dart';
 import 'package:proypet/src/controllers/_navigation_controller.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/home/home_view.dart';
-import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
@@ -23,8 +21,6 @@ class NavigationBar extends StatefulWidget {
 class _NavigationBarState extends State<NavigationBar> {
   int currentTabIndex;
   _NavigationBarState({@required this.currentTabIndex});
-
-  final _prefs = new PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +38,7 @@ class _NavigationBarState extends State<NavigationBar> {
         title: Text('Inicio', style: TextStyle(fontSize: 10.5)),
       ),
       BottomNavigationBarItem(
-        icon: _prefs.notificaAviso
-            ? Badge(
-                toAnimate: true,
-                animationType: BadgeAnimationType.slide,
-                position: BadgePosition.topEnd(top: 0),
-                badgeColor: colorRed,
-                child: Icon(Icons.notifications_active),
-              )
-            : Icon(Icons.notifications_active),
+        icon: Icon(Icons.notifications_active),
         title: Text('Notificaciones', style: TextStyle(fontSize: 10.5)),
       ),
       BottomNavigationBarItem(
@@ -67,7 +55,6 @@ class _NavigationBarState extends State<NavigationBar> {
     return GetBuilder<NavigationController>(
       init: NavigationController(),
       builder: (_) {
-        print(mediaAncho);
         return mediaAncho < 600
             ? Scaffold(
                 body: _kTabPages[currentTabIndex],

@@ -19,7 +19,6 @@ import 'src/controllers/_global_controller.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  // GetIt getIt = GetIt.I;
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
 }
 
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
 
     Get.put(VeterinariasController());
     Get.put(FiltraVetsController());
-    // Get.put(NotificacionController());
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: appPruebas,

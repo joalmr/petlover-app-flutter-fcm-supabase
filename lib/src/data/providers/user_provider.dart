@@ -7,15 +7,19 @@ class UserProvider {
   final _url = urlApi;
   Dio dio = new Dio();
 
+  //no se para que lo cree, investigar
   Future<UserModel2> getUser() async {
     final url = '$_url/profile';
-    // final resp = await http.get(url, headers: headersToken());
+
     Response response;
     response = await dio.get(
       url,
       options: Options(headers: headersToken()),
     );
     final datosUsuario = UserModel2.fromJson(response.data['user']);
+    // print('===user model===');
+    // print(datosUsuario);
+    // print(datosUsuario.name);
     return datosUsuario;
   }
 

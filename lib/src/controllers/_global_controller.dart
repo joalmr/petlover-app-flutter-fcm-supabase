@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:proypet/src/controllers/_push_controller.dart';
-import 'package:proypet/src/controllers/home_controller/home_controller.dart';
+// import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/models/update/usuario/user_model.dart';
 import 'package:proypet/src/data/services/auth_service.dart';
 import 'package:proypet/src/data/services/user_service.dart';
@@ -14,7 +14,6 @@ class GlobalController extends GetxController {
 
   final _prefs = new PreferenciasUsuario();
   final pushController = PushController();
-  final homeController = Get.find<HomeController>();
 
   Rx<UserModel2> _usuario = UserModel2().obs;
   set usuario(UserModel2 value) => _usuario.value = value;
@@ -51,8 +50,6 @@ class GlobalController extends GetxController {
         repository.logOut();
       } else {
         pushController.firebase();
-        getUsuario();
-        homeController.getSummary();
       }
     }
   }

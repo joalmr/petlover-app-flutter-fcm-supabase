@@ -17,12 +17,9 @@ class AuthProvider {
         "email": email,
         "social_id": fbId,
       };
-      print(loginData);
+
       Response response;
       response = await dio.post(url, data: loginData);
-
-      print(response.statusCode);
-      print(response.data);
 
       var jsonRespuesta;
 
@@ -90,7 +87,6 @@ class AuthProvider {
       final userData = {"name": name, "lastname": lastname, "email": email, "password": password};
       Response response;
       response = await dio.post(url, data: userData);
-      print(response.statusCode);
 
       return response.statusCode;
     } catch (ex) {

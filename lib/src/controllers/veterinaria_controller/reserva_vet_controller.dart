@@ -97,8 +97,7 @@ class ReservaVetController extends GetxController {
     misMascotas = vetdC.misMascotas;
     mascotaId = vetdC.misMascotas.first.id;
     hasDelivery = vetdC.hasDelivery;
-    print('===tiene delivery===');
-    print(hasDelivery);
+
     rootBundle.loadString('assets/map_style.txt').then((string) {
       _mapStyle = string;
     });
@@ -462,10 +461,9 @@ class ReservaVetController extends GetxController {
     if (hasDelivery == true && deliveryId != "1") {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
-    print(inputDireccionController.text);
-    print(_prefs.myAddress);
+
     bool resp = await bookingService.booking(booking, deliveryTipo, _prefs.myAddress);
-    print(resp);
+
     if (resp) {
       homeC.getSummary();
       MascotaService().getPet(mascotaId).then(

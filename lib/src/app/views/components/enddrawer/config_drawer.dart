@@ -111,8 +111,8 @@ class ConfigDrawer extends StatelessWidget {
     //limpiando storage
     _prefs.tokenDel(); //limpia token
     _prefs.verifyDel(); //limpia verificado
-    // _prefs.positionDel(); //limpia gps para lista vets
-    // _prefs.ubicacionDel(); //limpia direccion para lista vets
+    _prefs.positionDel(); //limpia gps para lista vets
+    _prefs.ubicacionDel(); //limpia direccion para lista vets
     _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
     _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
     _prefs.notificaAvisoDel(); //limpia notificacion aviso

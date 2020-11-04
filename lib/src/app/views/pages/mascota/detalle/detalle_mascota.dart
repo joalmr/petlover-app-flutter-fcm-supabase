@@ -8,6 +8,7 @@ import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 
+import 'components/cartilla_vacuna.dart';
 import 'components/dato_mascota.dart';
 import 'components/lista_historia.dart';
 
@@ -49,25 +50,64 @@ class MascotaDetallePage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
-                                height: context.height - context.height * 0.4,
-                                decoration: BoxDecoration(
-                                  borderRadius: borderRadius,
-                                  color: Theme.of(context).backgroundColor,
-                                ),
-                                child: SingleChildScrollView(
-                                  physics: BouncingScrollPhysics(),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      datoMascota(_.pet),
-                                      listaHistorial(context, _.history),
-                                      //
-                                    ],
+                                  margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
+                                  height: context.height - context.height * 0.4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: borderRadius,
+                                    color: Theme.of(context).backgroundColor,
                                   ),
-                                ),
-                              ),
+                                  child: DefaultTabController(
+                                    length: 2,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        datoMascota(_.pet),
+                                        TabBar(
+                                          indicatorColor: colorMain,
+                                          labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                                          labelColor: colorMain,
+                                          unselectedLabelColor: Get.textTheme.subtitle2.color,
+                                          unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+                                          isScrollable: true,
+                                          tabs: [
+                                            Tab(text: "Atenciones"),
+                                            Tab(text: "Vacunas"),
+                                          ],
+                                        ),
+                                        Expanded(
+                                          child: TabBarView(
+                                            children: <Widget>[
+                                              listaHistorial(context, _.history),
+                                              cartillaDigital(),
+                                              // SingleChildScrollView(
+                                              //   child: Column(
+                                              //     children: [
+                                              //       Text('data'),
+                                              //       Text('data'),
+                                              //     ],
+                                              //   ),
+                                              // ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+
+                                  // SingleChildScrollView(
+                                  //   physics: BouncingScrollPhysics(),
+                                  //   child: Column(
+                                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                                  //     mainAxisAlignment: MainAxisAlignment.start,
+                                  //     children: <Widget>[
+
+                                  //       listaHistorial(context, _.history),
+                                  //       //
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  ),
                             ],
                           ),
                         ),

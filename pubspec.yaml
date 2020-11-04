@@ -47,6 +47,7 @@ dependencies:
   time_parser: ^1.1.0
   #fin nuevos utiles
   
+  # shared_preferences: ^0.5.12+2
   overflow_view:
   
   #imagenes 

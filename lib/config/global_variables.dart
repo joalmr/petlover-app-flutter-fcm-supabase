@@ -28,8 +28,5 @@ var mediaAncho = Get.width;
 final _prefs = new PreferenciasUsuario();
 
 headersToken() {
-  return {
-    // HttpHeaders.contentTypeHeader: "application/json",
-    HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"
-  };
+  return {HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"};
 }

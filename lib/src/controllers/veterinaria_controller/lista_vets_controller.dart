@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import '../_global_controller.dart';
 import 'filtra_vets_controller.dart';
@@ -15,10 +16,14 @@ class VeterinariasController extends GetxController {
 
   final global = Get.find<GlobalController>();
 
+  final _prefs = new PreferenciasUsuario();
+
   @override
   void onInit() {
     super.onInit();
-    getVets();
+    if (_prefs.hasToken()) {
+      getVets();
+    }
   }
 
   @override

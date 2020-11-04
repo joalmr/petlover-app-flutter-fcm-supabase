@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/booking/booking_home.dart';
 import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
@@ -18,6 +19,8 @@ class HomeController extends GetxController {
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
 
+  final _prefs = new PreferenciasUsuario();
+
   void volver() => Get.back();
 
   Future refresh() => _refresh();
@@ -26,6 +29,15 @@ class HomeController extends GetxController {
     await Future.delayed(Duration(milliseconds: 2));
     getSummary();
     return null;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (_prefs.hasToken()) {
+      getSummary();
+    }
+    // getSummary();
   }
 
   void getSummary() {

@@ -94,7 +94,7 @@ class MascotaProvider {
   Future<bool> editPet(MascotaModel2 mascota, File imagen) async {
     final idkey = mascota.id;
     final urlpet = '$_url/pets/$idkey/base64';
-    print(imagen);
+
     if (imagen.path != '') {
       upImage(imagen, urlpet);
     }
@@ -158,11 +158,11 @@ class MascotaProvider {
     final mimetype = mime(imagen.path).split('/');
     final part0 = mimetype[0];
     final part1 = mimetype[1];
-    print(pic);
+
     String sendPic = 'data:$part0/$part1;base64,$pic';
 
     var img = await http.post(url, headers: headersToken(), body: {'base64': sendPic});
-    print(img.statusCode);
+
     var decodeimg = json.decode(img.body);
 
     return decodeimg["picture"];

@@ -12,8 +12,6 @@ import 'package:proypet/src/controllers/auth/login_controller.dart';
 import 'data/icons_login.dart';
 
 class LoginPage extends StatelessWidget {
-  // const LoginPage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(
@@ -71,7 +69,6 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // SizedBox(height: 10.0),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: Obx(() => FormularioText(
@@ -115,25 +112,23 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                             SizedBox(height: 20.0),
-                            Center(
-                              child: FlatButton(
-                                  onPressed: () => Get.toNamed("olvidopass"),
-                                  child: Text("Olvidaste tu contraseña?".toUpperCase(),
-                                      style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700))),
-                            ),
-                            SizedBox(height: 15.0),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text("Nuevo en Proypet?", style: Get.textTheme.subtitle2),
-                                FlatButton(
-                                    onPressed: () => Get.toNamed("registro"),
-                                    child: Text("Registrarse",
-                                        style: Get.textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
-                              ],
-                            )
                           ],
                         ),
+                  Center(
+                    child: FlatButton(
+                        onPressed: () => Get.toNamed("olvidopass"),
+                        child: Text("Olvidaste tu contraseña?".toUpperCase(), style: TextStyle(color: colorMain, fontSize: 12, fontWeight: FontWeight.w700))),
+                  ),
+                  SizedBox(height: 15.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text("Nuevo en Proypet?", style: Get.textTheme.subtitle2),
+                      FlatButton(
+                          onPressed: () => Get.toNamed("registro"),
+                          child: Text("Registrarse", style: Get.textTheme.subtitle2.apply(color: colorMain).copyWith(decoration: TextDecoration.underline))),
+                    ],
+                  ),
                 ],
               ),
             ),

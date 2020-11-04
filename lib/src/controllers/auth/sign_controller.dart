@@ -67,7 +67,7 @@ class SignController extends GetxController {
           Timer(Duration(milliseconds: 500), () => loading.value = false);
         } else {
           int resp = await repository.registerUser(name, lastname, email, password);
-          print(resp);
+
           if (resp == 200 || resp == 201) {
             loading.value = false;
             Get.offAll(VerifyPage(textomail: email));

@@ -7,6 +7,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/controllers/_push_controller.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
+import 'package:proypet/src/controllers/veterinaria_controller/lista_vets_controller.dart';
 import 'package:proypet/src/data/services/auth_service.dart';
 
 import '../_global_controller.dart';
@@ -37,6 +38,7 @@ class LoginController extends GetxController {
   final pushController = PushController();
   final homeController = Get.find<HomeController>();
   final globalController = Get.find<GlobalController>();
+  final vetsController = Get.find<VeterinariasController>();
 
   @override
   void onInit() {
@@ -83,7 +85,7 @@ class LoginController extends GetxController {
   //
   void initFacebookLogin() async {
     final fb = FacebookLogin();
-    // var result = await login.logIn(['email']);
+
     final result = await fb.logIn(permissions: [
       FacebookPermission.publicProfile,
       FacebookPermission.email,
@@ -126,14 +128,11 @@ class LoginController extends GetxController {
     }
   }
 
-  void onLoginStatusChange(bool isLogged) {
-    isLoggedIn.value = isLogged;
-  }
-
   ejecutaFirebase() {
     pushController.firebase(); //TODO: el firebase de ios mantiene prod
     globalController.getUsuario();
     homeController.getSummary();
+    vetsController.getVets();
     Get.offAllNamed('navInicio');
   }
 }
