@@ -27,7 +27,7 @@ class ViewPromocion extends StatelessWidget {
                     child: Center(
                       child: FadeIn(
                         duration: Duration(milliseconds: 1000),
-                        child: Text('No posee comentarios.'),
+                        child: Text('No tiene promociones.'),
                       ),
                     ),
                   ),
@@ -45,7 +45,8 @@ class ViewPromocion extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 8),
+                              padding: const EdgeInsets.only(
+                                  top: 8, bottom: 8, left: 10, right: 8),
                               child: CircleAvatar(
                                 radius: 30,
                                 backgroundColor: colorBlue,
@@ -63,7 +64,8 @@ class ViewPromocion extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 10),
+                              padding: const EdgeInsets.only(
+                                  top: 8, bottom: 8, left: 8, right: 10),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,17 +73,25 @@ class ViewPromocion extends StatelessWidget {
                                   Text(
                                     promocion.type == 'Amount'
                                         ? '-${promocion.discount}'
-                                        : promocion.type == 'Percentage' ? '${promocion.discount}%' : '${promocion.discount}',
+                                        : promocion.type == 'Percentage'
+                                            ? '${promocion.discount}%'
+                                            : '${promocion.discount}',
                                     style: TextStyle(
-                                      color: promocion.type == 'Total' ? colorGreen2 : colorRed,
+                                      color: promocion.type == 'Total'
+                                          ? colorGreen2
+                                          : colorRed,
                                       fontWeight: FontWeight.w900,
                                       fontSize: 24,
                                     ),
                                   ),
                                   Text(
-                                    promocion.type == 'Percentage' ? 'desc.' : 'soles',
+                                    promocion.type == 'Percentage'
+                                        ? 'desc.'
+                                        : 'soles',
                                     style: TextStyle(
-                                      color: promocion.type == 'Total' ? colorGreen2 : colorRed,
+                                      color: promocion.type == 'Total'
+                                          ? colorGreen2
+                                          : colorRed,
                                       fontWeight: FontWeight.w900,
                                       fontSize: 10,
                                     ),

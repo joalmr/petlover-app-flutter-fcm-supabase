@@ -39,9 +39,11 @@ class Mascotas extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text('Se parte de la comunidad responsable', textAlign: TextAlign.center),
+                            Text('Se parte de la comunidad responsable',
+                                textAlign: TextAlign.center),
                             SizedBox(height: 10.0),
-                            buttonOutLine('Agregar mascota', _.agregarMascota, colorMain),
+                            buttonOutLine(
+                                'Agregar mascota', _.agregarMascota, colorMain),
                           ],
                         ),
                       ),
@@ -69,7 +71,8 @@ class Mascotas extends StatelessWidget {
                                           height: double.maxFinite,
                                           width: double.maxFinite,
                                           foregroundDecoration: BoxDecoration(
-                                            color: Colors.black.withOpacity(0.15),
+                                            color:
+                                                Colors.black.withOpacity(0.15),
                                           ),
                                           child: WebsafeNetworkImage(
                                             imageUrl: mascota.picture,
@@ -80,11 +83,20 @@ class Mascotas extends StatelessWidget {
                                           top: 15.0,
                                           left: 10.0,
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: <Widget>[
-                                              Text(mascota.name, style: Get.textTheme.headline6.apply(color: Colors.white, fontWeightDelta: 2)),
-                                              Text(mascota.breedName, style: Get.textTheme.subtitle2.apply(color: Colors.white)),
+                                              Text(mascota.name,
+                                                  style: Get.textTheme.headline6
+                                                      .apply(
+                                                          color: Colors.white,
+                                                          fontWeightDelta: 2)),
+                                              Text(mascota.breedName,
+                                                  style: Get.textTheme.subtitle2
+                                                      .apply(
+                                                          color: Colors.white)),
                                             ],
                                           ),
                                         ),
@@ -92,15 +104,24 @@ class Mascotas extends StatelessWidget {
                                           bottom: 10.0,
                                           left: 10.0,
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: <Widget>[
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text: mascota.weight.toString(),
-                                                      style: Get.textTheme.headline4.apply(color: Colors.white, fontWeightDelta: 2),
+                                                      text: mascota.weight
+                                                          .toString(),
+                                                      style: Get
+                                                          .textTheme.headline4
+                                                          .apply(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeightDelta:
+                                                                  2),
                                                     ),
                                                     TextSpan(text: " kg.")
                                                   ],
@@ -108,12 +129,26 @@ class Mascotas extends StatelessWidget {
                                               ),
                                               Row(
                                                 children: <Widget>[
-                                                  (mascota.status == 0) ? Icon(Icons.bookmark, color: Colors.white) : Icon(Icons.cake, color: Colors.white),
+                                                  (mascota.status == 0)
+                                                      ? Icon(Icons.bookmark,
+                                                          color: Colors.white)
+                                                      : Icon(Icons.cake,
+                                                          color: Colors.white),
                                                   SizedBox(width: 5.0),
                                                   (mascota.status == 0)
-                                                      ? Text("Fallecido", style: TextStyle(color: Colors.white))
-                                                      : Text(calculateAge(DateTime.parse(mascota.birthdate)),
-                                                          style: Get.textTheme.subtitle2.apply(color: Colors.white))
+                                                      ? Text("Fallecido",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white))
+                                                      : Text(
+                                                          calculateAge(DateTime
+                                                              .parse(mascota
+                                                                  .birthdate)),
+                                                          style: Get.textTheme
+                                                              .subtitle2
+                                                              .apply(
+                                                                  color: Colors
+                                                                      .white))
                                                 ],
                                               ),
                                             ],
@@ -122,7 +157,11 @@ class Mascotas extends StatelessWidget {
                                         Positioned(
                                           bottom: 10.0,
                                           right: 10.0,
-                                          child: buttonOutLine('Ver más', () => _.detalleMascota(mascota.id), colorGray1),
+                                          child: buttonOutLine(
+                                              'Ver más',
+                                              () =>
+                                                  _.detalleMascota(mascota.id),
+                                              colorGray1),
                                         ),
                                       ],
                                     ),

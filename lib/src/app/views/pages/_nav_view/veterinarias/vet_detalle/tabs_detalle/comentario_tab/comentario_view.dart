@@ -27,7 +27,7 @@ class ViewComentario extends StatelessWidget {
                     child: Center(
                       child: FadeIn(
                         duration: Duration(milliseconds: 1000),
-                        child: Text('No posee comentarios.'),
+                        child: Text('No tiene comentarios.'),
                       ),
                     ),
                   ),
@@ -44,7 +44,8 @@ class ViewComentario extends StatelessWidget {
                               return ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor: Colors.transparent,
-                                  backgroundImage: CachedNetworkImageProvider(_.comentarios[index].petPicture),
+                                  backgroundImage: CachedNetworkImageProvider(
+                                      _.comentarios[index].petPicture),
                                   radius: 20.0,
                                 ),
                                 title: Container(
@@ -61,7 +62,8 @@ class ViewComentario extends StatelessWidget {
                                       _.comentarios[index].stars.toString(),
                                       style: TextStyle(fontSize: 14),
                                     ),
-                                    Icon(Icons.star, color: colorYellow, size: 17)
+                                    Icon(Icons.star,
+                                        color: colorYellow, size: 17)
                                   ],
                                 ),
                               );

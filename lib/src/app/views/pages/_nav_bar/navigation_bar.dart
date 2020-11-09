@@ -15,7 +15,8 @@ class NavigationBar extends StatefulWidget {
   NavigationBar({@required this.currentTabIndex});
 
   @override
-  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: currentTabIndex);
+  _NavigationBarState createState() =>
+      _NavigationBarState(currentTabIndex: currentTabIndex);
 }
 
 class _NavigationBarState extends State<NavigationBar> {
@@ -35,20 +36,20 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
         icon: Icon(Icons.pets),
-        title: Text('Inicio', style: TextStyle(fontSize: 10.5)),
+        label: 'Inicio',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.notifications_active),
-        title: Text('Notificaciones', style: TextStyle(fontSize: 10.5)),
+        label: 'Notificaciones',
       ),
       BottomNavigationBarItem(
         icon: Icon(Icons.search),
-        title: Text('Veterinarias', style: TextStyle(fontSize: 10.5)),
+        label: 'Veterinarias',
       ),
       // BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5)),),
       BottomNavigationBarItem(
         icon: Icon(Icons.monetization_on),
-        title: Text('Puntos', style: TextStyle(fontSize: 10.5)),
+        label: 'Puntos',
       ),
     ];
 
@@ -60,6 +61,8 @@ class _NavigationBarState extends State<NavigationBar> {
                 body: _kTabPages[currentTabIndex],
                 bottomNavigationBar: BottomNavigationBar(
                   iconSize: 28.0,
+                  selectedLabelStyle: TextStyle(fontSize: 11.0),
+                  unselectedLabelStyle: TextStyle(fontSize: 9.0),
                   selectedItemColor: colorMain,
                   unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
                   items: _kBottmonNavBarItems,

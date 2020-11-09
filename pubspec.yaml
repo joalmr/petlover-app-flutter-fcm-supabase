@@ -22,8 +22,26 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # flutter_package_manager: ^0.2.0
-  
+  # nuevos
+  # launchers: ^0.4.6
+  # whatsapp_unilink: ^1.0.0+1
+  # flutter_web_browser: ^0.13.0
+  # progressive_image: ^1.0.1
+  # image_crop: ^0.3.4
+  # crop: ^0.4.1
+  # # simple_image_crop: ^1.0.0 #invalido
+  # images_picker: ^0.0.5
+  # image_picker_gallery_camera: ^0.1.6
+  # image_pickers: ^1.0.8+7
+  #
+
+  #imagenes 
+  websafe_network_image: ^1.0.5
+  cached_network_image: ^2.0.0
+  image_cropper:
+  image_picker:
+  #fin imagenes
+
   google_maps_flutter: ^0.5.28+1
   geolocator: ^5.2.0
   google_maps_webservice: ^0.0.16
@@ -43,18 +61,13 @@ dependencies:
   get_storage:
   dio: ^3.0.10
   dio_http_cache: ^0.2.8
-  websafe_network_image: ^1.0.5
   time_parser: ^1.1.0
   #fin nuevos utiles
   
   # shared_preferences: ^0.5.12+2
   overflow_view:
   
-  #imagenes 
-  cached_network_image: ^2.0.0
-  image_cropper: ^1.2.1  
-  image_picker:
-  #fin imagenes
+  
 
   #animaciones
   animate_do: ^1.6.3

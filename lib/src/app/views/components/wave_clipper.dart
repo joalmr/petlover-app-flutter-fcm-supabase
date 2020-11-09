@@ -82,23 +82,17 @@ class WaveClipperOut extends StatelessWidget {
         ClipPath(
           clipper: WaveClipper1(),
           child: Container(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 40,
-                  ),
-                ],
-              ),
-              width: double.infinity,
-              height: _alto,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    colorMain,
-                    colorMain.withAlpha(250),
-                  ],
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 40,
                 ),
-              )),
+              ],
+            ),
+            width: double.infinity,
+            height: _alto,
+            // decoration: BoxDecoration(gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(250)])),
+          ),
         ),
       ],
     );
@@ -113,11 +107,13 @@ class WaveClipper1 extends CustomClipper<Path> {
 
     var firstEndPoint = Offset(size.width * 0.6, size.height - 29 - 50);
     var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
     var secondEndPoint = Offset(size.width, size.height - 60);
     var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();
@@ -138,11 +134,13 @@ class WaveClipper2 extends CustomClipper<Path> {
 
     var firstEndPoint = Offset(size.width * .7, size.height - 40);
     var firstControlPoint = Offset(size.width * .25, size.height);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
     var secondEndPoint = Offset(size.width, size.height - 45);
     var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();
@@ -163,11 +161,13 @@ class WaveClipper3 extends CustomClipper<Path> {
 
     var firstEndPoint = Offset(size.width * 0.6, size.height - 15 - 50);
     var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy, firstEndPoint.dx, firstEndPoint.dy);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
     var secondEndPoint = Offset(size.width, size.height - 40);
     var secondControlPoint = Offset(size.width * 0.84, size.height - 30);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
     path.lineTo(size.width, size.height);
     path.lineTo(size.width, 0);
     path.close();

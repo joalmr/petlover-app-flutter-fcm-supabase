@@ -28,7 +28,8 @@ class LoginController extends GetxController {
   set password(String value) => _password.value = value;
   String get password => this._password.value;
 
-  void togglePasswordVisibility() => passwordVisible.value = !passwordVisible.value;
+  void togglePasswordVisibility() =>
+      passwordVisible.value = !passwordVisible.value;
 
   bool get hasEmailData => email.trim().length > 0;
   bool get isEmailValid => EmailValidator.validate(email);
@@ -67,7 +68,8 @@ class LoginController extends GetxController {
         Timer(Duration(milliseconds: 500), () => loading.value = false);
         mostrarSnackbar('Ingrese un correo valido', colorRed);
       } else {
-        Map<String, dynamic> respLogin = await repository.login(email, password);
+        Map<String, dynamic> respLogin =
+            await repository.login(email, password);
         if (respLogin['code'] == 200) {
           loading.value = false;
           ejecutaFirebase();
@@ -104,7 +106,8 @@ class LoginController extends GetxController {
           var email = fbEmail;
           var fbId = fbProfile.userId;
 
-          Map<String, dynamic> respLogin = await repository.loginFb(nombre, apellido, email, fbId);
+          Map<String, dynamic> respLogin =
+              await repository.loginFb(nombre, apellido, email, fbId);
           if (respLogin['code'] == 200) {
             ejecutaFirebase();
           } else {
@@ -131,7 +134,7 @@ class LoginController extends GetxController {
   ejecutaFirebase() {
     pushController.firebase(); //TODO: el firebase de ios mantiene prod
     globalController.getUsuario();
-    // homeController.getSummary();
+    homeController.getSummary();
     vetsController.getVets();
     Get.offAllNamed('navInicio');
   }

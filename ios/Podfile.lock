@@ -260,7 +260,7 @@ SPEC CHECKSUMS:
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   image_cropper: 3c16d7651730ffe85897f5a1c4e2547e6b54989a
-  image_picker: e3eacd46b94694dde7cf2705955cece853aa1a8f
+  image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   location_permissions: 7e0f9aa0f60deb8ff93ddf0e2a164c7e8197bc94
   map_launcher: e325db1261d029ff33e08e03baccffe09593ffea
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
@@ -279,4 +279,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
