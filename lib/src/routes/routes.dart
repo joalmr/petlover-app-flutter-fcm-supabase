@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/destacados/detalle/detalle_destacado.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/detalle_vet.dart';
+import 'package:proypet/src/app/views/pages/atencion/atencion_califica.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
 
 import 'package:proypet/src/app/views/pages/mascota/historia/detalle_historia.dart';
@@ -20,7 +21,9 @@ List<GetPage> getRutas() {
   return [
     GetPage(
       name: '/',
-      page: () => box.hasData('token') && box.hasData('verify') ? NavigationBar(currentTabIndex: 0) : LoginPage(),
+      page: () => box.hasData('token') && box.hasData('verify')
+          ? NavigationBar(currentTabIndex: 0)
+          : LoginPage(),
     ),
     //
     GetPage(name: 'login', page: () => LoginPage()),
@@ -31,7 +34,8 @@ List<GetPage> getRutas() {
     GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),
     GetPage(name: 'navLista', page: () => NavigationBar(currentTabIndex: 2)),
     // GetPage(name: 'navDestacado', page: () => NavigationBar(currentTabIndex: 3)),
-    GetPage(name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 3)),
+    GetPage(
+        name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 3)),
     //
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
@@ -42,5 +46,7 @@ List<GetPage> getRutas() {
     //
     GetPage(name: 'detalledestacado', page: () => DetalleDestacadoPage()),
     GetPage(name: 'detallereservado', page: () => DetalleReservado()),
+
+    GetPage(name: 'calificaatencion', page: () => AtencionCalifica()),
   ];
 }

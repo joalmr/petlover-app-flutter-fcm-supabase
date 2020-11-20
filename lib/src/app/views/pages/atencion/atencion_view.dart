@@ -42,21 +42,27 @@ class AtencionesPage extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             AtencionModel _atencion = _.atenciones[index];
                             return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
                               child: Column(
                                 children: <Widget>[
                                   ListTile(
                                     leading: CircleAvatar(
                                       backgroundColor: colorMain,
-                                      backgroundImage: CachedNetworkImageProvider(_atencion.establishmentLogo), //AssetImage('images/greco.png'),//
+                                      backgroundImage:
+                                          CachedNetworkImageProvider(_atencion
+                                              .establishmentLogo), //AssetImage('images/greco.png'),//
                                       radius: 25.0,
                                     ),
                                     title: Text(_atencion.establishmentName),
                                     subtitle: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: <Widget>[
-                                        Text(_atencion.pet, style: Get.textTheme.subtitle2),
+                                        Text(_atencion.pet,
+                                            style: Get.textTheme.subtitle2),
                                         Text(
                                           _atencion.createdAt,
                                           style: TextStyle(
@@ -68,12 +74,14 @@ class AtencionesPage extends StatelessWidget {
                                       ],
                                     ),
                                     trailing: IconButton(
-                                        icon: Icon(
-                                          Icons.star_border,
-                                          color: Get.textTheme.subtitle2.color,
-                                        ),
-                                        onPressed: () => calificar(_atencion)),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                                      icon: Icon(
+                                        Icons.star_border,
+                                        color: Get.textTheme.subtitle2.color,
+                                      ),
+                                      onPressed: () => _.votar(_atencion),
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 0, vertical: 0),
                                   ),
                                   Divider(),
                                 ],

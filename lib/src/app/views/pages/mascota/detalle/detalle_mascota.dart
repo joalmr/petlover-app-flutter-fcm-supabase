@@ -42,7 +42,8 @@ class MascotaDetallePage extends StatelessWidget {
                                 child: AspectRatio(
                                   aspectRatio: (mediaAncho < 600) ? 1 : 12 / 8,
                                   child: Image(
-                                    image: CachedNetworkImageProvider(_.pet.picture),
+                                    image: CachedNetworkImageProvider(
+                                        _.pet.picture),
                                     // height: 350,
                                     // width: double.infinity,
                                     fit: BoxFit.cover,
@@ -50,36 +51,44 @@ class MascotaDetallePage extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: context.height * 0.4, bottom: 7.5, left: 5.0, right: 5.0),
+                                margin: EdgeInsets.only(
+                                    top: context.height * 0.4,
+                                    bottom: 7.5,
+                                    left: 5.0,
+                                    right: 5.0),
                                 height: context.height - context.height * 0.4,
                                 decoration: BoxDecoration(
                                   borderRadius: borderRadius,
                                   color: Theme.of(context).backgroundColor,
                                 ),
                                 child: DefaultTabController(
-                                  length: 2,
+                                  length: 1,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       datoMascota(_.pet),
                                       TabBar(
                                         indicatorColor: colorMain,
-                                        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                                        labelStyle: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                         labelColor: colorMain,
-                                        unselectedLabelColor: Get.textTheme.subtitle2.color,
-                                        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+                                        unselectedLabelColor:
+                                            Get.textTheme.subtitle2.color,
+                                        unselectedLabelStyle: TextStyle(
+                                            fontWeight: FontWeight.normal),
                                         isScrollable: true,
                                         tabs: [
                                           Tab(text: "Atenciones"),
-                                          Tab(text: "Vacunas"),
+                                          // Tab(text: "Vacunas"),
                                         ],
                                       ),
                                       Expanded(
                                         child: TabBarView(
                                           children: <Widget>[
                                             listaHistorial(context, _.history),
-                                            cartillaDigital(),
+                                            // cartillaDigital(),
                                           ],
                                         ),
                                       ),
@@ -99,15 +108,23 @@ class MascotaDetallePage extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     centerTitle: true,
-                    title: Text("", style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
+                    title: Text("",
+                        style:
+                            Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
                     actions: <Widget>[
                       Container(
                         decoration: BoxDecoration(
                           boxShadow: [
-                            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10.0, spreadRadius: -10.0),
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 10.0,
+                                spreadRadius: -10.0),
                           ],
                         ),
-                        child: IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
+                        child: IconButton(
+                            icon: Icon(Icons.settings),
+                            onPressed: () =>
+                                _scaffoldKey.currentState.openEndDrawer()),
                       )
                       // IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
                     ],

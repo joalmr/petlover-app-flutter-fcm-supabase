@@ -91,16 +91,23 @@ class MascotaEditarController extends GetxController {
       errorBuilder: (context, exception) => Center(child: Text('Oops!')),
       items: razaLista.breeds,
       selectedValue: razaSeleccionada,
-      searchBoxDecoration: InputDecoration(hintText: 'Buscar raza', prefixIcon: Icon(Icons.search, color: colorMain)),
+      searchBoxDecoration: InputDecoration(
+          hintText: 'Buscar raza',
+          prefixIcon: Icon(Icons.search, color: colorMain)),
       onFind: (String filter) => _getData(filter),
       itemBuilder: (BuildContext context, Breed item, bool isSelected) {
         return Container(
-          decoration: !isSelected ? null : BoxDecoration(borderRadius: BorderRadius.circular(5), color: colorMain),
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5), color: colorMain),
           child: ListTile(
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
+              style: isSelected
+                  ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
+                  : Get.textTheme.subtitle2,
             ),
           ),
         );
@@ -214,7 +221,8 @@ class MascotaEditarController extends GetxController {
                     onSurface: Get.textTheme.subtitle2.color,
                   ),
                   dialogBackgroundColor: Theme.of(context).backgroundColor,
-                  buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
+                  buttonTheme:
+                      ButtonThemeData(textTheme: ButtonTextTheme.primary)),
               child: child),
         );
       },
@@ -246,8 +254,10 @@ class MascotaEditarController extends GetxController {
       mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
       btnCarga.value = false;
     } else if (sinNombreMascota || sinFechaMascota) {
-      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
-      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
+      if (sinNombreMascota)
+        mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
+      if (sinFechaMascota)
+        mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
       btnCarga.value = false;
     } else {
       petC.pet.name = nombre;

@@ -1,10 +1,5 @@
-import 'dart:async';
-
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/data/models/model/antecion/atencion_model.dart';
 import 'package:proypet/src/data/services/atencion_servicio.dart';
 
@@ -34,34 +29,47 @@ class AtencionController extends GetxController {
     loading.value = false;
   }
 
-  onRate(AtencionModel atencion) => _onRate(atencion);
+  votar(AtencionModel atencion) {
+    dynamic argumentos = {
+      'pet_picture': '${atencion.establishmentLogo}',
+      'message':
+          'Califica la atención recibida por ${atencion.establishmentName}',
+      'id': '${atencion.id}',
+    };
 
-  _onRate(AtencionModel atencion) async {
-    atencion.stars = myrating.toInt();
-    atencion.comment = inputComentController.text;
-    bool resp = await atencionService.calificar(atencion);
-
-    if (resp) {
-      Get.dialog(
-        FadeIn(
-          child: AlertDialog(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            content: Container(
-              height: 100.0,
-              child: Center(
-                child: Text(
-                  'Se calificó la atención.',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-            ),
-          ),
-        ),
-        barrierDismissible: false,
-      );
-      getAtenciones();
-      Timer(Duration(milliseconds: 2000), () => Get.until((route) => route.isFirst));
-    } else
-      mostrarSnackbar('No se calificó la atención.', colorRed);
+    Get.toNamed('calificaatencion', arguments: argumentos);
   }
+
+  // onRate(AtencionModel atencion) => _onRate(atencion);
+
+  // _onRate(AtencionModel atencion) async {
+  //   atencion.stars = myrating.toInt();
+  //   atencion.comment = inputComentController.text;
+  //   bool resp = await atencionService.calificar(atencion);
+
+  //   if (resp) {
+  //     Get.dialog(
+  //       FadeIn(
+  //         child: AlertDialog(
+  //           contentPadding:
+  //               EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+  //           content: Container(
+  //             height: 100.0,
+  //             child: Center(
+  //               child: Text(
+  //                 'Se calificó la atención.',
+  //                 style: TextStyle(fontSize: 14.0),
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //       barrierDismissible: false,
+  //     );
+  //     getAtenciones();
+  //     Timer(Duration(milliseconds: 2000),
+  //         () => Get.until((route) => route.isFirst));
+  //   } else
+  //     mostrarSnackbar('No se calificó la atención.', colorRed);
+  // }
 }
