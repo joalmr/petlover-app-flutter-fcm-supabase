@@ -8,7 +8,6 @@ import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 
-import 'components/cartilla_vacuna.dart';
 import 'components/dato_mascota.dart';
 import 'components/lista_historia.dart';
 

@@ -1,10 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:websafe_network_image/websafe_network_image.dart';
-
 import 'transition/fadeViewSafeArea.dart';
 
 class ThxPage extends StatelessWidget {
@@ -36,13 +35,13 @@ class ThxPage extends StatelessWidget {
                           Stack(
                             children: <Widget>[
                               ClipRRect(
-                                borderRadius: BorderRadius.all(Radius.circular(100)),
-                                child: WebsafeNetworkImage(
-                                  imageUrl: image,
-                                  height: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100)),
+                                  child: Image(
+                                    image: CachedNetworkImageProvider(image),
+                                    height: 150,
+                                    fit: BoxFit.cover,
+                                  )),
                               Positioned(
                                   bottom: 0,
                                   right: 20,
@@ -56,7 +55,8 @@ class ThxPage extends StatelessWidget {
                           SizedBox(height: 25),
                           Text(
                             texto,
-                            style: Get.textTheme.subtitle1.copyWith(fontSize: 18, color: Colors.white),
+                            style: Get.textTheme.subtitle1
+                                .copyWith(fontSize: 18, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -65,7 +65,8 @@ class ThxPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: buttonOutLine('Ir a inicio', () => Get.offAllNamed('navInicio'), Colors.white),
+                    child: buttonOutLine('Ir a inicio',
+                        () => Get.offAllNamed('navInicio'), Colors.white),
                   )
                 ],
               ),

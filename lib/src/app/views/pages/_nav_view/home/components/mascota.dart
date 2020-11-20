@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -9,7 +10,6 @@ import 'package:proypet/src/app/views/components/form_control/button_primary.dar
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/controllers/home_controller/mascota_home_controller.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
-import 'package:websafe_network_image/websafe_network_image.dart';
 
 class Mascotas extends StatelessWidget {
   const Mascotas({Key key}) : super(key: key);
@@ -68,17 +68,17 @@ class Mascotas extends StatelessWidget {
                                     child: Stack(
                                       children: <Widget>[
                                         Container(
-                                          height: double.maxFinite,
-                                          width: double.maxFinite,
-                                          foregroundDecoration: BoxDecoration(
-                                            color:
-                                                Colors.black.withOpacity(0.15),
-                                          ),
-                                          child: WebsafeNetworkImage(
-                                            imageUrl: mascota.picture,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                            height: double.maxFinite,
+                                            width: double.maxFinite,
+                                            foregroundDecoration: BoxDecoration(
+                                              color: Colors.black
+                                                  .withOpacity(0.15),
+                                            ),
+                                            child: Image(
+                                              image: CachedNetworkImageProvider(
+                                                  mascota.picture),
+                                              fit: BoxFit.cover,
+                                            )),
                                         Positioned(
                                           top: 15.0,
                                           left: 10.0,
@@ -113,8 +113,11 @@ class Mascotas extends StatelessWidget {
                                                 text: TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text: mascota.weight
-                                                          .toString(),
+                                                      text:
+                                                          mascota.weight == '0'
+                                                              ? '-'
+                                                              : mascota.weight
+                                                                  .toString(),
                                                       style: Get
                                                           .textTheme.headline4
                                                           .apply(

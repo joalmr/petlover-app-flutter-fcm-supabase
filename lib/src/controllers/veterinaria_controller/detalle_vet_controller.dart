@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
@@ -15,7 +16,6 @@ import 'package:proypet/src/data/services/establecimiento_service.dart';
 import 'package:proypet/src/data/services/user_service.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:websafe_network_image/websafe_network_image.dart';
 
 import '../_global_controller.dart';
 import 'lista_vets_controller.dart';
@@ -87,7 +87,8 @@ class VetDetalleController extends GetxController {
     return false;
   }
 
-  traeMascotas() => misMascotas = homeC.mascotas.where((element) => element.status != 0).toList();
+  traeMascotas() => misMascotas =
+      homeC.mascotas.where((element) => element.status != 0).toList();
 
   llamar() => _launchPhone();
 
@@ -110,7 +111,10 @@ class VetDetalleController extends GetxController {
 
   List<EstablecimientoModel> vetPremium = [];
   _getPremiumClose() {
-    vetPremium = vetsC.vetLocales.value.where((element) => element.premium == true && element != vet).take(2).toList(); //.take(2);
+    vetPremium = vetsC.vetLocales.value
+        .where((element) => element.premium == true && element != vet)
+        .take(2)
+        .toList(); //.take(2);
   }
 
   _reservar() async {
@@ -123,12 +127,16 @@ class VetDetalleController extends GetxController {
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [
-          Text('Hola, disculpa este establecimiento no puede recibir reservas.'),
+          Text(
+              'Hola, disculpa este establecimiento no puede recibir reservas.'),
           SizedBox(height: 3),
           Text('Tenemos estas opciones cerca '),
           SizedBox(height: 10),
           vetPremium.length < 1
-              ? Center(child: Padding(padding: const EdgeInsets.all(8.0), child: Text('Sin resultados')))
+              ? Center(
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Sin resultados')))
               : vetPremium.length == 1
                   ? _gotoVet(vetPremium[0])
                   : Column(
@@ -151,7 +159,8 @@ class VetDetalleController extends GetxController {
         } else {
           reservaClic.value = true;
           Get.dialog(AlertDialog(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             content: Container(
                 height: 220.0,
                 child: Form(
@@ -159,7 +168,8 @@ class VetDetalleController extends GetxController {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 10.0),
-                      Text('Debe ingresar un número de teléfono', style: Get.textTheme.subtitle2),
+                      Text('Debe ingresar un número de teléfono',
+                          style: Get.textTheme.subtitle2),
                       SizedBox(height: 10.0),
                       FormularioText(
                         hintText: 'Ingrese teléfono',
@@ -173,7 +183,8 @@ class VetDetalleController extends GetxController {
                       SizedBox(height: 10.0),
                       buttonPri("Guardar teléfono", _onPhone),
                       FlatButton(
-                        child: Text("Cancelar", style: TextStyle(color: colorMain)),
+                        child: Text("Cancelar",
+                            style: TextStyle(color: colorMain)),
                         onPressed: () {
                           reservaClic.value = true;
                           Get.back();
@@ -186,7 +197,8 @@ class VetDetalleController extends GetxController {
         }
       } else {
         reservaClic.value = true;
-        mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed);
+        mostrarSnackbar(
+            'No puede generar una reserva, debe agregar una mascota', colorRed);
       }
     }
   }
@@ -222,7 +234,10 @@ class VetDetalleController extends GetxController {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           (vetPremium.slides.length > 0)
-              ? WebsafeNetworkImage(imageUrl: vetPremium.slides.first, height: 75)
+              ? Image(
+                  image: CachedNetworkImageProvider(vetPremium.slides.first),
+                  height: 75,
+                )
               : Image(image: AssetImage("images/vet_prueba.jpg"), height: 75),
           SizedBox(height: 3),
           Text(vetPremium.name)

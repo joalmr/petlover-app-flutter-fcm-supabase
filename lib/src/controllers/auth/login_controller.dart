@@ -132,7 +132,7 @@ class LoginController extends GetxController {
   }
 
   ejecutaFirebase() {
-    pushController.firebase(); //TODO: el firebase de ios mantiene prod
+    pushController.firebase();
     globalController.getUsuario();
     homeController.getSummary();
     vetsController.getVets();

@@ -8,8 +8,6 @@ import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dar
 import 'package:proypet/src/controllers/atencion_controller/atencion_controller.dart';
 import 'package:proypet/src/data/models/model/antecion/atencion_model.dart';
 
-import 'calificar.dart';
-
 class AtencionesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

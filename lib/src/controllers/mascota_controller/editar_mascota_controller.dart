@@ -162,7 +162,7 @@ class MascotaEditarController extends GetxController {
   }
 
   _procesarImagen(ImageSource origen) async {
-    var imagen = await ImagePicker.pickImage(source: origen);
+    var imagen = await ImagePicker().getImage(source: origen);
 
     File croppedFile = await ImageCropper.cropImage(
       sourcePath: imagen.path,

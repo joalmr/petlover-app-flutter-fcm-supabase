@@ -36,10 +36,10 @@ dependencies:
   #
 
   #imagenes 
-  websafe_network_image: ^1.0.5
+  # websafe_network_image: ^1.0.5
   cached_network_image: ^2.0.0
   image_cropper:
-  image_picker:
+  image_picker: ^0.6.7+14
   #fin imagenes
 
   google_fonts: ^1.1.1
