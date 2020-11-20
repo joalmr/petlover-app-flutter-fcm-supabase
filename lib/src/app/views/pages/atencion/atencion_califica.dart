@@ -32,8 +32,6 @@ class AtencionCalifica extends StatelessWidget {
                                       top: 50, bottom: 10),
                                   child: Center(
                                     child: ClipRRect(
-                                      // borderRadius: BorderRadius.all(
-                                      //     Radius.circular(100)),
                                       child: CircleAvatar(
                                         child: Padding(
                                           padding: const EdgeInsets.all(3.5),
