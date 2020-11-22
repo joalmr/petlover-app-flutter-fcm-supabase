@@ -34,13 +34,18 @@ class Atenciones extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             (_home.mascotas.length > 0)
-                                ? Padding(
-                                    padding: const EdgeInsets.only(bottom: 2),
-                                    child: Image(
-                                      image:
-                                          AssetImage('images/reserva-gana.png'),
-                                      fit: BoxFit.cover,
-                                      height: 220,
+                                ? InkWell(
+                                    borderRadius: borderRadius,
+                                    onTap: _.reserva,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 2, bottom: 2),
+                                      child: Image(
+                                        image: AssetImage(
+                                            'images/reserva-gana.png'),
+                                        fit: BoxFit.cover,
+                                        height: 220,
+                                      ),
                                     ),
                                   )
                                 : Padding(
