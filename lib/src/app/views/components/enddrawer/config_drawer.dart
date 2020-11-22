@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/views/pages/atencion/atencion_view.dart';
 import 'package:proypet/src/app/views/pages/usuario/editar/editar_usuario.dart';
 import 'package:proypet/src/app/views/pages/usuario/password/cambia_password.dart';
@@ -18,7 +19,9 @@ class ConfigDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-        decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, boxShadow: [BoxShadow(color: Colors.black45)]),
+        decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            boxShadow: [BoxShadow(color: Colors.black45)]),
         width: 300,
         child: SafeArea(
           child: SingleChildScrollView(
@@ -59,7 +62,13 @@ class ConfigDrawer extends StatelessWidget {
                       subject: 'Registrate hoy a Proypet'),
                 ),
                 ListTile(
-                  leading: Icon(Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
+                  leading: Icon(IconProypet.consulta),
+                  title: Text('Solicitar veterinaria'),
+                  onTap: () => Get.toNamed('solicitaveterinaria'),
+                ),
+                ListTile(
+                  leading: Icon(
+                      Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
                   title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),
                   onTap: () {
                     if (Get.isDarkMode) {
@@ -73,7 +82,8 @@ class ConfigDrawer extends StatelessWidget {
                 ),
                 ListTile(
                     leading: Icon(Icons.person_outline, color: colorRed),
-                    title: Text('Cerrar sesión', style: TextStyle(color: colorRed)),
+                    title: Text('Cerrar sesión',
+                        style: TextStyle(color: colorRed)),
                     onTap: () => _cerrarSesion(context)),
               ],
             ),
@@ -88,17 +98,21 @@ class ConfigDrawer extends StatelessWidget {
       FadeIn(
         child: AlertDialog(
           title: null, //Text('Cerrar sesión'),
-          contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+          contentPadding:
+              EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           content: Text("Desea cerrar sesión?"),
           actions: <Widget>[
             FlatButton(
               onPressed: () => Get.back(),
-              child: Text('Cancelar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+              child: Text('Cancelar',
+                  style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
             ),
             FlatButton(
               onPressed: () => _outToken(),
-              child: Text('Cerrar sesión', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorRed)),
+              child: Text('Cerrar sesión',
+                  style: Get.textTheme.subtitle2
+                      .apply(fontWeightDelta: 2, color: colorRed)),
             ),
           ],
         ),

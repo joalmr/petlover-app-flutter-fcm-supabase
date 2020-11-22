@@ -33,20 +33,30 @@ class Atenciones extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text(
-                              (_home.mascotas.length > 0)
-                                  ? 'Haz una reserva en la veterinaria de tu agrado'
-                                  : 'Vamos, agrega a tu mascota y se parte de la comunidad responsable',
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 10.0,
-                            ),
+                            (_home.mascotas.length > 0)
+                                ? Padding(
+                                    padding: const EdgeInsets.only(bottom: 2),
+                                    child: Image(
+                                      image:
+                                          AssetImage('images/reserva-gana.png'),
+                                      fit: BoxFit.cover,
+                                      height: 220,
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Text(
+                                      'Agrega a tu mascota y se parte de la comunidad responsable',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
                             _home.loading.value
                                 ? Container()
                                 : (_home.mascotas.length > 0)
-                                    ? buttonOutLine('Reservar', _.reserva, colorMain)
-                                    : buttonOutLine('Agregar mascota', _.agregarMascota, colorMain),
+                                    ? buttonOutLine(
+                                        'Reservar', _.reserva, colorMain)
+                                    : buttonOutLine('Agregar mascota',
+                                        _.agregarMascota, colorMain),
                           ],
                         ),
                       ),
@@ -72,42 +82,65 @@ class Atenciones extends StatelessWidget {
                               builder: (BuildContext context) => FadeIn(
                                 child: AlertDialog(
                                   title: Text('Eliminar'),
-                                  content: Text('Seguro que desea eliminar esta reserva?'),
+                                  content: Text(
+                                      'Seguro que desea eliminar esta reserva?'),
                                   actions: <Widget>[
-                                    buttonModal('Cancelar', _.volver, Get.textTheme.subtitle2.color),
-                                    buttonModal('Eliminar', () => _.eliminaAtencion(atencion.id), colorRed),
+                                    buttonModal('Cancelar', _.volver,
+                                        Get.textTheme.subtitle2.color),
+                                    buttonModal(
+                                        'Eliminar',
+                                        () => _.eliminaAtencion(atencion.id),
+                                        colorRed),
                                   ],
                                 ),
                               ),
                             ),
                             child: FlatButton(
-                              onPressed: () => _.detalleReservado(atencion), //_detalleReservado(_home.atenciones[index]),
+                              onPressed: () => _.detalleReservado(
+                                  atencion), //_detalleReservado(_home.atenciones[index]),
                               child: ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor: Colors.transparent,
-                                  backgroundImage: CachedNetworkImageProvider(atencion.petPicture),
+                                  backgroundImage: CachedNetworkImageProvider(
+                                      atencion.petPicture),
                                   radius: 25.0,
                                 ),
-                                title: Text(atencion.establishmentName), //(!vencido) ?
+                                title: Text(
+                                    atencion.establishmentName), //(!vencido) ?
                                 subtitle: Text(
-                                  (!atencion.vencido) ? atencion.status : '${atencion.status} - Vencido',
+                                  (!atencion.vencido)
+                                      ? atencion.status
+                                      : '${atencion.status} - Vencido',
                                   style: (!atencion.vencido)
-                                      ? (atencion.statusId == 3 || atencion.statusId == 6)
-                                          ? TextStyle(fontWeight: FontWeight.bold, color: colorMain)
-                                          : TextStyle(fontWeight: FontWeight.bold, color: Get.textTheme.subtitle2.color)
-                                      : TextStyle(fontWeight: FontWeight.bold, color: colorRed),
+                                      ? (atencion.statusId == 3 ||
+                                              atencion.statusId == 6)
+                                          ? TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: colorMain)
+                                          : TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color:
+                                                  Get.textTheme.subtitle2.color)
+                                      : TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: colorRed),
                                 ),
                                 trailing: Column(
                                   children: <Widget>[
-                                    Text(atencion.date, style: Get.textTheme.subtitle2.copyWith(fontSize: 12.0).apply(fontWeightDelta: 2)),
+                                    Text(atencion.date,
+                                        style: Get.textTheme.subtitle2
+                                            .copyWith(fontSize: 12.0)
+                                            .apply(fontWeightDelta: 2)),
                                     Text(
                                       atencion.time,
-                                      style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain),
+                                      style: Get.textTheme.subtitle2.apply(
+                                          fontWeightDelta: 2, color: colorMain),
                                       textAlign: TextAlign.center,
                                     ),
                                   ],
                                 ),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 0, vertical: 0),
                               ),
                             ),
                           );

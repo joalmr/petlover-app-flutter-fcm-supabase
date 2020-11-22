@@ -69,13 +69,6 @@ class PushController extends GetxController {
       print(dataPush);
       homeC.getSummary();
       Get.toNamed('calificaatencion', arguments: dataPush);
-      // Get.dialog(FadeIn(
-      //   child: SimpleDialog(
-      //     children: <Widget>[
-      //       BuildPushQualify(noti: dataPush, mensaje: mensajePush),
-      //     ],
-      //   ),
-      // ));
     } else {
       Get.dialog(FadeIn(
           child: SimpleDialog(

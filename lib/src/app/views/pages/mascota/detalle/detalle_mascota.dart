@@ -8,6 +8,7 @@ import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 
+import 'components/cartilla_vacuna.dart';
 import 'components/dato_mascota.dart';
 import 'components/lista_historia.dart';
 
@@ -61,7 +62,7 @@ class MascotaDetallePage extends StatelessWidget {
                                   color: Theme.of(context).backgroundColor,
                                 ),
                                 child: DefaultTabController(
-                                  length: 1,
+                                  length: 2,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -80,14 +81,14 @@ class MascotaDetallePage extends StatelessWidget {
                                         isScrollable: true,
                                         tabs: [
                                           Tab(text: "Atenciones"),
-                                          // Tab(text: "Vacunas"),
+                                          Tab(text: "Vacunas"),
                                         ],
                                       ),
                                       Expanded(
                                         child: TabBarView(
                                           children: <Widget>[
                                             listaHistorial(context, _.history),
-                                            // cartillaDigital(),
+                                            cartillaDigital(),
                                           ],
                                         ),
                                       ),

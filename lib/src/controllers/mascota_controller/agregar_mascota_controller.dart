@@ -71,9 +71,7 @@ class MascotaAgregarController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    foto.delete();
-    nombre = '';
-    fecha = '';
+    // foto.delete();
   }
 
   obtenerRaza() {

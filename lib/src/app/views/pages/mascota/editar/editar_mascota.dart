@@ -32,7 +32,7 @@ class MascotaEditarPage extends StatelessWidget {
             : FadeViewSafeArea(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -42,21 +42,32 @@ class MascotaEditarPage extends StatelessWidget {
                           child: Center(
                             child: Stack(
                               children: <Widget>[
-                                CircleAvatar(backgroundImage: _.mostrarFoto(), radius: 80.0),
+                                CircleAvatar(
+                                    backgroundImage: _.mostrarFoto(),
+                                    radius: 80.0),
                                 Positioned(
                                     bottom: 1.5,
                                     right: 10.0,
                                     child: CircleAvatar(
                                       child: IconButton(
-                                        icon: Icon(Icons.camera_enhance, color: Colors.white),
+                                        icon: Icon(Icons.camera_enhance,
+                                            color: Colors.white),
                                         onPressed: () => showDialog(
                                             context: context,
                                             builder: (BuildContext context) {
                                               return FadeIn(
                                                 child: SimpleDialog(
                                                   children: <Widget>[
-                                                    SimpleDialogOption(child: const Text('Tomar foto'), onPressed: _.tomarFoto), //_tomarFoto
-                                                    SimpleDialogOption(child: const Text('Seleccionar foto'), onPressed: _.seleccionarFoto), //_seleccionarFoto
+                                                    SimpleDialogOption(
+                                                        child: const Text(
+                                                            'Tomar foto'),
+                                                        onPressed: _
+                                                            .tomarFoto), //_tomarFoto
+                                                    SimpleDialogOption(
+                                                        child: const Text(
+                                                            'Seleccionar foto'),
+                                                        onPressed: _
+                                                            .seleccionarFoto), //_seleccionarFoto
                                                   ],
                                                 ),
                                               );
@@ -87,7 +98,12 @@ class MascotaEditarPage extends StatelessWidget {
                             children: <Widget>[
                               Text('Seleccione tipo de mascota'),
                               SizedBox(height: 7.5),
-                              ddlMainOut(context, _.petC.pet.specieId.toString(), tipopet, null, _.petC.pet.specieName),
+                              ddlMainOut(
+                                  context,
+                                  _.petC.pet.specieId.toString(),
+                                  tipopet,
+                                  null,
+                                  _.petC.pet.specieName),
                             ],
                           ),
                         ),
@@ -105,7 +121,8 @@ class MascotaEditarPage extends StatelessWidget {
                                 decoration: InputDecoration(
                                   suffixIcon: Padding(
                                     padding: const EdgeInsets.only(right: 20),
-                                    child: Icon(Icons.keyboard_arrow_down, color: colorMain),
+                                    child: Icon(Icons.keyboard_arrow_down,
+                                        color: colorMain),
                                   ),
                                 ),
                                 onTap: () => _.razasPet(context),
@@ -130,11 +147,16 @@ class MascotaEditarPage extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[Text('Sexo'), SizedBox(height: 7.5), _.sexoEdit(context)],
+                            children: <Widget>[
+                              Text('Sexo'),
+                              SizedBox(height: 7.5),
+                              _.sexoEdit(context)
+                            ],
                           ),
                         ),
                         SizedBox(height: 25.0),
-                        buttonPri('Guardar cambios', _.btnCarga.value ? null : _.mascotaEdit), //_onEdit
+                        buttonPri('Guardar cambios',
+                            _.btnCarga.value ? null : _.mascotaEdit), //_onEdit
                         SizedBox(height: 10.0),
                       ],
                     ),

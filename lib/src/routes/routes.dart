@@ -14,6 +14,7 @@ import 'package:proypet/src/app/views/auth/forgot_page.dart';
 import 'package:proypet/src/app/views/pages/_nav_bar/navigation_bar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/home/reserva/detalle_reserva.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/detalle_mascota.dart';
+import 'package:proypet/src/app/views/pages/usuario/solicita_veterinaria/solicitar_veterinaria.dart';
 
 GetStorage box = GetStorage();
 
@@ -48,5 +49,7 @@ List<GetPage> getRutas() {
     GetPage(name: 'detallereservado', page: () => DetalleReservado()),
 
     GetPage(name: 'calificaatencion', page: () => AtencionCalifica()),
+
+    GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
   ];
 }

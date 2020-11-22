@@ -14,19 +14,22 @@ class FormularioText extends StatelessWidget {
   final String valorInicial;
   final TextInputType boardType;
   final bool activo;
+  final int maxLines;
 
-  FormularioText(
-      {this.labelText,
-      this.hintText,
-      this.icon,
-      this.iconSuf,
-      this.obscureText = false,
-      this.onSaved,
-      this.onChanged,
-      this.textCap = TextCapitalization.none,
-      this.valorInicial,
-      this.boardType = TextInputType.text,
-      this.activo = true});
+  FormularioText({
+    this.labelText,
+    this.hintText,
+    this.icon,
+    this.iconSuf,
+    this.obscureText = false,
+    this.onSaved,
+    this.onChanged,
+    this.textCap = TextCapitalization.none,
+    this.valorInicial,
+    this.boardType = TextInputType.text,
+    this.activo = true,
+    this.maxLines = 1,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +45,11 @@ class FormularioText extends StatelessWidget {
               onSaved: onSaved,
               onChanged: onChanged,
               cursorColor: colorMain,
+              maxLines: maxLines,
               decoration: InputDecoration(
                 hintText: hintText,
-                prefixIcon: (icon != null) ? Icon(icon, color: colorMain) : null,
+                prefixIcon:
+                    (icon != null) ? Icon(icon, color: colorMain) : null,
                 suffixIcon: iconSuf,
               ),
             ),
@@ -65,9 +70,11 @@ class FormularioText extends StatelessWidget {
                   onSaved: onSaved,
                   onChanged: onChanged,
                   cursorColor: colorMain,
+                  maxLines: maxLines,
                   decoration: InputDecoration(
                     hintText: hintText,
-                    prefixIcon: (icon != null) ? Icon(icon, color: colorMain) : null,
+                    prefixIcon:
+                        (icon != null) ? Icon(icon, color: colorMain) : null,
                     suffixIcon: iconSuf,
                   ),
                 ),
