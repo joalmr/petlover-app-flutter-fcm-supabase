@@ -16,10 +16,12 @@ import 'src/theme/themeDark.dart';
 import 'src/app/views/pages/_nav_bar/navigation_bar.dart';
 import 'src/controllers/_global_controller.dart';
 
+//proypet user
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => runApp(MyApp()));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
