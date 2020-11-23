@@ -3,7 +3,8 @@ import 'package:proypet/src/data/models/model/establecimiento/promocion_model.da
 import 'package:proypet/src/data/providers/establecimiento_provider.dart';
 
 class EstablecimientoService {
-  final EstablecimientoProvider establecimientoProvider = EstablecimientoProvider();
+  final EstablecimientoProvider establecimientoProvider =
+      EstablecimientoProvider();
 
   getVets(dynamic filtros) {
     return establecimientoProvider.getVets(filtros);
@@ -11,6 +12,10 @@ class EstablecimientoService {
 
   getVet(String idVet) {
     return establecimientoProvider.getVet(idVet);
+  }
+
+  Future<List<Comentarios>> getTenComents(String idVet) {
+    return establecimientoProvider.getTenComents(idVet);
   }
 
   Future<List<Comentarios>> getComents(String idVet) {

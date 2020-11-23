@@ -14,7 +14,7 @@ class TodosComentarios extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(null, 'Comentarios', null),
-      body: FadeViewSafeArea(child: GetBuilder<ComentarioVetController>(
+      body: FadeViewSafeArea(child: GetX<ComentarioVetController>(
         builder: (_) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -22,30 +22,34 @@ class TodosComentarios extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: _.comentarios.length == 1 ? Text('${_.comentarios.length} comentario') : Text('${_.comentarios.length} comentarios'),
+                child: _.allComments.length == 1
+                    ? Text('${_.allComments.length} comentario')
+                    : Text('${_.allComments.length} comentarios'),
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: _.comentarios.length,
+                  itemCount: _.allComments.length,
                   itemBuilder: (BuildContext context, int index) {
+                    final comment = _.allComments[index];
                     return ListTile(
                       leading: CircleAvatar(
                         backgroundColor: Colors.transparent,
-                        backgroundImage: CachedNetworkImageProvider(_.comentarios[index].petPicture),
+                        backgroundImage:
+                            CachedNetworkImageProvider(comment.petPicture),
                         radius: 20.0,
                       ),
                       title: Container(
                         padding: EdgeInsets.all(0),
                         alignment: Alignment.topLeft,
                         child: Text(
-                          _.comentarios[index].comment,
+                          comment.comment,
                           style: TextStyle(fontSize: 14),
                         ),
                       ),
                       trailing: Wrap(
                         children: <Widget>[
                           Text(
-                            _.comentarios[index].stars.toString(),
+                            comment.stars.toString(),
                             style: TextStyle(fontSize: 14),
                           ),
                           Icon(Icons.star, color: colorYellow, size: 17)

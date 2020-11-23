@@ -39,7 +39,8 @@ class ViewComentario extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ListView.builder(
-                            itemCount: _.comentarios.take(5).length,
+                            padding: EdgeInsets.all(0),
+                            itemCount: _.comentarios.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
                                 leading: CircleAvatar(
@@ -73,7 +74,7 @@ class ViewComentario extends StatelessWidget {
                         _.comentarios.length > 5
                             ? Center(
                                 child: InkWell(
-                                  onTap: () => Get.to(TodosComentarios()),
+                                  onTap: _.verComentarios,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text('Ver más'),

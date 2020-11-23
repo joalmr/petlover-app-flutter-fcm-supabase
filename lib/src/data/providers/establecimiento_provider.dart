@@ -31,12 +31,14 @@ class EstablecimientoProvider {
         filtroServicio = "";
       }
 
-      final url = '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
+      final url =
+          '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
       Response response;
       response = await dio.get(url, options: Options(headers: headersToken()));
 
-      final vets = List<EstablecimientoModel>.from(response.data.map((x) => EstablecimientoModel.fromJson(x)));
+      final vets = List<EstablecimientoModel>.from(
+          response.data.map((x) => EstablecimientoModel.fromJson(x)));
       if (vets.length > 0) establecimientos = vets;
     }
 
@@ -55,12 +57,27 @@ class EstablecimientoProvider {
 
     if (resp.statusCode == 200) {
       final jsonResp = json.decode(resp.body);
-      EstablecimientoModel vets = EstablecimientoModel.fromJson(jsonResp["establishment"]);
+      EstablecimientoModel vets =
+          EstablecimientoModel.fromJson(jsonResp["establishment"]);
 
       return {'status': 200, 'establishment': vets};
     } else {
       return {'status': 205, 'establishment': null};
     }
+  }
+
+  Future<List<Comentarios>> getTenComents(String idVet) async {
+    final url = '$_url/establishment/$idVet/comments';
+
+    List<Comentarios> comentarios = [];
+
+    final resp = await http.get(url, headers: headersToken());
+
+    if (resp.statusCode == 200) {
+      comentarios = comentariosFromJson(resp.body);
+    }
+    print(comentarios.take(10));
+    return comentarios.take(10).toList();
   }
 
   Future<List<Comentarios>> getComents(String idVet) async {

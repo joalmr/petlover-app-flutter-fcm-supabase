@@ -7,14 +7,20 @@ class AtencionController extends GetxController {
   final atencionService = AtencionService();
   final inputComentController = new TextEditingController();
 
-  RxDouble _myrating = 0.0.obs;
-
   RxBool loading = true.obs;
+
+  RxList<AtencionModel> atenciones = List<AtencionModel>().obs;
+
+  dynamic argumentos;
+  String petImage;
+  String mensaje;
+  String idAtencion;
+
+  RxDouble _myrating = 0.0.obs;
+  RxBool calificado = false.obs;
 
   set myrating(double value) => _myrating.value = value;
   double get myrating => _myrating.value;
-
-  List<AtencionModel> atenciones;
 
   @override
   void onInit() {
@@ -22,10 +28,20 @@ class AtencionController extends GetxController {
     getAtenciones();
   }
 
+  Future refresh() => _refresh();
+
+  Future<Null> _refresh() async {
+    await Future.delayed(Duration(milliseconds: 2));
+    getAtenciones();
+    return null;
+  }
+
   getAtenciones() => _getAtenciones();
 
   _getAtenciones() async {
-    atenciones = await atencionService.getAtenciones();
+    var resp = await atencionService.getAtenciones();
+    atenciones.clear();
+    atenciones.addAll(resp);
     loading.value = false;
   }
 
@@ -37,39 +53,53 @@ class AtencionController extends GetxController {
       'id': '${atencion.id}',
     };
 
-    Get.toNamed('calificaatencion', arguments: argumentos);
+    petImage = argumentos['pet_picture'];
+    mensaje = argumentos['message'];
+    idAtencion = argumentos['id'];
+
+    inputComentController.text = 'Pésimo servicio';
+    calificado.value = false;
+    Get.toNamed('calificaatencion');
   }
 
-  // onRate(AtencionModel atencion) => _onRate(atencion);
+  puntuacion(double rating) {
+    myrating = rating;
+    switch (rating.toInt()) {
+      case 0:
+        inputComentController.text = 'Pésimo servicio';
+        break;
+      case 1:
+        inputComentController.text = 'Mal servicio';
+        break;
+      case 2:
+        inputComentController.text = 'Mm regular';
+        break;
+      case 3:
+        inputComentController.text = 'Estuvo bien';
+        break;
+      case 4:
+        inputComentController.text = 'Me gustó';
+        break;
+      case 5:
+        inputComentController.text = 'Excelente! Recomendado';
+        break;
+      default:
+    }
+  }
 
-  // _onRate(AtencionModel atencion) async {
-  //   atencion.stars = myrating.toInt();
-  //   atencion.comment = inputComentController.text;
-  //   bool resp = await atencionService.calificar(atencion);
+  onRate() => _onRate();
 
-  //   if (resp) {
-  //     Get.dialog(
-  //       FadeIn(
-  //         child: AlertDialog(
-  //           contentPadding:
-  //               EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-  //           content: Container(
-  //             height: 100.0,
-  //             child: Center(
-  //               child: Text(
-  //                 'Se calificó la atención.',
-  //                 style: TextStyle(fontSize: 14.0),
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //       barrierDismissible: false,
-  //     );
-  //     getAtenciones();
-  //     Timer(Duration(milliseconds: 2000),
-  //         () => Get.until((route) => route.isFirst));
-  //   } else
-  //     mostrarSnackbar('No se calificó la atención.', colorRed);
-  // }
+  _onRate() async {
+    AtencionModel atencion = new AtencionModel();
+    atencion.id = idAtencion;
+    atencion.stars = myrating.toInt();
+    atencion.comment = inputComentController.text;
+    bool resp = await atencionService.calificar(atencion);
+
+    calificado.value = resp;
+
+    if (resp) {
+      getAtenciones();
+    }
+  }
 }
