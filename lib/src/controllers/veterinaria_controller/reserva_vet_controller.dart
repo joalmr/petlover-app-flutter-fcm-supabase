@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +25,7 @@ import 'package:select_dialog/select_dialog.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:time_parser/time_parser.dart';
 
+import 'components/reserva/lista_servicios.dart';
 import 'data/horario.dart';
 import 'detalle_vet_controller.dart';
 
@@ -41,6 +40,8 @@ class ReservaVetController extends GetxController {
   List<MascotaModel2> misMascotas;
 
   ServicioReserva ex3;
+  List<ServicioReserva> listaServicio = [];
+  List<String> listaReservaId = []; //llenarlo antes de enviar
 
   bool hasDelivery;
 
@@ -48,7 +49,7 @@ class ReservaVetController extends GetxController {
   RxString _mascotaId = ''.obs;
 
   String reservaId;
-  RxList<ServicioReserva> servicioReservaLista = List<ServicioReserva>().obs; // = await bookingService.typeBooking();
+  RxList<ServicioReserva> servicioReservaLista = List<ServicioReserva>().obs;
   RxString _fecha = ''.obs;
   RxString _observacion = ''.obs;
 
@@ -60,7 +61,12 @@ class ReservaVetController extends GetxController {
 
   GoogleMapController _controller;
 
-  final deliveryArray = [null, 'Recojo y entrega a domicilio', 'Solo recojo a domicilio', 'Solo entrega a domicilio'];
+  final deliveryArray = [
+    null,
+    'Recojo y entrega a domicilio',
+    'Solo recojo a domicilio',
+    'Solo entrega a domicilio'
+  ];
 
   final format = DateFormat("yyyy-MM-dd");
   TimeOfDay time = TimeOfDay.now();
@@ -103,6 +109,23 @@ class ReservaVetController extends GetxController {
     });
   }
 
+  add2List(numero) {
+    if (!listaServicio.contains(numero))
+      listaServicio.add(numero);
+    else
+      listaServicio.remove(numero);
+    if (listaServicio.length > 1) {
+      String textoServicios = '';
+      listaServicio.forEach((element) {
+        textoServicios += '${element.name}, ';
+      });
+      inputServController.text = textoServicios;
+    } else
+      inputServController.text = listaServicio.first.name;
+
+    update();
+  }
+
   iniciales() {
     serviceInicial();
     fechaHoraInicial();
@@ -113,10 +136,12 @@ class ReservaVetController extends GetxController {
     servicioReservaLista.clear();
     var dato = await bookingService.typeBooking();
     servicioReservaLista.addAll(dato);
-    reservaId = servicioReservaLista.where((x) => x.id == 1).first.id.toString();
+    reservaId =
+        servicioReservaLista.where((x) => x.id == 1).first.id.toString();
     //
     ex3 = servicioReservaLista.first;
     inputServController.text = servicioReservaLista.first.name;
+    listaServicio.add(servicioReservaLista.first);
   }
 
   fechaHoraInicial() {
@@ -135,21 +160,22 @@ class ReservaVetController extends GetxController {
       lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
       zoomIn = 16.0;
 
-      // deliveryDireccion = _prefs.myAddress;
       if (_prefs.hasMyAddress()) {
         inputDireccionController.text = _prefs.myAddress;
       }
 
-      marcador.add(Marker(
-        markerId: MarkerId("1"),
-        position: LatLng(lat, lng),
-        draggable: true,
-        onDragEnd: ((value) {
-          lat = value.latitude;
-          lng = value.longitude;
-          _prefs.myAddressLatLng = "$lat,$lng";
-        }),
-      ));
+      marcador.add(
+        Marker(
+          markerId: MarkerId("1"),
+          position: LatLng(lat, lng),
+          draggable: true,
+          onDragEnd: ((value) {
+            lat = value.latitude;
+            lng = value.longitude;
+            _prefs.myAddressLatLng = "$lat,$lng";
+          }),
+        ),
+      );
     }
   }
 
@@ -159,52 +185,70 @@ class ReservaVetController extends GetxController {
   }
 
   _servicios(context) {
-    return SelectDialog.showModal<ServicioReserva>(
-      context,
-      label: "Servicios",
-      titleStyle: Get.textTheme.subtitle1,
-      showSearchBox: true,
-      emptyBuilder: (context) => Center(
-        child: Text('No se encontró'),
-      ),
-      errorBuilder: (context, exception) => Center(child: Text('Oops!')),
-      items: servicioReservaLista.value,
-      selectedValue: ex3,
-      searchBoxDecoration: InputDecoration(
-        hintText: 'Buscar servicio',
-        prefixIcon: Icon(Icons.search, color: colorMain),
-      ),
-      onFind: (String filter) => _getData(filter),
-      itemBuilder: (BuildContext context, ServicioReserva item, bool isSelected) {
-        return Container(
-          decoration: !isSelected ? null : BoxDecoration(borderRadius: BorderRadius.circular(5), color: colorMain),
-          child: ListTile(
-            selected: isSelected,
-            title: Text(
-              item.name,
-              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
-            ),
-            subtitle: Text(
-              item.category,
-              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white, fontSize: 12) : Get.textTheme.subtitle2.copyWith(fontSize: 12),
-            ),
-          ),
-        );
-      },
-      onChange: (selected) {
-        ex3 = selected;
-        inputServController.text = selected.name;
-        reservaId = selected.id.toString();
-      },
+    return Get.dialog(
+      serviciosSeleccionados(context),
     );
   }
 
+  // _servicios(context) {
+  //   return SelectDialog.showModal<ServicioReserva>(
+  //     context,
+  //     label: "Servicios",
+  //     titleStyle: Get.textTheme.subtitle1,
+  //     showSearchBox: true,
+  //     emptyBuilder: (context) => Center(
+  //       child: Text('No se encontró'),
+  //     ),
+  //     errorBuilder: (context, exception) => Center(child: Text('Oops!')),
+  //     items: servicioReservaLista.value,
+  //     searchBoxDecoration: InputDecoration(
+  //       hintText: 'Buscar servicio',
+  //       prefixIcon: Icon(Icons.search, color: colorMain),
+  //     ),
+  //     onFind: (String filter) => _getData(filter),
+  //     itemBuilder:
+  //         (BuildContext context, ServicioReserva item, bool isSelected) {
+  //       return Container(
+  //         decoration: !isSelected
+  //             ? null
+  //             : BoxDecoration(
+  //                 borderRadius: BorderRadius.circular(5), color: colorMain),
+  //         child: ListTile(
+  //           selected: isSelected,
+  //           title: Text(
+  //             item.name,
+  //             style: isSelected
+  //                 ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
+  //                 : Get.textTheme.subtitle2,
+  //           ),
+  //           subtitle: Text(
+  //             item.category,
+  //             style: isSelected
+  //                 ? Get.textTheme.subtitle2
+  //                     .copyWith(color: Colors.white, fontSize: 12)
+  //                 : Get.textTheme.subtitle2.copyWith(fontSize: 12),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //     selectedValue: ex3,
+  //     onChange: (selected) {
+  //       ex3 = selected;
+  //       inputServController.text = selected.name;
+  //       reservaId = selected.id.toString();
+  //     },
+  //   );
+  // }
+
+  getData() => _getData("");
+
   Future<List<ServicioReserva>> _getData(String filter) async {
-    // bookingService.typeBooking();
     List<ServicioReserva> lista = List<ServicioReserva>();
     servicioReservaLista.forEach((element) {
       var palabra = element.name + '' + element.category;
-      bool contiene = palabra.toLowerCase().contains(filter.toLowerCase()); //.contains(filter);
+      bool contiene = palabra
+          .toLowerCase()
+          .contains(filter.toLowerCase()); //.contains(filter);
       if (contiene) {
         lista.add(element);
       }
@@ -212,42 +256,6 @@ class ReservaVetController extends GetxController {
 
     var models = lista;
     return models;
-  }
-
-  Widget crearFecha(BuildContext context) {
-    return DateTimeField(
-      initialValue: DateTime.now(),
-      format: format,
-      onChanged: (dt) => fecha = format.format(dt),
-      enableInteractiveSelection: false,
-      cursorColor: colorMain,
-      onShowPicker: (context, currentValue) {
-        return showDatePicker(
-          context: context,
-          initialDate: currentValue ?? DateTime.now(),
-          firstDate: DateTime.now(), //new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
-          lastDate: DateTime.now().add(new Duration(days: 365)), //new DateTime(DateTime.now().year + 1, DateTime.now().month, DateTime.now().day),
-          initialDatePickerMode: DatePickerMode.day,
-          builder: (context, child) => Theme(
-              data: ThemeData.light().copyWith(
-                  accentColor: colorMain,
-                  colorScheme: ColorScheme.light(
-                    primary: colorMain,
-                    onPrimary: Colors.white,
-                    surface: colorMain,
-                    onSurface: Get.textTheme.subtitle2.color,
-                  ),
-                  dialogBackgroundColor: Theme.of(context).backgroundColor,
-                  buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
-              child: child),
-        );
-      },
-      decoration: InputDecoration(
-        hintText: 'Fecha de nacimiento',
-        prefixIcon: Icon(Icons.calendar_today, color: colorMain),
-        suffixIcon: Icon(null),
-      ),
-    );
   }
 
   pickTime(context) {
@@ -260,7 +268,9 @@ class ReservaVetController extends GetxController {
       backgroundColor: Theme.of(context).backgroundColor,
       context: context,
       builder: (context) => Theme(
-        data: ThemeData(colorScheme: ColorScheme.light(primary: colorMain), buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
+        data: ThemeData(
+            colorScheme: ColorScheme.light(primary: colorMain),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
         child: Container(
           height: 275.0,
           child: Column(
@@ -304,7 +314,8 @@ class ReservaVetController extends GetxController {
     bool respuesta = true;
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-    if (formattedDate == fechaTimeAt.split(' ')[0] && fechaTime.hour < (now.hour - 1)) {
+    if (formattedDate == fechaTimeAt.split(' ')[0] &&
+        fechaTime.hour < (now.hour - 1)) {
       respuesta = false;
     }
     return respuesta;
@@ -312,7 +323,10 @@ class ReservaVetController extends GetxController {
 
   bool get conDelivery => hasDelivery && deliveryId != '1';
 
-  bool get isDeliveryOk => hasDelivery && deliveryId != '1' && inputDireccionController.text.trim() != '';
+  bool get isDeliveryOk =>
+      hasDelivery &&
+      deliveryId != '1' &&
+      inputDireccionController.text.trim() != '';
 
   bool get isDayOk {
     int day = fechaTime.weekday;
@@ -358,7 +372,6 @@ class ReservaVetController extends GetxController {
   }
 
   gpsDireccion(Prediction2 data) {
-    // deliveryDireccion = data.name;
     _searchandNavigate(data);
   }
 
@@ -427,23 +440,31 @@ class ReservaVetController extends GetxController {
               if (isHourOk) {
                 ejecutaReserva();
               } else {
-                mostrarSnackbar('La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora', colorRed);
+                mostrarSnackbar(
+                    'La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora',
+                    colorRed);
               }
             } else {
-              mostrarSnackbar('La veterinaria no atiende el día seleccionado', colorRed);
+              mostrarSnackbar(
+                  'La veterinaria no atiende el día seleccionado', colorRed);
             }
           } else {
-            mostrarSnackbar('Debe ingresar la dirección para el servicio de movilidad', colorRed);
+            mostrarSnackbar(
+                'Debe ingresar la dirección para el servicio de movilidad',
+                colorRed);
           }
         } else {
           if (isDayOk) {
             if (isHourOk) {
               ejecutaReserva();
             } else {
-              mostrarSnackbar('La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora', colorRed);
+              mostrarSnackbar(
+                  'La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora',
+                  colorRed);
             }
           } else {
-            mostrarSnackbar('La veterinaria no atiende el día seleccionado', colorRed);
+            mostrarSnackbar(
+                'La veterinaria no atiende el día seleccionado', colorRed);
           }
         }
       }
@@ -462,7 +483,8 @@ class ReservaVetController extends GetxController {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
 
-    bool resp = await bookingService.booking(booking, deliveryTipo, _prefs.myAddress);
+    bool resp =
+        await bookingService.booking(booking, deliveryTipo, _prefs.myAddress);
 
     if (resp) {
       homeC.getSummary();

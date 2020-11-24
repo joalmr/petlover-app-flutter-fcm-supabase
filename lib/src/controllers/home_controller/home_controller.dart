@@ -4,6 +4,8 @@ import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
+import 'data/obtiene_distancia.dart';
+
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
   //
@@ -34,10 +36,10 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // getDistance();
     if (_prefs.hasToken()) {
       getSummary();
     }
-    // getSummary();
   }
 
   void getSummary() {
@@ -54,7 +56,9 @@ class HomeController extends GetxController {
     resp.bookings.forEach((booking) {
       var fechaAt = booking.date.split('-');
       bool vencido = false;
-      if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
+      if (int.parse(fechaAt[0]) < now.day &&
+          int.parse(fechaAt[1]) == now.month &&
+          int.parse(fechaAt[2]) == now.year) {
         vencido = true;
       }
       booking.vencido = vencido;

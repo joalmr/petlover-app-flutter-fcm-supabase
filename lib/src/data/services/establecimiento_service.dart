@@ -6,6 +6,10 @@ class EstablecimientoService {
   final EstablecimientoProvider establecimientoProvider =
       EstablecimientoProvider();
 
+  findVets(String vetName) {
+    return establecimientoProvider.findVets(vetName);
+  }
+
   getVets(dynamic filtros) {
     return establecimientoProvider.getVets(filtros);
   }

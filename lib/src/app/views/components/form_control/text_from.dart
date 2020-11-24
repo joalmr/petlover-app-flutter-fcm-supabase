@@ -15,6 +15,7 @@ class FormularioText extends StatelessWidget {
   final TextInputType boardType;
   final bool activo;
   final int maxLines;
+  final bool autofocus;
 
   FormularioText({
     this.labelText,
@@ -29,6 +30,7 @@ class FormularioText extends StatelessWidget {
     this.boardType = TextInputType.text,
     this.activo = true,
     this.maxLines = 1,
+    this.autofocus = false,
   });
 
   @override
@@ -46,6 +48,7 @@ class FormularioText extends StatelessWidget {
               onChanged: onChanged,
               cursorColor: colorMain,
               maxLines: maxLines,
+              autofocus: autofocus,
               decoration: InputDecoration(
                 hintText: hintText,
                 prefixIcon:
@@ -71,6 +74,7 @@ class FormularioText extends StatelessWidget {
                   onChanged: onChanged,
                   cursorColor: colorMain,
                   maxLines: maxLines,
+                  autofocus: autofocus,
                   decoration: InputDecoration(
                     hintText: hintText,
                     prefixIcon:

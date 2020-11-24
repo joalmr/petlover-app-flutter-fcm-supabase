@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/comentario_vet_controller.dart';
 
-import 'todos_comentarios_view.dart';
-
 class ViewComentario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

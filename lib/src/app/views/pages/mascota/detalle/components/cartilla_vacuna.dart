@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
+import 'data/data-cartilla.dart';
+
 Widget cartillaDigital() {
   return SingleChildScrollView(
     child: Column(
@@ -22,13 +24,26 @@ Widget cartillaDigital() {
                   size: 28,
                 ),
               ),
-              title: Text(
-                '30-11-2020',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Próxima vacuna',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                  Text(
+                    '30-11-2020',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
               subtitle: Text(
                 'Vacuna lestospira',
@@ -41,25 +56,29 @@ Widget cartillaDigital() {
           ),
         ),
         ListView.builder(
-          itemCount: 50,
+          itemCount: vacunaLista.length,
           physics: NeverScrollableScrollPhysics(),
           padding: EdgeInsets.only(top: 0),
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return Card(
               child: ListTile(
-                // leading: CircleAvatar(
-                //   backgroundColor: colorMain,
-                //   child: Icon(IconProypet.vacuna, color: colorGray1),
-                // ),
                 title: Text(
-                  'Vacuna $index Vacuna $index Vacuna $index Vacuna $index Vacuna $index',
+                  vacunaLista[index].name,
                   maxLines: 2,
                   style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                 ),
-                subtitle: Text(
-                  '12-12-2020',
-                  style: TextStyle(fontSize: 12),
+                subtitle: Row(
+                  children: [
+                    Icon(
+                      IconProypet.vacuna,
+                      size: 10,
+                    ),
+                    Text(
+                      vacunaLista[index].dateIn,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ],
                 ),
                 trailing: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -73,7 +92,7 @@ Widget cartillaDigital() {
                       ),
                     ),
                     Text(
-                      '12-12-2021',
+                      vacunaLista[index].dateReturn,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],

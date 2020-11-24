@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/components/servicio_flat.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/data/dataDelivery.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
@@ -7,6 +8,7 @@ import 'package:proypet/src/app/views/components/form_control/button_primary.dar
 import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/components/direccion_reserva.dart';
+import 'package:proypet/src/controllers/veterinaria_controller/components/reserva/fecha.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/reserva_vet_controller.dart';
 
 import 'components/mapa_reserva.dart';
@@ -26,7 +28,9 @@ class DataReserva extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(_.vet.name, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                        Text(_.vet.name,
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold)),
                         SizedBox(height: 20.0),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -34,7 +38,8 @@ class DataReserva extends StatelessWidget {
                           children: <Widget>[
                             Text('Mascota'),
                             SizedBox(height: 7.5),
-                            ddlFutureImg(context, _.mascotaId, _.misMascotas, (opt) {
+                            ddlFutureImg(context, _.mascotaId, _.misMascotas,
+                                (opt) {
                               _.mascotaId = opt.toString();
                             })
                           ],
@@ -54,7 +59,8 @@ class DataReserva extends StatelessWidget {
                               decoration: InputDecoration(
                                 suffixIcon: Padding(
                                   padding: const EdgeInsets.only(right: 10),
-                                  child: Icon(Icons.keyboard_arrow_down, color: colorMain),
+                                  child: Icon(Icons.keyboard_arrow_down,
+                                      color: colorMain),
                                 ),
                               ),
                             ),
@@ -67,7 +73,7 @@ class DataReserva extends StatelessWidget {
                           children: <Widget>[
                             Text('Fecha'),
                             SizedBox(height: 7.5),
-                            _.crearFecha(context),
+                            crearFecha(context),
                           ],
                         ),
                         SizedBox(height: 20.0),
@@ -84,12 +90,15 @@ class DataReserva extends StatelessWidget {
                               cursorColor: colorMain,
                               decoration: InputDecoration(
                                 hintText: 'Hora de atención',
-                                prefixIcon: Icon(Icons.access_time, color: colorMain),
+                                prefixIcon:
+                                    Icon(Icons.access_time, color: colorMain),
                               ),
                             ),
                           ],
                         ),
-                        _.hasDelivery ? SizedBox(height: 20.0) : SizedBox(height: 0.0),
+                        _.hasDelivery
+                            ? SizedBox(height: 20.0)
+                            : SizedBox(height: 0.0),
                         _.hasDelivery
                             ? Padding(
                                 padding: const EdgeInsets.only(bottom: 7.5),
@@ -97,7 +106,8 @@ class DataReserva extends StatelessWidget {
                               )
                             : SizedBox(height: 0.0),
                         _.hasDelivery
-                            ? ddlMain(context, _.deliveryId, deliveryList, (opt) {
+                            ? ddlMain(context, _.deliveryId, deliveryList,
+                                (opt) {
                                 _.deliveryId = opt.toString();
                               })
                             : SizedBox(height: 0.0),
@@ -131,7 +141,8 @@ class DataReserva extends StatelessWidget {
                               // maxLength: 250,
                               keyboardType: TextInputType.multiline,
                               cursorColor: colorMain,
-                              decoration: InputDecoration(hintText: 'Ingrese observación (opcional)'),
+                              decoration: InputDecoration(
+                                  hintText: 'Ingrese observación (opcional)'),
                               onChanged: (value) => _.observacion = value,
                             ),
                             Text.rich(
@@ -140,9 +151,12 @@ class DataReserva extends StatelessWidget {
                                 children: <TextSpan>[
                                   TextSpan(
                                     text: 'Otro servicio',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  TextSpan(text: ', especifíquelo en observaciones', style: TextStyle()),
+                                  TextSpan(
+                                      text: ', especifíquelo en observaciones',
+                                      style: TextStyle()),
                                 ],
                               ),
                               style: TextStyle(fontSize: sizeSmallx1),
@@ -151,8 +165,10 @@ class DataReserva extends StatelessWidget {
                         ),
                         SizedBox(height: 30.0),
                         _.servicioReservaLista.length > 0
-                            ? buttonPri('Confirmar reserva', _.actBtn.value ? _.reservarAtencion : null)
-                            : buttonPri('Confirmar reserva', () {}, cargando: true),
+                            ? buttonPri('Confirmar reserva',
+                                _.actBtn.value ? _.reservarAtencion : null)
+                            : buttonPri('Confirmar reserva', () {},
+                                cargando: true),
                         SizedBox(height: 7.5),
                         buttonFlat("Cancelar", () => Get.back(), colorRed),
                       ],

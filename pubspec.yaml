@@ -84,7 +84,9 @@ dependencies:
 
   #buscadores
   simple_autocomplete_formfield: ^0.2.7 #buscar con autocomplete 
-  select_dialog: ^1.1.0 #modal con bucador y lista
+  # select_dialog: ^1.1.0 
+  select_dialog: ^1.2.1
+  #modal con bucador y lista
   #fin buscadores
   
   #lanzadores (para abrir apps u otro)

@@ -27,6 +27,10 @@ class ReservaList extends StatelessWidget {
             texto: 'Buscar veterinarias',
             acc: <Widget>[
               IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () => Get.toNamed('buscarveterinaria'),
+              ),
+              IconButton(
                 icon: Icon(Icons.filter_list),
                 onPressed: () => Get.to(FiltraVets()),
               ),
@@ -49,13 +53,17 @@ class ReservaList extends StatelessWidget {
                             slivers: <Widget>[
                               SliverToBoxAdapter(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top: 10, bottom: 5, left: 20, right: 20),
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 5, left: 20, right: 20),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.location_on, color: colorMain, size: 14),
-                                      Text(_.global.ubicacion, style: TextStyle(fontSize: 12)),
+                                      Icon(Icons.location_on,
+                                          color: colorMain, size: 14),
+                                      Text(_.global.ubicacion,
+                                          style: TextStyle(fontSize: 12)),
                                     ],
                                   ),
                                 ),
@@ -71,8 +79,10 @@ class ReservaList extends StatelessWidget {
                                         height: 50.0,
                                         child: Center(
                                           child: Padding(
-                                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                                            child: Text("No se encontró veterinarias"),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10.0),
+                                            child: Text(
+                                                "No se encontró veterinarias"),
                                           ),
                                         ),
                                       ),
@@ -96,7 +106,8 @@ class ReservaList extends StatelessWidget {
                             onPressed: (_.vetLocales.length == 0)
                                 ? null
                                 : () => Get.to(
-                                      VetMapaPage(establecimientos: _.vetLocales.value),
+                                      VetMapaPage(
+                                          establecimientos: _.vetLocales.value),
                                     ),
                             child: Icon(Icons.location_on),
                           ),
@@ -111,7 +122,8 @@ class ReservaList extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
                               child: Text(
                                 'Ingresa una dirección para buscar veterinarias cercanas',
                                 style: Get.textTheme.subtitle1,
