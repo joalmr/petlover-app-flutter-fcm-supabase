@@ -67,6 +67,11 @@ class ConfigDrawer extends StatelessWidget {
                   onTap: () => Get.toNamed('solicitaveterinaria'),
                 ),
                 ListTile(
+                  leading: Icon(Icons.error_outline),
+                  title: Text('Reportar problema'),
+                  onTap: () => Get.toNamed('enviarqueja'),
+                ),
+                ListTile(
                   leading: Icon(
                       Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
                   title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),

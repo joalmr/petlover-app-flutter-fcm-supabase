@@ -184,61 +184,61 @@ class ReservaVetController extends GetxController {
     _servicios(context);
   }
 
-  _servicios(context) {
-    return Get.dialog(
-      serviciosSeleccionados(context),
-    );
-  }
-
   // _servicios(context) {
-  //   return SelectDialog.showModal<ServicioReserva>(
-  //     context,
-  //     label: "Servicios",
-  //     titleStyle: Get.textTheme.subtitle1,
-  //     showSearchBox: true,
-  //     emptyBuilder: (context) => Center(
-  //       child: Text('No se encontró'),
-  //     ),
-  //     errorBuilder: (context, exception) => Center(child: Text('Oops!')),
-  //     items: servicioReservaLista.value,
-  //     searchBoxDecoration: InputDecoration(
-  //       hintText: 'Buscar servicio',
-  //       prefixIcon: Icon(Icons.search, color: colorMain),
-  //     ),
-  //     onFind: (String filter) => _getData(filter),
-  //     itemBuilder:
-  //         (BuildContext context, ServicioReserva item, bool isSelected) {
-  //       return Container(
-  //         decoration: !isSelected
-  //             ? null
-  //             : BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(5), color: colorMain),
-  //         child: ListTile(
-  //           selected: isSelected,
-  //           title: Text(
-  //             item.name,
-  //             style: isSelected
-  //                 ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
-  //                 : Get.textTheme.subtitle2,
-  //           ),
-  //           subtitle: Text(
-  //             item.category,
-  //             style: isSelected
-  //                 ? Get.textTheme.subtitle2
-  //                     .copyWith(color: Colors.white, fontSize: 12)
-  //                 : Get.textTheme.subtitle2.copyWith(fontSize: 12),
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //     selectedValue: ex3,
-  //     onChange: (selected) {
-  //       ex3 = selected;
-  //       inputServController.text = selected.name;
-  //       reservaId = selected.id.toString();
-  //     },
+  //   return Get.dialog(
+  //     serviciosSeleccionados(context),
   //   );
   // }
+
+  _servicios(context) {
+    return SelectDialog.showModal<ServicioReserva>(
+      context,
+      label: "Servicios",
+      titleStyle: Get.textTheme.subtitle1,
+      showSearchBox: true,
+      emptyBuilder: (context) => Center(
+        child: Text('No se encontró'),
+      ),
+      errorBuilder: (context, exception) => Center(child: Text('Oops!')),
+      items: servicioReservaLista.value,
+      searchBoxDecoration: InputDecoration(
+        hintText: 'Buscar servicio',
+        prefixIcon: Icon(Icons.search, color: colorMain),
+      ),
+      onFind: (String filter) => _getData(filter),
+      itemBuilder:
+          (BuildContext context, ServicioReserva item, bool isSelected) {
+        return Container(
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5), color: colorMain),
+          child: ListTile(
+            selected: isSelected,
+            title: Text(
+              item.name,
+              style: isSelected
+                  ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
+                  : Get.textTheme.subtitle2,
+            ),
+            subtitle: Text(
+              item.category,
+              style: isSelected
+                  ? Get.textTheme.subtitle2
+                      .copyWith(color: Colors.white, fontSize: 12)
+                  : Get.textTheme.subtitle2.copyWith(fontSize: 12),
+            ),
+          ),
+        );
+      },
+      selectedValue: ex3,
+      onChange: (selected) {
+        ex3 = selected;
+        inputServController.text = selected.name;
+        reservaId = selected.id.toString();
+      },
+    );
+  }
 
   getData() => _getData("");
 
