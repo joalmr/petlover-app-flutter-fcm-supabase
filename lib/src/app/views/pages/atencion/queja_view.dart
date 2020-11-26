@@ -31,6 +31,7 @@ class QuejaPage extends StatelessWidget {
                   labelText: 'Detalle del problema',
                   maxLines: 10,
                   textCap: TextCapitalization.sentences,
+                  boardType: TextInputType.multiline,
                   onChanged: (value) => _.descripcion = value,
                 ),
                 SizedBox(height: 10),
