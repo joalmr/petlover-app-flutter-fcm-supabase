@@ -20,7 +20,8 @@ class VetDetallePage extends StatelessWidget {
           return Scaffold(
             body: FadeView(
               child: _.cargando.value
-                  ? Container(child: Center(child: CupertinoActivityIndicator()))
+                  ? Container(
+                      child: Center(child: CupertinoActivityIndicator()))
                   : FadeIn(
                       duration: Duration(milliseconds: 500),
                       child: Stack(
@@ -31,7 +32,10 @@ class VetDetallePage extends StatelessWidget {
                               Container(
                                 height: context.height * 0.275,
                                 width: double.infinity,
-                                child: (_.vet.slides.length > 0) ? swiperVets(_.vet.slides, true) : swiperVets(["images/vet_prueba.jpg"], false),
+                                child: (_.vet.slides.length > 0)
+                                    ? swiperVets(_.vet.slides, true)
+                                    : swiperVets(
+                                        ["images/vet_prueba.jpg"], false),
                               ),
                               Positioned(
                                 right: 7.5,
@@ -42,14 +46,18 @@ class VetDetallePage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     color: colorGray1,
                                     borderRadius: BorderRadius.circular(100.0),
-                                    image: DecorationImage(image: CachedNetworkImageProvider(_.vet.logo), fit: BoxFit.cover),
+                                    image: DecorationImage(
+                                        image: CachedNetworkImageProvider(
+                                            _.vet.logo),
+                                        fit: BoxFit.cover),
                                   ),
                                 ),
                               )
                             ],
                           ),
                           Container(
-                            padding: EdgeInsets.only(top: context.height * 0.275, bottom: 60.0),
+                            padding: EdgeInsets.only(
+                                top: context.height * 0.275, bottom: 60.0),
                             child: DataVet(), //_onDetail(vet),
                           ),
                           Positioned(
@@ -60,20 +68,32 @@ class VetDetallePage extends StatelessWidget {
                               padding: EdgeInsets.symmetric(vertical: 5.0),
                               child: Row(
                                 children: <Widget>[
-                                  SizedBox(width: MediaQuery.of(context).size.width * 0.025),
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.2,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.025),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
                                     child: FloatingActionButton(
-                                      backgroundColor: Theme.of(context).backgroundColor,
-                                      child: Icon(Icons.phone, color: colorMain),
+                                      backgroundColor:
+                                          Theme.of(context).backgroundColor,
+                                      child:
+                                          Icon(Icons.phone, color: colorMain),
                                       onPressed: _.llamar,
                                     ),
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.725,
-                                    child: buttonPri('Reservar servicio', _.reservaClic.value ? _.reservar : null),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.725,
+                                    child: buttonPri(
+                                        'Reservar servicio',
+                                        _.reservaClic.value
+                                            ? _.reservar
+                                            : null),
                                   ),
-                                  SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                                  SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.05),
                                 ],
                               ),
                             ),

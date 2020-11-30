@@ -43,6 +43,9 @@ dependencies:
   image_picker: ^0.6.7+14
   #fin imagenes
 
+  # featurestar: ^1.1.0
+  # flutter_rating_bar: ^3.2.0+1
+  
   google_fonts: ^1.1.1
   google_maps_flutter: ^0.5.28+1
   geolocator: ^5.2.0

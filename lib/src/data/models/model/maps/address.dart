@@ -14,7 +14,8 @@ class Address {
   });
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-        predictions: List<Prediction2>.from(json["predictions"].map((x) => Prediction2.fromJson(x))),
+        predictions: List<Prediction2>.from(
+            json["predictions"].map((x) => Prediction2.fromJson(x))),
         status: json["status"],
       );
 
@@ -55,22 +56,3 @@ class Prediction2 {
   @override
   int get hashCode => id.hashCode ^ name.hashCode;
 }
-
-// class Prediction {
-//     String description;
-//     String placeId;
-//     String geolocation;
-
-//     Prediction({
-//         this.description,
-//         this.placeId,
-//         this.geolocation,
-//     });
-
-//     factory Prediction.fromJson(Map<String, dynamic> json) => Prediction(
-//         description: json["description"],
-//         placeId: json["place_id"],
-//         geolocation: json["geolocation"],
-//     );
-
-// }

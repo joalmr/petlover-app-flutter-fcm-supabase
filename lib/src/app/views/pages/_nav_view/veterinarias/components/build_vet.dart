@@ -1,74 +1,124 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/views/components/card_swiper.dart';
+import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+
+import 'swiper_vet.dart';
 
 Widget buildVets(EstablecimientoModel vet) {
   return FadeIn(
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       child: InkWell(
-          onTap: () => Get.toNamed('vetdetalle', arguments: vet),
-          child: Card(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    (vet.slides.length > 0) ? _swiperVets(vet.slides, true) : _swiperVets(["images/vet_prueba.jpg"], false),
-                    Positioned(
-                      bottom: 5.0,
-                      right: 5.0,
-                      child: Container(
-                        padding: EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          backgroundColor: colorGray1.withOpacity(0.25),
-                          backgroundImage: CachedNetworkImageProvider(vet.logo),
-                          radius: 25.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+        onTap: () => Get.toNamed('vetdetalle', arguments: vet),
+        child: Card(
+          child: Row(
+            children: [
+              Container(
+                height: 100,
+                child: (vet.slides.length > 0)
+                    ? _swiperVets(vet.slides, true)
+                    : _swiperVets(["images/vet_prueba.jpg"], false),
+              ),
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
+                      Text(
+                        vet.name,
+                        style:
+                            Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
+                        maxLines: 2,
+                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            '${vet.distance}km de distancia',
-                            maxLines: 1,
-                            style: TextStyle(fontSize: sizeSmallx1, color: colorGray3, fontWeight: FontWeight.w400),
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${vet.distance}km de distancia',
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: sizeSmallx1,
+                                      color: colorGray3,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Row(
+                                  children: [
+                                    RatingBarIndicator(
+                                      rating: double.parse(vet.stars),
+                                      itemBuilder: (context, index) => Icon(
+                                        Icons.star,
+                                        color: colorYellow,
+                                      ),
+                                      itemCount: 5,
+                                      itemSize: 18,
+                                      direction: Axis.horizontal,
+                                    ),
+                                    SizedBox(width: 2.5),
+                                    Text(
+                                      vet.stars,
+                                      style: Get.textTheme.subtitle2,
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      IconProypet.consulta,
+                                      size: 12,
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      '${vet.attentions} atenciones',
+                                      style: TextStyle(fontSize: 12),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            children: <Widget>[
-                              Icon(Icons.star, color: colorYellow, size: 12.0),
-                              SizedBox(width: 0.5),
-                              Text(vet.stars.toString() + ' (' + vet.attentions.toString() + ')', style: Get.textTheme.subtitle2)
-                            ],
+                          CircleAvatar(
+                            child: Padding(
+                              padding: const EdgeInsets.all(1),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                                child: Image(
+                                  image: CachedNetworkImageProvider(vet.logo),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            backgroundColor: colorGray1,
+                            radius: 27,
                           ),
                         ],
                       ),
-                      Text(vet.name, style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2), maxLines: 1),
                     ],
                   ),
-                )
-              ],
-            ),
-          )),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     ),
   );
 }
 
 Widget _swiperVets(imagen, bool url) {
-  return CardSwiper(
+  return SwiperVet(
     imagenes: imagen,
     urlBool: url,
     radius: 10.0,
