@@ -17,6 +17,9 @@ import 'package:proypet/src/app/views/auth/forgot_page.dart';
 import 'package:proypet/src/app/views/pages/_nav_bar/navigation_bar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/home/reserva/detalle_reserva.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/detalle_mascota.dart';
+import 'package:proypet/src/app/views/pages/usuario/editar/editar_usuario.dart';
+import 'package:proypet/src/app/views/pages/usuario/mi_cuenta.dart';
+import 'package:proypet/src/app/views/pages/usuario/password/cambia_password.dart';
 import 'package:proypet/src/app/views/pages/usuario/solicita_veterinaria/solicitar_veterinaria.dart';
 
 GetStorage box = GetStorage();
@@ -33,6 +36,10 @@ List<GetPage> getRutas() {
     GetPage(name: 'login', page: () => LoginPage()),
     GetPage(name: 'registro', page: () => SingupPage()),
     GetPage(name: 'olvidopass', page: () => ForgotPage()),
+
+    GetPage(name: 'micuenta', page: () => MiCuentaPage()),
+    GetPage(name: 'editarusuario', page: () => UserPage()),
+    GetPage(name: 'cambiarpass', page: () => ChangePasswordPage()),
     //
     GetPage(name: 'navInicio', page: () => NavigationBar(currentTabIndex: 0)),
     GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),

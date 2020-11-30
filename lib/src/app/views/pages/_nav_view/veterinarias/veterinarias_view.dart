@@ -49,53 +49,46 @@ class ReservaList extends StatelessWidget {
                         RefreshIndicator(
                           key: refreshKey,
                           onRefresh: _.refresh,
-                          child: CustomScrollView(
-                            slivers: <Widget>[
-                              SliverToBoxAdapter(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, bottom: 5, left: 20, right: 20),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(Icons.location_on,
-                                          color: colorMain, size: 14),
-                                      Text(_.global.ubicacion,
-                                          style: TextStyle(fontSize: 12)),
-                                    ],
-                                  ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10, bottom: 10, left: 20, right: 20),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(Icons.location_on,
+                                        color: colorMain, size: 14),
+                                    Text(_.global.ubicacion,
+                                        style: TextStyle(fontSize: 12)),
+                                  ],
                                 ),
                               ),
                               (_.listaFiltros.length > 0)
                                   ? listarChip(_.listaFiltros)
-                                  : SliverToBoxAdapter(
-                                      child: SizedBox(height: 0.0),
-                                    ),
+                                  : SizedBox(height: 0.0),
                               (_.vetLocales.length < 1)
-                                  ? SliverToBoxAdapter(
-                                      child: SizedBox(
-                                        height: 50.0,
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10.0),
-                                            child: Text(
-                                                "No se encontró veterinarias"),
-                                          ),
+                                  ? SizedBox(
+                                      height: 50.0,
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10.0),
+                                          child: Text(
+                                              "No se encontró veterinarias"),
                                         ),
                                       ),
                                     )
-                                  : SliverList(
-                                      delegate: SliverChildBuilderDelegate(
-                                        (BuildContext context, int index) {
+                                  : Expanded(
+                                      child: ListView.builder(
+                                        itemCount: _.vetLocales.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
                                           return buildVets(_.vetLocales[index]);
                                         },
-                                        childCount: _.vetLocales.length,
                                       ),
                                     ),
-                              SliverToBoxAdapter(child: SizedBox(height: 50.0)),
                             ],
                           ),
                         ),

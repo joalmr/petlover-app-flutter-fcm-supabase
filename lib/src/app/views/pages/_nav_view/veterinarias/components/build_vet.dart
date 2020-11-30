@@ -14,6 +14,7 @@ Widget buildVets(EstablecimientoModel vet) {
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       child: InkWell(
+        borderRadius: borderRadius,
         onTap: () => Get.toNamed('vetdetalle', arguments: vet),
         child: Card(
           child: Row(

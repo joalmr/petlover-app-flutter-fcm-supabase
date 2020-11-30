@@ -1,12 +1,9 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/views/pages/atencion/atencion_view.dart';
-import 'package:proypet/src/app/views/pages/usuario/editar/editar_usuario.dart';
-import 'package:proypet/src/app/views/pages/usuario/password/cambia_password.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/data/services/auth_service.dart';
 import 'package:share/share.dart';
 
@@ -45,16 +42,6 @@ class ConfigDrawer extends StatelessWidget {
                   onTap: () => Get.to(AtencionesPage()),
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Editar usuario'),
-                  onTap: () => Get.to(UserPage()),
-                ),
-                ListTile(
-                  leading: Icon(Icons.lock),
-                  title: Text('Cambiar contraseña'),
-                  onTap: () => Get.to(ChangePasswordPage()),
-                ),
-                ListTile(
                   leading: Icon(Icons.share),
                   title: Text('Compartir con mis amigos'),
                   onTap: () => Share.share(
@@ -73,7 +60,11 @@ class ConfigDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(
-                      Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5),
+                    Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5,
+                    // Get.isDarkMode
+                    //     ? FontAwesomeIcons.solidMoon
+                    //     : FontAwesomeIcons.solidSun,
+                  ),
                   title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),
                   onTap: () {
                     if (Get.isDarkMode) {
@@ -86,56 +77,15 @@ class ConfigDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                    leading: Icon(Icons.person_outline, color: colorRed),
-                    title: Text('Cerrar sesión',
-                        style: TextStyle(color: colorRed)),
-                    onTap: () => _cerrarSesion(context)),
+                  leading: Icon(Icons.person),
+                  title: Text('Mi cuenta'),
+                  onTap: () => Get.toNamed('micuenta'),
+                ),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  _cerrarSesion(context) {
-    Get.dialog(
-      FadeIn(
-        child: AlertDialog(
-          title: null, //Text('Cerrar sesión'),
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-          titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          content: Text("Desea cerrar sesión?"),
-          actions: <Widget>[
-            FlatButton(
-              onPressed: () => Get.back(),
-              child: Text('Cancelar',
-                  style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
-            ),
-            FlatButton(
-              onPressed: () => _outToken(),
-              child: Text('Cerrar sesión',
-                  style: Get.textTheme.subtitle2
-                      .apply(fontWeightDelta: 2, color: colorRed)),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _outToken() async {
-    loginApi.logOut();
-    //limpiando storage
-    _prefs.tokenDel(); //limpia token
-    _prefs.verifyDel(); //limpia verificado
-    _prefs.positionDel(); //limpia gps para lista vets
-    _prefs.ubicacionDel(); //limpia direccion para lista vets
-    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
-    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
-    _prefs.notificaAvisoDel(); //limpia notificacion aviso
-
-    Get.offAllNamed('login');
   }
 }

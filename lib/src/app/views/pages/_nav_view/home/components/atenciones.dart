@@ -36,7 +36,7 @@ class Atenciones extends StatelessWidget {
                             (_home.mascotas.length > 0)
                                 ? InkWell(
                                     borderRadius: borderRadius,
-                                    onTap: _.reserva,
+                                    // onTap: _.reserva,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           top: 2, bottom: 2),
@@ -58,8 +58,7 @@ class Atenciones extends StatelessWidget {
                             _home.loading.value
                                 ? Container()
                                 : (_home.mascotas.length > 0)
-                                    ? buttonOutLine(
-                                        'Reservar', _.reserva, colorMain)
+                                    ? SizedBox(height: 0)
                                     : buttonOutLine('Agregar mascota',
                                         _.agregarMascota, colorMain),
                           ],
