@@ -68,7 +68,7 @@ Widget buildVets(EstablecimientoModel vet) {
                                     ),
                                     SizedBox(width: 2.5),
                                     Text(
-                                      vet.stars,
+                                      vet.stars == '0.0' ? '0' : vet.stars,
                                       style: Get.textTheme.subtitle2,
                                     )
                                   ],
