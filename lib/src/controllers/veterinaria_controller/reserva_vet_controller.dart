@@ -25,7 +25,6 @@ import 'package:select_dialog/select_dialog.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:time_parser/time_parser.dart';
 
-import 'components/reserva/lista_servicios.dart';
 import 'data/horario.dart';
 import 'detalle_vet_controller.dart';
 

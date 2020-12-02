@@ -4,8 +4,6 @@ import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
-import 'data/obtiene_distancia.dart';
-
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
   //
