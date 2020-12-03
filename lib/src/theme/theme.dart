@@ -24,6 +24,7 @@ ThemeData temaClaro = ThemeData(
   primarySwatch: newteal,
   accentColor: colorMain,
   backgroundColor: colorGray1,
+  iconTheme: IconThemeData(color: Colors.black38),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(

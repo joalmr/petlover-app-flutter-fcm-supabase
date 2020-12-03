@@ -12,7 +12,7 @@ import 'swiper_vet.dart';
 Widget buildVets(EstablecimientoModel vet) {
   return FadeIn(
     child: Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
       child: InkWell(
         borderRadius: borderRadius,
         onTap: () => Get.toNamed('vetdetalle', arguments: vet),

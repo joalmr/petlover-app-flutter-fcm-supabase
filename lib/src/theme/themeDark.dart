@@ -28,6 +28,7 @@ ThemeData temaOscuro = ThemeData(
     backgroundColor: colorMain,
     foregroundColor: Colors.white,
   ),
+  iconTheme: IconThemeData(color: Colors.white38),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(

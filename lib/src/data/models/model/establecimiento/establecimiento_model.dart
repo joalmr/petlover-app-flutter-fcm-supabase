@@ -1,4 +1,4 @@
-class EstablecimientoModel {
+class EstablecimientoModel implements Comparable<EstablecimientoModel> {
   String id;
   bool premium;
   bool available;
@@ -39,24 +39,31 @@ class EstablecimientoModel {
     this.schedule,
   });
 
-  factory EstablecimientoModel.fromJson(Map<String, dynamic> json) => EstablecimientoModel(
+  factory EstablecimientoModel.fromJson(Map<String, dynamic> json) =>
+      EstablecimientoModel(
         id: json["id"],
         premium: json["premium"],
         available: json["available"],
         name: json["name"],
         phone: json["phone"] == null ? "" : json["phone"],
-        description: json["description"] == null ? "Descripción no detallada" : json["description"],
+        description: json["description"] == null
+            ? "Descripción no detallada"
+            : json["description"],
         stars: json["stars"] == null ? "" : json["stars"],
         votes: json["votes"] == null ? "" : json["votes"],
         attentions: json["attentions"] == null ? 0 : json["attentions"],
         address: json["address"] == null ? "" : json["address"],
         latitude: json["latitude"] == null ? 0.0 : json["latitude"].toDouble(),
-        longitude: json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
+        longitude:
+            json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
         prices: json["prices"],
-        services: List<Service>.from(json["services"].map((x) => Service.fromJson(x))),
-        distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2),
+        services: List<Service>.from(
+            json["services"].map((x) => Service.fromJson(x))),
+        distance: json["distance"] == null
+            ? ""
+            : json["distance"].toDouble().toStringAsFixed(2),
         schedule: json["schedule"],
       );
 
@@ -78,6 +85,19 @@ class EstablecimientoModel {
         "services": List<dynamic>.from(services.map((x) => x.toJson())),
         "distance": distance,
       };
+
+  @override
+  int compareTo(EstablecimientoModel other) {
+    double first = double.parse(stars);
+    double second = double.parse(other.stars);
+    if (second > first) {
+      return second.round();
+    } else {
+      double resp = second - first;
+      int dato = resp.round();
+      return dato;
+    }
+  }
 }
 
 class Service {

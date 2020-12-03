@@ -50,6 +50,16 @@ class VeterinariasController extends GetxController {
     loading.value = false;
   }
 
+  bool ordena = false;
+  orderVets() {
+    ordena = !ordena;
+    if (ordena) {
+      vetLocales.sort();
+    } else {
+      getVets();
+    }
+  }
+
   bool get gps => respVets.value == 200;
 
   filtra() {

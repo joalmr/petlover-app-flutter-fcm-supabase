@@ -45,68 +45,91 @@ class ReservaList extends StatelessWidget {
               : _.gps
                   ? FadeViewSafeArea(
                       child: Stack(
-                      children: <Widget>[
-                        RefreshIndicator(
-                          key: refreshKey,
-                          onRefresh: _.refresh,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 10, bottom: 10, left: 20, right: 20),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          RefreshIndicator(
+                            key: refreshKey,
+                            onRefresh: _.refresh,
+                            child: Column(
+                              children: [
+                                Row(
                                   children: [
-                                    Icon(Icons.location_on,
-                                        color: colorMain, size: 14),
-                                    Text(_.global.ubicacion,
-                                        style: TextStyle(fontSize: 12)),
-                                  ],
-                                ),
-                              ),
-                              (_.listaFiltros.length > 0)
-                                  ? listarChip(_.listaFiltros)
-                                  : SizedBox(height: 0.0),
-                              (_.vetLocales.length < 1)
-                                  ? SizedBox(
-                                      height: 50.0,
-                                      child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10.0),
-                                          child: Text(
-                                              "No se encontró veterinarias"),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 10,
+                                            bottom: 10,
+                                            left: 20,
+                                            right: 20),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Icon(Icons.location_on,
+                                                color: colorMain, size: 14),
+                                            Text(_.global.ubicacion,
+                                                style: TextStyle(fontSize: 12)),
+                                          ],
                                         ),
                                       ),
-                                    )
-                                  : Expanded(
-                                      child: ListView.builder(
-                                        itemCount: _.vetLocales.length,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return buildVets(_.vetLocales[index]);
-                                        },
+                                    ),
+                                    IconButton(
+                                      icon: _.ordena
+                                          ? Icon(
+                                              Icons.star,
+                                              color: colorMain,
+                                            )
+                                          : Icon(Icons.star_border),
+                                      onPressed: () => _.orderVets(),
+                                    ),
+                                  ],
+                                ),
+                                (_.listaFiltros.length > 0)
+                                    ? listarChip(_.listaFiltros)
+                                    : SizedBox(height: 0.0),
+                                (_.vetLocales.length < 1)
+                                    ? SizedBox(
+                                        height: 50.0,
+                                        child: Center(
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10.0),
+                                            child: Text(
+                                                "No se encontró veterinarias"),
+                                          ),
+                                        ),
+                                      )
+                                    : Expanded(
+                                        child: ListView.builder(
+                                          itemCount: _.vetLocales.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return buildVets(
+                                                _.vetLocales[index]);
+                                          },
+                                        ),
                                       ),
-                                    ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 15,
-                          right: 10,
-                          child: FloatingActionButton(
-                            onPressed: (_.vetLocales.length == 0)
-                                ? null
-                                : () => Get.to(
-                                      VetMapaPage(
-                                          establecimientos: _.vetLocales.value),
-                                    ),
-                            child: Icon(Icons.location_on),
+                          Positioned(
+                            bottom: 15,
+                            right: 10,
+                            child: FloatingActionButton(
+                              onPressed: (_.vetLocales.length == 0)
+                                  ? null
+                                  : () => Get.to(
+                                        VetMapaPage(
+                                            establecimientos:
+                                                _.vetLocales.value),
+                                      ),
+                              child: Icon(Icons.location_on),
+                            ),
                           ),
-                        ),
-                      ],
-                    ))
+                        ],
+                      ),
+                    )
                   : FadeViewSafeArea(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
