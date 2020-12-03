@@ -126,7 +126,11 @@ class ReservaList extends StatelessWidget {
                             SizedBox(height: 10),
                             autocompleteAddress(),
                             SizedBox(height: 10),
-                            buttonOutLine('Buscar', () => _.filtra(), colorMain)
+                            buttonOutLine(
+                              'Buscar',
+                              () => _.filtra(),
+                              colorMain,
+                            ),
                           ],
                         ),
                       ),

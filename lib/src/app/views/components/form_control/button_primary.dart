@@ -63,6 +63,37 @@ Widget buttonModal(String _text, _funtion, Color _color) {
   );
 }
 
+Widget btnWIcon({
+  @required IconData icono,
+  @required String texto,
+  @required funtion,
+  @required Color color,
+}) {
+  return SizedBox(
+    width: double.maxFinite,
+    child: RaisedButton(
+      shape: shape20,
+      color: color,
+      elevation: 2.0,
+      textColor: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            icono,
+            size: 22,
+          ),
+          SizedBox(width: 10),
+          Expanded(child: Text(texto, style: _textstyle)),
+        ],
+      ),
+      padding: EdgeInsets.only(top: 9, bottom: 9, left: 45),
+      onPressed: funtion,
+    ),
+  );
+}
+
 Widget btnFace({@required text, @required funtion}) {
   return SizedBox(
     width: double.maxFinite,
@@ -88,29 +119,3 @@ Widget btnFace({@required text, @required funtion}) {
     ),
   );
 }
-//, bool cargando = false
-
-// cargando
-//     ? Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         children: [
-//           CupertinoActivityIndicator(),
-//           SizedBox(width: 10),
-//           Text(text, style: _textstyle),
-//         ],
-//       )
-//     : Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         children: [
-//           Icon(
-//             FontAwesomeIcons.facebook,
-//             size: 20,
-//           ),
-//           SizedBox(width: 10),
-//           Text(text, style: _textstyle),
-//         ],
-//       ),
-
-// !cargando ? funtion : null,

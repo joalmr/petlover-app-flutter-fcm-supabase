@@ -29,17 +29,14 @@ class EstablecimientoProvider {
 
       vets = List<EstablecimientoModel>.from(
           response.data.map((x) => EstablecimientoModel.fromJson(x)));
-    }
 
-    if (vetName.length > 1) {
-      establecimientos = vets
-          .where((el) => el.name.toLowerCase().contains(vetName.toLowerCase()))
-          .toList();
+      if (vetName.length > 2) {
+        establecimientos = vets
+            .where(
+                (el) => el.name.toLowerCase().contains(vetName.toLowerCase()))
+            .toList();
+      }
     }
-
-    establecimientos.forEach((element) {
-      print(element.name);
-    });
 
     return establecimientos;
   }
