@@ -9,6 +9,7 @@ import 'filtra_vets_controller.dart';
 class VeterinariasController extends GetxController {
   final vetService = EstablecimientoService();
   RxList<EstablecimientoModel> vetLocales = List<EstablecimientoModel>().obs;
+  RxList<EstablecimientoModel> temp = List<EstablecimientoModel>().obs;
 
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
@@ -47,6 +48,9 @@ class VeterinariasController extends GetxController {
     respVets.value = resp['code']; // == 200
     vetLocales.clear();
     vetLocales.addAll(resp['establecimientos']);
+    temp.clear();
+    temp.addAll(resp['establecimientos']);
+    print('# ${temp.length}');
     loading.value = false;
   }
 
@@ -56,7 +60,8 @@ class VeterinariasController extends GetxController {
     if (ordena) {
       vetLocales.sort();
     } else {
-      getVets();
+      vetLocales.clear();
+      vetLocales.addAll(temp);
     }
   }
 
