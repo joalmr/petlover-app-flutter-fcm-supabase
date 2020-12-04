@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/data/models/model/establecimiento/comentarios_model.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 import 'package:proypet/src/data/models/model/establecimiento/promocion_model.dart';
 // import 'package:proypet/src/data/models/model/establecimiento/lista_establecimiento_model.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
@@ -43,7 +44,7 @@ class EstablecimientoProvider {
 
   Future<dynamic> getVets(dynamic filtros) async {
     int gpsStatus = 200;
-    List<EstablecimientoModel> establecimientos = [];
+    List<EstablecimientoShortModel> establecimientos = [];
     if (!_prefs.hasPosition()) {
       gpsStatus = 211; //no tiene ubicacion
     }
@@ -64,8 +65,8 @@ class EstablecimientoProvider {
       Response response;
       response = await dio.get(url, options: Options(headers: headersToken()));
 
-      final vets = List<EstablecimientoModel>.from(
-          response.data.map((x) => EstablecimientoModel.fromJson(x)));
+      final vets = List<EstablecimientoShortModel>.from(
+          response.data.map((x) => EstablecimientoShortModel.fromJson(x)));
       if (vets.length > 0) establecimientos = vets;
     }
 

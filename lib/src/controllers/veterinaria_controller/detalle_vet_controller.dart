@@ -9,6 +9,7 @@ import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/models/update/usuario/user_model.dart';
 import 'package:proypet/src/data/services/booking_service.dart';
@@ -35,18 +36,16 @@ class VetDetalleController extends GetxController {
 
   RxString _telefono = "".obs;
 
-  RxBool cargando = false.obs;
-  // RxString _vetId = "".obs;
-
-  // set vetId(String value) => _vetId.value = value;
-  // String get vetId => _vetId.value;
+  RxBool cargando = true.obs;
 
   set telefono(String value) => _telefono.value = value;
   String get telefono => _telefono.value;
 
+  String vetId;
+  EstablecimientoShortModel vetInit;
+
   final homeC = Get.find<HomeController>();
   final globalC = Get.find<GlobalController>();
-
   final vetsC = Get.find<VeterinariasController>();
 
   UserModel2 usuario;
@@ -54,10 +53,11 @@ class VetDetalleController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    vet = Get.arguments;
+    vetInit = Get.arguments;
     traeMascotas();
     usuario = globalC.usuario;
     telefono = usuario.phone;
+    getVet();
   }
 
   @override
@@ -65,18 +65,18 @@ class VetDetalleController extends GetxController {
     super.onClose();
   }
 
-  // getVet() async {
-  //   vetId = Get.arguments;
-  //   print(vetId);
-  //   var respVet = await vetService.getVet(vetId);
-  //   vet = respVet['establishment'];
-  //   cargando.value = false;
-  // }
+  getVet() => _getVet(vetInit.id);
+  _getVet(idInit) async {
+    vetId = idInit;
+    var respVet = await vetService.getVet(vetId);
+    vet = respVet['establishment'];
+    cargando.value = false;
+  }
+
   bool get hasDelivery {
     //usado en reserva controller
     int existe = 0;
     vet.services.forEach((element) {
-      // print(element.slug);
       if (element.slug == 'delivery') {
         existe++;
       }
@@ -109,7 +109,7 @@ class VetDetalleController extends GetxController {
 
   reservar() => _reservar();
 
-  List<EstablecimientoModel> vetPremium = [];
+  List<EstablecimientoShortModel> vetPremium = [];
   _getPremiumClose() {
     vetPremium = vetsC.vetLocales.value
         .where((element) => element.premium == true && element != vet)
@@ -221,12 +221,12 @@ class VetDetalleController extends GetxController {
     }
   }
 
-  Widget _gotoVet(EstablecimientoModel vetPremium) {
+  Widget _gotoVet(EstablecimientoShortModel vetPremium) {
     return InkWell(
       onTap: () {
         cargando.value = true;
         Get.back();
-        vet = vetPremium;
+        vet = _getVet(vetPremium.id);
         Timer(Duration(milliseconds: 250), () => cargando.value = false);
       },
       child: Column(

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
@@ -8,8 +9,10 @@ import 'filtra_vets_controller.dart';
 
 class VeterinariasController extends GetxController {
   final vetService = EstablecimientoService();
-  RxList<EstablecimientoModel> vetLocales = List<EstablecimientoModel>().obs;
-  RxList<EstablecimientoModel> temp = List<EstablecimientoModel>().obs;
+  RxList<EstablecimientoShortModel> vetLocales =
+      List<EstablecimientoShortModel>().obs;
+  RxList<EstablecimientoShortModel> temp =
+      List<EstablecimientoShortModel>().obs;
 
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
@@ -50,7 +53,6 @@ class VeterinariasController extends GetxController {
     vetLocales.addAll(resp['establecimientos']);
     temp.clear();
     temp.addAll(resp['establecimientos']);
-    print('# ${temp.length}');
     loading.value = false;
   }
 

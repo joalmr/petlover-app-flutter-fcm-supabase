@@ -6,10 +6,11 @@ import 'package:get/get.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 
 import 'swiper_vet.dart';
 
-Widget buildVets(EstablecimientoModel vet) {
+Widget buildVets(EstablecimientoShortModel vet) {
   return FadeIn(
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
