@@ -112,7 +112,7 @@ class VetDetalleController extends GetxController {
   List<EstablecimientoShortModel> vetPremium = [];
   _getPremiumClose() {
     vetPremium = vetsC.vetLocales.value
-        .where((element) => element.premium == true && element != vet)
+        .where((element) => element.premium == true && element.id != vet.id)
         .take(2)
         .toList(); //.take(2);
   }

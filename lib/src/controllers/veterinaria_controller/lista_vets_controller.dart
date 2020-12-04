@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
