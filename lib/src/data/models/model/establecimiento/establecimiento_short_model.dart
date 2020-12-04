@@ -89,14 +89,10 @@ class EstablecimientoShortModel
 
   @override
   int compareTo(EstablecimientoShortModel other) {
-    double first = double.parse(stars);
-    double second = double.parse(other.stars);
-    if (second > first) {
-      return second.round();
-    } else {
-      double resp = second - first;
-      int dato = resp.round();
-      return dato;
-    }
+    double first = double.parse(stars) * 10;
+    double second = double.parse(other.stars) * 10;
+    double resp = second - first;
+    int dato = resp.round();
+    return dato;
   }
 }

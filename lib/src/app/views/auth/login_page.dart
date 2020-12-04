@@ -14,7 +14,7 @@ import 'data/icons_login.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<LoginController>(
+    return GetX<LoginController>(
       init: LoginController(),
       builder: (_) {
         return Scaffold(

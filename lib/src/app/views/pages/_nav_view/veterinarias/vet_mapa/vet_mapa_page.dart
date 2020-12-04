@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
-
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 
