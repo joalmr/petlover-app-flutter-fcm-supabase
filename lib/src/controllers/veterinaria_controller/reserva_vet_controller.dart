@@ -25,6 +25,7 @@ import 'package:select_dialog/select_dialog.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:time_parser/time_parser.dart';
 
+import 'components/reserva/lista_servicios.dart';
 import 'data/horario.dart';
 import 'detalle_vet_controller.dart';
 
@@ -111,8 +112,10 @@ class ReservaVetController extends GetxController {
   add2List(numero) {
     if (!listaServicio.contains(numero))
       listaServicio.add(numero);
-    else
-      listaServicio.remove(numero);
+    else {
+      if (listaServicio.length > 1) listaServicio.remove(numero);
+    }
+
     if (listaServicio.length > 1) {
       String textoServicios = '';
       listaServicio.forEach((element) {
@@ -121,7 +124,7 @@ class ReservaVetController extends GetxController {
       inputServController.text = textoServicios;
     } else
       inputServController.text = listaServicio.first.name;
-
+    reservaId = listaServicio.first.id.toString(); //TODO: quitar luego
     update();
   }
 
@@ -183,61 +186,61 @@ class ReservaVetController extends GetxController {
     _servicios(context);
   }
 
-  // _servicios(context) {
-  //   return Get.dialog(
-  //     serviciosSeleccionados(context),
-  //   );
-  // }
-
   _servicios(context) {
-    return SelectDialog.showModal<ServicioReserva>(
-      context,
-      label: "Servicios",
-      titleStyle: Get.textTheme.subtitle1,
-      showSearchBox: true,
-      emptyBuilder: (context) => Center(
-        child: Text('No se encontró'),
-      ),
-      errorBuilder: (context, exception) => Center(child: Text('Oops!')),
-      items: servicioReservaLista.value,
-      searchBoxDecoration: InputDecoration(
-        hintText: 'Buscar servicio',
-        prefixIcon: Icon(Icons.search, color: colorMain),
-      ),
-      onFind: (String filter) => _getData(filter),
-      itemBuilder:
-          (BuildContext context, ServicioReserva item, bool isSelected) {
-        return Container(
-          decoration: !isSelected
-              ? null
-              : BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: colorMain),
-          child: ListTile(
-            selected: isSelected,
-            title: Text(
-              item.name,
-              style: isSelected
-                  ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
-                  : Get.textTheme.subtitle2,
-            ),
-            subtitle: Text(
-              item.category,
-              style: isSelected
-                  ? Get.textTheme.subtitle2
-                      .copyWith(color: Colors.white, fontSize: 12)
-                  : Get.textTheme.subtitle2.copyWith(fontSize: 12),
-            ),
-          ),
-        );
-      },
-      selectedValue: ex3,
-      onChange: (selected) {
-        ex3 = selected;
-        inputServController.text = selected.name;
-        reservaId = selected.id.toString();
-      },
+    return Get.dialog(
+      serviciosSeleccionados(context),
     );
   }
+
+  // _servicios(context) {
+  //   return SelectDialog.showModal<ServicioReserva>(
+  //     context,
+  //     label: "Servicios",
+  //     titleStyle: Get.textTheme.subtitle1,
+  //     showSearchBox: true,
+  //     emptyBuilder: (context) => Center(
+  //       child: Text('No se encontró'),
+  //     ),
+  //     errorBuilder: (context, exception) => Center(child: Text('Oops!')),
+  //     items: servicioReservaLista.value,
+  //     searchBoxDecoration: InputDecoration(
+  //       hintText: 'Buscar servicio',
+  //       prefixIcon: Icon(Icons.search, color: colorMain),
+  //     ),
+  //     onFind: (String filter) => _getData(filter),
+  //     itemBuilder:
+  //         (BuildContext context, ServicioReserva item, bool isSelected) {
+  //       return Container(
+  //         decoration: !isSelected
+  //             ? null
+  //             : BoxDecoration(
+  //                 borderRadius: BorderRadius.circular(5), color: colorMain),
+  //         child: ListTile(
+  //           selected: isSelected,
+  //           title: Text(
+  //             item.name,
+  //             style: isSelected
+  //                 ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
+  //                 : Get.textTheme.subtitle2,
+  //           ),
+  //           subtitle: Text(
+  //             item.category,
+  //             style: isSelected
+  //                 ? Get.textTheme.subtitle2
+  //                     .copyWith(color: Colors.white, fontSize: 12)
+  //                 : Get.textTheme.subtitle2.copyWith(fontSize: 12),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //     selectedValue: ex3,
+  //     onChange: (selected) {
+  //       ex3 = selected;
+  //       inputServController.text = selected.name;
+  //       reservaId = selected.id.toString();
+  //     },
+  //   );
+  // }
 
   getData() => _getData("");
 

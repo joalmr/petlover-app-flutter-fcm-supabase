@@ -8,7 +8,6 @@ import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/data/models/model/booking/booking_home.dart';
 import 'package:proypet/src/data/services/booking_service.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'home_controller.dart';
 
 class DetalleRservadoController extends GetxController {
@@ -27,7 +26,9 @@ class DetalleRservadoController extends GetxController {
     DateTime now = DateTime.now();
     var fechaAt = argumentos.date.split('-');
     bool vencido = false;
-    if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
+    if (int.parse(fechaAt[0]) < now.day &&
+        int.parse(fechaAt[1]) == now.month &&
+        int.parse(fechaAt[2]) == now.year) {
       vencido = true;
     }
     return vencido;
@@ -52,7 +53,8 @@ class DetalleRservadoController extends GetxController {
   _abreMaps() async {
     final title = argumentos.establishmentName;
     final description = argumentos.address;
-    final coords = Coords(argumentos.establishmentLat, argumentos.establishmentLng);
+    final coords =
+        Coords(argumentos.establishmentLat, argumentos.establishmentLng);
     final availableMaps = await MapLauncher.installedMaps;
 
     Get.bottomSheet(SafeArea(
@@ -88,7 +90,8 @@ class DetalleRservadoController extends GetxController {
         title: Text('Eliminar'),
         content: Text('Seguro que desea eliminar esta reserva?'),
         actions: <Widget>[
-          buttonModal('Cancelar', () => Get.back(), Get.textTheme.subtitle2.color),
+          buttonModal(
+              'Cancelar', () => Get.back(), Get.textTheme.subtitle2.color),
           buttonModal('Sí, eliminar', () => eliminaAtencion(id), colorRed),
         ],
       ),

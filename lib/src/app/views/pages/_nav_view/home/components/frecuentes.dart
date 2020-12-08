@@ -3,20 +3,15 @@ import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/filtra_vets_controller.dart';
 
-// final control = Get.find<NavigationController>();
 final filtros = Get.find<FiltraVetsController>();
 
 emergencia() {
-  // final filtros = Get.find<FiltraVetsController>();
-
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
       filtros.listaFiltros.clear();
       filtros.listaFiltros.addAll([8]);
-
       filtros.filtrar();
-      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -43,7 +38,8 @@ emergencia() {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text('Emergencia', style: TextStyle(color: Colors.white)),
-              Text('24 horas', style: TextStyle(color: Colors.white, fontSize: sizeSmallx2)),
+              Text('24 horas',
+                  style: TextStyle(color: Colors.white, fontSize: sizeSmallx2)),
             ],
           ),
         )
@@ -53,17 +49,12 @@ emergencia() {
 }
 
 consulta() {
-  // final filtros = Get.find<FiltraVetsController>();
-
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
-      // control.currentTabIndex = 2;
       filtros.listaFiltros.clear();
       filtros.listaFiltros.addAll([2]);
-
       filtros.filtrar();
-      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -95,17 +86,12 @@ consulta() {
 }
 
 vacuna() {
-  // final filtros = Get.find<FiltraVetsController>();
-
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
-      // control.currentTabIndex = 2;
       filtros.listaFiltros.clear();
       filtros.listaFiltros.addAll([4]);
-
       filtros.filtrar();
-      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -137,17 +123,12 @@ vacuna() {
 }
 
 banio() {
-  // final filtros = Get.find<FiltraVetsController>();
-
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
-      // control.currentTabIndex = 2;
       filtros.listaFiltros.clear();
       filtros.listaFiltros.addAll([1]);
-
       filtros.filtrar();
-      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -179,17 +160,12 @@ banio() {
 }
 
 desparasita() {
-  // final filtros = Get.find<FiltraVetsController>();
-
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
     onTap: () {
-      // control.currentTabIndex = 2;
       filtros.listaFiltros.clear();
       filtros.listaFiltros.addAll([11]);
-
       filtros.filtrar();
-      // Get.toNamed('navLista');
     },
     child: Stack(
       children: <Widget>[
@@ -212,7 +188,8 @@ desparasita() {
           width: 120.0,
           height: 100.0,
           child: Center(
-            child: Text('Desparasitación', style: TextStyle(color: Colors.white)),
+            child:
+                Text('Desparasitación', style: TextStyle(color: Colors.white)),
           ),
         )
       ],

@@ -42,7 +42,7 @@ class VetDetalleController extends GetxController {
   String get telefono => _telefono.value;
 
   String vetId;
-  EstablecimientoShortModel vetInit;
+  String vetInit;
 
   final homeC = Get.find<HomeController>();
   final globalC = Get.find<GlobalController>();
@@ -65,7 +65,7 @@ class VetDetalleController extends GetxController {
     super.onClose();
   }
 
-  getVet() => _getVet(vetInit.id);
+  getVet() => _getVet(vetInit);
   _getVet(idInit) async {
     vetId = idInit;
     var respVet = await vetService.getVet(vetId);

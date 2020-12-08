@@ -7,7 +7,6 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/detalle_vet_controller.dart';
-
 import 'components/data_vet.dart';
 import 'components/swiper_vet.dart';
 

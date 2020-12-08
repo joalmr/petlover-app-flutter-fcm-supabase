@@ -9,15 +9,17 @@ import '../build_noti.dart';
 import 'dart:math' as Math;
 
 Widget proximaCita(Notificacion notification) {
-  notification.message = '${notification.message} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}';
-  return buildNoti(notification, () => _fnEstablecimiento(notification.options["establishment_id"]));
+  notification.message =
+      '${notification.message} ${thxNoti[Math.Random().nextInt(thxNoti.length)]}';
+  return buildNoti(notification,
+      () => _fnEstablecimiento(notification.options["establishment_id"]));
 }
 
 _fnEstablecimiento(id) async {
   final establecimientoProvider = EstablecimientoService();
   Map veterinaria = await establecimientoProvider.getVet(id);
   if (veterinaria['status'] == 200) {
-    await Get.toNamed('vetdetalle', arguments: veterinaria['establishment']);
+    await Get.toNamed('vetdetalle', arguments: veterinaria['establishment'].id);
   } else {
     Get.dialog(FadeIn(
       child: SimpleDialog(
@@ -25,7 +27,11 @@ _fnEstablecimiento(id) async {
         children: <Widget>[
           SizedBox(height: 10.0),
           Text('Lo sentimos, esta veterinaria ya no forma parte de proypet'),
-          Center(child: Image(height: 200, width: 200, image: AssetImage("images/gato-error.png"))),
+          Center(
+              child: Image(
+                  height: 200,
+                  width: 200,
+                  image: AssetImage("images/gato-error.png"))),
         ],
       ),
     ));
