@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -102,11 +103,17 @@ class ReservaList extends StatelessWidget {
                                       )
                                     : Expanded(
                                         child: ListView.builder(
+                                          controller: _.scrollController,
                                           itemCount: _.vetLocales.length,
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            return buildVets(
-                                                _.vetLocales[index]);
+                                            return FadeInLeft(
+                                              duration: Duration(
+                                                  milliseconds:
+                                                      50 + (index * 10)),
+                                              child: buildVets(
+                                                  _.vetLocales[index]),
+                                            );
                                           },
                                         ),
                                       ),

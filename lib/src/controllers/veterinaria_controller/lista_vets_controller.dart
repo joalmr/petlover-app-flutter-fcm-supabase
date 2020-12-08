@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
 import 'package:proypet/src/data/services/establecimiento_service.dart';
@@ -12,25 +13,40 @@ class VeterinariasController extends GetxController {
       List<EstablecimientoShortModel>().obs;
   RxList<EstablecimientoShortModel> temp =
       List<EstablecimientoShortModel>().obs;
-
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
   RxBool loading = true.obs;
 
   final global = Get.find<GlobalController>();
-
   final _prefs = new PreferenciasUsuario();
+
+  // int _pageSize = 20;
+
+  ScrollController scrollController = new ScrollController();
 
   @override
   void onInit() {
     super.onInit();
+
     if (_prefs.hasToken()) {
       getVets();
     }
+
+    // scrollController.addListener(() {
+    //   // print('position ${scrollController.position.pixels}');
+    //   // print('maximo ${scrollController.position.maxScrollExtent}');
+    //   if (scrollController.position.pixels ==
+    //       scrollController.position.maxScrollExtent) {
+    //     // _pageSize = _pageSize + 10;
+    //     // getVets();
+    //     // scrollController.position.maxScrollExtent;
+    //   }
+    // });
   }
 
   @override
   void onClose() {
+    scrollController.dispose();
     super.onClose();
   }
 
@@ -42,16 +58,25 @@ class VeterinariasController extends GetxController {
     return null;
   }
 
+  // getFive() {
+  //   for (int i = 0; i < 5; i++) {
+  //     _getVets();
+  //   }
+  // }
+
   getVets() => _getVets();
 
   Future<void> _getVets() async {
     loading.value = true;
     var resp = await vetService.getVets(listaFiltros);
+    List<EstablecimientoShortModel> listaVets = resp['establecimientos'];
     respVets.value = resp['code']; // == 200
-    vetLocales.clear();
-    vetLocales.addAll(resp['establecimientos']);
-    temp.clear();
-    temp.addAll(resp['establecimientos']);
+    if (respVets.value == 200) {
+      vetLocales.clear();
+      temp.clear();
+      vetLocales.addAll(listaVets);
+      temp.addAll(listaVets);
+    }
     loading.value = false;
   }
 

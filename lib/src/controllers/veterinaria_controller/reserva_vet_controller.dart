@@ -124,7 +124,8 @@ class ReservaVetController extends GetxController {
       inputServController.text = textoServicios;
     } else
       inputServController.text = listaServicio.first.name;
-    reservaId = listaServicio.first.id.toString(); //TODO: quitar luego
+    //TODO: quitar luego, hacer multiples reserva
+    reservaId = listaServicio.first.id.toString();
     update();
   }
 

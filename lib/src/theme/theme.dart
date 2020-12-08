@@ -40,7 +40,11 @@ ThemeData temaClaro = ThemeData(
     color: Colors.transparent,
   ),
   dialogTheme: DialogTheme(shape: shape10),
-  cardTheme: CardTheme(shape: shape10, elevation: .05),
+  cardTheme: CardTheme(
+    shape: shape10,
+    elevation: 2.05,
+    shadowColor: Colors.black.withOpacity(0.3),
+  ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: colorGray1,

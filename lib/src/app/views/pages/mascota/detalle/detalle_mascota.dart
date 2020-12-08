@@ -59,7 +59,8 @@ class MascotaDetallePage extends StatelessWidget {
                                 height: context.height - context.height * 0.4,
                                 decoration: BoxDecoration(
                                   borderRadius: borderRadius,
-                                  color: Theme.of(context).backgroundColor,
+                                  color:
+                                      Theme.of(context).scaffoldBackgroundColor,
                                 ),
                                 child: DefaultTabController(
                                   length: 2,

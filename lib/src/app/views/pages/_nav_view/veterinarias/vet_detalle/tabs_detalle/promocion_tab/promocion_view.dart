@@ -37,11 +37,10 @@ class ViewPromocion extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   itemBuilder: (BuildContext context, int index) {
                     PromocionModel promocion = _.promociones[index];
-                    // print(iconNum[int.parse(promocion.serviceId)]);
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Card(
-                        elevation: 2,
+                        // elevation: .0,
                         child: Row(
                           children: [
                             Padding(
