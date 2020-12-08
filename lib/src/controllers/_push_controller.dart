@@ -66,7 +66,7 @@ class PushController extends GetxController {
     var dataPush = mensaje['data'];
 
     if (tipoPush == "AttentionFinished") {
-      print(dataPush);
+      // print(dataPush);
       homeC.getSummary();
       Get.toNamed('calificaatencion', arguments: dataPush);
     } else {

@@ -104,7 +104,7 @@ class EstablecimientoProvider {
     if (resp.statusCode == 200) {
       comentarios = comentariosFromJson(resp.body);
     }
-    print(comentarios.take(10));
+    // print(comentarios.take(10));
     return comentarios.take(10).toList();
   }
 
