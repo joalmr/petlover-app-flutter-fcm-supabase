@@ -56,8 +56,10 @@ class BuscarVeterinaria extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return Card(
                           child: ListTile(
-                            onTap: () => Get.toNamed('vetdetalle',
-                                arguments: _.veterinarias[index]),
+                            onTap: () => Get.toNamed(
+                              'vetdetalle',
+                              arguments: _.veterinarias[index].id,
+                            ),
                             leading: CircleAvatar(
                               backgroundImage: CachedNetworkImageProvider(
                                   _.veterinarias[index].logo),

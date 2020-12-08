@@ -15,10 +15,10 @@ class EstablecimientoProvider {
 
   Dio dio = new Dio();
 
-  Future<List<EstablecimientoModel>> findVets(String vetName) async {
-    List<EstablecimientoModel> establecimientos = [];
+  Future<List<EstablecimientoShortModel>> findVets(String vetName) async {
+    List<EstablecimientoShortModel> establecimientos = [];
     var filtroServicio = "";
-    List<EstablecimientoModel> vets;
+    List<EstablecimientoShortModel> vets;
 
     if (_prefs.hasPosition()) {
       String lat = _prefs.position.split(',')[0];
@@ -28,8 +28,8 @@ class EstablecimientoProvider {
       Response response;
       response = await dio.get(url, options: Options(headers: headersToken()));
 
-      vets = List<EstablecimientoModel>.from(
-          response.data.map((x) => EstablecimientoModel.fromJson(x)));
+      vets = List<EstablecimientoShortModel>.from(
+          response.data.map((x) => EstablecimientoShortModel.fromJson(x)));
 
       if (vetName.length > 2) {
         establecimientos = vets
