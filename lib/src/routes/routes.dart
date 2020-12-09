@@ -6,7 +6,7 @@ import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/d
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_find/buscar_veterinaria.dart';
 import 'package:proypet/src/app/views/pages/atencion/atencion_califica.dart';
-import 'package:proypet/src/app/views/pages/atencion/queja_view.dart';
+import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
 
 import 'package:proypet/src/app/views/pages/mascota/historia/detalle_historia.dart';

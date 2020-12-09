@@ -7,6 +7,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/buscar_vet_controller.dart';
+import 'package:share/share.dart';
 
 class BuscarVeterinaria extends StatelessWidget {
   @override
@@ -41,9 +42,13 @@ class BuscarVeterinaria extends StatelessWidget {
                               style: TextStyle(fontSize: 16),
                             ),
                             SizedBox(height: 0.5),
+                            //Get.toNamed('solicitaveterinaria'),
+                            //'Solicita su ingreso',
                             buttonFlat(
-                              'Solicita su ingreso',
-                              () => Get.toNamed('solicitaveterinaria'),
+                              '¡Invítala!',
+                              () => Share.share(
+                                  '¿Conoces Proypet? Descubre la nueva app para reservar citas y beneficios para tus clientes. Entérate más en: https://proypet.com/veterinarias',
+                                  subject: 'Se parte de Proypet'),
                               colorMain,
                             ),
                           ],

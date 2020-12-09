@@ -4,8 +4,7 @@ import 'package:proypet/src/app/views/components/form_control/button_primary.dar
 import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
-import 'package:proypet/src/controllers/atencion_controller/queja_controller.dart';
-
+import 'package:proypet/src/controllers/usuario_controller/queja_controller.dart';
 import 'quejas/lista_queja.dart';
 
 class QuejaPage extends StatelessWidget {

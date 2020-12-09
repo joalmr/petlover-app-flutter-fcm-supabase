@@ -48,21 +48,13 @@ class ConfigDrawer extends StatelessWidget {
                       subject: 'Registrate hoy a Proypet'),
                 ),
                 ListTile(
-                  leading: Icon(IconProypet.consulta),
-                  title: Text('Solicitar veterinaria'),
-                  onTap: () => Get.toNamed('solicitaveterinaria'),
-                ),
-                ListTile(
-                  leading: Icon(Icons.error_outline),
-                  title: Text('Reportar problema'),
-                  onTap: () => Get.toNamed('enviarqueja'),
+                  leading: Icon(Icons.person),
+                  title: Text('Mi cuenta'),
+                  onTap: () => Get.toNamed('micuenta'),
                 ),
                 ListTile(
                   leading: Icon(
                     Get.isDarkMode ? Icons.brightness_2 : Icons.brightness_5,
-                    // Get.isDarkMode
-                    //     ? FontAwesomeIcons.solidMoon
-                    //     : FontAwesomeIcons.solidSun,
                   ),
                   title: Text(Get.isDarkMode ? 'Tema oscuro' : 'Tema claro'),
                   onTap: () {
@@ -76,9 +68,14 @@ class ConfigDrawer extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Mi cuenta'),
-                  onTap: () => Get.toNamed('micuenta'),
+                  leading: Icon(IconProypet.consulta),
+                  title: Text('Solicitar veterinaria'),
+                  onTap: () => Get.toNamed('solicitaveterinaria'),
+                ),
+                ListTile(
+                  leading: Icon(Icons.error_outline),
+                  title: Text('Reportar problema'),
+                  onTap: () => Get.toNamed('enviarqueja'),
                 ),
               ],
             ),
