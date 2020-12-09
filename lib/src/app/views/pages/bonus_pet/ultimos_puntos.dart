@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/controllers/bonus_pet/bonus_controller.dart';
@@ -23,9 +25,58 @@ class PuntosGanados extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    //TODO: quitar appPruebas cuando ya este para produccion
+                    appPruebas
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Card(
+                                child: InkWell(
+                                  onTap: () => Get.toNamed('canjearpuntos'),
+                                  borderRadius: borderRadius,
+                                  child: Container(
+                                    width: 120,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          FontAwesomeIcons.cartPlus,
+                                          color: colorMain,
+                                        ),
+                                        Text('Canjear Puntos'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Card(
+                                child: InkWell(
+                                  onTap: () => Get.toNamed('sorteopuntos'),
+                                  borderRadius: borderRadius,
+                                  child: Container(
+                                    width: 120,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          FontAwesomeIcons.gifts,
+                                          color: colorMain,
+                                        ),
+                                        Text('Sorteo'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : SizedBox(height: 0),
                     FadeIn(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5),
                         child: Text('Últimos puntos ganados',
                             style: Get.textTheme.subtitle2
                                 .apply(fontWeightDelta: 2)),
@@ -35,8 +86,8 @@ class PuntosGanados extends StatelessWidget {
                       child: _.bonificados.length < 1
                           ? Center(
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 0),
                                 child: Text("No tienes puntos ganados"),
                               ),
                             )
@@ -46,11 +97,12 @@ class PuntosGanados extends StatelessWidget {
                                 final bonificado = _.bonificados[index];
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0),
+                                      horizontal: 0.0),
                                   child: ListTile(
                                     title: Text(
                                       '${bonificado.establishmentName}',
                                       style: Get.textTheme.subtitle2,
+                                      maxLines: 2,
                                     ),
                                     trailing: CircleAvatar(
                                       backgroundColor: colorMain,
@@ -58,7 +110,7 @@ class PuntosGanados extends StatelessWidget {
                                       child: Text(
                                         '+${bonificado.points}',
                                         style: TextStyle(
-                                          fontSize: sizeSmallx1,
+                                          fontSize: sizeSmallx2,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
