@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/controllers/bonus_pet/bonus_controller.dart';
@@ -20,7 +21,9 @@ class PuntosGanados extends StatelessWidget {
             acc: null,
           ),
           body: _.cargando.value
-              ? Center(child: CupertinoActivityIndicator())
+              ? Center(
+                  child: lottieLoading,
+                )
               : Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
@@ -25,7 +26,7 @@ class Mascotas extends StatelessWidget {
                   height: 250.0,
                   width: double.infinity,
                   child: Center(
-                    child: CupertinoActivityIndicator(),
+                    child: lottieLoading,
                   ),
                 )
               : _home.sinMascotas
@@ -165,34 +166,27 @@ class Mascotas extends StatelessWidget {
                                             ),
                                           ),
                                           Positioned(
-                                              bottom: 10.0,
-                                              right: 10.0,
-                                              child: ClipRRect(
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  radius: 27.5,
-                                                  child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(2.0),
-                                                      child: mascota.specieId ==
-                                                              2
-                                                          ? Image(
-                                                              image: AssetImage(
-                                                                  'images/gif/perro-feliz.gif'),
-                                                            )
-                                                          : Image(
-                                                              color: colorGray2,
-                                                              image: AssetImage(
-                                                                  'images/gif/perro-feliz.gif'),
-                                                            )),
-                                                ),
-                                              )
-                                              // buttonOutLine(
-                                              //     'Ver más',
-                                              // () =>
-                                              //     _.detalleMascota(mascota.id),
-                                              //     colorGray1),
+                                            bottom: 10.0,
+                                            right: 10.0,
+                                            child: ClipRRect(
+                                              child: CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                radius: 27.5,
+                                                child: Padding(
+                                                    padding:
+                                                        EdgeInsets.all(2.0),
+                                                    child: mascota.specieId == 2
+                                                        ? Image(
+                                                            image: AssetImage(
+                                                                'images/gif/perro-kb.gif'),
+                                                          )
+                                                        : Image(
+                                                            image: AssetImage(
+                                                                'images/gif/gato-kb.gif'),
+                                                          )),
                                               ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),

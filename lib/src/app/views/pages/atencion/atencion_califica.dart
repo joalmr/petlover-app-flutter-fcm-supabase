@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_field.dart';
@@ -13,9 +14,9 @@ class AtencionCalifica extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<AtencionController>(
-        // init: CalificaAtencionController(),
-        builder: (_) {
-      return Scaffold(
+      // init: CalificaAtencionController(),
+      builder: (_) {
+        return Scaffold(
           backgroundColor: colorMain,
           body: FadeViewSafeArea(
             child: Stack(
@@ -128,9 +129,16 @@ class AtencionCalifica extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: lottieLoading,
+                ),
               ],
             ),
-          ));
-    });
+          ),
+        );
+      },
+    );
   }
 }

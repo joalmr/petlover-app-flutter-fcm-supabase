@@ -8,6 +8,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/app/styles/styles.dart';
@@ -80,7 +81,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
           : FadeViewSafeArea(
               child: Container(
                 child: Center(
-                  child: CupertinoActivityIndicator(),
+                  child: lottieLoading,
                 ),
               ),
             ),

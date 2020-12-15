@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/comentario_vet_controller.dart';
 
@@ -15,7 +16,7 @@ class ViewComentario extends StatelessWidget {
           ? FadeIn(
               child: Container(
                 child: Center(
-                  child: CupertinoActivityIndicator(),
+                  child: lottieLoading,
                 ),
               ),
             )

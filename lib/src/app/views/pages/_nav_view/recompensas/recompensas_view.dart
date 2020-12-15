@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
@@ -32,7 +33,7 @@ class RecompensasPage extends StatelessWidget {
                 ? FadeViewSafeArea(
                     child: Container(
                       child: Center(
-                        child: CupertinoActivityIndicator(),
+                        child: lottieLoading,
                       ),
                     ),
                   )

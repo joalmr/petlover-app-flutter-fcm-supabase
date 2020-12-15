@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/notificacion_controller/notificacion_controller.dart';
@@ -27,25 +28,33 @@ class NotificacionesPage extends StatelessWidget {
                 ? FadeViewSafeArea(
                     child: Container(
                     child: Center(
-                      child: CupertinoActivityIndicator(),
+                      child: lottieLoading,
                     ),
                   ))
                 : FadeViewSafeArea(
                     child: (_.notifications.length < 1)
                         ? Container(
-                            margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 ClipRRect(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                   child: AspectRatio(
                                     aspectRatio: 2,
-                                    child: Image(image: AssetImage('images/noti-img.png'), height: 220, fit: BoxFit.cover),
+                                    child: Image(
+                                        image:
+                                            AssetImage('images/noti-img.png'),
+                                        height: 220,
+                                        fit: BoxFit.cover),
                                   ),
                                 ),
-                                Padding(padding: const EdgeInsets.all(10.0), child: Text("No tienes notificaciones"))
+                                Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("No tienes notificaciones"))
                               ],
                             ),
                           )

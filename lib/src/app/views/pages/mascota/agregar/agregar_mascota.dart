@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
@@ -26,7 +27,7 @@ class MascotaAgregarPage extends StatelessWidget {
                 ? FadeIn(
                     child: Container(
                       child: Center(
-                        child: CupertinoActivityIndicator(),
+                        child: lottieLoading,
                       ),
                     ),
                   )

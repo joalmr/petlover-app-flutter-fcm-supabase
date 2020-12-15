@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/controllers/home_controller/atencion_home_controller.dart';
@@ -21,7 +22,9 @@ class Atenciones extends StatelessWidget {
               ? Container(
                   width: double.infinity,
                   height: 100,
-                  child: Center(child: CupertinoActivityIndicator()),
+                  child: Center(
+                    child: lottieLoading,
+                  ),
                 )
               : _home.sinAtenciones
                   ? FadeIn(

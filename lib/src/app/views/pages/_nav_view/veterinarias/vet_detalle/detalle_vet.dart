@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
@@ -20,7 +21,9 @@ class VetDetallePage extends StatelessWidget {
             body: FadeView(
               child: _.cargando.value
                   ? Container(
-                      child: Center(child: CupertinoActivityIndicator()))
+                      child: Center(
+                      child: lottieLoading,
+                    ))
                   : FadeIn(
                       duration: Duration(milliseconds: 500),
                       child: Stack(

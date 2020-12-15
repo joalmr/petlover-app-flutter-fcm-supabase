@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
@@ -32,7 +33,7 @@ class MascotaDetallePage extends StatelessWidget {
                           width: double.infinity,
                           height: double.infinity,
                           child: Center(
-                            child: CupertinoActivityIndicator(),
+                            child: lottieLoading,
                           ),
                         )
                       : SingleChildScrollView(

@@ -44,6 +44,13 @@ dependencies:
   image_picker: ^0.6.7+14
   #fin imagenes
 
+  some_calendar: ^1.2.6
+  lottie: ^0.7.0+1
+  image_sequence_animator: ^1.0.9
+
+  spritewidget: ^0.9.24
+  flame: ^0.28.0
+  flim: ^0.3.1
   # featurestar: ^1.1.0
   # flutter_rating_bar: ^3.2.0+1
   
@@ -145,6 +152,7 @@ flutter:
    - assets/map_style.txt
    - images/
    - images/gif/
+   - images/lottie/
    - images/icon/
    - images/proypetip/
 

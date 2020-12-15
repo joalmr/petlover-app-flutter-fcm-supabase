@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
@@ -20,12 +21,13 @@ class UserPage extends StatelessWidget {
               ? FadeViewSafeArea(
                   child: Container(
                   child: Center(
-                    child: CupertinoActivityIndicator(),
+                    child: lottieLoading,
                   ),
                 ))
               : FadeViewSafeArea(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,

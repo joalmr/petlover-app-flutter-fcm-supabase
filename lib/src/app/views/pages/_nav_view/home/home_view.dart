@@ -7,7 +7,6 @@ import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'components/atenciones.dart';
 import 'components/frecuentes.dart';
 import 'components/mascota.dart';
-// import 'components/usuario.dart';
 
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_mapa/vet_mapa_page.dart';
@@ -41,7 +42,9 @@ class ReservaList extends StatelessWidget {
               ? Container(
                   height: double.infinity,
                   width: double.infinity,
-                  child: Center(child: CupertinoActivityIndicator()),
+                  child: Center(
+                    child: lottieLoading,
+                  ),
                 )
               : _.gps
                   ? FadeViewSafeArea(
