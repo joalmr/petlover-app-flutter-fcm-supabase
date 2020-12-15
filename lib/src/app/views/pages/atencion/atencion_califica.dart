@@ -2,12 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/styles/lottie.dart';
+import 'package:lottie/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_field.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
-// import 'package:proypet/src/controllers/atencion_controller/atencion_calificar_controller.dart';
 import 'package:proypet/src/controllers/atencion_controller/atencion_controller.dart';
 
 class AtencionCalifica extends StatelessWidget {
@@ -132,7 +131,7 @@ class AtencionCalifica extends StatelessWidget {
                 Positioned(
                   bottom: 0,
                   left: 0,
-                  child: lottieLoading,
+                  child: Lottie.asset('images/lottie/star.json', height: 220),
                 ),
               ],
             ),

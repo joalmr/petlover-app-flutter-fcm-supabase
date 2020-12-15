@@ -18,8 +18,11 @@ import 'src/controllers/_global_controller.dart';
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(MyApp()));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (value) => runApp(
+      MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
