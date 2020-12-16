@@ -131,7 +131,7 @@ class AtencionCalifica extends StatelessWidget {
                 Positioned(
                   bottom: 0,
                   left: 0,
-                  child: Lottie.asset('images/lottie/star.json', height: 220),
+                  child: Lottie.asset('images/lottie/star.json', height: 256),
                 ),
               ],
             ),

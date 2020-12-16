@@ -10,7 +10,8 @@ cirugia(data) {
     children: <Widget>[
       Row(
         children: <Widget>[
-          Icon(IconProypet.cirugia, size: 16.0, color: Get.textTheme.subtitle2.color),
+          Icon(IconProypet.cirugia,
+              size: 16.0, color: Get.textTheme.subtitle2.color),
           SizedBox(
             width: 10.0,
           ),
@@ -27,14 +28,16 @@ cirugia(data) {
         "Recomendación",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
       ),
-      Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
-      // Text(
-      //   "Atendido por",
-      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
-      // ),
-      // Text((data["employee"] != null) ? data["employee"] : "-"),
+      Text(data["recommendations"] ?? '-'),
       Divider(),
-      Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+      Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: Text(
+          data["amount"] ?? '-',
+          textAlign: TextAlign.right,
+        ),
+      )
     ],
   );
 }

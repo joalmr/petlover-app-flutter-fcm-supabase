@@ -91,43 +91,42 @@ class SorteoPuntos extends StatelessWidget {
                                   ),
                                   Expanded(
                                     flex: 2,
-                                    child: Card(
-                                      color: colorMain,
-                                      child: Container(
-                                        width: 100,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 1.5),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Participar',
-                                              style: TextStyle(
-                                                fontSize: sizeSmallx3,
-                                                color: colorGray1,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                    child: Container(
+                                      width: 100,
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 10,
+                                        horizontal: 1,
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Participar',
+                                            style: TextStyle(
+                                              fontSize: sizeSmallx3,
+                                              color: colorMain,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            Text(
-                                              '45',
-                                              style:
-                                                  Get.textTheme.subtitle2.apply(
-                                                fontWeightDelta: 2,
-                                                color: colorGray1,
-                                              ),
+                                          ),
+                                          Text(
+                                            '45',
+                                            style:
+                                                Get.textTheme.subtitle2.apply(
+                                              fontWeightDelta: 2,
+                                              color: colorMain,
                                             ),
-                                            Text(
-                                              'puntos',
-                                              style: TextStyle(
-                                                fontSize: sizeSmallx3 - 2,
-                                                color: colorGray1,
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          ),
+                                          Text(
+                                            'puntos',
+                                            style: TextStyle(
+                                              fontSize: sizeSmallx3 - 2,
+                                              color: colorMain,
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   ),

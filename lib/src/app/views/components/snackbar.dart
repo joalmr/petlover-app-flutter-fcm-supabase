@@ -8,6 +8,6 @@ void mostrarSnackbar(String mensaje, Color color) {
     backgroundColor: color,
     borderRadius: 5,
     snackPosition: SnackPosition.BOTTOM,
-    duration: Duration(milliseconds: 2500),
+    duration: Duration(milliseconds: 3500),
   );
 }

@@ -1,3 +1,4 @@
+import 'package:ai_notification_enable/ai_notification_enable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
@@ -66,6 +67,11 @@ class ConfigDrawer extends StatelessWidget {
                       _prefs.themeMode = 'oscuro';
                     }
                   },
+                ),
+                ListTile(
+                  leading: Icon(Icons.notification_important),
+                  title: Text('Activar notificaciones'),
+                  onTap: () => AiNotificationEnable.openNotificationSettings(),
                 ),
                 ListTile(
                   leading: Icon(IconProypet.consulta),

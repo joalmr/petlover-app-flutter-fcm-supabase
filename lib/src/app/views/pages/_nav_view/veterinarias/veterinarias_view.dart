@@ -110,13 +110,8 @@ class ReservaList extends StatelessWidget {
                                           itemCount: _.vetLocales.length,
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            return FadeInLeft(
-                                              duration: Duration(
-                                                  milliseconds:
-                                                      50 + (index * 10)),
-                                              child: buildVets(
-                                                  _.vetLocales[index]),
-                                            );
+                                            return buildVets(
+                                                _.vetLocales[index]);
                                           },
                                         ),
                                       ),

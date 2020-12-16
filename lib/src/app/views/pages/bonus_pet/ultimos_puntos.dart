@@ -47,7 +47,7 @@ class PuntosGanados extends StatelessWidget {
                                           FontAwesomeIcons.cartPlus,
                                           color: colorMain,
                                         ),
-                                        Text('Canjear Puntos'),
+                                        Text('Tienda Puntos'),
                                       ],
                                     ),
                                   ),
@@ -67,7 +67,7 @@ class PuntosGanados extends StatelessWidget {
                                           FontAwesomeIcons.gifts,
                                           color: colorMain,
                                         ),
-                                        Text('Sorteo'),
+                                        Text('Sorteos'),
                                       ],
                                     ),
                                   ),
@@ -89,8 +89,10 @@ class PuntosGanados extends StatelessWidget {
                       child: _.bonificados.length < 1
                           ? Center(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10.0, horizontal: 0),
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 10.0,
+                                  horizontal: 0,
+                                ),
                                 child: Text("No tienes puntos ganados"),
                               ),
                             )
@@ -100,24 +102,34 @@ class PuntosGanados extends StatelessWidget {
                                 final bonificado = _.bonificados[index];
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 0.0),
-                                  child: ListTile(
-                                    title: Text(
-                                      '${bonificado.establishmentName}',
-                                      style: Get.textTheme.subtitle2,
-                                      maxLines: 2,
-                                    ),
-                                    trailing: CircleAvatar(
-                                      backgroundColor: colorMain,
-                                      foregroundColor: colorGray2,
-                                      child: Text(
-                                        '+${bonificado.points}',
-                                        style: TextStyle(
-                                          fontSize: sizeSmallx2,
-                                          fontWeight: FontWeight.bold,
+                                    horizontal: 10,
+                                    vertical: 3.5,
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          '${bonificado.establishmentName}',
+                                          style: Get.textTheme.subtitle2,
+                                          maxLines: 2,
                                         ),
                                       ),
-                                    ),
+                                      CircleAvatar(
+                                        backgroundColor: colorMain,
+                                        foregroundColor: colorGray2,
+                                        radius: 25,
+                                        child: Text(
+                                          '+${bonificado.points}',
+                                          style: TextStyle(
+                                              fontSize: sizeSmallx2,
+                                              fontWeight: FontWeight.bold,
+                                              color: colorGray1),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 );
                               },

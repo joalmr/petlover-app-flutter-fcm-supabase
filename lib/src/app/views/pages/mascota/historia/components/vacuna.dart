@@ -10,7 +10,8 @@ vacuna(data) {
     children: <Widget>[
       Row(
         children: <Widget>[
-          Icon(IconProypet.vacuna, size: 16.0, color: Get.textTheme.subtitle2.color),
+          Icon(IconProypet.vacuna,
+              size: 16.0, color: Get.textTheme.subtitle2.color),
           SizedBox(
             width: 10.0,
           ),
@@ -25,19 +26,22 @@ vacuna(data) {
       ),
       Text(
         "Recomendación",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: sizeSmallx2,
+        ),
       ),
-      Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
-      SizedBox(
-        height: 10,
-      ),
-      // Text(
-      //   "Atendido por",
-      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
-      // ),
-      // Text((data["employee"] != null) ? data["employee"] : "-"),
+      Text(data["recommendations"] ?? '-'),
+      SizedBox(height: 10),
       Divider(),
-      Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+      Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: Text(
+          data["amount"] ?? '-',
+          textAlign: TextAlign.right,
+        ),
+      )
     ],
   );
 }

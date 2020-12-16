@@ -18,16 +18,19 @@ Widget autoDireccion() {
         ),
         maxSuggestions: 3,
         onSearch: (filter) async {
-          var response = await http.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+          var response = await http.get(
+              "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
           var models = addressFromJson(response.body);
           return models.predictions;
         },
         minSearchLength: 2,
-        onChanged: (Prediction2 data) => (data != null) ? _.gpsDireccion(data) : null,
+        onChanged: (Prediction2 data) =>
+            (data != null) ? _.gpsDireccion(data) : null,
         resetIcon: null,
         itemBuilder: (context, address) => Padding(
           padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-          child: Text(address.name, style: TextStyle(fontWeight: FontWeight.bold)),
+          child:
+              Text(address.name, style: TextStyle(fontWeight: FontWeight.bold)),
         ),
       );
     },

@@ -53,6 +53,13 @@ class ReservaVetController extends GetxController {
   RxString _fecha = ''.obs;
   RxString _observacion = ''.obs;
 
+  RxInt _stepVal = 0.obs;
+  set stepVal(int value) => _stepVal.value = value;
+  int get stepVal => _stepVal.value;
+
+  VoidCallback stepContinue;
+  VoidCallback stepCancel;
+
   final inputServController = new TextEditingController();
   final inputObservacioController = new TextEditingController();
   final inputFechaController = new TextEditingController();
@@ -95,6 +102,10 @@ class ReservaVetController extends GetxController {
   set fecha(String value) => _fecha.value = value;
   String get fecha => _fecha.value;
 
+  RxString _textoServicios = ''.obs;
+  set textoServicios(String value) => _textoServicios.value = value;
+  String get textoServicios => _textoServicios.value;
+
   @override
   void onInit() {
     super.onInit();
@@ -117,13 +128,13 @@ class ReservaVetController extends GetxController {
     }
 
     if (listaServicio.length > 1) {
-      String textoServicios = '';
+      textoServicios = '';
       listaServicio.forEach((element) {
         textoServicios += '${element.name}, ';
       });
-      inputServController.text = textoServicios;
+      // inputServController.text = textoServicios;
     } else
-      inputServController.text = listaServicio.first.name;
+      textoServicios = listaServicio.first.name;
     //TODO: quitar luego, hacer multiples reserva
     reservaId = listaServicio.first.id.toString();
     update();
@@ -143,7 +154,7 @@ class ReservaVetController extends GetxController {
         servicioReservaLista.where((x) => x.id == 1).first.id.toString();
     //
     ex3 = servicioReservaLista.first;
-    inputServController.text = servicioReservaLista.first.name;
+    textoServicios = servicioReservaLista.first.name;
     listaServicio.add(servicioReservaLista.first);
   }
 
@@ -243,15 +254,15 @@ class ReservaVetController extends GetxController {
   //   );
   // }
 
-  getData() => _getData("");
+  getData() => _getData();
 
-  Future<List<ServicioReserva>> _getData(String filter) async {
+  // String filter
+  Future<List<ServicioReserva>> _getData() async {
     List<ServicioReserva> lista = List<ServicioReserva>();
     servicioReservaLista.forEach((element) {
       var palabra = element.name + '' + element.category;
-      bool contiene = palabra
-          .toLowerCase()
-          .contains(filter.toLowerCase()); //.contains(filter);
+      bool contiene =
+          palabra.toLowerCase().contains("".toLowerCase()); //.contains(filter);
       if (contiene) {
         lista.add(element);
       }

@@ -1,4 +1,8 @@
 PODS:
+  - ai_notification_enable (0.0.1):
+    - Flutter
+  - audioplayers (0.0.1):
+    - Flutter
   - FBSDKCoreKit (8.0.0):
     - FBSDKCoreKit/Basics (= 8.0.0)
     - FBSDKCoreKit/Core (= 8.0.0)
@@ -149,6 +153,8 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - ai_notification_enable (from `.symlinks/plugins/ai_notification_enable/ios`)
+  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_email_sender (from `.symlinks/plugins/flutter_email_sender/ios`)
@@ -195,6 +201,10 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
+  ai_notification_enable:
+    :path: ".symlinks/plugins/ai_notification_enable/ios"
+  audioplayers:
+    :path: ".symlinks/plugins/audioplayers/ios"
   firebase_messaging:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
@@ -241,6 +251,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_web/ios"
 
 SPEC CHECKSUMS:
+  ai_notification_enable: 02849580e932fc04fe5ac2952bf75b3b7d66625a
+  audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
   FBSDKCoreKit: 9d27fe97a2fa2abe5eeefea8240e837623ab88e0
   FBSDKLoginKit: 2cbaf5405379731b22f2ebc224f7c30f62378171
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
