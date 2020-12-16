@@ -80,7 +80,7 @@ class MascotaDetallePage extends StatelessWidget {
                                             Get.textTheme.subtitle2.color,
                                         unselectedLabelStyle: TextStyle(
                                             fontWeight: FontWeight.normal),
-                                        isScrollable: true,
+                                        // isScrollable: true,
                                         tabs: [
                                           Tab(text: "Atenciones"),
                                           Tab(text: "Vacunas"),
