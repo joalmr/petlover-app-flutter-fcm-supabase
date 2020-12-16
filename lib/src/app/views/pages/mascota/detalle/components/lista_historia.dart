@@ -21,8 +21,8 @@ Widget listaHistorial(BuildContext context, historias) {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            index == 0 ? years(dataYear) : SizedBox(height: 0),
-            firstYear != dataYear ? years(dataYear) : SizedBox(height: 0),
+            index == 0 ? _years(dataYear) : SizedBox(height: 0),
+            firstYear != dataYear ? _years(dataYear) : SizedBox(height: 0),
             //
             Row(
               children: [
@@ -114,7 +114,7 @@ Widget listaHistorial(BuildContext context, historias) {
   );
 }
 
-Widget years(dataYear) {
+Widget _years(dataYear) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
