@@ -98,18 +98,19 @@ class LoginPage extends StatelessWidget {
                   _.loading.value ? 'Cargando..' : 'Iniciar sesión',
                   _.loading.value ? null : _.getLogin,
                 ),
-                Platform.isIOS
-                    ? SizedBox(height: 10)
-                    : Column(
-                        children: [
-                          SizedBox(height: 5.0),
-                          btnFace(
-                            text: 'Ingresar con Facebook',
-                            funtion: _.initFacebookLogin,
-                          ),
-                          SizedBox(height: 10.0),
-                        ],
-                      ),
+                // Platform.isIOS
+                //     ? SizedBox(height: 10)
+                //     :
+                Column(
+                  children: [
+                    SizedBox(height: 5.0),
+                    btnFace(
+                      text: 'Ingresar con Facebook',
+                      funtion: _.initFacebookLogin,
+                    ),
+                    SizedBox(height: 10.0),
+                  ],
+                ),
                 Center(
                   child: FlatButton(
                     onPressed: () => Get.toNamed("olvidopass"),
