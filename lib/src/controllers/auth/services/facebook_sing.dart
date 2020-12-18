@@ -13,7 +13,9 @@ class FacebookSignInService {
         FacebookPermission.email,
       ]);
 
-      // result.accessToken.token;
+      print('=== fb token ===');
+      print(result.accessToken);
+      print(result.accessToken.token);
 
       switch (result.status) {
         case FacebookLoginStatus.Success:
