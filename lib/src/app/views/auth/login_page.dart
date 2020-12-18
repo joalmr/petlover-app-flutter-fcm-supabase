@@ -1,14 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/auth/login_controller.dart';
-
 import 'data/icons_login.dart';
 
 class LoginPage extends StatelessWidget {
@@ -98,19 +96,23 @@ class LoginPage extends StatelessWidget {
                   _.loading.value ? 'Cargando..' : 'Iniciar sesión',
                   _.loading.value ? null : _.getLogin,
                 ),
-                // Platform.isIOS
-                //     ? SizedBox(height: 10)
-                //     :
-                Column(
-                  children: [
-                    SizedBox(height: 5.0),
-                    btnFace(
-                      text: 'Ingresar con Facebook',
-                      funtion: _.initFacebookLogin,
-                    ),
-                    SizedBox(height: 10.0),
-                  ],
+                SizedBox(height: 5.0),
+                btnWIcon(
+                  texto: 'Ingresar con Facebook',
+                  icono: FontAwesomeIcons.facebook,
+                  color: Color(0xFF3b5998),
+                  funtion: _.loginFacebook,
                 ),
+                SizedBox(height: 5.0),
+                btnWIcon(
+                  texto: 'Ingresar con Google',
+                  pathImage: 'images/google.png',
+                  color: Color(0xFFf1f1f1),
+                  colorText: Colors.black38,
+                  colorIcon: Colors.black38,
+                  funtion: _.loginGoogle,
+                ),
+                SizedBox(height: 10.0),
                 Center(
                   child: FlatButton(
                     onPressed: () => Get.toNamed("olvidopass"),

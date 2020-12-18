@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:native_updater/native_updater.dart';
-// import 'package:package_info/package_info.dart';
 
 import 'package:proypet/src/controllers/_push_controller.dart';
 // import 'package:proypet/src/controllers/home_controller/home_controller.dart';

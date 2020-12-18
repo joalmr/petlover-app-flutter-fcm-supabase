@@ -64,10 +64,13 @@ Widget buttonModal(String _text, _funtion, Color _color) {
 }
 
 Widget btnWIcon({
-  @required IconData icono,
+  IconData icono,
+  String pathImage = "",
   @required String texto,
   @required funtion,
   @required Color color,
+  Color colorText = Colors.white,
+  Color colorIcon = Colors.white,
 }) {
   return SizedBox(
     width: double.maxFinite,
@@ -80,12 +83,19 @@ Widget btnWIcon({
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            icono,
-            size: 22,
-          ),
+          pathImage == ""
+              ? Icon(
+                  icono,
+                  size: 22,
+                  color: colorIcon,
+                )
+              : Image.asset(
+                  pathImage,
+                  height: 22,
+                ),
           SizedBox(width: 10),
-          Expanded(child: Text(texto, style: _textstyle)),
+          Expanded(
+              child: Text(texto, style: _textstyle.copyWith(color: colorText))),
         ],
       ),
       padding: EdgeInsets.only(top: 9, bottom: 9, left: 45),

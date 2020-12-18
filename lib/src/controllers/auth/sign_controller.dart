@@ -100,6 +100,6 @@ class SignController extends GetxController {
 
   void signFacebook() {
     final login = LoginController();
-    login.initFacebookLogin();
+    login.loginFacebook();
   }
 }
