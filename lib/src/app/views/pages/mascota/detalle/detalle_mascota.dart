@@ -89,7 +89,7 @@ class MascotaDetallePage extends StatelessWidget {
                                       Expanded(
                                         child: TabBarView(
                                           children: <Widget>[
-                                            listaHistorial(context, _.history),
+                                            listaHistorial(_.history),
                                             cartillaDigital(),
                                           ],
                                         ),
