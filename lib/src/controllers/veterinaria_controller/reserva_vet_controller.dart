@@ -20,12 +20,9 @@ import 'package:proypet/src/data/services/booking_service.dart';
 import 'package:proypet/src/data/services/mascota_service.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:select_dialog/select_dialog.dart';
-
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:time_parser/time_parser.dart';
-
-import 'components/reserva/lista_servicios.dart';
+import '../../app/views/pages/_nav_view/veterinarias/reserva/components/lista_servicios.dart';
 import 'data/horario.dart';
 import 'detalle_vet_controller.dart';
 

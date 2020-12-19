@@ -12,6 +12,8 @@ Widget listaHistorial(historias) {
     itemBuilder: (BuildContext context, int index) {
       String dmyString = historias[index].createdAt;
       DateTime dateTime = DateFormat('dd-MM-yyyy HH:mm').parse(dmyString);
+      // Hm -> 24 horas // jm -> am pm
+      var time = DateFormat.Hm().format(dateTime);
 
       return timeline(
         circleData: CircleAvatar(
@@ -22,7 +24,7 @@ Widget listaHistorial(historias) {
         ),
         dayData: dateTime.day,
         monthData: dateTime.month,
-        timeData: dmyString.split(' ')[1],
+        timeData: time,
         functionData: () {
           Get.toNamed('detallehistoriamascota', arguments: {
             "detalle": jsonEncode(historias[index].details),

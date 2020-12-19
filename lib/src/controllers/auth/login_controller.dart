@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';

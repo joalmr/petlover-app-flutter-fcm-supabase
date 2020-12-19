@@ -1,42 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/timeline.dart';
-
 import 'data/data-cartilla.dart';
-
-Widget _years(dataYear) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.only(left: 30),
-            child: Text(
-              dataYear,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.2,
-                color: colorMain,
-              ),
-            ),
-          ),
-        ],
-      ),
-      Expanded(
-        child: SizedBox(height: 25),
-      ),
-    ],
-  );
-}
 
 Widget cartillaDigital() {
   return Column(

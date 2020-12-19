@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
-import '../../reserva_vet_controller.dart';
+import '../../../../../../../controllers/veterinaria_controller/reserva_vet_controller.dart';
 
 Widget crearFecha(BuildContext context) {
   return GetBuilder<ReservaVetController>(builder: (_) {

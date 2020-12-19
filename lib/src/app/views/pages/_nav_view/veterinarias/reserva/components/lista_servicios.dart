@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/data/models/model/servicio_reserva.dart';
-import '../../reserva_vet_controller.dart';
+import '../../../../../../../controllers/veterinaria_controller/reserva_vet_controller.dart';
 import 'servicio_dato.dart';
 
 serviciosSeleccionados(context) {
