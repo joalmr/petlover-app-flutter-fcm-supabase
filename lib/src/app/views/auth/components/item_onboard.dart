@@ -21,7 +21,6 @@ class ItemOnBoard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Expanded(child: SizedBox(height: 20.0)),
               Container(
                 margin: const EdgeInsets.only(bottom: 40),
                 width: double.infinity,
@@ -51,7 +50,6 @@ class ItemOnBoard extends StatelessWidget {
                   ),
                 ),
               ],
-              // Expanded(child: SizedBox(height: 20.0)),
             ],
           ),
         ),

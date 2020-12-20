@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
 final _textstyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
@@ -83,20 +84,29 @@ Widget btnWIcon({
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: 10),
-          pathImage == ""
-              ? Icon(
-                  icono,
-                  size: 22,
-                  color: colorIcon,
-                )
-              : Image.asset(
-                  pathImage,
-                  height: 22,
-                ),
-          SizedBox(width: 15),
+          SizedBox(
+            child: pathImage == ""
+                ? Icon(
+                    icono,
+                    size: 22,
+                    color: colorIcon,
+                  )
+                : Image.asset(
+                    pathImage,
+                    height: 22,
+                  ),
+          ),
+          SizedBox(
+            width: Get.width * 0.105,
+          ),
           Expanded(
-              child: Text(texto, style: _textstyle.copyWith(color: colorText))),
+            child: Container(
+              child: Text(
+                texto,
+                style: _textstyle.copyWith(color: colorText),
+              ),
+            ),
+          ),
         ],
       ),
       padding: EdgeInsets.only(top: 9, bottom: 9, left: 45),
