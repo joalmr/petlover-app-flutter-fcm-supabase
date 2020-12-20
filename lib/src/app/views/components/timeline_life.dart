@@ -74,8 +74,10 @@ Widget timelineLife({
     }
   }
 
+  // ScrollController _scroll = ;
   return ListView(
     scrollDirection: Axis.horizontal,
+    // controller: ,
     children: timeline,
   );
 }
