@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/app/views/components/timeline_life.dart';
 
 Widget generalTab() {
+  DateTime fecha = DateTime.now().add(Duration(days: -900));
+
   return Container(
-    color: colorBlue,
     height: double.maxFinite,
-    child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 20,
-      itemBuilder: (BuildContext context, int index) {
-        return Center(
-          child: Text('data $index'),
-        );
-      },
-    ),
+    child: timelineLife(dateBorn: fecha),
   );
 }
