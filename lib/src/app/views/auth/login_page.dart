@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
@@ -7,7 +6,6 @@ import 'package:proypet/src/app/views/components/form_control/button_primary.dar
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/auth/login_controller.dart';
-import 'data/icons_login.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -20,56 +18,14 @@ class LoginPage extends StatelessWidget {
               preferredSize: Size.fromHeight(0), child: AppBar(elevation: 0)),
           body: FadeView(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               children: [
-                SizedBox(height: 20),
+                SizedBox(height: 100),
                 Image(
                   image: AssetImage('images/icon/logo-proypet.png'),
-                  height: 52,
+                  height: 60,
                 ),
-                SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 25, bottom: 0, left: 30, right: 30),
-                  child: Container(
-                    height: 240,
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Swiper(
-                      physics: BouncingScrollPhysics(),
-                      itemCount: 3,
-                      autoplay: true,
-                      autoplayDelay: 3000,
-                      pagination: new SwiperPagination(
-                          builder: new DotSwiperPaginationBuilder(
-                        activeColor: colorMain,
-                        color: colorGray3,
-                      )),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image(
-                              image: AssetImage(iconLogin[index]['image']),
-                              height: 80,
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              iconLogin[index]['title'],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              iconLogin[index]['text'],
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                ),
+                SizedBox(height: 20),
                 FormularioText(
                   hintText: 'Email',
                   icon: Icons.alternate_email,
@@ -91,12 +47,35 @@ class LoginPage extends StatelessWidget {
                   valorInicial: null,
                   activo: !_.loading.value,
                 ),
-                SizedBox(height: 5.0),
+                SizedBox(height: 10.0),
                 buttonPri(
                   _.loading.value ? 'Cargando..' : 'Iniciar sesión',
                   _.loading.value ? null : _.getLogin,
                 ),
-                SizedBox(height: 5.0),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      width: 20,
+                      height: 1,
+                      color: Get.theme.iconTheme.color,
+                    ),
+                    Text(
+                      'O',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(8.0),
+                      width: 20,
+                      height: 1,
+                      color: Get.theme.iconTheme.color,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10.0),
                 btnWIcon(
                   texto: 'Ingresar con Facebook',
                   icono: FontAwesomeIcons.facebook,

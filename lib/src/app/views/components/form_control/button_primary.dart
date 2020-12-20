@@ -83,6 +83,7 @@ Widget btnWIcon({
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(width: 10),
           pathImage == ""
               ? Icon(
                   icono,
@@ -93,7 +94,7 @@ Widget btnWIcon({
                   pathImage,
                   height: 22,
                 ),
-          SizedBox(width: 10),
+          SizedBox(width: 15),
           Expanded(
               child: Text(texto, style: _textstyle.copyWith(color: colorText))),
         ],

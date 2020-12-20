@@ -1,8 +1,11 @@
 PODS:
   - ai_notification_enable (0.0.1):
     - Flutter
-  - audioplayers (0.0.1):
-    - Flutter
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
   - FBSDKCoreKit (8.0.0):
     - FBSDKCoreKit/Basics (= 8.0.0)
     - FBSDKCoreKit/Core (= 8.0.0)
@@ -81,6 +84,11 @@ PODS:
   - google_maps_flutter (0.0.1):
     - Flutter
     - GoogleMaps
+  - google_sign_in (0.0.1):
+    - Flutter
+    - GoogleSignIn (~> 5.0)
+  - google_sign_in_web (0.8.1):
+    - Flutter
   - GoogleAppMeasurement (6.6.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -96,6 +104,10 @@ PODS:
   - GoogleMaps/Base (2.7.0)
   - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - GoogleUtilities/AppDelegateSwizzler (6.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -115,12 +127,18 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
+  - GTMAppAuth (1.1.0):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher (~> 1.4)
+  - GTMSessionFetcher (1.5.0):
+    - GTMSessionFetcher/Full (= 1.5.0)
+  - GTMSessionFetcher/Core (1.5.0)
+  - GTMSessionFetcher/Full (1.5.0):
+    - GTMSessionFetcher/Core (= 1.5.0)
   - image_cropper (0.0.2):
     - Flutter
     - TOCropViewController (~> 2.5.2)
   - image_picker (0.0.1):
-    - Flutter
-  - in_app_update (0.0.1):
     - Flutter
   - "location_permissions (3.0.0+1)":
     - Flutter
@@ -131,8 +149,6 @@ PODS:
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
-  - package_info (0.0.1):
-    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - path_provider_linux (0.0.1):
@@ -158,7 +174,6 @@ PODS:
 
 DEPENDENCIES:
   - ai_notification_enable (from `.symlinks/plugins/ai_notification_enable/ios`)
-  - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_email_sender (from `.symlinks/plugins/flutter_email_sender/ios`)
@@ -168,12 +183,12 @@ DEPENDENCIES:
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - google_api_availability (from `.symlinks/plugins/google_api_availability/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
+  - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
+  - google_sign_in_web (from `.symlinks/plugins/google_sign_in_web/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
-  - in_app_update (from `.symlinks/plugins/in_app_update/ios`)
   - location_permissions (from `.symlinks/plugins/location_permissions/ios`)
   - map_launcher (from `.symlinks/plugins/map_launcher/ios`)
-  - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
@@ -186,6 +201,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AppAuth
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -200,7 +216,10 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleMaps
+    - GoogleSignIn
     - GoogleUtilities
+    - GTMAppAuth
+    - GTMSessionFetcher
     - nanopb
     - PromisesObjC
     - Protobuf
@@ -209,8 +228,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   ai_notification_enable:
     :path: ".symlinks/plugins/ai_notification_enable/ios"
-  audioplayers:
-    :path: ".symlinks/plugins/audioplayers/ios"
   firebase_messaging:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
@@ -229,18 +246,18 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_api_availability/ios"
   google_maps_flutter:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
+  google_sign_in:
+    :path: ".symlinks/plugins/google_sign_in/ios"
+  google_sign_in_web:
+    :path: ".symlinks/plugins/google_sign_in_web/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
-  in_app_update:
-    :path: ".symlinks/plugins/in_app_update/ios"
   location_permissions:
     :path: ".symlinks/plugins/location_permissions/ios"
   map_launcher:
     :path: ".symlinks/plugins/map_launcher/ios"
-  package_info:
-    :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   path_provider_linux:
@@ -262,7 +279,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ai_notification_enable: 02849580e932fc04fe5ac2952bf75b3b7d66625a
-  audioplayers: 84f968cea3f2deab00ec4f8ff53358b3c0b3992c
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: 9d27fe97a2fa2abe5eeefea8240e837623ab88e0
   FBSDKLoginKit: 2cbaf5405379731b22f2ebc224f7c30f62378171
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
@@ -282,18 +299,21 @@ SPEC CHECKSUMS:
   geolocator: f7622e0e7e2a24718285b73916d60c4a54b9f5b6
   google_api_availability: 15fa42a8cd83c0a6738507ffe6e87096f12abcb8
   google_maps_flutter: df4e7de95264aa0a2f11aac0fc7e313acb8ffc7e
+  google_sign_in: 6bd214b9c154f881422f5fe27b66aaa7bbd580cc
+  google_sign_in_web: 52deb24929ac0992baff65c57956031c44ed44c3
   GoogleAppMeasurement: 2fd5c5a56c069db635c8e7b92d4809a9591d0a69
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   image_cropper: 3c16d7651730ffe85897f5a1c4e2547e6b54989a
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
-  in_app_update: 16e877e205f4360264cb536e3a6481f0d90299e1
   location_permissions: 7e0f9aa0f60deb8ff93ddf0e2a164c7e8197bc94
   map_launcher: e325db1261d029ff33e08e03baccffe09593ffea
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
-  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:proypet/src/app/views/auth/onboard.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/destacados/detalle/detalle_destacado.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/detalle_vet.dart';
@@ -33,9 +34,10 @@ List<GetPage> getRutas() {
       name: '/',
       page: () => box.hasData('token') && box.hasData('verify')
           ? NavigationBar(currentTabIndex: 0)
-          : LoginPage(),
+          : OnBoardPage(),
     ),
     //
+    GetPage(name: 'onboard', page: () => OnBoardPage()),
     GetPage(name: 'login', page: () => LoginPage()),
     GetPage(name: 'registro', page: () => SingupPage()),
     GetPage(name: 'olvidopass', page: () => ForgotPage()),

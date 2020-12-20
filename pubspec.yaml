@@ -33,6 +33,7 @@ dependencies:
   firebase_messaging: ^6.0.15
   flutter_email_sender: ^3.0.1
   flutter_login_facebook: ^0.4.1 #login con facebook
+  # flutter_onboard: ^0.1.0
   flutter_rating_bar: ^3.0.1+1
   flutter_swiper: ^1.1.6
   font_awesome_flutter: ^8.8.0  
@@ -51,6 +52,11 @@ dependencies:
   lottie: ^0.7.0+1
   map_launcher: ^0.4.5
   mime_type:
+  # dots_indicator: 1.2.0
+  # minimal_onboarding: ^1.0.0
+  # on_boarding_ui: ^0.0.4
+  # onboarding: ^1.0.5
+  # onboardme: ^1.2.0
   overflow_view:
   rxdart: ^0.23.1
   select_dialog: ^1.2.1

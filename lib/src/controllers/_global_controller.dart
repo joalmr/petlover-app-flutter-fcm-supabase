@@ -32,29 +32,7 @@ class GlobalController extends GetxController {
     ubicacion = _prefs.ubicacion ?? '';
     getTema();
     evaluaLogin();
-    // checkUpdate();
   }
-
-  // checkUpdate() async {
-  //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-  //   int serverLatestVersion = 20;
-  //   int localVersion = int.parse(packageInfo.buildNumber);
-  //   print(localVersion);
-
-  //   if (serverLatestVersion > localVersion) {
-  //     NativeUpdater.displayUpdateAlert(
-  //       Get.context,
-  //       forceUpdate: true,
-  //       appStoreUrl: 'https://apps.apple.com/pe/app/proypet/id1529231253',
-  //       playStoreUrl:
-  //           'https://play.google.com/store/apps/details?id=com.proypet.user',
-  //       // iOSDescription: '<Your iOS description>',
-  //       // iOSUpdateButtonLabel: 'Actualizar',
-  //       // iOSCloseButtonLabel: 'Salir',
-  //     );
-  //   }
-  // }
 
   getTema() {
     if (_prefs.themeMode != null) {
