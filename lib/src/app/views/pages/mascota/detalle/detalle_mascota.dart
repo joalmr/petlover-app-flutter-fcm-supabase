@@ -9,9 +9,10 @@ import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 
-import 'components/cartilla_vacuna.dart';
+import 'components/tab_cartilla_vacuna.dart';
 import 'components/dato_mascota.dart';
-import 'components/lista_historia.dart';
+import 'components/tab_general.dart';
+import 'components/tab_lista_historia.dart';
 
 class MascotaDetallePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -36,70 +37,67 @@ class MascotaDetallePage extends StatelessWidget {
                             child: lottieLoading,
                           ),
                         )
-                      : SingleChildScrollView(
-                          child: Stack(
-                            children: <Widget>[
-                              Container(
-                                child: AspectRatio(
-                                  aspectRatio: (mediaAncho < 600) ? 1 : 12 / 8,
-                                  child: Image(
-                                    image: CachedNetworkImageProvider(
-                                        _.pet.picture),
-                                    // height: 350,
-                                    // width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
+                      : Stack(
+                          children: <Widget>[
+                            Container(
+                              child: AspectRatio(
+                                aspectRatio: (mediaAncho < 600) ? 1 : 12 / 8,
+                                child: Image(
+                                  image:
+                                      CachedNetworkImageProvider(_.pet.picture),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                    top: context.height * 0.4,
-                                    bottom: 7.5,
-                                    left: 5.0,
-                                    right: 5.0),
-                                height: context.height - context.height * 0.4,
-                                decoration: BoxDecoration(
-                                  borderRadius: borderRadius,
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                ),
-                                child: DefaultTabController(
-                                  length: 2,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      datoMascota(_.pet),
-                                      TabBar(
-                                        indicatorColor: colorMain,
-                                        labelStyle: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                        labelColor: colorMain,
-                                        unselectedLabelColor:
-                                            Get.textTheme.subtitle2.color,
-                                        unselectedLabelStyle: TextStyle(
-                                            fontWeight: FontWeight.normal),
-                                        // isScrollable: true,
-                                        tabs: [
-                                          Tab(text: "Atenciones"),
-                                          Tab(text: "Vacunas"),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                  top: context.height * 0.4,
+                                  bottom: 7.5,
+                                  left: 5.0,
+                                  right: 5.0),
+                              height: context.height - context.height * 0.4,
+                              decoration: BoxDecoration(
+                                borderRadius: borderRadius,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                              ),
+                              child: DefaultTabController(
+                                length: 3,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    datoMascota(_.pet),
+                                    TabBar(
+                                      indicatorColor: colorMain,
+                                      labelStyle: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                      labelColor: colorMain,
+                                      unselectedLabelColor:
+                                          Get.textTheme.subtitle2.color,
+                                      unselectedLabelStyle: TextStyle(
+                                          fontWeight: FontWeight.normal),
+                                      // isScrollable: true,
+                                      tabs: [
+                                        Tab(text: "General"),
+                                        Tab(text: "Atenciones"),
+                                        Tab(text: "Vacunas"),
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: TabBarView(
+                                        children: <Widget>[
+                                          generalTab(),
+                                          listaHistorialTab(_.history),
+                                          cartillaDigitalTab(),
                                         ],
                                       ),
-                                      Expanded(
-                                        child: TabBarView(
-                                          children: <Widget>[
-                                            listaHistorial(_.history),
-                                            cartillaDigital(),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                 ),
                 Positioned(
@@ -110,9 +108,10 @@ class MascotaDetallePage extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     centerTitle: true,
-                    title: Text("",
-                        style:
-                            Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
+                    title: Text(
+                      "",
+                      style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2),
+                    ),
                     actions: <Widget>[
                       Container(
                         decoration: BoxDecoration(
@@ -124,11 +123,11 @@ class MascotaDetallePage extends StatelessWidget {
                           ],
                         ),
                         child: IconButton(
-                            icon: Icon(Icons.settings),
-                            onPressed: () =>
-                                _scaffoldKey.currentState.openEndDrawer()),
-                      )
-                      // IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
+                          icon: Icon(Icons.settings),
+                          onPressed: () =>
+                              _scaffoldKey.currentState.openEndDrawer(),
+                        ),
+                      ),
                     ],
                   ),
                 )

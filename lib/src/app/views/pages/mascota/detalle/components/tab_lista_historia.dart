@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:proypet/src/app/views/components/timeline.dart';
 import 'icono_historia.dart';
 
-Widget listaHistorial(historias) {
+Widget listaHistorialTab(historias) {
   return ListView.builder(
     itemCount: historias.length,
     itemBuilder: (BuildContext context, int index) {

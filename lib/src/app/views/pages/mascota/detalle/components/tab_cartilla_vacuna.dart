@@ -5,7 +5,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/timeline.dart';
 import 'data/data-cartilla.dart';
 
-Widget cartillaDigital() {
+Widget cartillaDigitalTab() {
   return Column(
     children: [
       Padding(
