@@ -112,7 +112,7 @@ class LoginPage extends StatelessWidget {
                     FlatButton(
                       onPressed: () => Get.toNamed("registro"),
                       child: Text(
-                        "Registrarse",
+                        "Registrarme",
                         style: Get.textTheme.subtitle2
                             .apply(color: colorMain)
                             .copyWith(decoration: TextDecoration.underline),

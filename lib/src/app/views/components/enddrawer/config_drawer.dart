@@ -74,7 +74,7 @@ class ConfigDrawer extends StatelessWidget {
                   onTap: () => AiNotificationEnable.openNotificationSettings(),
                 ),
                 ListTile(
-                  leading: Icon(IconProypet.consulta),
+                  leading: Icon(Icons.add_business),
                   title: Text('Solicitar veterinaria'),
                   onTap: () => Get.toNamed('solicitaveterinaria'),
                 ),
