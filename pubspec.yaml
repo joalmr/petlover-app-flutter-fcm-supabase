@@ -59,6 +59,7 @@ dependencies:
   # onboardme: ^1.2.0
   overflow_view:
   rxdart: ^0.23.1
+  scrollable_positioned_list: ^0.1.8
   select_dialog: ^1.2.1
   sign_button: ^1.0.1
   share: ^0.6.4+3

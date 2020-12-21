@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/timeline_life.dart';
+import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 
-Widget generalTab() {
+Widget generalTab(MascotaModel2 pet) {
   DateTime fecha = DateTime.now().add(Duration(days: -900));
 
-  return Container(
-    height: double.maxFinite,
-    child: timelineLife(dateBorn: fecha),
-  );
+  return timelineLife(dateBorn: fecha, petStatus: pet.specieId);
 }
