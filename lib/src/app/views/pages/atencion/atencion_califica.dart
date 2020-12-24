@@ -7,13 +7,13 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_field.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
-import 'package:proypet/src/controllers/atencion_controller/atencion_controller.dart';
+import 'package:proypet/src/controllers/atencion_controller/atencion_calificar_controller.dart';
 
 class AtencionCalifica extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetX<AtencionController>(
-      // init: CalificaAtencionController(),
+    return GetX<CalificaAtencionController>(
+      init: CalificaAtencionController(),
       builder: (_) {
         return Scaffold(
           backgroundColor: colorMain,
@@ -104,15 +104,23 @@ class AtencionCalifica extends StatelessWidget {
                         : Expanded(
                             child: Center(
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 30),
-                                child: Text(
-                                  'Gracias por calificar el establecimiento; sigue reservando, acumula puntos y gana premios \n🌟🎁🐶🐱',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                  textAlign: TextAlign.center,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 22.5),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Gracias por calificar el establecimiento; sigue reservando, acumula puntos y gana premios \n🌟🎁🐶🐱',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Lottie.asset('images/lottie/star.json',
+                                        height: 140),
+                                  ],
                                 ),
                               ),
                             ),
@@ -127,11 +135,6 @@ class AtencionCalifica extends StatelessWidget {
                     onPressed: () => Get.back(),
                     color: Colors.white,
                   ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: Lottie.asset('images/lottie/star.json', height: 256),
                 ),
               ],
             ),

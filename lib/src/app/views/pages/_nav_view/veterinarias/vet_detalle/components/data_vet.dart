@@ -22,7 +22,6 @@ class DataVet extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 0.0),
               child: Container(
                 width: MediaQuery.of(context).size.width - 0.0,
-                // height: MediaQuery.of(context).size.height * 0.1 ,
                 child: ListTile(
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,10 +33,12 @@ class DataVet extends StatelessWidget {
                       ),
                       Text(_.vet.name, //nombreVet(0),
                           maxLines: 2,
-                          style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
+                          style: Get.textTheme.headline6
+                              .apply(fontWeightDelta: 2)),
                     ],
                   ),
-                  subtitle: Text('${_.vet.address} ', style: TextStyle(fontSize: sizeSmallx1)),
+                  subtitle: Text('${_.vet.address} ',
+                      style: TextStyle(fontSize: sizeSmallx1)),
                   trailing: Stack(
                     children: <Widget>[
                       Container(height: 56.0, width: 60.0),
@@ -45,7 +46,9 @@ class DataVet extends StatelessWidget {
                         height: 50.0,
                         width: 50.0,
                         padding: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.0), color: colorYellow),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100.0),
+                            color: colorYellow),
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -79,7 +82,8 @@ class DataVet extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 _.vet.attentions.toString(),
-                                style: TextStyle(fontSize: 10, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.white),
                               ),
                             ),
                           ),

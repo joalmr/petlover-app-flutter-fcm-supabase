@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,56 +12,81 @@ import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/detalle_vet_controller.dart';
 import 'components/data_vet.dart';
 import 'components/swiper_vet.dart';
+import 'tabs_detalle/comentario_tab/comentario_view.dart';
+import 'tabs_detalle/general_tab/general_view.dart';
+import 'tabs_detalle/horario_tab/horario_view.dart';
+import 'tabs_detalle/precio_tab/precio_view.dart';
+import 'tabs_detalle/promocion_tab/promocion_view.dart';
 
 class VetDetallePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<VetDetalleController>(
-        init: VetDetalleController(),
-        builder: (_) {
-          return Scaffold(
-            body: FadeView(
-              child: _.cargando.value
-                  ? Container(
-                      child: Center(
-                      child: lottieLoading,
-                    ))
-                  : FadeIn(
+      init: VetDetalleController(),
+      builder: (_) {
+        return DefaultTabController(
+          length: 5,
+          child: _.cargando.value
+              ? Scaffold(
+                  body: Center(
+                    child: lottieLoading,
+                  ),
+                )
+              : Scaffold(
+                  appBar: AppBar(
+                    elevation: 0,
+                    toolbarHeight: context.height * 0.275,
+                    automaticallyImplyLeading: false,
+                    flexibleSpace: FadeIn(
                       duration: Duration(milliseconds: 500),
                       child: Stack(
                         children: <Widget>[
-                          Container(height: MediaQuery.of(context).size.height),
-                          Stack(
-                            children: <Widget>[
-                              Container(
-                                height: context.height * 0.275,
-                                width: double.infinity,
-                                child: (_.vet.slides.length > 0)
-                                    ? swiperVets(_.vet.slides, true)
-                                    : swiperVets(
-                                        ["images/vet_prueba.jpg"], false),
-                              ),
-                              Positioned(
-                                right: 7.5,
-                                bottom: 9.5,
-                                child: Container(
-                                  height: 55.0,
-                                  width: 55.0,
-                                  decoration: BoxDecoration(
-                                    color: colorGray1,
-                                    borderRadius: BorderRadius.circular(100.0),
-                                    image: DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                            _.vet.logo),
-                                        fit: BoxFit.cover),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
                           Container(
-                            padding: EdgeInsets.only(
-                                top: context.height * 0.275, bottom: 60.0),
+                            height: context.height * 0.275,
+                            width: double.maxFinite,
+                            child: (_.vet.slides.length > 0)
+                                ? swiperVets(_.vet.slides, true)
+                                : swiperVets(["images/vet_prueba.jpg"], false),
+                          ),
+                          Positioned(
+                            top: 25,
+                            left: 5,
+                            child: IconButton(
+                              icon: Icon(
+                                Platform.isIOS
+                                    ? Icons.arrow_back_ios
+                                    : Icons.arrow_back,
+                              ),
+                              onPressed: () => Get.back(),
+                            ),
+                          ),
+                          Positioned(
+                            right: 7.5,
+                            bottom: 9.5,
+                            child: Container(
+                              height: 55.0,
+                              width: 55.0,
+                              decoration: BoxDecoration(
+                                color: colorGray1,
+                                borderRadius: BorderRadius.circular(100.0),
+                                image: DecorationImage(
+                                  image: CachedNetworkImageProvider(_.vet.logo),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  body: FadeView(
+                    child: FadeIn(
+                      duration: Duration(milliseconds: 500),
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(bottom: 60.0),
                             child: DataVet(), //_onDetail(vet),
                           ),
                           Positioned(
@@ -100,22 +127,13 @@ class VetDetallePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            child: AppBar(
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              centerTitle: true,
-                              title: Text("", style: Get.textTheme.subtitle1),
-                            ),
-                          ),
                         ],
                       ),
                     ),
-            ),
-          );
-        });
+                  ),
+                ),
+        );
+      },
+    );
   }
 }

@@ -12,12 +12,6 @@ class EstablecimientoShortModel
   List<String> slides;
   String logo;
   String distance;
-  // String phone;
-  // String description;
-  // int votes;
-  // dynamic prices;
-  // List<Service> services;
-  // dynamic schedule;
 
   EstablecimientoShortModel({
     this.id,
@@ -32,12 +26,6 @@ class EstablecimientoShortModel
     this.slides,
     this.logo,
     this.distance,
-    // this.phone,
-    // this.description,
-    // this.votes,
-    // this.prices,
-    // this.services,
-    // this.schedule,
   });
 
   factory EstablecimientoShortModel.fromJson(Map<String, dynamic> json) =>
