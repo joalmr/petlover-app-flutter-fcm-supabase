@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +11,6 @@ import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/detalle_vet_controller.dart';
 import 'components/data_vet.dart';
 import 'components/swiper_vet.dart';
-import 'tabs_detalle/comentario_tab/comentario_view.dart';
-import 'tabs_detalle/general_tab/general_view.dart';
-import 'tabs_detalle/horario_tab/horario_view.dart';
-import 'tabs_detalle/precio_tab/precio_view.dart';
-import 'tabs_detalle/promocion_tab/promocion_view.dart';
 
 class VetDetallePage extends StatelessWidget {
   @override

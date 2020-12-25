@@ -11,6 +11,7 @@ import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_contr
 
 import 'components/tab_cartilla_vacuna.dart';
 import 'components/dato_mascota.dart';
+import 'components/tab_citas.dart';
 import 'components/tab_general.dart';
 import 'components/tab_lista_historia.dart';
 
@@ -62,7 +63,7 @@ class MascotaDetallePage extends StatelessWidget {
                                     Theme.of(context).scaffoldBackgroundColor,
                               ),
                               child: DefaultTabController(
-                                length: 3,
+                                length: 4,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -77,11 +78,12 @@ class MascotaDetallePage extends StatelessWidget {
                                           Get.textTheme.subtitle2.color,
                                       unselectedLabelStyle: TextStyle(
                                           fontWeight: FontWeight.normal),
-                                      // isScrollable: true,
+                                      isScrollable: true,
                                       tabs: [
                                         Tab(text: "General"),
                                         Tab(text: "Atenciones"),
                                         Tab(text: "Vacunas"),
+                                        Tab(text: "Próximas citas"),
                                       ],
                                     ),
                                     Expanded(
@@ -90,6 +92,7 @@ class MascotaDetallePage extends StatelessWidget {
                                           generalTab(_.pet),
                                           listaHistorialTab(_.history),
                                           cartillaDigitalTab(),
+                                          citasTab(),
                                         ],
                                       ),
                                     ),

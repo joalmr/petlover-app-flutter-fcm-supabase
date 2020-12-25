@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/timeline_life.dart';
 import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 

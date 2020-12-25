@@ -10,7 +10,8 @@ Widget timelineLife({
 }) {
   int firstYear = dateBorn.year;
   int firstMonth = dateBorn.month;
-  int lastYear = dateBorn.year + 20;
+
+  int lastYear = dateBorn.year + ((DateTime.now().year - dateBorn.year) + 2);
 
   DateTime today = DateTime.now();
   int todayYear = today.year;
@@ -116,7 +117,7 @@ Widget timelineLife({
   ];
   int scrollInit = 0;
   int scrollCount = 0;
-  for (var i = firstYear; i < lastYear; i++) {
+  for (var i = firstYear; i <= lastYear; i++) {
     if (i > firstYear) firstMonth = 1;
     for (var j = firstMonth; j <= 12; j++) {
       Widget item = Container(
