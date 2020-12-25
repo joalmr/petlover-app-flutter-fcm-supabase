@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
@@ -134,8 +135,19 @@ Widget timelineLife({
               children: [
                 Container(
                   width: 30,
-                  height: 1,
-                  color: Get.theme.iconTheme.color,
+                  child: DottedLine(
+                    direction: Axis.horizontal,
+                    lineLength: double.infinity,
+                    lineThickness: 1.0,
+                    dashLength: 1.0,
+                    dashColor: Get.theme.iconTheme.color,
+                    dashRadius: 0.0,
+                    dashGapLength: 4.0,
+                    dashGapColor: Colors.transparent,
+                    dashGapRadius: 0.0,
+                  ),
+                  // height: 1,
+                  // color: Get.theme.iconTheme.color,
                 ),
                 InkWell(
                   onTap: () {
@@ -184,8 +196,19 @@ Widget timelineLife({
                 ),
                 Container(
                   width: 30,
-                  height: 1,
-                  color: Get.theme.iconTheme.color,
+                  child: DottedLine(
+                    direction: Axis.horizontal,
+                    lineLength: double.infinity,
+                    lineThickness: 1.0,
+                    dashLength: 1.0,
+                    dashColor: Get.theme.iconTheme.color,
+                    dashRadius: 0.0,
+                    dashGapLength: 4.0,
+                    dashGapColor: Colors.transparent,
+                    dashGapRadius: 0.0,
+                  ),
+                  // height: 1,
+                  // color: Get.theme.iconTheme.color,
                 ),
               ],
             ),

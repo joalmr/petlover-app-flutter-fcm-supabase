@@ -22,6 +22,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  dotted_line: ^2.0.2
+  
   ai_notification_enable: ^1.6.0
   animate_do: ^1.6.3
   badges: ^1.1.4  
