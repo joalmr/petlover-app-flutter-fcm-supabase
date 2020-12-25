@@ -1,8 +1,11 @@
 import 'dart:convert';
 
-List<AtencionModel> atencionModelFromJson(String str) => List<AtencionModel>.from(json.decode(str).map((x) => AtencionModel.fromJson(x)));
+List<AtencionModel> atencionModelFromJson(String str) =>
+    List<AtencionModel>.from(
+        json.decode(str).map((x) => AtencionModel.fromJson(x)));
 
-String atencionModelToJson(List<AtencionModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String atencionModelToJson(List<AtencionModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class AtencionModel {
   String id;

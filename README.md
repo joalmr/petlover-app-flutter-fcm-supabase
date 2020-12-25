@@ -28,3 +28,7 @@ Gx37JCppiXJ0X/opc4vMt3hRLYM= (FUNCIONA PRODUCCION)
 # sha facebook
 keytool -exportcert -alias upload -keystore /Users/josealonsomassarolando/keystore.jks | openssl sha1 -binary | openssl base64
 Sha para Facebook -> clave: peru@123
+
+
+
+http://127.0.0.1:8000/api/attentions/perdate?year=2021&month=10

@@ -29,8 +29,8 @@ Widget listaHistorialTab(historias) {
           Get.toNamed('detallehistoriamascota', arguments: {
             "detalle": jsonEncode(historias[index].details),
             "precio": historias[index].amount,
-            "proximacita": historias[index].nextdate,
-            "motivo": historias[index].reason
+            // "proximacita": historias[index].nextdate,
+            // "motivo": historias[index].reason
           });
         },
         indexData: index,
