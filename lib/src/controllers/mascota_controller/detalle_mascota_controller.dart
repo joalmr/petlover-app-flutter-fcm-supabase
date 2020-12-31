@@ -26,13 +26,20 @@ class MascotaDetalleController extends GetxController {
 
   Future<void> _verMiMascota() async {
     pet = await mascotaService.getPet(mascotaId);
-    await _verMiHistoria(mascotaId);
+    // await _verMiHistoria(mascotaId);
     loading.value = false;
   }
 
-  void verMiHistoria(id) {
-    _verMiHistoria(id);
+  //void verMiHistoria(id)
+  goToHistory() => _goToHistory();
+  _goToHistory() async {
+    await _verMiHistoria(mascotaId);
+    Get.toNamed('historialmascota');
   }
+
+  // void verMiHistoria() {
+  //   _verMiHistoria(mascotaId);
+  // }
 
   Future<void> _verMiHistoria(id) async {
     history.clear();

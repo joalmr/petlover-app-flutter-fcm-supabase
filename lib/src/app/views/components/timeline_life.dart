@@ -2,7 +2,10 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
+import 'form_control/button_primary.dart';
 
 Widget timelineLife({
   @required DateTime dateBorn,
@@ -22,80 +25,87 @@ Widget timelineLife({
 
   contentLife = [
     Card(
-      child: ListTile(
-        onTap: () {},
+      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
           maxLines: 2,
         ),
         subtitle: Text('data..'),
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     ),
     Card(
-      child: ListTile(
-        onTap: () {},
+      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
           maxLines: 2,
         ),
         subtitle: Text('data..'),
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     ),
     Card(
-      child: ListTile(
-        onTap: () {},
+      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
           maxLines: 2,
         ),
         subtitle: Text('data..'),
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     ),
     Card(
-      child: ListTile(
-        onTap: () {},
+      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
           maxLines: 2,
         ),
         subtitle: Text('data..'),
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     ),
     Card(
-      child: ListTile(
-        onTap: () {},
+      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
           maxLines: 2,
         ),
         subtitle: Text('data..'),
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     ),
     Card(
-      child: ListTile(
-        onTap: () {},
+      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
           maxLines: 2,
         ),
         subtitle: Text('data..'),
-      ),
-    ),
-    Card(
-      child: ListTile(
-        onTap: () {},
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
-        ),
-        subtitle: Text('data..'),
+        children: [
+          Text('data'),
+          Text('data'),
+        ],
       ),
     ),
   ];
@@ -225,31 +235,59 @@ Widget timelineLife({
     }
   }
 
-  return CustomScrollView(
-    slivers: [
-      SliverToBoxAdapter(
-        child: Container(
-          height: 100.0,
-          child: ScrollablePositionedList.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: timeline.length,
-            itemBuilder: (context, index) => timeline[index],
-            initialScrollIndex: scrollInit,
-          ),
-        ),
-      ),
-      SliverToBoxAdapter(
-        child: Container(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: contentLife,
+  return GetBuilder<MascotaDetalleController>(
+    initState: (_) {},
+    builder: (_) {
+      return CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Container(
+              height: 100.0,
+              child: ScrollablePositionedList.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: timeline.length,
+                itemBuilder: (context, index) => timeline[index],
+                initialScrollIndex: scrollInit,
               ),
             ),
           ),
-        ),
-      )
-    ],
+          SliverToBoxAdapter(
+            child: Container(
+              child: ListView.builder(
+                padding: EdgeInsets.zero,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: contentLife.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return contentLife[index];
+                },
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+              child: Center(
+            child: InkWell(
+              onTap: _.goToHistory,
+              child: Padding(
+                padding: EdgeInsets.only(top: 20, bottom: 40),
+                child: Text(
+                  'Ver todas las atenciones',
+                  style: TextStyle(color: colorMain),
+                ),
+              ),
+            ),
+          )
+              // Padding(
+              //   padding: EdgeInsets.only(bottom: 15),
+              //   child: buttonFlat(
+              //     'Ver todas las atenciones',
+              //     _.goToHistory,
+              //     colorMain,
+              //   ),
+              // ),
+              )
+        ],
+      );
+    },
   );
 }

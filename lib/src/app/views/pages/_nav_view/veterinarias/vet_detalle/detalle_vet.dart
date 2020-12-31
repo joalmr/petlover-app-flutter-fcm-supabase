@@ -29,14 +29,15 @@ class VetDetallePage extends StatelessWidget {
               : Scaffold(
                   appBar: AppBar(
                     elevation: 0,
-                    toolbarHeight: context.height * 0.275,
+                    toolbarHeight: context.height * 0.245,
                     automaticallyImplyLeading: false,
                     flexibleSpace: FadeIn(
                       duration: Duration(milliseconds: 500),
                       child: Stack(
                         children: <Widget>[
                           Container(
-                            height: context.height * 0.275,
+                            // height: context.height * 0.275,
+                            height: double.maxFinite,
                             width: double.maxFinite,
                             child: (_.vet.slides.length > 0)
                                 ? swiperVets(_.vet.slides, true)

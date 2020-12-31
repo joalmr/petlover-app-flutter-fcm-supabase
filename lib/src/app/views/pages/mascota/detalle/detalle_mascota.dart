@@ -8,12 +8,11 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
-
 import 'components/tab_cartilla_vacuna.dart';
 import 'components/dato_mascota.dart';
 import 'components/tab_citas.dart';
 import 'components/tab_general.dart';
-import 'components/tab_lista_historia.dart';
+// import 'components/tab_lista_historia.dart';
 
 class MascotaDetallePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -52,24 +51,25 @@ class MascotaDetallePage extends StatelessWidget {
                             ),
                             Container(
                               margin: EdgeInsets.only(
-                                  top: context.height * 0.4,
+                                  top: context.height * 0.374,
                                   bottom: 7.5,
                                   left: 5.0,
                                   right: 5.0),
-                              height: context.height - context.height * 0.4,
+                              height: context.height - context.height * 0.374,
                               decoration: BoxDecoration(
                                 borderRadius: borderRadius,
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
                               ),
                               child: DefaultTabController(
-                                length: 4,
+                                length: 3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     datoMascota(_.pet),
                                     TabBar(
+                                      // isScrollable: true,
                                       indicatorColor: colorMain,
                                       labelStyle: TextStyle(
                                           fontWeight: FontWeight.bold),
@@ -78,10 +78,9 @@ class MascotaDetallePage extends StatelessWidget {
                                           Get.textTheme.subtitle2.color,
                                       unselectedLabelStyle: TextStyle(
                                           fontWeight: FontWeight.normal),
-                                      isScrollable: true,
                                       tabs: [
                                         Tab(text: "General"),
-                                        Tab(text: "Atenciones"),
+                                        // Tab(text: "Atenciones"),
                                         Tab(text: "Vacunas"),
                                         Tab(text: "Próximas citas"),
                                       ],
@@ -90,7 +89,7 @@ class MascotaDetallePage extends StatelessWidget {
                                       child: TabBarView(
                                         children: <Widget>[
                                           generalTab(_.pet),
-                                          listaHistorialTab(_.history.toList()),
+                                          // listaHistorialTab(_.history.toList()),
                                           cartillaDigitalTab(),
                                           citasTab(),
                                         ],

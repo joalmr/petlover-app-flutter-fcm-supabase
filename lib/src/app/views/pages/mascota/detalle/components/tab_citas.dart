@@ -4,6 +4,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 
 Widget citasTab() {
   return ListView.builder(
+    padding: EdgeInsets.zero,
     itemCount: 4,
     itemBuilder: (BuildContext context, int index) {
       return Card(

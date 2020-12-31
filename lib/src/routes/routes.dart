@@ -10,6 +10,7 @@ import 'package:proypet/src/app/views/pages/atencion/atencion_califica.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/canjear_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/sorteo_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/ultimos_puntos.dart';
+import 'package:proypet/src/app/views/pages/mascota/detalle/components/historial_page.dart';
 import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
 
@@ -56,6 +57,7 @@ List<GetPage> getRutas() {
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
     GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
+    GetPage(name: 'historialmascota', page: () => HistorialMascota()),
     //
     GetPage(name: 'vetdetalle', page: () => VetDetallePage()),
     GetPage(name: 'vetreserva', page: () => DataReserva()),

@@ -99,6 +99,7 @@ Widget timeline({
               child: Container(
                 child: Card(
                   child: ExpansionTile(
+                    backgroundColor: Colors.transparent,
                     title: Text(
                       titleIndex,
                       style: Get.textTheme.subtitle2
