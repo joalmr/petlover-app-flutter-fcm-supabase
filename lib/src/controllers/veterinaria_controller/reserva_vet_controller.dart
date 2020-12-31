@@ -147,8 +147,8 @@ class ReservaVetController extends GetxController {
     servicioReservaLista.clear();
     var dato = await bookingService.typeBooking();
     servicioReservaLista.addAll(dato);
-    reservaId =
-        servicioReservaLista.where((x) => x.id == 1).first.id.toString();
+    // reservaId =
+    //     servicioReservaLista.where((x) => x.id == 1).first.id.toString();
     //
     ex3 = servicioReservaLista.first;
     textoServicios = servicioReservaLista.first.name;
@@ -200,56 +200,6 @@ class ReservaVetController extends GetxController {
       serviciosSeleccionados(context),
     );
   }
-
-  // _servicios(context) {
-  //   return SelectDialog.showModal<ServicioReserva>(
-  //     context,
-  //     label: "Servicios",
-  //     titleStyle: Get.textTheme.subtitle1,
-  //     showSearchBox: true,
-  //     emptyBuilder: (context) => Center(
-  //       child: Text('No se encontró'),
-  //     ),
-  //     errorBuilder: (context, exception) => Center(child: Text('Oops!')),
-  //     items: servicioReservaLista.value,
-  //     searchBoxDecoration: InputDecoration(
-  //       hintText: 'Buscar servicio',
-  //       prefixIcon: Icon(Icons.search, color: colorMain),
-  //     ),
-  //     onFind: (String filter) => _getData(filter),
-  //     itemBuilder:
-  //         (BuildContext context, ServicioReserva item, bool isSelected) {
-  //       return Container(
-  //         decoration: !isSelected
-  //             ? null
-  //             : BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(5), color: colorMain),
-  //         child: ListTile(
-  //           selected: isSelected,
-  //           title: Text(
-  //             item.name,
-  //             style: isSelected
-  //                 ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
-  //                 : Get.textTheme.subtitle2,
-  //           ),
-  //           subtitle: Text(
-  //             item.category,
-  //             style: isSelected
-  //                 ? Get.textTheme.subtitle2
-  //                     .copyWith(color: Colors.white, fontSize: 12)
-  //                 : Get.textTheme.subtitle2.copyWith(fontSize: 12),
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //     selectedValue: ex3,
-  //     onChange: (selected) {
-  //       ex3 = selected;
-  //       inputServController.text = selected.name;
-  //       reservaId = selected.id.toString();
-  //     },
-  //   );
-  // }
 
   getData() => _getData();
 
@@ -488,14 +438,19 @@ class ReservaVetController extends GetxController {
     booking.bookingAt = fechaTimeAt;
     booking.establishmentId = vet.id;
     booking.petId = mascotaId; //
-    booking.typeId = reservaId;
+    List reservaType = [];
+    //
+    listaServicio.forEach((element) {
+      reservaType.add(element.id);
+    });
+
     booking.observation = observacion;
     if (hasDelivery == true && deliveryId != "1") {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
 
-    bool resp =
-        await bookingService.booking(booking, deliveryTipo, _prefs.myAddress);
+    bool resp = await bookingService.booking(
+        booking, reservaType, deliveryTipo, _prefs.myAddress);
 
     if (resp) {
       homeC.getSummary();

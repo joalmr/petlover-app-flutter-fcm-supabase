@@ -14,32 +14,57 @@ iconosHistoria(json) {
     children: <Widget>[
       (json.toString().contains("grooming"))
           ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-              child: Icon(iconMap["grooming"], size: 18.0, color: Get.textTheme.subtitle2.color),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon(
+                iconMap["grooming"],
+                size: 14.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
             )
           : SizedBox(),
       (json.toString().contains("surgery"))
           ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-              child: Icon(iconMap["surgery"], size: 18.0, color: Get.textTheme.subtitle2.color),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon(
+                iconMap["surgery"],
+                size: 14.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
             )
           : SizedBox(),
       (json.toString().contains("deworming"))
           ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-              child: Icon(iconMap["deworming"], size: 18.0, color: Get.textTheme.subtitle2.color),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon(
+                iconMap["deworming"],
+                size: 14.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
             )
           : SizedBox(),
       (json.toString().contains("vaccination"))
           ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-              child: Icon(iconMap["vaccination"], size: 18.0, color: Get.textTheme.subtitle2.color),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon(
+                iconMap["vaccination"],
+                size: 14.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
             )
           : SizedBox(),
       (json.toString().contains("consultation"))
           ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
-              child: Icon(iconMap["consultation"], size: 18.0, color: Get.textTheme.subtitle2.color),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+              child: Icon(
+                iconMap["consultation"],
+                size: 14.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
             )
           : SizedBox(),
     ],

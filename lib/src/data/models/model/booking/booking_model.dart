@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-BookingModel bookingModelFromJson(String str) => BookingModel.fromJson(json.decode(str));
+BookingModel bookingModelFromJson(String str) =>
+    BookingModel.fromJson(json.decode(str));
 
 String bookingModelToJson(BookingModel data) => json.encode(data.toJson());
 
 class BookingModel {
   String establishmentId;
-  String typeId;
+  // String typeId;
   String userId;
   String petId;
   int statusId;
@@ -18,7 +19,7 @@ class BookingModel {
 
   BookingModel({
     this.establishmentId,
-    this.typeId,
+    // this.typeId,
     this.userId,
     this.petId,
     this.statusId,
@@ -31,7 +32,7 @@ class BookingModel {
 
   factory BookingModel.fromJson(Map<String, dynamic> json) => BookingModel(
       establishmentId: json["establishment_id"],
-      typeId: json["type_id"],
+      // typeId: json["type_id"],
       userId: json["user_id"],
       petId: json["pet_id"],
       statusId: json["status_id"],
@@ -43,7 +44,7 @@ class BookingModel {
 
   Map<String, dynamic> toJson() => {
         "establishment_id": establishmentId,
-        "type_id": typeId,
+        // "type_id": typeId,
         "user_id": userId,
         "pet_id": petId,
         "status_id": statusId,

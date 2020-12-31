@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/timeline.dart';
+import 'package:proypet/src/app/views/components/timeline_vacuna.dart';
 import 'data/data-cartilla.dart';
 
 Widget cartillaDigitalTab() {
@@ -65,7 +65,7 @@ Widget cartillaDigitalTab() {
             String dmyString = vacunaLista[index].dateIn;
             DateTime dateTime = DateFormat('dd-MM-yyyy').parse(dmyString);
 
-            return timeline(
+            return timelineVacuna(
               circleData: CircleAvatar(
                 backgroundColor: colorMain,
                 child: Icon(

@@ -90,7 +90,7 @@ class MascotaDetallePage extends StatelessWidget {
                                       child: TabBarView(
                                         children: <Widget>[
                                           generalTab(_.pet),
-                                          listaHistorialTab(_.history),
+                                          listaHistorialTab(_.history.toList()),
                                           cartillaDigitalTab(),
                                           citasTab(),
                                         ],

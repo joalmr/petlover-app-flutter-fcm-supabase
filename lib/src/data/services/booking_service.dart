@@ -5,8 +5,9 @@ import 'package:proypet/src/data/providers/booking_provider.dart';
 class BookingService {
   final BookingProvider bookingProvider = BookingProvider();
 
-  booking(BookingModel booking, dynamic delivery, String direccion) {
-    return bookingProvider.booking(booking, delivery, direccion);
+  booking(BookingModel booking, List reservaType, dynamic delivery,
+      String direccion) {
+    return bookingProvider.booking(booking, reservaType, delivery, direccion);
   }
 
   deleteBooking(String idBooking) {

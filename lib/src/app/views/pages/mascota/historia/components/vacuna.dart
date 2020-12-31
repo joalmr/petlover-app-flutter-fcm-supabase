@@ -9,21 +9,32 @@ vacuna(data) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
       Row(
-        children: <Widget>[
-          Icon(IconProypet.vacuna,
-              size: 16.0, color: Get.textTheme.subtitle2.color),
-          SizedBox(
-            width: 10.0,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: <Widget>[
+              Icon(
+                IconProypet.vacuna,
+                size: 12.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
+              SizedBox(width: 10.0),
+              Text(
+                'Vacuna',
+                style: Get.textTheme.subtitle2
+                    .apply(fontWeightDelta: 2)
+                    .copyWith(fontSize: 12),
+              ),
+            ],
           ),
           Text(
-            'Vacuna',
-            style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2),
+            data["amount"] ?? '-',
+            textAlign: TextAlign.right,
+            style: TextStyle(fontSize: 12),
           ),
         ],
       ),
-      SizedBox(
-        height: 10,
-      ),
+      SizedBox(height: 10),
       Text(
         "Recomendación",
         style: TextStyle(
@@ -31,17 +42,11 @@ vacuna(data) {
           fontSize: sizeSmallx2,
         ),
       ),
-      Text(data["recommendations"] ?? '-'),
+      Text(
+        data["recommendations"] ?? '-',
+        style: TextStyle(fontSize: 12),
+      ),
       SizedBox(height: 10),
-      Divider(),
-      Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        child: Text(
-          data["amount"] ?? '-',
-          textAlign: TextAlign.right,
-        ),
-      )
     ],
   );
 }

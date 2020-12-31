@@ -1,23 +1,14 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/pages/mascota/historia/components/cirugia.dart';
-import 'package:proypet/src/app/views/pages/mascota/historia/components/consulta.dart';
-import 'package:proypet/src/app/views/pages/mascota/historia/components/desparasitacion.dart';
-import 'package:proypet/src/app/views/pages/mascota/historia/components/grooming.dart';
-import 'package:proypet/src/app/views/pages/mascota/historia/components/vacuna.dart';
 
-Widget timeline({
+Widget timelineVacuna({
   @required Widget circleData,
   @required int dayData,
-  String detailData,
-  // @required Function functionData,
+  @required Function functionData,
   @required int indexData,
   @required int listLength,
   @required int monthData,
-  String priceData,
   Widget subtitleIndex,
   timeData,
   @required String titleIndex,
@@ -27,10 +18,6 @@ Widget timeline({
   String mes;
   dayData < 10 ? dia = '0$dayData' : dia = '$dayData';
   monthData < 10 ? mes = '0$monthData' : mes = '$monthData';
-
-  // final dynamic historiaData = detailData;
-  Map<String, dynamic> jsonData = jsonDecode(detailData);
-  // print(jsonData);
 
   return Container(
     child: Column(
@@ -98,57 +85,14 @@ Widget timeline({
             Expanded(
               child: Container(
                 child: Card(
-                  child: ExpansionTile(
+                  child: ListTile(
+                    onTap: functionData,
                     title: Text(
                       titleIndex,
-                      style: Get.textTheme.subtitle2
-                          .apply(fontWeightDelta: 2)
-                          .copyWith(fontSize: 12),
+                      style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
                       maxLines: 2,
                     ),
                     subtitle: subtitleIndex,
-                    childrenPadding: EdgeInsets.all(8),
-                    children: [
-                      jsonData.containsKey('grooming')
-                          ? banio(jsonData['grooming'])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('deworming')
-                          ? desparasita(jsonData["deworming"])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('vaccination')
-                          ? vacuna(jsonData["vaccination"])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('consultation')
-                          ? consulta(jsonData["consultation"])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('surgery')
-                          ? cirugia(jsonData["surgery"])
-                          : SizedBox(height: 0),
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.only(right: 20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Precio",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Get.textTheme.subtitle2.color,
-                              ),
-                            ),
-                            Text(
-                              priceData,
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Get.textTheme.subtitle2.color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ),

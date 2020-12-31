@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/app/views/components/timeline.dart';
+import 'package:proypet/src/data/models/update/mascota/history_model.dart';
 import 'icono_historia.dart';
 
-Widget listaHistorialTab(historias) {
+Widget listaHistorialTab(List<HistoriaModel2> historias) {
   return ListView.builder(
     itemCount: historias.length,
     itemBuilder: (BuildContext context, int index) {
@@ -23,21 +23,23 @@ Widget listaHistorialTab(historias) {
           radius: 20.0,
         ),
         dayData: dateTime.day,
+        detailData: jsonEncode(historias[index].details),
         monthData: dateTime.month,
+        priceData: historias[index].amount.toString(),
         timeData: time,
-        functionData: () {
-          Get.toNamed('detallehistoriamascota', arguments: {
-            "detalle": jsonEncode(historias[index].details),
-            "precio": historias[index].amount,
-            // "proximacita": historias[index].nextdate,
-            // "motivo": historias[index].reason
-          });
-        },
         indexData: index,
         listLength: historias.length,
         subtitleIndex: iconosHistoria(historias[index].details),
         titleIndex: historias[index].establishment,
         yearValue: dateTime.year,
+        // functionData: () {
+        //   Get.toNamed('detallehistoriamascota', arguments: {
+        //     "detalle": jsonEncode(historias[index].details),
+        //     "precio": historias[index].amount,
+        //     // "proximacita": historias[index].nextdate,
+        //     // "motivo": historias[index].reason
+        //   });
+        // },
       );
     },
   );

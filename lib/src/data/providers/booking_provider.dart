@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
@@ -9,15 +10,17 @@ class BookingProvider {
 
   Dio dio = new Dio();
 
-  Future<bool> booking(BookingModel booking, dynamic delivery, String direccion) async {
+  Future<bool> booking(BookingModel booking, List reservaType, dynamic delivery,
+      String direccion) async {
     final url = '$_url/bookings';
     var bodyData;
+
     if (delivery != null) {
       bodyData = {
         "booking_at": booking.bookingAt,
         "establishment_id": booking.establishmentId,
         "pet_id": booking.petId,
-        "type_id": booking.typeId,
+        "type_id": jsonEncode(reservaType), //booking.typeId,
         "observation": booking.observation,
         "delivery": delivery,
         "address": direccion,
@@ -27,7 +30,7 @@ class BookingProvider {
         "booking_at": booking.bookingAt,
         "establishment_id": booking.establishmentId,
         "pet_id": booking.petId,
-        "type_id": booking.typeId,
+        "type_id": jsonEncode(reservaType), //booking.typeId,
         "observation": booking.observation,
       };
     }
@@ -57,7 +60,8 @@ class BookingProvider {
     final url = '$_url/booking/attempt';
 
     final _data = {"establishment_id": idEstablishment};
-    var resp = await dio.post(url, data: _data, options: Options(headers: headersToken()));
+    var resp = await dio.post(url,
+        data: _data, options: Options(headers: headersToken()));
     print(resp.data);
   }
 
@@ -65,7 +69,8 @@ class BookingProvider {
     final url = '$_url/booking/types';
 
     var resp = await dio.get(url, options: Options(headers: headersToken()));
-    var dataList = List<ServicioReserva>.from(resp.data.map((x) => ServicioReserva.fromJson(x)));
+    var dataList = List<ServicioReserva>.from(
+        resp.data.map((x) => ServicioReserva.fromJson(x)));
 
     return dataList;
   }
