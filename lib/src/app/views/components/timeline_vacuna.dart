@@ -89,7 +89,9 @@ Widget timelineVacuna({
                     onTap: functionData,
                     title: Text(
                       titleIndex,
-                      style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
+                      style: Get.textTheme.subtitle2
+                          .apply(fontWeightDelta: 2)
+                          .copyWith(fontSize: 14),
                       maxLines: 2,
                     ),
                     subtitle: subtitleIndex,
