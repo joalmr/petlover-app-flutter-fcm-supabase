@@ -32,14 +32,6 @@ Widget listaHistorialTab(List<HistoriaModel2> historias) {
         subtitleIndex: iconosHistoria(historias[index].details),
         titleIndex: historias[index].establishment,
         yearValue: dateTime.year,
-        // functionData: () {
-        //   Get.toNamed('detallehistoriamascota', arguments: {
-        //     "detalle": jsonEncode(historias[index].details),
-        //     "precio": historias[index].amount,
-        //     // "proximacita": historias[index].nextdate,
-        //     // "motivo": historias[index].reason
-        //   });
-        // },
       );
     },
   );

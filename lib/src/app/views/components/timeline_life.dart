@@ -5,8 +5,6 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'form_control/button_primary.dart';
-
 Widget timelineLife({
   @required DateTime dateBorn,
   int petStatus,
@@ -265,27 +263,27 @@ Widget timelineLife({
             ),
           ),
           SliverToBoxAdapter(
-              child: Center(
-            child: InkWell(
-              onTap: _.goToHistory,
-              child: Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 40),
-                child: Text(
-                  'Ver todas las atenciones',
-                  style: TextStyle(color: colorMain),
+            child: Center(
+              child: InkWell(
+                onTap: _.goToHistory,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: 40),
+                  child: Text(
+                    'Ver todas las atenciones',
+                    style: TextStyle(color: colorMain),
+                  ),
                 ),
               ),
             ),
-          )
-              // Padding(
-              //   padding: EdgeInsets.only(bottom: 15),
-              //   child: buttonFlat(
-              //     'Ver todas las atenciones',
-              //     _.goToHistory,
-              //     colorMain,
-              //   ),
-              // ),
-              )
+            // Padding(
+            //   padding: EdgeInsets.only(bottom: 15),
+            //   child: buttonFlat(
+            //     'Ver todas las atenciones',
+            //     _.goToHistory,
+            //     colorMain,
+            //   ),
+            // ),
+          ),
         ],
       );
     },

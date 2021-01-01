@@ -51,11 +51,11 @@ class MascotaDetallePage extends StatelessWidget {
                             ),
                             Container(
                               margin: EdgeInsets.only(
-                                  top: context.height * 0.374,
+                                  top: context.height * 0.4,
                                   bottom: 7.5,
                                   left: 5.0,
                                   right: 5.0),
-                              height: context.height - context.height * 0.374,
+                              height: context.height - context.height * 0.4,
                               decoration: BoxDecoration(
                                 borderRadius: borderRadius,
                                 color:

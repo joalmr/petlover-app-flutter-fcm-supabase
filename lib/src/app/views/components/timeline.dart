@@ -13,7 +13,6 @@ Widget timeline({
   @required Widget circleData,
   @required int dayData,
   String detailData,
-  // @required Function functionData,
   @required int indexData,
   @required int listLength,
   @required int monthData,
@@ -29,8 +28,12 @@ Widget timeline({
   monthData < 10 ? mes = '0$monthData' : mes = '$monthData';
 
   // final dynamic historiaData = detailData;
-  Map<String, dynamic> jsonData = jsonDecode(detailData);
-  // print(jsonData);
+  Map<String, dynamic> jsonData;
+  try {
+    jsonData = jsonDecode(detailData);
+  } catch (e) {
+    jsonData = null;
+  }
 
   return Container(
     child: Column(
@@ -110,21 +113,21 @@ Widget timeline({
                     subtitle: subtitleIndex,
                     childrenPadding: EdgeInsets.all(8),
                     children: [
-                      jsonData.containsKey('grooming')
-                          ? banio(jsonData['grooming'])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('deworming')
-                          ? desparasita(jsonData["deworming"])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('vaccination')
-                          ? vacuna(jsonData["vaccination"])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('consultation')
-                          ? consulta(jsonData["consultation"])
-                          : SizedBox(height: 0),
-                      jsonData.containsKey('surgery')
-                          ? cirugia(jsonData["surgery"])
-                          : SizedBox(height: 0),
+                      jsonData == null
+                          ? SizedBox(
+                              height: 20,
+                              width: double.maxFinite,
+                              child: Container(
+                                color: colorRed,
+                                child: Center(
+                                  child: Text(
+                                    'Error',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : _service(jsonData),
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(right: 20.0),
@@ -158,6 +161,28 @@ Widget timeline({
         ),
       ],
     ),
+  );
+}
+
+Widget _service(jsonData) {
+  return Column(
+    children: [
+      jsonData.containsKey('grooming')
+          ? banio(jsonData['grooming'])
+          : SizedBox(height: 0),
+      jsonData.containsKey('deworming')
+          ? desparasita(jsonData["deworming"])
+          : SizedBox(height: 0),
+      jsonData.containsKey('vaccination')
+          ? vacuna(jsonData["vaccination"])
+          : SizedBox(height: 0),
+      jsonData.containsKey('consultation')
+          ? consulta(jsonData["consultation"])
+          : SizedBox(height: 0),
+      jsonData.containsKey('surgery')
+          ? cirugia(jsonData["surgery"])
+          : SizedBox(height: 0)
+    ],
   );
 }
 
