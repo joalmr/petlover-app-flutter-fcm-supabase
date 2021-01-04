@@ -8,55 +8,55 @@ import 'data/data-cartilla.dart';
 Widget cartillaDigitalTab() {
   return Column(
     children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-        child: Card(
-          elevation: 2,
-          color: colorMain,
-          child: ListTile(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-            leading: CircleAvatar(
-              radius: 20,
-              backgroundColor: colorGreen3,
-              child: Icon(
-                IconProypet.vacuna,
-                color: Colors.white,
-                size: 20,
-              ),
-            ),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Próxima vacuna',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                  ),
-                ),
-                Text(
-                  '30-11-2020',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            subtitle: Text(
-              'Vacuna lestospira',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-              ),
-              maxLines: 2,
-            ),
-          ),
-        ),
-      ),
+      // Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+      //   child: Card(
+      //     elevation: 2,
+      //     color: colorMain,
+      //     child: ListTile(
+      //       contentPadding:
+      //           const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+      //       leading: CircleAvatar(
+      //         radius: 20,
+      //         backgroundColor: colorGreen3,
+      //         child: Icon(
+      //           IconProypet.vacuna,
+      //           color: Colors.white,
+      //           size: 20,
+      //         ),
+      //       ),
+      //       title: Column(
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         mainAxisAlignment: MainAxisAlignment.start,
+      //         children: [
+      //           Text(
+      //             'Próxima vacuna',
+      //             style: TextStyle(
+      //               color: Colors.white,
+      //               fontSize: 10,
+      //             ),
+      //           ),
+      //           Text(
+      //             '30-11-2020',
+      //             style: TextStyle(
+      //               color: Colors.white,
+      //               fontSize: 14,
+      //               fontWeight: FontWeight.bold,
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //       subtitle: Text(
+      //         'Vacuna lestospira',
+      //         style: TextStyle(
+      //           color: Colors.white,
+      //           fontSize: 12,
+      //         ),
+      //         maxLines: 2,
+      //       ),
+      //     ),
+      //   ),
+      // ),
       Expanded(
         child: ListView.builder(
           itemCount: vacunaLista.length,

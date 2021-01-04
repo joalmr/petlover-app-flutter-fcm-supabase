@@ -125,6 +125,10 @@ Widget timelineLife({
   ];
   int scrollInit = 0;
   int scrollCount = 0;
+
+  RxString tempYear = todayYear.toString().obs;
+  RxString tempMonth = mes[todayMonth].obs;
+
   for (var i = firstYear; i <= lastYear; i++) {
     if (i > firstYear) firstMonth = 1;
     for (var j = firstMonth; j <= 12; j++) {
@@ -161,6 +165,8 @@ Widget timelineLife({
                 InkWell(
                   onTap: () {
                     print('$i $j');
+                    tempYear.value = i.toString();
+                    tempMonth.value = mes[j];
                   },
                   child: (todayYear == i && todayMonth == j)
                       ? Padding(
@@ -233,7 +239,7 @@ Widget timelineLife({
     }
   }
 
-  return GetBuilder<MascotaDetalleController>(
+  return GetX<MascotaDetalleController>(
     initState: (_) {},
     builder: (_) {
       return CustomScrollView(
@@ -251,14 +257,27 @@ Widget timelineLife({
           ),
           SliverToBoxAdapter(
             child: Container(
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: contentLife.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return contentLife[index];
-                },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Text(
+                      '${tempMonth.value}. ${tempYear.value}',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  ListView.builder(
+                    padding: EdgeInsets.zero,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: contentLife.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return contentLife[index];
+                    },
+                  ),
+                ],
               ),
             ),
           ),
@@ -275,14 +294,6 @@ Widget timelineLife({
                 ),
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.only(bottom: 15),
-            //   child: buttonFlat(
-            //     'Ver todas las atenciones',
-            //     _.goToHistory,
-            //     colorMain,
-            //   ),
-            // ),
           ),
         ],
       );
