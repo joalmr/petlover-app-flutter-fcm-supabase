@@ -14,6 +14,14 @@ class MascotaService {
     return mascotaProvider.getPet(idPet);
   }
 
+  getVaccines(String idPet) {
+    return mascotaProvider.getVaccines(idPet);
+  }
+
+  getNextDate(String idPet) {
+    return mascotaProvider.getNextDate(idPet);
+  }
+
   getPetHistory(String idPet) {
     return mascotaProvider.getPetHistory(idPet);
   }

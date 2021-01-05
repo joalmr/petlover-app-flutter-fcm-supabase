@@ -9,15 +9,19 @@ Widget timelineVacuna({
   @required int indexData,
   @required int listLength,
   @required int monthData,
-  Widget subtitleIndex,
   timeData,
-  @required String titleIndex,
+  @required List<dynamic> titleIndex,
+  @required int yearPreviou,
   @required int yearValue,
 }) {
   String dia;
   String mes;
   dayData < 10 ? dia = '0$dayData' : dia = '$dayData';
   monthData < 10 ? mes = '0$monthData' : mes = '$monthData';
+  print(titleIndex.length);
+  print(titleIndex);
+  print(titleIndex);
+  titleIndex.map((item) => Text(item)).toList().cast<Widget>();
 
   return Container(
     child: Column(
@@ -25,7 +29,7 @@ Widget timelineVacuna({
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         indexData == 0 ? _years(DateTime.now().year) : SizedBox(height: 0),
-        DateTime.now().year != yearValue
+        yearPreviou != 0 && (yearPreviou != yearValue)
             ? _years(yearValue)
             : SizedBox(height: 0),
         Row(
@@ -87,14 +91,18 @@ Widget timelineVacuna({
                 child: Card(
                   child: ListTile(
                     onTap: functionData,
-                    title: Text(
-                      titleIndex,
-                      style: Get.textTheme.subtitle2
-                          .apply(fontWeightDelta: 2)
-                          .copyWith(fontSize: 14),
-                      maxLines: 2,
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: titleIndex
+                          .map((item) => Text(
+                                '· $item',
+                                style: TextStyle(fontSize: 10),
+                              ))
+                          .toList()
+                          .cast<Widget>(),
                     ),
-                    subtitle: subtitleIndex,
+                    // subtitle: subtitleIndex,
                   ),
                 ),
               ),

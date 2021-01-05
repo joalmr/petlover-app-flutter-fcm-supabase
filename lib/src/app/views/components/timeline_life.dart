@@ -240,7 +240,6 @@ Widget timelineLife({
   }
 
   return GetX<MascotaDetalleController>(
-    initState: (_) {},
     builder: (_) {
       return CustomScrollView(
         slivers: [

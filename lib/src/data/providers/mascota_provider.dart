@@ -19,7 +19,8 @@ class MascotaProvider {
       );
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
-      final datosMascota = decodedResp['pets']; //mascotaModelFromJson(decodedResp['pets']);
+      final datosMascota =
+          decodedResp['pets']; //mascotaModelFromJson(decodedResp['pets']);
       final List<MascotaModel2> mascotas = new List();
 
       if (datosMascota == null) return [];
@@ -49,6 +50,30 @@ class MascotaProvider {
     return pet;
   }
 
+  Future<List<dynamic>> getVaccines(String idPet) async {
+    // api/pet/{petId}/history?type={vaccination}
+    final url = '$_url/pet/$idPet/history?type=vaccination';
+    Response response;
+    response = await dio.get(
+      url,
+      options: Options(headers: headersToken()),
+    );
+    final list = List<dynamic>.from(response.data);
+    return list;
+  }
+
+  Future<List<dynamic>> getNextDate(String idPet) async {
+    // api/pet/{petId}/history?type={vaccination}
+    final url = '$_url/pet/$idPet/nextdate';
+    Response response;
+    response = await dio.get(
+      url,
+      options: Options(headers: headersToken()),
+    );
+    final list = List<dynamic>.from(response.data);
+    return list;
+  }
+
   Future<List<HistoriaModel2>> getPetHistory(String idPet) async {
     final url = '$_url/pets/$idPet';
     Response response;
@@ -57,12 +82,14 @@ class MascotaProvider {
       options: Options(headers: headersToken()),
     );
 
-    final listHistory = List<HistoriaModel2>.from(response.data['history'].map((x) => HistoriaModel2.fromJson(x)));
+    final listHistory = List<HistoriaModel2>.from(
+        response.data['history'].map((x) => HistoriaModel2.fromJson(x)));
     return listHistory;
   }
 
 ////////
-  Future<Map<String, dynamic>> savePet(MascotaModel2 mascota, File imagen) async {
+  Future<Map<String, dynamic>> savePet(
+      MascotaModel2 mascota, File imagen) async {
     //create
     final url = '$_url/pets';
 
@@ -161,7 +188,8 @@ class MascotaProvider {
 
     String sendPic = 'data:$part0/$part1;base64,$pic';
 
-    var img = await http.post(url, headers: headersToken(), body: {'base64': sendPic});
+    var img = await http
+        .post(url, headers: headersToken(), body: {'base64': sendPic});
 
     var decodeimg = json.decode(img.body);
 

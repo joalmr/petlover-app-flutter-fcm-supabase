@@ -80,7 +80,6 @@ class MascotaDetallePage extends StatelessWidget {
                                           fontWeight: FontWeight.normal),
                                       tabs: [
                                         Tab(text: "General"),
-                                        // Tab(text: "Atenciones"),
                                         Tab(text: "Vacunas"),
                                         Tab(text: "Próximas citas"),
                                       ],
@@ -90,8 +89,8 @@ class MascotaDetallePage extends StatelessWidget {
                                         children: <Widget>[
                                           generalTab(_.pet),
                                           // listaHistorialTab(_.history.toList()),
-                                          cartillaDigitalTab(),
-                                          citasTab(),
+                                          CartillaDigitalTab(),
+                                          CitasTab(),
                                         ],
                                       ),
                                     ),

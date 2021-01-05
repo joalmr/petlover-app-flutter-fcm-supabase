@@ -12,6 +12,13 @@ Widget listaHistorialTab(List<HistoriaModel2> historias) {
     itemBuilder: (BuildContext context, int index) {
       String dmyString = historias[index].createdAt;
       DateTime dateTime = DateFormat('dd-MM-yyyy HH:mm').parse(dmyString);
+
+      int yearPreviou = 0;
+      if (index > 0) {
+        DateTime datePrevio = DateFormat('dd-MM-yyyy HH:mm')
+            .parse(historias[index - 1].createdAt);
+        yearPreviou = datePrevio.year;
+      }
       // Hm -> 24 horas // jm -> am pm
       var time = DateFormat.Hm().format(dateTime);
 
@@ -31,6 +38,7 @@ Widget listaHistorialTab(List<HistoriaModel2> historias) {
         listLength: historias.length,
         subtitleIndex: iconosHistoria(historias[index].details),
         titleIndex: historias[index].establishment,
+        yearPreviou: yearPreviou,
         yearValue: dateTime.year,
       );
     },

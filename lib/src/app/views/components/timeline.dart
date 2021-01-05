@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/cirugia.dart';
@@ -20,6 +20,7 @@ Widget timeline({
   Widget subtitleIndex,
   timeData,
   @required String titleIndex,
+  @required int yearPreviou,
   @required int yearValue,
 }) {
   String dia;
@@ -41,7 +42,7 @@ Widget timeline({
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         indexData == 0 ? _years(DateTime.now().year) : SizedBox(height: 0),
-        DateTime.now().year != yearValue
+        yearPreviou != 0 && (yearPreviou != yearValue)
             ? _years(yearValue)
             : SizedBox(height: 0),
         Row(
@@ -144,6 +145,24 @@ Widget timeline({
                             Text(
                               priceData,
                               textAlign: TextAlign.right,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Get.textTheme.subtitle2.color,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.only(right: 20.0, top: 2),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(FontAwesomeIcons.coins,
+                                size: 12, color: colorMain),
+                            SizedBox(width: 2.5),
+                            Text(
+                              "Ganaste ${double.parse(priceData).floor()} ${double.parse(priceData).floor() != 1 ? 'puntos' : 'puntos'}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Get.textTheme.subtitle2.color,

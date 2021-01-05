@@ -1,91 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/timeline_vacuna.dart';
-import 'data/data-cartilla.dart';
+import 'package:proypet/src/controllers/mascota_controller/historia_vacuna_mascota_controller.dart';
 
-Widget cartillaDigitalTab() {
-  return Column(
-    children: [
-      // Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      //   child: Card(
-      //     elevation: 2,
-      //     color: colorMain,
-      //     child: ListTile(
-      //       contentPadding:
-      //           const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-      //       leading: CircleAvatar(
-      //         radius: 20,
-      //         backgroundColor: colorGreen3,
-      //         child: Icon(
-      //           IconProypet.vacuna,
-      //           color: Colors.white,
-      //           size: 20,
-      //         ),
-      //       ),
-      //       title: Column(
-      //         crossAxisAlignment: CrossAxisAlignment.start,
-      //         mainAxisAlignment: MainAxisAlignment.start,
-      //         children: [
-      //           Text(
-      //             'Próxima vacuna',
-      //             style: TextStyle(
-      //               color: Colors.white,
-      //               fontSize: 10,
-      //             ),
-      //           ),
-      //           Text(
-      //             '30-11-2020',
-      //             style: TextStyle(
-      //               color: Colors.white,
-      //               fontSize: 14,
-      //               fontWeight: FontWeight.bold,
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //       subtitle: Text(
-      //         'Vacuna lestospira',
-      //         style: TextStyle(
-      //           color: Colors.white,
-      //           fontSize: 12,
-      //         ),
-      //         maxLines: 2,
-      //       ),
-      //     ),
-      //   ),
-      // ),
-      Expanded(
-        child: ListView.builder(
-          itemCount: vacunaLista.length,
-          padding: EdgeInsets.only(top: 0),
-          itemBuilder: (BuildContext context, int index) {
-            String dmyString = vacunaLista[index].dateIn;
-            DateTime dateTime = DateFormat('dd-MM-yyyy').parse(dmyString);
+class CartillaDigitalTab extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetX<HistoriaVacunasController>(
+        init: HistoriaVacunasController(),
+        builder: (_) {
+          return _.cargando.value
+              ? Container(
+                  child: Center(
+                    child: lottieLoading,
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _.listavacunas.length,
+                  padding: EdgeInsets.only(top: 0),
+                  itemBuilder: (BuildContext context, int index) {
+                    String dmyString = _.listavacunas[index]['date'];
+                    int yearPreviou = 0;
+                    if (index > 0) {
+                      DateTime datePrevio = DateFormat('yyyy-MM-dd')
+                          .parse(_.listavacunas[index - 1]['date']);
+                      yearPreviou = datePrevio.year;
+                    }
+                    DateTime dateTime =
+                        DateFormat('yyyy-MM-dd').parse(dmyString);
 
-            return timelineVacuna(
-              circleData: CircleAvatar(
-                backgroundColor: colorMain,
-                child: Icon(
-                  IconProypet.vacuna,
-                  size: 18,
-                  color: colorGray1,
-                ),
-                radius: 20.0,
-              ),
-              dayData: dateTime.day,
-              monthData: dateTime.month,
-              functionData: () {},
-              indexData: index,
-              listLength: vacunaLista.length,
-              titleIndex: vacunaLista[index].name,
-              yearValue: dateTime.year,
-            );
-          },
-        ),
-      ),
-    ],
-  );
+                    return timelineVacuna(
+                      circleData: CircleAvatar(
+                        backgroundColor: colorMain,
+                        child: Icon(
+                          IconProypet.vacuna,
+                          size: 18,
+                          color: colorGray1,
+                        ),
+                        radius: 20.0,
+                      ),
+                      dayData: dateTime.day,
+                      monthData: dateTime.month,
+                      functionData: () {},
+                      indexData: index,
+                      listLength: _.listavacunas.length,
+                      titleIndex: _.listavacunas[index]['vaccines'],
+                      yearPreviou: yearPreviou,
+                      yearValue: dateTime.year,
+                    );
+                  },
+                );
+        });
+  }
 }
+
+// Widget cartillaDigitalTab() {
+//   return GetBuilder<HistoriaVacunasController>(
+//       init: HistoriaVacunasController(),
+//       builder: (_) {
+//         return
+//             // _.cargando.value
+//             //     ? Container(
+//             //         child: Center(
+//             //           child: lottieLoading,
+//             //         ),
+//             //       )
+//             //     :
+//             ListView.builder(
+//           itemCount: _.listavacunas.length,
+//           padding: EdgeInsets.only(top: 0),
+//           itemBuilder: (BuildContext context, int index) {
+//             String dmyString = _.listavacunas[index]['date'];
+//             print('index');
+//             print(_.listavacunas[index]);
+//             print(_.listavacunas[index]['date']);
+//             DateTime dateTime = DateFormat('yyyy-MM-dd').parse(dmyString);
+
+//             return timelineVacuna(
+//               circleData: CircleAvatar(
+//                 backgroundColor: colorMain,
+//                 child: Icon(
+//                   IconProypet.vacuna,
+//                   size: 18,
+//                   color: colorGray1,
+//                 ),
+//                 radius: 20.0,
+//               ),
+//               dayData: dateTime.day,
+//               monthData: dateTime.month,
+//               functionData: () {},
+//               indexData: index,
+//               listLength: _.listavacunas.length,
+//               titleIndex: 'jj',
+//               // titleIndex: _.listavacunas[index]['vaccines'],
+//               yearValue: dateTime.year,
+//             );
+//           },
+//         );
+//       });
+// }
