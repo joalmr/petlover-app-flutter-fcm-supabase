@@ -1,5 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
@@ -30,9 +31,34 @@ Widget timelineLife({
           maxLines: 2,
         ),
         subtitle: Text('data..'),
+        expandedCrossAxisAlignment: CrossAxisAlignment.start,
+        childrenPadding: EdgeInsets.only(left: 10, right: 10.0, top: 2),
         children: [
           Text('data'),
-          Text('data'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Precio'),
+              Text('data'),
+            ],
+          ),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 2, bottom: 10),
+            child: Row(
+              children: <Widget>[
+                Icon(FontAwesomeIcons.coins, size: 12, color: colorMain),
+                SizedBox(width: 2.5),
+                Text(
+                  "Ganaste ... puntos",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Get.textTheme.subtitle2.color,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     ),
