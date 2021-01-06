@@ -35,6 +35,7 @@ class DetalleRservadoController extends GetxController {
   }
 
   void llamar() {
+    print(argumentos.establishmentPhone);
     _launchPhone(argumentos.establishmentPhone);
   }
 

@@ -38,7 +38,7 @@ Widget listaHistorialTab(List<HistoriaModel2> historias) {
         listLength: historias.length,
         subtitleIndex: iconosHistoria(historias[index].details),
         titleIndex: historias[index].establishment,
-        yearPreviou: yearPreviou,
+        yearPreviou: index == 0 ? DateTime.now().year : yearPreviou,
         yearValue: dateTime.year,
       );
     },

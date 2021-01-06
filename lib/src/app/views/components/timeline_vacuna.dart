@@ -18,9 +18,7 @@ Widget timelineVacuna({
   String mes;
   dayData < 10 ? dia = '0$dayData' : dia = '$dayData';
   monthData < 10 ? mes = '0$monthData' : mes = '$monthData';
-  print(titleIndex.length);
-  print(titleIndex);
-  print(titleIndex);
+
   titleIndex.map((item) => Text(item)).toList().cast<Widget>();
 
   return Container(
@@ -29,9 +27,7 @@ Widget timelineVacuna({
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         indexData == 0 ? _years(DateTime.now().year) : SizedBox(height: 0),
-        yearPreviou != 0 && (yearPreviou != yearValue)
-            ? _years(yearValue)
-            : SizedBox(height: 0),
+        yearPreviou != yearValue ? _years(yearValue) : SizedBox(height: 0),
         Row(
           children: [
             Column(

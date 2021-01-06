@@ -2,6 +2,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -25,6 +26,11 @@ Widget timelineLife({
   contentLife = [
     Card(
       child: ExpansionTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage('images/no-image.png'),
+          radius: 20.0,
+        ),
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
@@ -44,7 +50,7 @@ Widget timelineLife({
           ),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.only(top: 2, bottom: 10),
+            padding: EdgeInsets.only(top: 2),
             child: Row(
               children: <Widget>[
                 Icon(FontAwesomeIcons.coins, size: 12, color: colorMain),
@@ -59,67 +65,28 @@ Widget timelineLife({
               ],
             ),
           ),
+          appPruebas
+              ? Align(
+                  widthFactor: double.maxFinite,
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    iconSize: 22,
+                    icon: Icon(Icons.help_outline),
+                    onPressed: () {},
+                    tooltip: 'Ayuda',
+                  ),
+                )
+              : SizedBox(height: 0)
         ],
       ),
     ),
     Card(
       child: ExpansionTile(
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
+        leading: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage('images/no-image.png'),
+          radius: 20.0,
         ),
-        subtitle: Text('data..'),
-        children: [
-          Text('data'),
-          Text('data'),
-        ],
-      ),
-    ),
-    Card(
-      child: ExpansionTile(
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
-        ),
-        subtitle: Text('data..'),
-        children: [
-          Text('data'),
-          Text('data'),
-        ],
-      ),
-    ),
-    Card(
-      child: ExpansionTile(
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
-        ),
-        subtitle: Text('data..'),
-        children: [
-          Text('data'),
-          Text('data'),
-        ],
-      ),
-    ),
-    Card(
-      child: ExpansionTile(
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
-        ),
-        subtitle: Text('data..'),
-        children: [
-          Text('data'),
-          Text('data'),
-        ],
-      ),
-    ),
-    Card(
-      child: ExpansionTile(
         title: Text(
           'Data..',
           style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),

@@ -18,61 +18,65 @@ class CitasTab extends StatelessWidget {
                     child: lottieLoading,
                   ),
                 )
-              : ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: _.listacitas.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    var element = _.listacitas[index];
-                    DateTime date =
-                        DateFormat('yyyy-MM-dd').parse(element['nextDate']);
-                    String formattedDate =
-                        DateFormat('dd-MM-yyyy').format(date);
-                    String cita = _.typeMap[element['type']];
-                    return Card(
-                      elevation: 2,
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 0),
-                        leading: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: colorMain,
-                          child: Icon(
-                            // IconProypet.vacuna,
-                            iconMap[element['type']],
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Próxima $cita',
-                              style: TextStyle(
-                                fontSize: 10,
+              : _.listacitas.length == 0
+                  ? Center(
+                      child: Text('No tiene próximas citas'),
+                    )
+                  : ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: _.listacitas.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var element = _.listacitas[index];
+                        DateTime date =
+                            DateFormat('yyyy-MM-dd').parse(element['nextDate']);
+                        String formattedDate =
+                            DateFormat('dd-MM-yyyy').format(date);
+                        String cita = _.typeMap[element['type']];
+                        return Card(
+                          elevation: 2,
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 0),
+                            leading: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: colorMain,
+                              child: Icon(
+                                // IconProypet.vacuna,
+                                iconMap[element['type']],
+                                color: Colors.white,
+                                size: 20,
                               ),
                             ),
-                            Text(
-                              formattedDate,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Próxima $cita',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
+                                Text(
+                                  formattedDate,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        subtitle: Text(
-                          element['reason'],
-                          style: TextStyle(
-                            fontSize: 12,
+                            subtitle: Text(
+                              element['reason'],
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                              maxLines: 2,
+                            ),
                           ),
-                          maxLines: 2,
-                        ),
-                      ),
+                        );
+                      },
                     );
-                  },
-                );
         });
   }
 }

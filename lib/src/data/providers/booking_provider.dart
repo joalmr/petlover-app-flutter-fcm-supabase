@@ -62,7 +62,7 @@ class BookingProvider {
     final _data = {"establishment_id": idEstablishment};
     var resp = await dio.post(url,
         data: _data, options: Options(headers: headersToken()));
-    print(resp.data);
+    // print(resp.data);
   }
 
   Future<List<ServicioReserva>> typeBooking() async {
