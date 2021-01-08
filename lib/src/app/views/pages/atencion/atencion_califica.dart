@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/form_control/text_field.dart';
@@ -118,7 +119,7 @@ class AtencionCalifica extends StatelessWidget {
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    Lottie.asset('images/lottie/star.json',
+                                    Lottie.asset(pathLottie('star'),
                                         height: 140),
                                   ],
                                 ),

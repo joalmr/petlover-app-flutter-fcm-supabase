@@ -2,6 +2,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
@@ -175,9 +176,11 @@ Widget timelineLife({
                               padding: const EdgeInsets.all(2.0),
                               child: Image(
                                 height: 50,
-                                image: AssetImage(petStatus == 1
-                                    ? 'images/gif/gato-kb.gif'
-                                    : 'images/gif/perro-kb.gif'),
+                                image: AssetImage(
+                                  petStatus == 1
+                                      ? pathGif('gato-kb')
+                                      : pathGif('perro-kb'),
+                                ),
                               ),
                             ),
                           ),

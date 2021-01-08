@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
@@ -178,11 +179,15 @@ class Mascotas extends StatelessWidget {
                                                     child: mascota.specieId == 2
                                                         ? Image(
                                                             image: AssetImage(
-                                                                'images/gif/perro-kb.gif'),
+                                                              pathGif(
+                                                                  'perro-kb'),
+                                                            ),
                                                           )
                                                         : Image(
                                                             image: AssetImage(
-                                                                'images/gif/gato-kb.gif'),
+                                                              pathGif(
+                                                                  'gato-kb'),
+                                                            ),
                                                           )),
                                               ),
                                             ),

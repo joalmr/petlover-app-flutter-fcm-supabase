@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/icons/icon_proypet_icons.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
@@ -12,11 +13,10 @@ import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
+import 'components/card_style.dart';
 import 'components/tab_cartilla_vacuna.dart';
-import 'components/dato_mascota.dart';
 import 'components/tab_citas.dart';
 import 'components/tab_general.dart';
-// import 'components/tab_lista_historia.dart';
 
 class MascotaDetallePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -33,19 +33,9 @@ class MascotaDetallePage extends StatelessWidget {
             null,
             _.loading.value ? '' : _.pet.name ?? '',
             <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 10.0,
-                        spreadRadius: -10.0),
-                  ],
-                ),
-                child: IconButton(
-                  icon: Icon(Icons.settings),
-                  onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
-                ),
+              IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
               ),
             ],
           ),
@@ -61,86 +51,150 @@ class MascotaDetallePage extends StatelessWidget {
                 : Stack(
                     children: <Widget>[
                       Container(
-                        height: 180,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 150,
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: AspectRatio(
-                                aspectRatio: (mediaAncho < 600) ? 1 : 12 / 8,
-                                child: ClipRRect(
-                                  borderRadius: borderRadius,
-                                  child: Image(
-                                    image: CachedNetworkImageProvider(
-                                        _.pet.picture),
-                                    fit: BoxFit.cover,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 120,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: AspectRatio(
+                                    aspectRatio:
+                                        (mediaAncho < 600) ? 1 : 12 / 8,
+                                    child: ClipRRect(
+                                      borderRadius: borderRadius,
+                                      child: Image(
+                                        image: CachedNetworkImageProvider(
+                                            _.pet.picture),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(_.pet.name,
-                                      style: Get.textTheme.subtitle1.copyWith(
-                                          fontWeight: FontWeight.w900)),
-                                  Text(_.pet.breedName,
-                                      style: Get.textTheme.subtitle2.copyWith(
-                                          fontWeight: FontWeight.bold)),
-                                  (_.pet.status != 0)
-                                      ? Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 2.5),
-                                              child: Icon(Icons.cake, size: 14),
-                                            ),
-                                            Text(
-                                                calculateAge(DateTime.parse(
-                                                    _.pet.birthdate)),
-                                                style: Get.textTheme.subtitle2),
-                                          ],
-                                        )
-                                      : SizedBox(height: 0),
-                                  SizedBox(height: 5),
-                                  (_.pet.status == 0)
-                                      ? Text('Fallecido',
-                                          style: Get.textTheme.subtitle2
-                                              .apply(fontWeightDelta: 2)
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(_.pet.name,
+                                          style: Get.textTheme.subtitle1
                                               .copyWith(
-                                                  fontStyle: FontStyle.italic))
-                                      : Column(
-                                          children: <Widget>[
-                                            Row(
+                                                  fontWeight: FontWeight.w900)),
+                                      Text(_.pet.breedName,
+                                          style: Get.textTheme.subtitle2
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold)),
+                                      (_.pet.status != 0)
+                                          ? Row(
                                               children: [
-                                                Container(
-                                                  height: 48,
-                                                  width: 48,
-                                                  child: Card(
-                                                    // shadowColor: colorMain,
-                                                    child: Icon(
-                                                        FontAwesomeIcons.weight,
-                                                        size: 24),
-                                                  ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 2.5),
+                                                  child: Icon(Icons.cake,
+                                                      size: 14),
                                                 ),
-                                                SizedBox(width: 2.5),
                                                 Text(
-                                                  '${_.pet.weight == '0' ? '-' : _.pet.weight} kg.',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 20),
+                                                    calculateAge(DateTime.parse(
+                                                        _.pet.birthdate)),
+                                                    style: Get
+                                                        .textTheme.subtitle2),
+                                              ],
+                                            )
+                                          : SizedBox(height: 0),
+                                      SizedBox(height: 5),
+                                      (_.pet.status == 0)
+                                          ? Text('Fallecido',
+                                              style: Get.textTheme.subtitle2
+                                                  .apply(fontWeightDelta: 2)
+                                                  .copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic))
+                                          : Row(
+                                              children: [
+                                                cardSt(
+                                                  content: Text.rich(
+                                                    TextSpan(
+                                                      text:
+                                                          '${_.pet.weight == '0' ? '-' : _.pet.weight}',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20,
+                                                      ), // default text style
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text: 'kg.',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  text: 'peso',
+                                                ),
+                                                cardSt(
+                                                  content: _.pet.genre == 1
+                                                      ? Icon(
+                                                          FontAwesomeIcons.mars,
+                                                          color:
+                                                              Colors.lightBlue,
+                                                        )
+                                                      : Icon(
+                                                          FontAwesomeIcons
+                                                              .venus,
+                                                          color: Colors.pink,
+                                                        ),
+                                                  text: 'sexo',
                                                 ),
                                               ],
                                             ),
-                                          ],
-                                        ),
-                                ],
-                              ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                cardFn(
+                                  image: Svg(pathSvg('fleas')),
+                                  text: 'pulgas',
+                                  fn: () {},
+                                ),
+                                _.pet.specieId == 1
+                                    ? cardFn(
+                                        image: Svg(pathSvg('litter-box')),
+                                        text: 'arena',
+                                        fn: () {},
+                                      )
+                                    : cardFn(
+                                        image: Svg(pathSvg('leash')),
+                                        text: 'paseo',
+                                        fn: () {},
+                                      ),
+                                cardFn(
+                                  image: Svg(pathSvg(
+                                    _.pet.specieId == 1
+                                        ? 'cat-food'
+                                        : 'dog-food',
+                                  )),
+                                  text: 'comida',
+                                  fn: _.fnFood,
+                                ),
+                                cardFn(
+                                  image: Svg(pathSvg('bed')),
+                                  text: 'cama',
+                                  fn: () {},
+                                ),
+                              ],
                             ),
                           ],
                         ),
