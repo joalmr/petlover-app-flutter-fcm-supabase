@@ -20,7 +20,6 @@ class AuthService {
     return loginProvider.sendTokenFire(fireToken);
   }
 
-  //
   forgot(String email) {
     return loginProvider.forgotPassword(email);
   }

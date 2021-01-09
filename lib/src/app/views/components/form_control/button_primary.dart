@@ -54,19 +54,6 @@ Widget buttonFlat(String _text, _funtion, Color _color) {
     padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
     shape: shape20,
   );
-  // TextButton(
-  //   style: ButtonStyle(
-  //       padding: MaterialStateProperty.resolveWith<EdgeInsets>(
-  //         (Set<MaterialState> states) => EdgeInsets.symmetric(
-  //           vertical: 12,
-  //           horizontal: 20,
-  //         ),
-  //       ),
-  //       shape: MaterialStateProperty.resolveWith<OutlinedBorder>(
-  //           (states) => shape20)),
-  //   onPressed: _funtion,
-  //   child: Text(_text, style: _textstyle.copyWith(color: _color)),
-  // );
 }
 
 Widget buttonModal(String _text, _funtion, Color _color) {

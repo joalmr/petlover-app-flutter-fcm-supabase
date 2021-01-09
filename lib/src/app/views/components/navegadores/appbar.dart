@@ -2,19 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 
-Widget appBar({@required String texto, @required List<Widget> acc, bool logo = true}) {
+Widget appBar(
+    {@required String texto, @required List<Widget> acc, bool logo = true}) {
   if (mediaAncho < 600) {
     return AppBar(
       leading: null,
       centerTitle: false,
-      title: Row(children: [
-        // logo
-        //     ? Padding(
-        //         padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
-        //         child: Center(child: ClipRRect(child: Image(height: 32, image: AssetImage('images/proypet.png')))))
-        //     : SizedBox(width: 0),
-        Text(texto)
-      ]),
+      title: Row(children: [Text(texto)]),
       actions: acc,
     );
   } else {

@@ -11,7 +11,9 @@ class DestacadosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: appbar(leadingH, 'Destacados', null), body: FadeViewSafeArea(child: _onDestacado()));
+    return Scaffold(
+        appBar: appbar(leadingH, 'Destacados', null),
+        body: FadeViewSafeArea(child: _onDestacado()));
   }
 
   _onDestacado() {
@@ -33,13 +35,17 @@ class DestacadosPage extends StatelessWidget {
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image(fit: BoxFit.cover, height: 300, width: double.infinity, image: AssetImage(destacado.image)),
+                child: Image(
+                    fit: BoxFit.cover,
+                    height: 300,
+                    width: double.infinity,
+                    image: AssetImage(destacado.image)),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-                child: Text(destacado.title, style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)
-                    // tituloH4clasico,
-                    ),
+                padding:
+                    const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                child: Text(destacado.title,
+                    style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -53,7 +59,8 @@ class DestacadosPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: () => Get.toNamed('detalledestacado', arguments: destacado),
+                    onPressed: () =>
+                        Get.toNamed('detalledestacado', arguments: destacado),
                     child: Text("Leer más", style: TextStyle(color: colorMain)),
                   ),
                 ],

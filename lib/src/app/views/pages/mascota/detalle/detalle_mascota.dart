@@ -20,7 +20,7 @@ import 'components/tab_general.dart';
 
 class MascotaDetallePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  //
+
   @override
   Widget build(BuildContext context) {
     return GetX<MascotaDetalleController>(
@@ -124,7 +124,7 @@ class MascotaDetallePage extends StatelessWidget {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize: 20,
-                                                      ), // default text style
+                                                      ),
                                                       children: <TextSpan>[
                                                         TextSpan(
                                                           text: 'kg.',
@@ -167,19 +167,20 @@ class MascotaDetallePage extends StatelessWidget {
                                 cardFn(
                                   image: Svg(pathSvg('fleas')),
                                   text: 'pulgas',
-                                  fn: () {},
+                                  fn: _.fnFleas,
                                 ),
                                 _.pet.specieId == 1
                                     ? cardFn(
                                         image: Svg(pathSvg('litter-box')),
                                         text: 'arena',
-                                        fn: () {},
+                                        fn: _.fnLitterBox,
                                       )
-                                    : cardFn(
-                                        image: Svg(pathSvg('leash')),
-                                        text: 'paseo',
-                                        fn: () {},
-                                      ),
+                                    : SizedBox(width: 0),
+                                // : cardFn(
+                                //     image: Svg(pathSvg('leash')),
+                                //     text: 'paseo',
+                                //     fn: () {},
+                                //   ),
                                 cardFn(
                                   image: Svg(pathSvg(
                                     _.pet.specieId == 1
@@ -192,7 +193,7 @@ class MascotaDetallePage extends StatelessWidget {
                                 cardFn(
                                   image: Svg(pathSvg('bed')),
                                   text: 'cama',
-                                  fn: () {},
+                                  fn: _.fnBed,
                                 ),
                               ],
                             ),
@@ -213,7 +214,6 @@ class MascotaDetallePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              // datoMascota(_.pet),
                               TabBar(
                                 // isScrollable: true,
                                 indicatorColor: colorMain,

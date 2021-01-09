@@ -17,5 +17,4 @@ _fnRecordatorio(String slug) {
   filtros.listaFiltros.clear();
   filtros.listaFiltros.addAll([slugNum[slug]]);
   filtros.filtrar();
-  // Get.toNamed('navLista');
 }

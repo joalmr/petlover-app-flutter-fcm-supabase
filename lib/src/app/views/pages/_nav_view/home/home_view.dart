@@ -18,7 +18,6 @@ class HomePage extends StatelessWidget {
       builder: (_) {
         return Scaffold(
           key: _scaffoldKey,
-          // backgroundColor: appPruebas ? colorRed : null,
           endDrawer: ConfigDrawer(),
           body: RefreshIndicator(
             key: refreshKey,

@@ -20,7 +20,6 @@ class RecompensasController extends GetxController {
   Future refresh() => _refresh();
 
   Future<Null> _refresh() async {
-    // loading.value = true;
     await Future.delayed(Duration(milliseconds: 2));
     getRecompensa();
     return null;

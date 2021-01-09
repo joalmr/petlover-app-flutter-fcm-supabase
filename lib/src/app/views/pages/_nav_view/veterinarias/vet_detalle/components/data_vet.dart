@@ -31,7 +31,7 @@ class DataVet extends StatelessWidget {
                         '${_.vet.distance}km de distancia',
                         style: TextStyle(fontSize: sizeSmallx2),
                       ),
-                      Text(_.vet.name, //nombreVet(0),
+                      Text(_.vet.name,
                           maxLines: 2,
                           style: Get.textTheme.headline6
                               .apply(fontWeightDelta: 2)),
@@ -54,7 +54,6 @@ class DataVet extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Icon(Icons.star, color: Colors.white, size: 12.0),
-                              // SizedBox(width: 5.0),
                               Text(
                                 _.vet.stars.toString(),
                                 style: TextStyle(

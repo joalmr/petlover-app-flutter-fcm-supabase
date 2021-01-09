@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
 class FormularioText extends StatelessWidget {
-  // const name({Key key}) : super(key: key);
   final String labelText;
   final String hintText;
   final IconData icon;

@@ -80,7 +80,6 @@ class UsuarioController extends GetxController {
       globalC.getUsuario();
       homeC.getSummary();
       Timer(Duration(milliseconds: 1500), () => btnBool.value = true);
-      // Timer(Duration(milliseconds: 2000), () => Get.until((route) => route.isFirst));
     } else {
       mostrarSnackbar('No se guardaron los datos ingresados.', colorRed);
       btnBool.value = true;

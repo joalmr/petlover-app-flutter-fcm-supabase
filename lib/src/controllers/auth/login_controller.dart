@@ -84,7 +84,6 @@ class LoginController extends GetxController {
     }
   }
 
-  //
   void loginFacebook() async {
     int result = await FacebookSignInService.signIn();
 

@@ -91,7 +91,6 @@ class WaveClipperOut extends StatelessWidget {
             ),
             width: double.infinity,
             height: _alto,
-            // decoration: BoxDecoration(gradient: LinearGradient(colors: [colorMain, colorMain.withAlpha(250)])),
           ),
         ),
       ],

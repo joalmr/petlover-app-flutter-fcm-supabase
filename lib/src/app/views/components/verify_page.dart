@@ -35,7 +35,8 @@ class VerifyPage extends StatelessWidget {
                         Stack(
                           children: <Widget>[
                             ClipRRect(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
                               child: Image(
                                 image: AssetImage('images/verify.png'),
                                 height: 200,
@@ -43,28 +44,32 @@ class VerifyPage extends StatelessWidget {
                               ),
                             ),
                           ],
-                          // child:
                         ),
                         SizedBox(height: 25),
                         Text(
                           'Valida tu cuenta',
-                          style: Get.textTheme.headline5.copyWith(color: Colors.white).apply(fontWeightDelta: 2),
+                          style: Get.textTheme.headline5
+                              .copyWith(color: Colors.white)
+                              .apply(fontWeightDelta: 2),
                         ),
                         SizedBox(height: 5),
                         Text(
                           'Hemos enviado un correo para validar tu cuenta a:',
-                          style: Get.textTheme.subtitle1.copyWith(color: Colors.white),
+                          style: Get.textTheme.subtitle1
+                              .copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 10),
                         Text(
                           textomail,
-                          style: Get.textTheme.headline5.apply(color: colorBrown1, fontWeightDelta: 2),
+                          style: Get.textTheme.headline5
+                              .apply(color: colorBrown1, fontWeightDelta: 2),
                         ),
                         SizedBox(height: 10),
                         Text(
                           'Recuerda revisar tu bandeja de correos no deseados',
-                          style: Get.textTheme.subtitle1.copyWith(color: Colors.white),
+                          style: Get.textTheme.subtitle1
+                              .copyWith(color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -72,7 +77,8 @@ class VerifyPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: buttonOutLine('Ya validé mi cuenta', () => Get.offNamed('login'), Colors.white),
+                    child: buttonOutLine('Ya validé mi cuenta',
+                        () => Get.offNamed('login'), Colors.white),
                   )
                 ],
               ),

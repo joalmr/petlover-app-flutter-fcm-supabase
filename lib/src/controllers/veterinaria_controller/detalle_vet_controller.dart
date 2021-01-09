@@ -26,7 +26,6 @@ class VetDetalleController extends GetxController {
   final vetService = new EstablecimientoService();
   final bookingService = new BookingService();
 
-  // EstablecimientoModel vet;
   Rx<EstablecimientoModel> _vet = EstablecimientoModel().obs;
   set vet(EstablecimientoModel value) => _vet.value = value;
   EstablecimientoModel get vet => _vet.value;
@@ -103,7 +102,6 @@ class VetDetalleController extends GetxController {
 
   bool get mascotasCount => misMascotas.length > 0;
   bool get sinTelefono => telefono.isNullOrBlank;
-  // bool get sinTelefono => globalC.usuario.phone.isEmpty;
 
   final formKey = GlobalKey<FormState>();
 
@@ -114,7 +112,7 @@ class VetDetalleController extends GetxController {
     vetPremium = vetsC.vetLocales.value
         .where((element) => element.premium == true && element.id != vet.id)
         .take(2)
-        .toList(); //.take(2);
+        .toList();
   }
 
   _reservar() async {
@@ -123,7 +121,7 @@ class VetDetalleController extends GetxController {
       _getPremiumClose();
       reservaClic.value = true;
       bookingService.tryBooking(vet.id);
-      //
+
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [

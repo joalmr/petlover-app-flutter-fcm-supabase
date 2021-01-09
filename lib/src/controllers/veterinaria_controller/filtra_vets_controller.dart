@@ -12,9 +12,9 @@ class FiltraVetsController extends GetxController {
   final _prefs = new PreferenciasUsuario();
   final vetC = Get.find<VeterinariasController>();
   final global = Get.find<GlobalController>();
-  //
+
   List<int> listaFiltros = [];
-  String _direccion = ''; //''.obs;
+  String _direccion = '';
   Rx<Prediction2> __dataDireccion = Prediction2().obs;
   Rx<Prediction2> _dataDireccion = Prediction2().obs;
 

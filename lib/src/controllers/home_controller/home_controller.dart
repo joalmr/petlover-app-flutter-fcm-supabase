@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-// import 'package:proypet/src/data/database/_db_provider.dart';
 import 'package:proypet/src/data/models/model/booking/booking_home.dart';
 import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
@@ -7,7 +6,7 @@ import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart
 
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
-  //
+
   RxString _usuario = ''.obs;
   set usuario(String value) => _usuario.value = value;
   String get usuario => _usuario.value;
@@ -35,7 +34,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // getDistance();
     if (_prefs.hasToken()) {
       getSummary();
     }
@@ -50,7 +48,7 @@ class HomeController extends GetxController {
     usuario = resp.user.name;
     mascotas.clear();
     mascotas.addAll(resp.pets);
-    atenciones.clear(); //atenciones
+    atenciones.clear();
     DateTime now = DateTime.now();
     resp.bookings.forEach((booking) {
       var fechaAt = booking.date.split('-');

@@ -233,9 +233,4 @@ class RecompensasPage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget topList(List<BonificacionTop> top) {
-  //   int numero = 5;
-  //   return;
-  // }
 }

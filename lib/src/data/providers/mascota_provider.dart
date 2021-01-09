@@ -19,8 +19,7 @@ class MascotaProvider {
       );
 
       final Map<String, dynamic> decodedResp = json.decode(resp.body);
-      final datosMascota =
-          decodedResp['pets']; //mascotaModelFromJson(decodedResp['pets']);
+      final datosMascota = decodedResp['pets'];
       final List<MascotaModel2> mascotas = new List();
 
       if (datosMascota == null) return [];
@@ -37,7 +36,7 @@ class MascotaProvider {
   }
 
   Dio dio = new Dio();
-////////
+
   Future<MascotaModel2> getPet(String idPet) async {
     final url = '$_url/pets/$idPet';
     Response response;
@@ -51,7 +50,6 @@ class MascotaProvider {
   }
 
   Future<List<dynamic>> getVaccines(String idPet) async {
-    // api/pet/{petId}/history?type={vaccination}
     final url = '$_url/pet/$idPet/history?type=vaccination';
     Response response;
     response = await dio.get(
@@ -63,7 +61,6 @@ class MascotaProvider {
   }
 
   Future<List<dynamic>> getNextDate(String idPet) async {
-    // api/pet/{petId}/history?type={vaccination}
     final url = '$_url/pet/$idPet/nextdate';
     Response response;
     response = await dio.get(
@@ -87,10 +84,8 @@ class MascotaProvider {
     return listHistory;
   }
 
-////////
   Future<Map<String, dynamic>> savePet(
       MascotaModel2 mascota, File imagen) async {
-    //create
     final url = '$_url/pets';
 
     final data = {

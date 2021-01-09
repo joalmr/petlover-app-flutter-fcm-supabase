@@ -22,7 +22,8 @@ Widget ddlMain(context, opcionSeleccionada, lista, cambiaOpc) {
   );
 }
 
-Widget ddlMainOut(context, opcionSeleccionada, lista, cambiaOpc, String deshabilitado) {
+Widget ddlMainOut(
+    context, opcionSeleccionada, lista, cambiaOpc, String deshabilitado) {
   return Material(
     elevation: 0.0,
     shape: shape10,
@@ -62,29 +63,3 @@ Widget ddlFutureImg(context, opcionSeleccionada, lista, cambiaOpc) {
     ),
   );
 }
-
-// Widget ddlFutureSearch(context, opcionSeleccionada, lista, cambiaOpc){
-//   try{
-//     return Material(
-//       // borderRadius: borderRadius,
-//       shape: shape10,
-//       color: Theme.of(context).backgroundColor, //Colors.grey[200],
-//       elevation: 0.0,
-//       child: SearchableDropdown.single(
-//         icon: Icon(Icons.keyboard_arrow_down,color: colorMain),
-//         hint: "Seleccione raza",
-//         searchHint: "Seleccione raza",
-//         items: getOpcionesSearch(lista),
-//         value: opcionSeleccionada,
-//         onChanged: cambiaOpc,
-//         isExpanded: true,
-//         closeButton: null,
-//         displayClearIcon: false,
-//         underline: "",
-//       ),
-//     );
-//   }
-//   catch(ex){
-//     return LinearProgressIndicator();
-//   }
-// }

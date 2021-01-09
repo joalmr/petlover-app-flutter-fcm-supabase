@@ -21,7 +21,6 @@ class BonificacionProvider {
     final url = '$_url/bonifications/top';
     final resp = await http.get(url, headers: headersToken());
     List<BonificacionTop> top = bonificacionTopFromJson(resp.body);
-    // print(top);
     return top;
   }
 }

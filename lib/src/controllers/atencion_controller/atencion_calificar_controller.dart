@@ -71,6 +71,5 @@ class CalificaAtencionController extends GetxController {
       final atencionC = AtencionController();
       atencionC.getAtenciones();
     }
-    //   return resp;
   }
 }

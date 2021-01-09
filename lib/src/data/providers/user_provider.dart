@@ -17,9 +17,7 @@ class UserProvider {
       options: Options(headers: headersToken()),
     );
     final datosUsuario = UserModel2.fromJson(response.data['user']);
-    // print('===user model===');
-    // print(datosUsuario);
-    // print(datosUsuario.name);
+
     return datosUsuario;
   }
 
@@ -42,7 +40,8 @@ class UserProvider {
       "password": passNueva,
       "password_confirmation": passNueva,
     };
-    final resp = await http.post(url, headers: headersToken(), body: changePass);
+    final resp =
+        await http.post(url, headers: headersToken(), body: changePass);
     return resp.statusCode;
   }
 }

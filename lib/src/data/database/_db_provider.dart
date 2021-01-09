@@ -26,25 +26,62 @@ class DBProvider {
 
     return await openDatabase(
       path,
-      version: 2,
+      version: 5,
       onOpen: (db) {},
       onCreate: (Database db, int version) async {
         await db.execute('''
         CREATE TABLE local_notifications(
-          id INTEGER PRIMARY KEY, 
-          type TEXT, 
-          dateTime TEXT, 
-          frecuency INTEGER
-        );
+          id INTEGER PRIMARY KEY,
+          type TEXT,
+          dateTime TEXT,
+          frecuency INTEGER,
+          petId INTEGER,
+          petName TEXT
+        )
+        ''');
 
+        await db.execute('''
+        CREATE TABLE pet_food(
+          id INTEGER PRIMARY KEY, 
+          foodBrand INTEGER,
+          frecuency INTEGER
+          hours TEXT, 
+          petId INTEGER,
+          petName TEXT
+        )
+        ''');
+
+        await db.execute('''
         CREATE TABLE user_login_date(
           id INTEGER PRIMARY KEY, 
           userId TEXT,
           dateTime TEXT
-        );
+        )
         ''');
       },
     );
+  }
+
+  getTables() async {
+    final db = await database;
+    final res = await db
+        .rawQuery('SELECT name FROM sqlite_master WHERE type = "table";');
+    print(res);
+    return res;
+  }
+
+  getPetFood() async {
+    final db = await database;
+    final res = await db.rawQuery('SELECT * FROM pet_food;');
+    print(res);
+    return res;
+  }
+
+  getUserLoginDate() async {
+    final db = await database;
+    final res = await db.rawQuery('SELECT * FROM user_login_date;');
+    print(res);
+    return res;
   }
 
   Future<int> newLocalNotification(LocalNotification newNotification) async {

@@ -8,7 +8,8 @@ class AuthProvider {
 
   Dio dio = new Dio();
 
-  Future<Map<String, dynamic>> loginFb(String name, String lastname, String email, String fbId) async {
+  Future<Map<String, dynamic>> loginFb(
+      String name, String lastname, String email, String fbId) async {
     final url = '$_url/login/facebook';
     try {
       final loginData = {
@@ -63,7 +64,8 @@ class AuthProvider {
   Future<void> sendTokenFire(String fireToken) async {
     final url = '$_url/firebase';
     final fireData = {"token": fireToken};
-    await dio.post(url, data: fireData, options: Options(headers: headersToken()));
+    await dio.post(url,
+        data: fireData, options: Options(headers: headersToken()));
   }
 
   Future<void> logOut() async {
@@ -71,7 +73,6 @@ class AuthProvider {
     await dio.post(url, options: Options(headers: headersToken()));
   }
 
-  ////
   Future<int> forgotPassword(String email) async {
     final url = '$_url/password/reset';
 
@@ -81,10 +82,16 @@ class AuthProvider {
     return response.statusCode;
   }
 
-  Future<int> registerUser(String name, String lastname, String email, String password) async {
+  Future<int> registerUser(
+      String name, String lastname, String email, String password) async {
     final url = '$_url/register';
     try {
-      final userData = {"name": name, "lastname": lastname, "email": email, "password": password};
+      final userData = {
+        "name": name,
+        "lastname": lastname,
+        "email": email,
+        "password": password
+      };
       Response response;
       response = await dio.post(url, data: userData);
 

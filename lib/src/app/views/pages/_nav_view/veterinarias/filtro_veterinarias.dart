@@ -10,10 +10,8 @@ import 'components/servicio_flat.dart';
 class FiltraVets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final alto = context.height;
     final ancho = context.width;
 
-    //GetX
     return GetX<FiltraVetsController>(
       builder: (_) {
         return Scaffold(
@@ -92,13 +90,6 @@ class FiltraVets extends StatelessWidget {
                           () => Get.toNamed('solicitaveterinaria'),
                           colorMain,
                         ),
-                        // buttonFlat(
-                        //   '¡Invítala!',
-                        //   () => Share.share(
-                        //       '¿Conoces Proypet? Descubre la nueva app para reservar citas y beneficios para tus clientes. Entérate más en: https://proypet.com/veterinarias',
-                        //       subject: 'Se parte de Proypet'),
-                        //   colorMain,
-                        // ),
                       ],
                     ),
                   ),

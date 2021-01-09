@@ -68,18 +68,21 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
           SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: textfieldArea(_inputComentController, "Ingrese comentario de la atención recibida", 250, 3),
+            child: textfieldArea(_inputComentController,
+                "Ingrese comentario de la atención recibida", 250, 3),
           ),
           Row(
-            // crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               FlatButton(
-                child: Text('Omitir', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+                child: Text('Omitir',
+                    style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
                 onPressed: () => Get.back(),
               ),
               FlatButton(
-                child: Text('Calificar', style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2, color: colorMain)),
+                child: Text('Calificar',
+                    style: Get.textTheme.subtitle2
+                        .apply(fontWeightDelta: 2, color: colorMain)),
                 onPressed: () => _onRate(),
               ),
             ],
@@ -102,8 +105,13 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  content: Container(height: 100.0, child: Center(child: Text('Se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  content: Container(
+                      height: 100.0,
+                      child: Center(
+                          child: Text('Se calificó la atención.',
+                              style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: true);
@@ -113,8 +121,13 @@ class _BuildPushQualifyState extends State<BuildPushQualify> {
           context: context,
           builder: (BuildContext context) => FadeIn(
                 child: AlertDialog(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  content: Container(height: 100.0, child: Center(child: Text('No se calificó la atención.', style: TextStyle(fontSize: 14.0)))),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  content: Container(
+                      height: 100.0,
+                      child: Center(
+                          child: Text('No se calificó la atención.',
+                              style: TextStyle(fontSize: 14.0)))),
                 ),
               ),
           barrierDismissible: true);

@@ -10,8 +10,6 @@ import 'package:proypet/src/controllers/home_controller/atencion_home_controller
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 
 class Atenciones extends StatelessWidget {
-  // const Atenciones({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final _home = Get.find<HomeController>();
@@ -28,7 +26,6 @@ class Atenciones extends StatelessWidget {
                 )
               : _home.sinAtenciones
                   ? FadeIn(
-                      // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 30.0),
@@ -39,7 +36,6 @@ class Atenciones extends StatelessWidget {
                             (_home.mascotas.length > 0)
                                 ? InkWell(
                                     borderRadius: borderRadius,
-                                    // onTap: _.reserva,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           top: 2, bottom: 2),
@@ -69,7 +65,6 @@ class Atenciones extends StatelessWidget {
                       ),
                     )
                   : FadeIn(
-                      // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: ListView.separated(
                         itemCount: _home.atenciones.length,
@@ -103,8 +98,7 @@ class Atenciones extends StatelessWidget {
                               ),
                             ),
                             child: FlatButton(
-                              onPressed: () => _.detalleReservado(
-                                  atencion), //_detalleReservado(_home.atenciones[index]),
+                              onPressed: () => _.detalleReservado(atencion),
                               child: ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor: Colors.transparent,
@@ -112,8 +106,7 @@ class Atenciones extends StatelessWidget {
                                       atencion.petPicture),
                                   radius: 25.0,
                                 ),
-                                title: Text(
-                                    atencion.establishmentName), //(!vencido) ?
+                                title: Text(atencion.establishmentName),
                                 subtitle: Text(
                                   (!atencion.vencido)
                                       ? atencion.status

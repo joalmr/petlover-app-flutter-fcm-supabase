@@ -40,7 +40,6 @@ class ViewPromocion extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Card(
-                        // elevation: .0,
                         child: Row(
                           children: [
                             Padding(

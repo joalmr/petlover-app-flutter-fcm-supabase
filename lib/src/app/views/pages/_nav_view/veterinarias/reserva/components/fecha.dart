@@ -18,11 +18,8 @@ Widget crearFecha(BuildContext context) {
         return showDatePicker(
           context: context,
           initialDate: currentValue ?? DateTime.now(),
-          firstDate: DateTime
-              .now(), //new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
-          lastDate: DateTime.now().add(new Duration(
-              days:
-                  365)), //new DateTime(DateTime.now().year + 1, DateTime.now().month, DateTime.now().day),
+          firstDate: DateTime.now(),
+          lastDate: DateTime.now().add(new Duration(days: 365)),
           initialDatePickerMode: DatePickerMode.day,
           builder: (context, child) => Theme(
               data: ThemeData.light().copyWith(

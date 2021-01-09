@@ -45,11 +45,6 @@ ThemeData temaOscuro = ThemeData(
   ),
   dialogBackgroundColor: Colors.grey[850],
   dialogTheme: DialogTheme(shape: shape10),
-  // cardTheme: CardTheme(
-  //   shape: shape10,
-  //   elevation: .05,
-  //   color: colorDark3,
-  // ),
   cardTheme: CardTheme(
     color: colorDark3,
     shape: shape10,

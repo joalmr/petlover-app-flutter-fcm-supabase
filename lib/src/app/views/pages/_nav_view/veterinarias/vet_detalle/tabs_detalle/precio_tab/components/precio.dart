@@ -12,7 +12,6 @@ Widget precio(tipo, desde, hasta) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-          // elevation: .0,
           child: Container(
             width: 145,
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),

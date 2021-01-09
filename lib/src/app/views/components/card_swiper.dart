@@ -6,9 +6,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 class CardSwiper extends StatelessWidget {
   final dynamic imagenes;
   final bool urlBool;
-  //final bool autoplay1;
   final double radius;
-  // final double height;
   final double scale;
 
   CardSwiper(
@@ -16,13 +14,12 @@ class CardSwiper extends StatelessWidget {
       @required this.urlBool,
       this.radius = 0.0,
       this.scale = 1.0});
-//this.height,
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: Container(
-        // height: height,
         width: double.infinity,
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
@@ -35,7 +32,6 @@ class CardSwiper extends StatelessWidget {
                   fit: BoxFit.cover,
                 ));
           },
-          // viewportFraction: 0.99,
           scale: scale,
           itemCount: imagenes.length,
           pagination: new SwiperPagination(

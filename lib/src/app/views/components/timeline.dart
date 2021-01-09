@@ -29,7 +29,6 @@ Widget timeline({
   dayData < 10 ? dia = '0$dayData' : dia = '$dayData';
   monthData < 10 ? mes = '0$monthData' : mes = '$monthData';
 
-  // final dynamic historiaData = detailData;
   Map<String, dynamic> jsonData;
   try {
     jsonData = jsonDecode(detailData);

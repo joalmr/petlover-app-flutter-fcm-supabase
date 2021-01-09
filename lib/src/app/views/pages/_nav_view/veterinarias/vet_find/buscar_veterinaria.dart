@@ -47,13 +47,6 @@ class BuscarVeterinaria extends StatelessWidget {
                               () => Get.toNamed('solicitaveterinaria'),
                               colorMain,
                             ),
-                            // buttonFlat(
-                            //   '¡Invítala!',
-                            //   () => Share.share(
-                            //       '¿Conoces Proypet? Descubre la nueva app para reservar citas y beneficios para tus clientes. Entérate más en: https://proypet.com/veterinarias',
-                            //       subject: 'Se parte de Proypet'),
-                            //   colorMain,
-                            // ),
                           ],
                         ),
                       ),

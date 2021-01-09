@@ -40,13 +40,4 @@ class QuejaController extends GetxController {
 
     await FlutterEmailSender.send(email);
   }
-
-  // _sendingMails() async {
-  //   const url = 'mailto:info@proypet.com';
-  //   if (await canLaunch(url)) {
-  //     await launch(url);
-  //   } else {
-  //     throw 'Error';
-  //   }
-  // }
 }

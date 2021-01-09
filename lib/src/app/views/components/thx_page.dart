@@ -50,7 +50,6 @@ class ThxPage extends StatelessWidget {
                                     color: Colors.white,
                                   ))
                             ],
-                            // child:
                           ),
                           SizedBox(height: 25),
                           Text(

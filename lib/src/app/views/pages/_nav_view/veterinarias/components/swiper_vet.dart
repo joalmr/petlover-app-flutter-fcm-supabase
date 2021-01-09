@@ -14,7 +14,7 @@ class SwiperVet extends StatelessWidget {
       @required this.urlBool,
       this.radius = 0.0,
       this.scale = 1.0});
-//this.height,
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -31,7 +31,6 @@ class SwiperVet extends StatelessWidget {
                   fit: BoxFit.cover,
                 ));
           },
-          // viewportFraction: 0.99,
           scale: scale,
           itemCount: imagenes.length,
           pagination: new SwiperPagination(

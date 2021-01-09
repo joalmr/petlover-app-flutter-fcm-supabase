@@ -98,7 +98,6 @@ Widget timelineVacuna({
                           .toList()
                           .cast<Widget>(),
                     ),
-                    // subtitle: subtitleIndex,
                   ),
                 ),
               ),

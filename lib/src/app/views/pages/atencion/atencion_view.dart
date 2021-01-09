@@ -39,8 +39,6 @@ class AtencionesPage extends StatelessWidget {
                         )
                       : FadeViewSafeArea(
                           child: ListView.builder(
-                            // physics: NeverScrollableScrollPhysics(),
-                            // shrinkWrap: true,
                             itemCount: _.atenciones.length,
                             itemBuilder: (BuildContext context, int index) {
                               AtencionModel _atencion = _.atenciones[index];

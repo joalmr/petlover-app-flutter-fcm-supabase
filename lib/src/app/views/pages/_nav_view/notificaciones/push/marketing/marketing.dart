@@ -42,15 +42,6 @@ Widget marketing(noti) {
           ),
         ),
         SizedBox(height: 5.0),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.end,
-        //   children: <Widget>[
-        //     FlatButton(
-        //       child: Text('Salir'),
-        //       onPressed: () => Get.back(),
-        //     ),
-        //   ],
-        // )
       ],
     ),
   );

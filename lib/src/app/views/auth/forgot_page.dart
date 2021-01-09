@@ -16,21 +16,28 @@ class ForgotPage extends StatelessWidget {
         init: ForgotController(),
         builder: (_) {
           return Scaffold(
-            appBar: PreferredSize(preferredSize: Size.fromHeight(0), child: AppBar(backgroundColor: colorMain, elevation: 0)),
+            appBar: PreferredSize(
+                preferredSize: Size.fromHeight(0),
+                child: AppBar(backgroundColor: colorMain, elevation: 0)),
             body: FadeView(
               child: Stack(
                 children: <Widget>[
                   Form(
-                    // key: formKey,
                     child: ListView(
                       children: <Widget>[
                         WaveClipperOut(120.0),
                         SizedBox(height: 10.0),
                         Center(
-                          child: Text('¿Olvidaste tu contraseña?', style: Get.textTheme.headline5.apply(fontWeightDelta: 2).copyWith(fontSize: 24.0)),
+                          child: Text('¿Olvidaste tu contraseña?',
+                              style: Get.textTheme.headline5
+                                  .apply(fontWeightDelta: 2)
+                                  .copyWith(fontSize: 24.0)),
                         ),
                         SizedBox(height: 10.0),
-                        Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: Text('Ingresa tu correo electrónico para restablecer contraseña')),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                                'Ingresa tu correo electrónico para restablecer contraseña')),
                         SizedBox(height: 20.0),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -46,7 +53,9 @@ class ForgotPage extends StatelessWidget {
                         SizedBox(height: 30.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Obx(() => buttonPri('Enviar correo electrónico', !_.loading.value ? _.getForgot : null)),
+                          child: Obx(() => buttonPri(
+                              'Enviar correo electrónico',
+                              !_.loading.value ? _.getForgot : null)),
                         ),
                         SizedBox(height: 20.0),
                       ],
@@ -56,7 +65,10 @@ class ForgotPage extends StatelessWidget {
                     top: 0,
                     left: 0,
                     right: 0,
-                    child: AppBar(backgroundColor: Colors.transparent, elevation: 0, centerTitle: true),
+                    child: AppBar(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                        centerTitle: true),
                   )
                 ],
               ),

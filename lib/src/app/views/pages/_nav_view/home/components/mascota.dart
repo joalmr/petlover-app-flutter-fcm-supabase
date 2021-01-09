@@ -32,7 +32,6 @@ class Mascotas extends StatelessWidget {
                 )
               : _home.sinMascotas
                   ? FadeIn(
-                      // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: Container(
                         height: 250.0,
@@ -51,7 +50,6 @@ class Mascotas extends StatelessWidget {
                       ),
                     )
                   : FadeIn(
-                      // delay: Duration(milliseconds: 500),
                       duration: Duration(milliseconds: 500),
                       child: Container(
                         child: Stack(
@@ -196,7 +194,6 @@ class Mascotas extends StatelessWidget {
                                       ),
                                     ),
                                   );
-                                  // });
                                 },
                                 viewportFraction: 0.79,
                                 scale: 0.77,

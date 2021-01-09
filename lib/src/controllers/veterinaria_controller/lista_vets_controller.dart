@@ -20,8 +20,6 @@ class VeterinariasController extends GetxController {
   final global = Get.find<GlobalController>();
   final _prefs = new PreferenciasUsuario();
 
-  // int _pageSize = 20;
-
   ScrollController scrollController = new ScrollController();
 
   @override
@@ -31,17 +29,6 @@ class VeterinariasController extends GetxController {
     if (_prefs.hasToken()) {
       getVets();
     }
-
-    // scrollController.addListener(() {
-    //   // print('position ${scrollController.position.pixels}');
-    //   // print('maximo ${scrollController.position.maxScrollExtent}');
-    //   if (scrollController.position.pixels ==
-    //       scrollController.position.maxScrollExtent) {
-    //     // _pageSize = _pageSize + 10;
-    //     // getVets();
-    //     // scrollController.position.maxScrollExtent;
-    //   }
-    // });
   }
 
   @override
@@ -57,12 +44,6 @@ class VeterinariasController extends GetxController {
     getVets();
     return null;
   }
-
-  // getFive() {
-  //   for (int i = 0; i < 5; i++) {
-  //     _getVets();
-  //   }
-  // }
 
   getVets() => _getVets();
 

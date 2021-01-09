@@ -36,7 +36,6 @@ class VetDetallePage extends StatelessWidget {
                       child: Stack(
                         children: <Widget>[
                           Container(
-                            // height: context.height * 0.275,
                             height: double.maxFinite,
                             width: double.maxFinite,
                             child: (_.vet.slides.length > 0)
@@ -82,7 +81,7 @@ class VetDetallePage extends StatelessWidget {
                         children: <Widget>[
                           Container(
                             padding: EdgeInsets.only(bottom: 60.0),
-                            child: DataVet(), //_onDetail(vet),
+                            child: DataVet(),
                           ),
                           Positioned(
                             bottom: 0,

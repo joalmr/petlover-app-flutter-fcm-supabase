@@ -35,7 +35,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
 
   @override
   void initState() {
-    //implement initState
     super.initState();
 
     Geolocator().getCurrentPosition().then((currloc) {
@@ -56,8 +55,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
         infoWindow: InfoWindow(
           title: element.name,
           snippet: '★ ${element.stars} (${element.attentions})',
-          onTap: () => Get.toNamed('vetdetalle',
-              arguments: element), // Get.to(VetDetallePage(vet: element)),
+          onTap: () => Get.toNamed('vetdetalle', arguments: element),
         ),
         position: LatLng(element.latitude, element.longitude),
       ));
@@ -228,7 +226,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
     );
   }
 
-///////////////////////////////////////
   void mapCreated(controller) {
     setState(() {
       _controller = controller;
@@ -240,10 +237,8 @@ class _VetMapaPageState extends State<VetMapaPage> {
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-          target: LatLng(
-              vetLocales[_pageController.page.toInt()].latitude,
-              vetLocales[_pageController.page.toInt()]
-                  .longitude), //vetLocales[_pageController.page.toInt()].locationCoords,
+          target: LatLng(vetLocales[_pageController.page.toInt()].latitude,
+              vetLocales[_pageController.page.toInt()].longitude),
           zoom: 16.0,
           bearing: 45.0,
           tilt: 45.0,

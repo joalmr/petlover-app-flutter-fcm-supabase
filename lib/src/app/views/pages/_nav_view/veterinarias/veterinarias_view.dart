@@ -15,7 +15,6 @@ import 'components/build_vet.dart';
 import 'components/chips.dart';
 import 'components/direccion.dart';
 
-//ReservaList //VeterinariasPage
 class ReservaList extends StatelessWidget {
   final refreshKey = GlobalKey<RefreshIndicatorState>();
 

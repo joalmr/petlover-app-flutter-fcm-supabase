@@ -65,13 +65,13 @@ class MascotaAgregarPage extends StatelessWidget {
                                                         SimpleDialogOption(
                                                             child: const Text(
                                                                 'Tomar foto'),
-                                                            onPressed: _
-                                                                .tomarFoto), //_tomarFoto
+                                                            onPressed:
+                                                                _.tomarFoto),
                                                         SimpleDialogOption(
                                                             child: const Text(
                                                                 'Seleccionar foto'),
                                                             onPressed: _
-                                                                .seleccionarFoto), //_seleccionarFoto
+                                                                .seleccionarFoto),
                                                       ],
                                                     ),
                                                   );
@@ -181,7 +181,7 @@ class MascotaAgregarPage extends StatelessWidget {
                                   : _.btnCarga.value
                                       ? null
                                       : _.mascotaAdd,
-                            ), //_onEdit
+                            ),
                             SizedBox(height: 10.0),
                           ],
                         ),

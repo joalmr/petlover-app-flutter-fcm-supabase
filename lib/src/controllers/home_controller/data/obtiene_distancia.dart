@@ -19,8 +19,6 @@ void getDistance() {
       pNuevaPersona.add(element);
     }
   });
-
-  // print(pNuevaPersona);
 }
 
 getDistanceKm(lat1, lon1, lat2, lon2) {

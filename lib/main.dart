@@ -4,9 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/database/_db_model.dart';
 import 'package:proypet/src/routes/routes.dart';
-// import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'config/global_variables.dart';
 import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
@@ -42,7 +40,9 @@ class _MyAppState extends State<MyApp> {
     //   type: 'limpiar',
     //   frecuency: 20,
     // );
-    // DBProvider.db.newLocalNotification(tempNoti);
+    DBProvider.db.getTables();
+    // DBProvider.db.getPetFood();
+    // DBProvider.db.getUserLoginDate();
 
     super.initState();
   }

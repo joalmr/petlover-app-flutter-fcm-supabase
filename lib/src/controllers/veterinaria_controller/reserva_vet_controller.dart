@@ -45,7 +45,7 @@ class ReservaVetController extends GetxController {
   RxString _deliveryId = '1'.obs;
   RxString _mascotaId = ''.obs;
 
-  String reservaId;
+  // String reservaId;
   RxList<ServicioReserva> servicioReservaLista = List<ServicioReserva>().obs;
   RxString _fecha = ''.obs;
   RxString _observacion = ''.obs;
@@ -129,11 +129,10 @@ class ReservaVetController extends GetxController {
       listaServicio.forEach((element) {
         textoServicios += '${element.name}, ';
       });
-      // inputServController.text = textoServicios;
     } else
       textoServicios = listaServicio.first.name;
     //TODO: quitar luego, hacer multiples reserva
-    reservaId = listaServicio.first.id.toString();
+    // reservaId = listaServicio.first.id.toString();
     update();
   }
 
@@ -147,9 +146,7 @@ class ReservaVetController extends GetxController {
     servicioReservaLista.clear();
     var dato = await bookingService.typeBooking();
     servicioReservaLista.addAll(dato);
-    // reservaId =
-    //     servicioReservaLista.where((x) => x.id == 1).first.id.toString();
-    //
+
     ex3 = servicioReservaLista.first;
     textoServicios = servicioReservaLista.first.name;
     listaServicio.add(servicioReservaLista.first);
@@ -203,13 +200,11 @@ class ReservaVetController extends GetxController {
 
   getData() => _getData();
 
-  // String filter
   Future<List<ServicioReserva>> _getData() async {
     List<ServicioReserva> lista = List<ServicioReserva>();
     servicioReservaLista.forEach((element) {
       var palabra = element.name + '' + element.category;
-      bool contiene =
-          palabra.toLowerCase().contains("".toLowerCase()); //.contains(filter);
+      bool contiene = palabra.toLowerCase().contains("".toLowerCase());
       if (contiene) {
         lista.add(element);
       }
@@ -437,9 +432,9 @@ class ReservaVetController extends GetxController {
     BookingModel booking = BookingModel();
     booking.bookingAt = fechaTimeAt;
     booking.establishmentId = vet.id;
-    booking.petId = mascotaId; //
+    booking.petId = mascotaId;
     List reservaType = [];
-    //
+
     listaServicio.forEach((element) {
       reservaType.add(element.id);
     });

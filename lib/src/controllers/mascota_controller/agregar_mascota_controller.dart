@@ -34,13 +34,13 @@ class MascotaAgregarController extends GetxController {
   String razaName;
 
   TextEditingController razaTextC = TextEditingController();
-  //
+
   Rx<File> _foto = File('').obs;
   RxString _nombre = ''.obs;
   RxInt _especie = int.tryParse(tipopet[0]['id']).obs;
   int razaId;
   RxString _fecha = ''.obs;
-  RxInt _sexo = int.parse(tiposex[0]['id']).obs; // = 0.obs;
+  RxInt _sexo = int.parse(tiposex[0]['id']).obs;
 
   RxBool btnCarga = false.obs;
 
@@ -71,7 +71,6 @@ class MascotaAgregarController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    // foto.delete();
   }
 
   obtenerRaza() {
@@ -201,7 +200,6 @@ class MascotaAgregarController extends GetxController {
       ),
     );
 
-    // if (foto != null) {} //limpieza
     foto = croppedFile;
     Get.back();
   }
@@ -294,5 +292,4 @@ class MascotaAgregarController extends GetxController {
       }
     }
   }
-  //
 }

@@ -70,7 +70,7 @@ class MiCuentaPage extends StatelessWidget {
     Get.dialog(
       FadeIn(
         child: AlertDialog(
-          title: null, //Text('Cerrar sesión'),
+          title: null,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),

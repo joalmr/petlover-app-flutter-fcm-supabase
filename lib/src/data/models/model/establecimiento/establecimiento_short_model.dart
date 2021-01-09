@@ -45,15 +45,6 @@ class EstablecimientoShortModel
         distance: json["distance"] == null
             ? ""
             : json["distance"].toDouble().toStringAsFixed(2),
-        // phone: json["phone"] == null ? "" : json["phone"],
-        // description: json["description"] == null
-        //     ? "Descripción no detallada"
-        //     : json["description"],
-        // votes: json["votes"] == null ? "" : json["votes"],
-        // prices: json["prices"],
-        // services: List<Service>.from(
-        //     json["services"].map((x) => Service.fromJson(x))),
-        // schedule: json["schedule"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -68,11 +59,6 @@ class EstablecimientoShortModel
         "slides": List<dynamic>.from(slides.map((x) => x)),
         "logo": logo,
         "distance": distance,
-        // "prices": prices,
-        // "services": List<dynamic>.from(services.map((x) => x.toJson())),
-        // "votes": votes,
-        // "phone": phone,
-        // "description": description,
       };
 
   @override

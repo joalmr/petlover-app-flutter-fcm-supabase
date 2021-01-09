@@ -14,8 +14,6 @@ import 'package:proypet/src/controllers/mascota_controller/editar_mascota_contro
 import '../data/tipo_pet.dart';
 
 class MascotaEditarPage extends StatelessWidget {
-  // final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return GetX<MascotaEditarController>(
@@ -62,13 +60,12 @@ class MascotaEditarPage extends StatelessWidget {
                                                     SimpleDialogOption(
                                                         child: const Text(
                                                             'Tomar foto'),
-                                                        onPressed: _
-                                                            .tomarFoto), //_tomarFoto
+                                                        onPressed: _.tomarFoto),
                                                     SimpleDialogOption(
                                                         child: const Text(
                                                             'Seleccionar foto'),
-                                                        onPressed: _
-                                                            .seleccionarFoto), //_seleccionarFoto
+                                                        onPressed:
+                                                            _.seleccionarFoto),
                                                   ],
                                                 ),
                                               );
@@ -157,7 +154,7 @@ class MascotaEditarPage extends StatelessWidget {
                         ),
                         SizedBox(height: 25.0),
                         buttonPri('Guardar cambios',
-                            _.btnCarga.value ? null : _.mascotaEdit), //_onEdit
+                            _.btnCarga.value ? null : _.mascotaEdit),
                         SizedBox(height: 10.0),
                       ],
                     ),

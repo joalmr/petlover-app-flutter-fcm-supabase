@@ -12,10 +12,6 @@ class UserService {
     return userProvider.editUser(nombre, apellido, telefono);
   }
 
-  // validaTelefono() {
-  //   return userProvider.validaTelefono();
-  // }
-
   changePassword(String passAntigua, String passNueva) {
     return userProvider.changePassword(passAntigua, passNueva);
   }

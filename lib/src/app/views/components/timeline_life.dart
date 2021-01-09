@@ -153,8 +153,6 @@ Widget timelineLife({
                     dashGapColor: Colors.transparent,
                     dashGapRadius: 0.0,
                   ),
-                  // height: 1,
-                  // color: Get.theme.iconTheme.color,
                 ),
                 InkWell(
                   onTap: () {
@@ -218,8 +216,6 @@ Widget timelineLife({
                     dashGapColor: Colors.transparent,
                     dashGapRadius: 0.0,
                   ),
-                  // height: 1,
-                  // color: Get.theme.iconTheme.color,
                 ),
               ],
             ),
