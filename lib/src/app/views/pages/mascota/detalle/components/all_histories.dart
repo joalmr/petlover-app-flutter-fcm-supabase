@@ -12,20 +12,20 @@ Widget allHistories(List<PetHistoryModel> historias) {
     itemBuilder: (BuildContext context, int index) {
       // 2021-01-01T00:50:21.000000Z
       // yyyy-MM-ddTHH:mm:ss.mmmuuuZ
-      String dmyString = historias[index].attentionDate.split(".")[0];
-      DateTime dateTime = DateFormat('yyyy-MM-ddTHH:mm:ss').parse(dmyString);
+      String dmyString = historias[index].attentionDate;
+      DateTime dateTime = DateFormat('yyyy-MM-dd HH:mm:ss').parse(dmyString);
 
       int yearPreviou = 0;
       if (index > 0) {
-        DateTime datePrevio = DateFormat("yyyy-MM-ddTHH:mm:ss")
-            .parse(historias[index - 1].attentionDate.split(".")[0]);
+        DateTime datePrevio = DateFormat("yyyy-MM-dd HH:mm:ss")
+            .parse(historias[index - 1].attentionDate);
         yearPreviou = datePrevio.year;
       }
       // Hm -> 24 horas // jm -> am pm
       var time = DateFormat.Hm().format(dateTime);
 
       return timeline(
-        bonification: int.parse(historias[index].attentionBonification),
+        bonification: int.parse(historias[index].attentionBonification ?? '0'),
         circleData: CircleAvatar(
           backgroundColor: Colors.transparent,
           backgroundImage:
@@ -35,7 +35,7 @@ Widget allHistories(List<PetHistoryModel> historias) {
         dayData: dateTime.day,
         detailData: jsonEncode(historias[index].attentionDetails),
         monthData: dateTime.month,
-        priceData: '0',
+        priceData: historias[index].attentionAmount,
         timeData: time,
         indexData: index,
         listLength: historias.length,

@@ -35,7 +35,7 @@ Widget cardHistory(PetHistoryModel history) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Precio'),
-            Text('0'),
+            Text(history.attentionAmount),
           ],
         ),
         Container(
