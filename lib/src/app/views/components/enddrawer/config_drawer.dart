@@ -1,6 +1,7 @@
 import 'package:ai_notification_enable/ai_notification_enable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/views/pages/atencion/atencion_view.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:proypet/src/data/services/auth/auth_service.dart';
@@ -40,6 +41,14 @@ class ConfigDrawer extends StatelessWidget {
                   title: Text('Calificar atenciones'),
                   onTap: () => Get.to(AtencionesPage()),
                 ),
+                //TODO: quitar antes de publicar
+                appPruebas
+                    ? ListTile(
+                        leading: Icon(Icons.email),
+                        title: Text('Mensaje directo'),
+                        onTap: () {},
+                      )
+                    : SizedBox(height: 0),
                 ListTile(
                   leading: Icon(Icons.share),
                   title: Text('Compartir con mis amigos'),

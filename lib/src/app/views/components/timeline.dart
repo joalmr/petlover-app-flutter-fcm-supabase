@@ -172,6 +172,7 @@ Widget timeline({
                           ],
                         ),
                       ),
+                      //TODO: quitar antes de publicar
                       appPruebas
                           ? Align(
                               widthFactor: double.maxFinite,
