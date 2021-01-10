@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/data/models/model/notificacion/notificacion_model.dart';
+import 'package:proypet/src/data/providers/notification/model/notificacion_model.dart';
 
 import 'marketing/marketing.dart';
 import 'proxima_cita/proxima_cita.dart';

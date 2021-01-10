@@ -6,7 +6,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/data/models/model/booking/booking_home.dart';
-import 'package:proypet/src/data/services/booking_service.dart';
+import 'package:proypet/src/data/services/booking/booking_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'home_controller.dart';
 

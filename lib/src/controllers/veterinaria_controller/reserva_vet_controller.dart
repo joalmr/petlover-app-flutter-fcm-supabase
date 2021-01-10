@@ -7,17 +7,17 @@ import 'package:google_maps_webservice/directions.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/models/model/booking/booking_model.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/data/providers/booking/model/booking_model.dart';
+import 'package:proypet/src/data/providers/establishment/model/establecimiento_model.dart';
 import 'package:proypet/src/data/models/model/maps/address.dart';
 import 'package:proypet/src/data/models/model/servicio_reserva.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/app/views/components/thx_page.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-import 'package:proypet/src/data/services/booking_service.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/services/booking/booking_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -449,7 +449,7 @@ class ReservaVetController extends GetxController {
 
     if (resp) {
       homeC.getSummary();
-      MascotaService().getPet(mascotaId).then(
+      PetService().getPet(mascotaId).then(
             (value) => Get.to(
               ThxPage(
                 value.picture,

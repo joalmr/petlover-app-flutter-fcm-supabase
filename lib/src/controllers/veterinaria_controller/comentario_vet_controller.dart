@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/establecimiento/comentarios_model.dart';
-import 'package:proypet/src/data/services/establecimiento_service.dart';
+import 'package:proypet/src/data/providers/establishment/model/comentarios_model.dart';
+import 'package:proypet/src/data/services/establishment/establishment_service.dart';
 
 import 'detalle_vet_controller.dart';
 
 class ComentarioVetController extends GetxController {
-  final establecimiento = EstablecimientoService();
+  final establecimiento = EstablishmentService();
   final vetC = Get.find<VetDetalleController>();
 
   RxBool cargando = true.obs;

@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/services/pet/pet_vaccines_service.dart';
 
 import 'detalle_mascota_controller.dart';
 
 class HistoriaVacunasController extends GetxController {
-  final mascota = MascotaService();
+  final vacunas = PetVaccinesService();
 
   final petC = Get.find<MascotaDetalleController>();
 
@@ -21,7 +21,7 @@ class HistoriaVacunasController extends GetxController {
 
   _getVacunas() async {
     listavacunas.clear();
-    var dato = await mascota.getVaccines(petC.mascotaId);
+    var dato = await vacunas.getVaccines(petC.mascotaId);
     listavacunas.addAll(dato);
     cargando.value = false;
   }

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/bonificacion/bonificacion_model.dart';
-import 'package:proypet/src/data/models/model/bonificacion/bonificacion_top_model.dart';
-import 'package:proypet/src/data/services/bonificacion_servicio.dart';
+import 'package:proypet/src/data/providers/bonification/model/bonificacion_model.dart';
+import 'package:proypet/src/data/providers/bonification/model/bonificacion_top_model.dart';
+import 'package:proypet/src/data/services/bonification/bonification_service.dart';
 
 class RecompensasController extends GetxController {
   final bonificacionService = BonificacionService();

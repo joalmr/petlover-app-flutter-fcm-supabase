@@ -7,7 +7,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/atencion_controller/atencion_controller.dart';
-import 'package:proypet/src/data/models/model/antecion/atencion_model.dart';
+import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
 
 class AtencionesPage extends StatelessWidget {
   final refreshKey = GlobalKey<RefreshIndicatorState>();

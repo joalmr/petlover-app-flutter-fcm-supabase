@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/services/booking_service.dart';
+import 'package:proypet/src/data/services/booking/booking_service.dart';
 
 class BookingHomeController extends GetxController {
   final homeController = Get.find<HomeController>();

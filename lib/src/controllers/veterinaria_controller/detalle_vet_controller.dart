@@ -8,13 +8,13 @@ import 'package:proypet/src/app/views/components/form_control/button_primary.dar
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-import 'package:proypet/src/data/models/update/usuario/user_model.dart';
-import 'package:proypet/src/data/services/booking_service.dart';
-import 'package:proypet/src/data/services/establecimiento_service.dart';
-import 'package:proypet/src/data/services/user_service.dart';
+import 'package:proypet/src/data/providers/establishment/model/establecimiento_model.dart';
+import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/providers/user/model/user_model.dart';
+import 'package:proypet/src/data/services/booking/booking_service.dart';
+import 'package:proypet/src/data/services/establishment/establishment_service.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,7 +23,7 @@ import 'lista_vets_controller.dart';
 
 class VetDetalleController extends GetxController {
   final userService = new UserService();
-  final vetService = new EstablecimientoService();
+  final vetService = new EstablishmentService();
   final bookingService = new BookingService();
 
   Rx<EstablecimientoModel> _vet = EstablecimientoModel().obs;

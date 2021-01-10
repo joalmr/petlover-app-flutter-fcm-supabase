@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/services/pet/pet_next_date_service.dart';
 
 import 'detalle_mascota_controller.dart';
 
 class CitasController extends GetxController {
-  final mascota = MascotaService();
-
+  final nextDate = PetNextDateService();
   final petC = Get.find<MascotaDetalleController>();
 
   RxBool cargando = true.obs;
@@ -31,7 +30,7 @@ class CitasController extends GetxController {
 
   _getNextDate() async {
     listacitas.clear();
-    var dato = await mascota.getNextDate(petC.mascotaId);
+    var dato = await nextDate.getNextDate(petC.mascotaId);
     listacitas.addAll(dato);
     cargando.value = false;
   }

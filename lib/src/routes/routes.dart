@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:proypet/src/app/views/auth/onboard.dart';
-import 'package:proypet/src/app/views/pages/_nav_view/destacados/detalle/detalle_destacado.dart';
+// import 'package:proypet/src/app/views/pages/_nav_view/destacados/detalle/detalle_destacado.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/detalle_vet.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
@@ -62,7 +62,7 @@ List<GetPage> getRutas() {
     GetPage(name: 'vetdetalle', page: () => VetDetallePage()),
     GetPage(name: 'vetreserva', page: () => DataReserva()),
     //
-    GetPage(name: 'detalledestacado', page: () => DetalleDestacadoPage()),
+    // GetPage(name: 'detalledestacado', page: () => DetalleDestacadoPage()),
     GetPage(name: 'detallereservado', page: () => DetalleReservado()),
 
     GetPage(name: 'calificaatencion', page: () => AtencionCalifica()),

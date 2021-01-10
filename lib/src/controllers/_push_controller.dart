@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/push/buildPushNoti.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/services/auth_service.dart';
+import 'package:proypet/src/data/services/auth/auth_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class PushController extends GetxController {

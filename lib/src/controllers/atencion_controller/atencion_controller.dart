@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/antecion/atencion_model.dart';
-import 'package:proypet/src/data/services/atencion_servicio.dart';
+import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
+import 'package:proypet/src/data/services/attention/attention_service.dart';
 
 class AtencionController extends GetxController {
-  final atencionService = AtencionService();
+  final atencionService = AttentionService();
   final inputComentController = new TextEditingController();
 
   RxBool loading = true.obs;

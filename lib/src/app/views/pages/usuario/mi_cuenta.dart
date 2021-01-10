@@ -6,7 +6,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
 import 'package:proypet/src/controllers/auth/services/facebook_sing.dart';
 import 'package:proypet/src/controllers/auth/services/google_sign.dart';
-import 'package:proypet/src/data/services/auth_service.dart';
+import 'package:proypet/src/data/services/auth/auth_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import 'components/list_cuenta.dart';

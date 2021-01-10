@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/notificacion/notificacion_model.dart';
-import 'package:proypet/src/data/services/notificacion_servicio.dart';
+import 'package:proypet/src/data/providers/notification/model/notificacion_model.dart';
+import 'package:proypet/src/data/services/notification/notification_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class NotificacionController extends GetxController {
-  final notificacionService = NotificacionService();
+  final notificacionService = NotificationService();
   final _prefs = new PreferenciasUsuario();
 
   NotificacionModel notificationModel;

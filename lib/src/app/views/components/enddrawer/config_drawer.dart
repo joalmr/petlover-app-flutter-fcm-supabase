@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/pages/atencion/atencion_view.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
-import 'package:proypet/src/data/services/auth_service.dart';
+import 'package:proypet/src/data/services/auth/auth_service.dart';
 import 'package:share/share.dart';
 
 class ConfigDrawer extends StatelessWidget {

@@ -5,8 +5,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/text_field.dart';
-import 'package:proypet/src/data/models/model/antecion/atencion_model.dart';
-import 'package:proypet/src/data/services/atencion_servicio.dart';
+import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
+import 'package:proypet/src/data/services/attention/attention_service.dart';
 
 class BuildPushQualify extends StatefulWidget {
   final dynamic noti;
@@ -18,7 +18,7 @@ class BuildPushQualify extends StatefulWidget {
 }
 
 class _BuildPushQualifyState extends State<BuildPushQualify> {
-  AtencionService atencionProvider = AtencionService();
+  AttentionService atencionProvider = AttentionService();
 
   TextEditingController _inputComentController = new TextEditingController();
 

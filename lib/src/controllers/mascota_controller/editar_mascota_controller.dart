@@ -12,7 +12,7 @@ import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/models/model/raza/raza_model.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/services/pet/mascota_service.dart';
 import 'package:proypet/src/data/services/raza_servicio.dart';
 import 'package:select_dialog/select_dialog.dart';
 
@@ -22,7 +22,7 @@ import 'detalle_mascota_controller.dart';
 class MascotaEditarController extends GetxController {
   final petC = Get.find<MascotaDetalleController>();
   final homeC = Get.find<HomeController>();
-  final mascotaService = MascotaService();
+  final mascotaService = new MascotaService();
   final razaService = RazaService();
 
   RxBool loading = true.obs;

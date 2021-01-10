@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/promocion_vet_controller.dart';
-import 'package:proypet/src/data/models/model/establecimiento/promocion_model.dart';
+import 'package:proypet/src/data/providers/establishment/model/promocion_model.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 
 class ViewPromocion extends StatelessWidget {

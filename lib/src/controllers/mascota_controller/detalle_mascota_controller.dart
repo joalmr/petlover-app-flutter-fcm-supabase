@@ -1,24 +1,64 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/data/models/update/mascota/history_model.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/app/views/components/data/months.dart';
+import 'package:proypet/src/app/views/pages/mascota/components/function_dialog.dart';
+import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/providers/pet/model/pet_history_model.dart';
+import 'package:proypet/src/data/services/pet/pet_history_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MascotaDetalleController extends GetxController {
   String mascotaId;
-  final mascotaService = new MascotaService();
+  final petService = new PetService();
+  final petHistoryService = new PetHistoryService();
+
   RxBool loading = true.obs;
+  RxBool loadingHistory = true.obs;
 
   MascotaModel2 pet;
-  RxList<HistoriaModel2> history = List<HistoriaModel2>().obs;
+  // RxList<HistoriaModel2> history = List<HistoriaModel2>().obs;
+  RxList<PetHistoryModel> petHistory = List<PetHistoryModel>().obs;
+  RxList<PetHistoryModel> petAllHistory = List<PetHistoryModel>().obs;
+
+  DateTime today = DateTime.now();
+
+  RxString tempYear = ''.obs;
+  RxString tempMonth = ''.obs; //mes[DateTime.now().month].obs;
+
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
+  int scrollInit = 0;
 
   @override
   void onInit() {
     super.onInit();
     mascotaId = Get.arguments;
     verMiMascota();
+    firstHistory();
+  }
+
+  goPosition() {
+    firstHistory();
+    itemScrollController.scrollTo(
+      index: scrollInit,
+      duration: Duration(seconds: 2),
+      curve: Curves.easeInOutCubic,
+    );
+  }
+
+  firstHistory() => _firstHistory();
+  Future<void> _firstHistory() async {
+    int todayYear = today.year;
+    int todayMonth = today.month;
+
+    tempYear.value = todayYear.toString();
+    tempMonth.value = mes[todayMonth];
+
+    var month = todayMonth < 10 ? '0${today.month}' : todayMonth.toString();
+    await historyDate(todayYear.toString(), month);
   }
 
   void verMiMascota() {
@@ -26,8 +66,18 @@ class MascotaDetalleController extends GetxController {
   }
 
   Future<void> _verMiMascota() async {
-    pet = await mascotaService.getPet(mascotaId);
+    pet = await petService.getPet(mascotaId);
     loading.value = false;
+  }
+
+  historyDate(String year, String month) => _historyDate(year, month);
+
+  _historyDate(year, month) async {
+    loadingHistory.value = true;
+    petHistory.clear();
+    petHistory.addAll(
+        await petHistoryService.getPetHistoryDate(mascotaId, year, month));
+    loadingHistory.value = false;
   }
 
   goToHistory() => _goToHistory();
@@ -37,210 +87,18 @@ class MascotaDetalleController extends GetxController {
   }
 
   Future<void> _verMiHistoria(id) async {
-    history.clear();
-    history.addAll(await mascotaService.getPetHistory(id));
+    petAllHistory.clear();
+    petAllHistory.addAll(await petHistoryService.getPetHistory(mascotaId));
   }
 
   RxInt frecuenciaFood = 0.obs;
   RxString horasFood = ''.obs;
-
   RxInt frecuenciaBed = 0.obs;
-
   RxInt frecuenciaFleas = 0.obs;
-
   RxInt frecuenciaLitterBox = 0.obs;
 
-  fnFleas() {
-    return showDialog(
-      context: Get.context,
-      barrierDismissible: false,
-      child: AlertDialog(
-        actions: [buttonPri('Guardar', () {})],
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Antipulgas en casa',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              borderRadius: borderRadius,
-              child: Icon(Icons.close, size: 18),
-              onTap: () => Get.back(),
-            )
-          ],
-        ),
-        scrollable: true,
-        content: Column(
-          children: [
-            Text('¿Con qué frecuencia aplica antipulgas?'),
-            SizedBox(height: 5),
-            TextFormField(
-              key: Key('frecuencyFleas'),
-              keyboardType: TextInputType.number,
-              initialValue: '',
-              onChanged: (value) => frecuenciaFleas.value = int.tryParse(value),
-              decoration: InputDecoration(
-                hintText: 'Indique días',
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  fnBed() {
-    return showDialog(
-      context: Get.context,
-      barrierDismissible: false,
-      child: AlertDialog(
-        actions: [buttonPri('Guardar', () {})],
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Limpieza de cama',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              borderRadius: borderRadius,
-              child: Icon(Icons.close, size: 18),
-              onTap: () => Get.back(),
-            )
-          ],
-        ),
-        scrollable: true,
-        content: Column(
-          children: [
-            Text('¿Con qué frecuencia limpia la cama?'),
-            SizedBox(height: 5),
-            TextFormField(
-              key: Key('frecuencyBed'),
-              keyboardType: TextInputType.number,
-              initialValue: '',
-              onChanged: (value) => frecuenciaBed.value = int.tryParse(value),
-              decoration: InputDecoration(
-                hintText: 'Indique días',
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  fnLitterBox() {
-    return showDialog(
-      context: Get.context,
-      barrierDismissible: false,
-      child: AlertDialog(
-        actions: [buttonPri('Guardar', () {})],
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Cambio de arena',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              borderRadius: borderRadius,
-              child: Icon(Icons.close, size: 18),
-              onTap: () => Get.back(),
-            )
-          ],
-        ),
-        scrollable: true,
-        content: Column(
-          children: [
-            Text('¿Con qué frecuencia cambia de arena?'),
-            SizedBox(height: 5),
-            TextFormField(
-              key: Key('frecuencyLitterBox'),
-              keyboardType: TextInputType.number,
-              initialValue: '',
-              onChanged: (value) =>
-                  frecuenciaLitterBox.value = int.tryParse(value),
-              decoration: InputDecoration(
-                hintText: 'Indique días',
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  fnFood() {
-    RxInt page = 1.obs;
-    return showDialog(
-      context: Get.context,
-      barrierDismissible: false,
-      child: AlertDialog(
-        actions: [
-          Obx(
-            () => buttonPri(page.value == 1 ? 'Continuar' : 'Guardar', () {
-              if (page.value == 1) page.value = page.value + 1;
-              print(page.value);
-            }),
-          )
-        ],
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Alimentación',
-              style: TextStyle(fontSize: 16),
-            ),
-            InkWell(
-              borderRadius: borderRadius,
-              child: Icon(Icons.close, size: 18),
-              onTap: () => Get.back(),
-            )
-          ],
-        ),
-        scrollable: true,
-        content: Obx(() => content(page.value)),
-      ),
-    );
-  }
-
-  content(page) {
-    switch (page) {
-      case 1:
-        return Column(
-          children: [
-            Text('¿Cuántas veces al día come?'),
-            SizedBox(height: 5),
-            TextFormField(
-              key: Key('frecuencyFood'),
-              keyboardType: TextInputType.number,
-              initialValue: '',
-              onChanged: (value) => frecuenciaFood.value = int.tryParse(value),
-            ),
-          ],
-        );
-        break;
-      case 2:
-        return Column(
-          children: [
-            Text('¿En qué horarios?'),
-            Text(
-              '(Si es más de uno separar con coma)',
-              style: TextStyle(fontSize: 12),
-            ),
-            SizedBox(height: 5),
-            TextFormField(
-              key: Key('hoursFood'),
-              initialValue: '',
-              onChanged: (value) => horasFood.value = value,
-              decoration: InputDecoration(
-                hintText: 'Ejm: 10:30,16:00,20:00',
-              ),
-            ),
-          ],
-        );
-        break;
-    }
-  }
+  fnFleas() => funtionFleas();
+  fnBed() => funtionBed();
+  fnLitterBox() => funtionLitterBox();
+  fnFood() => funtionFood();
 }

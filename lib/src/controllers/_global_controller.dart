@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/controllers/_push_controller.dart';
-import 'package:proypet/src/data/models/update/usuario/user_model.dart';
-import 'package:proypet/src/data/services/auth_service.dart';
-import 'package:proypet/src/data/services/user_service.dart';
+import 'package:proypet/src/data/providers/user/model/user_model.dart';
+import 'package:proypet/src/data/services/auth/auth_service.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class GlobalController extends GetxController {

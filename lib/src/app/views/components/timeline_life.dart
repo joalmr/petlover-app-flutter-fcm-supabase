@@ -1,293 +1,158 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/config/path_variables.dart';
-import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-Widget timelineLife({
-  @required DateTime dateBorn,
-  int petStatus,
-}) {
-  int firstYear = dateBorn.year;
-  int firstMonth = dateBorn.month;
+import 'data/months.dart';
 
-  int lastYear = dateBorn.year + ((DateTime.now().year - dateBorn.year) + 2);
+class FnTimeLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<MascotaDetalleController>(
+      builder: (_) {
+        DateTime dateBornConverted =
+            DateFormat('yyyy-MM-dd').parse(_.pet.birthdate);
 
-  DateTime today = DateTime.now();
-  int todayYear = today.year;
-  int todayMonth = today.month;
+        int firstYear = dateBornConverted.year;
+        int firstMonth = dateBornConverted.month;
 
-  List<Widget> timeline = List<Widget>();
-  List<Widget> contentLife = List<Widget>();
+        int lastYear = dateBornConverted.year +
+            ((DateTime.now().year - dateBornConverted.year) + 2);
 
-  contentLife = [
-    Card(
-      child: ExpansionTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('images/no-image.png'),
-          radius: 20.0,
-        ),
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
-        ),
-        subtitle: Text('data..'),
-        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-        childrenPadding: EdgeInsets.only(left: 10, right: 10.0, top: 2),
-        children: [
-          Text('data'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Precio'),
-              Text('data'),
-            ],
-          ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(top: 2),
-            child: Row(
-              children: <Widget>[
-                Icon(FontAwesomeIcons.coins, size: 12, color: colorMain),
-                SizedBox(width: 2.5),
-                Text(
-                  "Ganaste ... puntos",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Get.textTheme.subtitle2.color,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          appPruebas
-              ? Align(
-                  widthFactor: double.maxFinite,
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    iconSize: 22,
-                    icon: Icon(Icons.help_outline),
-                    onPressed: () {},
-                    tooltip: 'Ayuda',
-                  ),
-                )
-              : SizedBox(height: 0)
-        ],
-      ),
-    ),
-    Card(
-      child: ExpansionTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.transparent,
-          backgroundImage: AssetImage('images/no-image.png'),
-          radius: 20.0,
-        ),
-        title: Text(
-          'Data..',
-          style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
-          maxLines: 2,
-        ),
-        subtitle: Text('data..'),
-        children: [
-          Text('data'),
-          Text('data'),
-        ],
-      ),
-    ),
-  ];
+        int todayYear = _.today.year;
+        int todayMonth = _.today.month;
 
-  var mes = [
-    null,
-    'Ene',
-    'Feb',
-    'Mar',
-    'Abr',
-    'May',
-    'Jun',
-    'Jul',
-    'Ago',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dic'
-  ];
-  int scrollInit = 0;
-  int scrollCount = 0;
+        List<Widget> timeline = List<Widget>();
 
-  RxString tempYear = todayYear.toString().obs;
-  RxString tempMonth = mes[todayMonth].obs;
+        int scrollCount = 0;
 
-  for (var i = firstYear; i <= lastYear; i++) {
-    if (i > firstYear) firstMonth = 1;
-    for (var j = firstMonth; j <= 12; j++) {
-      Widget item = Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 5),
-            Container(
-              height: 30,
-              child: Text(
-                (j == 1 || (i == firstYear && j == firstMonth)) ? '$i' : '',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 30,
-                  child: DottedLine(
-                    direction: Axis.horizontal,
-                    lineLength: double.infinity,
-                    lineThickness: 1.0,
-                    dashLength: 1.0,
-                    dashColor: Get.theme.iconTheme.color,
-                    dashRadius: 0.0,
-                    dashGapLength: 4.0,
-                    dashGapColor: Colors.transparent,
-                    dashGapRadius: 0.0,
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    print('$i $j');
-                    tempYear.value = i.toString();
-                    tempMonth.value = mes[j];
-                  },
-                  child: (todayYear == i && todayMonth == j)
-                      ? Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: Container(
-                            margin: EdgeInsets.only(left: 5, right: 5),
-                            padding: EdgeInsets.all(1),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Image(
-                                height: 50,
-                                image: AssetImage(
-                                  petStatus == 1
-                                      ? pathGif('gato-kb')
-                                      : pathGif('perro-kb'),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: Container(
-                            margin: EdgeInsets.only(left: 5, right: 5),
-                            padding: EdgeInsets.all(1),
-                            decoration: BoxDecoration(
-                              color: colorGray2,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: CircleAvatar(
-                                radius: 25,
-                                backgroundColor: colorGray2,
-                                child: Text('${mes[j]}'),
-                              ),
-                            ),
-                          ),
-                        ),
-                ),
-                Container(
-                  width: 30,
-                  child: DottedLine(
-                    direction: Axis.horizontal,
-                    lineLength: double.infinity,
-                    lineThickness: 1.0,
-                    dashLength: 1.0,
-                    dashColor: Get.theme.iconTheme.color,
-                    dashRadius: 0.0,
-                    dashGapLength: 4.0,
-                    dashGapColor: Colors.transparent,
-                    dashGapRadius: 0.0,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-
-      if (todayYear == i && todayMonth == j)
-        scrollInit = scrollCount;
-      else
-        scrollCount++;
-      timeline.add(item);
-    }
-  }
-
-  return GetX<MascotaDetalleController>(
-    builder: (_) {
-      return CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Container(
-              height: 100.0,
-              child: ScrollablePositionedList.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: timeline.length,
-                itemBuilder: (context, index) => timeline[index],
-                initialScrollIndex: scrollInit,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
+        for (var i = firstYear; i <= lastYear; i++) {
+          if (i > firstYear) firstMonth = 1;
+          for (var j = firstMonth; j <= 12; j++) {
+            Widget item = Container(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, left: 10),
+                  SizedBox(height: 5),
+                  Container(
+                    height: 30,
                     child: Text(
-                      '${tempMonth.value}. ${tempYear.value}',
+                      (j == 1 || (i == firstYear && j == firstMonth))
+                          ? '$i'
+                          : '',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  ListView.builder(
-                    padding: EdgeInsets.zero,
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: contentLife.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return contentLife[index];
-                    },
+                  Row(
+                    children: [
+                      Container(
+                        width: 30,
+                        child: DottedLine(
+                          direction: Axis.horizontal,
+                          lineLength: double.infinity,
+                          lineThickness: 1.0,
+                          dashLength: 1.0,
+                          dashColor: Get.theme.iconTheme.color,
+                          dashRadius: 0.0,
+                          dashGapLength: 4.0,
+                          dashGapColor: Colors.transparent,
+                          dashGapRadius: 0.0,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          print('$i $j');
+                          _.tempYear.value = i.toString();
+                          _.tempMonth.value = mes[j];
+                          _.historyDate(i.toString(), j.toString());
+                        },
+                        child: (todayYear == i && todayMonth == j)
+                            ? Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 5, right: 5),
+                                  padding: EdgeInsets.all(1),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Image(
+                                      height: 50,
+                                      image: AssetImage(
+                                        _.pet.specieId == 1
+                                            ? pathGif('gato-kb')
+                                            : pathGif('perro-kb'),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Container(
+                                  margin: EdgeInsets.only(left: 5, right: 5),
+                                  padding: EdgeInsets.all(1),
+                                  decoration: BoxDecoration(
+                                    color: colorGray2,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: CircleAvatar(
+                                      radius: 25,
+                                      backgroundColor: colorGray2,
+                                      child: Text('${mes[j]}'),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                      ),
+                      Container(
+                        width: 30,
+                        child: DottedLine(
+                          direction: Axis.horizontal,
+                          lineLength: double.infinity,
+                          lineThickness: 1.0,
+                          dashLength: 1.0,
+                          dashColor: Get.theme.iconTheme.color,
+                          dashRadius: 0.0,
+                          dashGapLength: 4.0,
+                          dashGapColor: Colors.transparent,
+                          dashGapRadius: 0.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ),
+            );
+
+            if (todayYear == i && todayMonth == j)
+              _.scrollInit = scrollCount;
+            else
+              scrollCount++;
+            timeline.add(item);
+          }
+        }
+
+        return Container(
+          height: 100.0,
+          child: ScrollablePositionedList.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: timeline.length,
+            itemBuilder: (context, index) => timeline[index],
+            initialScrollIndex: _.scrollInit,
+            itemScrollController: _.itemScrollController,
+            itemPositionsListener: _.itemPositionsListener,
           ),
-          SliverToBoxAdapter(
-            child: Center(
-              child: InkWell(
-                onTap: _.goToHistory,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: 40),
-                  child: Text(
-                    'Ver todas las atenciones',
-                    style: TextStyle(color: colorMain),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      );
-    },
-  );
+        );
+      },
+    );
+  }
 }

@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/services/pet/pet_dead_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
 
 class MascotaDrawerController extends GetxController {
   final petC = Get.find<MascotaDetalleController>();
   final homeC = Get.find<HomeController>();
-  final mascotaService = MascotaService();
+  final petService = PetService();
+  final petDeadService = PetDeadService();
 
   @override
   void onInit() {
@@ -21,7 +23,7 @@ class MascotaDrawerController extends GetxController {
   }
 
   Future<void> _falleceMascota(String mascota) async {
-    bool resp = await mascotaService.muerePet(mascota);
+    bool resp = await petDeadService.muerePet(mascota);
     if (resp) {
       petC.verMiMascota();
       Get.back();
@@ -30,7 +32,7 @@ class MascotaDrawerController extends GetxController {
   }
 
   Future<void> _reviveMascota(String mascota) async {
-    bool resp = await mascotaService.revivePet(mascota);
+    bool resp = await petDeadService.revivePet(mascota);
     if (resp) {
       petC.verMiMascota();
       Get.back();
@@ -43,7 +45,7 @@ class MascotaDrawerController extends GetxController {
   }
 
   Future<void> _eliminaMascota() async {
-    bool resp = await mascotaService.deletePet(petC.pet.id);
+    bool resp = await petService.deletePet(petC.pet.id);
     if (resp) {
       homeC.getSummary();
       Get.offAllNamed('navInicio');

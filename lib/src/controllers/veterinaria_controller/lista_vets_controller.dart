@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
-import 'package:proypet/src/data/services/establecimiento_service.dart';
+import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/services/establishment/establishment_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import '../_global_controller.dart';
 import 'filtra_vets_controller.dart';
 
 class VeterinariasController extends GetxController {
-  final vetService = EstablecimientoService();
+  final vetService = EstablishmentService();
+
   RxList<EstablecimientoShortModel> vetLocales =
       List<EstablecimientoShortModel>().obs;
   RxList<EstablecimientoShortModel> temp =

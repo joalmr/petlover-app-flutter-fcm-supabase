@@ -11,6 +11,7 @@ import 'package:proypet/src/app/views/pages/mascota/historia/components/grooming
 import 'package:proypet/src/app/views/pages/mascota/historia/components/vacuna.dart';
 
 Widget timeline({
+  int bonification,
   @required Widget circleData,
   @required int dayData,
   String detailData,
@@ -162,7 +163,7 @@ Widget timeline({
                                 size: 12, color: colorMain),
                             SizedBox(width: 2.5),
                             Text(
-                              "Ganaste ${double.parse(priceData).floor()} ${double.parse(priceData).floor() != 1 ? 'puntos' : 'puntos'}",
+                              "Ganaste $bonification ${bonification != 1 ? 'puntos' : 'puntos'}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Get.textTheme.subtitle2.color,

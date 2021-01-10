@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_short_model.dart';
-import 'package:proypet/src/data/services/establecimiento_service.dart';
+import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/services/establishment/establishment_service.dart';
 
 class BuscarVetController extends GetxController {
-  final establecimientoService = EstablecimientoService();
+  final establecimientoService = EstablishmentService();
 
   RxList<EstablecimientoShortModel> veterinarias =
       List<EstablecimientoShortModel>().obs;

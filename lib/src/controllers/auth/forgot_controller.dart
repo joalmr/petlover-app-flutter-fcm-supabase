@@ -3,7 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/snackbar.dart';
-import 'package:proypet/src/data/services/auth_service.dart';
+import 'package:proypet/src/data/services/auth/auth_service.dart';
 
 class ForgotController extends GetxController {
   final AuthService repository = AuthService();
@@ -44,7 +44,9 @@ class ForgotController extends GetxController {
     if (isEmailValid) {
       int resp = await repository.forgot(email);
       if (resp == 200) {
-        mostrarSnackbar("Se le envío un correo electrónico a la dirección ingresada", colorMain);
+        mostrarSnackbar(
+            "Se le envío un correo electrónico a la dirección ingresada",
+            colorMain);
         Timer(Duration(milliseconds: 3500), () {
           loading.value = false;
           Get.until((route) => route.isFirst);

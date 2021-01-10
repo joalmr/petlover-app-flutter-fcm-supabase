@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/booking/booking_home.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
+import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 

@@ -1,13 +1,16 @@
 import 'dart:convert';
 
-import 'establecimiento_model.dart';
+import '../../../providers/establishment/model/establecimiento_model.dart';
 
-EstablecimientoModel establecimientoModelFromJson(String str) => EstablecimientoModel.fromJson(json.decode(str));
+EstablecimientoModel establecimientoModelFromJson(String str) =>
+    EstablecimientoModel.fromJson(json.decode(str));
 
-String establecimientoModelToJson(EstablecimientoModel data) => json.encode(data.toJson());
+String establecimientoModelToJson(EstablecimientoModel data) =>
+    json.encode(data.toJson());
 
 //menos datos
-EstablecimientoLess establecimientoLessFromJson(String str) => EstablecimientoLess.fromJson(json.decode(str));
+EstablecimientoLess establecimientoLessFromJson(String str) =>
+    EstablecimientoLess.fromJson(json.decode(str));
 
 class EstablecimientoList {
   final List<EstablecimientoModel> establecimientos;
@@ -17,8 +20,10 @@ class EstablecimientoList {
   });
 
   factory EstablecimientoList.fromJson(List<dynamic> parsedJson) {
-    List<EstablecimientoModel> establecimientos = new List<EstablecimientoModel>();
-    establecimientos = parsedJson.map((i) => EstablecimientoModel.fromJson(i)).toList();
+    List<EstablecimientoModel> establecimientos =
+        new List<EstablecimientoModel>();
+    establecimientos =
+        parsedJson.map((i) => EstablecimientoModel.fromJson(i)).toList();
 
     return new EstablecimientoList(
       establecimientos: establecimientos,
@@ -57,20 +62,26 @@ class EstablecimientoLess {
     this.distance,
   });
 
-  factory EstablecimientoLess.fromJson(Map<String, dynamic> json) => EstablecimientoLess(
+  factory EstablecimientoLess.fromJson(Map<String, dynamic> json) =>
+      EstablecimientoLess(
         id: json["id"],
         name: json["name"],
         phone: json["phone"] == null ? "" : json["phone"],
-        description: json["description"] == null ? "Descripción no detallada" : json["description"],
+        description: json["description"] == null
+            ? "Descripción no detallada"
+            : json["description"],
         stars: json["stars"] == null ? "" : json["stars"],
         votes: json["votes"] == null ? "" : json["votes"],
         attentions: json["attentions"] == null ? 0 : json["attentions"],
         address: json["address"] == null ? "" : json["address"],
         latitude: json["latitude"] == null ? 0.0 : json["latitude"].toDouble(),
-        longitude: json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
+        longitude:
+            json["longitude"] == null ? 0.0 : json["longitude"].toDouble(),
         slides: List<String>.from(json["slides"].map((x) => x)),
         logo: json["logo"],
-        distance: json["distance"] == null ? "" : json["distance"].toDouble().toStringAsFixed(2),
+        distance: json["distance"] == null
+            ? ""
+            : json["distance"].toDouble().toStringAsFixed(2),
       );
 
   Map<String, dynamic> toJson() => {
