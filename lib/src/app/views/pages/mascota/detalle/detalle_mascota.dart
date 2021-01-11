@@ -13,7 +13,7 @@ import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';
-import 'components/card_style.dart';
+import 'components/tab_general/card_style.dart';
 import 'components/tab_cartilla_vacuna.dart';
 import 'components/tab_citas.dart';
 import 'components/tab_general.dart';

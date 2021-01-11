@@ -6,6 +6,7 @@ import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_contr
 
 // final _mdC = Get.find<MascotaDetalleController>();
 final _mdC = MascotaDetalleController();
+//TODO: get.find
 
 funtionFleas() {
   return showDialog(

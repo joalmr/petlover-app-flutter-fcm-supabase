@@ -36,6 +36,7 @@ dependencies:
   dio_http_cache: ^0.2.8
   email_validator: ^1.0.6
   firebase_messaging: ^6.0.15
+  flutter_conditional_rendering: ^1.1.1
   flutter_email_sender: ^3.0.1
   flutter_local_notifications: ^3.0.2
   flutter_login_facebook: ^0.4.1 #login con facebook

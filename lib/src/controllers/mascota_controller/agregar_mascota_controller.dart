@@ -33,6 +33,11 @@ class MascotaAgregarController extends GetxController {
   Breed razaSeleccionada;
   String razaName;
 
+  RxInt _page = 1.obs;
+
+  set page(int value) => _page.value = value;
+  int get page => _page.value;
+
   TextEditingController razaTextC = TextEditingController();
 
   Rx<File> _foto = File('').obs;
@@ -65,11 +70,13 @@ class MascotaAgregarController extends GetxController {
   void onInit() {
     super.onInit();
     _obtenerRaza();
+    // page = 1;
     fecha = format.format(DateTime.now());
   }
 
   @override
   void onClose() {
+    // page = 1;
     super.onClose();
   }
 
@@ -130,6 +137,10 @@ class MascotaAgregarController extends GetxController {
         razaTextC.text = razaName;
       },
     );
+  }
+
+  String getRaza(int idRaza) {
+    return razaLista.breeds.where((element) => element.id == idRaza).first.name;
   }
 
   Future<List<Breed>> _getData(String filter) async {

@@ -34,15 +34,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     DBProvider.db.database;
-
-    // var tempNoti = new LocalNotification(
-    //   dateTime: DateTime.now(),
-    //   type: 'limpiar',
-    //   frecuency: 20,
-    // );
     DBProvider.db.getTables();
-    // DBProvider.db.getPetFood();
-    // DBProvider.db.getUserLoginDate();
 
     super.initState();
   }
