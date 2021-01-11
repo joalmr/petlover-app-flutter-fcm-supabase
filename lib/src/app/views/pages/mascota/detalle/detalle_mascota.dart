@@ -160,50 +160,45 @@ class MascotaDetallePage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                cardFn(
-                                  image: Svg(pathSvg('fleas')),
-                                  text: 'pulgas',
-                                  fn: _.fnFleas,
-                                ),
-                                _.pet.specieId == 1
-                                    ? cardFn(
-                                        image: Svg(pathSvg('litter-box')),
-                                        text: 'arena',
-                                        fn: _.fnLitterBox,
-                                      )
-                                    : SizedBox(width: 0),
-                                // : cardFn(
-                                //     image: Svg(pathSvg('leash')),
-                                //     text: 'paseo',
-                                //     fn: () {},
-                                //   ),
-                                cardFn(
-                                  image: Svg(pathSvg(
-                                    _.pet.specieId == 1
-                                        ? 'cat-food'
-                                        : 'dog-food',
-                                  )),
-                                  text: 'comida',
-                                  fn: _.fnFood,
-                                ),
-                                cardFn(
-                                  image: Svg(pathSvg('bed')),
-                                  text: 'cama',
-                                  fn: _.fnBed,
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   children: [
+                            //     cardFn(
+                            //       image: Svg(pathSvg('fleas')),
+                            //       text: 'pulgas',
+                            //       fn: _.fnFleas,
+                            //     ),
+                            //     _.pet.specieId == 1
+                            //         ? cardFn(
+                            //             image: Svg(pathSvg('litter-box')),
+                            //             text: 'arena',
+                            //             fn: _.fnLitterBox,
+                            //           )
+                            //         : SizedBox(width: 0),
+                            //     cardFn(
+                            //       image: Svg(pathSvg(
+                            //         _.pet.specieId == 1
+                            //             ? 'cat-food'
+                            //             : 'dog-food',
+                            //       )),
+                            //       text: 'comida',
+                            //       fn: _.fnFood,
+                            //     ),
+                            //     cardFn(
+                            //       image: Svg(pathSvg('bed')),
+                            //       text: 'cama',
+                            //       fn: _.fnBed,
+                            //     ),
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(
-                            top: 180, bottom: 7.5, left: 5.0, right: 5.0),
-                        height: context.height - 180,
+                            top: 120, bottom: 7.5, left: 5.0, right: 5.0),
+                        height: context.height - 120, //180
                         decoration: BoxDecoration(
                           borderRadius: borderRadius,
                           color: Theme.of(context).scaffoldBackgroundColor,

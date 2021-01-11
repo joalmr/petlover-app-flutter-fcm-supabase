@@ -29,6 +29,9 @@ class DBProvider {
       version: 5,
       onOpen: (db) {},
       onCreate: (Database db, int version) async {
+        // await db.execute('''
+        // ''');
+
         await db.execute('''
         CREATE TABLE local_notifications(
           id INTEGER PRIMARY KEY,

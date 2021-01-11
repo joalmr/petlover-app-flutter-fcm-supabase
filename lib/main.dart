@@ -33,8 +33,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    DBProvider.db.database;
-    DBProvider.db.getTables();
+    // DBProvider.db.database;
+    // DBProvider.db.getTables();
 
     super.initState();
   }
