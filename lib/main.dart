@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'config/global_variables.dart';
 import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
 import 'src/controllers/veterinaria_controller/lista_vets_controller.dart';
-import 'src/data/database/_db_provider.dart';
 import 'src/theme/theme.dart';
 import 'src/theme/themeDark.dart';
 import 'src/app/views/pages/_nav_bar/navigation_bar.dart';

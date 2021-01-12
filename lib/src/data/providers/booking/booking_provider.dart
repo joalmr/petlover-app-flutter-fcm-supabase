@@ -60,8 +60,7 @@ class BookingProvider {
     final url = '$_url/booking/attempt';
 
     final _data = {"establishment_id": idEstablishment};
-    var resp = await dio.post(url,
-        data: _data, options: Options(headers: headersToken()));
+    await dio.post(url, data: _data, options: Options(headers: headersToken()));
     // print(resp.data);
   }
 

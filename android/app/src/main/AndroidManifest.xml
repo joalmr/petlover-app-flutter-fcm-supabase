@@ -12,7 +12,9 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="Proypet"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        android:requestLegacyExternalStorage="true"
+        >
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844" />
 
 
@@ -50,10 +52,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!-- <activity
+        <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/> -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
