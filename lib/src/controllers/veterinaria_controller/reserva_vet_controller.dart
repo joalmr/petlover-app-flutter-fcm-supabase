@@ -305,11 +305,11 @@ class ReservaVetController extends GetxController {
     var time2 = TimeParser.parse(takeHora['time_end']);
 
     var hora0 = time0.hours * 60 + time0.minutes;
-    var hora1 = time1.hours * 60 + time1.minutes;
-    var hora2 = time2.hours * 60 + time2.minutes;
+    var horaInicio = time1.hours * 60 + time1.minutes;
+    var horaFin = time2.hours * 60 + time2.minutes;
 
     if (takeHora['attention'] == 'on') {
-      if (hora1 < hora0 && hora0 < hora2)
+      if (horaInicio <= hora0 && hora0 < horaFin)
         return true;
       else
         return false;
