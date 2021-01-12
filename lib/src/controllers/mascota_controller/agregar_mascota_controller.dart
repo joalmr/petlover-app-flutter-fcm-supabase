@@ -162,7 +162,10 @@ class MascotaAgregarController extends GetxController {
   }
 
   _mostrarFoto() {
-    if (foto.path != '') return FileImage(foto);
+    // != null && foto.path != ''
+    if (foto == null)
+      return AssetImage('images/no-image.png');
+    else if (foto.path.isNotEmpty) return FileImage(foto);
     return AssetImage('images/no-image.png');
   }
 

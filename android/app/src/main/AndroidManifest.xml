@@ -13,7 +13,6 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="Proypet"
         android:icon="@mipmap/launcher_icon"
-        android:requestLegacyExternalStorage="true"
         >
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844" />
 

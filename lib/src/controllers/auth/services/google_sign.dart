@@ -18,6 +18,7 @@ class GoogleSignInService {
       return account;
     } catch (e) {
       print('Error google');
+      print(e);
       return null;
     }
   }
