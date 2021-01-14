@@ -86,7 +86,15 @@ class LoginController extends GetxController {
 
   void loginFacebook() async {
     int result = await FacebookSignInService.signIn();
+    retornos(result);
+  }
 
+  loginGoogle() async {
+    int result = await GoogleSignInService.signIn();
+    retornos(result);
+  }
+
+  retornos(result) {
     switch (result) {
       case 200:
         ejecutaFirebase();
@@ -110,12 +118,10 @@ class LoginController extends GetxController {
         }
         break;
       case 500:
+        Timer(Duration(milliseconds: 500), () => loading.value = false);
+        mostrarSnackbar('Error, no se logró ingresar', colorRed);
         break;
     }
-  }
-
-  void loginGoogle() {
-    GoogleSignInService.signIn();
   }
 
   ejecutaFirebase() {

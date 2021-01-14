@@ -13,10 +13,6 @@ class FacebookSignInService {
         FacebookPermission.email,
       ]);
 
-      print('=== fb token ===');
-      print(result.accessToken);
-      print(result.accessToken.token);
-
       switch (result.status) {
         case FacebookLoginStatus.Success:
           {
@@ -28,9 +24,14 @@ class FacebookSignInService {
             var email = fbEmail;
             var fbId = fbProfile.userId;
 
-            Map<String, dynamic> respLogin =
-                await repository.loginFb(nombre, apellido, email, fbId);
-            statusCode = respLogin['code']; //200 401 500
+            int respLogin = await repository.loginFb(
+              nombre,
+              apellido,
+              email,
+              fbId,
+              result.accessToken.token,
+            );
+            statusCode = respLogin; //200 401 500
           }
           break;
         case FacebookLoginStatus.Cancel:
@@ -42,7 +43,7 @@ class FacebookSignInService {
       }
       return statusCode;
     } catch (e) {
-      print('Error google');
+      print('Error facebook');
       return 500;
     }
   }

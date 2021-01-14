@@ -8,33 +8,67 @@ class AuthProvider {
 
   Dio dio = new Dio();
 
-  Future<Map<String, dynamic>> loginFb(
-      String name, String lastname, String email, String fbId) async {
+  Future<int> loginGoogle(
+    String name,
+    String lastname,
+    String email,
+    String fbId,
+    String accessToken,
+  ) async {
+    final url = '$_url/login/google';
+
+    final loginData = {
+      "first_name": name,
+      "last_name": lastname,
+      "email": email,
+      "social_id": fbId,
+      "access_token": accessToken
+    };
+
+    Response response;
+    response = await dio.post(url, data: loginData);
+
+    if (response.statusCode == 200) {
+      _prefs.token = response.data['token'];
+      _prefs.verify = response.data['verify'];
+
+      return response.statusCode;
+    }
+
+    return response.statusCode;
+  }
+
+  Future<int> loginFb(
+    String name,
+    String lastname,
+    String email,
+    String fbId,
+    String accessToken,
+  ) async {
     final url = '$_url/login/facebook';
+
     try {
       final loginData = {
         "first_name": name,
         "last_name": lastname,
         "email": email,
         "social_id": fbId,
+        "access_token": accessToken
       };
 
       Response response;
       response = await dio.post(url, data: loginData);
 
-      var jsonRespuesta;
-
       if (response.statusCode == 200) {
         _prefs.token = response.data['token'];
         _prefs.verify = response.data['verify'];
 
-        jsonRespuesta = {'code': 200, 'token': response.data['token']};
-      } else if (response.statusCode == 401) {
-        jsonRespuesta = {'code': 401, 'message': response.data['message']};
+        return response.statusCode;
       }
-      return jsonRespuesta;
+      // else if (response.statusCode == 401) return response.statusCode;
+      return 401;
     } catch (ex) {
-      return {'code': 500, 'message': 'Acceso incorrecto'};
+      return 500;
     }
   }
 

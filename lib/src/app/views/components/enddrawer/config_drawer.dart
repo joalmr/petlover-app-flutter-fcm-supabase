@@ -41,14 +41,14 @@ class ConfigDrawer extends StatelessWidget {
                   title: Text('Calificar atenciones'),
                   onTap: () => Get.to(AtencionesPage()),
                 ),
-                //TODO: quitar antes de publicar
-                appPruebas
-                    ? ListTile(
-                        leading: Icon(Icons.email),
-                        title: Text('Mensaje directo'),
-                        onTap: () {},
-                      )
-                    : SizedBox(height: 0),
+                // //TODO: quitar antes de publicar
+                // appPruebas
+                //     ? ListTile(
+                //         leading: Icon(Icons.email),
+                //         title: Text('Mensaje directo'),
+                //         onTap: () {},
+                //       )
+                //     : SizedBox(height: 0),
                 ListTile(
                   leading: Icon(Icons.share),
                   title: Text('Compartir con mis amigos'),
