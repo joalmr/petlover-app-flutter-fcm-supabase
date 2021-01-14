@@ -10,7 +10,6 @@ import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart
 class PushController extends GetxController {
   AuthService loginApi = AuthService();
   final homeC = Get.find<HomeController>();
-
   final _prefs = new PreferenciasUsuario();
 
   Map<String, dynamic> mensaje;

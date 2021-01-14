@@ -35,11 +35,14 @@ class AtencionController extends GetxController {
   }
 
   votar(AtencionModel atencion) {
+    print(atencion.attentionBonification);
+
     dynamic argumentos = {
-      'pet_picture': '${atencion.establishmentLogo}',
+      'establishment_logo': '${atencion.establishmentLogo}',
+      'attention_bonification': atencion.attentionBonification ?? '0',
       'message':
           'Califica la atención recibida por ${atencion.establishmentName}',
-      'id': '${atencion.id}',
+      'attention_id': '${atencion.attentionId}',
     };
 
     Get.toNamed('calificaatencion', arguments: argumentos);

@@ -163,7 +163,7 @@ Widget timeline({
                                 size: 12, color: colorMain),
                             SizedBox(width: 2.5),
                             Text(
-                              "Ganaste $bonification ${bonification != 1 ? 'puntos' : 'puntos'}",
+                              "Ganaste $bonification ${bonification != 1 ? 'puntos' : 'punto'}",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Get.textTheme.subtitle2.color,

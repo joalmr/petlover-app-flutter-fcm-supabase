@@ -57,7 +57,7 @@ class GeneralTab extends StatelessWidget {
                             ? Container(
                                 height: 120,
                                 child: Center(
-                                  child: Text('No tiene atenciones este mes'),
+                                  child: Text('No tiene registros este mes'),
                                 ),
                               )
                             : ListView.builder(

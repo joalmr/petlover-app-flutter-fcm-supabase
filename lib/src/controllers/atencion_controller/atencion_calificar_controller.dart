@@ -10,7 +10,8 @@ class CalificaAtencionController extends GetxController {
   final inputComentController = new TextEditingController();
 
   dynamic argumentos;
-  String petImage;
+  String vetLogo;
+  String bonificacion;
   String mensaje;
   String idAtencion;
 
@@ -24,9 +25,10 @@ class CalificaAtencionController extends GetxController {
   void onInit() {
     super.onInit();
     argumentos = Get.arguments;
-    petImage = argumentos['pet_picture'];
+    vetLogo = argumentos['establishment_logo'];
+    bonificacion = argumentos['attention_bonification'];
     mensaje = argumentos['message'];
-    idAtencion = argumentos['id'];
+    idAtencion = argumentos['attention_id'];
 
     inputComentController.text = 'Pésimo servicio';
   }
@@ -59,8 +61,10 @@ class CalificaAtencionController extends GetxController {
   onRate() => _onRate();
 
   _onRate() async {
+    print(idAtencion);
+
     AtencionModel atencion = new AtencionModel();
-    atencion.id = idAtencion;
+    atencion.attentionId = idAtencion;
     atencion.stars = myrating.toInt();
     atencion.comment = inputComentController.text;
     bool resp = await atencionService.calificar(atencion);

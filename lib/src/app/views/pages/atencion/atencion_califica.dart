@@ -48,7 +48,7 @@ class AtencionCalifica extends StatelessWidget {
                                                 child: Image(
                                                   image:
                                                       CachedNetworkImageProvider(
-                                                          _.petImage),
+                                                          _.vetLogo),
                                                   height: 150,
                                                   width: 150,
                                                   fit: BoxFit.cover,
@@ -61,11 +61,17 @@ class AtencionCalifica extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 20),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      'Has ganado ${_.bonificacion} ${_.bonificacion != '1' ? 'puntos' : 'punto'}',
+                                      style: TextStyle(color: colorYellow),
+                                    ),
                                     Text(
                                       _.mensaje,
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.white),
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                      ),
                                       textAlign: TextAlign.center,
                                     ),
                                     SizedBox(height: 20),
@@ -85,7 +91,7 @@ class AtencionCalifica extends StatelessWidget {
                                       onRatingUpdate: (rating) =>
                                           _.puntuacion(rating),
                                     ),
-                                    SizedBox(height: 10),
+                                    SizedBox(height: 20),
                                     textfieldArea(
                                       _.inputComentController,
                                       "Ingrese comentario de la atención recibida",
@@ -109,18 +115,22 @@ class AtencionCalifica extends StatelessWidget {
                                     horizontal: 22.5),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text(
-                                      'Gracias por calificar el establecimiento; sigue reservando, acumula puntos y gana premios \n🌟🎁🐶🐱',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
+                                    Center(
+                                      child: Text(
+                                        'Gracias por calificar el establecimiento; sigue reservando, acumula puntos y gana premios \n🌟🎁🐶🐱',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                        ),
+                                        textAlign: TextAlign.center,
                                       ),
-                                      textAlign: TextAlign.center,
                                     ),
-                                    Lottie.asset(pathLottie('star'),
-                                        height: 140),
+                                    Lottie.asset(
+                                      pathLottie('star'),
+                                      height: 140,
+                                    ),
                                   ],
                                 ),
                               ),

@@ -8,7 +8,8 @@ String atencionModelToJson(List<AtencionModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class AtencionModel {
-  String id;
+  String attentionId;
+  String attentionBonification; //revisar para push
   String establishmentName;
   String establishmentLogo;
   String pet;
@@ -17,7 +18,8 @@ class AtencionModel {
   String createdAt;
 
   AtencionModel({
-    this.id,
+    this.attentionId,
+    this.attentionBonification,
     this.establishmentName,
     this.establishmentLogo,
     this.pet,
@@ -27,7 +29,8 @@ class AtencionModel {
   });
 
   factory AtencionModel.fromJson(Map<String, dynamic> json) => AtencionModel(
-        id: json["id"],
+        attentionId: json["attention_id"],
+        attentionBonification: json["attention_bonification"].toString(),
         establishmentName: json["establishment_name"],
         establishmentLogo: json["establishment_logo"],
         pet: json["pet"],
@@ -37,7 +40,8 @@ class AtencionModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        "attention_id": attentionId,
+        "attention_bonification": attentionBonification,
         "establishment_name": establishmentName,
         "establishment_logo": establishmentLogo,
         "pet": pet,

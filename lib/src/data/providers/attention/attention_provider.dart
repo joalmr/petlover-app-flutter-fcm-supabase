@@ -19,7 +19,7 @@ class AttentionProvider {
   }
 
   Future<bool> calificar(AtencionModel atencion) async {
-    final url = '$_url/attentions/${atencion.id}/rate';
+    final url = '$_url/attentions/${atencion.attentionId}/rate';
 
     final bodyData = {
       "stars": atencion.stars.toString(),
