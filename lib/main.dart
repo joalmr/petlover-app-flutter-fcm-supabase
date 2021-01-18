@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,8 +14,7 @@ import 'src/app/views/pages/_nav_bar/navigation_bar.dart';
 import 'src/controllers/_global_controller.dart';
 
 //proypet user
-FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+// FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,9 +30,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    // DBProvider.db.database;
-    // DBProvider.db.getTables();
-
     super.initState();
   }
 
@@ -42,7 +37,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     Get.put(HomeController());
     Get.put(GlobalController());
-
     Get.put(VeterinariasController());
     Get.put(FiltraVetsController());
 

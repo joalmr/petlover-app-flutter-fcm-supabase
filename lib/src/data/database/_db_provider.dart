@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '_db_model.dart';
 
 class DBProvider {
@@ -29,9 +28,6 @@ class DBProvider {
       version: 5,
       onOpen: (db) {},
       onCreate: (Database db, int version) async {
-        // await db.execute('''
-        // ''');
-
         await db.execute('''
         CREATE TABLE local_notifications(
           id INTEGER PRIMARY KEY,
@@ -43,24 +39,24 @@ class DBProvider {
         )
         ''');
 
-        await db.execute('''
-        CREATE TABLE pet_food(
-          id INTEGER PRIMARY KEY, 
-          foodBrand INTEGER,
-          frecuency INTEGER
-          hours TEXT, 
-          petId INTEGER,
-          petName TEXT
-        )
-        ''');
+        // await db.execute('''
+        // CREATE TABLE pet_food(
+        //   id INTEGER PRIMARY KEY,
+        //   foodBrand INTEGER,
+        //   frecuency INTEGER
+        //   hours TEXT,
+        //   petId INTEGER,
+        //   petName TEXT
+        // )
+        // ''');
 
-        await db.execute('''
-        CREATE TABLE user_login_date(
-          id INTEGER PRIMARY KEY, 
-          userId TEXT,
-          dateTime TEXT
-        )
-        ''');
+        // await db.execute('''
+        // CREATE TABLE user_login_date(
+        //   id INTEGER PRIMARY KEY,
+        //   userId TEXT,
+        //   dateTime TEXT
+        // )
+        // ''');
       },
     );
   }

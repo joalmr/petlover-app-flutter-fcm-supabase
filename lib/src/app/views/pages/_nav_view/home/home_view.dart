@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                             text: 'Hola, ', // default text style
                             children: <TextSpan>[
                               TextSpan(
-                                text: _.usuario,
+                                text: _.usuario.name,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ],

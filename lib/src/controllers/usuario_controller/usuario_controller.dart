@@ -38,7 +38,7 @@ class UsuarioController extends GetxController {
   }
 
   _cargaValores() {
-    UserModel2 dato = globalC.usuario;
+    UserModel2 dato = homeC.usuario;
 
     nombre = dato.name;
     apellido = dato.lastname;
@@ -77,7 +77,7 @@ class UsuarioController extends GetxController {
     bool resp = await userService.editUser(nombre, apellido, telefono);
     if (resp) {
       mostrarSnackbar('Se guardaron los datos.', colorMain);
-      globalC.getUsuario();
+      homeC.getUsuario();
       homeC.getSummary();
       Timer(Duration(milliseconds: 1500), () => btnBool.value = true);
     } else {

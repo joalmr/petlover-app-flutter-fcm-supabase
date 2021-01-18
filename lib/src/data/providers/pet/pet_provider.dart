@@ -16,7 +16,7 @@ class PetProvider {
     );
 
     final pets = List<MascotaModel2>.from(
-        response.data.map((x) => MascotaModel2.fromJson(x)));
+        response.data["pets"].map((x) => MascotaModel2.fromJson(x)));
 
     return pets;
   }

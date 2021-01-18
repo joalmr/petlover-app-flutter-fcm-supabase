@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:proypet/src/app/views/auth/onboard.dart';
-// import 'package:proypet/src/app/views/pages/_nav_view/destacados/detalle/detalle_destacado.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/vet_reservar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/detalle_vet.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
@@ -11,11 +10,10 @@ import 'package:proypet/src/app/views/pages/bonus_pet/canjear_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/sorteo_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/ultimos_puntos.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/components/historial_page.dart';
+import 'package:proypet/src/app/views/pages/update_page.dart';
 import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
-
 import 'package:proypet/src/app/views/pages/mascota/historia/detalle_historia.dart';
-
 import 'package:proypet/src/app/views/auth/login_page.dart';
 import 'package:proypet/src/app/views/auth/singup_page.dart';
 import 'package:proypet/src/app/views/auth/forgot_page.dart';
@@ -31,6 +29,7 @@ GetStorage box = GetStorage();
 
 List<GetPage> getRutas() {
   return [
+    GetPage(name: 'update', page: () => UpdatePage()),
     GetPage(
       name: '/',
       page: () => box.hasData('token') && box.hasData('verify')

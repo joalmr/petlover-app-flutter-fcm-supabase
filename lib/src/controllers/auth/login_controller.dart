@@ -126,7 +126,7 @@ class LoginController extends GetxController {
 
   ejecutaFirebase() {
     pushController.firebase();
-    globalController.getUsuario();
+    homeController.getUsuario();
     homeController.getSummary();
     vetsController.getVets();
     Get.offAllNamed('navInicio');

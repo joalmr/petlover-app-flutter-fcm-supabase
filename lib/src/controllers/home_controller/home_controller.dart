@@ -1,15 +1,20 @@
 import 'package:get/get.dart';
 import 'package:proypet/src/data/models/model/booking/booking_home.dart';
 import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/providers/user/model/user_model.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
+  final userService = UserService();
+  final petService = PetService();
 
-  RxString _usuario = ''.obs;
-  set usuario(String value) => _usuario.value = value;
-  String get usuario => _usuario.value;
+  Rx<UserModel2> _usuario = UserModel2().obs;
+  set usuario(UserModel2 value) => _usuario.value = value;
+  UserModel2 get usuario => _usuario.value;
 
   RxBool loading = true.obs;
 
@@ -31,10 +36,17 @@ class HomeController extends GetxController {
     return null;
   }
 
+  getUsuario() => _getUsuario();
+
+  _getUsuario() async {
+    usuario = await userService.getUser();
+  }
+
   @override
   void onInit() {
     super.onInit();
     if (_prefs.hasToken()) {
+      getUsuario();
       getSummary();
     }
   }
@@ -45,9 +57,11 @@ class HomeController extends GetxController {
 
   Future<void> _summary() async {
     var resp = await summaryRepository.getUserSummary();
-    usuario = resp.user.name;
+    var pets = await petService.getPets();
+
     mascotas.clear();
-    mascotas.addAll(resp.pets);
+    mascotas.addAll(pets);
+
     atenciones.clear();
     DateTime now = DateTime.now();
     resp.bookings.forEach((booking) {
@@ -61,6 +75,7 @@ class HomeController extends GetxController {
       booking.vencido = vencido;
       atenciones.add(booking);
     });
+
     loading.value = false;
   }
 }

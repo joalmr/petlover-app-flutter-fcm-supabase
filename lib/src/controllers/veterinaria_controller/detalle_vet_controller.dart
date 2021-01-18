@@ -26,6 +26,10 @@ class VetDetalleController extends GetxController {
   final vetService = new EstablishmentService();
   final bookingService = new BookingService();
 
+  final homeC = Get.find<HomeController>();
+  final globalC = Get.find<GlobalController>();
+  final vetsC = Get.find<VeterinariasController>();
+
   Rx<EstablecimientoModel> _vet = EstablecimientoModel().obs;
   set vet(EstablecimientoModel value) => _vet.value = value;
   EstablecimientoModel get vet => _vet.value;
@@ -43,10 +47,6 @@ class VetDetalleController extends GetxController {
   String vetId;
   String vetInit;
 
-  final homeC = Get.find<HomeController>();
-  final globalC = Get.find<GlobalController>();
-  final vetsC = Get.find<VeterinariasController>();
-
   UserModel2 usuario;
 
   @override
@@ -54,7 +54,7 @@ class VetDetalleController extends GetxController {
     super.onInit();
     vetInit = Get.arguments;
     traeMascotas();
-    usuario = globalC.usuario;
+    usuario = homeC.usuario;
     telefono = usuario.phone;
     getVet();
   }
@@ -208,8 +208,8 @@ class VetDetalleController extends GetxController {
       bool phone = phoneRegex(telefono);
       if (phone) {
         await userService.editUser(usuario.name, usuario.lastname, telefono);
-        globalC.getUsuario();
-        usuario = globalC.usuario;
+        homeC.getUsuario();
+        usuario = homeC.usuario;
         Get.back();
       } else {
         mostrarSnackbar('Número telefónico inválido', colorRed);
