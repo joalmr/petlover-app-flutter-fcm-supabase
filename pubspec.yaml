@@ -22,11 +22,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   
-  cron: ^0.2.4
-  path_provider:
-  sqflite:
+  # cron: ^0.2.4
+  # path_provider:
+  # sqflite:
 
-  ai_notification_enable: ^1.6.0
+  ai_notification_enable: ^1.6.0 #activar notificaciones
   animate_do: ^1.6.3
   badges: ^1.1.4  
   cached_network_image: ^2.0.0
@@ -38,7 +38,7 @@ dependencies:
   firebase_messaging: ^6.0.15
   flutter_conditional_rendering: ^1.1.1
   flutter_email_sender: ^3.0.1
-  flutter_local_notifications: ^3.0.2
+  # flutter_local_notifications: ^3.0.2
   flutter_login_facebook: ^0.4.1 #login con facebook
   flutter_rating_bar: ^3.0.1+1
   flutter_svg_provider: ^0.1.8
@@ -51,7 +51,6 @@ dependencies:
   google_fonts: ^1.1.1
   google_maps_flutter: ^0.5.28+1
   google_maps_webservice: ^0.0.16
-  # google_sign_in: ^4.5.6 #login con google
   google_sign_in: ^4.5.9 #login con google
   http:
   image_cropper: ^1.3.1
