@@ -15,6 +15,8 @@ class UpdateProvider {
     int buildNumber = int.parse(packageInfo.buildNumber);
     int versionCode = int.parse(response.data['versionCode']);
 
+    versionAndroid = response.data['versionName'];
+
     print('===android===');
     print(buildNumber);
     print(versionCode);
@@ -34,6 +36,8 @@ class UpdateProvider {
 
     int buildNumber = int.parse(packageInfo.buildNumber);
     int versionCode = int.parse(response.data['versionCode']);
+
+    versionIOS = response.data['versionName'];
 
     print('===iOs===');
     print(buildNumber);

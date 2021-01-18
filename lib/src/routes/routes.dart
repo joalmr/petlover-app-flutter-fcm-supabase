@@ -41,37 +41,26 @@ List<GetPage> getRutas() {
     GetPage(name: 'login', page: () => LoginPage()),
     GetPage(name: 'registro', page: () => SingupPage()),
     GetPage(name: 'olvidopass', page: () => ForgotPage()),
-
     GetPage(name: 'micuenta', page: () => MiCuentaPage()),
     GetPage(name: 'editarusuario', page: () => UserPage()),
     GetPage(name: 'cambiarpass', page: () => ChangePasswordPage()),
-    //
     GetPage(name: 'navInicio', page: () => NavigationBar(currentTabIndex: 0)),
     GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),
     GetPage(name: 'navLista', page: () => NavigationBar(currentTabIndex: 2)),
-    // GetPage(name: 'navDestacado', page: () => NavigationBar(currentTabIndex: 3)),
     GetPage(
         name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 3)),
-    //
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
     GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
     GetPage(name: 'historialmascota', page: () => HistorialMascota()),
-    //
     GetPage(name: 'vetdetalle', page: () => VetDetallePage()),
     GetPage(name: 'vetreserva', page: () => DataReserva()),
-    //
-    // GetPage(name: 'detalledestacado', page: () => DetalleDestacadoPage()),
     GetPage(name: 'detallereservado', page: () => DetalleReservado()),
-
     GetPage(name: 'calificaatencion', page: () => AtencionCalifica()),
-
     GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
     GetPage(name: 'vermascomentarios', page: () => TodosComentarios()),
     GetPage(name: 'buscarveterinaria', page: () => BuscarVeterinaria()),
-
     GetPage(name: 'enviarqueja', page: () => QuejaPage()),
-
     GetPage(name: 'puntosganados', page: () => PuntosGanados()),
     GetPage(name: 'canjearpuntos', page: () => CanjearPuntos()),
     GetPage(name: 'sorteopuntos', page: () => SorteoPuntos()),

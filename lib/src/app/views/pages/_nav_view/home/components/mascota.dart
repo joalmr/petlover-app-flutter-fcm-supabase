@@ -19,6 +19,7 @@ class Mascotas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _home = Get.find<HomeController>();
+
     return GetX<PetHomeController>(
         init: PetHomeController(),
         builder: (_) {

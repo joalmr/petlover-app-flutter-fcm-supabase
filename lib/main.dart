@@ -13,7 +13,7 @@ import 'src/theme/themeDark.dart';
 import 'src/app/views/pages/_nav_bar/navigation_bar.dart';
 import 'src/controllers/_global_controller.dart';
 
-//proypet user
+// //proypet user
 // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 main() async {

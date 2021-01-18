@@ -14,139 +14,140 @@ class Atenciones extends StatelessWidget {
   Widget build(BuildContext context) {
     final _home = Get.find<HomeController>();
     return GetX<BookingHomeController>(
-        init: BookingHomeController(),
-        builder: (_) {
-          return _home.loading.value
-              ? Container(
-                  width: double.infinity,
-                  height: 100,
-                  child: Center(
-                    child: lottieLoading,
-                  ),
-                )
-              : _home.sinAtenciones
-                  ? FadeIn(
-                      duration: Duration(milliseconds: 500),
-                      child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 30.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            (_home.mascotas.length > 0)
-                                ? InkWell(
-                                    borderRadius: borderRadius,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 2, bottom: 2),
-                                      child: Image(
-                                        image: AssetImage(
-                                            'images/reserva-gana.png'),
-                                        fit: BoxFit.cover,
-                                        height: 220,
-                                      ),
-                                    ),
-                                  )
-                                : Padding(
-                                    padding: const EdgeInsets.only(bottom: 10),
-                                    child: Text(
-                                      'Agrega a tu mascota y se parte de la comunidad responsable',
-                                      textAlign: TextAlign.center,
+      init: BookingHomeController(),
+      builder: (_) {
+        return _home.loading.value
+            ? Container(
+                width: double.infinity,
+                height: 100,
+                child: Center(
+                  child: lottieLoading,
+                ),
+              )
+            : _home.sinAtenciones
+                ? FadeIn(
+                    duration: Duration(milliseconds: 500),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 30.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          (_home.mascotas.length > 0)
+                              ? InkWell(
+                                  borderRadius: borderRadius,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 2, bottom: 2),
+                                    child: Image(
+                                      image:
+                                          AssetImage('images/reserva-gana.png'),
+                                      fit: BoxFit.cover,
+                                      height: 220,
                                     ),
                                   ),
-                            _home.loading.value
-                                ? Container()
-                                : (_home.mascotas.length > 0)
-                                    ? SizedBox(height: 0)
-                                    : buttonOutLine('Agregar mascota',
-                                        _.agregarMascota, colorMain),
-                          ],
-                        ),
-                      ),
-                    )
-                  : FadeIn(
-                      duration: Duration(milliseconds: 500),
-                      child: ListView.separated(
-                        itemCount: _home.atenciones.length,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        separatorBuilder: (BuildContext context, int index) {
-                          return Divider();
-                        },
-                        itemBuilder: (BuildContext context, int index) {
-                          final atencion = _home.atenciones[index];
-                          return Dismissible(
-                            key: UniqueKey(),
-                            background: Container(color: colorRed),
-                            direction: DismissDirection.endToStart,
-                            confirmDismiss: (fn) => showDialog(
-                              context: context,
-                              builder: (BuildContext context) => FadeIn(
-                                child: AlertDialog(
-                                  title: Text('Eliminar'),
-                                  content: Text(
-                                      'Seguro que desea eliminar esta reserva?'),
-                                  actions: <Widget>[
-                                    buttonModal('Cancelar', _.volver,
-                                        Get.textTheme.subtitle2.color),
-                                    buttonModal(
-                                        'Eliminar',
-                                        () => _.eliminaAtencion(atencion.id),
-                                        colorRed),
-                                  ],
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Text(
+                                    'Agrega a tu mascota y se parte de la comunidad responsable',
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
+                          _home.loading.value
+                              ? Container()
+                              : (_home.mascotas.length > 0)
+                                  ? SizedBox(height: 0)
+                                  : buttonOutLine('Agregar mascota',
+                                      _.agregarMascota, colorMain),
+                        ],
+                      ),
+                    ),
+                  )
+                : FadeIn(
+                    duration: Duration(milliseconds: 500),
+                    child: ListView.separated(
+                      itemCount: _home.atenciones.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return Divider();
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        final atencion = _home.atenciones[index];
+                        return Dismissible(
+                          key: UniqueKey(),
+                          background: Container(color: colorRed),
+                          direction: DismissDirection.endToStart,
+                          confirmDismiss: (fn) => showDialog(
+                            context: context,
+                            builder: (BuildContext context) => FadeIn(
+                              child: AlertDialog(
+                                title: Text('Eliminar'),
+                                content: Text(
+                                    'Seguro que desea eliminar esta reserva?'),
+                                actions: <Widget>[
+                                  buttonModal('Cancelar', _.volver,
+                                      Get.textTheme.subtitle2.color),
+                                  buttonModal(
+                                      'Eliminar',
+                                      () => _.eliminaAtencion(atencion.id),
+                                      colorRed),
+                                ],
                               ),
                             ),
-                            child: FlatButton(
-                              onPressed: () => _.detalleReservado(atencion),
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  backgroundImage: CachedNetworkImageProvider(
-                                      atencion.petPicture),
-                                  radius: 25.0,
-                                ),
-                                title: Text(atencion.establishmentName),
-                                subtitle: Text(
-                                  (!atencion.vencido)
-                                      ? atencion.status
-                                      : '${atencion.status} - Vencido',
-                                  style: (!atencion.vencido)
-                                      ? (atencion.statusId == 3 ||
-                                              atencion.statusId == 6)
-                                          ? TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: colorMain)
-                                          : TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color:
-                                                  Get.textTheme.subtitle2.color)
-                                      : TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: colorRed),
-                                ),
-                                trailing: Column(
-                                  children: <Widget>[
-                                    Text(atencion.date,
-                                        style: Get.textTheme.subtitle2
-                                            .copyWith(fontSize: 12.0)
-                                            .apply(fontWeightDelta: 2)),
-                                    Text(
-                                      atencion.time,
-                                      style: Get.textTheme.subtitle2.apply(
-                                          fontWeightDelta: 2, color: colorMain),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 0, vertical: 0),
+                          ),
+                          child: FlatButton(
+                            onPressed: () => _.detalleReservado(atencion),
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                backgroundImage: CachedNetworkImageProvider(
+                                    atencion.petPicture),
+                                radius: 25.0,
                               ),
+                              title: Text(atencion.establishmentName),
+                              subtitle: Text(
+                                (!atencion.vencido)
+                                    ? atencion.status
+                                    : '${atencion.status} - Vencido',
+                                style: (!atencion.vencido)
+                                    ? (atencion.statusId == 3 ||
+                                            atencion.statusId == 6)
+                                        ? TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: colorMain)
+                                        : TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                Get.textTheme.subtitle2.color)
+                                    : TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: colorRed),
+                              ),
+                              trailing: Column(
+                                children: <Widget>[
+                                  Text(atencion.date,
+                                      style: Get.textTheme.subtitle2
+                                          .copyWith(fontSize: 12.0)
+                                          .apply(fontWeightDelta: 2)),
+                                  Text(
+                                    atencion.time,
+                                    style: Get.textTheme.subtitle2.apply(
+                                        fontWeightDelta: 2, color: colorMain),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 0, vertical: 0),
                             ),
-                          );
-                        },
-                      ),
-                    );
-        });
+                          ),
+                        );
+                      },
+                    ),
+                  );
+      },
+    );
   }
 }

@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:proypet/src/app/views/components/enddrawer/config_drawer.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-
 import 'components/atenciones.dart';
 import 'components/frecuentes.dart';
 import 'components/mascota.dart';
@@ -111,32 +110,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// Column(
-//   crossAxisAlignment: CrossAxisAlignment.start,
-//   mainAxisAlignment: MainAxisAlignment.start,
-//   children: <Widget>[
-//     Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: <Widget>[
-//         Text(
-//           "Hola,",
-//           style: TextStyle(
-//             fontSize: 34,
-//             fontWeight: FontWeight.w300,
-//           ),
-//         ),
-//         IconButton(
-//             icon: Icon(Icons.settings,
-//                 color: Get.textTheme.subtitle2.color),
-//             onPressed: () =>
-//                 _scaffoldKey.currentState.openEndDrawer())
-//       ],
-//     ),
-//     Text(
-//       _.usuario,
-//       style:
-//           Get.textTheme.headline4.apply(fontWeightDelta: 2),
-//     )
-//   ],
-// ),

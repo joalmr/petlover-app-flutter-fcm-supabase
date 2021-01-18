@@ -21,7 +21,7 @@ class FnTimeLine extends StatelessWidget {
         int firstMonth = dateBornConverted.month;
 
         int lastYear = dateBornConverted.year +
-            ((DateTime.now().year - dateBornConverted.year) + 2);
+            ((DateTime.now().year - dateBornConverted.year) + 1);
 
         int todayYear = _.today.year;
         int todayMonth = _.today.month;

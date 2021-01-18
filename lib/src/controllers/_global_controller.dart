@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/controllers/_push_controller.dart';
 import 'package:proypet/src/data/services/auth/auth_service.dart';
+import 'package:proypet/src/data/services/update_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class GlobalController extends GetxController {
   final repository = AuthService();
+  final updateApp = UpdateService();
 
   final _prefs = new PreferenciasUsuario();
   final pushController = PushController();
@@ -21,8 +23,18 @@ class GlobalController extends GetxController {
   void onInit() {
     super.onInit();
     ubicacion = _prefs.ubicacion ?? '';
-    getTema();
-    evaluaLogin();
+    getInit();
+  }
+
+  getInit() async {
+    bool needUpdate = await updateApp.setAppUpdate();
+
+    if (needUpdate) {
+      Get.toNamed('update');
+    } else {
+      getTema();
+      evaluaLogin();
+    }
   }
 
   getTema() {

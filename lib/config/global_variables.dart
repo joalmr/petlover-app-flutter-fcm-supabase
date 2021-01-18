@@ -14,6 +14,8 @@ const produccion = {
   'urlApi': 'https://proypet.com/api',
 };
 
+String versionAndroid = "";
+String versionIOS = "";
 final bool appPruebas = true;
 //TODO: cambiar a false cuando sea produccion - cambiar google-services para android
 

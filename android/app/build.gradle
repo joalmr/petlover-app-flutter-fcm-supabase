@@ -49,8 +49,8 @@ android {
         // applicationId "com.proypet.user"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 12 //TODO: esto siempre debe aumentar
-        versionName "1.3.1" //TODO: esto siempre debe aumentar
+        versionCode 13 //Ya aumente para la version 1.4.0
+        versionName "1.4.0" //TODO: esto siempre debe aumentar
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
