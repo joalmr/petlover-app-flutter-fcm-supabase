@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,6 @@ import 'package:proypet/src/data/services/establishment/establishment_service.da
 import 'package:proypet/src/data/services/user/user_service.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../_global_controller.dart';
 import 'lista_vets_controller.dart';
 

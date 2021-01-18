@@ -8,6 +8,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/controllers/home_controller/atencion_home_controller.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
+import 'package:proypet/src/utils/datetime.dart';
 
 class Atenciones extends StatelessWidget {
   @override
@@ -91,7 +92,8 @@ class Atenciones extends StatelessWidget {
                                       Get.textTheme.subtitle2.color),
                                   buttonModal(
                                       'Eliminar',
-                                      () => _.eliminaAtencion(atencion.id),
+                                      () =>
+                                          _.eliminaAtencion(atencion.bookingId),
                                       colorRed),
                                 ],
                               ),
@@ -108,12 +110,12 @@ class Atenciones extends StatelessWidget {
                               ),
                               title: Text(atencion.establishmentName),
                               subtitle: Text(
-                                (!atencion.vencido)
-                                    ? atencion.status
-                                    : '${atencion.status} - Vencido',
-                                style: (!atencion.vencido)
-                                    ? (atencion.statusId == 3 ||
-                                            atencion.statusId == 6)
+                                (!atencion.pastDate)
+                                    ? atencion.bookingStatus
+                                    : '${atencion.bookingStatus} - Vencido',
+                                style: (!atencion.pastDate)
+                                    ? (atencion.bookingStatusId == 3 ||
+                                            atencion.bookingStatusId == 6)
                                         ? TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: colorMain)
@@ -127,12 +129,14 @@ class Atenciones extends StatelessWidget {
                               ),
                               trailing: Column(
                                 children: <Widget>[
-                                  Text(atencion.date,
-                                      style: Get.textTheme.subtitle2
-                                          .copyWith(fontSize: 12.0)
-                                          .apply(fontWeightDelta: 2)),
                                   Text(
-                                    atencion.time,
+                                    formatDate(atencion.bookingDatetime),
+                                    style: Get.textTheme.subtitle2
+                                        .copyWith(fontSize: 12.0)
+                                        .apply(fontWeightDelta: 2),
+                                  ),
+                                  Text(
+                                    formatTime(atencion.bookingDatetime),
                                     style: Get.textTheme.subtitle2.apply(
                                         fontWeightDelta: 2, color: colorMain),
                                     textAlign: TextAlign.center,

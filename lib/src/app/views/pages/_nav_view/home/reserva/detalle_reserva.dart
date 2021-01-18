@@ -6,6 +6,7 @@ import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/views/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/home_controller/detalle_reserva_controller.dart';
+import 'package:proypet/src/utils/datetime.dart';
 
 class DetalleReservado extends StatelessWidget {
   @override
@@ -52,17 +53,18 @@ class DetalleReservado extends StatelessWidget {
                               Text("Estado de la reserva",
                                   style: Get.textTheme.subtitle2
                                       .apply(fontWeightDelta: 2)),
-                              (!_.vencido)
-                                  ? Text(_.argumentos.status,
-                                      style: (_.argumentos.statusId == 3 ||
-                                              _.argumentos.statusId == 6)
+                              (!_.argumentos.pastDate)
+                                  ? Text(_.argumentos.bookingStatus,
+                                      style: (_.argumentos.bookingStatusId ==
+                                                  3 ||
+                                              _.argumentos.bookingStatusId == 6)
                                           ? Get.textTheme.subtitle2.apply(
                                               fontWeightDelta: 2,
                                               color: colorMain)
                                           : Get.textTheme.subtitle1
                                               .apply(fontWeightDelta: 2))
                                   : Text(
-                                      '${_.argumentos.status} - Vencido',
+                                      '${_.argumentos.bookingStatus} - Vencido',
                                       style: Get.textTheme.subtitle2.apply(
                                           fontWeightDelta: 2, color: colorRed),
                                     ),
@@ -97,17 +99,28 @@ class DetalleReservado extends StatelessWidget {
                         Text("Dirección de veterinaria",
                             style: Get.textTheme.subtitle2
                                 .apply(fontWeightDelta: 2)),
-                        Text(_.argumentos.address, maxLines: 3),
+                        Text(_.argumentos.establishmentAddress, maxLines: 3),
                         SizedBox(height: 10.0),
-                        Text("Fecha y hora",
+                        Text("Fecha",
                             style: Get.textTheme.subtitle2
                                 .apply(fontWeightDelta: 2)),
-                        Text('${_.argumentos.date}  ${_.argumentos.time}'),
+                        Text('${formatDate(_.argumentos.bookingDatetime)}'),
+                        SizedBox(height: 10.0),
+                        Text("Hora",
+                            style: Get.textTheme.subtitle2
+                                .apply(fontWeightDelta: 2)),
+                        Text('${formatTime(_.argumentos.bookingDatetime)}'),
                         SizedBox(height: 10.0),
                         Text("Servicios",
                             style: Get.textTheme.subtitle2
                                 .apply(fontWeightDelta: 2)),
-                        Text('-'),
+                        Wrap(
+                          children: _.argumentos.bookingServices
+                              .map((item) => Text(
+                                  '$item${_.argumentos.bookingServices.length > 0 ? ', ' : ''}'))
+                              .toList()
+                              .cast<Widget>(),
+                        ),
                         SizedBox(height: 20.0),
                         buttonPri("Ver en mapa", () => _.abreMaps()),
                         SizedBox(height: 20.0),

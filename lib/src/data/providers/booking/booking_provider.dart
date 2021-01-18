@@ -2,16 +2,39 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/booking/model/booking_model.dart';
+import 'package:proypet/src/data/providers/booking/model/booking_set_model.dart';
 import 'package:proypet/src/data/models/model/servicio_reserva.dart';
+
+import 'model/booking_model.dart';
 
 class BookingProvider {
   final _url = urlApi;
 
   Dio dio = new Dio();
 
-  Future<bool> booking(BookingModel booking, List reservaType, dynamic delivery,
-      String direccion) async {
+  Future<List<BookingModel>> getBookings() async {
+    final url = '$_url/bookings';
+    Response response =
+        await dio.get(url, options: Options(headers: headersToken()));
+
+    List<BookingModel> bookings = List<BookingModel>.from(
+        response.data.map((x) => BookingModel.fromJson(x)));
+
+    return bookings;
+  }
+
+  Future<BookingModel> getBooking(String bookingId) async {
+    final url = '$_url/booking/$bookingId';
+    Response response =
+        await dio.get(url, options: Options(headers: headersToken()));
+
+    final booking = BookingModel.fromJson(response.data);
+
+    return booking;
+  }
+
+  Future<bool> setBooking(BookingSetModel booking, List reservaType,
+      dynamic delivery, String direccion) async {
     final url = '$_url/bookings';
     var bodyData;
 

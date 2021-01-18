@@ -1,57 +1,83 @@
+// To parse this JSON data, do
+//
+//     final bookingModel = bookingModelFromJson(jsonString);
+
 import 'dart:convert';
 
-BookingModel bookingModelFromJson(String str) =>
-    BookingModel.fromJson(json.decode(str));
+List<BookingModel> bookingModelFromJson(String str) => List<BookingModel>.from(
+    json.decode(str).map((x) => BookingModel.fromJson(x)));
 
-String bookingModelToJson(BookingModel data) => json.encode(data.toJson());
+String bookingModelToJson(List<BookingModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class BookingModel {
-  String establishmentId;
-  // String typeId;
-  String userId;
-  String petId;
-  int statusId;
-  String bookingAt;
-  String id;
-  DateTime updatedAt;
-  DateTime createdAt;
-  String observation;
-
   BookingModel({
+    this.bookingId,
+    this.bookingDatetime,
+    this.bookingServices,
+    this.bookingStatusId,
+    this.bookingStatus,
     this.establishmentId,
-    // this.typeId,
-    this.userId,
+    this.establishmentAddress,
+    this.establishmentLatitude,
+    this.establishmentLongitude,
+    this.establishmentName,
+    this.establishmentPhone,
     this.petId,
-    this.statusId,
-    this.bookingAt,
-    this.id,
-    this.updatedAt,
-    this.createdAt,
-    this.observation,
+    this.petName,
+    this.petPicture,
+    this.pastDate,
   });
 
+  String bookingId;
+  DateTime bookingDatetime;
+  List<String> bookingServices;
+  int bookingStatusId;
+  String bookingStatus;
+  String establishmentId;
+  String establishmentAddress;
+  double establishmentLatitude;
+  double establishmentLongitude;
+  String establishmentName;
+  String establishmentPhone;
+  String petId;
+  String petName;
+  String petPicture;
+  bool pastDate;
+
   factory BookingModel.fromJson(Map<String, dynamic> json) => BookingModel(
-      establishmentId: json["establishment_id"],
-      // typeId: json["type_id"],
-      userId: json["user_id"],
-      petId: json["pet_id"],
-      statusId: json["status_id"],
-      bookingAt: json["booking_at"], //DateTime.parse(json["booking_at"]), //
-      id: json["id"],
-      updatedAt: DateTime.parse(json["updated_at"]),
-      createdAt: DateTime.parse(json["created_at"]),
-      observation: json["observation"] == null ? "" : json["observation"]);
+        bookingId: json["booking_id"],
+        bookingDatetime: DateTime.parse(json["booking_datetime"]),
+        bookingServices:
+            List<String>.from(json["booking_services"].map((x) => x)),
+        bookingStatusId: json["booking_status_id"],
+        bookingStatus: json["booking_status"],
+        establishmentId: json["establishment_id"],
+        establishmentAddress: json["establishment_address"],
+        establishmentLatitude: json["establishment_latitude"].toDouble(),
+        establishmentLongitude: json["establishment_longitude"].toDouble(),
+        establishmentName: json["establishment_name"],
+        establishmentPhone: json["establishment_phone"],
+        petId: json["pet_id"],
+        petName: json["pet_name"],
+        petPicture: json["pet_picture"],
+        pastDate: false,
+      );
 
   Map<String, dynamic> toJson() => {
+        "booking_id": bookingId,
+        "booking_datetime": bookingDatetime.toIso8601String(),
+        "booking_services": List<dynamic>.from(bookingServices.map((x) => x)),
+        "booking_status_id": bookingStatusId,
+        "booking_status": bookingStatus,
         "establishment_id": establishmentId,
-        // "type_id": typeId,
-        "user_id": userId,
+        "establishment_address": establishmentAddress,
+        "establishment_latitude": establishmentLatitude,
+        "establishment_longitude": establishmentLongitude,
+        "establishment_name": establishmentName,
+        "establishment_phone": establishmentPhone,
         "pet_id": petId,
-        "status_id": statusId,
-        "booking_at": bookingAt, //bookingAt.toIso8601String(),
-        "id": id,
-        "updated_at": updatedAt.toIso8601String(),
-        "created_at": createdAt.toIso8601String(),
-        "observation": observation
+        "pet_name": petName,
+        "pet_picture": petPicture,
       };
 }

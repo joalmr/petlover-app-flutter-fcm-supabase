@@ -7,7 +7,7 @@ import 'package:google_maps_webservice/directions.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/booking/model/booking_model.dart';
+import 'package:proypet/src/data/providers/booking/model/booking_set_model.dart';
 import 'package:proypet/src/data/providers/establishment/model/establecimiento_model.dart';
 import 'package:proypet/src/data/models/model/maps/address.dart';
 import 'package:proypet/src/data/models/model/servicio_reserva.dart';
@@ -429,7 +429,7 @@ class ReservaVetController extends GetxController {
 
   Future<void> ejecutaReserva() async {
     actBtn.value = false;
-    BookingModel booking = BookingModel();
+    BookingSetModel booking = BookingSetModel();
     booking.bookingAt = fechaTimeAt;
     booking.establishmentId = vet.id;
     booking.petId = mascotaId;
@@ -444,8 +444,12 @@ class ReservaVetController extends GetxController {
       deliveryTipo = deliveryArray[int.parse(deliveryId) - 1];
     }
 
-    bool resp = await bookingService.booking(
-        booking, reservaType, deliveryTipo, _prefs.myAddress);
+    bool resp = await bookingService.setBooking(
+      booking,
+      reservaType,
+      deliveryTipo,
+      _prefs.myAddress,
+    );
 
     if (resp) {
       homeC.getSummary();
