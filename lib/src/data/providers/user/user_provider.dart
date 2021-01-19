@@ -7,7 +7,6 @@ class UserProvider {
   final _url = urlApi;
   Dio dio = new Dio();
 
-  //no se para que lo cree, investigar
   Future<UserModel2> getUser() async {
     final url = '$_url/profile';
 
