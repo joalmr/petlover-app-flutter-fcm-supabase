@@ -19,6 +19,7 @@ class BuscarVetController extends GetxController {
   }
 
   findVet(vetName) {
+    veterinarias.clear();
     if (vetName.length > 2) {
       carga.value = true;
       Timer(Duration(milliseconds: 500), () => _findVet(vetName));

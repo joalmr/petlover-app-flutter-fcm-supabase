@@ -8,6 +8,7 @@ import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/atencion_controller/atencion_controller.dart';
 import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
+import 'package:proypet/src/utils/datetime.dart';
 
 class AtencionesPage extends StatelessWidget {
   final refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -65,7 +66,7 @@ class AtencionesPage extends StatelessWidget {
                                           Text(_atencion.pet,
                                               style: Get.textTheme.subtitle2),
                                           Text(
-                                            _atencion.createdAt,
+                                            formatDateTime(_atencion.createdAt),
                                             style: TextStyle(
                                               color: colorMain,
                                               fontSize: sizeSmallx1,

@@ -10,15 +10,11 @@ Widget allHistories(List<PetHistoryModel> historias) {
   return ListView.builder(
     itemCount: historias.length,
     itemBuilder: (BuildContext context, int index) {
-      // 2021-01-01T00:50:21.000000Z
-      // yyyy-MM-ddTHH:mm:ss.mmmuuuZ
-      String dmyString = historias[index].attentionDate;
-      DateTime dateTime = DateFormat('yyyy-MM-dd HH:mm:ss').parse(dmyString);
+      DateTime dateTime = historias[index].attentionDate;
 
       int yearPreviou = 0;
       if (index > 0) {
-        DateTime datePrevio = DateFormat("yyyy-MM-dd HH:mm:ss")
-            .parse(historias[index - 1].attentionDate);
+        DateTime datePrevio = historias[index - 1].attentionDate;
         yearPreviou = datePrevio.year;
       }
       // Hm -> 24 horas // jm -> am pm

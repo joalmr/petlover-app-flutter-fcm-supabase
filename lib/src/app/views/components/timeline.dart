@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -72,9 +73,18 @@ Widget timeline({
             Column(
               children: [
                 Container(
-                  width: 1,
                   height: 30,
-                  color: Get.theme.iconTheme.color,
+                  child: DottedLine(
+                    direction: Axis.vertical,
+                    lineLength: double.infinity,
+                    lineThickness: 1.0,
+                    dashLength: 1.0,
+                    dashColor: Get.theme.iconTheme.color,
+                    dashRadius: 0.0,
+                    dashGapLength: 4.0,
+                    dashGapColor: Colors.transparent,
+                    dashGapRadius: 0.0,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(2),
@@ -91,12 +101,24 @@ Widget timeline({
                   ),
                 ),
                 Container(
-                  width: 1,
-                  height: 30,
-                  color: indexData == listLength - 1
-                      ? Colors.transparent
-                      : Get.theme.iconTheme.color,
-                )
+                    // color: indexData == listLength - 1
+                    //     ? Colors.transparent
+                    //     : Get.theme.iconTheme.color,
+                    // width: 1,
+                    height: 30,
+                    child: DottedLine(
+                      direction: Axis.vertical,
+                      lineLength: double.infinity,
+                      lineThickness: 1.0,
+                      dashLength: 1.0,
+                      dashColor: indexData == listLength - 1
+                          ? Colors.transparent
+                          : Get.theme.iconTheme.color,
+                      dashRadius: 0.0,
+                      dashGapLength: 4.0,
+                      dashGapColor: Colors.transparent,
+                      dashGapRadius: 0.0,
+                    ))
               ],
             ),
             Expanded(

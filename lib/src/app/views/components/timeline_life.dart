@@ -65,7 +65,7 @@ class FnTimeLine extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          print('$i $j');
+                          // print('$i $j');
                           _.tempYear.value = i.toString();
                           _.tempMonth.value = mes[j];
                           _.historyDate(i.toString(), j.toString());

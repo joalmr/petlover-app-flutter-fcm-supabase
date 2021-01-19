@@ -20,7 +20,7 @@ banio(data) {
               ),
               SizedBox(width: 10.0),
               Text(
-                'Baño',
+                'Grooming',
                 style: Get.textTheme.subtitle2
                     .apply(fontWeightDelta: 2)
                     .copyWith(fontSize: 12),

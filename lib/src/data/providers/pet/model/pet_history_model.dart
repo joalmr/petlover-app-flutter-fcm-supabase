@@ -1,6 +1,6 @@
 class PetHistoryModel {
   String attentionId;
-  String attentionDate;
+  DateTime attentionDate;
   dynamic attentionDetails;
   String attentionAmount;
   String attentionBonification;
@@ -19,7 +19,7 @@ class PetHistoryModel {
   factory PetHistoryModel.fromJson(Map<String, dynamic> json) =>
       PetHistoryModel(
         attentionId: json['attention_id'],
-        attentionDate: json['attention_date'].toString(),
+        attentionDate: DateTime.parse(json["attention_date"]),
         attentionDetails: json['attention_details'] ?? null,
         attentionAmount: json['attention_amount'].toString(),
         attentionBonification: json['attention_bonification'].toString(),
@@ -29,7 +29,7 @@ class PetHistoryModel {
 
   Map<String, dynamic> toJson() => {
         'attention_id': attentionId,
-        'attention_date': attentionDate,
+        "attention_date": attentionDate.toIso8601String(),
         'attention_details': attentionDetails.toJson(),
         'attention_amount': attentionAmount,
         'attention_bonification': attentionBonification,

@@ -33,13 +33,23 @@ Widget cardHistory(PetHistoryModel history) {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Precio'),
-            Text(history.attentionAmount),
+            Text(
+              'Precio',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              history.attentionAmount,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.only(top: 2),
+          padding: EdgeInsets.only(top: 5),
           child: Row(
             children: <Widget>[
               Icon(FontAwesomeIcons.coins, size: 12, color: colorMain),
@@ -48,12 +58,12 @@ Widget cardHistory(PetHistoryModel history) {
                 "Ganaste ${history.attentionBonification} puntos",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Get.textTheme.subtitle2.color,
                 ),
               ),
             ],
           ),
         ),
+        SizedBox(height: 20),
         // //TODO: quitar antes de publicar
         // appPruebas
         //     ? Align(

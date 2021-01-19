@@ -15,7 +15,7 @@ class AtencionModel {
   String pet;
   int stars;
   String comment;
-  String createdAt;
+  DateTime createdAt;
 
   AtencionModel({
     this.attentionId,
@@ -36,7 +36,7 @@ class AtencionModel {
         pet: json["pet"],
         stars: json["stars"] == null ? null : json["stars"],
         comment: json["comment"] == null ? null : json["comment"],
-        createdAt: json["created_at"],
+        createdAt: DateTime.parse(json["created_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -47,6 +47,6 @@ class AtencionModel {
         "pet": pet,
         "stars": stars == null ? null : stars,
         "comment": comment == null ? null : comment,
-        "created_at": createdAt,
+        "created_at": createdAt.toIso8601String(),
       };
 }
