@@ -162,11 +162,10 @@ class MascotaAgregarController extends GetxController {
   }
 
   _mostrarFoto() {
-    // != null && foto.path != ''
-    if (foto == null)
+    if (foto.path.isNotEmpty)
+      return FileImage(foto);
+    else
       return AssetImage('images/no-image.png');
-    else if (foto.path.isNotEmpty) return FileImage(foto);
-    return AssetImage('images/no-image.png');
   }
 
   seleccionarFoto() {
@@ -186,7 +185,7 @@ class MascotaAgregarController extends GetxController {
   }
 
   _procesarImagen(ImageSource origen) async {
-    var imagen = await ImagePicker().getImage(source: origen);
+    var imagen = await ImagePicker().getImage(source: origen, imageQuality: 80);
 
     File croppedFile = await ImageCropper.cropImage(
       sourcePath: imagen.path,

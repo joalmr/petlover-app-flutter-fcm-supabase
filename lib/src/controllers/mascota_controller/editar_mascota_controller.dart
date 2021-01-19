@@ -139,7 +139,7 @@ class MascotaEditarController extends GetxController {
   }
 
   _mostrarFoto() {
-    if (foto.path != '')
+    if (foto.path.isNotEmpty)
       return FileImage(foto);
     else
       return CachedNetworkImageProvider(petC.pet.picture);
@@ -190,7 +190,6 @@ class MascotaEditarController extends GetxController {
       ),
     );
 
-    // if (foto != null) {} //limpieza
     foto = croppedFile;
     Get.back();
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/views/pages/update_page.dart';
 import 'package:proypet/src/controllers/_push_controller.dart';
 import 'package:proypet/src/data/services/auth/auth_service.dart';
 import 'package:proypet/src/data/services/update_service.dart';
@@ -30,7 +31,16 @@ class GlobalController extends GetxController {
     bool needUpdate = await updateApp.setAppUpdate();
 
     if (needUpdate) {
-      Get.toNamed('update');
+      // Get.toNamed('update');
+      showDialog(
+        context: Get.context,
+        barrierDismissible: false,
+        useSafeArea: true,
+        child: AlertDialog(
+          scrollable: true,
+          content: updateView(),
+        ),
+      );
     } else {
       getTema();
       evaluaLogin();
