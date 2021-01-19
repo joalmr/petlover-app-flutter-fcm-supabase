@@ -56,12 +56,13 @@ List<GetPage> getRutas() {
     GetPage(name: 'vetreserva', page: () => DataReserva()),
     GetPage(name: 'detallereservado', page: () => DetalleReservado()),
     GetPage(name: 'calificaatencion', page: () => AtencionCalifica()),
-    GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
     GetPage(name: 'vermascomentarios', page: () => TodosComentarios()),
     GetPage(name: 'buscarveterinaria', page: () => BuscarVeterinaria()),
-    GetPage(name: 'enviarqueja', page: () => QuejaPage()),
     GetPage(name: 'puntosganados', page: () => PuntosGanados()),
     GetPage(name: 'canjearpuntos', page: () => CanjearPuntos()),
     GetPage(name: 'sorteopuntos', page: () => SorteoPuntos()),
+
+    GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
+    GetPage(name: 'enviarqueja', page: () => QuejaPage()),
   ];
 }

@@ -25,6 +25,10 @@ List quejaLista = [
   },
   {
     'id': '7',
+    'name': 'La aplicación falla',
+  },
+  {
+    'id': '8',
     'name': 'Otro',
   },
 ];

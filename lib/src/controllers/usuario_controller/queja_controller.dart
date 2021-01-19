@@ -5,6 +5,8 @@ class QuejaController extends GetxController {
   RxString _queja = '1'.obs;
   RxString _descripcion = ''.obs;
 
+  RxBool envia = false.obs;
+
   set queja(String value) => _queja.value = value;
   String get queja => _queja.value;
 
@@ -14,6 +16,7 @@ class QuejaController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    envia.value = false;
   }
 
   enviarQueja() => _enviarQueja();
@@ -37,7 +40,7 @@ class QuejaController extends GetxController {
       recipients: ['info@proypet.com'],
       isHTML: true,
     );
-
+    envia.value = true;
     await FlutterEmailSender.send(email);
   }
 }
