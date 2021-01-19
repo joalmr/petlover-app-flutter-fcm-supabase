@@ -35,6 +35,18 @@ banio(data) {
         ],
       ),
       SizedBox(height: 10),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: data["groomings"]
+            .map((item) => Text(
+                  '· $item',
+                  style: TextStyle(fontSize: 10),
+                ))
+            .toList()
+            .cast<Widget>(),
+      ),
+      SizedBox(height: 10),
       Text(
         "Recomendación",
         style: TextStyle(
