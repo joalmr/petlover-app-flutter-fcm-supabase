@@ -128,8 +128,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
               child: mapToggle
                   ? PageView.builder(
                       controller: _pageController,
-                      // allowImplicitScrolling: true,
-                      // pageSnapping: true,
                       itemCount: vetLocales.length,
                       physics: BouncingScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
