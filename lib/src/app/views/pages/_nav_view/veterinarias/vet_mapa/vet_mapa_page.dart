@@ -48,18 +48,18 @@ class _VetMapaPageState extends State<VetMapaPage> {
       _mapStyle = string;
     });
 
-    vetLocales.forEach((element) {
+    for (var i = 0; i < vetLocales.length; i++) {
       allMarkers.add(Marker(
-        markerId: MarkerId(element.name),
+        markerId: MarkerId(vetLocales[i].name),
         draggable: false,
-        infoWindow: InfoWindow(
-          title: element.name,
-          snippet: '★ ${element.stars} (${element.attentions})',
-          onTap: () => Get.toNamed('vetdetalle', arguments: element),
+        onTap: () => _pageController.animateToPage(
+          i,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.ease,
         ),
-        position: LatLng(element.latitude, element.longitude),
+        position: LatLng(vetLocales[i].latitude, vetLocales[i].longitude),
       ));
-    });
+    }
 
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
@@ -91,33 +91,34 @@ class _VetMapaPageState extends State<VetMapaPage> {
       children: <Widget>[
         FadeIn(
           child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              child: GoogleMap(
-                myLocationEnabled: true,
-                myLocationButtonEnabled: true,
-                compassEnabled: true,
-                gestureRecognizers: Set()
-                  ..add(Factory<PanGestureRecognizer>(
-                      () => PanGestureRecognizer()))
-                  ..add(Factory<ScaleGestureRecognizer>(
-                      () => ScaleGestureRecognizer()))
-                  ..add(Factory<TapGestureRecognizer>(
-                      () => TapGestureRecognizer()))
-                  ..add(Factory<VerticalDragGestureRecognizer>(
-                      () => VerticalDragGestureRecognizer())),
-                rotateGesturesEnabled: true,
-                scrollGesturesEnabled: true,
-                zoomGesturesEnabled: true,
-                tiltGesturesEnabled: true,
-                mapType: MapType.normal,
-                initialCameraPosition: CameraPosition(
-                    target:
-                        LatLng(vetLocales[0].latitude, vetLocales[0].longitude),
-                    zoom: 16.0),
-                markers: Set.from(allMarkers),
-                onMapCreated: mapCreated,
-              )),
+            height: double.infinity,
+            width: double.infinity,
+            child: GoogleMap(
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+              compassEnabled: true,
+              gestureRecognizers: Set()
+                ..add(
+                    Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))
+                ..add(Factory<ScaleGestureRecognizer>(
+                    () => ScaleGestureRecognizer()))
+                ..add(
+                    Factory<TapGestureRecognizer>(() => TapGestureRecognizer()))
+                ..add(Factory<VerticalDragGestureRecognizer>(
+                    () => VerticalDragGestureRecognizer())),
+              rotateGesturesEnabled: true,
+              scrollGesturesEnabled: true,
+              zoomGesturesEnabled: true,
+              tiltGesturesEnabled: true,
+              mapType: MapType.normal,
+              initialCameraPosition: CameraPosition(
+                  target:
+                      LatLng(vetLocales[0].latitude, vetLocales[0].longitude),
+                  zoom: 16.0),
+              markers: Set.from(allMarkers),
+              onMapCreated: mapCreated,
+            ),
+          ),
         ),
         Positioned(
           bottom: 25.0,
@@ -127,6 +128,8 @@ class _VetMapaPageState extends State<VetMapaPage> {
               child: mapToggle
                   ? PageView.builder(
                       controller: _pageController,
+                      // allowImplicitScrolling: true,
+                      // pageSnapping: true,
                       itemCount: vetLocales.length,
                       physics: BouncingScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
