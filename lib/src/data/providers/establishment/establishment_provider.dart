@@ -2,10 +2,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/establishment/model/comentarios_model.dart';
 import 'package:proypet/src/data/providers/establishment/model/establecimiento_model.dart';
 import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
-import 'package:proypet/src/data/providers/establishment/model/promocion_model.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablishmentProvider {
@@ -14,43 +12,10 @@ class EstablishmentProvider {
 
   Dio dio = new Dio();
 
-  Future<List<EstablecimientoShortModel>> findVets(String vetName) async {
-    List<EstablecimientoShortModel> establecimientos = [];
-    var filtroServicio = "";
-    List<EstablecimientoShortModel> vets;
-
-    if (_prefs.hasPosition()) {
-      String lat = _prefs.position.split(',')[0];
-      String lng = _prefs.position.split(',')[1];
-      final url =
-          '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
-      Response response;
-      response = await dio.get(url, options: Options(headers: headersToken()));
-
-      vets = List<EstablecimientoShortModel>.from(
-          response.data.map((x) => EstablecimientoShortModel.fromJson(x)));
-
-      if (vetName.length > 2) {
-        establecimientos = vets
-            .where(
-                (el) => el.name.toLowerCase().contains(vetName.toLowerCase()))
-            .toList();
-      }
-    }
-
-    return establecimientos;
-  }
-
   Future<dynamic> getVets(dynamic filtros) async {
-    int gpsStatus = 200;
-    List<EstablecimientoShortModel> establecimientos = [];
-    if (!_prefs.hasPosition()) {
-      gpsStatus = 211; //no tiene ubicacion
-    }
-    if (gpsStatus == 200) {
-      String lat = _prefs.position.split(',')[0];
-      String lng = _prefs.position.split(',')[1];
-
+    // establishments/list
+    List<EstablishmentModelList> establecimientos = [];
+    if (_prefs.hasPosition()) {
       var filtroServicio;
       if (filtros.length > 0) {
         filtroServicio = filtros;
@@ -58,19 +23,27 @@ class EstablishmentProvider {
         filtroServicio = "";
       }
 
+      String lat = _prefs.position.split(',')[0];
+      String lng = _prefs.position.split(',')[1];
+
       final url =
           '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
       Response response;
       response = await dio.get(url, options: Options(headers: headersToken()));
 
-      final vets = List<EstablecimientoShortModel>.from(
-          response.data.map((x) => EstablecimientoShortModel.fromJson(x)));
+      final vets = List<EstablishmentModelList>.from(
+          response.data.map((x) => EstablishmentModelList.fromJson(x)));
       if (vets.length > 0) establecimientos = vets;
+
+      return {
+        'code': 200,
+        'establecimientos': establecimientos,
+      };
     }
 
     return {
-      'code': gpsStatus,
+      'code': 211,
       'establecimientos': establecimientos,
     };
   }
@@ -93,43 +66,39 @@ class EstablishmentProvider {
     }
   }
 
-  Future<List<Comentarios>> getTenComents(String idVet) async {
-    final url = '$_url/establishment/$idVet/comments';
+  //deprecated
+  // Future<dynamic> getVets(dynamic filtros) async {
+  //   int gpsStatus = 200;
+  //   List<EstablecimientoShortModel> establecimientos = [];
+  //   if (!_prefs.hasPosition()) {
+  //     gpsStatus = 211; //no tiene ubicacion
+  //   }
+  //   if (gpsStatus == 200) {
+  //     String lat = _prefs.position.split(',')[0];
+  //     String lng = _prefs.position.split(',')[1];
 
-    List<Comentarios> comentarios = [];
+  //     var filtroServicio;
+  //     if (filtros.length > 0) {
+  //       filtroServicio = filtros;
+  //     } else {
+  //       filtroServicio = "";
+  //     }
 
-    final resp = await http.get(url, headers: headersToken());
+  //     final url =
+  //         '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
 
-    if (resp.statusCode == 200) {
-      comentarios = comentariosFromJson(resp.body);
-    }
+  //     Response response;
+  //     response = await dio.get(url, options: Options(headers: headersToken()));
 
-    return comentarios.take(10).toList();
-  }
+  //     final vets = List<EstablecimientoShortModel>.from(
+  //         response.data.map((x) => EstablecimientoShortModel.fromJson(x)));
+  //     if (vets.length > 0) establecimientos = vets;
+  //   }
 
-  Future<List<Comentarios>> getComents(String idVet) async {
-    final url = '$_url/establishment/$idVet/comments';
+  //   return {
+  //     'code': gpsStatus,
+  //     'establecimientos': establecimientos,
+  //   };
+  // }
 
-    List<Comentarios> comentarios = [];
-
-    final resp = await http.get(url, headers: headersToken());
-
-    if (resp.statusCode == 200) {
-      comentarios = comentariosFromJson(resp.body);
-    }
-    return comentarios;
-  }
-
-  Future<List<PromocionModel>> getOffers(String idVet) async {
-    final url = '$_url/establishment/$idVet/offers';
-
-    List<PromocionModel> promociones = [];
-
-    final resp = await http.get(url, headers: headersToken());
-
-    if (resp.statusCode == 200) {
-      promociones = promocionModelFromJson(resp.body);
-    }
-    return promociones;
-  }
 }

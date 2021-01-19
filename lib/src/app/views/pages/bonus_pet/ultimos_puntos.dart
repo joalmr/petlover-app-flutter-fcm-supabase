@@ -26,7 +26,7 @@ class PuntosGanados extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //TODO: quitar appPruebas cuando ya este para produccion
+                    // //TODO: quitar appPruebas cuando ya este para produccion
                     // appPruebas
                     //     ? Row(
                     //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

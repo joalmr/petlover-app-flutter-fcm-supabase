@@ -1,5 +1,4 @@
-class EstablecimientoShortModel
-    implements Comparable<EstablecimientoShortModel> {
+class EstablishmentModelList implements Comparable<EstablishmentModelList> {
   String id;
   bool premium;
   bool available;
@@ -13,7 +12,7 @@ class EstablecimientoShortModel
   String logo;
   String distance;
 
-  EstablecimientoShortModel({
+  EstablishmentModelList({
     this.id,
     this.premium,
     this.available,
@@ -28,8 +27,8 @@ class EstablecimientoShortModel
     this.distance,
   });
 
-  factory EstablecimientoShortModel.fromJson(Map<String, dynamic> json) =>
-      EstablecimientoShortModel(
+  factory EstablishmentModelList.fromJson(Map<String, dynamic> json) =>
+      EstablishmentModelList(
         id: json["id"],
         premium: json["premium"],
         available: json["available"],
@@ -62,7 +61,7 @@ class EstablecimientoShortModel
       };
 
   @override
-  int compareTo(EstablecimientoShortModel other) {
+  int compareTo(EstablishmentModelList other) {
     double first = double.parse(stars) * 10;
     double second = double.parse(other.stars) * 10;
     double resp = second - first;

@@ -2,13 +2,15 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/services/establishment/establishment_find_service.dart';
 import 'package:proypet/src/data/services/establishment/establishment_service.dart';
 
 class BuscarVetController extends GetxController {
   final establecimientoService = EstablishmentService();
+  final establishmentFindService = EstablishmentFindService();
 
-  RxList<EstablecimientoShortModel> veterinarias =
-      List<EstablecimientoShortModel>().obs;
+  RxList<EstablishmentModelList> veterinarias =
+      List<EstablishmentModelList>().obs;
   RxBool carga = false.obs;
   @override
   void onInit() {
@@ -24,8 +26,8 @@ class BuscarVetController extends GetxController {
   }
 
   _findVet(vetName) async {
-    List<EstablecimientoShortModel> resp =
-        await establecimientoService.findVets(vetName);
+    List<EstablishmentModelList> resp =
+        await establishmentFindService.findVets(vetName);
     veterinarias.clear();
     veterinarias.addAll(resp);
     carga.value = false;

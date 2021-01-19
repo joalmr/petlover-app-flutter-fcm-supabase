@@ -9,7 +9,7 @@ import 'package:proypet/src/data/providers/establishment/model/establecimiento_s
 
 import 'swiper_vet.dart';
 
-Widget buildVets(EstablecimientoShortModel vet) {
+Widget buildVets(EstablishmentModelList vet) {
   return FadeIn(
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),

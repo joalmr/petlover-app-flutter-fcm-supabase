@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/cirugia.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/consulta.dart';
@@ -55,19 +54,19 @@ Widget cardHistory(PetHistoryModel history) {
             ],
           ),
         ),
-        //TODO: quitar antes de publicar
-        appPruebas
-            ? Align(
-                widthFactor: double.maxFinite,
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  iconSize: 22,
-                  icon: Icon(Icons.help_outline),
-                  onPressed: () {},
-                  tooltip: 'Ayuda',
-                ),
-              )
-            : SizedBox(height: 0)
+        // //TODO: quitar antes de publicar
+        // appPruebas
+        //     ? Align(
+        //         widthFactor: double.maxFinite,
+        //         alignment: Alignment.centerRight,
+        //         child: IconButton(
+        //           iconSize: 22,
+        //           icon: Icon(Icons.help_outline),
+        //           onPressed: () {},
+        //           tooltip: 'Ayuda',
+        //         ),
+        //       )
+        //     : SizedBox(height: 0)
       ],
     ),
   );

@@ -23,7 +23,7 @@ class VetMapaPage extends StatefulWidget {
 }
 
 class _VetMapaPageState extends State<VetMapaPage> {
-  List<EstablecimientoShortModel> vetLocales;
+  List<EstablishmentModelList> vetLocales;
   _VetMapaPageState({@required this.vetLocales});
   GoogleMapController _controller;
   List<Marker> allMarkers = [];

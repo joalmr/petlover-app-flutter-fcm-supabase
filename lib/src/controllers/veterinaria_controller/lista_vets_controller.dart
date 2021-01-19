@@ -10,10 +10,9 @@ import 'filtra_vets_controller.dart';
 class VeterinariasController extends GetxController {
   final vetService = EstablishmentService();
 
-  RxList<EstablecimientoShortModel> vetLocales =
-      List<EstablecimientoShortModel>().obs;
-  RxList<EstablecimientoShortModel> temp =
-      List<EstablecimientoShortModel>().obs;
+  RxList<EstablishmentModelList> vetLocales =
+      List<EstablishmentModelList>().obs;
+  RxList<EstablishmentModelList> temp = List<EstablishmentModelList>().obs;
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
   RxBool loading = true.obs;
@@ -51,7 +50,7 @@ class VeterinariasController extends GetxController {
   Future<void> _getVets() async {
     loading.value = true;
     var resp = await vetService.getVets(listaFiltros);
-    List<EstablecimientoShortModel> listaVets = resp['establecimientos'];
+    List<EstablishmentModelList> listaVets = resp['establecimientos'];
     respVets.value = resp['code']; // == 200
     if (respVets.value == 200) {
       vetLocales.clear();

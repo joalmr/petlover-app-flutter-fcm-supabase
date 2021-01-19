@@ -105,7 +105,7 @@ class VetDetalleController extends GetxController {
 
   reservar() => _reservar();
 
-  List<EstablecimientoShortModel> vetPremium = [];
+  List<EstablishmentModelList> vetPremium = [];
   _getPremiumClose() {
     vetPremium = vetsC.vetLocales.value
         .where((element) => element.premium == true && element.id != vet.id)
@@ -217,7 +217,7 @@ class VetDetalleController extends GetxController {
     }
   }
 
-  Widget _gotoVet(EstablecimientoShortModel vetPremium) {
+  Widget _gotoVet(EstablishmentModelList vetPremium) {
     return InkWell(
       onTap: () {
         cargando.value = true;
