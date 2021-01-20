@@ -11,6 +11,8 @@ class EstablishmentModelList implements Comparable<EstablishmentModelList> {
   List<String> slides;
   String logo;
   String distance;
+  int typeId;
+  String type;
 
   EstablishmentModelList({
     this.id,
@@ -25,6 +27,8 @@ class EstablishmentModelList implements Comparable<EstablishmentModelList> {
     this.slides,
     this.logo,
     this.distance,
+    this.typeId,
+    this.type,
   });
 
   factory EstablishmentModelList.fromJson(Map<String, dynamic> json) =>
@@ -44,6 +48,8 @@ class EstablishmentModelList implements Comparable<EstablishmentModelList> {
         distance: json["distance"] == null
             ? ""
             : json["distance"].toDouble().toStringAsFixed(2),
+        typeId: json["type_id"],
+        type: json["type"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -58,6 +64,8 @@ class EstablishmentModelList implements Comparable<EstablishmentModelList> {
         "slides": List<dynamic>.from(slides.map((x) => x)),
         "logo": logo,
         "distance": distance,
+        "type_id": typeId,
+        "type": type,
       };
 
   @override

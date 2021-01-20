@@ -165,7 +165,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
         );
       },
       child: InkWell(
-        onTap: () => Get.toNamed('vetdetalle', arguments: vetLocales[index]),
+        onTap: () => Get.toNamed('vetdetalle', arguments: vetLocales[index].id),
         child: Stack(
           children: [
             Center(

@@ -27,13 +27,36 @@ class DataVet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        '${_.vet.distance}km de distancia',
-                        style: TextStyle(fontSize: sizeSmallx2),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.zero,
+                            decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              color: _.vet.typeId == 1 ? colorMain : colorBlue,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 1.5,
+                              horizontal: 5,
+                            ),
+                            child: Text(
+                              _.vet.type,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 8,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            '${_.vet.distance}km de distancia',
+                            style: TextStyle(fontSize: sizeSmallx2),
+                          ),
+                        ],
                       ),
                       Text(_.vet.name,
                           maxLines: 2,
-                          style: Get.textTheme.headline6
+                          style: Get.textTheme.subtitle1
                               .apply(fontWeightDelta: 2)),
                     ],
                   ),
@@ -77,6 +100,7 @@ class DataVet extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.0),
                               color: colorMain,
+                              // color: _.vet.typeId == 1 ? colorMain : colorBlue,
                             ),
                             child: Center(
                               child: Text(
