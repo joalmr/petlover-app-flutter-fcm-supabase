@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +15,7 @@ import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'dart:ui' as ui;
 
 class VetMapaPage extends StatefulWidget {
   final establecimientos;
@@ -27,11 +30,57 @@ class _VetMapaPageState extends State<VetMapaPage> {
   _VetMapaPageState({@required this.vetLocales});
   GoogleMapController _controller;
   List<Marker> allMarkers = [];
+  // Set<Marker> allMarkers = Set.from([]);
   PageController _pageController;
   int prevPage;
   String _mapStyle;
   bool mapToggle = false;
   var currentLocation;
+  BitmapDescriptor iconVet;
+  BitmapDescriptor iconGro;
+
+  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(
+      data.buffer.asUint8List(),
+      targetWidth: width,
+    );
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
+        .buffer
+        .asUint8List();
+  }
+
+  createMarker() async {
+    var vet = await getBytesFromAsset('images/marker/serVet.png', 82);
+    var gro = await getBytesFromAsset('images/marker/serGro.png', 82);
+
+    // var iconGro = await BitmapDescriptor.fromAssetImage(
+    //   ImageConfiguration(devicePixelRatio: 3.0),
+    //   'images/marker/serGro.png',
+    // );
+    setState(() {
+      this.iconVet = BitmapDescriptor.fromBytes(vet);
+      this.iconGro = BitmapDescriptor.fromBytes(gro);
+    });
+  }
+
+  viewMarkers() {
+    for (var i = 0; i < vetLocales.length; i++) {
+      Marker m = Marker(
+        icon: vetLocales[i].typeId == 1 ? iconVet : iconGro,
+        markerId: MarkerId(vetLocales[i].name),
+        draggable: false,
+        onTap: () => _pageController.animateToPage(
+          i,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.ease,
+        ),
+        position: LatLng(vetLocales[i].latitude, vetLocales[i].longitude),
+      );
+      allMarkers.add(m);
+    }
+  }
 
   @override
   void initState() {
@@ -48,18 +97,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
       _mapStyle = string;
     });
 
-    for (var i = 0; i < vetLocales.length; i++) {
-      allMarkers.add(Marker(
-        markerId: MarkerId(vetLocales[i].name),
-        draggable: false,
-        onTap: () => _pageController.animateToPage(
-          i,
-          duration: Duration(milliseconds: 500),
-          curve: Curves.ease,
-        ),
-        position: LatLng(vetLocales[i].latitude, vetLocales[i].longitude),
-      ));
-    }
+    createMarker();
 
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
@@ -72,6 +110,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
 
   @override
   Widget build(BuildContext context) {
+    viewMarkers();
     return Scaffold(
       appBar: appbar(null, 'Mapa veterinarias', null),
       body: mapToggle
