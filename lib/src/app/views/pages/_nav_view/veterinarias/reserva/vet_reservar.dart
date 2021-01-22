@@ -9,7 +9,6 @@ import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/compo
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/components/fecha.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/components/servicio_dato.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/reserva_vet_controller.dart';
-import 'package:proypet/src/data/models/model/servicio_reserva.dart';
 import 'components/mapa_reserva.dart';
 
 class DataReserva extends StatelessWidget {
@@ -76,23 +75,11 @@ class DataReserva extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              FutureBuilder(
-                                future: _.getData(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<List<ServicioReserva>>
-                                        snapshot) {
-                                  if (snapshot.data == null) {
-                                    return Text("Espere...");
-                                  } else {
-                                    return Wrap(
-                                      children: snapshot.data
-                                          .map((item) =>
-                                              MisServicioReserva(item))
-                                          .toList()
-                                          .cast<Widget>(),
-                                    );
-                                  }
-                                },
+                              Wrap(
+                                children: _.servicioReservaLista
+                                    .map((item) => MisServicioReserva(item))
+                                    .toList()
+                                    .cast<Widget>(),
                               ),
                             ],
                           ),

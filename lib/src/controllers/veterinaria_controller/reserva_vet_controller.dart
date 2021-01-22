@@ -45,7 +45,6 @@ class ReservaVetController extends GetxController {
   RxString _deliveryId = '1'.obs;
   RxString _mascotaId = ''.obs;
 
-  // String reservaId;
   RxList<ServicioReserva> servicioReservaLista = List<ServicioReserva>().obs;
   RxString _fecha = ''.obs;
   RxString _observacion = ''.obs;
@@ -131,8 +130,6 @@ class ReservaVetController extends GetxController {
       });
     } else
       textoServicios = listaServicio.first.name;
-    //TODO: quitar luego, hacer multiples reserva
-    // reservaId = listaServicio.first.id.toString();
     update();
   }
 
@@ -196,22 +193,6 @@ class ReservaVetController extends GetxController {
     return Get.dialog(
       serviciosSeleccionados(context),
     );
-  }
-
-  getData() => _getData();
-
-  Future<List<ServicioReserva>> _getData() async {
-    List<ServicioReserva> lista = List<ServicioReserva>();
-    servicioReservaLista.forEach((element) {
-      var palabra = element.name + '' + element.category;
-      bool contiene = palabra.toLowerCase().contains("".toLowerCase());
-      if (contiene) {
-        lista.add(element);
-      }
-    });
-
-    var models = lista;
-    return models;
   }
 
   pickTime(context) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/data/models/model/servicio_reserva.dart';
 import '../../../../../../../controllers/veterinaria_controller/reserva_vet_controller.dart';
 import 'servicio_dato.dart';
 
@@ -21,21 +20,11 @@ serviciosSeleccionados(context) {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: FutureBuilder(
-                  future: _.getData(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<ServicioReserva>> snapshot) {
-                    if (snapshot.data == null) {
-                      return Text("Espere...");
-                    } else {
-                      return Wrap(
-                        children: snapshot.data
-                            .map((item) => MisServicioReserva(item))
-                            .toList()
-                            .cast<Widget>(),
-                      );
-                    }
-                  },
+                child: Wrap(
+                  children: _.servicioReservaLista
+                      .map((item) => MisServicioReserva(item))
+                      .toList()
+                      .cast<Widget>(),
                 ),
               ),
               buttonPri('Aplicar', () => Get.back()),
