@@ -5,8 +5,6 @@ import 'package:proypet/src/app/views/components/form_control/button_primary.dar
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 
 final _mdC = Get.find<MascotaDetalleController>();
-// final _mdC = MascotaDetalleController();
-//TODO: get.find
 
 funtionFleas() {
   return showDialog(
