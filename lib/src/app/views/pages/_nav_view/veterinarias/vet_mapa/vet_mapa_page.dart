@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,8 +28,8 @@ class _VetMapaPageState extends State<VetMapaPage> {
   List<EstablishmentModelList> vetLocales;
   _VetMapaPageState({@required this.vetLocales});
   GoogleMapController _controller;
-  List<Marker> allMarkers = [];
-  // Set<Marker> allMarkers = Set.from([]);
+  // List<Marker> allMarkers = [];
+  Set<Marker> allMarkers = Set.from([]);
   PageController _pageController;
   int prevPage;
   String _mapStyle;
@@ -38,12 +37,14 @@ class _VetMapaPageState extends State<VetMapaPage> {
   var currentLocation;
   BitmapDescriptor iconVet;
   BitmapDescriptor iconGro;
+  // BitmapDescriptor mapMarker;
 
-  Future<Uint8List> getBytesFromAsset(String path, int width) async {
+  Future<Uint8List> getBytesFromAsset(String path, int height) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(
       data.buffer.asUint8List(),
-      targetWidth: width,
+      allowUpscaling: true,
+      targetHeight: height,
     );
     ui.FrameInfo fi = await codec.getNextFrame();
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))
@@ -51,40 +52,21 @@ class _VetMapaPageState extends State<VetMapaPage> {
         .asUint8List();
   }
 
-  createMarker() async {
-    var vet = await getBytesFromAsset('images/marker/serVet.png', 82);
-    var gro = await getBytesFromAsset('images/marker/serGro.png', 82);
-
-    // var iconGro = await BitmapDescriptor.fromAssetImage(
-    //   ImageConfiguration(devicePixelRatio: 3.0),
-    //   'images/marker/serGro.png',
+  void setCustomMarker() async {
+    // mapMarker = await BitmapDescriptor.fromAssetImage(
+    //   ImageConfiguration(),
+    //   'images/marker/marker-vet.png',
     // );
-    setState(() {
-      this.iconVet = BitmapDescriptor.fromBytes(vet);
-      this.iconGro = BitmapDescriptor.fromBytes(gro);
-    });
-  }
-
-  viewMarkers() {
-    for (var i = 0; i < vetLocales.length; i++) {
-      Marker m = Marker(
-        icon: vetLocales[i].typeId == 1 ? iconVet : iconGro,
-        markerId: MarkerId(vetLocales[i].name),
-        draggable: false,
-        onTap: () => _pageController.animateToPage(
-          i,
-          duration: Duration(milliseconds: 500),
-          curve: Curves.ease,
-        ),
-        position: LatLng(vetLocales[i].latitude, vetLocales[i].longitude),
-      );
-      allMarkers.add(m);
-    }
+    var vet = await getBytesFromAsset('images/marker/marker-vet.png', 100);
+    var gro = await getBytesFromAsset('images/marker/marker-groomer.png', 100);
+    iconVet = BitmapDescriptor.fromBytes(vet);
+    iconGro = BitmapDescriptor.fromBytes(gro);
   }
 
   @override
   void initState() {
     super.initState();
+    setCustomMarker();
 
     Geolocator().getCurrentPosition().then((currloc) {
       setState(() {
@@ -97,8 +79,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
       _mapStyle = string;
     });
 
-    createMarker();
-
     _pageController = PageController(initialPage: 0, viewportFraction: 0.8)
       ..addListener(_onScroll);
   }
@@ -110,7 +90,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
 
   @override
   Widget build(BuildContext context) {
-    viewMarkers();
     return Scaffold(
       appBar: appbar(null, 'Mapa veterinarias', null),
       body: mapToggle
@@ -151,8 +130,10 @@ class _VetMapaPageState extends State<VetMapaPage> {
               tiltGesturesEnabled: true,
               mapType: MapType.normal,
               initialCameraPosition: CameraPosition(
-                  target:
-                      LatLng(vetLocales[0].latitude, vetLocales[0].longitude),
+                  target: LatLng(
+                    vetLocales[0].latitude,
+                    vetLocales[0].longitude,
+                  ),
                   zoom: 16.0),
               markers: Set.from(allMarkers),
               onMapCreated: mapCreated,
@@ -281,6 +262,20 @@ class _VetMapaPageState extends State<VetMapaPage> {
     setState(() {
       _controller = controller;
       _controller.setMapStyle(_mapStyle);
+
+      for (var i = 0; i < vetLocales.length; i++) {
+        allMarkers.add(Marker(
+          icon: vetLocales[i].typeId == 1 ? iconVet : iconGro,
+          markerId: MarkerId(vetLocales[i].name),
+          draggable: false,
+          onTap: () => _pageController.animateToPage(
+            i,
+            duration: Duration(milliseconds: 500),
+            curve: Curves.ease,
+          ),
+          position: LatLng(vetLocales[i].latitude, vetLocales[i].longitude),
+        ));
+      }
     });
   }
 
