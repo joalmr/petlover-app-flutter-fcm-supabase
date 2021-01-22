@@ -86,8 +86,12 @@ class FnTimeLine extends StatelessWidget {
                                       height: 50,
                                       image: AssetImage(
                                         _.pet.specieId == 1
-                                            ? pathGif('gato-kb')
-                                            : pathGif('perro-kb'),
+                                            ? _.pet.status == 0
+                                                ? 'images/cat_dog/cat-death.png'
+                                                : pathGif('gato-kb')
+                                            : _.pet.status == 0
+                                                ? 'images/cat_dog/dog-death.png'
+                                                : pathGif('perro-kb'),
                                       ),
                                     ),
                                   ),

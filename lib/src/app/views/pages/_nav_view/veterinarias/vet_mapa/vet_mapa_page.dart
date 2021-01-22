@@ -261,6 +261,17 @@ class _VetMapaPageState extends State<VetMapaPage> {
               ),
             ],
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.star, color: colorYellow),
+              Text(vetLocales.stars),
+            ],
+          ),
         )
       ],
     );

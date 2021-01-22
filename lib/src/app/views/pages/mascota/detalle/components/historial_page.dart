@@ -15,7 +15,11 @@ class HistorialMascota extends StatelessWidget {
           appBar: appbar(null, 'Historial de ${_.pet.name}', null),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: allHistories(_.petAllHistory.toList()),
+            child: _.petAllHistory.length == 0
+                ? Center(
+                    child: Text('No tiene registros de historial'),
+                  )
+                : allHistories(_.petAllHistory.toList()),
           ),
         );
       },

@@ -144,7 +144,7 @@ class ReservaVetController extends GetxController {
 
   serviceInicial() async {
     servicioReservaLista.clear();
-    var dato = await bookingService.typeBooking();
+    var dato = await bookingService.typeBooking(vet.typeId);
     servicioReservaLista.addAll(dato);
 
     ex3 = servicioReservaLista.first;

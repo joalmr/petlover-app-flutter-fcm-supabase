@@ -40,7 +40,8 @@ class QuejaController extends GetxController {
       recipients: ['info@proypet.com'],
       isHTML: true,
     );
-    envia.value = true;
+
     await FlutterEmailSender.send(email);
+    envia.value = true;
   }
 }

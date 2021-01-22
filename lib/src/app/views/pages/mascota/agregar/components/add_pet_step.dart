@@ -68,7 +68,7 @@ class ContentAdd extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             child: Image(
                                               image: AssetImage(
-                                                  "images/blue-dog.png"),
+                                                  "images/cat_dog/blue-dog.png"),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -113,7 +113,7 @@ class ContentAdd extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             child: Image(
                                               image: AssetImage(
-                                                  "images/green-cat.png"),
+                                                  "images/cat_dog/green-cat.png"),
                                               fit: BoxFit.cover,
                                             ),
                                           ),

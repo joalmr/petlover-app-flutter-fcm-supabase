@@ -53,23 +53,37 @@ class GeneralTab extends StatelessWidget {
                               child: lottieLoading,
                             ),
                           )
-                        : _.petHistory.length == 0
-                            ? Container(
-                                height: 120,
-                                child: Center(
-                                  child: Text('No tiene registros este mes'),
+                        : _.pet.status == 0
+                            ? Center(
+                                child: Image(
+                                  height: 180,
+                                  width: 180,
+                                  image: AssetImage(
+                                    _.pet.specieId == 1
+                                        ? 'images/cat_dog/cat-death.png'
+                                        : 'images/cat_dog/dog-death.png',
+                                  ),
                                 ),
                               )
-                            : ListView.builder(
-                                padding: EdgeInsets.zero,
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: _.petHistory.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  var history = _.petHistory[index];
-                                  return cardHistory(history);
-                                },
-                              ),
+                            : _.petHistory.length == 0
+                                ? Container(
+                                    height: 120,
+                                    child: Center(
+                                      child:
+                                          Text('No tiene registros este mes'),
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: _.petHistory.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      var history = _.petHistory[index];
+                                      return cardHistory(history);
+                                    },
+                                  ),
                   ],
                 ),
               ),

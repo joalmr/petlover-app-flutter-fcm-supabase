@@ -146,6 +146,7 @@ flutter:
   assets:
    - assets/map_style.txt
    - images/
+   - images/cat_dog/
    - images/gif/
    - images/icon/
    - images/lottie/

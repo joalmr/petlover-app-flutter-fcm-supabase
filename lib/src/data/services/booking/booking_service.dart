@@ -31,7 +31,7 @@ class BookingService {
     return bookingProvider.tryBooking(idEstablishment);
   }
 
-  Future<List<ServicioReserva>> typeBooking() async {
-    return bookingProvider.typeBooking();
+  Future<List<ServicioReserva>> typeBooking(int typeId) async {
+    return bookingProvider.typeBooking(typeId);
   }
 }

@@ -15,29 +15,31 @@ class SolicitaVetPage extends StatelessWidget {
           return Scaffold(
             appBar: appbar(null, 'Solicitar Veterinaria', null),
             body: _.envia.value
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
-                          child: Text(
-                            'Gracias por solicitar tu veterinaria',
-                            textAlign: TextAlign.center,
-                          ),
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image(
+                        image: AssetImage('images/cat_dog/invitation.png'),
+                        fit: BoxFit.cover,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Text(
+                          'Gracias por solicitar tu veterinaria',
+                          textAlign: TextAlign.center,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40),
-                          child: Text(
-                            'Nos contactarémos',
-                            textAlign: TextAlign.center,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Text(
+                          'Nos contactarémos',
+                          textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 10),
-                        buttonOutLine('Volver', () => Get.back(), colorMain),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 10),
+                      buttonOutLine('Volver', () => Get.back(), colorMain),
+                    ],
                   )
                 : ListView(
                     padding: EdgeInsets.symmetric(horizontal: 10),

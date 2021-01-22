@@ -87,12 +87,34 @@ class BookingProvider {
     // print(resp.data);
   }
 
-  Future<List<ServicioReserva>> typeBooking() async {
+  Future<List<ServicioReserva>> typeBooking(int typeId) async {
     final url = '$_url/booking/types';
 
     var resp = await dio.get(url, options: Options(headers: headersToken()));
-    var dataList = List<ServicioReserva>.from(
-        resp.data.map((x) => ServicioReserva.fromJson(x)));
+    List<ServicioReserva> dataList = new List<ServicioReserva>();
+
+    if (typeId == 2) {
+      var dataGrooming = List<ServicioReserva>.from(
+        resp.data.map(
+          (x) => ServicioReserva.fromJson(x),
+        ),
+      ).where((element) => element.category == 'Grooming').toList();
+
+      var dataDeworming = List<ServicioReserva>.from(
+        resp.data.map(
+          (x) => ServicioReserva.fromJson(x),
+        ),
+      ).where((element) => element.category == 'Desparasitación').toList();
+
+      dataList.addAll(dataGrooming);
+      dataList.addAll(dataDeworming);
+    } else {
+      dataList = List<ServicioReserva>.from(
+        resp.data.map(
+          (x) => ServicioReserva.fromJson(x),
+        ),
+      );
+    }
 
     return dataList;
   }
