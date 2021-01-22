@@ -18,6 +18,7 @@ import 'components/tab_general.dart';
 
 class MascotaDetallePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final refreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -158,38 +159,6 @@ class MascotaDetallePage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.center,
-                            //   crossAxisAlignment: CrossAxisAlignment.center,
-                            //   children: [
-                            //     cardFn(
-                            //       image: Svg(pathSvg('fleas')),
-                            //       text: 'pulgas',
-                            //       fn: _.fnFleas,
-                            //     ),
-                            //     _.pet.specieId == 1
-                            //         ? cardFn(
-                            //             image: Svg(pathSvg('litter-box')),
-                            //             text: 'arena',
-                            //             fn: _.fnLitterBox,
-                            //           )
-                            //         : SizedBox(width: 0),
-                            //     cardFn(
-                            //       image: Svg(pathSvg(
-                            //         _.pet.specieId == 1
-                            //             ? 'cat-food'
-                            //             : 'dog-food',
-                            //       )),
-                            //       text: 'comida',
-                            //       fn: _.fnFood,
-                            //     ),
-                            //     cardFn(
-                            //       image: Svg(pathSvg('bed')),
-                            //       text: 'cama',
-                            //       fn: _.fnBed,
-                            //     ),
-                            //   ],
-                            // ),
                           ],
                         ),
                       ),

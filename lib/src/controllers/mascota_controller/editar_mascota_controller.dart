@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -13,6 +14,7 @@ import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/data/models/model/raza/raza_model.dart';
 import 'package:proypet/src/data/services/pet/mascota_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/data/services/raza_servicio.dart';
 import 'package:select_dialog/select_dialog.dart';
 
@@ -20,12 +22,15 @@ import 'package:proypet/src/app/views/pages/mascota/data/sexo_pet.dart';
 import 'detalle_mascota_controller.dart';
 
 class MascotaEditarController extends GetxController {
-  final petC = Get.find<MascotaDetalleController>();
   final homeC = Get.find<HomeController>();
+  final petC = Get.find<MascotaDetalleController>();
   final mascotaService = new MascotaService();
   final razaService = RazaService();
+  final petService = new PetService();
 
   RxBool loading = true.obs;
+
+  String petId;
 
   RazaModel razaLista;
   Breed razaSeleccionada;
@@ -58,6 +63,8 @@ class MascotaEditarController extends GetxController {
     super.onInit();
     _obtenerRaza();
     _iniciaValores();
+
+    petId = petC.mascotaId;
   }
 
   _iniciaValores() {
@@ -239,24 +246,22 @@ class MascotaEditarController extends GetxController {
     });
   }
 
-  void mascotaEdit() {
-    _mascotaEdit();
-  }
-
   bool get sinDatos => nombre.isEmpty && fecha.isEmpty;
   bool get sinNombreMascota => nombre.isEmpty && fecha.isNotEmpty;
   bool get sinFechaMascota => nombre.isNotEmpty && fecha.isEmpty;
 
+  void mascotaEdit() => _mascotaEdit();
+
   Future<void> _mascotaEdit() async {
     btnCarga.value = true;
     if (sinDatos) {
-      mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
+      mostrarSnackbar('Ingrese datos de la mascota', colorRed);
       btnCarga.value = false;
     } else if (sinNombreMascota || sinFechaMascota) {
       if (sinNombreMascota)
-        mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
+        mostrarSnackbar('Ingrese nombre de la mascota', colorRed);
       if (sinFechaMascota)
-        mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
+        mostrarSnackbar('Ingrese nacimiento de la mascota', colorRed);
       btnCarga.value = false;
     } else {
       petC.pet.name = nombre;
@@ -265,13 +270,12 @@ class MascotaEditarController extends GetxController {
       petC.pet.breedId = razaId;
       bool resp = await mascotaService.editPet(petC.pet, foto);
       if (resp) {
-        petC.verMiMascota();
         homeC.getSummary();
         btnCarga.value = false;
-        Get.back();
-        Get.back();
+        mostrarSnackbar("Edición correcta", colorMain);
+        Timer(Duration(milliseconds: 1500), () => Get.offAllNamed('/'));
       } else {
-        mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
+        mostrarSnackbar('Oops, intentalo más tarde', colorRed);
         btnCarga.value = false;
       }
     }

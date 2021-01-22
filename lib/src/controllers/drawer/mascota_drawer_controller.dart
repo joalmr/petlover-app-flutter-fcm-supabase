@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/app/views/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:proypet/src/data/services/pet/pet_dead_service.dart';
@@ -25,8 +29,9 @@ class MascotaDrawerController extends GetxController {
   Future<void> _falleceMascota(String mascota) async {
     bool resp = await petDeadService.muerePet(mascota);
     if (resp) {
-      petC.verMiMascota();
-      Get.back();
+      homeC.getSummary();
+      mostrarSnackbar("${petC.pet.name} ha fallecido 😔", colorMain);
+      Timer(Duration(milliseconds: 1500), () => Get.offAllNamed('/'));
     } else
       Get.back();
   }
@@ -34,8 +39,9 @@ class MascotaDrawerController extends GetxController {
   Future<void> _reviveMascota(String mascota) async {
     bool resp = await petDeadService.revivePet(mascota);
     if (resp) {
-      petC.verMiMascota();
-      Get.back();
+      homeC.getSummary();
+      mostrarSnackbar("${petC.pet.name} está bien 😅", colorMain);
+      Timer(Duration(milliseconds: 1500), () => Get.offAllNamed('/'));
     } else
       Get.back();
   }

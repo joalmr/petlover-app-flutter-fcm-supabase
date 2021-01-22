@@ -17,7 +17,7 @@ class MascotaDetalleController extends GetxController {
   RxBool loadingHistory = true.obs;
 
   MascotaModel2 pet;
-  // RxList<HistoriaModel2> history = List<HistoriaModel2>().obs;
+
   RxList<PetHistoryModel> petHistory = List<PetHistoryModel>().obs;
   RxList<PetHistoryModel> petAllHistory = List<PetHistoryModel>().obs;
 
@@ -31,6 +31,14 @@ class MascotaDetalleController extends GetxController {
       ItemPositionsListener.create();
 
   int scrollInit = 0;
+
+  // Future refresh() => _refresh();
+
+  // Future<Null> _refresh() async {
+  //   await Future.delayed(Duration(milliseconds: 2));
+  //   verMiMascota();
+  //   return null;
+  // }
 
   @override
   void onInit() {
@@ -66,6 +74,7 @@ class MascotaDetalleController extends GetxController {
   }
 
   Future<void> _verMiMascota() async {
+    print('==entra==');
     pet = await petService.getPet(mascotaId);
     loading.value = false;
   }

@@ -10,7 +10,6 @@ import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
 import 'package:proypet/src/app/views/components/form_control/text_from.dart';
 import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/mascota_controller/editar_mascota_controller.dart';
-
 import '../data/tipo_pet.dart';
 
 class MascotaEditarPage extends StatelessWidget {

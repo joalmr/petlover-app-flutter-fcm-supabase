@@ -58,7 +58,6 @@ class HomeController extends GetxController {
   }
 
   Future<void> _summary() async {
-    // var resp = await summaryRepository.getUserSummary();
     var pets = await petService.getPets();
     var bookings = await bookingService.getBookings();
 
