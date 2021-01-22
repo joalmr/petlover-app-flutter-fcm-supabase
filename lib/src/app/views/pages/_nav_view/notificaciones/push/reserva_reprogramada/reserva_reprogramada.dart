@@ -8,7 +8,7 @@ Widget reservaReprogramada(noti) {
       borderRadius: BorderRadius.circular(10.0),
       image: DecorationImage(
         fit: BoxFit.cover,
-        image: AssetImage('images/fondo2.png'),
+        image: AssetImage('images/notificacion/fondo2.png'),
       ),
     ),
     child: Padding(
@@ -18,7 +18,9 @@ Widget reservaReprogramada(noti) {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 10),
-          Text(noti['message'], style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          Text(noti['message'],
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(100)),

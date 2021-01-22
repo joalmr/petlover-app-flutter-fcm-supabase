@@ -211,7 +211,7 @@ class RecompensasPage extends StatelessWidget {
                                               ? Center(
                                                   child: Image(
                                                     image: AssetImage(
-                                                        'images/cup.png'),
+                                                        'images/icon/cup.png'),
                                                     width: 26,
                                                   ),
                                                 )

@@ -46,8 +46,8 @@ class NotificacionesPage extends StatelessWidget {
                                   child: AspectRatio(
                                     aspectRatio: 2,
                                     child: Image(
-                                        image:
-                                            AssetImage('images/noti-img.png'),
+                                        image: AssetImage(
+                                            'images/notificacion/noti-img.png'),
                                         height: 220,
                                         fit: BoxFit.cover),
                                   ),

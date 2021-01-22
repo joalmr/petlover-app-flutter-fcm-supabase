@@ -55,7 +55,8 @@ Widget navbar() {
           children: [
             ClipRRect(
                 child: Image(
-                    height: 42, image: AssetImage('images/logo-proypet.png'))),
+                    height: 42,
+                    image: AssetImage('images/icon/logo-proypet.png'))),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,59 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 
-class WaveClipper extends StatelessWidget {
-  final num _alto;
-  final num _numxy;
-  WaveClipper(this._alto, this._numxy);
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        ClipPath(
-          clipper: WaveClipper2(),
-          child: Container(
-            child: Column(),
-            width: double.infinity,
-            height: _alto,
-            decoration: BoxDecoration(color: colorMain.withAlpha(100)),
-          ),
-        ),
-        ClipPath(
-          clipper: WaveClipper3(),
-          child: Container(
-            child: Column(),
-            width: double.infinity,
-            height: _alto,
-            decoration: BoxDecoration(color: colorMain.withAlpha(200)),
-          ),
-        ),
-        ClipPath(
-          clipper: WaveClipper1(),
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 20,
-                ),
-                Image(
-                  image: AssetImage('images/logo_vw.png'),
-                  height: _numxy,
-                  width: _numxy,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-              ],
-            ),
-            width: double.infinity,
-            height: _alto,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class WaveClipperOut extends StatelessWidget {
   final num _alto;
   WaveClipperOut(this._alto);

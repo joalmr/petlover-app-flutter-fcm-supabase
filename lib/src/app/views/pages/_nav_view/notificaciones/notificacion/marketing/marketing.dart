@@ -63,7 +63,7 @@ Widget marketing(Notificacion noti) {
                                   child: lottieLoading,
                                 )),
                           )
-                        : Image.asset('images/logo-proypet.png'),
+                        : Image.asset('images/icon/logo-proypet.png'),
                   ),
                 ),
               ),
