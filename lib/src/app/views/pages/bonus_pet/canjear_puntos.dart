@@ -76,51 +76,38 @@ class CanjearPuntos extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              Text(
+                                'Breve descripción..',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              Text(
+                                'Stock: 7',
+                                style: TextStyle(fontSize: 10),
+                              ),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'Breve descripción..',
+                                  Container(
+                                    width: 60,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(right: 1),
+                                      child: Text(
+                                        'Puntos',
                                         style: TextStyle(fontSize: 12),
                                       ),
-                                      Text(
-                                        'Stock: 7',
-                                        style: TextStyle(fontSize: 10),
-                                      ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width: 60,
-                                            child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 1),
-                                              child: Text(
-                                                'Puntos',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            '100',
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: colorMain,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  )
+                                    ),
+                                  ),
+                                  Text(
+                                    ' 100',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: colorMain,
+                                    ),
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
