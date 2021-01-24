@@ -10,6 +10,7 @@ import 'package:proypet/src/app/views/pages/bonus_pet/canjear_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/sorteo_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/ultimos_puntos.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/components/historial_page.dart';
+import 'package:proypet/src/app/views/pages/shopping/shopping_product_page.dart';
 import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/detalle_historia.dart';
@@ -38,16 +39,20 @@ List<GetPage> getRutas() {
     //
     GetPage(name: 'onboard', page: () => OnBoardPage()),
     GetPage(name: 'login', page: () => LoginPage()),
-    GetPage(name: 'registro', page: () => SingupPage()),
-    GetPage(name: 'olvidopass', page: () => ForgotPage()),
-    GetPage(name: 'micuenta', page: () => MiCuentaPage()),
-    GetPage(name: 'editarusuario', page: () => UserPage()),
-    GetPage(name: 'cambiarpass', page: () => ChangePasswordPage()),
+
     GetPage(name: 'navInicio', page: () => NavigationBar(currentTabIndex: 0)),
     GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),
     GetPage(name: 'navLista', page: () => NavigationBar(currentTabIndex: 2)),
     GetPage(
         name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 3)),
+    GetPage(name: 'navShopping', page: () => NavigationBar(currentTabIndex: 4)),
+
+    GetPage(name: 'registro', page: () => SingupPage()),
+    GetPage(name: 'olvidopass', page: () => ForgotPage()),
+    GetPage(name: 'micuenta', page: () => MiCuentaPage()),
+    GetPage(name: 'editarusuario', page: () => UserPage()),
+    GetPage(name: 'cambiarpass', page: () => ChangePasswordPage()),
+
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
     GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
@@ -64,5 +69,7 @@ List<GetPage> getRutas() {
 
     GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
     GetPage(name: 'enviarqueja', page: () => QuejaPage()),
+
+    GetPage(name: 'shopproduct', page: () => ShoppingProductPage()),
   ];
 }

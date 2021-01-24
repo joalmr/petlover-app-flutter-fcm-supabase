@@ -7,6 +7,7 @@ import 'package:proypet/src/app/views/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/notificaciones_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/recompensas/recompensas_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/veterinarias_view.dart';
+import 'package:proypet/src/app/views/pages/shopping/shopping_page.dart';
 import 'package:proypet/src/controllers/_navigation_controller.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/home/home_view.dart';
 
@@ -29,8 +30,8 @@ class _NavigationBarState extends State<NavigationBar> {
       HomePage(),
       NotificacionesPage(),
       ReservaList(),
-      // DestacadosPage(),
       RecompensasPage(),
+      ShoppingPage(),
     ];
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
@@ -46,10 +47,13 @@ class _NavigationBarState extends State<NavigationBar> {
         icon: Icon(Icons.search),
         label: 'Veterinarias',
       ),
-      // BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text('Destacados', style: TextStyle(fontSize: 10.5)),),
       BottomNavigationBarItem(
         icon: Icon(Icons.monetization_on),
         label: 'Puntos',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.shopping_cart),
+        label: 'Shopping',
       ),
     ];
 

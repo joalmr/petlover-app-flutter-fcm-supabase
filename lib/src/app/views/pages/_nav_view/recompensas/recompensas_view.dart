@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
@@ -113,7 +114,55 @@ class RecompensasPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ),
+                        ), //TODO: quitar appPruebas cuando ya este para produccion
+                        appPruebas
+                            ? Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Card(
+                                    child: InkWell(
+                                      onTap: () => Get.toNamed('canjearpuntos'),
+                                      borderRadius: borderRadius,
+                                      child: Container(
+                                        width: 120,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 10),
+                                        child: Column(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.cartPlus,
+                                              color: colorMain,
+                                            ),
+                                            Text('Tienda Puntos'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Card(
+                                    child: InkWell(
+                                      onTap: () => Get.toNamed('sorteopuntos'),
+                                      borderRadius: borderRadius,
+                                      child: Container(
+                                        width: 120,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 10),
+                                        child: Column(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.gifts,
+                                              color: colorMain,
+                                            ),
+                                            Text('Sorteos'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : SizedBox(height: 0),
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 15, bottom: 10),

@@ -152,6 +152,7 @@ flutter:
    - images/lottie/
    - images/marker/
    - images/notificacion/
+   - images/shop/
    - images/svg/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -28,14 +28,12 @@ class SorteoPuntos extends StatelessWidget {
                       Container(
                         height: 100,
                         child: AspectRatio(
-                          aspectRatio: 3 / 4,
-                          child: Container(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image(
-                                image: AssetImage("images/no-image.png"),
-                                fit: BoxFit.cover,
-                              ),
+                          aspectRatio: 7 / 8,
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage('images/shop/shop-cat.jpg'),
                             ),
                           ),
                         ),
@@ -55,6 +53,8 @@ class SorteoPuntos extends StatelessWidget {
                                 maxLines: 2,
                               ),
                               Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     flex: 8,
@@ -117,6 +117,7 @@ class SorteoPuntos extends StatelessWidget {
                                                 Get.textTheme.subtitle2.apply(
                                               fontWeightDelta: 2,
                                               color: colorMain,
+                                              fontSizeDelta: 4,
                                             ),
                                           ),
                                           Text(
