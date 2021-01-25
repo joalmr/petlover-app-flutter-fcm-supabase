@@ -70,16 +70,12 @@ class EstablishmentModelList implements Comparable<EstablishmentModelList> {
 
   @override
   int compareTo(EstablishmentModelList other) {
-    double first = double.parse(stars) * 10;
-    double second = double.parse(other.stars) * 10;
-
-    int firstAttention = attentions;
-    int otherAttention = other.attentions;
+    double first = (double.parse(stars) + attentions) * 10;
+    double second = (double.parse(other.stars) + other.attentions) * 10;
 
     double resp = second - first;
-    int res = otherAttention - firstAttention;
 
-    int dato = (resp + res).round();
+    int dato = resp.round();
     return dato;
   }
 }
