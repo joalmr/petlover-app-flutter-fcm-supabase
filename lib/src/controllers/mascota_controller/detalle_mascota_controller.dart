@@ -32,14 +32,6 @@ class MascotaDetalleController extends GetxController {
 
   int scrollInit = 0;
 
-  // Future refresh() => _refresh();
-
-  // Future<Null> _refresh() async {
-  //   await Future.delayed(Duration(milliseconds: 2));
-  //   verMiMascota();
-  //   return null;
-  // }
-
   @override
   void onInit() {
     super.onInit();
@@ -100,14 +92,14 @@ class MascotaDetalleController extends GetxController {
     petAllHistory.addAll(await petHistoryService.getPetHistory(mascotaId));
   }
 
-  RxInt frecuenciaFood = 0.obs;
-  RxString horasFood = ''.obs;
-  RxInt frecuenciaBed = 0.obs;
-  RxInt frecuenciaFleas = 0.obs;
-  RxInt frecuenciaLitterBox = 0.obs;
+  // RxInt frecuenciaFood = 0.obs;
+  // RxString horasFood = ''.obs;
+  // RxInt frecuenciaBed = 0.obs;
+  // RxInt frecuenciaFleas = 0.obs;
+  // RxInt frecuenciaLitterBox = 0.obs;
 
-  fnFleas() => funtionFleas();
-  fnBed() => funtionBed();
-  fnLitterBox() => funtionLitterBox();
-  fnFood() => funtionFood();
+  // fnFleas() => funtionFleas();
+  // fnBed() => funtionBed();
+  // fnLitterBox() => funtionLitterBox();
+  // fnFood() => funtionFood();
 }

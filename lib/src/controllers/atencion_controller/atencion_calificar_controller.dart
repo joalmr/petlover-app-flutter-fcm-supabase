@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
 import 'package:proypet/src/data/services/attention/attention_service.dart';
-
 import 'atencion_controller.dart';
 
 class CalificaAtencionController extends GetxController {
@@ -61,8 +60,6 @@ class CalificaAtencionController extends GetxController {
   onRate() => _onRate();
 
   _onRate() async {
-    print(idAtencion);
-
     AtencionModel atencion = new AtencionModel();
     atencion.attentionId = idAtencion;
     atencion.stars = myrating.toInt();

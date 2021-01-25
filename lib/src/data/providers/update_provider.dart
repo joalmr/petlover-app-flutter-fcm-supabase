@@ -22,7 +22,6 @@ class UpdateProvider {
     print(versionCode);
 
     if (buildNumber < versionCode) {
-      print(true);
       return true;
     }
     return false;
@@ -44,7 +43,6 @@ class UpdateProvider {
     print(versionCode);
 
     if (buildNumber < versionCode) {
-      print(true);
       return true;
     }
     return false;

@@ -15,9 +15,8 @@ class EstablishmentOfferProvider {
 
     final resp = await http.get(url, headers: headersToken());
 
-    if (resp.statusCode == 200) {
-      promociones = promocionModelFromJson(resp.body);
-    }
+    if (resp.statusCode == 200) promociones = promocionModelFromJson(resp.body);
+
     return promociones;
   }
 }

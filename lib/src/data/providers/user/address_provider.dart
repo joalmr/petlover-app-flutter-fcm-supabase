@@ -7,9 +7,7 @@ class AddressProvider {
 
   Future<void> setAddress(String address, lat, lng) async {
     final url = '$_url/settings/address';
-    print(address);
-    print(lat);
-    print(lng);
+
     final _data = {
       "address": address,
       "latitude": lat,

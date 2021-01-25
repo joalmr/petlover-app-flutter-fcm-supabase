@@ -64,12 +64,10 @@ class UsuarioController extends GetxController {
         if (!valida) {
           mostrarSnackbar('Número telefónico invalido.', colorRed);
           Timer(Duration(milliseconds: 1500), () => btnBool.value = true);
-        } else {
+        } else
           _registraUsuario();
-        }
-      } else {
+      } else
         _registraUsuario();
-      }
     }
   }
 

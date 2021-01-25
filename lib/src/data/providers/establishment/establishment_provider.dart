@@ -15,35 +15,35 @@ class EstablishmentProvider {
   Future<dynamic> getVets(dynamic filtros) async {
     // establishments/list
     List<EstablishmentModelList> establecimientos = [];
-    if (_prefs.hasPosition()) {
-      var filtroServicio;
-      if (filtros.length > 0) {
-        filtroServicio = filtros;
-      } else {
-        filtroServicio = "";
-      }
-
-      String lat = _prefs.position.split(',')[0];
-      String lng = _prefs.position.split(',')[1];
-
-      final url =
-          '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
-
-      Response response;
-      response = await dio.get(url, options: Options(headers: headersToken()));
-
-      final vets = List<EstablishmentModelList>.from(
-          response.data.map((x) => EstablishmentModelList.fromJson(x)));
-      if (vets.length > 0) establecimientos = vets;
-
+    if (!_prefs.hasPosition()) {
       return {
-        'code': 200,
+        'code': 211,
         'establecimientos': establecimientos,
       };
     }
 
+    var filtroServicio;
+    if (filtros.length > 0) {
+      filtroServicio = filtros;
+    } else {
+      filtroServicio = "";
+    }
+
+    String lat = _prefs.position.split(',')[0];
+    String lng = _prefs.position.split(',')[1];
+
+    final url =
+        '$_url/establishments/list?services=$filtroServicio&latitude=$lat&longitude=$lng';
+
+    Response response;
+    response = await dio.get(url, options: Options(headers: headersToken()));
+
+    final vets = List<EstablishmentModelList>.from(
+        response.data.map((x) => EstablishmentModelList.fromJson(x)));
+    if (vets.length > 0) establecimientos = vets;
+
     return {
-      'code': 211,
+      'code': 200,
       'establecimientos': establecimientos,
     };
   }
@@ -55,15 +55,15 @@ class EstablishmentProvider {
 
     final resp = await http.get(url, headers: headersToken());
 
-    if (resp.statusCode == 200) {
-      final jsonResp = json.decode(resp.body);
-      EstablecimientoModel vets =
-          EstablecimientoModel.fromJson(jsonResp["establishment"]);
-
-      return {'status': 200, 'establishment': vets};
-    } else {
+    if (resp.statusCode != 200) {
       return {'status': 205, 'establishment': null};
     }
+
+    final jsonResp = json.decode(resp.body);
+    EstablecimientoModel vets =
+        EstablecimientoModel.fromJson(jsonResp["establishment"]);
+
+    return {'status': 200, 'establishment': vets};
   }
 
   //deprecated

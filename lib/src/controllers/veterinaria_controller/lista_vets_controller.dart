@@ -20,6 +20,8 @@ class VeterinariasController extends GetxController {
   final global = Get.find<GlobalController>();
   final _prefs = new PreferenciasUsuario();
 
+  bool ordena = false;
+
   ScrollController scrollController = new ScrollController();
 
   @override
@@ -42,6 +44,7 @@ class VeterinariasController extends GetxController {
   Future<Null> _refresh() async {
     await Future.delayed(Duration(milliseconds: 2));
     getVets();
+    ordena = false;
     return null;
   }
 
@@ -54,14 +57,14 @@ class VeterinariasController extends GetxController {
     respVets.value = resp['code']; // == 200
     if (respVets.value == 200) {
       vetLocales.clear();
-      temp.clear();
       vetLocales.addAll(listaVets);
+
+      temp.clear();
       temp.addAll(listaVets);
     }
     loading.value = false;
   }
 
-  bool ordena = false;
   orderVets() {
     ordena = !ordena;
     if (ordena) {

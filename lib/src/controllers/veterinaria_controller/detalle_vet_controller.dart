@@ -36,7 +36,6 @@ class VetDetalleController extends GetxController {
   List<MascotaModel2> misMascotas = [];
 
   RxString _telefono = "".obs;
-
   RxBool cargando = true.obs;
 
   set telefono(String value) => _telefono.value = value;

@@ -72,8 +72,14 @@ class EstablishmentModelList implements Comparable<EstablishmentModelList> {
   int compareTo(EstablishmentModelList other) {
     double first = double.parse(stars) * 10;
     double second = double.parse(other.stars) * 10;
+
+    int firstAttention = attentions;
+    int otherAttention = other.attentions;
+
     double resp = second - first;
-    int dato = resp.round();
+    int res = otherAttention - firstAttention;
+
+    int dato = (resp + res).round();
     return dato;
   }
 }

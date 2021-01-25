@@ -62,7 +62,10 @@ class LoginController extends GetxController {
 
   Future<void> login() async {
     loading.value = true;
-    if (isFormValid) {
+    if (!isFormValid) {
+      Timer(Duration(milliseconds: 500), () => loading.value = false);
+      mostrarSnackbar('Complete los datos', colorRed);
+    } else {
       if (!isEmailValid) {
         Timer(Duration(milliseconds: 500), () => loading.value = false);
         mostrarSnackbar('Ingrese un correo valido', colorRed);
@@ -77,9 +80,6 @@ class LoginController extends GetxController {
           mostrarSnackbar(respLogin['message'], colorRed);
         }
       }
-    } else {
-      Timer(Duration(milliseconds: 500), () => loading.value = false);
-      mostrarSnackbar('Complete los datos', colorRed);
     }
   }
 

@@ -41,7 +41,10 @@ class ForgotController extends GetxController {
 
   Future<void> forgot() async {
     loading.value = true;
-    if (isEmailValid) {
+    if (!isEmailValid) {
+      mostrarSnackbar("Ingrese un correo valido", colorRed);
+      Timer(Duration(milliseconds: 500), () => loading.value = false);
+    } else {
       int resp = await repository.forgot(email);
       if (resp == 200) {
         mostrarSnackbar(
@@ -58,9 +61,6 @@ class ForgotController extends GetxController {
         mostrarSnackbar("Oops.. ocurrió un error", colorRed);
         Timer(Duration(milliseconds: 500), () => loading.value = false);
       }
-    } else {
-      mostrarSnackbar("Ingrese un correo valido", colorRed);
-      Timer(Duration(milliseconds: 500), () => loading.value = false);
     }
   }
 }

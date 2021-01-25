@@ -18,7 +18,6 @@ class ComentarioVetController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
     getTenComents();
   }
 

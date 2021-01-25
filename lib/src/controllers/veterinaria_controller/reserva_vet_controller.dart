@@ -325,7 +325,6 @@ class ReservaVetController extends GetxController {
       lng = latlng.lng;
 
       _prefs.myAddressLatLng = "$lat,$lng";
-
       _prefs.myAddress = dato.name;
 
       marcador.add(

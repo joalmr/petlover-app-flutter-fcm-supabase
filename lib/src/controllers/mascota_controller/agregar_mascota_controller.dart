@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -157,9 +156,7 @@ class MascotaAgregarController extends GetxController {
     return models;
   }
 
-  mostrarFoto() {
-    return _mostrarFoto();
-  }
+  mostrarFoto() => _mostrarFoto();
 
   _mostrarFoto() {
     if (foto.path.isNotEmpty)

@@ -29,9 +29,8 @@ class EstablishmentComentProvider {
 
     final resp = await http.get(url, headers: headersToken());
 
-    if (resp.statusCode == 200) {
-      comentarios = comentariosFromJson(resp.body);
-    }
+    if (resp.statusCode == 200) comentarios = comentariosFromJson(resp.body);
+
     return comentarios;
   }
 }

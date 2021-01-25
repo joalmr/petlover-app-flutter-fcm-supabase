@@ -152,17 +152,13 @@ class MascotaEditarController extends GetxController {
       return CachedNetworkImageProvider(petC.pet.picture);
   }
 
-  seleccionarFoto() {
-    return _seleccionarFoto();
-  }
+  seleccionarFoto() => _seleccionarFoto();
 
   _seleccionarFoto() async {
     _procesarImagen(ImageSource.gallery);
   }
 
-  tomarFoto() {
-    return _tomarFoto();
-  }
+  tomarFoto() => _tomarFoto();
 
   _tomarFoto() async {
     _procesarImagen(ImageSource.camera);

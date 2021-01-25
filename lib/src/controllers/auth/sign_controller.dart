@@ -67,8 +67,17 @@ class SignController extends GetxController {
 
   Future<void> signUp() async {
     loading.value = true;
-    if (formComplete) {
-      if (isEmailValid) {
+
+    if (!formComplete) {
+      mostrarSnackbar("Debe completar los campos", colorRed);
+      Timer(Duration(milliseconds: 500), () => loading.value = false);
+    } else {
+      if (!isEmailValid) {
+        mostrarSnackbar(
+            "Ingrese un correo valido, contiene espacios u otros carácteres",
+            colorRed);
+        Timer(Duration(milliseconds: 500), () => loading.value = false);
+      } else {
         if (password.length < 5) {
           mostrarSnackbar(
               "La contraseña debe ser no menor a 5 dígitos", colorRed);
@@ -86,15 +95,7 @@ class SignController extends GetxController {
             Timer(Duration(milliseconds: 500), () => loading.value = false);
           }
         }
-      } else {
-        mostrarSnackbar(
-            "Ingrese un correo valido, contiene espacios u otros carácteres",
-            colorRed);
-        Timer(Duration(milliseconds: 500), () => loading.value = false);
       }
-    } else {
-      mostrarSnackbar("Debe completar los campos", colorRed);
-      Timer(Duration(milliseconds: 500), () => loading.value = false);
     }
   }
 
