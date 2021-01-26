@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_field.dart';
-import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_field.dart';
+import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/atencion_controller/atencion_calificar_controller.dart';
 
 class AtencionCalifica extends StatelessWidget {

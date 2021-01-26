@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/ddl_control.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/navegadores/appbar.dart';
 import 'package:proypet/src/controllers/usuario_controller/queja_controller.dart';
 import 'quejas/lista_queja.dart';
 

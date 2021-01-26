@@ -7,7 +7,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'data/months.dart';
+import '../data/months.dart';
 
 class FnTimeLine extends StatelessWidget {
   @override

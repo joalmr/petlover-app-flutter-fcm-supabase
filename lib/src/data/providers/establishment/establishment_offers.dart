@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:http/http.dart' as http;
-import 'model/promocion_model.dart';
+import '../../models/establishment/promocion_model.dart';
 
 class EstablishmentOfferProvider {
   final _url = urlApi;

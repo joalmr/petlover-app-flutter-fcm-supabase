@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/booking/model/booking_set_model.dart';
+import 'package:proypet/src/data/models/booking/booking_set_model.dart';
 import 'package:proypet/src/data/models/model/servicio_reserva.dart';
 
-import 'model/booking_model.dart';
+import '../../models/booking/booking_model.dart';
 
 class BookingProvider {
   final _url = urlApi;

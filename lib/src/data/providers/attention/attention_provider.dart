@@ -1,6 +1,6 @@
 import 'package:proypet/config/global_variables.dart';
 import 'package:http/http.dart' as http;
-import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
+import 'package:proypet/src/data/models/attention/atencion_model.dart';
 
 class AttentionProvider {
   final _url = urlApi;

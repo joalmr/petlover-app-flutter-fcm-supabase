@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/notification/model/notificacion_model.dart';
+import 'package:proypet/src/data/models/notification/notificacion_model.dart';
 
 class NotificationProvider {
   final _url = urlApi;

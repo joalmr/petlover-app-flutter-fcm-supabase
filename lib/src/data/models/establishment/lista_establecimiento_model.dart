@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import '../../../providers/establishment/model/establecimiento_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_model.dart';
 
 EstablecimientoModel establecimientoModelFromJson(String str) =>
     EstablecimientoModel.fromJson(json.decode(str));

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/transition/fadeView.dart';
-import 'package:proypet/src/app/views/components/wave_clipper.dart';
-import 'package:proypet/src/controllers/auth/forgot_controller.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/transition/fadeView.dart';
+import 'package:proypet/src/app/components/wave_clipper.dart';
+import 'package:proypet/src/controllers/auth_controller/forgot_controller.dart';
 
 class ForgotPage extends StatelessWidget {
   const ForgotPage({Key key}) : super(key: key);

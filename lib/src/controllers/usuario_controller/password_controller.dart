@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
 import 'package:proypet/src/data/services/user/user_service.dart';
 
 class PasswordController extends GetxController {

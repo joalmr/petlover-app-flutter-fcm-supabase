@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
 import 'package:proypet/src/data/providers/pet/mascota_provider.dart';
 
 class MascotaService {

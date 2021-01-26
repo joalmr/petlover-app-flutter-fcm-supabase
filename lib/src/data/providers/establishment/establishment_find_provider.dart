@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
-import 'model/establecimiento_short_model.dart';
+import '../../models/establishment/establecimiento_short_model.dart';
 
 class EstablishmentFindProvider {
   final _url = urlApi;

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/data/providers/notification/model/notificacion_model.dart';
+import 'package:proypet/src/data/models/notification/notificacion_model.dart';
 
 Widget marketing(Notificacion noti) {
   return Container(

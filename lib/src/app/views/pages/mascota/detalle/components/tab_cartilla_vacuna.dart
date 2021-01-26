@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/timeline_vacuna.dart';
+import 'package:proypet/src/app/components/timeline/timeline_vacuna.dart';
 import 'package:proypet/src/controllers/mascota_controller/historia_vacuna_mascota_controller.dart';
 
 class CartillaDigitalTab extends StatelessWidget {

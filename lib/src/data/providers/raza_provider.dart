@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/models/model/raza/raza_model.dart';
+import 'package:proypet/src/data/models/raza/raza_model.dart';
 
 class RazaProvider {
   final _url = urlApi;

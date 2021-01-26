@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
-
-import 'booking/booking_home.dart';
+import 'package:proypet/src/data/models/booking/booking_home.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
 
 HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 

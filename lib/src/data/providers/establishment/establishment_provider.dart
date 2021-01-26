@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/establishment/model/establecimiento_model.dart';
-import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_short_model.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablishmentProvider {

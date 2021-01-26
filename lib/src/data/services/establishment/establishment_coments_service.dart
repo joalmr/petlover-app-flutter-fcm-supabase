@@ -1,5 +1,5 @@
 import 'package:proypet/src/data/providers/establishment/establishment_coments_provider.dart';
-import 'package:proypet/src/data/providers/establishment/model/comentarios_model.dart';
+import 'package:proypet/src/data/models/establishment/comentarios_model.dart';
 
 class EstablishmentComentService {
   final establishmentComentProvider = EstablishmentComentProvider();

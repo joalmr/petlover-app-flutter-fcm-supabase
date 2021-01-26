@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_short_model.dart';
 import 'package:proypet/src/data/services/establishment/establishment_find_service.dart';
 import 'package:proypet/src/data/services/establishment/establishment_service.dart';
 

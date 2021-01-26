@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:proypet/icons/icon_proypet_icons.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/data/providers/establishment/model/establecimiento_short_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_short_model.dart';
 
 import 'swiper_vet.dart';
 

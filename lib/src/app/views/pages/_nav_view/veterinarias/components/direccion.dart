@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/filtra_vets_controller.dart';
-import 'package:proypet/src/data/models/model/maps/address.dart';
+import 'package:proypet/src/data/models/maps/address.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
 
 import 'package:http/http.dart' as http;

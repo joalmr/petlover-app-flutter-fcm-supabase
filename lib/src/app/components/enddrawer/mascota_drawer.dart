@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/pages/mascota/editar/editar_mascota.dart';
-import 'package:proypet/src/controllers/drawer/mascota_drawer_controller.dart';
+import 'package:proypet/src/controllers/drawer_controller/mascota_drawer_controller.dart';
 
 class MascotaDrawer extends StatelessWidget {
   const MascotaDrawer({Key key}) : super(key: key);

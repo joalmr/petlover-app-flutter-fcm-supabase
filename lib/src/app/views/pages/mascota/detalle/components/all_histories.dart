@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:proypet/src/app/views/components/timeline.dart';
-import 'package:proypet/src/data/providers/pet/model/pet_history_model.dart';
+import 'package:proypet/src/app/components/timeline/timeline.dart';
+import 'package:proypet/src/data/models/pet/pet_history_model.dart';
 import 'icono_historia.dart';
 
 Widget allHistories(List<PetHistoryModel> historias) {

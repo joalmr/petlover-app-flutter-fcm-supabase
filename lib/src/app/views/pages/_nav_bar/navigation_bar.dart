@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
+import 'package:proypet/src/app/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/notificaciones_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/recompensas/recompensas_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/veterinarias_view.dart';

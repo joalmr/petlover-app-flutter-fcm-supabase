@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/data/providers/notification/model/notificacion_model.dart';
+import 'package:proypet/src/data/models/notification/notificacion_model.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 
 import '../build_noti.dart';

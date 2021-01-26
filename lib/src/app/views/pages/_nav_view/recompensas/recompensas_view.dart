@@ -7,10 +7,10 @@ import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
-import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src/app/components/navegadores/appbar.dart';
+import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/recompensas_controller/recompensas_controller.dart';
-import 'package:proypet/src/data/providers/bonification/model/bonificacion_top_model.dart';
+import 'package:proypet/src/data/models/bonification/bonificacion_top_model.dart';
 
 class RecompensasPage extends StatelessWidget {
   final refreshKey = GlobalKey<RefreshIndicatorState>();

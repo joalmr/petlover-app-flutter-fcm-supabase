@@ -1,4 +1,4 @@
-import 'package:proypet/src/data/providers/booking/model/booking_set_model.dart';
+import 'package:proypet/src/data/models/booking/booking_set_model.dart';
 import 'package:proypet/src/data/models/model/servicio_reserva.dart';
 import 'package:proypet/src/data/providers/booking/booking_provider.dart';
 

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/providers/establishment/model/promocion_model.dart';
+import 'package:proypet/src/data/models/establishment/promocion_model.dart';
 import 'package:proypet/src/data/services/establishment/establishment_offers_service.dart';
 import 'package:proypet/src/data/services/establishment/establishment_service.dart';
 

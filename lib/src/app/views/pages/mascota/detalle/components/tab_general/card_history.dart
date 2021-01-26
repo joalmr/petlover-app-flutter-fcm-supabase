@@ -9,7 +9,7 @@ import 'package:proypet/src/app/views/pages/mascota/historia/components/consulta
 import 'package:proypet/src/app/views/pages/mascota/historia/components/desparasitacion.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/grooming.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/vacuna.dart';
-import 'package:proypet/src/data/providers/pet/model/pet_history_model.dart';
+import 'package:proypet/src/data/models/pet/pet_history_model.dart';
 import '../icono_historia.dart';
 
 Widget cardHistory(PetHistoryModel history) {

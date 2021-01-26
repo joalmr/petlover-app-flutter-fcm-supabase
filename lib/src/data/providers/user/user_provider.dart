@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:http/http.dart' as http;
-import 'package:proypet/src/data/providers/user/model/user_model.dart';
+import 'package:proypet/src/data/models/user/user_model.dart';
 
 class UserProvider {
   final _url = urlApi;

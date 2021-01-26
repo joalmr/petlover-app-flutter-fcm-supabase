@@ -8,7 +8,7 @@ import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
 import 'package:proypet/src/controllers/home_controller/mascota_home_controller.dart';
 import 'package:proypet/src/utils/calcula_edad.dart';

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/data/dataDelivery.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
+import 'package:proypet/src/app/components/appbar_menu.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/ddl_control.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/components/direccion_reserva.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/components/fecha.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/components/servicio_dato.dart';
@@ -71,17 +71,14 @@ class DataReserva extends StatelessWidget {
                               ? StepState.complete
                               : StepState.disabled,
                           title: Text('Seleccione servicio'),
-                          content: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Wrap(
-                                children: _.servicioReservaLista
-                                    .map((item) => MisServicioReserva(item))
-                                    .toList()
-                                    .cast<Widget>(),
-                              ),
-                            ],
+                          content: Container(
+                            width: double.maxFinite,
+                            child: Wrap(
+                              children: _.servicioReservaLista
+                                  .map((item) => MisServicioReserva(item))
+                                  .toList()
+                                  .cast<Widget>(),
+                            ),
                           ),
                         ),
                         Step(

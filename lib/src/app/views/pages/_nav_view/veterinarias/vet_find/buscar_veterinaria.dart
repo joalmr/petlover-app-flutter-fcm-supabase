@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/buscar_vet_controller.dart';
 
 class BuscarVeterinaria extends StatelessWidget {

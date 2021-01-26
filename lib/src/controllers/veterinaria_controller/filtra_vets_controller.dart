@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/models/model/maps/address.dart';
+import 'package:proypet/src/data/models/maps/address.dart';
 import 'package:proypet/src/data/services/user/address_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import '../_global_controller.dart';

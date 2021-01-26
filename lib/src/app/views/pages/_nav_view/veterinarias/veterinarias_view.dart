@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
+import 'package:proypet/src/app/components/navegadores/appbar.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_mapa/vet_mapa_page.dart';
 
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/filtro_veterinarias.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/lista_vets_controller.dart';
 
 import 'components/build_vet.dart';

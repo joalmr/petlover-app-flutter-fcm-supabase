@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/data/providers/establishment/model/establecimiento_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_model.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 
 Widget servicios(List<Service> servicios) {

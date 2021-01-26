@@ -1,4 +1,4 @@
-import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
+import 'package:proypet/src/data/models/attention/atencion_model.dart';
 import 'package:proypet/src/data/providers/attention/attention_provider.dart';
 
 class AttentionService {

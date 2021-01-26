@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
 
 class PetProvider {
   final _url = urlApi;

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/providers/booking/model/booking_model.dart';
-import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
-import 'package:proypet/src/data/providers/user/model/user_model.dart';
+import 'package:proypet/src/data/models/booking/booking_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
+import 'package:proypet/src/data/models/user/user_model.dart';
 import 'package:proypet/src/data/services/booking/booking_service.dart';
 import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/data/services/summary_service.dart';

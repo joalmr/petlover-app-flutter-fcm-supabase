@@ -10,7 +10,7 @@ Widget buttonPri(_text, _funtion, {bool cargando = false}) {
   return SizedBox(
     width: double.maxFinite,
     child: RaisedButton(
-      shape: shape20,
+      shape: shape10,
       color: colorMain,
       elevation: 2.0,
       textColor: Colors.white,
@@ -40,7 +40,7 @@ Widget buttonOutLine(String _text, _funtion, Color _color) {
     ),
     padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
     color: Colors.black.withOpacity(0.15),
-    shape: shape20,
+    shape: shape10,
     borderSide: new BorderSide(color: _color),
     highlightedBorderColor: _color,
     textColor: _color,
@@ -52,7 +52,7 @@ Widget buttonFlat(String _text, _funtion, Color _color) {
     onPressed: _funtion,
     child: new Text(_text, style: _textstyle.copyWith(color: _color)),
     padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
-    shape: shape20,
+    shape: shape10,
   );
 }
 
@@ -60,7 +60,7 @@ Widget buttonModal(String _text, _funtion, Color _color) {
   return FlatButton(
     onPressed: _funtion,
     child: new Text(_text, style: _textstyle.copyWith(color: _color)),
-    shape: shape20,
+    shape: shape10,
   );
 }
 
@@ -76,7 +76,7 @@ Widget btnWIcon({
   return SizedBox(
     width: double.maxFinite,
     child: RaisedButton(
-      shape: shape20,
+      shape: shape10,
       color: color,
       elevation: 2.0,
       textColor: Colors.white,
@@ -119,7 +119,7 @@ Widget btnFace({@required text, @required funtion}) {
   return SizedBox(
     width: double.maxFinite,
     child: RaisedButton(
-      shape: shape20,
+      shape: shape10,
       color: Color(0xFF3b5998),
       elevation: 2.0,
       textColor: Colors.white,

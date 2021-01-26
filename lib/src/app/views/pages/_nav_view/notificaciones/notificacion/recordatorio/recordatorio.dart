@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/filtra_vets_controller.dart';
-import 'package:proypet/src/data/providers/notification/model/notificacion_model.dart';
+import 'package:proypet/src/data/models/notification/notificacion_model.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 
 import '../build_noti.dart';

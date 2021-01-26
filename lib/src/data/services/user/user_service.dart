@@ -1,4 +1,4 @@
-import 'package:proypet/src/data/providers/user/model/user_model.dart';
+import 'package:proypet/src/data/models/user/user_model.dart';
 import 'package:proypet/src/data/providers/user/user_provider.dart';
 
 class UserService {

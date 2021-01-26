@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/data/providers/pet/model/pet_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
 
 class MascotaProvider {
   final _url = urlApi;

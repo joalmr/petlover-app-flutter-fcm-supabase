@@ -10,6 +10,7 @@ import 'package:proypet/src/app/views/pages/bonus_pet/canjear_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/sorteo_puntos.dart';
 import 'package:proypet/src/app/views/pages/bonus_pet/ultimos_puntos.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/components/historial_page.dart';
+import 'package:proypet/src/app/views/pages/shopping/shop_cart_page.dart';
 import 'package:proypet/src/app/views/pages/shopping/shopping_product_page.dart';
 import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
@@ -29,7 +30,6 @@ GetStorage box = GetStorage();
 
 List<GetPage> getRutas() {
   return [
-    // GetPage(name: 'update', page: () => UpdatePage()),
     GetPage(
       name: '/',
       page: () => box.hasData('token') && box.hasData('verify')
@@ -71,5 +71,6 @@ List<GetPage> getRutas() {
     GetPage(name: 'enviarqueja', page: () => QuejaPage()),
 
     GetPage(name: 'shopproduct', page: () => ShoppingProductPage()),
+    GetPage(name: 'shopcart', page: () => ShopCartPage()),
   ];
 }

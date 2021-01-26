@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/data/providers/attention/model/atencion_model.dart';
+import 'package:proypet/src/data/models/attention/atencion_model.dart';
 import 'package:proypet/src/data/services/attention/attention_service.dart';
 import 'atencion_controller.dart';
 

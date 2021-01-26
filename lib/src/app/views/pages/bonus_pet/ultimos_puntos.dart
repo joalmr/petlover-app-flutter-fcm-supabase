@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/navegadores/appbar.dart';
-import 'package:proypet/src/controllers/bonus_pet/bonus_controller.dart';
+import 'package:proypet/src/app/components/navegadores/appbar.dart';
+import 'package:proypet/src/controllers/bonus_pet_controller/bonus_controller.dart';
 
 class PuntosGanados extends StatelessWidget {
   @override

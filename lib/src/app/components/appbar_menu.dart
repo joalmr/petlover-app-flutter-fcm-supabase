@@ -24,26 +24,6 @@ Widget appbar(logo, String texto, List<Widget> acc) {
   );
 }
 
-Widget appbarSec(String texto, List<Widget> acc) {
-  return AppBar(
-    leading: null,
-    centerTitle: false,
-    backgroundColor: Colors.transparent,
-    automaticallyImplyLeading: false,
-    textTheme: TextTheme(
-      headline6: TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.w500,
-        color: Get.textTheme.subtitle2.color,
-      ),
-    ),
-    actionsIconTheme: IconThemeData(color: Get.textTheme.subtitle2.color),
-    iconTheme: IconThemeData(color: Get.textTheme.subtitle2.color),
-    title: Text(texto),
-    actions: acc,
-  );
-}
-
 Widget navbar() {
   return PreferredSize(
     preferredSize: Size(mediaAncho, 1000),

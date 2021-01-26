@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
 
 import 'package:proypet/src/app/styles/styles.dart';
+import 'form_control/button_primary.dart';
 import 'transition/fadeViewSafeArea.dart';
 
 class ThxPage extends StatelessWidget {

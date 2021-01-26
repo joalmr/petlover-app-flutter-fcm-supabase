@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/components/tab_general/card_style.dart';
 import 'package:proypet/src/controllers/mascota_controller/agregar_mascota_controller.dart';
 

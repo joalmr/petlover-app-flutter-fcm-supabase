@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
-import 'package:proypet/src/app/views/components/verify_page.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
+import 'package:proypet/src/app/components/verify_page.dart';
 import 'package:proypet/src/data/services/auth/auth_service.dart';
 
 import 'login_controller.dart';

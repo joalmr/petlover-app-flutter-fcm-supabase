@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src/app/components/appbar_menu.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/usuario_controller/password_controller.dart';
 
 class ChangePasswordPage extends StatelessWidget {
@@ -16,14 +16,19 @@ class ChangePasswordPage extends StatelessWidget {
             init: PasswordController(),
             builder: (_) {
               return ListView(
-                padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 20.0), //.symmetric(horizontal: 25.0,vertical: 10.0),
+                padding: EdgeInsets.only(
+                    left: 25.0,
+                    right: 25.0,
+                    top: 20.0), //.symmetric(horizontal: 25.0,vertical: 10.0),
                 children: <Widget>[
                   FormularioText(
                     labelText: 'Contraseña actual',
                     hintText: 'Ingrese contraseña actual',
                     icon: Icons.lock,
                     iconSuf: InkWell(
-                      child: Icon(_.passwordVisible.value ? Icons.visibility_off : Icons.visibility),
+                      child: Icon(_.passwordVisible.value
+                          ? Icons.visibility_off
+                          : Icons.visibility),
                       onTap: _.togglePassword1,
                     ),
                     obscureText: !_.passwordVisible.value,
@@ -37,7 +42,9 @@ class ChangePasswordPage extends StatelessWidget {
                     hintText: 'Ingrese contraseña nueva',
                     icon: Icons.lock,
                     iconSuf: InkWell(
-                      child: Icon(_.passwordVisible2.value ? Icons.visibility_off : Icons.visibility),
+                      child: Icon(_.passwordVisible2.value
+                          ? Icons.visibility_off
+                          : Icons.visibility),
                       onTap: _.togglePassword2,
                     ),
                     obscureText: !_.passwordVisible2.value,
@@ -47,7 +54,9 @@ class ChangePasswordPage extends StatelessWidget {
                     boardType: TextInputType.text,
                   ),
                   SizedBox(height: 25.0),
-                  Center(child: buttonPri('Cambiar contraseña', _.clickPassword.value ? _.changePassword : null))
+                  Center(
+                      child: buttonPri('Cambiar contraseña',
+                          _.clickPassword.value ? _.changePassword : null))
                 ],
               );
             }),

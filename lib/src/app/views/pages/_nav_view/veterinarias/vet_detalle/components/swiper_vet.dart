@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proypet/src/app/views/components/card_swiper.dart';
+import 'package:proypet/src/app/components/card_swiper.dart';
 
 Widget swiperVets(imagen, bool urlBool) {
   return CardSwiper(
