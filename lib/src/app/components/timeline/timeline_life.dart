@@ -20,8 +20,7 @@ class FnTimeLine extends StatelessWidget {
         int firstYear = dateBornConverted.year;
         int firstMonth = dateBornConverted.month;
 
-        int lastYear = dateBornConverted.year +
-            ((DateTime.now().year - dateBornConverted.year) + 1);
+        int lastYear = DateTime.now().year; // + 1;
 
         int todayYear = _.today.year;
         int todayMonth = _.today.month;
@@ -65,7 +64,6 @@ class FnTimeLine extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          // print('$i $j');
                           _.tempYear.value = i.toString();
                           _.tempMonth.value = mes[j];
                           _.historyDate(i.toString(), j.toString());
