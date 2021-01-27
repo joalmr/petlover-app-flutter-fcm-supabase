@@ -31,7 +31,7 @@ class _NavigationBarState extends State<NavigationBar> {
       NotificacionesPage(),
       ReservaList(),
       RecompensasPage(),
-      ShoppingPage(),
+      // ShoppingPage(),
     ];
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
@@ -51,10 +51,10 @@ class _NavigationBarState extends State<NavigationBar> {
         icon: Icon(Icons.monetization_on),
         label: 'Puntos',
       ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_cart),
-        label: 'Shopping',
-      ),
+      // BottomNavigationBarItem(
+      //   icon: Icon(Icons.shopping_cart),
+      //   label: 'Shopping',
+      // ),
     ];
 
     return GetBuilder<NavigationController>(

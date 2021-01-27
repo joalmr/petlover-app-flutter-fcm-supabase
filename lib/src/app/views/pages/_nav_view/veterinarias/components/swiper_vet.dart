@@ -8,12 +8,15 @@ class SwiperVet extends StatelessWidget {
   final bool urlBool;
   final double radius;
   final double scale;
+  final bool loop;
 
-  SwiperVet(
-      {@required this.imagenes,
-      @required this.urlBool,
-      this.radius = 0.0,
-      this.scale = 1.0});
+  SwiperVet({
+    @required this.imagenes,
+    @required this.urlBool,
+    this.radius = 0.0,
+    this.scale = 1.0,
+    this.loop = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +24,17 @@ class SwiperVet extends StatelessWidget {
       aspectRatio: 9 / 10,
       child: Container(
         child: Swiper(
+          loop: loop,
           itemBuilder: (BuildContext context, int index) {
             return ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: Image(
-                  image: urlBool
-                      ? CachedNetworkImageProvider(imagenes[index])
-                      : AssetImage(imagenes[index]),
-                  fit: BoxFit.cover,
-                ));
+              borderRadius: BorderRadius.circular(radius),
+              child: Image(
+                image: urlBool
+                    ? CachedNetworkImageProvider(imagenes[index])
+                    : AssetImage(imagenes[index]),
+                fit: BoxFit.cover,
+              ),
+            );
           },
           scale: scale,
           itemCount: imagenes.length,

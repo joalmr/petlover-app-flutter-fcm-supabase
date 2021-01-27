@@ -114,55 +114,56 @@ class RecompensasPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ), //TODO: quitar appPruebas cuando ya este para produccion
-                        appPruebas
-                            ? Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Card(
-                                    child: InkWell(
-                                      onTap: () => Get.toNamed('canjearpuntos'),
-                                      borderRadius: borderRadius,
-                                      child: Container(
-                                        width: 120,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 10),
-                                        child: Column(
-                                          children: [
-                                            Icon(
-                                              FontAwesomeIcons.cartPlus,
-                                              color: colorMain,
-                                            ),
-                                            Text('Tienda Puntos'),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Card(
-                                    child: InkWell(
-                                      onTap: () => Get.toNamed('sorteopuntos'),
-                                      borderRadius: borderRadius,
-                                      child: Container(
-                                        width: 120,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 10),
-                                        child: Column(
-                                          children: [
-                                            Icon(
-                                              FontAwesomeIcons.gifts,
-                                              color: colorMain,
-                                            ),
-                                            Text('Sorteos'),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : SizedBox(height: 0),
+                        ),
+                        // //TODO: quitar appPruebas cuando ya este para produccion
+                        // appPruebas
+                        //     ? Row(
+                        //         mainAxisAlignment:
+                        //             MainAxisAlignment.spaceEvenly,
+                        //         children: [
+                        //           Card(
+                        //             child: InkWell(
+                        //               onTap: () => Get.toNamed('canjearpuntos'),
+                        //               borderRadius: borderRadius,
+                        //               child: Container(
+                        //                 width: 120,
+                        //                 padding: EdgeInsets.symmetric(
+                        //                     vertical: 10, horizontal: 10),
+                        //                 child: Column(
+                        //                   children: [
+                        //                     Icon(
+                        //                       FontAwesomeIcons.cartPlus,
+                        //                       color: colorMain,
+                        //                     ),
+                        //                     Text('Tienda Puntos'),
+                        //                   ],
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           Card(
+                        //             child: InkWell(
+                        //               onTap: () => Get.toNamed('sorteopuntos'),
+                        //               borderRadius: borderRadius,
+                        //               child: Container(
+                        //                 width: 120,
+                        //                 padding: EdgeInsets.symmetric(
+                        //                     vertical: 10, horizontal: 10),
+                        //                 child: Column(
+                        //                   children: [
+                        //                     Icon(
+                        //                       FontAwesomeIcons.gifts,
+                        //                       color: colorMain,
+                        //                     ),
+                        //                     Text('Sorteos'),
+                        //                   ],
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       )
+                        //     : SizedBox(height: 0),
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 15, bottom: 10),

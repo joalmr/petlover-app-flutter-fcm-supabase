@@ -117,6 +117,7 @@ Widget buildVets(EstablishmentModelList vet) {
 Widget _swiperVets(imagen, bool url) {
   return SwiperVet(
     imagenes: imagen,
+    loop: false,
     urlBool: url,
     radius: 10.0,
     scale: 0.9,
