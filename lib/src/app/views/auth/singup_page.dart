@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -119,14 +121,16 @@ class SingupPage extends StatelessWidget {
                                     funtion: _.signFacebook,
                                   ),
                                   SizedBox(height: 5),
-                                  btnWIcon(
-                                    texto: 'Registrarme con Google',
-                                    pathImage: 'images/google.png',
-                                    color: Color(0xFFf1f1f1),
-                                    colorText: Colors.black38,
-                                    colorIcon: Colors.black38,
-                                    funtion: () {},
-                                  ),
+                                  Platform.isIOS
+                                      ? SizedBox(height: 0)
+                                      : btnWIcon(
+                                          texto: 'Registrarme con Google',
+                                          pathImage: 'images/google.png',
+                                          color: Color(0xFFf1f1f1),
+                                          colorText: Colors.black38,
+                                          colorIcon: Colors.black38,
+                                          funtion: () {},
+                                        ),
                                   SizedBox(height: 5),
                                   btnWIcon(
                                     texto: 'Registrarme con correo',

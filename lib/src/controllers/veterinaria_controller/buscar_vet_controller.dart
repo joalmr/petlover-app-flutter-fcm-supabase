@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:proypet/src/data/models/establishment/establecimiento_short_model.dart';
 import 'package:proypet/src/data/services/establishment/establishment_find_service.dart';
 import 'package:proypet/src/data/services/establishment/establishment_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
+
+import 'filtra_vets_controller.dart';
 
 class BuscarVetController extends GetxController {
   final establecimientoService = EstablishmentService();
@@ -12,17 +15,25 @@ class BuscarVetController extends GetxController {
   RxList<EstablishmentModelList> veterinarias =
       List<EstablishmentModelList>().obs;
   RxBool carga = false.obs;
+
+  final _prefs = new PreferenciasUsuario();
+  RxBool hasPosition = false.obs;
+  // RxString _findText = "".obs;
+  // set findText(String value) => _findText.value = value;
+  // String get findText => _findText.value;
+
   @override
   void onInit() {
     super.onInit();
     veterinarias.clear();
+    hasPosition.value = _prefs.hasPosition();
   }
 
   findVet(vetName) {
     veterinarias.clear();
     if (vetName.length > 2) {
       carga.value = true;
-      Timer(Duration(milliseconds: 500), () => _findVet(vetName));
+      Timer(Duration(milliseconds: 1000), () => _findVet(vetName));
     }
   }
 
@@ -32,5 +43,10 @@ class BuscarVetController extends GetxController {
     veterinarias.clear();
     veterinarias.addAll(resp);
     carga.value = false;
+  }
+
+  filtra() {
+    final f = Get.find<FiltraVetsController>();
+    f.filtrar();
   }
 }

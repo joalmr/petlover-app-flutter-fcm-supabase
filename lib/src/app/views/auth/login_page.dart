@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -83,14 +85,16 @@ class LoginPage extends StatelessWidget {
                   funtion: _.loginFacebook,
                 ),
                 SizedBox(height: 5.0),
-                btnWIcon(
-                  texto: 'Ingresar con Google',
-                  pathImage: 'images/google.png',
-                  color: Color(0xFFf1f1f1),
-                  colorText: Colors.black38,
-                  colorIcon: Colors.black38,
-                  funtion: _.loginGoogle,
-                ),
+                Platform.isIOS
+                    ? SizedBox(height: 0)
+                    : btnWIcon(
+                        texto: 'Ingresar con Google',
+                        pathImage: 'images/google.png',
+                        color: Color(0xFFf1f1f1),
+                        colorText: Colors.black38,
+                        colorIcon: Colors.black38,
+                        funtion: _.loginGoogle,
+                      ),
                 SizedBox(height: 10.0),
                 Center(
                   child: FlatButton(

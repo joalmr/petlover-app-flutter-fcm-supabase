@@ -16,7 +16,7 @@ const produccion = {
 
 String versionAndroid = "";
 String versionIOS = "";
-final bool appPruebas = true;
+final bool appPruebas = false;
 //TODO: cambiar a false cuando sea produccion - cambiar google-services para android
 
 final environment = appPruebas ? pruebas : produccion;
