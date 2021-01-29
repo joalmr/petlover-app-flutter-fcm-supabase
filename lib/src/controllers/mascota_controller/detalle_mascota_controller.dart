@@ -1,7 +1,6 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/components/data/months.dart';
-import 'package:proypet/src/app/views/pages/mascota/components/function_dialog.dart';
 import 'package:proypet/src/data/models/pet/pet_model.dart';
 import 'package:proypet/src/data/models/pet/pet_history_model.dart';
 import 'package:proypet/src/data/services/pet/pet_history_service.dart';

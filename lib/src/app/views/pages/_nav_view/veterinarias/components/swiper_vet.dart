@@ -39,9 +39,10 @@ class SwiperVet extends StatelessWidget {
           scale: scale,
           itemCount: imagenes.length,
           pagination: new SwiperPagination(
-              builder: new DotSwiperPaginationBuilder(
-            activeColor: colorMain,
-          )),
+            builder: new DotSwiperPaginationBuilder(
+              activeColor: colorMain,
+            ),
+          ),
         ),
       ),
     );

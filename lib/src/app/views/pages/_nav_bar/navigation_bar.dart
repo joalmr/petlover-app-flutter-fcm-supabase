@@ -7,7 +7,6 @@ import 'package:proypet/src/app/components/appbar_menu.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/notificaciones_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/recompensas/recompensas_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/veterinarias_view.dart';
-import 'package:proypet/src/app/views/pages/shopping/shopping_page.dart';
 import 'package:proypet/src/controllers/_navigation_controller.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/home/home_view.dart';
 

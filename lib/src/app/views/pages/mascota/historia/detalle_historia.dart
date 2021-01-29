@@ -7,7 +7,9 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'components/cirugia.dart';
 import 'components/consulta.dart';
 import 'components/desparasitacion.dart';
+import 'components/examen.dart';
 import 'components/grooming.dart';
+import 'components/other.dart';
 import 'components/vacuna.dart';
 
 class HistoriaPage extends StatelessWidget {
@@ -78,6 +80,12 @@ class HistoriaPage extends StatelessWidget {
             : SizedBox(height: 0),
         jsonData.containsKey('surgery')
             ? cirugia(jsonData["surgery"])
+            : SizedBox(height: 0),
+        jsonData.containsKey('testing')
+            ? examen(jsonData["testing"])
+            : SizedBox(height: 0),
+        jsonData.containsKey('other')
+            ? other(jsonData["other"])
             : SizedBox(height: 0),
       ],
     );
