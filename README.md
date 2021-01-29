@@ -7,8 +7,17 @@ In addition, you need to add the Background Modes capability to your XCode proje
 https://maps.googleapis.com/maps/api/geocode/json?latlng=-12.0166806,-77.09980399999999&key=AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844
 
 
+
+# despliegue android
 ## flutter build appbundle
-## flutter build ios —release
+
+# despliegue ios 
+## abrir en xcode, esperar q termine da cargar la barra
+## flutter build ios --release
+## product -> archive
+
+
+
 
 com.example.user //prueba
 com.proypet.user //produccion
