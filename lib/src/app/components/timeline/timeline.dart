@@ -7,7 +7,9 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/cirugia.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/consulta.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/desparasitacion.dart';
+import 'package:proypet/src/app/views/pages/mascota/historia/components/examen.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/grooming.dart';
+import 'package:proypet/src/app/views/pages/mascota/historia/components/other.dart';
 import 'package:proypet/src/app/views/pages/mascota/historia/components/vacuna.dart';
 
 Widget timeline({
@@ -235,6 +237,12 @@ Widget _service(jsonData) {
           : SizedBox(height: 0),
       jsonData.containsKey('surgery')
           ? cirugia(jsonData["surgery"])
+          : SizedBox(height: 0),
+      jsonData.containsKey('testing')
+          ? examen(jsonData["testing"])
+          : SizedBox(height: 0),
+      jsonData.containsKey('other')
+          ? other(jsonData["other"])
           : SizedBox(height: 0)
     ],
   );

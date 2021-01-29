@@ -14,7 +14,6 @@ import 'package:proypet/src/app/views/pages/shopping/shop_cart_page.dart';
 import 'package:proypet/src/app/views/pages/shopping/shopping_product_page.dart';
 import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
-import 'package:proypet/src/app/views/pages/mascota/historia/detalle_historia.dart';
 import 'package:proypet/src/app/views/auth/login_page.dart';
 import 'package:proypet/src/app/views/auth/singup_page.dart';
 import 'package:proypet/src/app/views/auth/forgot_page.dart';
@@ -55,7 +54,7 @@ List<GetPage> getRutas() {
 
     GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
     GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
-    GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
+    // GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
     GetPage(name: 'historialmascota', page: () => HistorialMascota()),
     GetPage(name: 'vetdetalle', page: () => VetDetallePage()),
     GetPage(name: 'vetreserva', page: () => DataReserva()),
