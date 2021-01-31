@@ -115,6 +115,13 @@ class SingupPage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 20),
                                   btnWIcon(
+                                    texto: 'Registrarme con correo',
+                                    icono: FontAwesomeIcons.solidEnvelope,
+                                    color: colorMain,
+                                    funtion: () => _.singup.value = true,
+                                  ),
+                                  SizedBox(height: 5),
+                                  btnWIcon(
                                     texto: 'Registrarme con Facebook',
                                     icono: FontAwesomeIcons.facebook,
                                     color: Color(0xFF3b5998),
@@ -131,13 +138,6 @@ class SingupPage extends StatelessWidget {
                                           colorIcon: Colors.black38,
                                           funtion: () {},
                                         ),
-                                  SizedBox(height: 5),
-                                  btnWIcon(
-                                    texto: 'Registrarme con correo',
-                                    icono: FontAwesomeIcons.solidEnvelope,
-                                    color: colorMain,
-                                    funtion: () => _.singup.value = true,
-                                  ),
                                   SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
