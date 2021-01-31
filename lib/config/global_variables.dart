@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 const pruebas = {
@@ -14,7 +14,11 @@ const produccion = {
   'urlApi': 'https://proypet.com/api',
 };
 
-final bool appPruebas = false; //TODO: cambiar a false cuando sea produccion
+String versionAndroid = "";
+String versionIOS = "";
+final bool appPruebas = true;
+//TODO: cambiar a false cuando sea produccion - cambiar google-services para android
+//TODO: inicio de version 4
 
 final environment = appPruebas ? pruebas : produccion;
 
@@ -22,11 +26,10 @@ final String keyMap = environment['keyMap'];
 final String urlName = environment['url'];
 final String urlApi = environment['urlApi'];
 
+var mediaAncho = Get.width;
+
 final _prefs = new PreferenciasUsuario();
 
 headersToken() {
-  return {
-    // HttpHeaders.contentTypeHeader: "application/json",
-    HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"
-  };
+  return {HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"};
 }

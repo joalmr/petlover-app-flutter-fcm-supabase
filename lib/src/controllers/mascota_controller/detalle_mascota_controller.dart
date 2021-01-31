@@ -1,23 +1,63 @@
+import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/update/mascota/history_model.dart';
-// import 'package:proypet/src/models/mascota/mascota_model.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-// import 'package:proypet/src/models/mascota/pet_model.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/app/components/data/months.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
+import 'package:proypet/src/data/models/pet/pet_history_model.dart';
+import 'package:proypet/src/data/services/pet/pet_history_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MascotaDetalleController extends GetxController {
   String mascotaId;
-  final mascotaService = new MascotaService();
+  final petService = new PetService();
+  final petHistoryService = new PetHistoryService();
+
   RxBool loading = true.obs;
+  RxBool loadingHistory = true.obs;
 
   MascotaModel2 pet;
-  RxList<HistoriaModel2> history = List<HistoriaModel2>().obs;
+
+  RxList<PetHistoryModel> petHistory = List<PetHistoryModel>().obs;
+  RxList<PetHistoryModel> petAllHistory = List<PetHistoryModel>().obs;
+
+  DateTime today = DateTime.now();
+
+  RxString tempYear = ''.obs;
+  RxString tempMonth = ''.obs; //mes[DateTime.now().month].obs;
+
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
+  int scrollInit = 0;
 
   @override
   void onInit() {
     super.onInit();
     mascotaId = Get.arguments;
     verMiMascota();
+    firstHistory();
+  }
+
+  goPosition() {
+    firstHistory();
+    itemScrollController.scrollTo(
+      index: scrollInit,
+      duration: Duration(seconds: 2),
+      curve: Curves.easeInOutCubic,
+    );
+  }
+
+  firstHistory() => _firstHistory();
+  Future<void> _firstHistory() async {
+    int todayYear = today.year;
+    int todayMonth = today.month;
+
+    tempYear.value = todayYear.toString();
+    tempMonth.value = mes[todayMonth];
+
+    var month = todayMonth < 10 ? '0${today.month}' : todayMonth.toString();
+    await historyDate(todayYear.toString(), month);
   }
 
   void verMiMascota() {
@@ -25,17 +65,40 @@ class MascotaDetalleController extends GetxController {
   }
 
   Future<void> _verMiMascota() async {
-    pet = await mascotaService.getPet(mascotaId);
-    await _verMiHistoria(mascotaId);
+    print('==entra==');
+    pet = await petService.getPet(mascotaId);
     loading.value = false;
   }
 
-  void verMiHistoria(id) {
-    _verMiHistoria(id);
+  historyDate(String year, String month) => _historyDate(year, month);
+
+  _historyDate(year, month) async {
+    loadingHistory.value = true;
+    petHistory.clear();
+    petHistory.addAll(
+        await petHistoryService.getPetHistoryDate(mascotaId, year, month));
+    loadingHistory.value = false;
+  }
+
+  goToHistory() => _goToHistory();
+  _goToHistory() async {
+    await _verMiHistoria(mascotaId);
+    Get.toNamed('historialmascota');
   }
 
   Future<void> _verMiHistoria(id) async {
-    history.clear();
-    history.addAll(await mascotaService.getPetHistory(id));
+    petAllHistory.clear();
+    petAllHistory.addAll(await petHistoryService.getPetHistory(mascotaId));
   }
+
+  // RxInt frecuenciaFood = 0.obs;
+  // RxString horasFood = ''.obs;
+  // RxInt frecuenciaBed = 0.obs;
+  // RxInt frecuenciaFleas = 0.obs;
+  // RxInt frecuenciaLitterBox = 0.obs;
+
+  // fnFleas() => funtionFleas();
+  // fnBed() => funtionBed();
+  // fnLitterBox() => funtionLitterBox();
+  // fnFood() => funtionFood();
 }

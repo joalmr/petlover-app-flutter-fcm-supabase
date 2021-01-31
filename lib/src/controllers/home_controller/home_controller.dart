@@ -1,28 +1,32 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/booking/booking_home.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
+import 'package:proypet/src/data/models/booking/booking_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
+import 'package:proypet/src/data/models/user/user_model.dart';
+import 'package:proypet/src/data/services/booking/booking_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
-  //
-  RxString _usuario = ''.obs;
-  set usuario(String value) => _usuario.value = value;
-  String get usuario => _usuario.value;
+  final userService = UserService();
+  final petService = PetService();
+  final bookingService = BookingService();
+
+  Rx<UserModel2> _usuario = UserModel2().obs;
+  set usuario(UserModel2 value) => _usuario.value = value;
+  UserModel2 get usuario => _usuario.value;
 
   RxBool loading = true.obs;
 
-  RxList<BookingHome> atenciones = List<BookingHome>().obs;
+  RxList<BookingModel> atenciones = List<BookingModel>().obs;
   RxList<MascotaModel2> mascotas = List<MascotaModel2>().obs;
-
-  // _init() {
-  //   ever(_usuario, (_) {
-  //     print('cambio name');
-  //   });
-  // }
 
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
+
+  final _prefs = new PreferenciasUsuario();
 
   void volver() => Get.back();
 
@@ -34,26 +38,49 @@ class HomeController extends GetxController {
     return null;
   }
 
+  getUsuario() => _getUsuario();
+
+  _getUsuario() async {
+    usuario = await userService.getUser();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (_prefs.hasToken()) {
+      getUsuario();
+      getSummary();
+    }
+  }
+
   void getSummary() {
     _summary();
   }
 
   Future<void> _summary() async {
-    var resp = await summaryRepository.getUserSummary();
-    usuario = resp.user.name;
+    var pets = await petService.getPets();
+    var bookings = await bookingService.getBookings();
+
     mascotas.clear();
-    mascotas.addAll(resp.pets);
-    atenciones.clear(); //atenciones
+    mascotas.addAll(pets);
+
+    atenciones.clear();
     DateTime now = DateTime.now();
-    resp.bookings.forEach((booking) {
-      var fechaAt = booking.date.split('-');
-      bool vencido = false;
-      if (int.parse(fechaAt[0]) < now.day && int.parse(fechaAt[1]) == now.month && int.parse(fechaAt[2]) == now.year) {
-        vencido = true;
+    bookings.forEach((BookingModel booking) {
+      var fechaAt = booking.bookingDatetime;
+
+      if (fechaAt.day < now.day &&
+          fechaAt.month == now.month &&
+          fechaAt.year == now.year) {
+        booking.pastDate = true;
       }
-      booking.vencido = vencido;
+
+      // int leftDays = now.difference(fechaAt).inDays;
+      // if (leftDays < 0) booking.pastDate = true;
+
       atenciones.add(booking);
     });
+
     loading.value = false;
   }
 }

@@ -12,9 +12,8 @@ Widget precio(tipo, desde, hasta) {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-          elevation: 2.0,
           child: Container(
-            width: 130,
+            width: 145,
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -41,25 +40,29 @@ Widget precio(tipo, desde, hasta) {
                     (desde != "")
                         ? Text(
                             ' $desde ',
-                            style: TextStyle(color: Get.textTheme.subtitle2.color),
+                            style:
+                                TextStyle(color: Get.textTheme.subtitle2.color),
                           )
                         : SizedBox(width: 0),
                     (desde != "" && hasta != "")
                         ? Text(
                             "-",
-                            style: TextStyle(color: Get.textTheme.subtitle2.color),
+                            style:
+                                TextStyle(color: Get.textTheme.subtitle2.color),
                           )
                         : SizedBox(width: 0),
                     (desde == "" && hasta != "")
                         ? Text(
                             "0 -",
-                            style: TextStyle(color: Get.textTheme.subtitle2.color),
+                            style:
+                                TextStyle(color: Get.textTheme.subtitle2.color),
                           )
                         : SizedBox(width: 0),
                     (hasta != "")
                         ? Text(
                             ' $hasta ',
-                            style: TextStyle(color: Get.textTheme.subtitle2.color),
+                            style:
+                                TextStyle(color: Get.textTheme.subtitle2.color),
                           )
                         : SizedBox(width: 0),
                   ],

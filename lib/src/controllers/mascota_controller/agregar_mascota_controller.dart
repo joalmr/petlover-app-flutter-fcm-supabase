@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,15 +7,15 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
-import 'package:proypet/src/app/views/components/thx_page.dart';
+import 'package:proypet/src/app/components/form_control/ddl_control.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
+import 'package:proypet/src/app/components/thx_page.dart';
 import 'package:proypet/src/app/views/pages/mascota/data/sexo_pet.dart';
 import 'package:proypet/src/app/views/pages/mascota/data/tipo_pet.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/models/model/raza/raza_model.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/models/raza/raza_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
+import 'package:proypet/src/data/services/pet/mascota_service.dart';
 import 'package:proypet/src/data/services/raza_servicio.dart';
 import 'package:proypet/src/utils/add_msg.dart';
 import 'package:select_dialog/select_dialog.dart';
@@ -33,14 +32,19 @@ class MascotaAgregarController extends GetxController {
   Breed razaSeleccionada;
   String razaName;
 
+  RxInt _page = 1.obs;
+
+  set page(int value) => _page.value = value;
+  int get page => _page.value;
+
   TextEditingController razaTextC = TextEditingController();
-  //
+
   Rx<File> _foto = File('').obs;
   RxString _nombre = ''.obs;
   RxInt _especie = int.tryParse(tipopet[0]['id']).obs;
   int razaId;
   RxString _fecha = ''.obs;
-  RxInt _sexo = int.parse(tiposex[0]['id']).obs; // = 0.obs;
+  RxInt _sexo = int.parse(tiposex[0]['id']).obs;
 
   RxBool btnCarga = false.obs;
 
@@ -65,15 +69,14 @@ class MascotaAgregarController extends GetxController {
   void onInit() {
     super.onInit();
     _obtenerRaza();
+    // page = 1;
     fecha = format.format(DateTime.now());
   }
 
   @override
   void onClose() {
+    // page = 1;
     super.onClose();
-    foto.delete();
-    nombre = '';
-    fecha = '';
   }
 
   obtenerRaza() {
@@ -106,16 +109,23 @@ class MascotaAgregarController extends GetxController {
       errorBuilder: (context, exception) => Center(child: Text('Oops!')),
       items: razaLista.breeds,
       selectedValue: razaSeleccionada,
-      searchBoxDecoration: InputDecoration(hintText: 'Buscar raza', prefixIcon: Icon(Icons.search, color: colorMain)),
+      searchBoxDecoration: InputDecoration(
+          hintText: 'Buscar raza',
+          prefixIcon: Icon(Icons.search, color: colorMain)),
       onFind: (String filter) => _getData(filter),
       itemBuilder: (BuildContext context, Breed item, bool isSelected) {
         return Container(
-          decoration: !isSelected ? null : BoxDecoration(borderRadius: BorderRadius.circular(5), color: colorMain),
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5), color: colorMain),
           child: ListTile(
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
+              style: isSelected
+                  ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
+                  : Get.textTheme.subtitle2,
             ),
           ),
         );
@@ -126,6 +136,10 @@ class MascotaAgregarController extends GetxController {
         razaTextC.text = razaName;
       },
     );
+  }
+
+  String getRaza(int idRaza) {
+    return razaLista.breeds.where((element) => element.id == idRaza).first.name;
   }
 
   Future<List<Breed>> _getData(String filter) async {
@@ -142,13 +156,13 @@ class MascotaAgregarController extends GetxController {
     return models;
   }
 
-  mostrarFoto() {
-    return _mostrarFoto();
-  }
+  mostrarFoto() => _mostrarFoto();
 
   _mostrarFoto() {
-    if (foto.path != '') return FileImage(foto);
-    return AssetImage('images/no-image.png');
+    if (foto.path.isNotEmpty)
+      return FileImage(foto);
+    else
+      return AssetImage('images/no-image.png');
   }
 
   seleccionarFoto() {
@@ -168,7 +182,7 @@ class MascotaAgregarController extends GetxController {
   }
 
   _procesarImagen(ImageSource origen) async {
-    var imagen = await ImagePicker.pickImage(source: origen);
+    var imagen = await ImagePicker().getImage(source: origen, imageQuality: 80);
 
     File croppedFile = await ImageCropper.cropImage(
       sourcePath: imagen.path,
@@ -196,7 +210,6 @@ class MascotaAgregarController extends GetxController {
       ),
     );
 
-    // if (foto != null) {} //limpieza
     foto = croppedFile;
     Get.back();
   }
@@ -225,7 +238,8 @@ class MascotaAgregarController extends GetxController {
                     onSurface: Get.textTheme.subtitle2.color,
                   ),
                   dialogBackgroundColor: Theme.of(context).backgroundColor,
-                  buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
+                  buttonTheme:
+                      ButtonThemeData(textTheme: ButtonTextTheme.primary)),
               child: child),
         );
       },
@@ -258,8 +272,10 @@ class MascotaAgregarController extends GetxController {
       mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
       btnCarga.value = false;
     } else if (sinNombreMascota || sinFechaMascota) {
-      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
-      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
+      if (sinNombreMascota)
+        mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
+      if (sinFechaMascota)
+        mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
       btnCarga.value = false;
     } else {
       MascotaModel2 mascotaData = new MascotaModel2();
@@ -286,5 +302,4 @@ class MascotaAgregarController extends GetxController {
       }
     }
   }
-  //
 }

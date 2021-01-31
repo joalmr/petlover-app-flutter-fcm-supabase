@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,11 +9,12 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
+import 'package:proypet/src/app/components/form_control/ddl_control.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/models/model/raza/raza_model.dart';
-import 'package:proypet/src/data/services/mascota_service.dart';
+import 'package:proypet/src/data/models/raza/raza_model.dart';
+import 'package:proypet/src/data/services/pet/mascota_service.dart';
+import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/data/services/raza_servicio.dart';
 import 'package:select_dialog/select_dialog.dart';
 
@@ -20,12 +22,15 @@ import 'package:proypet/src/app/views/pages/mascota/data/sexo_pet.dart';
 import 'detalle_mascota_controller.dart';
 
 class MascotaEditarController extends GetxController {
-  final petC = Get.find<MascotaDetalleController>();
   final homeC = Get.find<HomeController>();
-  final mascotaService = MascotaService();
+  final petC = Get.find<MascotaDetalleController>();
+  final mascotaService = new MascotaService();
   final razaService = RazaService();
-  //
+  final petService = new PetService();
+
   RxBool loading = true.obs;
+
+  String petId;
 
   RazaModel razaLista;
   Breed razaSeleccionada;
@@ -58,6 +63,8 @@ class MascotaEditarController extends GetxController {
     super.onInit();
     _obtenerRaza();
     _iniciaValores();
+
+    petId = petC.mascotaId;
   }
 
   _iniciaValores() {
@@ -91,16 +98,23 @@ class MascotaEditarController extends GetxController {
       errorBuilder: (context, exception) => Center(child: Text('Oops!')),
       items: razaLista.breeds,
       selectedValue: razaSeleccionada,
-      searchBoxDecoration: InputDecoration(hintText: 'Buscar raza', prefixIcon: Icon(Icons.search, color: colorMain)),
+      searchBoxDecoration: InputDecoration(
+          hintText: 'Buscar raza',
+          prefixIcon: Icon(Icons.search, color: colorMain)),
       onFind: (String filter) => _getData(filter),
       itemBuilder: (BuildContext context, Breed item, bool isSelected) {
         return Container(
-          decoration: !isSelected ? null : BoxDecoration(borderRadius: BorderRadius.circular(5), color: colorMain),
+          decoration: !isSelected
+              ? null
+              : BoxDecoration(
+                  borderRadius: BorderRadius.circular(5), color: colorMain),
           child: ListTile(
             selected: isSelected,
             title: Text(
               item.name,
-              style: isSelected ? Get.textTheme.subtitle2.copyWith(color: Colors.white) : Get.textTheme.subtitle2,
+              style: isSelected
+                  ? Get.textTheme.subtitle2.copyWith(color: Colors.white)
+                  : Get.textTheme.subtitle2,
             ),
           ),
         );
@@ -132,30 +146,26 @@ class MascotaEditarController extends GetxController {
   }
 
   _mostrarFoto() {
-    if (foto.path != '')
+    if (foto.path.isNotEmpty)
       return FileImage(foto);
     else
       return CachedNetworkImageProvider(petC.pet.picture);
   }
 
-  seleccionarFoto() {
-    return _seleccionarFoto();
-  }
+  seleccionarFoto() => _seleccionarFoto();
 
   _seleccionarFoto() async {
     _procesarImagen(ImageSource.gallery);
   }
 
-  tomarFoto() {
-    return _tomarFoto();
-  }
+  tomarFoto() => _tomarFoto();
 
   _tomarFoto() async {
     _procesarImagen(ImageSource.camera);
   }
 
   _procesarImagen(ImageSource origen) async {
-    var imagen = await ImagePicker.pickImage(source: origen);
+    var imagen = await ImagePicker().getImage(source: origen);
 
     File croppedFile = await ImageCropper.cropImage(
       sourcePath: imagen.path,
@@ -183,7 +193,6 @@ class MascotaEditarController extends GetxController {
       ),
     );
 
-    // if (foto != null) {} //limpieza
     foto = croppedFile;
     Get.back();
   }
@@ -214,7 +223,8 @@ class MascotaEditarController extends GetxController {
                     onSurface: Get.textTheme.subtitle2.color,
                   ),
                   dialogBackgroundColor: Theme.of(context).backgroundColor,
-                  buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
+                  buttonTheme:
+                      ButtonThemeData(textTheme: ButtonTextTheme.primary)),
               child: child),
         );
       },
@@ -232,22 +242,22 @@ class MascotaEditarController extends GetxController {
     });
   }
 
-  void mascotaEdit() {
-    _mascotaEdit();
-  }
-
   bool get sinDatos => nombre.isEmpty && fecha.isEmpty;
   bool get sinNombreMascota => nombre.isEmpty && fecha.isNotEmpty;
   bool get sinFechaMascota => nombre.isNotEmpty && fecha.isEmpty;
 
+  void mascotaEdit() => _mascotaEdit();
+
   Future<void> _mascotaEdit() async {
     btnCarga.value = true;
     if (sinDatos) {
-      mostrarSnackbar('Ingrese datos de la mascota.', colorRed);
+      mostrarSnackbar('Ingrese datos de la mascota', colorRed);
       btnCarga.value = false;
     } else if (sinNombreMascota || sinFechaMascota) {
-      if (sinNombreMascota) mostrarSnackbar('Ingrese nombre de la mascota.', colorRed);
-      if (sinFechaMascota) mostrarSnackbar('Ingrese nacimiento de la mascota.', colorRed);
+      if (sinNombreMascota)
+        mostrarSnackbar('Ingrese nombre de la mascota', colorRed);
+      if (sinFechaMascota)
+        mostrarSnackbar('Ingrese nacimiento de la mascota', colorRed);
       btnCarga.value = false;
     } else {
       petC.pet.name = nombre;
@@ -256,13 +266,12 @@ class MascotaEditarController extends GetxController {
       petC.pet.breedId = razaId;
       bool resp = await mascotaService.editPet(petC.pet, foto);
       if (resp) {
-        petC.verMiMascota();
         homeC.getSummary();
         btnCarga.value = false;
-        Get.back();
-        Get.back();
+        mostrarSnackbar("Edición correcta", colorMain);
+        Timer(Duration(milliseconds: 1500), () => Get.offAllNamed('/'));
       } else {
-        mostrarSnackbar('Oops, intentalo más tarde.', colorRed);
+        mostrarSnackbar('Oops, intentalo más tarde', colorRed);
         btnCarga.value = false;
       }
     }

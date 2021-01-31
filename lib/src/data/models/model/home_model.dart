@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-
-import 'booking/booking_home.dart';
+import 'package:proypet/src/data/models/booking/booking_home.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
 
 HomeModel homeModelFromJson(String str) => HomeModel.fromJson(json.decode(str));
 
@@ -21,8 +20,10 @@ class HomeModel {
 
   factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
         user: UserHome.fromJson(json["user"]),
-        pets: List<MascotaModel2>.from(json["pets"].map((x) => MascotaModel2.fromJson(x))),
-        bookings: List<BookingHome>.from(json["bookings"].map((x) => BookingHome.fromJson(x))),
+        pets: List<MascotaModel2>.from(
+            json["pets"].map((x) => MascotaModel2.fromJson(x))),
+        bookings: List<BookingHome>.from(
+            json["bookings"].map((x) => BookingHome.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

@@ -9,35 +9,56 @@ vacuna(data) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
       Row(
-        children: <Widget>[
-          Icon(IconProypet.vacuna, size: 16.0, color: Get.textTheme.subtitle2.color),
-          SizedBox(
-            width: 10.0,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: <Widget>[
+              Icon(
+                IconProypet.vacuna,
+                size: 12.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
+              SizedBox(width: 10.0),
+              Text(
+                'Vacuna',
+                style: Get.textTheme.subtitle2
+                    .apply(fontWeightDelta: 2)
+                    .copyWith(fontSize: 12),
+              ),
+            ],
           ),
           Text(
-            'Vacuna',
-            style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2),
+            data["amount"] ?? '-',
+            textAlign: TextAlign.right,
+            style: TextStyle(fontSize: 12),
           ),
         ],
       ),
-      SizedBox(
-        height: 10,
+      SizedBox(height: 10),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: data["vaccines"]
+            .map((item) => Text(
+                  '· $item',
+                  style: TextStyle(fontSize: 10),
+                ))
+            .toList()
+            .cast<Widget>(),
       ),
+      SizedBox(height: 10),
       Text(
         "Recomendación",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: sizeSmallx2,
+        ),
       ),
-      Text((data["recommendations"] != null) ? data["recommendations"] : "-"),
-      SizedBox(
-        height: 10,
+      Text(
+        data["recommendations"] ?? '-',
+        style: TextStyle(fontSize: 12),
       ),
-      // Text(
-      //   "Atendido por",
-      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
-      // ),
-      // Text((data["employee"] != null) ? data["employee"] : "-"),
-      Divider(),
-      Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
+      SizedBox(height: 10),
     ],
   );
 }

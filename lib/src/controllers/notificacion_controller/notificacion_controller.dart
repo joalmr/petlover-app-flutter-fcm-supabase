@@ -1,18 +1,21 @@
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/notificacion/notificacion_model.dart';
-import 'package:proypet/src/data/services/notificacion_servicio.dart';
+import 'package:proypet/src/data/models/notification/notificacion_model.dart';
+import 'package:proypet/src/data/services/notification/notification_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class NotificacionController extends GetxController {
-  final notificacionService = NotificacionService();
+  final notificacionService = NotificationService();
+  final _prefs = new PreferenciasUsuario();
 
   NotificacionModel notificationModel;
-  List<Notificacion> notifications;
+  RxList<Notificacion> notifications = List<Notificacion>().obs;
   RxBool loading = true.obs;
 
   @override
   void onInit() {
     super.onInit();
     getNotificacion();
+    _prefs.notificaAviso = false;
   }
 
   Future refresh() => _refresh();
@@ -23,13 +26,14 @@ class NotificacionController extends GetxController {
     return null;
   }
 
-  void getNotificacion() {
-    _notificacion();
-  }
+  void getNotificacion() => _notificacion();
 
   Future<void> _notificacion() async {
     notificationModel = await notificacionService.getNotificacion();
-    notifications = notificationModel.notifications;
+
+    notifications.clear();
+    notifications.addAll(notificationModel.notifications);
+
     loading.value = false;
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src/app/components/appbar_menu.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/usuario_controller/usuario_controller.dart';
 
 class UserPage extends StatelessWidget {
@@ -20,12 +21,13 @@ class UserPage extends StatelessWidget {
               ? FadeViewSafeArea(
                   child: Container(
                   child: Center(
-                    child: CupertinoActivityIndicator(),
+                    child: lottieLoading,
                   ),
                 ))
               : FadeViewSafeArea(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,

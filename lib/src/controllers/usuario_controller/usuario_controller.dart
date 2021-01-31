@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/models/update/usuario/user_model.dart';
-import 'package:proypet/src/data/services/user_service.dart';
+import 'package:proypet/src/data/models/user/user_model.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
 import 'package:proypet/src/utils/regex.dart';
 
 import '../_global_controller.dart';
@@ -38,7 +38,7 @@ class UsuarioController extends GetxController {
   }
 
   _cargaValores() {
-    UserModel2 dato = globalC.usuario;
+    UserModel2 dato = homeC.usuario;
 
     nombre = dato.name;
     apellido = dato.lastname;
@@ -64,12 +64,10 @@ class UsuarioController extends GetxController {
         if (!valida) {
           mostrarSnackbar('Número telefónico invalido.', colorRed);
           Timer(Duration(milliseconds: 1500), () => btnBool.value = true);
-        } else {
+        } else
           _registraUsuario();
-        }
-      } else {
+      } else
         _registraUsuario();
-      }
     }
   }
 
@@ -77,10 +75,9 @@ class UsuarioController extends GetxController {
     bool resp = await userService.editUser(nombre, apellido, telefono);
     if (resp) {
       mostrarSnackbar('Se guardaron los datos.', colorMain);
-      globalC.getUsuario();
+      homeC.getUsuario();
       homeC.getSummary();
       Timer(Duration(milliseconds: 1500), () => btnBool.value = true);
-      // Timer(Duration(milliseconds: 2000), () => Get.until((route) => route.isFirst));
     } else {
       mostrarSnackbar('No se guardaron los datos ingresados.', colorRed);
       btnBool.value = true;

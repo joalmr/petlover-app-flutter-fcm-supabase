@@ -1,31 +1,33 @@
 import 'dart:async';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
-import 'package:proypet/src/data/models/update/mascota/pet_model.dart';
-import 'package:proypet/src/data/models/update/usuario/user_model.dart';
-import 'package:proypet/src/data/services/booking_service.dart';
-import 'package:proypet/src/data/services/establecimiento_service.dart';
-import 'package:proypet/src/data/services/user_service.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_short_model.dart';
+import 'package:proypet/src/data/models/pet/pet_model.dart';
+import 'package:proypet/src/data/models/user/user_model.dart';
+import 'package:proypet/src/data/services/booking/booking_service.dart';
+import 'package:proypet/src/data/services/establishment/establishment_service.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
 import 'package:proypet/src/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:websafe_network_image/websafe_network_image.dart';
-
 import '../_global_controller.dart';
 import 'lista_vets_controller.dart';
 
 class VetDetalleController extends GetxController {
   final userService = new UserService();
-  final vetService = new EstablecimientoService();
+  final vetService = new EstablishmentService();
   final bookingService = new BookingService();
 
-  // EstablecimientoModel vet;
+  final homeC = Get.find<HomeController>();
+  final globalC = Get.find<GlobalController>();
+  final vetsC = Get.find<VeterinariasController>();
+
   Rx<EstablecimientoModel> _vet = EstablecimientoModel().obs;
   set vet(EstablecimientoModel value) => _vet.value = value;
   EstablecimientoModel get vet => _vet.value;
@@ -34,30 +36,24 @@ class VetDetalleController extends GetxController {
   List<MascotaModel2> misMascotas = [];
 
   RxString _telefono = "".obs;
-
-  RxBool cargando = false.obs;
-  // RxString _vetId = "".obs;
-
-  // set vetId(String value) => _vetId.value = value;
-  // String get vetId => _vetId.value;
+  RxBool cargando = true.obs;
 
   set telefono(String value) => _telefono.value = value;
   String get telefono => _telefono.value;
 
-  final homeC = Get.find<HomeController>();
-  final globalC = Get.find<GlobalController>();
-
-  final vetsC = Get.find<VeterinariasController>();
+  String vetId;
+  String vetInit;
 
   UserModel2 usuario;
 
   @override
   void onInit() {
     super.onInit();
-    vet = Get.arguments;
+    vetInit = Get.arguments;
     traeMascotas();
-    usuario = globalC.usuario;
+    usuario = homeC.usuario;
     telefono = usuario.phone;
+    getVet();
   }
 
   @override
@@ -65,26 +61,30 @@ class VetDetalleController extends GetxController {
     super.onClose();
   }
 
-  // getVet() async {
-  //   vetId = Get.arguments;
-  //   print(vetId);
-  //   var respVet = await vetService.getVet(vetId);
-  //   vet = respVet['establishment'];
-  //   cargando.value = false;
-  // }
+  getVet() => _getVet(vetInit);
+  _getVet(idInit) async {
+    vetId = idInit;
+    var respVet = await vetService.getVet(vetId);
+    vet = respVet['establishment'];
+    cargando.value = false;
+  }
 
   bool get hasDelivery {
     //usado en reserva controller
-    bool delivery = false;
+    int existe = 0;
     vet.services.forEach((element) {
       if (element.slug == 'delivery') {
-        delivery = true;
+        existe++;
       }
     });
-    return delivery;
+    if (existe != 0) {
+      return true;
+    }
+    return false;
   }
 
-  traeMascotas() => misMascotas = homeC.mascotas.where((element) => element.status != 0).toList();
+  traeMascotas() => misMascotas =
+      homeC.mascotas.where((element) => element.status != 0).toList();
 
   llamar() => _launchPhone();
 
@@ -99,39 +99,39 @@ class VetDetalleController extends GetxController {
 
   bool get mascotasCount => misMascotas.length > 0;
   bool get sinTelefono => telefono.isNullOrBlank;
-  // bool get sinTelefono => globalC.usuario.phone.isEmpty;
 
   final formKey = GlobalKey<FormState>();
 
   reservar() => _reservar();
 
-  List<EstablecimientoModel> vetPremium = [];
+  List<EstablishmentModelList> vetPremium = [];
   _getPremiumClose() {
-    vetPremium = vetsC.vetLocales.value.where((element) => element.premium == true && element != vet).take(2).toList(); //.take(2);
+    vetPremium = vetsC.vetLocales.value
+        .where((element) => element.premium == true && element.id != vet.id)
+        .take(2)
+        .toList();
   }
 
   _reservar() async {
     reservaClic.value = false;
-    if (!vet.premium) {
+    if (!vet.premium && !vet.available) {
       _getPremiumClose();
       reservaClic.value = true;
-      //
       bookingService.tryBooking(vet.id);
-      //
+
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [
-          Text('Hola, disculpa este establecimiento aún no puede recibir reservas.'),
+          Text(
+              'Hola, disculpa este establecimiento no puede recibir reservas.'),
           SizedBox(height: 3),
-          Text('Tenemos estas opciones cerca tuyo'),
+          Text('Tenemos estas opciones cerca '),
           SizedBox(height: 10),
           vetPremium.length < 1
               ? Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Sin resultados'),
-                  ),
-                )
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Sin resultados')))
               : vetPremium.length == 1
                   ? _gotoVet(vetPremium[0])
                   : Column(
@@ -154,7 +154,8 @@ class VetDetalleController extends GetxController {
         } else {
           reservaClic.value = true;
           Get.dialog(AlertDialog(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             content: Container(
                 height: 220.0,
                 child: Form(
@@ -162,7 +163,8 @@ class VetDetalleController extends GetxController {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 10.0),
-                      Text('Debe ingresar un número de teléfono', style: Get.textTheme.subtitle2),
+                      Text('Debe ingresar un número de teléfono',
+                          style: Get.textTheme.subtitle2),
                       SizedBox(height: 10.0),
                       FormularioText(
                         hintText: 'Ingrese teléfono',
@@ -176,7 +178,8 @@ class VetDetalleController extends GetxController {
                       SizedBox(height: 10.0),
                       buttonPri("Guardar teléfono", _onPhone),
                       FlatButton(
-                        child: Text("Cancelar", style: TextStyle(color: colorMain)),
+                        child: Text("Cancelar",
+                            style: TextStyle(color: colorMain)),
                         onPressed: () {
                           reservaClic.value = true;
                           Get.back();
@@ -189,7 +192,8 @@ class VetDetalleController extends GetxController {
         }
       } else {
         reservaClic.value = true;
-        mostrarSnackbar('No puede generar una reserva, debe agregar una mascota', colorRed);
+        mostrarSnackbar(
+            'No puede generar una reserva, debe agregar una mascota', colorRed);
       }
     }
   }
@@ -201,8 +205,8 @@ class VetDetalleController extends GetxController {
       bool phone = phoneRegex(telefono);
       if (phone) {
         await userService.editUser(usuario.name, usuario.lastname, telefono);
-        globalC.getUsuario();
-        usuario = globalC.usuario;
+        homeC.getUsuario();
+        usuario = homeC.usuario;
         Get.back();
       } else {
         mostrarSnackbar('Número telefónico inválido', colorRed);
@@ -212,12 +216,12 @@ class VetDetalleController extends GetxController {
     }
   }
 
-  Widget _gotoVet(EstablecimientoModel vetPremium) {
+  Widget _gotoVet(EstablishmentModelList vetPremium) {
     return InkWell(
       onTap: () {
         cargando.value = true;
         Get.back();
-        vet = vetPremium;
+        vet = _getVet(vetPremium.id);
         Timer(Duration(milliseconds: 250), () => cargando.value = false);
       },
       child: Column(
@@ -225,7 +229,10 @@ class VetDetalleController extends GetxController {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           (vetPremium.slides.length > 0)
-              ? WebsafeNetworkImage(imageUrl: vetPremium.slides.first, height: 75)
+              ? Image(
+                  image: CachedNetworkImageProvider(vetPremium.slides.first),
+                  height: 75,
+                )
               : Image(image: AssetImage("images/vet_prueba.jpg"), height: 75),
           SizedBox(height: 3),
           Text(vetPremium.name)

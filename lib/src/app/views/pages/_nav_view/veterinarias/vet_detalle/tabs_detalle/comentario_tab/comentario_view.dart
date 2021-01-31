@@ -3,10 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/comentario_vet_controller.dart';
-
-import 'todos_comentarios_view.dart';
 
 class ViewComentario extends StatelessWidget {
   @override
@@ -17,7 +16,7 @@ class ViewComentario extends StatelessWidget {
           ? FadeIn(
               child: Container(
                 child: Center(
-                  child: CupertinoActivityIndicator(),
+                  child: lottieLoading,
                 ),
               ),
             )
@@ -27,7 +26,7 @@ class ViewComentario extends StatelessWidget {
                     child: Center(
                       child: FadeIn(
                         duration: Duration(milliseconds: 1000),
-                        child: Text('No posee comentarios.'),
+                        child: Text('No tiene comentarios.'),
                       ),
                     ),
                   ),
@@ -39,12 +38,14 @@ class ViewComentario extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ListView.builder(
-                            itemCount: _.comentarios.take(5).length,
+                            padding: EdgeInsets.all(0),
+                            itemCount: _.comentarios.length,
                             itemBuilder: (BuildContext context, int index) {
                               return ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor: Colors.transparent,
-                                  backgroundImage: CachedNetworkImageProvider(_.comentarios[index].petPicture),
+                                  backgroundImage: CachedNetworkImageProvider(
+                                      _.comentarios[index].petPicture),
                                   radius: 20.0,
                                 ),
                                 title: Container(
@@ -61,7 +62,8 @@ class ViewComentario extends StatelessWidget {
                                       _.comentarios[index].stars.toString(),
                                       style: TextStyle(fontSize: 14),
                                     ),
-                                    Icon(Icons.star, color: colorYellow, size: 17)
+                                    Icon(Icons.star,
+                                        color: colorYellow, size: 17)
                                   ],
                                 ),
                               );
@@ -71,7 +73,7 @@ class ViewComentario extends StatelessWidget {
                         _.comentarios.length > 5
                             ? Center(
                                 child: InkWell(
-                                  onTap: () => Get.to(TodosComentarios()),
+                                  onTap: _.verComentarios,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text('Ver más'),

@@ -9,26 +9,56 @@ desparasita(data) {
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
       Row(
-        children: <Widget>[
-          Icon(IconProypet.desparasitacion, size: 16.0, color: Get.textTheme.subtitle2.color),
-          SizedBox(width: 10.0),
-          Text('Desparasitación', style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: <Widget>[
+              Icon(
+                IconProypet.desparasitacion,
+                size: 12.0,
+                color: Get.textTheme.subtitle2.color,
+              ),
+              SizedBox(width: 10.0),
+              Text(
+                'Desparasitación',
+                style: Get.textTheme.subtitle2
+                    .apply(fontWeightDelta: 2)
+                    .copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+          Text(
+            data["amount"] ?? '-',
+            textAlign: TextAlign.right,
+            style: TextStyle(fontSize: 12),
+          ),
         ],
+      ),
+      SizedBox(height: 10),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: data["dewormers"]
+            .map((item) => Text(
+                  '· $item',
+                  style: TextStyle(fontSize: 10),
+                ))
+            .toList()
+            .cast<Widget>(),
       ),
       SizedBox(height: 10),
       Text(
         "Recomendación",
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: sizeSmallx2,
+        ),
       ),
-      Text((data["recommendations"]) != null ? data["recommendations"] : "-"),
+      Text(
+        data["recommendations"] ?? '-',
+        style: TextStyle(fontSize: 12),
+      ),
       SizedBox(height: 10),
-      // Text(
-      //   "Atendido por",
-      //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: sizeSmallx2),
-      // ),
-      // Text((data["employee"] != null) ? data["employee"] : "-"),
-      Divider(),
-      Container(width: double.infinity, padding: EdgeInsets.symmetric(horizontal: 20.0), child: Text(data["amount"].toString(), textAlign: TextAlign.right))
     ],
   );
 }

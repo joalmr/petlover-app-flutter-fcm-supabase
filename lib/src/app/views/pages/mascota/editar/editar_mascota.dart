@@ -2,19 +2,17 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/appbar_menu.dart';
-import 'package:proypet/src/app/views/components/form_control/button_primary.dart';
-import 'package:proypet/src/app/views/components/form_control/ddl_control.dart';
-import 'package:proypet/src/app/views/components/form_control/text_from.dart';
-import 'package:proypet/src/app/views/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/src/app/components/appbar_menu.dart';
+import 'package:proypet/src/app/components/form_control/button_primary.dart';
+import 'package:proypet/src/app/components/form_control/ddl_control.dart';
+import 'package:proypet/src/app/components/form_control/text_from.dart';
+import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/mascota_controller/editar_mascota_controller.dart';
-
 import '../data/tipo_pet.dart';
 
 class MascotaEditarPage extends StatelessWidget {
-  // final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return GetX<MascotaEditarController>(
@@ -25,14 +23,14 @@ class MascotaEditarPage extends StatelessWidget {
             ? FadeIn(
                 child: Container(
                   child: Center(
-                    child: CupertinoActivityIndicator(),
+                    child: lottieLoading,
                   ),
                 ),
               )
             : FadeViewSafeArea(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -42,21 +40,31 @@ class MascotaEditarPage extends StatelessWidget {
                           child: Center(
                             child: Stack(
                               children: <Widget>[
-                                CircleAvatar(backgroundImage: _.mostrarFoto(), radius: 80.0),
+                                CircleAvatar(
+                                    backgroundImage: _.mostrarFoto(),
+                                    radius: 80.0),
                                 Positioned(
                                     bottom: 1.5,
                                     right: 10.0,
                                     child: CircleAvatar(
                                       child: IconButton(
-                                        icon: Icon(Icons.camera_enhance, color: Colors.white),
+                                        icon: Icon(Icons.camera_enhance,
+                                            color: Colors.white),
                                         onPressed: () => showDialog(
                                             context: context,
                                             builder: (BuildContext context) {
                                               return FadeIn(
                                                 child: SimpleDialog(
                                                   children: <Widget>[
-                                                    SimpleDialogOption(child: const Text('Tomar foto'), onPressed: _.tomarFoto), //_tomarFoto
-                                                    SimpleDialogOption(child: const Text('Seleccionar foto'), onPressed: _.seleccionarFoto), //_seleccionarFoto
+                                                    SimpleDialogOption(
+                                                        child: const Text(
+                                                            'Tomar foto'),
+                                                        onPressed: _.tomarFoto),
+                                                    SimpleDialogOption(
+                                                        child: const Text(
+                                                            'Seleccionar foto'),
+                                                        onPressed:
+                                                            _.seleccionarFoto),
                                                   ],
                                                 ),
                                               );
@@ -87,7 +95,12 @@ class MascotaEditarPage extends StatelessWidget {
                             children: <Widget>[
                               Text('Seleccione tipo de mascota'),
                               SizedBox(height: 7.5),
-                              ddlMainOut(context, _.petC.pet.specieId.toString(), tipopet, null, _.petC.pet.specieName),
+                              ddlMainOut(
+                                  context,
+                                  _.petC.pet.specieId.toString(),
+                                  tipopet,
+                                  null,
+                                  _.petC.pet.specieName),
                             ],
                           ),
                         ),
@@ -105,7 +118,8 @@ class MascotaEditarPage extends StatelessWidget {
                                 decoration: InputDecoration(
                                   suffixIcon: Padding(
                                     padding: const EdgeInsets.only(right: 20),
-                                    child: Icon(Icons.keyboard_arrow_down, color: colorMain),
+                                    child: Icon(Icons.keyboard_arrow_down,
+                                        color: colorMain),
                                   ),
                                 ),
                                 onTap: () => _.razasPet(context),
@@ -130,11 +144,16 @@ class MascotaEditarPage extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[Text('Sexo'), SizedBox(height: 7.5), _.sexoEdit(context)],
+                            children: <Widget>[
+                              Text('Sexo'),
+                              SizedBox(height: 7.5),
+                              _.sexoEdit(context)
+                            ],
                           ),
                         ),
                         SizedBox(height: 25.0),
-                        buttonPri('Guardar cambios', _.btnCarga.value ? null : _.mascotaEdit), //_onEdit
+                        buttonPri('Guardar cambios',
+                            _.btnCarga.value ? null : _.mascotaEdit),
                         SizedBox(height: 10.0),
                       ],
                     ),

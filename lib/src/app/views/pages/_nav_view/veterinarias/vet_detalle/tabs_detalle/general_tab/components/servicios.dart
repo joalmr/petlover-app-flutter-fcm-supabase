@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/data/models/model/establecimiento/establecimiento_model.dart';
+import 'package:proypet/src/data/models/establishment/establecimiento_model.dart';
 import 'package:proypet/src/utils/icons_map.dart';
 
 Widget servicios(List<Service> servicios) {
@@ -10,7 +10,8 @@ Widget servicios(List<Service> servicios) {
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: servicios.length,
-      itemBuilder: (BuildContext context, int index) => _icoServicio(servicios[index].slug, servicios[index].name),
+      itemBuilder: (BuildContext context, int index) =>
+          _icoServicio(servicios[index].slug, servicios[index].name),
     ),
   );
 }
@@ -29,12 +30,18 @@ Widget _icoServicio(String icon, String nombre) {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
               color: Get.theme.backgroundColor, //Colors.white,
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 3.0, spreadRadius: 2.0)],
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 3.0,
+                    spreadRadius: 2.0)
+              ],
             ),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Tooltip(
-                child: Icon(iconMap[icon], size: 20, color: Get.textTheme.subtitle2.color),
+                child: Icon(iconMap[icon],
+                    size: 20, color: Get.textTheme.subtitle2.color),
                 message: nombre,
               ),
             )),

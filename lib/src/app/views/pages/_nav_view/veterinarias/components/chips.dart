@@ -5,18 +5,17 @@ import 'package:proypet/src/utils/icons_map.dart';
 
 listarChip(dynamic chips) {
   if (chips != null) {
-    return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 35.0,
-        child: SingleChildScrollView(
+    return SizedBox(
+      height: 35.0,
+      width: double.maxFinite,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: ListView.builder(
+          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: chips.length,
-            itemBuilder: (BuildContext context, int index) => chip(chips[index]),
-          ),
+          itemCount: chips.length,
+          itemBuilder: (BuildContext context, int index) => chip(chips[index]),
         ),
       ),
     );
@@ -40,7 +39,8 @@ chip(int servicio) {
         backgroundColor: colorMain,
         child: Icon(iconNum[servicio], size: sizeSmallx1, color: Colors.white),
       ),
-      label: Text(textMap[servicio], style: TextStyle(color: Get.textTheme.subtitle2.color)),
+      label: Text(textMap[servicio],
+          style: TextStyle(color: Get.textTheme.subtitle2.color)),
     ),
   );
 }

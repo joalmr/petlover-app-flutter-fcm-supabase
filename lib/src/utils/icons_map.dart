@@ -18,6 +18,7 @@ final iconMap = <String, IconData>{
   'resonance': IconProypet.resonancia,
   'pharmacy': IconProypet.farmacia,
   'hospitalization': IconProypet.hospitalizacion,
+  'kit-emergencia': IconProypet.kit_emergencia, //maletin de emergencia
 };
 
 final slugNum = <String, int>{

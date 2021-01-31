@@ -1,25 +1,15 @@
-import 'dart:async';
-
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
-import 'package:proypet/src/data/models/model/antecion/atencion_model.dart';
-import 'package:proypet/src/data/services/atencion_servicio.dart';
+import 'package:proypet/src/data/models/attention/atencion_model.dart';
+import 'package:proypet/src/data/services/attention/attention_service.dart';
 
 class AtencionController extends GetxController {
-  final atencionService = AtencionService();
+  final atencionService = AttentionService();
   final inputComentController = new TextEditingController();
-
-  RxDouble _myrating = 0.0.obs;
 
   RxBool loading = true.obs;
 
-  set myrating(double value) => _myrating.value = value;
-  double get myrating => _myrating.value;
-
-  List<AtencionModel> atenciones;
+  RxList<AtencionModel> atenciones = List<AtencionModel>().obs;
 
   @override
   void onInit() {
@@ -27,41 +17,34 @@ class AtencionController extends GetxController {
     getAtenciones();
   }
 
+  Future refresh() => _refresh();
+
+  Future<Null> _refresh() async {
+    await Future.delayed(Duration(milliseconds: 2));
+    getAtenciones();
+    return null;
+  }
+
   getAtenciones() => _getAtenciones();
 
   _getAtenciones() async {
-    atenciones = await atencionService.getAtenciones();
+    var resp = await atencionService.getAtenciones();
+    atenciones.clear();
+    atenciones.addAll(resp);
     loading.value = false;
   }
 
-  onRate(AtencionModel atencion) => _onRate(atencion);
+  votar(AtencionModel atencion) {
+    print(atencion.attentionBonification);
 
-  _onRate(AtencionModel atencion) async {
-    atencion.stars = myrating.toInt();
-    atencion.comment = inputComentController.text;
-    bool resp = await atencionService.calificar(atencion);
+    dynamic argumentos = {
+      'establishment_logo': '${atencion.establishmentLogo}',
+      'attention_bonification': atencion.attentionBonification ?? '0',
+      'message':
+          'Califica la atención recibida por ${atencion.establishmentName}',
+      'attention_id': '${atencion.attentionId}',
+    };
 
-    if (resp) {
-      Get.dialog(
-        FadeIn(
-          child: AlertDialog(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            content: Container(
-              height: 100.0,
-              child: Center(
-                child: Text(
-                  'Se calificó la atención.',
-                  style: TextStyle(fontSize: 14.0),
-                ),
-              ),
-            ),
-          ),
-        ),
-        barrierDismissible: false,
-      );
-      getAtenciones();
-      Timer(Duration(milliseconds: 2000), () => Get.until((route) => route.isFirst));
-    } else
-      mostrarSnackbar('No se calificó la atención.', colorRed);
+    Get.toNamed('calificaatencion', arguments: argumentos);
   }
 }

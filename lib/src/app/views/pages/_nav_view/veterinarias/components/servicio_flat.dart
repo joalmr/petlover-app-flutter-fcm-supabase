@@ -12,17 +12,25 @@ class ServicioFlat extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<FiltraVetsController>(builder: (_) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 0),
         child: FlatButton(
+          padding: EdgeInsets.all(7.5),
           child: Text(
             texto,
-            style: TextStyle(color: _.listaFiltros.contains(numero) ? Colors.white : colorGreen2),
+            style: TextStyle(
+                color: _.listaFiltros.contains(numero)
+                    ? Colors.white
+                    : colorGray3),
           ),
           onPressed: () => _.add2List(numero),
-          color: _.listaFiltros.contains(numero) ? colorGreen2 : Colors.transparent,
+          color: _.listaFiltros.contains(numero)
+              ? colorGreen2
+              : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(20.0),
-            side: BorderSide(color: colorGreen2),
+            side: BorderSide(
+              color: _.listaFiltros.contains(numero) ? colorGreen2 : colorGray3,
+            ),
           ),
         ),
       );

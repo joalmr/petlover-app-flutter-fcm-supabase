@@ -28,26 +28,32 @@ ThemeData temaOscuro = ThemeData(
     backgroundColor: colorMain,
     foregroundColor: Colors.white,
   ),
+  iconTheme: IconThemeData(color: Colors.white38),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(
       headline6: TextStyle(
-        fontSize: 18.0,
-        color: Colors.white,
+        fontSize: 26.0, //28
+        fontWeight: FontWeight.w300,
+        color: Colors.white38,
       ),
     ),
-    // color: fondoScaffoldOscuro,
+    centerTitle: false,
+    iconTheme: IconThemeData(color: Colors.white38),
+    actionsIconTheme: IconThemeData(color: Colors.white38),
     elevation: 0,
+    color: Colors.transparent,
   ),
   dialogBackgroundColor: Colors.grey[850],
   dialogTheme: DialogTheme(shape: shape10),
   cardTheme: CardTheme(
-    shape: shape10,
-    elevation: .05,
     color: colorDark3,
+    shape: shape10,
+    elevation: 2.05,
+    shadowColor: Colors.black.withOpacity(0.3),
   ),
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    fillColor: colorDark3,
+    fillColor: colorDark1,
     contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
     hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
     border: new OutlineInputBorder(

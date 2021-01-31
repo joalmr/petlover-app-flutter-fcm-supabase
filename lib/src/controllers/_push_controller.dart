@@ -1,17 +1,16 @@
-import 'dart:io';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/push/buildPushNoti.dart';
-import 'package:proypet/src/app/views/pages/_nav_view/notificaciones/push/buildPushQualify.dart';
 import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/data/services/auth_service.dart';
+import 'package:proypet/src/data/services/auth/auth_service.dart';
+import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class PushController extends GetxController {
   AuthService loginApi = AuthService();
   final homeC = Get.find<HomeController>();
+  final _prefs = new PreferenciasUsuario();
 
   Map<String, dynamic> mensaje;
 
@@ -28,7 +27,7 @@ class PushController extends GetxController {
 
   void firebaseToken() {
     _firebaseMessaging.getToken().then((token) {
-      print('==token==');
+      print('==token firebase==');
       print(token);
       loginApi.sendTokenFire(token);
     });
@@ -38,14 +37,17 @@ class PushController extends GetxController {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         mensaje = message;
+        _prefs.notificaAviso = true;
         push();
       },
       onLaunch: (Map<String, dynamic> message) async {
         mensaje = message;
+        _prefs.notificaAviso = true;
         push();
       },
       onResume: (Map<String, dynamic> message) async {
         mensaje = message;
+        _prefs.notificaAviso = true;
         push();
       },
     );
@@ -58,38 +60,19 @@ class PushController extends GetxController {
   }
 
   Future<void> pushVoid() async {
-    var tipoPush;
-    var dataPush;
-    var mensajePush = mensaje['notification']['body'];
-    if (Platform.isAndroid) {
-      tipoPush = mensaje['data']['type'];
-      dataPush = mensaje['data'];
-    } else {
-      tipoPush = mensaje['type'];
-      dataPush = mensaje;
-    }
-    //
+    var mensajePush = mensaje['data']['message'];
+    var tipoPush = mensaje['data']['type'];
+    var dataPush = mensaje['data'];
+
     if (tipoPush == "AttentionFinished") {
       homeC.getSummary();
-      Get.dialog(FadeIn(
-        child: SimpleDialog(
-          children: <Widget>[
-            BuildPushQualify(
-              noti: dataPush,
-              mensaje: mensajePush,
-            ),
-          ],
-        ),
-      ));
+      Get.toNamed('calificaatencion', arguments: dataPush);
     } else {
       Get.dialog(FadeIn(
           child: SimpleDialog(
         contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         children: <Widget>[
-          BuildPushNoti(
-            noti: dataPush,
-            mensaje: mensajePush,
-          ),
+          BuildPushNoti(noti: dataPush, mensaje: mensajePush),
         ],
       )));
     }

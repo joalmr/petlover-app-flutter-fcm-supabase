@@ -1,18 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/enddrawer/mascota_drawer.dart';
-import 'package:proypet/src/app/views/components/transition/fadeView.dart';
+import 'package:proypet/src/app/components/appbar_menu.dart';
+import 'package:proypet/src/app/components/enddrawer/mascota_drawer.dart';
+import 'package:proypet/src/app/components/transition/fadeView.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
-
-import 'components/dato_mascota.dart';
-import 'components/lista_historia.dart';
+import 'package:proypet/src/utils/calcula_edad.dart';
+import 'components/tab_general/card_style.dart';
+import 'components/tab_cartilla_vacuna.dart';
+import 'components/tab_citas.dart';
+import 'components/tab_general.dart';
 
 class MascotaDetallePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  //
+  final refreshKey = GlobalKey<RefreshIndicatorState>();
+
   @override
   Widget build(BuildContext context) {
     return GetX<MascotaDetalleController>(
@@ -21,77 +28,185 @@ class MascotaDetallePage extends StatelessWidget {
         return Scaffold(
           key: _scaffoldKey,
           endDrawer: MascotaDrawer(),
+          appBar: appbar(
+            null,
+            _.loading.value ? '' : _.pet.name ?? '',
+            <Widget>[
+              IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
+              ),
+            ],
+          ),
           body: FadeView(
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  child: _.loading.value
-                      ? Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: Center(
-                            child: CupertinoActivityIndicator(),
-                          ),
-                        )
-                      : SingleChildScrollView(
-                          child: Stack(
-                            children: <Widget>[
-                              Container(
-                                child: Image(
-                                  image: CachedNetworkImageProvider(_.pet.picture),
-                                  height: 350,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
+            child: _.loading.value
+                ? Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Center(
+                      child: lottieLoading,
+                    ),
+                  )
+                : Stack(
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 120,
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: AspectRatio(
+                                    aspectRatio:
+                                        (mediaAncho < 600) ? 1 : 12 / 8,
+                                    child: ClipRRect(
+                                      borderRadius: borderRadius,
+                                      child: Image(
+                                        image: CachedNetworkImageProvider(
+                                            _.pet.picture),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 330.0, bottom: 7.5, left: 5.0, right: 5.0),
-                                height: MediaQuery.of(context).size.height - 330.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: borderRadius,
-                                  color: Theme.of(context).backgroundColor,
-                                ),
-                                child: SingleChildScrollView(
-                                  physics: BouncingScrollPhysics(),
+                                Container(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      datoMascota(_.pet),
-                                      listaHistorial(context, _.history),
-                                      //
+                                      Text(_.pet.name,
+                                          style: Get.textTheme.subtitle1
+                                              .copyWith(
+                                                  fontWeight: FontWeight.w900)),
+                                      Text(_.pet.breedName,
+                                          style: Get.textTheme.subtitle2
+                                              .copyWith(
+                                                  fontWeight: FontWeight.bold)),
+                                      (_.pet.status != 0)
+                                          ? Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 2.5),
+                                                  child: Icon(Icons.cake,
+                                                      size: 14),
+                                                ),
+                                                Text(
+                                                    calculateAge(DateTime.parse(
+                                                        _.pet.birthdate)),
+                                                    style: Get
+                                                        .textTheme.subtitle2),
+                                              ],
+                                            )
+                                          : SizedBox(height: 0),
+                                      SizedBox(height: 5),
+                                      (_.pet.status == 0)
+                                          ? Text('Fallecido',
+                                              style: Get.textTheme.subtitle2
+                                                  .apply(fontWeightDelta: 2)
+                                                  .copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic))
+                                          : Row(
+                                              children: [
+                                                cardSt(
+                                                  content: Text.rich(
+                                                    TextSpan(
+                                                      text:
+                                                          '${_.pet.weight == '0' ? '-' : _.pet.weight}',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text: 'kg.',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  text: 'peso',
+                                                ),
+                                                cardSt(
+                                                  content: _.pet.genre == 1
+                                                      ? Icon(
+                                                          FontAwesomeIcons.mars,
+                                                          color:
+                                                              Colors.lightBlue,
+                                                        )
+                                                      : Icon(
+                                                          FontAwesomeIcons
+                                                              .venus,
+                                                          color: Colors.pink,
+                                                        ),
+                                                  text: 'sexo',
+                                                ),
+                                              ],
+                                            ),
                                     ],
                                   ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: 120, bottom: 7.5, left: 5.0, right: 5.0),
+                        height: context.height - 120, //180
+                        decoration: BoxDecoration(
+                          borderRadius: borderRadius,
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                        ),
+                        child: DefaultTabController(
+                          length: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              TabBar(
+                                // isScrollable: true,
+                                indicatorColor: colorMain,
+                                labelStyle:
+                                    TextStyle(fontWeight: FontWeight.bold),
+                                labelColor: colorMain,
+                                unselectedLabelColor:
+                                    Get.textTheme.subtitle2.color,
+                                unselectedLabelStyle:
+                                    TextStyle(fontWeight: FontWeight.normal),
+                                tabs: [
+                                  Tab(text: "General"),
+                                  Tab(text: "Vacunas"),
+                                  Tab(text: "Próximas citas"),
+                                ],
+                              ),
+                              Expanded(
+                                child: TabBarView(
+                                  children: <Widget>[
+                                    GeneralTab(),
+                                    CartillaDigitalTab(),
+                                    CitasTab(),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    centerTitle: true,
-                    title: Text("", style: Get.textTheme.subtitle1.apply(fontWeightDelta: 2)),
-                    actions: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10.0, spreadRadius: -10.0),
-                          ],
-                        ),
-                        child: IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
-                      )
-                      // IconButton(icon: Icon(Icons.settings), onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
+                      ),
                     ],
                   ),
-                )
-              ],
-            ),
           ),
         );
       },

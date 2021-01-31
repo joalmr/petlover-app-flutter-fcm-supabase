@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/views/components/snackbar.dart';
-import 'package:proypet/src/data/services/user_service.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
+import 'package:proypet/src/data/services/user/user_service.dart';
 
 class PasswordController extends GetxController {
   final userService = new UserService();
@@ -41,7 +41,8 @@ class PasswordController extends GetxController {
       mostrarSnackbar('Se cambió la contraseña.', colorMain);
       Timer(Duration(milliseconds: 1500), () => clickPassword.value = true);
     } else if (resp == 204) {
-      mostrarSnackbar('Error, la contraseña debe ser no menor a 5 dígitos.', colorRed);
+      mostrarSnackbar(
+          'Error, la contraseña debe ser no menor a 5 dígitos.', colorRed);
       Timer(Duration(milliseconds: 1500), () => clickPassword.value = true);
     } else if (resp == 401) {
       mostrarSnackbar('Error, la contraseña actual es incorrecta.', colorRed);

@@ -5,6 +5,7 @@ import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/t
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/general_tab/general_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/horario_tab/horario_view.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/precio_tab/precio_view.dart';
+import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/vet_detalle/tabs_detalle/promocion_tab/promocion_view.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/detalle_vet_controller.dart';
 
 class DataVet extends StatelessWidget {
@@ -12,7 +13,7 @@ class DataVet extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<VetDetalleController>(builder: (_) {
       return DefaultTabController(
-        length: 4,
+        length: 5,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -21,22 +22,46 @@ class DataVet extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 0.0),
               child: Container(
                 width: MediaQuery.of(context).size.width - 0.0,
-                // height: MediaQuery.of(context).size.height * 0.1 ,
                 child: ListTile(
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        '${_.vet.distance}km de distancia',
-                        style: TextStyle(fontSize: sizeSmallx2),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.zero,
+                            decoration: BoxDecoration(
+                              borderRadius: borderRadius,
+                              color: _.vet.typeId == 1 ? colorMain : colorBlue,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 1.5,
+                              horizontal: 5,
+                            ),
+                            child: Text(
+                              _.vet.type,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 8,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Text(
+                            '${_.vet.distance}km de distancia',
+                            style: TextStyle(fontSize: sizeSmallx2),
+                          ),
+                        ],
                       ),
-                      Text(_.vet.name, //nombreVet(0),
+                      Text(_.vet.name,
                           maxLines: 2,
-                          style: Get.textTheme.headline6.apply(fontWeightDelta: 2)),
+                          style: Get.textTheme.subtitle1
+                              .apply(fontWeightDelta: 2)),
                     ],
                   ),
-                  subtitle: Text('${_.vet.address} ', style: TextStyle(fontSize: sizeSmallx1)),
+                  subtitle: Text('${_.vet.address} ',
+                      style: TextStyle(fontSize: sizeSmallx1)),
                   trailing: Stack(
                     children: <Widget>[
                       Container(height: 56.0, width: 60.0),
@@ -44,13 +69,14 @@ class DataVet extends StatelessWidget {
                         height: 50.0,
                         width: 50.0,
                         padding: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.0), color: colorYellow),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100.0),
+                            color: colorYellow),
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Icon(Icons.star, color: Colors.white, size: 12.0),
-                              // SizedBox(width: 5.0),
                               Text(
                                 _.vet.stars.toString(),
                                 style: TextStyle(
@@ -74,11 +100,13 @@ class DataVet extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.0),
                               color: colorMain,
+                              // color: _.vet.typeId == 1 ? colorMain : colorBlue,
                             ),
                             child: Center(
                               child: Text(
                                 _.vet.attentions.toString(),
-                                style: TextStyle(fontSize: 10, color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.white),
                               ),
                             ),
                           ),
@@ -101,6 +129,7 @@ class DataVet extends StatelessWidget {
               isScrollable: true,
               tabs: [
                 Tab(text: "General"),
+                Tab(text: "Promociones"),
                 Tab(text: "Precios"),
                 Tab(text: "Horarios"),
                 Tab(text: "Comentarios"),
@@ -110,6 +139,7 @@ class DataVet extends StatelessWidget {
               child: TabBarView(
                 children: <Widget>[
                   ViewGeneral(),
+                  ViewPromocion(),
                   ViewPrecio(),
                   ViewHorario(),
                   ViewComentario(),
