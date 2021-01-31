@@ -18,6 +18,7 @@ String versionAndroid = "";
 String versionIOS = "";
 final bool appPruebas = true;
 //TODO: cambiar a false cuando sea produccion - cambiar google-services para android
+//TODO: inicio de version 4
 
 final environment = appPruebas ? pruebas : produccion;
 
