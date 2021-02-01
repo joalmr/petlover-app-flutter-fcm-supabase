@@ -68,7 +68,9 @@ class LoginController extends GetxController {
     } else {
       if (!isEmailValid) {
         Timer(Duration(milliseconds: 500), () => loading.value = false);
-        mostrarSnackbar('Ingrese un correo valido', colorRed);
+        mostrarSnackbar(
+            'Ingrese un correo valido, contiene espacios u otros carácteres',
+            colorRed);
       } else {
         Map<String, dynamic> respLogin =
             await repository.login(email, password);

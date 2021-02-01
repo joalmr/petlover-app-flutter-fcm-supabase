@@ -65,7 +65,6 @@ class MascotaDetalleController extends GetxController {
   }
 
   Future<void> _verMiMascota() async {
-    print('==entra==');
     pet = await petService.getPet(mascotaId);
     loading.value = false;
   }

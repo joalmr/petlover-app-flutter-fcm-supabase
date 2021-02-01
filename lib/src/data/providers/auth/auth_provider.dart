@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/src/app/components/snackbar.dart';
-import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/auth_controller/services/facebook_sing.dart';
 import 'package:proypet/src/controllers/auth_controller/services/google_sign.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
@@ -33,13 +32,8 @@ class AuthProvider {
         "access_token": accessToken
       };
 
-      print("==try google==");
-
       Response response;
       response = await dio.post(url, data: loginData);
-
-      print("==login google==");
-      print(response.statusCode);
 
       if (response.statusCode == 200) {
         _prefs.token = response.data['token'];
@@ -72,19 +66,13 @@ class AuthProvider {
         "access_token": accessToken
       };
 
-      print("==try fb==");
-
       Response response;
       response = await dio.post(url, data: loginData);
-
-      print("==login fb==");
-      print(response.statusCode);
 
       if (response.statusCode == 200) {
         _prefs.token = response.data['token'];
         _prefs.verify = response.data['verify'];
       }
-      // else if (response.statusCode == 401) return response.statusCode;
       return response.statusCode;
     } catch (ex) {
       print("==catch fb==");
@@ -129,8 +117,17 @@ class AuthProvider {
         ),
       );
     } on DioError catch (ex) {
-      mostrarSnackbar("Error de servidor", colorRed);
-      Timer(Duration(milliseconds: 1500), () => _outToken());
+      // mostrarSnackbar("Error de servidor", colorRed);
+      showDialog(
+          context: Get.context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(20),
+              content: Text('Debes volver a iniciar sesión 🐶🐱'),
+            );
+          });
+      Timer(Duration(milliseconds: 3000), () => _outToken());
       throw Exception(ex.message);
     }
   }

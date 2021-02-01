@@ -17,8 +17,6 @@ class GoogleSignInService {
       final GoogleSignInAccount account = await _googleSignIn.signIn();
       final googleKey = await account.authentication;
 
-      print("Name: ${account.displayName}");
-
       int respLogin = await repository.loginGoogle(
         account.displayName.split(' ')[0],
         account.displayName.split(' ')[1],
@@ -27,13 +25,10 @@ class GoogleSignInService {
         googleKey.accessToken,
       );
 
-      print('===== id token google =====');
-      print(googleKey.accessToken);
-
       return respLogin;
-    } catch (e) {
+    } catch (ex) {
       print('Error google');
-      print(e);
+      print(ex);
       return 500;
     }
   }
