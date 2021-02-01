@@ -16,7 +16,7 @@ const produccion = {
 
 String versionAndroid = "";
 String versionIOS = "";
-final bool appPruebas = false;
+final bool appPruebas = true;
 //TODO: cambiar a false cuando sea produccion - cambiar google-services para android
 //TODO: inicio de version 4
 
@@ -31,5 +31,16 @@ var mediaAncho = Get.width;
 final _prefs = new PreferenciasUsuario();
 
 headersToken() {
-  return {HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}"};
+  return {
+    HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}",
+    "X-Requested-With": "XMLHttpRequest",
+  };
 }
+
+// void addCorsHeaders(HttpRequest response) {
+//   response.headers.add('Access-Control-Allow-Origin', '*');
+//   response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS');
+//   response.headers.add('Access-Control-Allow-Headers',
+//       'Origin, X-Requested-With, Content-Type, Accept');
+//   response.headers.set("X-Requested-With", "XMLHttpRequest");
+// }

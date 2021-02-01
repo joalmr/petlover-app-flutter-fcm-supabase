@@ -17,6 +17,8 @@ class GoogleSignInService {
       final GoogleSignInAccount account = await _googleSignIn.signIn();
       final googleKey = await account.authentication;
 
+      print("Name: ${account.displayName}");
+
       int respLogin = await repository.loginGoogle(
         account.displayName.split(' ')[0],
         account.displayName.split(' ')[1],
@@ -31,6 +33,7 @@ class GoogleSignInService {
       return respLogin;
     } catch (e) {
       print('Error google');
+      print(e);
       return 500;
     }
   }

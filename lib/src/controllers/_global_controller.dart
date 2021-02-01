@@ -29,7 +29,7 @@ class GlobalController extends GetxController {
 
   getInit() async {
     bool needUpdate = await updateApp.setAppUpdate();
-
+    print(needUpdate);
     if (needUpdate) {
       // Get.toNamed('update');
       showDialog(

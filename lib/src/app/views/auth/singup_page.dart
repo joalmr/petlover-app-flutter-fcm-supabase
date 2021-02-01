@@ -120,23 +120,27 @@ class SingupPage extends StatelessWidget {
                                     color: colorMain,
                                     funtion: () => _.singup.value = true,
                                   ),
-                                  SizedBox(height: 5),
-                                  btnWIcon(
-                                    texto: 'Registrarme con Facebook',
-                                    icono: FontAwesomeIcons.facebook,
-                                    color: Color(0xFF3b5998),
-                                    funtion: _.signFacebook,
-                                  ),
-                                  SizedBox(height: 5),
                                   Platform.isIOS
                                       ? SizedBox(height: 0)
-                                      : btnWIcon(
-                                          texto: 'Registrarme con Google',
-                                          pathImage: 'images/google.png',
-                                          color: Color(0xFFf1f1f1),
-                                          colorText: Colors.black38,
-                                          colorIcon: Colors.black38,
-                                          funtion: () {},
+                                      : Column(
+                                          children: [
+                                            SizedBox(height: 5),
+                                            btnWIcon(
+                                              texto: 'Registrarme con Facebook',
+                                              icono: FontAwesomeIcons.facebook,
+                                              color: Color(0xFF3b5998),
+                                              funtion: _.signFacebook,
+                                            ),
+                                            SizedBox(height: 5),
+                                            btnWIcon(
+                                              texto: 'Registrarme con Google',
+                                              pathImage: 'images/google.png',
+                                              color: Color(0xFFf1f1f1),
+                                              colorText: Colors.black38,
+                                              colorIcon: Colors.black38,
+                                              funtion: _.signGoogle,
+                                            ),
+                                          ],
                                         ),
                                   SizedBox(height: 10),
                                   Padding(

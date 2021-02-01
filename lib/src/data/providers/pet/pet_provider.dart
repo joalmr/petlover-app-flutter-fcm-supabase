@@ -15,6 +15,9 @@ class PetProvider {
       options: Options(headers: headersToken()),
     );
 
+    print("=====");
+    print(response.statusCode);
+
     final pets = List<MascotaModel2>.from(
         response.data["pets"].map((x) => MascotaModel2.fromJson(x)));
 
