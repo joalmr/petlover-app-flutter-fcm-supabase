@@ -103,4 +103,9 @@ class SignController extends GetxController {
     final login = LoginController();
     login.loginFacebook();
   }
+
+  void signGoogle() {
+    final login = LoginController();
+    login.loginGoogle();
+  }
 }

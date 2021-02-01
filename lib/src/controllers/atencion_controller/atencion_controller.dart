@@ -35,8 +35,6 @@ class AtencionController extends GetxController {
   }
 
   votar(AtencionModel atencion) {
-    print(atencion.attentionBonification);
-
     dynamic argumentos = {
       'establishment_logo': '${atencion.establishmentLogo}',
       'attention_bonification': atencion.attentionBonification ?? '0',

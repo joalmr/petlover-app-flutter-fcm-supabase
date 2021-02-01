@@ -12,14 +12,15 @@ class UpdateProvider {
     Response response = await dio.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
+    print("==update android==");
+    print(response.statusCode);
+    print("==instalado ${packageInfo.buildNumber}==");
+    print("==servicio ${response.data['versionCode']}==");
+
     int buildNumber = int.parse(packageInfo.buildNumber);
     int versionCode = int.parse(response.data['versionCode']);
 
     versionAndroid = response.data['versionName'];
-
-    print('===android===');
-    print(buildNumber);
-    print(versionCode);
 
     if (buildNumber < versionCode) {
       return true;
@@ -33,14 +34,15 @@ class UpdateProvider {
     Response response = await dio.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
+    print("==update ios==");
+    print(response.statusCode);
+    print("==instalado ${packageInfo.buildNumber}==");
+    print("==servicio ${response.data['versionCode']}==");
+
     int buildNumber = int.parse(packageInfo.buildNumber);
     int versionCode = int.parse(response.data['versionCode']);
 
     versionIOS = response.data['versionName'];
-
-    print('===iOs===');
-    print(buildNumber);
-    print(versionCode);
 
     if (buildNumber < versionCode) {
       return true;

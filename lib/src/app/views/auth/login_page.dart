@@ -55,45 +55,49 @@ class LoginPage extends StatelessWidget {
                   _.loading.value ? null : _.getLogin,
                 ),
                 SizedBox(height: 10.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      width: 20,
-                      height: 1,
-                      color: Get.theme.iconTheme.color,
-                    ),
-                    Text(
-                      'O',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      width: 20,
-                      height: 1,
-                      color: Get.theme.iconTheme.color,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0),
-                btnWIcon(
-                  texto: 'Ingresar con Facebook',
-                  icono: FontAwesomeIcons.facebook,
-                  color: Color(0xFF3b5998),
-                  funtion: _.loginFacebook,
-                ),
-                SizedBox(height: 5.0),
                 Platform.isIOS
                     ? SizedBox(height: 0)
-                    : btnWIcon(
-                        texto: 'Ingresar con Google',
-                        pathImage: 'images/google.png',
-                        color: Color(0xFFf1f1f1),
-                        colorText: Colors.black38,
-                        colorIcon: Colors.black38,
-                        funtion: _.loginGoogle,
+                    : Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.all(8.0),
+                                width: 20,
+                                height: 1,
+                                color: Get.theme.iconTheme.color,
+                              ),
+                              Text(
+                                'O',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Container(
+                                margin: EdgeInsets.all(8.0),
+                                width: 20,
+                                height: 1,
+                                color: Get.theme.iconTheme.color,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10.0),
+                          btnWIcon(
+                            texto: 'Ingresar con Facebook',
+                            icono: FontAwesomeIcons.facebook,
+                            color: Color(0xFF3b5998),
+                            funtion: _.loginFacebook,
+                          ),
+                          SizedBox(height: 5.0),
+                          btnWIcon(
+                            texto: 'Ingresar con Google',
+                            pathImage: 'images/google.png',
+                            color: Color(0xFFf1f1f1),
+                            colorText: Colors.black38,
+                            colorIcon: Colors.black38,
+                            funtion: _.loginGoogle,
+                          ),
+                        ],
                       ),
                 SizedBox(height: 10.0),
                 Center(

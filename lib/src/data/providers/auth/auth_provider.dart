@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/src/controllers/auth_controller/services/facebook_sing.dart';
+import 'package:proypet/src/controllers/auth_controller/services/google_sign.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class AuthProvider {
@@ -17,25 +23,29 @@ class AuthProvider {
   ) async {
     final url = '$_url/login/google';
 
-    final loginData = {
-      "first_name": name,
-      "last_name": lastname,
-      "email": email,
-      "social_id": fbId,
-      "access_token": accessToken
-    };
+    try {
+      final loginData = {
+        "first_name": name,
+        "last_name": lastname,
+        "email": email,
+        "social_id": fbId,
+        "access_token": accessToken
+      };
 
-    Response response;
-    response = await dio.post(url, data: loginData);
+      Response response;
+      response = await dio.post(url, data: loginData);
 
-    if (response.statusCode == 200) {
-      _prefs.token = response.data['token'];
-      _prefs.verify = response.data['verify'];
+      if (response.statusCode == 200) {
+        _prefs.token = response.data['token'];
+        _prefs.verify = response.data['verify'];
+      }
 
       return response.statusCode;
+    } catch (ex) {
+      print("==catch google==");
+      print(ex);
+      return 500;
     }
-
-    return response.statusCode;
   }
 
   Future<int> loginFb(
@@ -62,12 +72,11 @@ class AuthProvider {
       if (response.statusCode == 200) {
         _prefs.token = response.data['token'];
         _prefs.verify = response.data['verify'];
-
-        return response.statusCode;
       }
-      // else if (response.statusCode == 401) return response.statusCode;
-      return 401;
+      return response.statusCode;
     } catch (ex) {
+      print("==catch fb==");
+      print(ex);
       return 500;
     }
   }
@@ -84,22 +93,58 @@ class AuthProvider {
       if (response.statusCode == 200) {
         _prefs.token = response.data['token'];
         _prefs.verify = response.data['verify'];
-
-        jsonRespuesta = {'code': 200, 'token': response.data['token']};
-      } else if (response.statusCode == 401) {
-        jsonRespuesta = {'code': 401, 'message': response.data['message']};
       }
+      jsonRespuesta = {
+        'code': response.statusCode,
+        'token': response.data['token']
+      };
       return jsonRespuesta;
     } catch (ex) {
-      return {'code': 500, 'message': 'Usuario o clave incorrecta'};
+      return {'code': 500, 'message': 'Error de servidor, inténtelo más tarde'};
     }
   }
 
   Future<void> sendTokenFire(String fireToken) async {
     final url = '$_url/firebase';
     final fireData = {"token": fireToken};
-    await dio.post(url,
-        data: fireData, options: Options(headers: headersToken()));
+
+    try {
+      await dio.post(
+        url,
+        data: fireData,
+        options: Options(
+          headers: headersToken(),
+        ),
+      );
+    } on DioError catch (ex) {
+      // mostrarSnackbar("Error de servidor", colorRed);
+      showDialog(
+          context: Get.context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              contentPadding: EdgeInsets.all(20),
+              content: Text('Debes volver a iniciar sesión 🐶🐱'),
+            );
+          });
+      Timer(Duration(milliseconds: 3000), () => _outToken());
+      throw Exception(ex.message);
+    }
+  }
+
+  void _outToken() async {
+    FacebookSignInService.signOut();
+    GoogleSignInService.signOut();
+    logOut();
+    _prefs.tokenDel(); //limpia token
+    _prefs.verifyDel(); //limpia verificado
+    _prefs.positionDel(); //limpia gps para lista vets
+    _prefs.ubicacionDel(); //limpia direccion para lista vets
+    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
+    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
+    _prefs.notificaAvisoDel(); //limpia notificacion aviso
+
+    Get.offAllNamed('login');
   }
 
   Future<void> logOut() async {

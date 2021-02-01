@@ -47,6 +47,10 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    print("===token token===");
+    print(_prefs.token);
+
     if (_prefs.hasToken()) {
       getUsuario();
       getSummary();

@@ -25,12 +25,10 @@ class GoogleSignInService {
         googleKey.accessToken,
       );
 
-      print('===== id token google =====');
-      print(googleKey.accessToken);
-
       return respLogin;
-    } catch (e) {
+    } catch (ex) {
       print('Error google');
+      print(ex);
       return 500;
     }
   }

@@ -13,11 +13,10 @@ class AddressProvider {
       "latitude": lat,
       "longitude": lng,
     };
-    var resp = await dio.post(
+    await dio.post(
       url,
       data: _data,
       options: Options(headers: headersToken()),
     );
-    print(resp.statusCode);
   }
 }

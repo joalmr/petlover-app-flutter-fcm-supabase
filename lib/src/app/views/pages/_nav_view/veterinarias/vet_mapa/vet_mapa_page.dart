@@ -53,10 +53,6 @@ class _VetMapaPageState extends State<VetMapaPage> {
   }
 
   void setCustomMarker() async {
-    // mapMarker = await BitmapDescriptor.fromAssetImage(
-    //   ImageConfiguration(),
-    //   'images/marker/marker-vet.png',
-    // );
     var vet = await getBytesFromAsset('images/marker/marker-vet.png', 100);
     var gro = await getBytesFromAsset('images/marker/marker-groomer.png', 100);
     iconVet = BitmapDescriptor.fromBytes(vet);

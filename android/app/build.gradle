@@ -48,8 +48,8 @@ android {
         applicationId "com.example.user"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 13 //12 Ya aumente para la version 1.4.0
-        versionName "1.4.0" //TODO: esto siempre debe aumentar
+        versionCode 15 //Ya aumente para la version 1.4.2
+        versionName "1.4.2" //TODO: esto siempre debe aumentar
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
