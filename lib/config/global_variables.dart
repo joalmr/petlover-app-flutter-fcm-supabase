@@ -6,14 +6,16 @@ import 'package:flutter_config/flutter_config.dart';
 String versionAndroid = "";
 String versionIOS = "";
 
-//TODO: cambiar a false cuando sea produccion - cambiar google-services para android
-final bool appPruebas = false;
+//TODO: cambiar a false cuando sea produccion
+//cambiar google-services para android
+
+final bool appPruebas = true;
 
 final String keyMap = FlutterConfig.get('KEY_MAP');
 final String urlName = FlutterConfig.get('URL');
 final String urlApi = FlutterConfig.get('URL_API');
 
-var mediaAncho = Get.width;
+final mediaAncho = Get.width;
 
 final _prefs = new PreferenciasUsuario();
 
