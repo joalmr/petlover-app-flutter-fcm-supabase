@@ -26,7 +26,8 @@ dependencies:
   # cron: ^0.2.4
   # path_provider:
   # sqflite:
-
+  flutter_config: ^1.0.8
+  
   ai_notification_enable: ^1.6.0 #activar notificaciones
   animate_do: ^1.6.3
   badges: ^1.1.4  
