@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
@@ -60,16 +61,24 @@ class VetDetallePage extends StatelessWidget {
                             right: 5,
                             child: InkWell(
                               onTap: _.setFavorite,
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(100.0)),
+                              child: Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  color: colorGray1,
+                                ),
                                 child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: _.favorite.value
-                                        ? Icon(Icons.favorite, color: colorMain)
-                                        : Icon(Icons.favorite),
-                                  ),
+                                  child: _.favorite.value
+                                      ? Lottie.asset(
+                                          pathLottie('favorite'),
+                                          fit: BoxFit.cover,
+                                          height: 45,
+                                          width: 45,
+                                          repeat: false,
+                                        )
+                                      : BounceInDown(
+                                          from: 5, child: Icon(Icons.favorite)),
                                 ),
                               ),
                             ),
