@@ -55,8 +55,8 @@ android {
         applicationId project.env.get("APP_ID")
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 15 //Ya aumente para la version 1.4.2
-        versionName "1.4.2" //TODO: esto siempre debe aumentar
+        versionCode 17 //1.4.4
+        versionName "1.4.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

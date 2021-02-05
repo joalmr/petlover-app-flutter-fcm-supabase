@@ -33,6 +33,8 @@ class VetDetalleController extends GetxController {
   EstablecimientoModel get vet => _vet.value;
 
   RxBool reservaClic = true.obs;
+  RxBool favorite = false.obs;
+
   List<MascotaModel2> misMascotas = [];
 
   RxString _telefono = "".obs;
@@ -45,6 +47,13 @@ class VetDetalleController extends GetxController {
   String vetInit;
 
   UserModel2 usuario;
+
+  setFavorite() {
+    if (favorite.value)
+      favorite.value = false;
+    else
+      favorite.value = true;
+  }
 
   @override
   void onInit() {

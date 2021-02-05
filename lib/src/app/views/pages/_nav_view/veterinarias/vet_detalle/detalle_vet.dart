@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/components/form_control/button_primary.dart';
@@ -43,7 +44,7 @@ class VetDetallePage extends StatelessWidget {
                                 : swiperVets(["images/vet_prueba.jpg"], false),
                           ),
                           Positioned(
-                            top: 25,
+                            top: 30,
                             left: 5,
                             child: IconButton(
                               icon: Icon(
@@ -52,6 +53,25 @@ class VetDetallePage extends StatelessWidget {
                                     : Icons.arrow_back,
                               ),
                               onPressed: () => Get.back(),
+                            ),
+                          ),
+                          Positioned(
+                            top: 30,
+                            right: 5,
+                            child: InkWell(
+                              onTap: _.setFavorite,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100.0)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: _.favorite.value
+                                        ? Icon(Icons.favorite, color: colorMain)
+                                        : Icon(Icons.favorite),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                           Positioned(
