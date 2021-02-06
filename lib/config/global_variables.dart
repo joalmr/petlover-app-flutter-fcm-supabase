@@ -6,8 +6,7 @@ import 'package:flutter_config/flutter_config.dart';
 String versionAndroid = "";
 String versionIOS = "";
 
-//TODO: cambiar a false cuando sea produccion
-//cambiar google-services para android
+//TODO: cambiar google-services para android
 
 final bool appPruebas = FlutterConfig.get('TEST') == 'true';
 
