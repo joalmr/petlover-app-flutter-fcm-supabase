@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 
 class AddressProvider {
   final _url = urlApi;
-  Dio dio = new Dio();
 
   Future<void> setAddress(String address, lat, lng) async {
     final url = '$_url/settings/address';
@@ -13,10 +12,6 @@ class AddressProvider {
       "latitude": lat,
       "longitude": lng,
     };
-    await dio.post(
-      url,
-      data: _data,
-      options: Options(headers: headersToken()),
-    );
+    await http.post(url, body: _data, headers: headersToken());
   }
 }

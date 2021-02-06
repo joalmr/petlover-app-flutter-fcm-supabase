@@ -1,20 +1,14 @@
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 
 class PetDeadProvider {
   final _url = urlApi;
-  Dio dio = new Dio();
 
   /* Post */
   Future<bool> muerePet(String idMascota) async {
     final url = '$_url/pets/$idMascota/decease';
 
-    Response response;
-    response = await dio.post(
-      url,
-      options: Options(headers: headersToken()),
-    );
-    await dio.post(url, options: Options(headers: headersToken()));
+    final response = await http.post(url, headers: headersToken());
 
     if (response.statusCode == 200)
       return true;
@@ -25,13 +19,7 @@ class PetDeadProvider {
   /* Post */
   Future<bool> revivePet(String idMascota) async {
     final url = '$_url/pets/$idMascota/revive';
-
-    Response response;
-    response = await dio.post(
-      url,
-      options: Options(headers: headersToken()),
-    );
-    await dio.post(url, options: Options(headers: headersToken()));
+    final response = await http.post(url, headers: headersToken());
 
     if (response.statusCode == 200)
       return true;

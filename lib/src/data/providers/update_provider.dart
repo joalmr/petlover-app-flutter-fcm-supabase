@@ -1,26 +1,25 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:package_info/package_info.dart';
 import 'package:proypet/config/global_variables.dart';
 
 class UpdateProvider {
   final _url = urlApi;
-  Dio dio = new Dio();
 
   Future<bool> setAppAndroid() async {
     final url = '$_url/version/android';
 
-    Response response = await dio.get(url);
+    final response = await http.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
+    final jsonData = json.decode(response.body);
+
     print("==update android==");
-    print(response.statusCode);
-    print("==instalado ${packageInfo.buildNumber}==");
-    print("==servicio ${response.data['versionCode']}==");
 
     int buildNumber = int.parse(packageInfo.buildNumber);
-    int versionCode = int.parse(response.data['versionCode']);
+    int versionCode = int.parse(jsonData['versionCode']);
 
-    versionAndroid = response.data['versionName'];
+    versionAndroid = jsonData['versionName'];
 
     if (buildNumber < versionCode) {
       return true;
@@ -31,18 +30,15 @@ class UpdateProvider {
   Future<bool> setAppiOs() async {
     final url = '$_url/version/ios';
 
-    Response response = await dio.get(url);
+    final response = await http.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
+    final jsonData = json.decode(response.body);
     print("==update ios==");
-    print(response.statusCode);
-    print("==instalado ${packageInfo.buildNumber}==");
-    print("==servicio ${response.data['versionCode']}==");
 
     int buildNumber = int.parse(packageInfo.buildNumber);
-    int versionCode = int.parse(response.data['versionCode']);
+    int versionCode = int.parse(jsonData['versionCode']);
 
-    versionIOS = response.data['versionName'];
+    versionIOS = jsonData['versionName'];
 
     if (buildNumber < versionCode) {
       return true;

@@ -72,15 +72,8 @@ class LoginController extends GetxController {
             'Ingrese un correo valido, contiene espacios u otros carácteres',
             colorRed);
       } else {
-        Map<String, dynamic> respLogin =
-            await repository.login(email, password);
-        if (respLogin['code'] == 200) {
-          loading.value = false;
-          ejecutaFirebase();
-        } else {
-          Timer(Duration(milliseconds: 500), () => loading.value = false);
-          mostrarSnackbar(respLogin['message'], colorRed);
-        }
+        final respLogin = await repository.login(email, password);
+        retornosWithMail(respLogin);
       }
     }
   }
@@ -95,6 +88,28 @@ class LoginController extends GetxController {
     retornos(result);
   }
 
+  retornosWithMail(result) {
+    switch (result) {
+      case 200:
+        {
+          loading.value = false;
+          ejecutaFirebase();
+        }
+        ejecutaFirebase();
+        break;
+      case 401:
+        {
+          Timer(Duration(milliseconds: 500), () => loading.value = false);
+          mostrarSnackbar('Error, usuario o clave incorrecta', colorRed);
+        }
+        break;
+      case 500:
+        Timer(Duration(milliseconds: 500), () => loading.value = false);
+        mostrarSnackbar('Error del servidor, inténtelo más tarde', colorRed);
+        break;
+    }
+  }
+
   retornos(result) {
     switch (result) {
       case 200:
@@ -103,7 +118,7 @@ class LoginController extends GetxController {
       case 401:
         {
           Timer(Duration(milliseconds: 500), () => loading.value = false);
-          mostrarSnackbar('Error', colorRed);
+          mostrarSnackbar('Error, inténtelo más tarde', colorRed);
         }
         break;
       case 408:
@@ -120,7 +135,7 @@ class LoginController extends GetxController {
         break;
       case 500:
         Timer(Duration(milliseconds: 500), () => loading.value = false);
-        mostrarSnackbar('Error, no se logró ingresar', colorRed);
+        mostrarSnackbar('Error del servidor, inténtelo más tarde', colorRed);
         break;
     }
   }

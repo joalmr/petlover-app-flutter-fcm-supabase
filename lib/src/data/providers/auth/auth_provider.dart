@@ -1,18 +1,34 @@
 import 'dart:async';
-
-import 'package:dio/dio.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/controllers/auth_controller/services/facebook_sing.dart';
 import 'package:proypet/src/controllers/auth_controller/services/google_sign.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
+import 'package:http/http.dart' as http;
 
 class AuthProvider {
   final _url = urlApi;
   final _prefs = new PreferenciasUsuario();
 
-  Dio dio = new Dio();
+  Future<int> loginToken(String email, String password) async {
+    final url = '$_url/login';
+    try {
+      final loginData = {"email": email, "password": password};
+      final response = await http.post(url, body: loginData);
+
+      if (response.statusCode == 200) {
+        final jsonResp = json.decode(response.body);
+        _prefs.token = jsonResp['token'];
+        _prefs.verify = jsonResp['verify'];
+      }
+      return response.statusCode;
+    } catch (ex) {
+      print(ex);
+      return 500;
+    }
+  }
 
   Future<int> loginGoogle(
     String name,
@@ -32,12 +48,12 @@ class AuthProvider {
         "access_token": accessToken
       };
 
-      Response response;
-      response = await dio.post(url, data: loginData);
+      final response = await http.post(url, body: loginData);
 
       if (response.statusCode == 200) {
-        _prefs.token = response.data['token'];
-        _prefs.verify = response.data['verify'];
+        final jsonResp = json.decode(response.body);
+        _prefs.token = jsonResp['token'];
+        _prefs.verify = jsonResp['verify'];
       }
 
       return response.statusCode;
@@ -66,12 +82,12 @@ class AuthProvider {
         "access_token": accessToken
       };
 
-      Response response;
-      response = await dio.post(url, data: loginData);
+      final response = await http.post(url, body: loginData);
 
       if (response.statusCode == 200) {
-        _prefs.token = response.data['token'];
-        _prefs.verify = response.data['verify'];
+        final jsonResp = json.decode(response.body);
+        _prefs.token = jsonResp['token'];
+        _prefs.verify = jsonResp['verify'];
       }
       return response.statusCode;
     } catch (ex) {
@@ -81,52 +97,27 @@ class AuthProvider {
     }
   }
 
-  Future<Map<String, dynamic>> loginToken(String email, String password) async {
-    final url = '$_url/login';
-    try {
-      final loginData = {"email": email, "password": password};
-      Response response;
-      response = await dio.post(url, data: loginData);
-
-      var jsonRespuesta;
-
-      if (response.statusCode == 200) {
-        _prefs.token = response.data['token'];
-        _prefs.verify = response.data['verify'];
-      }
-      jsonRespuesta = {
-        'code': response.statusCode,
-        'token': response.data['token']
-      };
-      return jsonRespuesta;
-    } catch (ex) {
-      return {'code': 500, 'message': 'Error de servidor, inténtelo más tarde'};
-    }
-  }
-
   Future<void> sendTokenFire(String fireToken) async {
     final url = '$_url/firebase';
     final fireData = {"token": fireToken};
 
     try {
-      await dio.post(
+      await http.post(
         url,
-        data: fireData,
-        options: Options(
-          headers: headersToken(),
-        ),
+        headers: headersToken(),
+        body: fireData,
       );
-    } on DioError catch (ex) {
-      // mostrarSnackbar("Error de servidor", colorRed);
+    } catch (ex) {
       showDialog(
-          context: Get.context,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              contentPadding: EdgeInsets.all(20),
-              content: Text('Debes volver a iniciar sesión 🐶🐱'),
-            );
-          });
+        context: Get.context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(20),
+            content: Text('Debes volver a iniciar sesión 🐶🐱'),
+          );
+        },
+      );
       Timer(Duration(milliseconds: 3000), () => _outToken());
       throw Exception(ex.message);
     }
@@ -149,15 +140,13 @@ class AuthProvider {
 
   Future<void> logOut() async {
     final url = '$_url/logout';
-    await dio.post(url, options: Options(headers: headersToken()));
+    await http.post(url, headers: headersToken());
   }
 
   Future<int> forgotPassword(String email) async {
     final url = '$_url/password/reset';
-
     final emailData = {"email": email};
-    Response response;
-    response = await dio.post(url, data: emailData);
+    final response = await http.post(url, body: emailData);
     return response.statusCode;
   }
 
@@ -171,8 +160,7 @@ class AuthProvider {
         "email": email,
         "password": password
       };
-      Response response;
-      response = await dio.post(url, data: userData);
+      final response = await http.post(url, body: userData);
 
       return response.statusCode;
     } catch (ex) {

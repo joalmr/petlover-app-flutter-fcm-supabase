@@ -1,21 +1,20 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+
 import 'package:proypet/config/global_variables.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/src/data/models/user/user_model.dart';
 
 class UserProvider {
   final _url = urlApi;
-  Dio dio = new Dio();
 
   Future<UserModel2> getUser() async {
     final url = '$_url/profile';
 
-    Response response;
-    response = await dio.get(
-      url,
-      options: Options(headers: headersToken()),
-    );
-    final datosUsuario = UserModel2.fromJson(response.data['user']);
+    final response = await http.get(url, headers: headersToken());
+
+    final jsonData = jsonDecode(response.body);
+
+    final datosUsuario = UserModel2.fromJson(jsonData['user']);
 
     return datosUsuario;
   }

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:http/http.dart' as http;
 import '../../models/establishment/promocion_model.dart';
@@ -6,11 +5,8 @@ import '../../models/establishment/promocion_model.dart';
 class EstablishmentOfferProvider {
   final _url = urlApi;
 
-  Dio dio = new Dio();
-
   Future<List<PromocionModel>> getOffers(String idVet) async {
     final url = '$_url/establishment/$idVet/offers';
-
     List<PromocionModel> promociones = [];
 
     final resp = await http.get(url, headers: headersToken());

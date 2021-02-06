@@ -9,7 +9,7 @@ String versionIOS = "";
 //TODO: cambiar a false cuando sea produccion
 //cambiar google-services para android
 
-final bool appPruebas = true;
+final bool appPruebas = FlutterConfig.get('TEST') == 'true';
 
 final String keyMap = FlutterConfig.get('KEY_MAP');
 final String urlName = FlutterConfig.get('URL');

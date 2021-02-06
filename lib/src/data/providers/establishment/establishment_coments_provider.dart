@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:http/http.dart' as http;
 import '../../models/establishment/comentarios_model.dart';
@@ -6,11 +5,8 @@ import '../../models/establishment/comentarios_model.dart';
 class EstablishmentComentProvider {
   final _url = urlApi;
 
-  Dio dio = new Dio();
-
   Future<List<Comentarios>> getTenComents(String idVet) async {
     final url = '$_url/establishment/$idVet/comments';
-
     List<Comentarios> comentarios = [];
 
     final resp = await http.get(url, headers: headersToken());
