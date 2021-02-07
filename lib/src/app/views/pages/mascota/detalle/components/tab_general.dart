@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/src/app/styles/lottie.dart';
 import 'package:proypet/src/app/styles/styles.dart';
-import 'package:proypet/src/app/components/timeline/timeline_life.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/components/tab_general/card_history.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
+
+import 'timeline/timeline_life.dart';
 
 class GeneralTab extends StatelessWidget {
   @override

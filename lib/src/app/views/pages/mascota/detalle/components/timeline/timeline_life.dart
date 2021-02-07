@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/config/path_variables.dart';
+import 'package:proypet/src/app/components/data/months.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/controllers/mascota_controller/detalle_mascota_controller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
-import '../data/months.dart';
 
 class FnTimeLine extends StatelessWidget {
   @override
