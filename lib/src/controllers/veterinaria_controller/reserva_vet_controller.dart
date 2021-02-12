@@ -72,10 +72,11 @@ class ReservaVetController extends GetxController {
   ];
 
   final format = DateFormat("yyyy-MM-dd");
-  TimeOfDay time = TimeOfDay.now();
-  Duration initialtimer;
+  final formatHour = DateFormat("HH:mm");
+  // TimeOfDay time = TimeOfDay.now();
+  // Duration initialtimer;
 
-  String _hora = '';
+  String hora = '';
   String deliveryTipo = '';
 
   double lat = 0;
@@ -102,9 +103,13 @@ class ReservaVetController extends GetxController {
   set textoServicios(String value) => _textoServicios.value = value;
   String get textoServicios => _textoServicios.value;
 
+  TimeOfDay pickedTime;
+
   @override
   void onInit() {
     super.onInit();
+    pickedTime = TimeOfDay.now(); //TODO
+
     vet = vetdC.vet;
     iniciales();
     misMascotas = vetdC.misMascotas;
@@ -150,12 +155,10 @@ class ReservaVetController extends GetxController {
   }
 
   fechaHoraInicial() {
-    initialtimer = new Duration(hours: time.hour, minutes: 00);
-    if (initialtimer.toString().split(':')[0].length == 1) {
-      _hora = '0' + initialtimer.toString().split(':00.')[0];
-    } else
-      _hora = initialtimer.toString().split(':00.')[0];
-    inputHoraController.text = _hora;
+    hora = pickedTime.format(Get.context);
+    bool lengthHora = hora.split(":")[0].length == 1;
+    if (lengthHora) hora = "0$hora";
+    inputHoraController.text = hora;
     fecha = format.format(DateTime.now());
   }
 
@@ -195,55 +198,13 @@ class ReservaVetController extends GetxController {
     );
   }
 
-  pickTime(context) {
-    FocusScope.of(context).requestFocus(new FocusNode());
-    _crearHora(context);
+  void onTimeChanged(TimeOfDay newTime) {
+    pickedTime = newTime;
   }
 
-  _crearHora(context) {
-    showModalBottomSheet(
-      backgroundColor: Theme.of(context).backgroundColor,
-      context: context,
-      builder: (context) => Theme(
-        data: ThemeData(
-            colorScheme: ColorScheme.light(primary: colorMain),
-            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary)),
-        child: Container(
-          height: 275.0,
-          child: Column(
-            children: <Widget>[
-              _time(),
-              FlatButton(
-                child: new Text("Cerrar"),
-                onPressed: () => Get.back(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  bool get hasFechaHora => fecha.trim().isEmpty || hora.trim().isEmpty;
 
-  Widget _time() {
-    return CupertinoTimerPicker(
-      mode: CupertinoTimerPickerMode.hm,
-      minuteInterval: 10,
-      initialTimerDuration: initialtimer,
-      onTimerDurationChanged: (Duration changedtimer) {
-        initialtimer = changedtimer;
-        inputHoraController.text = '';
-        if (initialtimer.toString().split(':')[0].length == 1) {
-          _hora = '0' + initialtimer.toString().split(':00.')[0];
-        } else
-          _hora = initialtimer.toString().split(':00.')[0];
-        inputHoraController.text = _hora;
-      },
-    );
-  }
-
-  bool get hasFechaHora => fecha.trim().isEmpty || _hora.trim().isEmpty;
-
-  DateTime get fechaTime => DateTime.parse(fecha + " " + _hora);
+  DateTime get fechaTime => DateTime.parse(fecha + " " + hora);
 
   String get fechaTimeAt => DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
 
@@ -281,7 +242,7 @@ class ReservaVetController extends GetxController {
     var horario = vet.schedule;
     var takeHora = horario[textHorario[day]];
 
-    var time0 = TimeParser.parse(_hora);
+    var time0 = TimeParser.parse(hora);
     var time1 = TimeParser.parse(takeHora['time_start']);
     var time2 = TimeParser.parse(takeHora['time_end']);
 

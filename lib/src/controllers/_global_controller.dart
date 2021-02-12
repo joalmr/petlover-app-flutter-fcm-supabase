@@ -4,11 +4,13 @@ import 'package:proypet/src/app/views/pages/update_page.dart';
 import 'package:proypet/src/controllers/_push_controller.dart';
 import 'package:proypet/src/data/services/auth/auth_service.dart';
 import 'package:proypet/src/data/services/update_service.dart';
+import 'package:proypet/src/data/services/user/address_service.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class GlobalController extends GetxController {
   final repository = AuthService();
   final updateApp = UpdateService();
+  final addressService = AddressService();
 
   final _prefs = new PreferenciasUsuario();
   final pushController = PushController();
@@ -31,7 +33,6 @@ class GlobalController extends GetxController {
     bool needUpdate = await updateApp.setAppUpdate();
 
     if (needUpdate) {
-      // Get.toNamed('update');
       showDialog(
         context: Get.context,
         barrierDismissible: false,
@@ -61,7 +62,19 @@ class GlobalController extends GetxController {
       if (!isVerify)
         repository.logOut();
       else
-        pushController.firebase();
+        initApp();
     }
+  }
+
+  initApp() {
+    final _tempLat = _prefs.position.toString().split(",")[0];
+    final _tempLng = _prefs.position.toString().split(",")[1];
+
+    pushController.firebase();
+    addressService.setAddress(
+      _prefs.ubicacion,
+      _tempLat,
+      _tempLng,
+    );
   }
 }

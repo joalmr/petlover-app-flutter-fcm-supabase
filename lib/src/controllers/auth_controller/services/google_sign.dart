@@ -27,8 +27,6 @@ class GoogleSignInService {
 
       return respLogin;
     } catch (ex) {
-      print('Error google');
-      print(ex);
       return 500;
     }
   }

@@ -1,5 +1,8 @@
+import 'package:day_night_time_picker/day_night_time_picker.dart';
+import 'package:day_night_time_picker/lib/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:proypet/src/app/views/pages/_nav_view/veterinarias/reserva/data/dataDelivery.dart';
 import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/components/appbar_menu.dart';
@@ -100,7 +103,30 @@ class DataReserva extends StatelessWidget {
                               TextField(
                                 enableInteractiveSelection: false,
                                 controller: _.inputHoraController,
-                                onTap: () => _.pickTime(context),
+                                readOnly: true,
+                                onTap: () {
+                                  final format = DateFormat("HH:mm");
+                                  Navigator.of(context).push(
+                                    showPicker(
+                                        context: context,
+                                        value: _.pickedTime,
+                                        onChange: _.onTimeChanged,
+                                        is24HrFormat: true,
+                                        minuteInterval: MinuteInterval.TEN,
+                                        maxMinute: 50,
+                                        barrierDismissible: false,
+                                        iosStylePicker: true,
+                                        hourLabel: "horas",
+                                        minuteLabel: "minutos",
+                                        okText: 'Aceptar',
+                                        cancelText: 'Cancelar',
+                                        onChangeDateTime: (DateTime dateTime) {
+                                          _.hora = format.format(dateTime);
+                                          _.inputHoraController.text =
+                                              format.format(dateTime);
+                                        }),
+                                  );
+                                },
                                 cursorColor: colorMain,
                                 decoration: InputDecoration(
                                   hintText: 'Hora de atención',
@@ -108,6 +134,20 @@ class DataReserva extends StatelessWidget {
                                       Icon(Icons.access_time, color: colorMain),
                                 ),
                               ),
+                              // TextField(
+                              //   enableInteractiveSelection: false,
+                              //   controller: _.inputHoraController,
+                              //   onTap: () {
+                              //     final format = DateFormat("HH:mm");
+                              //     _.pickTime(context);
+                              //   },
+                              //   cursorColor: colorMain,
+                              //   decoration: InputDecoration(
+                              //     hintText: 'Hora de atención',
+                              //     prefixIcon:
+                              //         Icon(Icons.access_time, color: colorMain),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),

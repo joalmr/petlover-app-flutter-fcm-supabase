@@ -12,6 +12,7 @@ class AddressProvider {
       "latitude": lat,
       "longitude": lng,
     };
-    await http.post(url, body: _data, headers: headersToken());
+    final response = await http.post(url, body: _data, headers: headersToken());
+    if (response.statusCode == 200) print("==add==");
   }
 }

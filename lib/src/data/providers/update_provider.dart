@@ -14,8 +14,6 @@ class UpdateProvider {
 
     final jsonData = json.decode(response.body);
 
-    print("==update android==");
-
     int buildNumber = int.parse(packageInfo.buildNumber);
     int versionCode = int.parse(jsonData['versionCode']);
 
@@ -33,7 +31,6 @@ class UpdateProvider {
     final response = await http.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final jsonData = json.decode(response.body);
-    print("==update ios==");
 
     int buildNumber = int.parse(packageInfo.buildNumber);
     int versionCode = int.parse(jsonData['versionCode']);

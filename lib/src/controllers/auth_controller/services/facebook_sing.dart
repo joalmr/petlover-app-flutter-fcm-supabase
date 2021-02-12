@@ -43,9 +43,6 @@ class FacebookSignInService {
       }
       return statusCode;
     } catch (ex) {
-      // throw Exception();
-      print('Error fb');
-      print(ex);
       return 500;
     }
   }

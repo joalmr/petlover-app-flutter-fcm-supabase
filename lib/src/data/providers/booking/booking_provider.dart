@@ -54,10 +54,6 @@ class BookingProvider {
 
     final resp = await http.post(url, headers: headersToken(), body: bodyData);
 
-    print("==> status set booking");
-    print(resp.statusCode);
-    print(resp.body);
-
     //TODO: quitar el 201 de la respuesta de back
     if (resp.statusCode == 200 || resp.statusCode == 201) {
       return true;

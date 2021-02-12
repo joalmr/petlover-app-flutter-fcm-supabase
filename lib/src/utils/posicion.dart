@@ -15,5 +15,5 @@
 //   final datoPosicion = await fnPosition();
 //   _prefs.position = '${datoPosicion.latitude},${datoPosicion.longitude}';
 //   _prefs.ubicacion = 'Ubicación actual';
-//   print('== ejecuta gps ==');
+
 // }

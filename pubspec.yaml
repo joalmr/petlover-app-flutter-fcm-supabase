@@ -26,6 +26,9 @@ dependencies:
   # cron: ^0.2.4
   # path_provider:
   # sqflite:
+  
+  # dio: ^3.0.10
+
   flutter_config: ^1.0.8
   
   ai_notification_enable: ^1.6.0 #activar notificaciones
@@ -33,6 +36,8 @@ dependencies:
   badges: ^1.1.4  
   cached_network_image: ^2.0.0
   datetime_picker_formfield: ^1.0.0
+  day_night_time_picker: ^0.4.0
+  # day_night_time_picker: ^0.2.1
   dotted_line: ^2.0.2
   email_validator: ^1.0.6
   firebase_messaging: ^6.0.15

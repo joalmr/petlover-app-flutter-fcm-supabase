@@ -139,7 +139,6 @@
 //         Obx(
 //           () => buttonPri(page.value == 1 ? 'Continuar' : 'Guardar', () {
 //             if (page.value == 1) page.value = page.value + 1;
-//             print(page.value);
 //           }),
 //         )
 //       ],

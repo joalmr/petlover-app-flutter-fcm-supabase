@@ -21,7 +21,6 @@
 //     Directory documentsDirectory = await getApplicationDocumentsDirectory();
 
 //     final path = join(documentsDirectory.path, 'LocalDB.db');
-//     print(path);
 
 //     return await openDatabase(
 //       path,
@@ -65,21 +64,21 @@
 //     final db = await database;
 //     final res = await db
 //         .rawQuery('SELECT name FROM sqlite_master WHERE type = "table";');
-//     print(res);
+
 //     return res;
 //   }
 
 //   getPetFood() async {
 //     final db = await database;
 //     final res = await db.rawQuery('SELECT * FROM pet_food;');
-//     print(res);
+
 //     return res;
 //   }
 
 //   getUserLoginDate() async {
 //     final db = await database;
 //     final res = await db.rawQuery('SELECT * FROM user_login_date;');
-//     print(res);
+
 //     return res;
 //   }
 
@@ -87,14 +86,14 @@
 //     final db = await database;
 //     final res =
 //         await db.insert('local_notifications', newNotification.toJson());
-//     print(res);
+
 //     return res;
 //   }
 
 //   Future<List<LocalNotification>> getAllLocalNotification() async {
 //     final db = await database;
 //     final res = await db.query('local_notifications');
-//     print(res);
+
 //     return res.isNotEmpty
 //         ? res.map((e) => LocalNotification.fromJson(e)).toList()
 //         : [];

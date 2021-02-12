@@ -57,37 +57,37 @@ class VetDetallePage extends StatelessWidget {
                               onPressed: () => Get.back(),
                             ),
                           ),
-                          appPruebas
-                              ? Positioned(
-                                  top: 30,
-                                  right: 5,
-                                  child: InkWell(
-                                    onTap: _.setFavorite,
-                                    child: Container(
-                                      height: 45,
-                                      width: 45,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(100.0),
-                                        color: colorGray1,
-                                      ),
-                                      child: Center(
-                                        child: _.favorite.value
-                                            ? Lottie.asset(
-                                                pathLottie('favorite'),
-                                                fit: BoxFit.cover,
-                                                height: 45,
-                                                width: 45,
-                                                repeat: false,
-                                              )
-                                            : BounceInDown(
-                                                from: 5,
-                                                child: Icon(Icons.favorite)),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : SizedBox(height: 0),
+                          // appPruebas
+                          //     ? Positioned(
+                          //         top: 30,
+                          //         right: 5,
+                          //         child: InkWell(
+                          //           onTap: _.setFavorite,
+                          //           child: Container(
+                          //             height: 45,
+                          //             width: 45,
+                          //             decoration: BoxDecoration(
+                          //               borderRadius:
+                          //                   BorderRadius.circular(100.0),
+                          //               color: colorGray1,
+                          //             ),
+                          //             child: Center(
+                          //               child: _.favorite.value
+                          //                   ? Lottie.asset(
+                          //                       pathLottie('favorite'),
+                          //                       fit: BoxFit.cover,
+                          //                       height: 45,
+                          //                       width: 45,
+                          //                       repeat: false,
+                          //                     )
+                          //                   : BounceInDown(
+                          //                       from: 5,
+                          //                       child: Icon(Icons.favorite)),
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       )
+                          //     : SizedBox(height: 0),
                           Positioned(
                             right: 7.5,
                             bottom: 9.5,

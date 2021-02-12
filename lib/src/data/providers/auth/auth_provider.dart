@@ -25,7 +25,6 @@ class AuthProvider {
       }
       return response.statusCode;
     } catch (ex) {
-      print(ex);
       return 500;
     }
   }
@@ -58,8 +57,6 @@ class AuthProvider {
 
       return response.statusCode;
     } catch (ex) {
-      print("==catch google==");
-      print(ex);
       return 500;
     }
   }
@@ -91,8 +88,6 @@ class AuthProvider {
       }
       return response.statusCode;
     } catch (ex) {
-      print("==catch fb==");
-      print(ex);
       return 500;
     }
   }
@@ -100,7 +95,6 @@ class AuthProvider {
   Future<void> sendTokenFire(String fireToken) async {
     final url = '$_url/firebase';
     final fireData = {"token": fireToken};
-
     try {
       await http.post(
         url,
