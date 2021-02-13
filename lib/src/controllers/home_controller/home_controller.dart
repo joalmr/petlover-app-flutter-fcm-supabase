@@ -6,6 +6,7 @@ import 'package:proypet/src/data/services/booking/booking_service.dart';
 import 'package:proypet/src/data/services/pet/pet_service.dart';
 import 'package:proypet/src/data/services/summary_service.dart';
 import 'package:proypet/src/data/services/user/user_service.dart';
+import 'package:proypet/src/utils/error.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class HomeController extends GetxController {
@@ -38,12 +39,6 @@ class HomeController extends GetxController {
     return null;
   }
 
-  getUsuario() => _getUsuario();
-
-  _getUsuario() async {
-    usuario = await userService.getUser();
-  }
-
   @override
   void onInit() {
     super.onInit();
@@ -54,34 +49,46 @@ class HomeController extends GetxController {
     }
   }
 
+  getUsuario() => _getUsuario();
+
+  _getUsuario() async {
+    try {
+      usuario = await userService.getUser();
+    } catch (ex) {
+      errorInesperado();
+    }
+  }
+
   void getSummary() {
     _summary();
   }
 
   Future<void> _summary() async {
-    var pets = await petService.getPets();
-    var bookings = await bookingService.getBookings();
+    try {
+      var pets = await petService.getPets();
+      var bookings = await bookingService.getBookings();
 
-    mascotas.clear();
-    mascotas.addAll(pets);
+      mascotas.clear();
+      mascotas.addAll(pets);
 
-    atenciones.clear();
-    DateTime now = DateTime.now();
-    bookings.forEach((BookingModel booking) {
-      var fechaAt = booking.bookingDatetime;
+      atenciones.clear();
+      DateTime now = DateTime.now();
+      bookings.forEach((BookingModel booking) {
+        var fechaAt = booking.bookingDatetime;
 
-      if (fechaAt.day < now.day &&
-          fechaAt.month == now.month &&
-          fechaAt.year == now.year) {
-        booking.pastDate = true;
-      }
+        if (fechaAt.day < now.day &&
+            fechaAt.month == now.month &&
+            fechaAt.year == now.year) {
+          booking.pastDate = true;
+        }
 
-      // int leftDays = now.difference(fechaAt).inDays;
-      // if (leftDays < 0) booking.pastDate = true;
+        atenciones.add(booking);
+      });
 
-      atenciones.add(booking);
-    });
-
-    loading.value = false;
+      loading.value = false;
+    } catch (ex) {
+      loading.value = false;
+      errorInesperado();
+    }
   }
 }

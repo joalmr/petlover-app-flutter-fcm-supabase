@@ -28,10 +28,6 @@ class AuthService {
     return loginProvider.loginToken(email, password);
   }
 
-  logOut() {
-    return loginProvider.logOut();
-  }
-
   sendTokenFire(String fireToken) {
     return loginProvider.sendTokenFire(fireToken);
   }
@@ -42,5 +38,13 @@ class AuthService {
 
   registerUser(String name, String lastname, String email, String password) {
     return loginProvider.registerUser(name, lastname, email, password);
+  }
+
+  logOut() {
+    return loginProvider.logOut();
+  }
+
+  outToken() {
+    return loginProvider.outToken();
   }
 }

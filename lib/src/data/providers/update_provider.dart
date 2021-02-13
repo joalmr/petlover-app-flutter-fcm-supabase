@@ -15,7 +15,7 @@ class UpdateProvider {
     final jsonData = json.decode(response.body);
 
     int buildNumber = int.parse(packageInfo.buildNumber);
-    int versionCode = int.parse(jsonData['versionCode']);
+    int versionCode = int.parse(jsonData['versionCode'] ?? 1);
 
     versionAndroid = jsonData['versionName'];
 
@@ -33,7 +33,7 @@ class UpdateProvider {
     final jsonData = json.decode(response.body);
 
     int buildNumber = int.parse(packageInfo.buildNumber);
-    int versionCode = int.parse(jsonData['versionCode']);
+    int versionCode = int.parse(jsonData['versionCode'] ?? 1);
 
     versionIOS = jsonData['versionName'];
 

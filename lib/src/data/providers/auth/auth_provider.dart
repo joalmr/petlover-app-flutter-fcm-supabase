@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/src/controllers/auth_controller/services/facebook_sing.dart';
 import 'package:proypet/src/controllers/auth_controller/services/google_sign.dart';
+import 'package:proypet/src/utils/error.dart';
 import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 
@@ -102,39 +102,9 @@ class AuthProvider {
         body: fireData,
       );
     } catch (ex) {
-      showDialog(
-        context: Get.context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.all(20),
-            content: Text('Debes volver a iniciar sesión 🐶🐱'),
-          );
-        },
-      );
-      Timer(Duration(milliseconds: 3000), () => _outToken());
+      errorInesperado();
       throw Exception(ex.message);
     }
-  }
-
-  void _outToken() async {
-    FacebookSignInService.signOut();
-    GoogleSignInService.signOut();
-    logOut();
-    _prefs.tokenDel(); //limpia token
-    _prefs.verifyDel(); //limpia verificado
-    _prefs.positionDel(); //limpia gps para lista vets
-    _prefs.ubicacionDel(); //limpia direccion para lista vets
-    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
-    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
-    _prefs.notificaAvisoDel(); //limpia notificacion aviso
-
-    Get.offAllNamed('login');
-  }
-
-  Future<void> logOut() async {
-    final url = '$_url/logout';
-    await http.post(url, headers: headersToken());
   }
 
   Future<int> forgotPassword(String email) async {
@@ -160,5 +130,25 @@ class AuthProvider {
     } catch (ex) {
       return 0;
     }
+  }
+
+  Future<void> logOut() async {
+    final url = '$_url/logout';
+    await http.post(url, headers: headersToken());
+  }
+
+  void outToken() async {
+    FacebookSignInService.signOut();
+    GoogleSignInService.signOut();
+    logOut();
+    _prefs.tokenDel(); //limpia token
+    _prefs.verifyDel(); //limpia verificado
+    _prefs.positionDel(); //limpia gps para lista vets
+    _prefs.ubicacionDel(); //limpia direccion para lista vets
+    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
+    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
+    _prefs.notificaAvisoDel(); //limpia notificacion aviso
+
+    Get.offAllNamed('login');
   }
 }
