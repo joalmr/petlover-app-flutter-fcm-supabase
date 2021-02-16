@@ -74,13 +74,13 @@ class ConfigDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.add_business),
-                  title: Text('Solicitar veterinaria'),
+                  title: Text('¿No está tu veterinaria?'),
                   onTap: () => Get.toNamed('solicitaveterinaria'),
                 ),
                 ListTile(
                   leading: Icon(Icons.error_outline),
-                  title: Text('Reportar problema'),
-                  onTap: () => Get.toNamed('enviarqueja'),
+                  title: Text('Ayuda'),
+                  onTap: () => Get.toNamed('ayuda'),
                 ),
               ],
             ),

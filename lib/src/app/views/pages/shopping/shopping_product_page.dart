@@ -15,7 +15,7 @@ class ShoppingProductPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 15),
               child: InkWell(
-                onTap: () {},
+                onTap: () => Get.toNamed('shopcart'),
                 borderRadius: BorderRadius.circular(100),
                 child: AspectRatio(
                   aspectRatio: 1,

@@ -25,16 +25,18 @@ class ReservaList extends StatelessWidget {
         return Scaffold(
           appBar: appBar(
             texto: 'Buscar veterinarias',
-            acc: <Widget>[
-              IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () => Get.toNamed('buscarveterinaria'),
-              ),
-              IconButton(
-                icon: Icon(Icons.filter_list),
-                onPressed: () => Get.to(FiltraVets()),
-              ),
-            ],
+            acc: _.gps
+                ? <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () => Get.toNamed('buscarveterinaria'),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.filter_list),
+                      onPressed: () => Get.to(FiltraVets()),
+                    ),
+                  ]
+                : null,
           ),
           body: _.loading.value
               ? Container(
@@ -144,7 +146,7 @@ class ReservaList extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 30),
                               child: Text(
-                                'Ingresa una dirección para buscar veterinarias cercanas',
+                                'Ingresa una dirección para mostrarte veterinarias cercanas',
                                 style: Get.textTheme.subtitle1,
                                 textAlign: TextAlign.center,
                               ),

@@ -130,7 +130,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
                     vetLocales[0].latitude,
                     vetLocales[0].longitude,
                   ),
-                  zoom: 16.0),
+                  zoom: 15.0),
               markers: Set.from(allMarkers),
               onMapCreated: mapCreated,
             ),
@@ -281,7 +281,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
         CameraPosition(
           target: LatLng(vetLocales[_pageController.page.toInt()].latitude,
               vetLocales[_pageController.page.toInt()].longitude),
-          zoom: 16.0,
+          zoom: 15.0,
           bearing: 45.0,
           tilt: 45.0,
         ),

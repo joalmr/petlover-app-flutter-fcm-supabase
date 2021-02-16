@@ -4,6 +4,7 @@ import 'package:proypet/src/app/styles/styles.dart';
 import 'package:proypet/src/app/components/form_control/button_primary.dart';
 import 'package:proypet/src/app/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/src/controllers/veterinaria_controller/filtra_vets_controller.dart';
+import 'package:share/share.dart';
 import 'components/direccion.dart';
 import 'components/servicio_flat.dart';
 
@@ -89,6 +90,35 @@ class FiltraVets extends StatelessWidget {
                           'Solicita su ingreso',
                           () => Get.toNamed('solicitaveterinaria'),
                           colorMain,
+                        ),
+                        FlatButton(
+                          onPressed: () => Share.share(
+                              'Hola! Te invito a que seas parte de Proypet❤️ Entérate más en: https://proypet.com/veterinarias',
+                              subject: 'Se parte de Proypet'),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.share,
+                                color: colorMain,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'Invitar a mi veterinaria',
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: colorMain,
+                                ),
+                              ),
+                            ],
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 12.0,
+                            horizontal: 20.0,
+                          ),
+                          shape: shape10,
                         ),
                       ],
                     ),

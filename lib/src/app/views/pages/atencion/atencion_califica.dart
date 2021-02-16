@@ -61,23 +61,51 @@ class AtencionCalifica extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      'Has ganado ${_.bonificacion} ${_.bonificacion != '1' ? 'puntos' : 'punto'}',
-                                      style: TextStyle(color: colorYellow),
-                                    ),
-                                    Text(
-                                      _.mensaje,
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
+                                    Text.rich(
+                                      TextSpan(
+                                        text: 'Has ganado ',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: colorYellow,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: '${_.bonificacion} ',
+                                            style: TextStyle(
+                                              fontSize: 32,
+                                              color: colorYellow,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                '${_.bonificacion != '1' ? 'puntos' : 'punto'} ',
+                                            style: TextStyle(
+                                              color: colorYellow,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      textAlign: TextAlign.center,
                                     ),
                                     SizedBox(height: 20),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 20),
+                                      child: Text(
+                                        _.mensaje,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
                                     RatingBar(
                                       initialRating: 0,
-                                      minRating: 0,
+                                      minRating: 1,
                                       direction: Axis.horizontal,
                                       allowHalfRating: false,
                                       itemCount: 5,

@@ -12,7 +12,10 @@ import 'package:proypet/src/app/views/pages/bonus_pet/ultimos_puntos.dart';
 import 'package:proypet/src/app/views/pages/mascota/detalle/components/historial_page.dart';
 import 'package:proypet/src/app/views/pages/shopping/shop_cart_page.dart';
 import 'package:proypet/src/app/views/pages/shopping/shopping_product_page.dart';
-import 'package:proypet/src/app/views/pages/usuario/queja_view.dart';
+import 'package:proypet/src/app/views/pages/usuario/ayuda.dart';
+import 'package:proypet/src/app/views/pages/usuario/faq/faq.dart';
+import 'package:proypet/src/app/views/pages/usuario/feedback/feedback.dart';
+import 'package:proypet/src/app/views/pages/usuario/quejas/queja_view.dart';
 import 'package:proypet/src/app/views/pages/mascota/agregar/agregar_mascota.dart';
 import 'package:proypet/src/app/views/auth/login_page.dart';
 import 'package:proypet/src/app/views/auth/singup_page.dart';
@@ -67,7 +70,10 @@ List<GetPage> getRutas() {
     GetPage(name: 'sorteopuntos', page: () => SorteoPuntos()),
 
     GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
+    GetPage(name: 'ayuda', page: () => AyudaPage()),
     GetPage(name: 'enviarqueja', page: () => QuejaPage()),
+    GetPage(name: 'feedback', page: () => FeedbackPage()),
+    GetPage(name: 'faq', page: () => FaqPage()),
 
     GetPage(name: 'shopproduct', page: () => ShoppingProductPage()),
     GetPage(name: 'shopcart', page: () => ShopCartPage()),

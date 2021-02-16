@@ -7,7 +7,7 @@ import 'package:proypet/src/app/components/form_control/ddl_control.dart';
 import 'package:proypet/src/app/components/form_control/text_from.dart';
 import 'package:proypet/src/app/components/navegadores/appbar.dart';
 import 'package:proypet/src/controllers/usuario_controller/queja_controller.dart';
-import 'quejas/lista_queja.dart';
+import 'lista_queja.dart';
 
 class QuejaPage extends StatelessWidget {
   @override

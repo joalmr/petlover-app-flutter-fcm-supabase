@@ -19,8 +19,8 @@ class GlobalController extends GetxController {
   set ubicacion(String value) => _ubicacion.value = value;
   String get ubicacion => _ubicacion.value;
 
-  // bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
-  bool get hasToken => !_prefs.token.isNullOrBlank;
+  bool get hasToken => _prefs.token != null && _prefs.token.trim() != "";
+  // bool get hasToken => !_prefs.token.isNullOrBlank;
 
   bool get isVerify => _prefs.verify != null && _prefs.verify.trim() != "";
 

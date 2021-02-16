@@ -91,7 +91,7 @@ class Atenciones extends StatelessWidget {
                                   buttonModal('Cancelar', _.volver,
                                       Get.textTheme.subtitle2.color),
                                   buttonModal(
-                                      'Eliminar',
+                                      'Sí, eliminar',
                                       () =>
                                           _.eliminaAtencion(atencion.bookingId),
                                       colorRed),
