@@ -32,6 +32,8 @@ class BookingProvider {
     final url = '$_url/bookings';
     var bodyData;
 
+    print("==booking");
+
     if (delivery != null) {
       bodyData = {
         "booking_at": booking.bookingAt,
@@ -47,7 +49,7 @@ class BookingProvider {
         "booking_at": booking.bookingAt,
         "establishment_id": booking.establishmentId,
         "pet_id": booking.petId,
-        "type_id": jsonEncode(reservaType), //booking.typeId,
+        "type_id": jsonEncode(reservaType),
         "observation": booking.observation,
       };
     }

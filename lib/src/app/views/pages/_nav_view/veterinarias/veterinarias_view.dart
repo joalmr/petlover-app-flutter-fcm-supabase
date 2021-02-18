@@ -146,7 +146,7 @@ class ReservaList extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 30),
                               child: Text(
-                                'Ingresa una dirección para mostrarte veterinarias cercanas',
+                                'Ingresa tu dirección para mostrarte veterinarias cercanas',
                                 style: Get.textTheme.subtitle1,
                                 textAlign: TextAlign.center,
                               ),

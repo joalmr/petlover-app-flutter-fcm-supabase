@@ -1,7 +1,13 @@
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
+import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/controllers/home_controller/home_controller.dart';
+import 'package:proypet/src/data/class/mailing.dart';
 
 class SolicitaVetController extends GetxController {
+  final sendMail = Mailing();
+  final homeC = Get.find<HomeController>();
+
   RxString _nombre = ''.obs;
   RxString _distrito = ''.obs;
   RxString _telefono = ''.obs;
@@ -26,16 +32,27 @@ class SolicitaVetController extends GetxController {
   enviarSolicitud() => _enviarSolicitud();
 
   _enviarSolicitud() async {
-    String asunto = 'Solicita veterinaria: ${nombre.toUpperCase()}';
-    final Email email = Email(
-      subject: '$asunto',
-      body:
-          '<strong>Nombre:</strong> $nombre <br/> <strong>Ciudad:</strong> $distrito <br/> <strong>Teléfono:</strong> $telefono',
-      recipients: ['info@proypet.com'],
-      isHTML: true,
-    );
+    final usuario = homeC.usuario;
 
-    await FlutterEmailSender.send(email);
-    envia.value = true;
+    if (nombre.isEmpty || distrito.isEmpty) {
+      mostrarSnackbar(
+        "Debe completar los campos",
+        colorRed,
+      );
+    } else {
+      String asunto = 'Solicita veterinaria: ${nombre.toUpperCase()}';
+      String body = '''
+      <strong>Enviado por ${usuario.name} ${usuario.lastname} | ${usuario.email}</strong>
+      <br/>
+      <strong>Nombre:</strong> $nombre
+      <br/> 
+      <strong>Ciudad:</strong> $distrito
+      <br/> 
+      <strong>Teléfono:</strong> $telefono
+      ''';
+
+      sendMail.mailing(asunto, body);
+      envia.value = true;
+    }
   }
 }

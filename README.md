@@ -14,10 +14,6 @@ https://maps.googleapis.com/maps/api/geocode/json?latlng=-12.0166806,-77.0998039
 ## flutter build ios --release
 ## product -> archive
 
-
-com.example.user //prueba
-com.proypet.user //produccion
-
 ## hash prueba fb
 ml9LCje6qhWF4iKHkLhhJDX60yQ= (NO SIRVE)
 

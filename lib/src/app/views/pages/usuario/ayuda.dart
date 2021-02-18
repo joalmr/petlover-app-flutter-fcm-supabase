@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:proypet/src/app/components/navegadores/appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'components/list_cuenta.dart';
 
 class AyudaPage extends StatelessWidget {
@@ -32,6 +35,14 @@ class AyudaPage extends StatelessWidget {
             'enviarqueja',
             'Reportar problema',
             Icons.error,
+          ),
+          listAccFn(
+            'Actualizar app',
+            Icons.upload_rounded,
+            () => Platform.isIOS
+                ? launch('https://apps.apple.com/pe/app/proypet/id1529231253')
+                : launch(
+                    'https://play.google.com/store/apps/details?id=com.proypet.user'),
           ),
         ],
       ),

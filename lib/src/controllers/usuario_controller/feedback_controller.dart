@@ -1,7 +1,14 @@
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:get/get.dart';
+import 'package:proypet/src/app/components/snackbar.dart';
+import 'package:proypet/src/app/styles/styles.dart';
+import 'package:proypet/src/controllers/home_controller/home_controller.dart';
+import 'package:proypet/src/data/class/mailing.dart';
 
 class FeedbackController extends GetxController {
+  final sendMail = Mailing();
+  final homeC = Get.find<HomeController>();
+
   RxInt _stars = 1.obs;
   RxString _descripcion = ''.obs;
 
@@ -22,14 +29,25 @@ class FeedbackController extends GetxController {
   enviarQueja() => _enviarQueja();
 
   _enviarQueja() async {
-    final Email email = Email(
-      subject: 'Feedback',
-      body: '⭐️ $stars estrellas <br/>$descripcion',
-      recipients: ['info@proypet.com'],
-      isHTML: true,
-    );
+    final usuario = homeC.usuario;
 
-    await FlutterEmailSender.send(email);
-    envia.value = true;
+    if (descripcion.isEmpty) {
+      mostrarSnackbar(
+        "Debe completar los campos",
+        colorRed,
+      );
+    } else {
+      String asunto = 'Feedback';
+      String body = '''
+      <strong>Enviado por ${usuario.name} ${usuario.lastname} | ${usuario.email}</strong>
+      <br/>
+      ⭐️ $stars estrellas
+      <br/>
+      $descripcion
+      ''';
+
+      sendMail.mailing(asunto, body);
+      envia.value = true;
+    }
   }
 }

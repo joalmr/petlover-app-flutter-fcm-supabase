@@ -63,6 +63,7 @@ dependencies:
   intl: ^0.16.1 #para formatos
   jiffy: ^3.0.1 #date 
   lottie: ^0.7.0+1
+  mailer: 
   map_launcher: ^0.4.5
   mime_type:
   overflow_view:

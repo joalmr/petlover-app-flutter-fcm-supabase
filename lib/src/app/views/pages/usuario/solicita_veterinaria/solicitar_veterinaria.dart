@@ -21,6 +21,7 @@ class SolicitaVetPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image(
+                        height: 200,
                         image: AssetImage('images/cat_dog/invitation.png'),
                         fit: BoxFit.cover,
                       ),
@@ -40,7 +41,7 @@ class SolicitaVetPage extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       buttonOutLine('Volver', () => Get.back(), colorMain),
-                      SizedBox(height: 100),
+                      SizedBox(height: 50),
                       FlatButton(
                         onPressed: () => Share.share(
                             'Hola! Te invito a que seas parte de Proypet❤️ Entérate más en: https://proypet.com/veterinarias',
