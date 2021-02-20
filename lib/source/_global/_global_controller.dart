@@ -27,6 +27,7 @@ class GlobalController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getTema();
     ubicacion = _prefs.ubicacion ?? '';
     getInit();
   }
@@ -45,7 +46,6 @@ class GlobalController extends GetxController {
         ),
       );
     } else {
-      getTema();
       evaluaLogin();
     }
   }
