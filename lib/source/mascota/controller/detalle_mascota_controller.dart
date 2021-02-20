@@ -1,6 +1,6 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/data/months.dart';
+import 'package:proypet/utils/months.dart';
 import 'package:proypet/source/mascota/model/pet_model.dart';
 import 'package:proypet/source/mascota/model/pet_history_model.dart';
 import 'package:proypet/source/mascota/service/pet_history_service.dart';

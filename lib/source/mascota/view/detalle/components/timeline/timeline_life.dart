@@ -2,7 +2,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:proypet/components/data/months.dart';
+import 'package:proypet/utils/months.dart';
 import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/mascota/controller/detalle_mascota_controller.dart';
