@@ -1,0 +1,13 @@
+final String actualiza = 'images/actualiza.png';
+final String freBanio = 'images/fre-banio.jpg';
+final String freConsulta = 'images/fre-consulta.jpg';
+final String freDesparacita = 'images/fre-desparacita.jpg';
+final String freEmergencia = 'images/fre-emergencia.jpg';
+final String freVacuna = 'images/fre-vacuna.jpeg';
+final String gatoError = 'images/gato-error.png';
+final String googleIcon = 'images/google.png';
+final String noImage = 'images/no-image.png';
+final String proypetIcon = 'images/proypet.png';
+final String reservaGana = 'images/reserva-gana.png';
+final String verify = 'images/verify.png';
+final String vetPrueba = 'images/vet_prueba.jpg';
