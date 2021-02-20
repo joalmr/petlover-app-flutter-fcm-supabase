@@ -3,16 +3,18 @@ import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:proypet/src/controllers/home_controller/home_controller.dart';
-import 'package:proypet/src/routes/routes.dart';
+
+import 'package:proypet/routes/routes.dart';
 import 'package:get/get.dart';
+import 'package:proypet/source/home/controller/home_controller.dart';
 import 'config/global_variables.dart';
-import 'src/controllers/veterinaria_controller/filtra_vets_controller.dart';
-import 'src/controllers/veterinaria_controller/lista_vets_controller.dart';
-import 'src/theme/theme.dart';
-import 'src/theme/themeDark.dart';
-import 'src/app/views/pages/_nav_bar/navigation_bar.dart';
-import 'src/controllers/_global_controller.dart';
+
+import 'design/theme/theme.dart';
+import 'design/theme/themeDark.dart';
+import 'source/_navbar/view/navigation_bar.dart';
+import 'source/_global/_global_controller.dart';
+import 'source/veterinarias/controller/filtra_vets_controller.dart';
+import 'source/veterinarias/controller/lista_vets_controller.dart';
 
 // //proypet user
 // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();

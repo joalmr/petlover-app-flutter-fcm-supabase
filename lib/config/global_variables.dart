@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:get/get.dart';
-import 'package:proypet/src/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 String versionAndroid = "";
 String versionIOS = "";
