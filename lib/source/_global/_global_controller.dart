@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:get/get.dart';
 import 'package:proypet/source/update/view/update_page.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';

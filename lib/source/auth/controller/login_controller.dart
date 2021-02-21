@@ -73,6 +73,7 @@ class LoginController extends GetxController {
             colorRed);
       } else {
         final respLogin = await repository.login(email, password);
+        print(respLogin);
         retornosWithMail(respLogin);
       }
     }

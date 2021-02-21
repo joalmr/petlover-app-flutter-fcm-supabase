@@ -5,6 +5,7 @@ Widget cardFrecuente({
   @required String rootImg,
   @required String title,
   String subtitle,
+  Color color = Colors.black,
 }) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
@@ -16,7 +17,7 @@ Widget cardFrecuente({
           height: 100.0,
           padding: EdgeInsets.all(15.0),
           foregroundDecoration: BoxDecoration(
-            color: Colors.red.withOpacity(0.5),
+            color: color.withOpacity(0.5),
             borderRadius: BorderRadius.circular(15.0),
           ),
           decoration: BoxDecoration(

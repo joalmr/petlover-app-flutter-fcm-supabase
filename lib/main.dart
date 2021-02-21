@@ -21,7 +21,7 @@ import 'source/veterinarias/controller/lista_vets_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterConfig.loadEnvVariables();
+  // await FlutterConfig.loadEnvVariables();
   await GetStorage.init();
 
   runApp(MyApp());

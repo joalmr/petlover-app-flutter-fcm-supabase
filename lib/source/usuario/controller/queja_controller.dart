@@ -35,6 +35,7 @@ class QuejaController extends GetxController {
     'Mi veterinaria no está en la app',
     'No confirmó mi reserva',
     'Me atendieron y no me registraron',
+    'La aplicación falla',
     'Otro',
   ];
 

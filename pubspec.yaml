@@ -37,7 +37,6 @@ dependencies:
   cached_network_image: ^2.0.0
   datetime_picker_formfield: ^1.0.0
   day_night_time_picker: ^0.4.0
-  # day_night_time_picker: ^0.2.1
   dotted_line: ^2.0.2
   email_validator: ^1.0.6
   firebase_messaging: ^6.0.15

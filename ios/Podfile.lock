@@ -65,6 +65,8 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 6.5)
     - Protobuf (>= 3.9.2, ~> 3.9)
   - Flutter (1.0.0)
+  - flutter_config (0.0.1):
+    - Flutter
   - flutter_email_sender (0.0.1):
     - Flutter
   - flutter_login_facebook (0.3.0):
@@ -178,6 +180,7 @@ DEPENDENCIES:
   - ai_notification_enable (from `.symlinks/plugins/ai_notification_enable/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
+  - flutter_config (from `.symlinks/plugins/flutter_config/ios`)
   - flutter_email_sender (from `.symlinks/plugins/flutter_email_sender/ios`)
   - flutter_login_facebook (from `.symlinks/plugins/flutter_login_facebook/ios`)
   - flutter_plugin_android_lifecycle (from `.symlinks/plugins/flutter_plugin_android_lifecycle/ios`)
@@ -235,6 +238,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
+  flutter_config:
+    :path: ".symlinks/plugins/flutter_config/ios"
   flutter_email_sender:
     :path: ".symlinks/plugins/flutter_email_sender/ios"
   flutter_login_facebook:
@@ -296,6 +301,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 3b119bfe90e904851218159c9a4ecb847cc51d18
   FirebaseMessaging: ad9e1a80ea64905e01a0ce1b3eb76a2944544151
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_config: 2226c1df19c78fe34a05eb7f1363445f18e76fc1
   flutter_email_sender: f787522d0e82f50e5766c1213dbffff22fdcf009
   flutter_login_facebook: 86e1415ecde2d59ca72c5760fd53d1d1952017fb
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b

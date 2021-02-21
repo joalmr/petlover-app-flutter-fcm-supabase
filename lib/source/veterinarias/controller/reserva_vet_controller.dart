@@ -25,6 +25,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:time_parser/time_parser.dart';
 import 'data/horario.dart';
 import 'detalle_vet_controller.dart';
+import 'validations/reservaVetValidate.dart';
 
 class ReservaVetController extends GetxController {
   final homeC = Get.find<HomeController>();
@@ -110,6 +111,9 @@ class ReservaVetController extends GetxController {
     super.onInit();
     pickedTime = TimeOfDay.now();
 
+    print(pickedTime);
+    print(format.format(DateTime.now()));
+
     vet = vetdC.vet;
     iniciales();
     misMascotas = vetdC.misMascotas;
@@ -155,9 +159,17 @@ class ReservaVetController extends GetxController {
   }
 
   fechaHoraInicial() {
-    hora = pickedTime.format(Get.context);
-    bool lengthHora = hora.split(":")[0].length == 1;
-    if (lengthHora) hora = "0$hora";
+    String digHora = '';
+    String digMin = '';
+    pickedTime.hour < 10
+        ? digHora = "0${pickedTime.hour}"
+        : digHora = pickedTime.hour.toString();
+    pickedTime.minute < 10
+        ? digMin = "0${pickedTime.minute}"
+        : digMin = pickedTime.minute.toString();
+
+    hora = '$digHora:$digMin';
+    print(hora);
     inputHoraController.text = hora;
     fecha = format.format(DateTime.now());
   }
@@ -202,62 +214,18 @@ class ReservaVetController extends GetxController {
     pickedTime = newTime;
   }
 
-  bool get hasFechaHora => fecha.trim().isEmpty || hora.trim().isEmpty;
-
-  DateTime get fechaTime => DateTime.parse(fecha + " " + hora);
-
-  String get fechaTimeAt => DateFormat('yyyy-MM-dd kk:mm:ss').format(fechaTime);
-
-  bool get isDateOk {
-    bool respuesta = true;
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-    if (formattedDate == fechaTimeAt.split(' ')[0] &&
-        fechaTime.hour < (now.hour - 1)) {
-      respuesta = false;
-    }
-    return respuesta;
-  }
-
+  bool get hasFechaHora => valFechaHora(fecha, hora);
+  DateTime get fechaTime => valFechaTime(fecha, hora);
+  String get fechaTimeAt => valFechaTimeAt(fechaTime);
+  bool get isDateOk => valIsDateOk(fechaTimeAt, fechaTime);
+  bool get isDayOk => valIsDayOk(fechaTime, vet);
+  bool get isHourOk => valIsHourOk(fechaTime, vet, hora);
+  //delivery
   bool get conDelivery => hasDelivery && deliveryId != '1';
-
   bool get isDeliveryOk =>
       hasDelivery &&
       deliveryId != '1' &&
       inputDireccionController.text.trim() != '';
-
-  bool get isDayOk {
-    int day = fechaTime.weekday;
-    var horario = vet.schedule;
-    var takeHora = horario[textHorario[day]];
-
-    if (takeHora['attention'] == 'on')
-      return true;
-    else
-      return false;
-  }
-
-  bool get isHourOk {
-    int day = fechaTime.weekday;
-    var horario = vet.schedule;
-    var takeHora = horario[textHorario[day]];
-
-    var time0 = TimeParser.parse(hora);
-    var time1 = TimeParser.parse(takeHora['time_start']);
-    var time2 = TimeParser.parse(takeHora['time_end']);
-
-    var hora0 = time0.hours * 60 + time0.minutes;
-    var horaInicio = time1.hours * 60 + time1.minutes;
-    var horaFin = time2.hours * 60 + time2.minutes;
-
-    if (takeHora['attention'] == 'on') {
-      if (horaInicio <= hora0 && hora0 < horaFin)
-        return true;
-      else
-        return false;
-    } else
-      return false;
-  }
 
   String get takeHora {
     int day = fechaTime.weekday;
@@ -325,46 +293,49 @@ class ReservaVetController extends GetxController {
   }
 
   void reservarBooking() {
-    if (hasFechaHora) {
-      mostrarSnackbar('Debe ingresar fecha y hora de la reserva', colorRed);
-    } else {
-      if (!isDateOk) {
-        mostrarSnackbar('La hora debe ser mayor', colorRed);
-      } else {
-        if (conDelivery) {
-          if (isDeliveryOk) {
-            if (isDayOk) {
-              if (isHourOk) {
-                ejecutaReserva();
-              } else {
-                mostrarSnackbar(
-                    'La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora',
-                    colorRed);
-              }
-            } else {
-              mostrarSnackbar(
-                  'La veterinaria no atiende el día seleccionado', colorRed);
-            }
-          } else {
-            mostrarSnackbar(
-                'Debe ingresar la dirección para el servicio de movilidad',
-                colorRed);
-          }
-        } else {
-          if (isDayOk) {
-            if (isHourOk) {
-              ejecutaReserva();
-            } else {
-              mostrarSnackbar(
-                  'La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora',
-                  colorRed);
-            }
-          } else {
-            mostrarSnackbar(
-                'La veterinaria no atiende el día seleccionado', colorRed);
-          }
-        }
-      }
+    String reservaValida = valReservarBooking(
+      hasFechaHora,
+      isDateOk,
+      conDelivery,
+      isDeliveryOk,
+      isDayOk,
+      isHourOk,
+    );
+
+    switch (reservaValida) {
+      case "error1":
+        mostrarSnackbar(
+          'Debe ingresar fecha y hora de la reserva',
+          colorRed,
+        );
+        break;
+      case "error2":
+        mostrarSnackbar(
+          'La hora debe ser mayor',
+          colorRed,
+        );
+        break;
+      case "error3":
+        mostrarSnackbar(
+          'Debe ingresar la dirección para el servicio de movilidad',
+          colorRed,
+        );
+        break;
+      case "error4":
+        mostrarSnackbar(
+          'La veterinaria no atiende el día seleccionado',
+          colorRed,
+        );
+        break;
+      case "error5":
+        mostrarSnackbar(
+          'La veterinaria no atiende en este horario, seleccione entre este rango de horas $takeHora',
+          colorRed,
+        );
+        break;
+      case "ok":
+        ejecutaReserva();
+        break;
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/source/veterinarias/controller/filtra_vets_controller.dart';
 
@@ -15,6 +16,7 @@ emergenciaHome() {
     rootImg: 'images/fre-emergencia.jpg',
     title: 'Emergencia',
     subtitle: '24 horas',
+    color: Colors.red,
   );
 }
 
