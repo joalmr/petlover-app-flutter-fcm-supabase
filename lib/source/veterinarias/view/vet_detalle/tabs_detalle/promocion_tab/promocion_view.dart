@@ -40,64 +40,67 @@ class ViewPromocion extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Card(
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8, bottom: 8, left: 10, right: 8),
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: colorBlue,
-                                child: Icon(
-                                  iconNum[int.parse(promocion.serviceId)],
-                                  color: Colors.white,
-                                  size: 28,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 7.5),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8, bottom: 8, left: 10, right: 8),
+                                child: CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: colorBlue,
+                                  child: Icon(
+                                    iconNum[int.parse(promocion.serviceId)],
+                                    color: Colors.white,
+                                    size: 28,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: SizedBox(
-                                width: double.maxFinite,
-                                child: Text(promocion.description),
+                              Expanded(
+                                child: SizedBox(
+                                  width: double.maxFinite,
+                                  child: Text(promocion.description),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 8, bottom: 8, left: 8, right: 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    promocion.type == 'Amount'
-                                        ? '-${promocion.discount}'
-                                        : promocion.type == 'Percentage'
-                                            ? '${promocion.discount}%'
-                                            : '${promocion.discount}',
-                                    style: TextStyle(
-                                      color: promocion.type == 'Total'
-                                          ? colorGreen2
-                                          : colorRed,
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 24,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 8, bottom: 8, left: 8, right: 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      promocion.type == 'Amount'
+                                          ? '-${promocion.discount}'
+                                          : promocion.type == 'Percentage'
+                                              ? '${promocion.discount}%'
+                                              : '${promocion.discount}',
+                                      style: TextStyle(
+                                        color: promocion.type == 'Total'
+                                            ? colorGreen2
+                                            : colorRed,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 24,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    promocion.type == 'Percentage'
-                                        ? 'desc.'
-                                        : 'soles',
-                                    style: TextStyle(
-                                      color: promocion.type == 'Total'
-                                          ? colorGreen2
-                                          : colorRed,
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 10,
+                                    Text(
+                                      promocion.type == 'Percentage'
+                                          ? 'desc.'
+                                          : 'soles',
+                                      style: TextStyle(
+                                        color: promocion.type == 'Total'
+                                            ? colorGreen2
+                                            : colorRed,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 10,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
