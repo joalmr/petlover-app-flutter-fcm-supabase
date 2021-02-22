@@ -56,7 +56,7 @@ android {
         applicationId "com.proypet.user"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 21 //1.4.5
+        versionCode 22 //1.4.5
         versionName "1.4.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
