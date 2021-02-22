@@ -74,10 +74,11 @@ class GlobalController extends GetxController {
     final _tempLng = _prefs.position.toString().split(",")[1];
 
     pushController.firebase();
-    addressService.setAddress(
-      _prefs.ubicacion,
-      _tempLat,
-      _tempLng,
-    );
+    if (_prefs.hasUbicacion() && _prefs.hasPosition())
+      addressService.setAddress(
+        _prefs.ubicacion,
+        _tempLat,
+        _tempLng,
+      );
   }
 }
