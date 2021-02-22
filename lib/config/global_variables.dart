@@ -9,7 +9,7 @@ import 'variables_env.dart';
 String versionAndroid = "";
 String versionIOS = "";
 
-final bool appPruebas = false;
+final bool appPruebas = true;
 final environment = appPruebas ? pruebas : produccion;
 
 final String keyMap = environment['keyMap'];

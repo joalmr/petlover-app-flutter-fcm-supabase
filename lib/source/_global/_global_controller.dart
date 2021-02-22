@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_config/flutter_config.dart';
 import 'package:get/get.dart';
 import 'package:proypet/source/update/view/update_page.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
@@ -74,11 +73,13 @@ class GlobalController extends GetxController {
     final _tempLng = _prefs.position.toString().split(",")[1];
 
     pushController.firebase();
-    if (_prefs.hasUbicacion() && _prefs.hasPosition())
+    if (_prefs.hasUbicacion() && _prefs.hasPosition()) {
+      print('==actualizar direccion');
       addressService.setAddress(
         _prefs.ubicacion,
         _tempLat,
         _tempLng,
       );
+    }
   }
 }
