@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/components/images/image.dart';
 import 'package:proypet/source/auth/service/auth_service.dart';
 
 final authService = AuthService();
@@ -11,8 +12,10 @@ errorInesperado() {
     barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
+        scrollable: true,
         contentPadding: EdgeInsets.all(20),
-        content: Text('Debes volver a iniciar sesión 🐶🐱'),
+        content: Image(image: AssetImage(msgSesion)),
+        // Text('Debes volver a iniciar sesión 🐶🐱'),
       );
     },
   );

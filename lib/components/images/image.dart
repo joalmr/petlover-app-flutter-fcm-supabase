@@ -6,6 +6,7 @@ final String freEmergencia = 'images/fre-emergencia.jpg';
 final String freVacuna = 'images/fre-vacuna.jpeg';
 final String gatoError = 'images/gato-error.png';
 final String googleIcon = 'images/google.png';
+final String msgSesion = 'images/msg-sesion.png';
 final String noImage = 'images/no-image.png';
 final String proypetIcon = 'images/proypet.png';
 final String reservaGana = 'images/reserva-gana.png';
