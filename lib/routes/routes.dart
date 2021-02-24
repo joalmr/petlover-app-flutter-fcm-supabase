@@ -23,7 +23,6 @@ import 'package:proypet/source/usuario/view/mi_cuenta.dart';
 import 'package:proypet/source/usuario/view/password/cambia_password.dart';
 import 'package:proypet/source/usuario/view/quejas/queja_view.dart';
 import 'package:proypet/source/usuario/view/solicita_veterinaria/solicitar_veterinaria.dart';
-
 import 'package:proypet/source/veterinarias/view/vet_detalle/detalle_vet.dart';
 import 'package:proypet/source/veterinarias/view/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
 import 'package:proypet/source/veterinarias/view/vet_find/buscar_veterinaria.dart';
@@ -39,6 +38,7 @@ List<GetPage> getRutas() {
           ? NavigationBar(currentTabIndex: 0)
           : OnBoardPage(),
     ),
+
     //
     GetPage(name: 'onboard', page: () => OnBoardPage()),
     GetPage(name: 'login', page: () => LoginPage()),
