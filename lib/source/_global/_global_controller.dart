@@ -40,7 +40,7 @@ class GlobalController extends GetxController {
         context: Get.context,
         barrierDismissible: false,
         useSafeArea: true,
-        child: AlertDialog(
+        builder: (context) => AlertDialog(
           scrollable: true,
           content: updateView(),
         ),

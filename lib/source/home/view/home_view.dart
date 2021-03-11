@@ -101,62 +101,64 @@ class HomePage extends StatelessWidget {
                       InkWell(
                         onTap: () => showDialog(
                             context: Get.context,
-                            child: AlertDialog(
-                              scrollable: true,
-                              content: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.only(bottom: 10),
-                                    width: double.maxFinite,
-                                    child: Text(
-                                      "Estado de la reserva",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: colorMain,
-                                        fontWeight: FontWeight.bold,
+                            //TODO: revisar este cambio Flutter 2.0
+                            builder: (context) => AlertDialog(
+                                  scrollable: true,
+                                  content: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(bottom: 10),
+                                        width: double.maxFinite,
+                                        child: Text(
+                                          "Estado de la reserva",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: colorMain,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      Text(
+                                        "Por confirmar",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Su reserva está a la espera de ser aceptada por el establecimiento",
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      SizedBox(height: 7.5),
+                                      Text(
+                                        "Confirmado",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Su reserva fue aceptada",
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      SizedBox(height: 7.5),
+                                      Text(
+                                        "Reprogramado",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        "El establecimiento cambió la hora o fecha de la atención",
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    "Por confirmar",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Su reserva está a la espera de ser aceptada por el establecimiento",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  SizedBox(height: 7.5),
-                                  Text(
-                                    "Confirmado",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "Su reserva fue aceptada",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  SizedBox(height: 7.5),
-                                  Text(
-                                    "Reprogramado",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "El establecimiento cambió la hora o fecha de la atención",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                ],
-                              ),
-                            )),
+                                )),
                         child: Icon(Icons.info_outline,
                             color: Get.textTheme.subtitle2.color),
                       ),
