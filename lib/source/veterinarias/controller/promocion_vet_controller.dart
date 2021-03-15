@@ -12,7 +12,7 @@ class PromocionVetController extends GetxController {
   final vetC = Get.find<VetDetalleController>();
 
   RxBool cargando = true.obs;
-  RxList<PromocionModel> promociones = List<PromocionModel>().obs;
+  RxList<PromocionModel> promociones = <PromocionModel>[].obs;
 
   @override
   void onInit() {

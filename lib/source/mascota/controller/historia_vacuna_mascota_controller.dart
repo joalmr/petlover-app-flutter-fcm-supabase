@@ -9,7 +9,7 @@ class HistoriaVacunasController extends GetxController {
   final petC = Get.find<MascotaDetalleController>();
 
   RxBool cargando = true.obs;
-  RxList<dynamic> listavacunas = List<dynamic>().obs;
+  RxList<dynamic> listavacunas = <dynamic>[].obs;
 
   @override
   void onInit() {

@@ -12,8 +12,7 @@ class BuscarVetController extends GetxController {
   final establecimientoService = EstablishmentService();
   final establishmentFindService = EstablishmentFindService();
 
-  RxList<EstablishmentModelList> veterinarias =
-      List<EstablishmentModelList>().obs;
+  RxList<EstablishmentModelList> veterinarias = <EstablishmentModelList>[].obs;
   RxBool carga = false.obs;
 
   final _prefs = new PreferenciasUsuario();

@@ -10,9 +10,8 @@ import 'filtra_vets_controller.dart';
 class VeterinariasController extends GetxController {
   final vetService = EstablishmentService();
 
-  RxList<EstablishmentModelList> vetLocales =
-      List<EstablishmentModelList>().obs;
-  RxList<EstablishmentModelList> temp = List<EstablishmentModelList>().obs;
+  RxList<EstablishmentModelList> vetLocales = <EstablishmentModelList>[].obs;
+  RxList<EstablishmentModelList> temp = <EstablishmentModelList>[].obs;
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
   RxBool loading = true.obs;

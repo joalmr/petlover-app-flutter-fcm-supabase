@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 //lista para ddl
 
 List<DropdownMenuItem<String>> getOpcionesDropdown(_lista) {
-  List<DropdownMenuItem<String>> lista = new List();
+  List<DropdownMenuItem<String>> lista = [];
   _lista.forEach((_lista) {
     lista.add(DropdownMenuItem(
       child: Text(_lista['name']),
@@ -15,7 +15,7 @@ List<DropdownMenuItem<String>> getOpcionesDropdown(_lista) {
 }
 
 List<DropdownMenuItem<String>> getOpcionesImgFuture(_lista) {
-  List<DropdownMenuItem<String>> lista = new List();
+  List<DropdownMenuItem<String>> lista = [];
   _lista.forEach((_lista) {
     lista.add(DropdownMenuItem(
       child: Row(
@@ -37,7 +37,7 @@ List<DropdownMenuItem<String>> getOpcionesImgFuture(_lista) {
 }
 
 List<DropdownMenuItem<String>> getOpcionesFuture(_lista) {
-  List<DropdownMenuItem<String>> lista = new List();
+  List<DropdownMenuItem<String>> lista = [];
   _lista.forEach((_lista) {
     lista.add(DropdownMenuItem(
         child: Text(_lista.name), value: _lista.id.toString()));
@@ -46,7 +46,7 @@ List<DropdownMenuItem<String>> getOpcionesFuture(_lista) {
 }
 
 List<DropdownMenuItem<String>> getOpcionesSearch(_lista) {
-  List<DropdownMenuItem<String>> lista = new List();
+  List<DropdownMenuItem<String>> lista = [];
   _lista.forEach((_lista) {
     lista.add(DropdownMenuItem(
         child: Text(_lista.name.toString()),

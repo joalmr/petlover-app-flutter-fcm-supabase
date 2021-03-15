@@ -8,7 +8,7 @@ class CitasController extends GetxController {
   final petC = Get.find<MascotaDetalleController>();
 
   RxBool cargando = true.obs;
-  RxList<dynamic> listacitas = List<dynamic>().obs;
+  RxList<dynamic> listacitas = <dynamic>[].obs;
 
   var tipoEn = ['consultation', 'deworming', 'grooming', 'vaccination'];
   var tipoEs = ['consulta', 'desparasitación', 'grooming', 'vacuna'];

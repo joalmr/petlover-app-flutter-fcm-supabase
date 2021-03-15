@@ -143,7 +143,7 @@ class MascotaAgregarController extends GetxController {
   }
 
   Future<List<Breed>> _getData(String filter) async {
-    List<Breed> lista = List<Breed>();
+    List<Breed> lista = <Breed>[];
     razaLista.breeds.forEach((element) {
       var palabra = element.name;
       bool contiene = palabra.toLowerCase().contains(filter.toLowerCase());

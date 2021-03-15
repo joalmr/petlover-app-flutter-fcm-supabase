@@ -5,7 +5,7 @@ import 'package:proypet/source/recompensas/service/bonification_service.dart';
 class BonusController extends GetxController {
   final bonusService = BonificacionService();
 
-  RxList<Bonification> bonificados = List<Bonification>().obs;
+  RxList<Bonification> bonificados = <Bonification>[].obs;
   RxBool cargando = true.obs;
 
   @override

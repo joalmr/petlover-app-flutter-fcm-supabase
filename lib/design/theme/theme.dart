@@ -20,7 +20,6 @@ const MaterialColor newteal = MaterialColor(
 ThemeData temaClaro = ThemeData(
   fontFamily: 'Lato',
   brightness: Brightness.light,
-  cursorColor: colorMain,
   primarySwatch: newteal,
   accentColor: colorMain,
   backgroundColor: colorGray1,

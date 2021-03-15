@@ -12,8 +12,8 @@ class ComentarioVetController extends GetxController {
   final vetC = Get.find<VetDetalleController>();
 
   RxBool cargando = true.obs;
-  RxList<Comentarios> comentarios = List<Comentarios>().obs;
-  RxList<Comentarios> allComments = List<Comentarios>().obs;
+  RxList<Comentarios> comentarios = <Comentarios>[].obs;
+  RxList<Comentarios> allComments = <Comentarios>[].obs;
 
   @override
   void onInit() {

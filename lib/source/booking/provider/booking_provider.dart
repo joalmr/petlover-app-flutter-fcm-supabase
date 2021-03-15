@@ -84,7 +84,7 @@ class BookingProvider {
   Future<List<ServicioReserva>> typeBooking(int typeId) async {
     final url = '$_url/booking/types';
     final response = await http.get(url, headers: headersToken());
-    List<ServicioReserva> dataList = new List<ServicioReserva>();
+    List<ServicioReserva> dataList = <ServicioReserva>[];
     final jsonData = jsonDecode(response.body);
 
     if (typeId == 2) {

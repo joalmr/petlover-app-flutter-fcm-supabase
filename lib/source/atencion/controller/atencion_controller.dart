@@ -9,7 +9,7 @@ class AtencionController extends GetxController {
 
   RxBool loading = true.obs;
 
-  RxList<AtencionModel> atenciones = List<AtencionModel>().obs;
+  RxList<AtencionModel> atenciones = <AtencionModel>[].obs;
 
   @override
   void onInit() {

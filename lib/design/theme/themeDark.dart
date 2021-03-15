@@ -20,7 +20,6 @@ const MaterialColor newteal = MaterialColor(
 ThemeData temaOscuro = ThemeData(
   fontFamily: 'Lato',
   brightness: Brightness.dark,
-  cursorColor: colorMain,
   primarySwatch: newteal,
   accentColor: colorMain,
   backgroundColor: colorDark3,

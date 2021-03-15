@@ -24,7 +24,7 @@ class FnTimeLine extends StatelessWidget {
         int todayYear = _.today.year;
         int todayMonth = _.today.month;
 
-        List<Widget> timeline = List<Widget>();
+        List<Widget> timeline = <Widget>[];
 
         int scrollCount = 0;
 

@@ -46,7 +46,7 @@ class ReservaVetController extends GetxController {
   RxString _deliveryId = '1'.obs;
   RxString _mascotaId = ''.obs;
 
-  RxList<ServicioReserva> servicioReservaLista = List<ServicioReserva>().obs;
+  RxList<ServicioReserva> servicioReservaLista = <ServicioReserva>[].obs;
   RxString _fecha = ''.obs;
   RxString _observacion = ''.obs;
 
@@ -83,7 +83,7 @@ class ReservaVetController extends GetxController {
   double lat = 0;
   double lng = 0;
   double zoomIn = 10.0;
-  RxList<Marker> marcador = List<Marker>().obs;
+  RxList<Marker> marcador = <Marker>[].obs;
 
   RxBool actBtn = true.obs;
   String _mapStyle;

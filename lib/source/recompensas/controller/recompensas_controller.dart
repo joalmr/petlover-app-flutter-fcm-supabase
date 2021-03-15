@@ -7,7 +7,7 @@ class RecompensasController extends GetxController {
   final bonificacionService = BonificacionService();
 
   BonificacionModel bonificacion;
-  RxList<BonificacionTop> top = List<BonificacionTop>().obs;
+  RxList<BonificacionTop> top = <BonificacionTop>[].obs;
 
   RxBool loading = true.obs;
 

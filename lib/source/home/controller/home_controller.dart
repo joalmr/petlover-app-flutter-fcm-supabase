@@ -21,8 +21,8 @@ class HomeController extends GetxController {
 
   RxBool loading = true.obs;
 
-  RxList<BookingModel> atenciones = List<BookingModel>().obs;
-  RxList<MascotaModel2> mascotas = List<MascotaModel2>().obs;
+  RxList<BookingModel> atenciones = <BookingModel>[].obs;
+  RxList<MascotaModel2> mascotas = <MascotaModel2>[].obs;
 
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;

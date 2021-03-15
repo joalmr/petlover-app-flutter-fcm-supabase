@@ -17,8 +17,8 @@ class MascotaDetalleController extends GetxController {
 
   MascotaModel2 pet;
 
-  RxList<PetHistoryModel> petHistory = List<PetHistoryModel>().obs;
-  RxList<PetHistoryModel> petAllHistory = List<PetHistoryModel>().obs;
+  RxList<PetHistoryModel> petHistory = <PetHistoryModel>[].obs;
+  RxList<PetHistoryModel> petAllHistory = <PetHistoryModel>[].obs;
 
   DateTime today = DateTime.now();
 

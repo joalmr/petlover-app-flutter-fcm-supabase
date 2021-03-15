@@ -8,7 +8,7 @@ class NotificacionController extends GetxController {
   final _prefs = new PreferenciasUsuario();
 
   NotificacionModel notificationModel;
-  RxList<Notificacion> notifications = List<Notificacion>().obs;
+  RxList<Notificacion> notifications = <Notificacion>[].obs;
   RxBool loading = true.obs;
 
   @override
