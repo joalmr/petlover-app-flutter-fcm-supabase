@@ -7,7 +7,7 @@ class PetHistoryProvider {
   final _url = urlApi;
   /* Get */
   Future<List<PetHistoryModel>> getPetHistory(String idPet) async {
-    final url = '$_url/pet/$idPet/history';
+    final url = Uri.parse('$_url/pet/$idPet/history');
     final response = await http.get(url, headers: headersToken());
 
     final jsonData = jsonDecode(response.body);
@@ -21,7 +21,7 @@ class PetHistoryProvider {
   /* Get */
   Future<List<PetHistoryModel>> getPetHistoryDate(
       String idPet, String year, String month) async {
-    final url = '$_url/pet/$idPet/history?year=$year&month=$month';
+    final url = Uri.parse('$_url/pet/$idPet/history?year=$year&month=$month');
 
     final response = await http.get(url, headers: headersToken());
 

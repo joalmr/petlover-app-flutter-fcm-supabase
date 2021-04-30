@@ -7,7 +7,7 @@ class UpdateProvider {
   final _url = urlApi;
 
   Future<bool> setAppAndroid() async {
-    final url = '$_url/version/android';
+    final url = Uri.parse('$_url/version/android');
 
     final response = await http.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -26,7 +26,7 @@ class UpdateProvider {
   }
 
   Future<bool> setAppiOs() async {
-    final url = '$_url/version/ios';
+    final url = Uri.parse('$_url/version/ios');
 
     final response = await http.get(url);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();

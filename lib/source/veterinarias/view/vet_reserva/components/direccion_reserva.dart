@@ -18,8 +18,9 @@ Widget autoDireccion() {
         ),
         maxSuggestions: 3,
         onSearch: (filter) async {
-          var response = await http.get(
+          final _url = Uri.parse(
               "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+          var response = await http.get(_url);
           var models = addressFromJson(response.body);
           return models.predictions;
         },

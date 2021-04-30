@@ -18,7 +18,9 @@ autocompleteAddress() {
     maxSuggestions: 3,
     onSearch: (filter) async {
       var response = await http.get(
-          "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter");
+        Uri.parse(
+            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter"),
+      );
       var models = addressFromJson(response.body);
 
       return models.predictions;

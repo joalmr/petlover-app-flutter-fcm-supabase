@@ -6,7 +6,7 @@ class SummaryProvider {
   final _url = urlApi;
 
   Future<HomeModel> getUserSummary() async {
-    final url = '$_url/summary';
+    final url = Uri.parse('$_url/summary');
 
     final resp = await http.get(url, headers: headersToken());
     HomeModel homeModel = homeModelFromJson(resp.body);

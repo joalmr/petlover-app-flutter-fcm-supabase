@@ -6,7 +6,7 @@ class PetDeadProvider {
 
   /* Post */
   Future<bool> muerePet(String idMascota) async {
-    final url = '$_url/pets/$idMascota/decease';
+    final url = Uri.parse('$_url/pets/$idMascota/decease');
 
     final response = await http.post(url, headers: headersToken());
 
@@ -18,7 +18,7 @@ class PetDeadProvider {
 
   /* Post */
   Future<bool> revivePet(String idMascota) async {
-    final url = '$_url/pets/$idMascota/revive';
+    final url = Uri.parse('$_url/pets/$idMascota/revive');
     final response = await http.post(url, headers: headersToken());
 
     if (response.statusCode == 200)

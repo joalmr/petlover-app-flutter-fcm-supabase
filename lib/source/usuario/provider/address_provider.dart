@@ -5,7 +5,7 @@ class AddressProvider {
   final _url = urlApi;
 
   Future<void> setAddress(String address, lat, lng) async {
-    final url = '$_url/settings/address';
+    final url = Uri.parse('$_url/settings/address');
 
     final _data = {
       "address": address,

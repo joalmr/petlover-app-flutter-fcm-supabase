@@ -103,7 +103,7 @@ class AtencionCalifica extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(height: 10),
-                                    RatingBar(
+                                    RatingBar.builder(
                                       initialRating: 0,
                                       minRating: 1,
                                       direction: Axis.horizontal,

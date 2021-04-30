@@ -39,7 +39,7 @@ dependencies:
   day_night_time_picker: ^1.0.1+1
   dotted_line: ^3.0.0
   email_validator: ^2.0.1
-  firebase_messaging: ^6.0.15
+  firebase_messaging: ^9.1.3 #observado
   flutter_conditional_rendering: ^2.0.0
   flutter_email_sender: ^5.0.0
   flutter_login_facebook: ^1.0.1
@@ -52,24 +52,24 @@ dependencies:
   google_fonts: ^2.0.0
   google_maps_flutter: ^2.0.3
   google_maps_webservice: ^0.0.19
-  google_sign_in: ^4.5.9 #observado #login con google
+  google_sign_in: ^5.0.2
   image_cropper: ^1.4.0
   image_picker: ^0.7.4
   intl: ^0.17.0 #para formatos
   jiffy: ^4.1.0 #observado #date 
-  lottie: ^0.7.0+1 #aca me quede, continuar
-  mailer: 
-  map_launcher: ^0.4.5
-  mime_type:
-  overflow_view:
-  package_info: ^0.4.3+2
-  rxdart: ^0.23.1
-  scrollable_positioned_list: ^0.1.8
-  select_dialog: ^1.2.1
-  share: ^0.6.4+3
-  simple_autocomplete_formfield: ^0.2.7 #buscar con autocomplete 
+  lottie: ^1.0.1
+  mailer: ^5.0.0
+  map_launcher: ^2.0.0
+  mime_type: ^1.0.0
+  overflow_view: ^0.3.1
+  package_info: ^2.0.0
+  rxdart: ^0.26.0
+  scrollable_positioned_list: ^0.1.10
+  select_dialog: ^2.0.0
+  share: ^2.0.1
+  simple_autocomplete_formfield: ^0.3.0 #buscar con autocomplete 
   time_parser: ^1.1.0
-  url_launcher: ^5.5.0
+  url_launcher: ^6.0.3
   
   
   # The following adds the Cupertino Icons font to your application.

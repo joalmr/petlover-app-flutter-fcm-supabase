@@ -6,7 +6,7 @@ class NotificationProvider {
   final _url = urlApi;
 
   Future<NotificacionModel> getNotificacion() async {
-    final url = '$_url/notifications';
+    final url = Uri.parse('$_url/notifications');
     final resp = await http.get(
       url,
       headers: headersToken(),

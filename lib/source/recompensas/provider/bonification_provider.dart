@@ -7,14 +7,14 @@ class BonificationProvider {
   final _url = urlApi;
 
   Future<BonificacionModel> getBonificacion() async {
-    final url = '$_url/bonifications';
+    final url = Uri.parse('$_url/bonifications');
     final resp = await http.get(url, headers: headersToken());
     BonificacionModel bonificacion = bonificacionModelFromJson(resp.body);
     return bonificacion;
   }
 
   Future<List<BonificacionTop>> getTop() async {
-    final url = '$_url/bonifications/top';
+    final url = Uri.parse('$_url/bonifications/top');
     final resp = await http.get(url, headers: headersToken());
     List<BonificacionTop> top = bonificacionTopFromJson(resp.body);
     return top;

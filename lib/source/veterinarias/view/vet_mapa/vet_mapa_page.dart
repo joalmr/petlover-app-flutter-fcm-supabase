@@ -64,7 +64,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
     super.initState();
     setCustomMarker();
 
-    Geolocator().getCurrentPosition().then((currloc) {
+    Geolocator.getCurrentPosition().then((currloc) {
       setState(() {
         currentLocation = currloc;
         mapToggle = true;

@@ -9,7 +9,7 @@ class BookingProvider {
   final _url = urlApi;
 
   Future<List<BookingModel>> getBookings() async {
-    final url = '$_url/bookings';
+    final url = Uri.parse('$_url/bookings');
     final response = await http.get(url, headers: headersToken());
     final jsonData = jsonDecode(response.body);
     List<BookingModel> bookings =
@@ -19,7 +19,7 @@ class BookingProvider {
   }
 
   Future<BookingModel> getBooking(String bookingId) async {
-    final url = '$_url/booking/$bookingId';
+    final url = Uri.parse('$_url/booking/$bookingId');
     final response = await http.get(url, headers: headersToken());
     final jsonData = jsonDecode(response.body);
     final booking = BookingModel.fromJson(jsonData);
@@ -29,7 +29,7 @@ class BookingProvider {
 
   Future<bool> setBooking(BookingSetModel booking, List reservaType,
       dynamic delivery, String direccion) async {
-    final url = '$_url/bookings';
+    final url = Uri.parse('$_url/bookings');
     var bodyData;
 
     print("==booking");
@@ -65,7 +65,7 @@ class BookingProvider {
   }
 
   Future<bool> deleteBooking(String idBooking) async {
-    final url = '$_url/bookings/$idBooking/delete';
+    final url = Uri.parse('$_url/bookings/$idBooking/delete');
     final resp = await http.post(url, headers: headersToken());
 
     if (resp.statusCode == 200)
@@ -75,14 +75,16 @@ class BookingProvider {
   }
 
   Future<void> tryBooking(String idEstablishment) async {
-    final url = '$_url/booking/attempt';
+    final url = Uri.parse('$_url/booking/attempt');
+
     final _data = {"establishment_id": idEstablishment};
 
     await http.post(url, headers: headersToken(), body: _data);
   }
 
   Future<List<ServicioReserva>> typeBooking(int typeId) async {
-    final url = '$_url/booking/types';
+    final url = Uri.parse('$_url/booking/types');
+
     final response = await http.get(url, headers: headersToken());
     List<ServicioReserva> dataList = <ServicioReserva>[];
     final jsonData = jsonDecode(response.body);

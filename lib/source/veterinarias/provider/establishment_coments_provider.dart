@@ -6,7 +6,7 @@ class EstablishmentComentProvider {
   final _url = urlApi;
 
   Future<List<Comentarios>> getTenComents(String idVet) async {
-    final url = '$_url/establishment/$idVet/comments';
+    final url = Uri.parse('$_url/establishment/$idVet/comments');
     List<Comentarios> comentarios = [];
 
     final resp = await http.get(url, headers: headersToken());
@@ -19,7 +19,7 @@ class EstablishmentComentProvider {
   }
 
   Future<List<Comentarios>> getComents(String idVet) async {
-    final url = '$_url/establishment/$idVet/comments';
+    final url = Uri.parse('$_url/establishment/$idVet/comments');
 
     List<Comentarios> comentarios = [];
 

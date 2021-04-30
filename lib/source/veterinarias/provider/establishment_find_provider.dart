@@ -18,8 +18,8 @@ class EstablishmentFindProvider {
 
     String lat = _prefs.position.split(',')[0];
     String lng = _prefs.position.split(',')[1];
-    final url =
-        '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng';
+    final url = Uri.parse(
+        '$_url/establishments?services=$filtroServicio&latitude=$lat&longitude=$lng');
     final response = await http.get(url, headers: headersToken());
 
     final jsonData = jsonDecode(response.body);

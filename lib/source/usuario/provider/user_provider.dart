@@ -8,7 +8,7 @@ class UserProvider {
   final _url = urlApi;
 
   Future<UserModel2> getUser() async {
-    final url = '$_url/profile';
+    final url = Uri.parse('$_url/profile');
 
     final response = await http.get(url, headers: headersToken());
 
@@ -20,7 +20,7 @@ class UserProvider {
   }
 
   Future<bool> editUser(String nombre, String apellido, String telefono) async {
-    final url = '$_url/profile';
+    final url = Uri.parse('$_url/profile');
     final userData = {"name": nombre, "lastname": apellido, "phone": telefono};
     final resp = await http.post(url, body: userData, headers: headersToken());
 
@@ -31,7 +31,7 @@ class UserProvider {
   }
 
   Future<int> changePassword(String passAntigua, String passNueva) async {
-    final url = '$_url/settings/password';
+    final url = Uri.parse('$_url/settings/password');
 
     final changePass = {
       "current_password": passAntigua,

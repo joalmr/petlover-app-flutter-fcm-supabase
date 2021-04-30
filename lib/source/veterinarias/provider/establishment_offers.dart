@@ -6,7 +6,7 @@ class EstablishmentOfferProvider {
   final _url = urlApi;
 
   Future<List<PromocionModel>> getOffers(String idVet) async {
-    final url = '$_url/establishment/$idVet/offers';
+    final url = Uri.parse('$_url/establishment/$idVet/offers');
     List<PromocionModel> promociones = [];
 
     final resp = await http.get(url, headers: headersToken());

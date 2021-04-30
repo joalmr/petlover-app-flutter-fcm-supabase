@@ -29,8 +29,8 @@ class EstablishmentProvider {
     String lat = _prefs.position.split(',')[0];
     String lng = _prefs.position.split(',')[1];
 
-    final url =
-        '$_url/establishments/list?services=$filtroServicio&latitude=$lat&longitude=$lng';
+    final url = Uri.parse(
+        '$_url/establishments/list?services=$filtroServicio&latitude=$lat&longitude=$lng');
 
     final response = await http.get(url, headers: headersToken());
 
@@ -49,7 +49,8 @@ class EstablishmentProvider {
   Future<dynamic> getVet(String idVet) async {
     String lat = _prefs.position.toString().split(',')[0];
     String lng = _prefs.position.toString().split(',')[1];
-    final url = '$_url/establishments/$idVet?latitude=$lat&longitude=$lng';
+    final url =
+        Uri.parse('$_url/establishments/$idVet?latitude=$lat&longitude=$lng');
 
     final resp = await http.get(url, headers: headersToken());
 

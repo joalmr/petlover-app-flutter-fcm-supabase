@@ -7,7 +7,7 @@ class PetNextDateProvider {
 
   /* Get */
   Future<List<dynamic>> getNextDate(String idPet) async {
-    final url = '$_url/pet/$idPet/nextdate';
+    final url = Uri.parse('$_url/pet/$idPet/nextdate');
     final response = await http.get(url, headers: headersToken());
     final list = List<dynamic>.from(jsonDecode(response.body));
     return list;

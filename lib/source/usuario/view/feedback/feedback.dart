@@ -41,7 +41,7 @@ class FeedbackPage extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   children: [
                     Text('¿Cómo calificarías tu experiencia en la app?'),
-                    RatingBar(
+                    RatingBar.builder(
                       initialRating: 1,
                       minRating: 1,
                       direction: Axis.horizontal,

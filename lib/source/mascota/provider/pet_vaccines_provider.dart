@@ -7,7 +7,7 @@ class PetVaccinesProvider {
 
   /* Get */
   Future<List<dynamic>> getVaccines(String idPet) async {
-    final url = '$_url/pet/$idPet/history?type=vaccination';
+    final url = Uri.parse('$_url/pet/$idPet/history?type=vaccination');
     final response = await http.get(url, headers: headersToken());
 
     final jsonData = jsonDecode(response.body);

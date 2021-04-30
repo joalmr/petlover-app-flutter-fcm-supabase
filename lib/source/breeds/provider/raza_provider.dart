@@ -7,7 +7,7 @@ class RazaProvider {
   final _url = urlApi;
 
   Future<RazaModel> getBreed(String idRaza) async {
-    final url = '$_url/breeds/?specie=$idRaza';
+    final url = Uri.parse('$_url/breeds/?specie=$idRaza');
 
     final response = await http.get(url, headers: headersToken());
 

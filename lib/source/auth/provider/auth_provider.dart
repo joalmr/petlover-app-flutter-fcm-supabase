@@ -13,7 +13,7 @@ class AuthProvider {
   final _prefs = new PreferenciasUsuario();
 
   Future<int> loginToken(String email, String password) async {
-    final url = '$_url/login';
+    final url = Uri.parse('$_url/login');
     try {
       final loginData = {"email": email, "password": password};
       final response = await http.post(url, body: loginData);
@@ -36,7 +36,7 @@ class AuthProvider {
     String fbId,
     String accessToken,
   ) async {
-    final url = '$_url/login/google';
+    final url = Uri.parse('$_url/login/google');
 
     try {
       final loginData = {
@@ -61,14 +61,9 @@ class AuthProvider {
     }
   }
 
-  Future<int> loginFb(
-    String name,
-    String lastname,
-    String email,
-    String fbId,
-    String accessToken,
-  ) async {
-    final url = '$_url/login/facebook';
+  Future<int> loginFb(String name, String lastname, String email, String fbId,
+      String accessToken) async {
+    final url = Uri.parse('$_url/login/facebook');
 
     try {
       final loginData = {
@@ -93,7 +88,7 @@ class AuthProvider {
   }
 
   Future<void> sendTokenFire(String fireToken) async {
-    final url = '$_url/firebase';
+    final url = Uri.parse('$_url/firebase');
     final fireData = {"token": fireToken};
     try {
       await http.post(
@@ -108,7 +103,7 @@ class AuthProvider {
   }
 
   Future<int> forgotPassword(String email) async {
-    final url = '$_url/password/reset';
+    final url = Uri.parse('$_url/password/reset');
     final emailData = {"email": email};
     final response = await http.post(url, body: emailData);
     return response.statusCode;
@@ -116,7 +111,7 @@ class AuthProvider {
 
   Future<int> registerUser(
       String name, String lastname, String email, String password) async {
-    final url = '$_url/register';
+    final url = Uri.parse('$_url/register');
     try {
       final userData = {
         "name": name,
@@ -133,7 +128,7 @@ class AuthProvider {
   }
 
   Future<void> logOut() async {
-    final url = '$_url/logout';
+    final url = Uri.parse('$_url/logout');
     await http.post(url, headers: headersToken());
   }
 

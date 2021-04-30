@@ -10,7 +10,7 @@ class MascotaProvider {
 
   Future<Map<String, dynamic>> savePet(
       MascotaModel2 mascota, File imagen) async {
-    final url = '$_url/pets';
+    final url = Uri.parse('$_url/pets');
 
     final data = {
       'name': mascota.name,
@@ -45,7 +45,7 @@ class MascotaProvider {
       upImage(imagen, urlpet);
     }
 
-    final url = '$_url/pets/$idkey';
+    final url = Uri.parse('$_url/pets/$idkey');
 
     final data = {
       'name': mascota.name,
@@ -72,8 +72,11 @@ class MascotaProvider {
 
     String sendPic = 'data:$part0/$part1;base64,$pic';
 
-    var img = await http
-        .post(url, headers: headersToken(), body: {'base64': sendPic});
+    var img = await http.post(
+      Uri.parse(url),
+      headers: headersToken(),
+      body: {'base64': sendPic},
+    );
 
     var decodeimg = json.decode(img.body);
 

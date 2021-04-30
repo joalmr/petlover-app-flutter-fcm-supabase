@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:map_launcher/map_launcher.dart';
@@ -62,7 +63,11 @@ class DetalleRservadoController extends GetxController {
                       description: description,
                     ),
                     title: Text(map.mapName),
-                    leading: Image(image: map.icon, height: 30.0, width: 30.0),
+                    leading: Image(
+                      image: CachedNetworkImageProvider(map.icon),
+                      height: 30.0,
+                      width: 30.0,
+                    ),
                   ),
               ],
             ),

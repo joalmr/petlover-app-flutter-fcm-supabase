@@ -6,7 +6,7 @@ class AttentionProvider {
   final _url = urlApi;
 
   Future<List<AtencionModel>> getAtenciones() async {
-    final url = '$_url/attentions';
+    final url = Uri.parse('$_url/attentions');
 
     final resp = await http.get(
       url,
@@ -19,7 +19,7 @@ class AttentionProvider {
   }
 
   Future<bool> calificar(AtencionModel atencion) async {
-    final url = '$_url/attentions/${atencion.attentionId}/rate';
+    final url = Uri.parse('$_url/attentions/${atencion.attentionId}/rate');
 
     final bodyData = {
       "stars": atencion.stars.toString(),

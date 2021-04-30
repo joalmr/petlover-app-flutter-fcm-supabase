@@ -8,7 +8,7 @@ class PetProvider {
 
   /* Get */
   Future<List<MascotaModel2>> getPets() async {
-    final url = '$_url/pets';
+    final url = Uri.parse('$_url/pets');
 
     final response = await http.get(url, headers: headersToken());
     final jsonData = jsonDecode(response.body);
@@ -21,7 +21,7 @@ class PetProvider {
 
   /* Get */
   Future<MascotaModel2> getPet(String idPet) async {
-    final url = '$_url/pets/$idPet';
+    final url = Uri.parse('$_url/pets/$idPet');
     final response = await http.get(url, headers: headersToken());
 
     final jsonData = jsonDecode(response.body);
@@ -33,7 +33,7 @@ class PetProvider {
   /* Post */
   Future<bool> deletePet(String idPet) async {
     try {
-      final url = '$_url/pets/$idPet/delete';
+      final url = Uri.parse('$_url/pets/$idPet/delete');
       final response = await http.post(url, headers: headersToken());
 
       if (response.statusCode == 200) return true;
