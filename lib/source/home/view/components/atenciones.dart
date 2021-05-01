@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/controller/atencion_home_controller.dart';
@@ -59,8 +61,11 @@ class Atenciones extends StatelessWidget {
                               ? Container()
                               : (_home.mascotas.length > 0)
                                   ? SizedBox(height: 0)
-                                  : buttonOutLine('Agregar mascota',
-                                      _.agregarMascota, colorMain),
+                                  : btnSecondary(
+                                      text: 'Agregar mascota',
+                                      onPressed: _.agregarMascota,
+                                      color: colorMain,
+                                    ),
                         ],
                       ),
                     ),
@@ -88,13 +93,17 @@ class Atenciones extends StatelessWidget {
                                 content: Text(
                                     'Seguro que desea eliminar esta reserva?'),
                                 actions: <Widget>[
-                                  buttonModal('Cancelar', _.volver,
-                                      Get.textTheme.subtitle2.color),
-                                  buttonModal(
-                                      'Sí, eliminar',
-                                      () =>
-                                          _.eliminaAtencion(atencion.bookingId),
-                                      colorRed),
+                                  btnAltern(
+                                    text: 'Cancelar',
+                                    onPressed: _.volver,
+                                    color: Get.textTheme.subtitle2.color,
+                                  ),
+                                  btnAltern(
+                                    text: 'Sí, eliminar',
+                                    onPressed: () =>
+                                        _.eliminaAtencion(atencion.bookingId),
+                                    color: colorRed,
+                                  ),
                                 ],
                               ),
                             ),

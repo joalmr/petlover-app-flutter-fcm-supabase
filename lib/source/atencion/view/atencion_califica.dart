@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/text_field.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/config/path_variables.dart';
@@ -126,10 +127,10 @@ class AtencionCalifica extends StatelessWidget {
                                       250,
                                       3,
                                     ),
-                                    buttonOutLine(
-                                      'Calificar',
-                                      _.onRate,
-                                      Colors.white,
+                                    btnSecondary(
+                                      text: 'Calificar',
+                                      onPressed: _.onRate,
+                                      color: Colors.white,
                                     ),
                                   ],
                                 ),

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:proypet/design/styles/styles.dart';
 
 import 'form_control/button_primary.dart';
+import 'form_control/buttons/btn_secondary.dart';
 import 'transition/fadeViewSafeArea.dart';
 
 class ThxPage extends StatelessWidget {
@@ -64,8 +65,11 @@ class ThxPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: buttonOutLine('Ir a inicio',
-                        () => Get.offAllNamed('navInicio'), Colors.white),
+                    child: btnSecondary(
+                      text: 'Ir a inicio',
+                      onPressed: () => Get.offAllNamed('navInicio'),
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),

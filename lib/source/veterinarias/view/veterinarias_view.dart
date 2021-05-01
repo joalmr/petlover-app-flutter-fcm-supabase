@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -153,10 +154,10 @@ class ReservaList extends StatelessWidget {
                             SizedBox(height: 10),
                             autocompleteAddress(),
                             SizedBox(height: 10),
-                            buttonOutLine(
-                              'Buscar',
-                              () => _.filtra(),
-                              colorMain,
+                            btnSecondary(
+                              text: 'Buscar',
+                              onPressed: () => _.filtra(),
+                              color: colorMain,
                             ),
                           ],
                         ),

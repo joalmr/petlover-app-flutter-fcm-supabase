@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
@@ -34,7 +36,11 @@ class QuejaPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 10),
-                        buttonOutLine('Volver', () => Get.back(), colorMain),
+                        btnSecondary(
+                          text: 'Volver',
+                          onPressed: () => Get.back(),
+                          color: colorMain,
+                        ),
                       ],
                     ),
                   )
@@ -54,7 +60,10 @@ class QuejaPage extends StatelessWidget {
                         onChanged: (value) => _.descripcion = value,
                       ),
                       SizedBox(height: 10),
-                      buttonPri('Enviar', _.enviarQueja),
+                      btnPrimary(
+                        text: 'Enviar',
+                        onPressed: _.enviarQueja,
+                      ),
                     ],
                   ),
           );

@@ -7,6 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/config/path_variables.dart';
@@ -142,10 +144,10 @@ class ContentAdd extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
-                      child: buttonFlat(
-                        'Salir',
-                        () => Get.back(),
-                        Get.iconColor,
+                      child: btnAltern(
+                        text: 'Salir',
+                        onPressed: () => Get.back(),
+                        color: Get.iconColor, //observado
                       ),
                     ),
                   ],
@@ -268,21 +270,30 @@ class ContentAdd extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          buttonFlat('Atras', () {
-                            _.page = _.page - 1;
-                          }, colorMain),
-                          buttonFlat('Siguiente', () {
-                            if (_.sinNombreMascota || _.sinFechaMascota) {
-                              if (_.sinNombreMascota)
-                                mostrarSnackbar(
-                                    'Ingrese nombre de la mascota.', colorRed);
-                              if (_.sinFechaMascota)
-                                mostrarSnackbar(
-                                    'Ingrese nacimiento de la mascota.',
-                                    colorRed);
-                            } else
-                              _.page = _.page + 1;
-                          }, colorMain),
+                          btnAltern(
+                            text: 'Atras',
+                            onPressed: () {
+                              _.page = _.page - 1;
+                            },
+                            color: colorMain, //observado
+                          ),
+                          btnAltern(
+                            text: 'Siguiente',
+                            onPressed: () {
+                              if (_.sinNombreMascota || _.sinFechaMascota) {
+                                if (_.sinNombreMascota)
+                                  mostrarSnackbar(
+                                      'Ingrese nombre de la mascota.',
+                                      colorRed);
+                                if (_.sinFechaMascota)
+                                  mostrarSnackbar(
+                                      'Ingrese nacimiento de la mascota.',
+                                      colorRed);
+                              } else
+                                _.page = _.page + 1;
+                            },
+                            color: colorMain, //observado
+                          ),
                         ],
                       ),
                     ),
@@ -366,9 +377,9 @@ class ContentAdd extends StatelessWidget {
                     SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: buttonPri(
-                        'Finalizar',
-                        _.btnCarga.value ? null : _.mascotaAdd,
+                      child: btnPrimary(
+                        text: 'Finalizar',
+                        onPressed: _.btnCarga.value ? null : _.mascotaAdd,
                         cargando: _.btnCarga.value,
                       ),
                     ),
@@ -378,9 +389,13 @@ class ContentAdd extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          buttonFlat('Atras', () {
-                            _.page = _.page - 1;
-                          }, colorMain),
+                          btnAltern(
+                            text: 'Atras',
+                            onPressed: () {
+                              _.page = _.page - 1;
+                            },
+                            color: colorMain, //observado
+                          ),
                         ],
                       ),
                     ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -44,8 +45,11 @@ class Mascotas extends StatelessWidget {
                             Text('Se parte de la comunidad responsable',
                                 textAlign: TextAlign.center),
                             SizedBox(height: 10.0),
-                            buttonOutLine(
-                                'Agregar mascota', _.agregarMascota, colorMain),
+                            btnSecondary(
+                              text: 'Agregar mascota',
+                              onPressed: _.agregarMascota,
+                              color: colorMain,
+                            ),
                           ],
                         ),
                       ),

@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:proypet/design/styles/styles.dart';
 
-const MaterialColor newteal = MaterialColor(
-  0xFF00A48C,
-  <int, Color>{
-    50: Color(0xFF00A48C),
-    100: Color(0xFF00A48C),
-    200: Color(0xFF00A48C),
-    300: Color(0xFF00A48C),
-    400: Color(0xFF00A48C),
-    500: Color(0xFF00A48C), //base
-    600: Color(0xFF00A48C),
-    700: Color(0xFF00A48C),
-    800: Color(0xFF00A48C),
-    900: Color(0xFF00A48C),
-  },
-);
-
 ThemeData temaClaro = ThemeData(
   fontFamily: 'Lato',
   brightness: Brightness.light,
-  primarySwatch: newteal,
+  primarySwatch: colorMain,
   accentColor: colorMain,
-  backgroundColor: colorGray1,
+  backgroundColor: colorWhite,
   iconTheme: IconThemeData(color: Colors.black38),
   appBarTheme: AppBarTheme(
     textTheme: TextTheme(

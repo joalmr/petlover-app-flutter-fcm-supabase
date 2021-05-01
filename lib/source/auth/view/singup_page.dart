@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/components/wave_clipper.dart';
@@ -93,14 +95,15 @@ class SingupPage extends StatelessWidget {
                                     boardType: TextInputType.text,
                                   ),
                                   SizedBox(height: 20.0),
-                                  buttonPri(
-                                    'Registrarme',
-                                    !_.loading.value ? _.getSignUp : null,
+                                  btnPrimary(
+                                    text: 'Registrarme',
+                                    onPressed:
+                                        !_.loading.value ? _.getSignUp : null,
                                   ),
-                                  buttonFlat(
-                                    'Volver',
-                                    () => _.singup.value = false,
-                                    colorMain,
+                                  btnAltern(
+                                    text: 'Volver',
+                                    onPressed: () => _.singup.value = false,
+                                    color: colorMain,
                                   ),
                                 ],
                               )

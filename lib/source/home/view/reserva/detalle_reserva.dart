@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/controller/detalle_reserva_controller.dart';
@@ -122,11 +124,17 @@ class DetalleReservado extends StatelessWidget {
                               .cast<Widget>(),
                         ),
                         SizedBox(height: 20.0),
-                        buttonPri("Ver en mapa", () => _.abreMaps()),
+                        btnPrimary(
+                          text: "Ver en mapa",
+                          onPressed: () => _.abreMaps(),
+                        ),
                         SizedBox(height: 20.0),
                         Center(
-                          child: buttonOutLine("Eliminar reserva",
-                              () => _.alertaEliminar(), colorRed),
+                          child: btnSecondary(
+                            text: "Eliminar reserva",
+                            onPressed: () => _.alertaEliminar(),
+                            color: colorRed,
+                          ),
                         ),
                       ],
                     ),

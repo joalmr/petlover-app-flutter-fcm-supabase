@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/source/veterinarias/controller/reserva_vet_controller.dart';
 
 import 'servicio_dato.dart';
@@ -28,7 +29,10 @@ serviciosSeleccionados(context) {
                       .cast<Widget>(),
                 ),
               ),
-              buttonPri('Aplicar', () => Get.back()),
+              btnPrimary(
+                text: 'Aplicar',
+                onPressed: () => Get.back(),
+              ),
             ],
           ),
         ),

@@ -14,15 +14,27 @@ class PushController extends GetxController {
 
   Map<String, dynamic> mensaje;
 
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  // FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   void firebase() {
     firebasePermiso();
     firebaseToken();
   }
 
-  void firebasePermiso() {
-    _firebaseMessaging.requestNotificationPermissions();
+  Future<void> firebasePermiso() async {
+    // _firebaseMessaging.requestNotificationPermissions();
+    // NotificationSettings settings =
+
+    await _firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
   }
 
   void firebaseToken() {
@@ -36,28 +48,28 @@ class PushController extends GetxController {
       onMessage: (Map<String, dynamic> message) async {
         mensaje = message;
         _prefs.notificaAviso = true;
-        push();
+        _push();
       },
       onLaunch: (Map<String, dynamic> message) async {
         mensaje = message;
         _prefs.notificaAviso = true;
-        push();
+        _push();
       },
       onResume: (Map<String, dynamic> message) async {
         mensaje = message;
         _prefs.notificaAviso = true;
-        push();
+        _push();
       },
     );
   }
 
-  void push() {
+  void _push() {
     if (mensaje != null) {
-      pushVoid();
+      _pushVoid();
     }
   }
 
-  Future<void> pushVoid() async {
+  Future<void> _pushVoid() async {
     var mensajePush = mensaje['data']['message'];
     var tipoPush = mensaje['data']['type'];
     var dataPush = mensaje['data'];

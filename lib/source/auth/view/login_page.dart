@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -50,9 +51,9 @@ class LoginPage extends StatelessWidget {
                   activo: !_.loading.value,
                 ),
                 SizedBox(height: 10.0),
-                buttonPri(
-                  _.loading.value ? 'Cargando..' : 'Iniciar sesión',
-                  _.loading.value ? null : _.getLogin,
+                btnPrimary(
+                  text: _.loading.value ? 'Cargando..' : 'Iniciar sesión',
+                  onPressed: _.loading.value ? null : _.getLogin,
                 ),
                 SizedBox(height: 10.0),
                 Platform.isIOS
@@ -117,15 +118,31 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text("Nuevo en Proypet?", style: Get.textTheme.subtitle2),
-                    FlatButton(
-                      onPressed: () => Get.toNamed("registro"),
+                    TextButton(
                       child: Text(
                         "Registrarme",
                         style: Get.textTheme.subtitle2
                             .apply(color: colorMain)
                             .copyWith(decoration: TextDecoration.underline),
                       ),
+                      onPressed: () => Get.toNamed("registro"),
+                      // style: TextButton.styleFrom(
+                      //   padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                      //   primary: colorMain,
+                      //   // textStyle: TextStyle(
+                      //   //   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+                      //   // ),
+                      // ),
                     ),
+                    // FlatButton(
+                    //   onPressed: () => Get.toNamed("registro"),
+                    //   child: Text(
+                    //     "Registrarme",
+                    //     style: Get.textTheme.subtitle2
+                    //         .apply(color: colorMain)
+                    //         .copyWith(decoration: TextDecoration.underline),
+                    //   ),
+                    // ),
                   ],
                 ),
               ],

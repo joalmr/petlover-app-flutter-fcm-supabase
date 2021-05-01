@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -139,11 +140,12 @@ class VetDetallePage extends StatelessWidget {
                                   SizedBox(
                                     width: MediaQuery.of(context).size.width *
                                         0.725,
-                                    child: buttonPri(
-                                        'Reservar servicio',
-                                        _.reservaClic.value
-                                            ? _.reservar
-                                            : null),
+                                    child: btnPrimary(
+                                      text: 'Reservar servicio',
+                                      onPressed: _.reservaClic.value
+                                          ? _.reservar
+                                          : null,
+                                    ),
                                   ),
                                   SizedBox(
                                       width: MediaQuery.of(context).size.width *

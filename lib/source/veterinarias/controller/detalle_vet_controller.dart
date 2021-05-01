@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -187,7 +188,10 @@ class VetDetalleController extends GetxController {
                         boardType: TextInputType.phone,
                       ),
                       SizedBox(height: 10.0),
-                      buttonPri("Guardar teléfono", _onPhone),
+                      btnPrimary(
+                        text: "Guardar teléfono",
+                        onPressed: _onPhone,
+                      ),
                       FlatButton(
                         child: Text("Cancelar",
                             style: TextStyle(color: colorMain)),

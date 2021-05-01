@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/components/wave_clipper.dart';
@@ -53,9 +54,12 @@ class ForgotPage extends StatelessWidget {
                         SizedBox(height: 30.0),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Obx(() => buttonPri(
-                              'Enviar correo electrónico',
-                              !_.loading.value ? _.getForgot : null)),
+                          child: Obx(
+                            () => btnPrimary(
+                              text: 'Enviar correo electrónico',
+                              onPressed: !_.loading.value ? _.getForgot : null,
+                            ),
+                          ),
                         ),
                         SizedBox(height: 20.0),
                       ],

@@ -3,6 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -33,7 +35,11 @@ class FeedbackPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      buttonOutLine('Volver', () => Get.back(), colorMain),
+                      btnSecondary(
+                        text: 'Volver',
+                        onPressed: () => Get.back(),
+                        color: colorMain,
+                      ),
                     ],
                   ),
                 )
@@ -64,7 +70,10 @@ class FeedbackPage extends StatelessWidget {
                       onChanged: (value) => _.descripcion = value,
                     ),
                     SizedBox(height: 10),
-                    buttonPri('Enviar', _.enviarQueja),
+                    btnPrimary(
+                      text: 'Enviar',
+                      onPressed: _.enviarQueja,
+                    ),
                   ],
                 ),
         );

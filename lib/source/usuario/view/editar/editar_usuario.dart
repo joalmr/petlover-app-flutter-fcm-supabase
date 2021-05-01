@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -69,9 +70,9 @@ class UserPage extends StatelessWidget {
                         ),
                         SizedBox(height: 25.0),
                         Center(
-                          child: buttonPri(
-                            'Guardar cambios',
-                            _.btnBool.value ? _.onEdit : null,
+                          child: btnPrimary(
+                            text: 'Guardar cambios',
+                            onPressed: _.btnBool.value ? _.onEdit : null,
                           ),
                         ),
                       ],

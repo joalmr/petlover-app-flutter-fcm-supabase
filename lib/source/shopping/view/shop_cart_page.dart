@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/shopping/controller/shopping_controller.dart';
 
@@ -153,8 +155,15 @@ class ShopCartPage extends StatelessWidget {
                   ],
                 ),
               ),
-              buttonPri("Pagar", () {}),
-              buttonFlat("Continuar comprando", () => Get.back(), colorMain),
+              btnPrimary(
+                text: 'Pagar',
+                onPressed: () {},
+              ),
+              btnAltern(
+                text: 'Continuar comprando',
+                onPressed: () => Get.back(),
+                color: colorMain, //observado
+              ),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:proypet/design/styles/styles.dart';
 
 import 'form_control/button_primary.dart';
+import 'form_control/buttons/btn_secondary.dart';
 import 'transition/fadeViewSafeArea.dart';
 
 class VerifyPage extends StatelessWidget {
@@ -76,8 +77,11 @@ class VerifyPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
-                    child: buttonOutLine('Ya validé mi cuenta',
-                        () => Get.offNamed('login'), Colors.white),
+                    child: btnSecondary(
+                      text: 'Ya validé mi cuenta',
+                      onPressed: () => Get.offNamed('login'),
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),

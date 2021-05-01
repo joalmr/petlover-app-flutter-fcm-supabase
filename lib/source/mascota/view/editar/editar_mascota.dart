@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
@@ -152,8 +153,10 @@ class MascotaEditarPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 25.0),
-                        buttonPri('Guardar cambios',
-                            _.btnCarga.value ? null : _.mascotaEdit),
+                        btnPrimary(
+                          text: 'Guardar cambios',
+                          onPressed: _.btnCarga.value ? null : _.mascotaEdit,
+                        ),
                         SizedBox(height: 10.0),
                       ],
                     ),

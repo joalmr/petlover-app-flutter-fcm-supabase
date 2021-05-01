@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/usuario/controller/solicita_vet_controller.dart';
@@ -40,7 +42,11 @@ class SolicitaVetPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      buttonOutLine('Volver', () => Get.back(), colorMain),
+                      btnSecondary(
+                        text: 'Volver',
+                        onPressed: () => Get.back(),
+                        color: colorMain,
+                      ),
                       SizedBox(height: 50),
                       FlatButton(
                         onPressed: () => Share.share(
@@ -98,7 +104,10 @@ class SolicitaVetPage extends StatelessWidget {
                         onChanged: (value) => _.telefono = value,
                       ),
                       SizedBox(height: 10),
-                      buttonPri('Enviar', _.enviarSolicitud),
+                      btnPrimary(
+                        text: 'Enviar',
+                        onPressed: _.enviarSolicitud,
+                      ),
                     ],
                   ),
           );

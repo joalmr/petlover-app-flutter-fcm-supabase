@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/controller/reserva_vet_controller.dart';
@@ -215,13 +217,17 @@ class DataReserva extends StatelessWidget {
                                 ),
                                 SizedBox(height: 30.0),
                                 _.servicioReservaLista.length > 0
-                                    ? buttonPri(
-                                        'Confirmar reserva',
-                                        _.actBtn.value
+                                    ? btnPrimary(
+                                        text: 'Confirmar reserva',
+                                        onPressed: _.actBtn.value
                                             ? _.reservarAtencion
-                                            : null)
-                                    : buttonPri('Confirmar reserva', () {},
-                                        cargando: true),
+                                            : null,
+                                      )
+                                    : btnPrimary(
+                                        text: 'Confirmar reserva',
+                                        onPressed: () {},
+                                        cargando: true,
+                                      ),
                               ],
                             ),
                           ],
@@ -256,10 +262,10 @@ class DataReserva extends StatelessWidget {
                       child: Center(
                         child: _.stepVal == 0
                             ? SizedBox(height: 0)
-                            : buttonFlat(
-                                'Atras',
-                                _.stepCancel,
-                                colorMain,
+                            : btnAltern(
+                                text: 'Atras',
+                                onPressed: _.stepCancel,
+                                color: colorMain, //observado
                               ),
                       ),
                     ),
@@ -268,10 +274,10 @@ class DataReserva extends StatelessWidget {
                       child: Center(
                         child: _.stepVal == 2
                             ? SizedBox(height: 0)
-                            : buttonFlat(
-                                'Siguiente',
-                                _.stepContinue,
-                                colorMain,
+                            : btnAltern(
+                                text: 'Siguiente',
+                                onPressed: _.stepContinue,
+                                color: colorMain, //observado
                               ),
                       ),
                     ),

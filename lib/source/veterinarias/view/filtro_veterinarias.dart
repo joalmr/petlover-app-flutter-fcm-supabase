@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/controller/filtra_vets_controller.dart';
@@ -87,10 +89,10 @@ class FiltraVets extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                         ),
                         SizedBox(height: 0.5),
-                        buttonFlat(
-                          'Solicita su ingreso',
-                          () => Get.toNamed('solicitaveterinaria'),
-                          colorMain,
+                        btnAltern(
+                          text: 'Solicita su ingreso',
+                          onPressed: () => Get.toNamed('solicitaveterinaria'),
+                          color: colorMain, //observado
                         ),
                         FlatButton(
                           onPressed: () => Share.share(
@@ -129,8 +131,11 @@ class FiltraVets extends StatelessWidget {
                 Container(
                   width: ancho,
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: buttonPri("Filtrar", _.filtrar,
-                      cargando: _.btnFiltra.value),
+                  child: btnPrimary(
+                    text: "Filtrar",
+                    onPressed: _.filtrar,
+                    cargando: _.btnFiltra.value,
+                  ),
                 ),
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/booking/model/booking_model.dart';
@@ -87,9 +88,16 @@ class DetalleRservadoController extends GetxController {
         title: Text('Eliminar'),
         content: Text('Seguro que desea eliminar esta reserva?'),
         actions: <Widget>[
-          buttonModal(
-              'Cancelar', () => Get.back(), Get.textTheme.subtitle2.color),
-          buttonModal('Sí, eliminar', () => eliminaAtencion(id), colorRed),
+          btnAltern(
+            text: 'Cancelar',
+            onPressed: () => Get.back(),
+            color: Get.textTheme.subtitle2.color,
+          ),
+          btnAltern(
+            text: 'Sí, eliminar',
+            onPressed: () => eliminaAtencion(id),
+            color: colorRed,
+          ),
         ],
       ),
     ));

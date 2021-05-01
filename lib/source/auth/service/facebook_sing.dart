@@ -14,7 +14,7 @@ class FacebookSignInService {
       ]);
 
       switch (result.status) {
-        case FacebookLoginStatus.Success:
+        case FacebookLoginStatus.success:
           {
             final fbProfile = await _fb.getUserProfile();
             final fbEmail = await _fb.getUserEmail();
@@ -34,10 +34,10 @@ class FacebookSignInService {
             statusCode = respLogin; //200 401 500
           }
           break;
-        case FacebookLoginStatus.Cancel:
+        case FacebookLoginStatus.cancel:
           statusCode = 408;
           break;
-        case FacebookLoginStatus.Error:
+        case FacebookLoginStatus.error:
           statusCode = 409;
           break;
       }
