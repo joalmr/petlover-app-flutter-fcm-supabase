@@ -8,7 +8,7 @@ class NavigationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
-    pushController.firebaseConfigure();
+//TODO: firebase
+    // pushController.firebaseConfigure();
   }
 }

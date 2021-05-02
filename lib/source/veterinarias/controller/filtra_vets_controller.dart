@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:google_maps_webservice/places.dart';
+// import 'package:google_maps_webservice/places.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/veterinarias/model/address.dart';
@@ -57,18 +57,19 @@ class FiltraVetsController extends GetxController {
     _gpsDireccion(data);
   }
 
+//TODO: revisar google_maps_webservice
   _gpsDireccion(dato) {
     if (_direccion.isNotEmpty) {
-      final places = new GoogleMapsPlaces(apiKey: keyMap);
-      places.getDetailsByPlaceId(dato.placeId).then((value) {
-        Location latlng = value.result.geometry.location;
-        _prefs.position = "${latlng.lat},${latlng.lng}";
-        _prefs.ubicacion = _direccion;
+      // final places = new GoogleMapsPlaces(apiKey: keyMap);
+      // places.getDetailsByPlaceId(dato.placeId).then((value) {
+      //   Location latlng = value.result.geometry.location;
+      //   _prefs.position = "${latlng.lat},${latlng.lng}";
+      //   _prefs.ubicacion = _direccion;
 
-        tempAddress = _direccion;
-        tempLat = latlng.lat.toString();
-        tempLng = latlng.lng.toString();
-      });
+      //   tempAddress = _direccion;
+      //   tempLat = latlng.lat.toString();
+      //   tempLng = latlng.lng.toString();
+      // });
     }
   }
 

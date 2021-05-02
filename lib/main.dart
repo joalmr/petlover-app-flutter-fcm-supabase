@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,8 +22,9 @@ import 'source/veterinarias/controller/lista_vets_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await FlutterConfig.loadEnvVariables();
   await GetStorage.init();
+  //TODO: firebase
+  await Firebase.initializeApp();
 
   runApp(MyApp());
 }

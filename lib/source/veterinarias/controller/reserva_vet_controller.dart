@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_webservice/directions.dart';
-import 'package:google_maps_webservice/places.dart';
+// import 'package:google_maps_webservice/directions.dart';
+// import 'package:google_maps_webservice/places.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/components/thx_page.dart';
@@ -241,17 +241,18 @@ class ReservaVetController extends GetxController {
     _searchandNavigate(data);
   }
 
+  //TODO: revisar google_maps_webservice
   _searchandNavigate(Prediction2 dato) async {
     if (inputDireccionController.text.trim() != "") {
       marcador.clear();
-      final places = new GoogleMapsPlaces(apiKey: keyMap);
-      final mapdata = await places.getDetailsByPlaceId(dato.placeId);
+      // final places = new GoogleMapsPlaces(apiKey: keyMap);
+      // final mapdata = await places.getDetailsByPlaceId(dato.placeId);
 
       inputDireccionController.text = dato.name;
 
-      Location latlng = mapdata.result.geometry.location;
-      lat = latlng.lat;
-      lng = latlng.lng;
+      // Location latlng = mapdata.result.geometry.location;
+      // lat = latlng.lat;
+      // lng = latlng.lng;
 
       _prefs.myAddressLatLng = "$lat,$lng";
       _prefs.myAddress = dato.name;

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/design/styles/styles.dart';
 
-import 'form_control/button_primary.dart';
 import 'form_control/buttons/btn_secondary.dart';
 import 'transition/fadeViewSafeArea.dart';
 
