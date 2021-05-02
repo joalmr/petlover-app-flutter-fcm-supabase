@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:proypet/source/auth/data/service/auth_service.dart';
 import 'package:proypet/source/notificaciones/view/push/buildPushNoti.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:proypet/source/home/controller/home_controller.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
 import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class PushController extends GetxController {

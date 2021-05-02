@@ -3,7 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
+import 'package:proypet/source/auth/data/service/auth_service.dart';
 
 class ForgotController extends GetxController {
   final AuthService repository = AuthService();

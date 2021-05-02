@@ -1,4 +1,4 @@
-import 'package:proypet/source/auth/provider/auth_provider.dart';
+import 'package:proypet/source/auth/data/provider/auth_provider.dart';
 
 class AuthService {
   // LoginService({ this.loginProvider}) : assert(loginProvider != null);

@@ -11,7 +11,7 @@ import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/components/wave_clipper.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/auth/controller/sign_controller.dart';
+import 'package:proypet/source/auth/domain/controller/sign_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SingupPage extends StatelessWidget {

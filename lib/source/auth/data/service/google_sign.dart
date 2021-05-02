@@ -1,7 +1,7 @@
 // import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
+import 'package:proypet/source/auth/data/service/auth_service.dart';
 
 class GoogleSignInService {
   static GoogleSignIn _googleSignIn = GoogleSignIn(

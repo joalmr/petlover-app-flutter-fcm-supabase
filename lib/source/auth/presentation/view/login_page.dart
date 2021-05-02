@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,7 @@ import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/auth/controller/login_controller.dart';
+import 'package:proypet/source/auth/domain/controller/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
   @override

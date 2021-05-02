@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/components/verify_page.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
+import 'package:proypet/source/auth/data/service/auth_service.dart';
 
 import 'login_controller.dart';
 

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/images/image.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
+import 'package:proypet/source/auth/data/service/auth_service.dart';
 
 final authService = AuthService();
 errorInesperado() {

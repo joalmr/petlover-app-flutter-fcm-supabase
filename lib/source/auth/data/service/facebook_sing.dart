@@ -1,5 +1,6 @@
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
+
+import 'auth_service.dart';
 
 class FacebookSignInService {
   static FacebookLogin _fb = FacebookLogin();

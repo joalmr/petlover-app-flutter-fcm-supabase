@@ -3,13 +3,14 @@ import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
+import 'package:proypet/source/_global/_global_controller.dart';
+import 'package:proypet/source/auth/data/service/auth_service.dart';
+import 'package:proypet/source/auth/data/service/facebook_sing.dart';
+import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/source/home/controller/home_controller.dart';
 import 'package:proypet/source/veterinarias/controller/lista_vets_controller.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
-import 'package:proypet/source/auth/service/auth_service.dart';
-import '../../_global/_global_controller.dart';
-import '../service/facebook_sing.dart';
-import '../service/google_sign.dart';
+
 
 class LoginController extends GetxController {
   final AuthService repository = AuthService();
