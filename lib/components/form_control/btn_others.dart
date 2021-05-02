@@ -17,30 +17,18 @@ Widget btnWIcon({
 }) {
   return SizedBox(
     width: double.maxFinite,
-    child: RaisedButton(
-      shape: shape10,
-      color: color,
-      elevation: 2.0,
-      textColor: Colors.white,
+    child: TextButton(
+      onPressed: funtion,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
             child: pathImage == ""
-                ? Icon(
-                    icono,
-                    size: 22,
-                    color: colorIcon,
-                  )
-                : Image.asset(
-                    pathImage,
-                    height: 22,
-                  ),
+                ? Icon(icono, size: 22, color: colorIcon)
+                : Image.asset(pathImage, height: 22),
           ),
-          SizedBox(
-            width: Get.width * 0.105,
-          ),
+          SizedBox(width: Get.width * 0.105),
           Expanded(
             child: Container(
               child: Text(
@@ -51,8 +39,12 @@ Widget btnWIcon({
           ),
         ],
       ),
-      padding: EdgeInsets.only(top: 9, bottom: 9, left: 45),
-      onPressed: funtion,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.only(top: 9, bottom: 9, left: 45),
+        textStyle: TextStyle(fontWeight: FontWeight.bold),
+        backgroundColor: colorMain,
+        primary: Colors.white,
+      ),
     ),
   );
 }
@@ -60,25 +52,23 @@ Widget btnWIcon({
 Widget btnFace({@required text, @required funtion}) {
   return SizedBox(
     width: double.maxFinite,
-    child: RaisedButton(
-      shape: shape10,
-      color: Color(0xFF3b5998),
-      elevation: 2.0,
-      textColor: Colors.white,
+    child: TextButton(
+      onPressed: funtion,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(
-            FontAwesomeIcons.facebook,
-            size: 22,
-          ),
+          Icon(FontAwesomeIcons.facebook, size: 22),
           SizedBox(width: 10),
           Text(text, style: _textstyle),
         ],
       ),
-      padding: EdgeInsets.symmetric(vertical: 9.0, horizontal: 20.0),
-      onPressed: funtion,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: 9.0, horizontal: 20.0),
+        textStyle: TextStyle(fontWeight: FontWeight.bold),
+        backgroundColor: Color(0xFF3b5998),
+        primary: Colors.white,
+      ),
     ),
   );
 }

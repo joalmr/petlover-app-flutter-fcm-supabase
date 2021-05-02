@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
-import 'package:proypet/components/form_control/button_primary.dart';
+import 'package:proypet/components/form_control/btn_others.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
@@ -56,10 +56,10 @@ class ChangePasswordPage extends StatelessWidget {
                   ),
                   SizedBox(height: 25.0),
                   Center(
-                    child: 
-                    btnPrimary(
+                    child: btnPrimary(
                       text: 'Cambiar contraseña',
-                      onPressed: _.clickPassword.value ? _.changePassword : null,
+                      onPressed:
+                          _.clickPassword.value ? _.changePassword : null,
                     ),
                   )
                 ],
