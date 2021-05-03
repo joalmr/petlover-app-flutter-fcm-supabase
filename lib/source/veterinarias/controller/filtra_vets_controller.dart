@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
 // import 'package:google_maps_webservice/places.dart';
-import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/veterinarias/model/address.dart';
 import 'package:proypet/source/usuario/service/address_service.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'lista_vets_controller.dart';
 
 class FiltraVetsController extends GetxController {

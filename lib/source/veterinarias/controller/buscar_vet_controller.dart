@@ -5,7 +5,6 @@ import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/veterinarias/model/establecimiento_short_model.dart';
 import 'package:proypet/source/veterinarias/service/establishment_find_service.dart';
 import 'package:proypet/source/veterinarias/service/establishment_service.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import 'filtra_vets_controller.dart';
 

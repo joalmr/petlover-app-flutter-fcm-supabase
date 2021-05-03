@@ -8,7 +8,6 @@ import 'package:proypet/source/mascota/service/pet_service.dart';
 import 'package:proypet/source/home/service/summary_service.dart';
 import 'package:proypet/source/usuario/service/user_service.dart';
 import 'package:proypet/utils/error.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();

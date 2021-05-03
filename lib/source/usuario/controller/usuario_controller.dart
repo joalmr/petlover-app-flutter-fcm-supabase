@@ -47,8 +47,8 @@ class UsuarioController extends GetxController {
     loading.value = false;
   }
 
-  bool get sinDatos => nombre.isNullOrBlank && apellido.isNullOrBlank;
-  bool get conTelefono => telefono.isNullOrBlank;
+  bool get sinDatos => nombre.isEmpty && apellido.isEmpty; // .isNullOrBlank
+  bool get conTelefono => telefono.isEmpty;
 
   onEdit() => _onEdit();
 

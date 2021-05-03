@@ -2,8 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
-import 'package:proypet/components/form_control/btn_others.dart';
-import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/styles.dart';

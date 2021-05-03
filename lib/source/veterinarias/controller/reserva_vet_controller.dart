@@ -20,7 +20,6 @@ import 'package:proypet/source/booking/service/booking_service.dart';
 import 'package:proypet/source/mascota/service/pet_service.dart';
 import 'package:proypet/source/veterinarias/view/vet_reserva/components/lista_servicios.dart';
 import 'package:proypet/utils/add_msg.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:time_parser/time_parser.dart';
 import 'data/horario.dart';

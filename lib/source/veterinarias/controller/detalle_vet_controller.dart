@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/form_control/btn_others.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/snackbar.dart';
@@ -110,7 +109,7 @@ class VetDetalleController extends GetxController {
   }
 
   bool get mascotasCount => misMascotas.length > 0;
-  bool get sinTelefono => telefono.isNullOrBlank;
+  bool get sinTelefono => telefono.isEmpty; //.isNullOrBlank;
 
   final formKey = GlobalKey<FormState>();
 
@@ -118,7 +117,7 @@ class VetDetalleController extends GetxController {
 
   List<EstablishmentModelList> vetPremium = [];
   _getPremiumClose() {
-    vetPremium = vetsC.vetLocales.value
+    vetPremium = vetsC.vetLocales
         .where((element) => element.premium == true && element.id != vet.id)
         .take(2)
         .toList();
@@ -215,7 +214,7 @@ class VetDetalleController extends GetxController {
     }
   }
 
-  bool get telCambio => telefono.isNullOrBlank;
+  bool get telCambio => telefono.isEmpty; //.isNullOrBlank;
 
   void _onPhone() async {
     if (!telCambio) {

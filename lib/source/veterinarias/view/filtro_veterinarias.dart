@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/form_control/btn_others.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';

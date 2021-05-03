@@ -19,8 +19,7 @@ class EstablecimientoList {
   });
 
   factory EstablecimientoList.fromJson(List<dynamic> parsedJson) {
-    List<EstablecimientoModel> establecimientos =
-        new List<EstablecimientoModel>();
+    List<EstablecimientoModel> establecimientos = <EstablecimientoModel>[];
     establecimientos =
         parsedJson.map((i) => EstablecimientoModel.fromJson(i)).toList();
 

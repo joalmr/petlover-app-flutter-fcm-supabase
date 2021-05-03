@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/form_control/btn_others.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -49,8 +48,8 @@ class VetDetallePage extends StatelessWidget {
                             child: IconButton(
                               icon: Icon(
                                 Platform.isIOS
-                                    ? Icons.arrow_back_ios
-                                    : Icons.arrow_back,
+                                  ? Icons.arrow_back_ios
+                                  : Icons.arrow_back,
                               ),
                               onPressed: () => Get.back(),
                             ),

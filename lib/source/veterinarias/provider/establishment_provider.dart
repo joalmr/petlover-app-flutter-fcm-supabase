@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/veterinarias/model/establecimiento_model.dart';
 import 'package:proypet/source/veterinarias/model/establecimiento_short_model.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablishmentProvider {
   final _url = urlApi;
