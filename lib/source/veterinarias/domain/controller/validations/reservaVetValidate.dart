@@ -4,13 +4,10 @@ import 'package:time_parser/time_parser.dart';
 
 //hasFechaHora
 bool valFechaHora(fecha, hora) => fecha.trim().isEmpty || hora.trim().isEmpty;
-
 //fechaTime
 DateTime valFechaTime(fecha, hora) => DateTime.parse(fecha + " " + hora);
-
 //fechaTimeAt
-String valFechaTimeAt(fechaTime) =>
-    DateFormat('yyyy-MM-dd HH:mm:ss').format(fechaTime);
+String valFechaTimeAt(fechaTime) => DateFormat('yyyy-MM-dd HH:mm:ss').format(fechaTime);
 
 //isDateOk
 bool valIsDateOk(fechaTimeAt, fechaTime) {
@@ -42,31 +39,40 @@ bool valIsHourOk(fechaTime, vet, hora) {
   var horario = vet.schedule;
   var takeHora = horario[textHorario[day]];
 
-  var time0 = TimeParser.parse(hora);
-  var time1 = TimeParser.parse(takeHora['time_start']);
-  var time2 = TimeParser.parse(takeHora['time_end']);
-
-  var hora0 = time0.hours * 60 + time0.minutes;
-  var horaInicio = time1.hours * 60 + time1.minutes;
-  var horaFin = time2.hours * 60 + time2.minutes;
-
-  if (takeHora['attention'] == 'on') {
-    if (horaInicio <= hora0 && hora0 < horaFin)
-      return true;
-    else
-      return false;
-  } else
+  print("valIsHourOk");
+  print(hora);
+  print("time_start");
+  print(takeHora['time_start']);
+  print("time_end");
+  print(takeHora['time_end']);
+  print("attention");
+  print(takeHora['attention']);
+  
+  if(takeHora['time_start'] == null || takeHora['time_end'] == null || takeHora['attention'] == null){
     return false;
+  }
+  else{
+    var time0 = TimeParser.parse(hora);
+    var time1 = TimeParser.parse(takeHora['time_start']);
+    var time2 = TimeParser.parse(takeHora['time_end']);
+
+    var hora0 = time0.hours * 60 + time0.minutes;
+    var horaInicio = time1.hours * 60 + time1.minutes;
+    var horaFin = time2.hours * 60 + time2.minutes;
+
+    if (takeHora['attention'] == 'on') {
+      if (horaInicio <= hora0 && hora0 < horaFin)
+        return true;
+      else
+        return false;
+    } 
+    else{
+      return false;
+    }
+  }
 }
 
-String valReservarBooking(
-  hasFechaHora, //fecha, hora
-  isDateOk, //fechaTimeAt, fechaTime
-  conDelivery,
-  isDeliveryOk,
-  isDayOk, //fechaTime, vet
-  isHourOk, //fechaTime, vet, hora
-) {
+String valReservarBooking(hasFechaHora, isDateOk, conDelivery, isDeliveryOk, isDayOk, isHourOk) {
   if (hasFechaHora) return "error1";
   if (!isDateOk) return "error2";
   if (conDelivery) {
@@ -76,10 +82,8 @@ String valReservarBooking(
     // ejecutaReserva();
     return "ok";
   } else {
-    // if (!isDeliveryOk) return "error3";
     if (!isDayOk) return "error4";
     if (!isHourOk) return "error5";
-    // ejecutaReserva();
     return "ok";
   }
 }

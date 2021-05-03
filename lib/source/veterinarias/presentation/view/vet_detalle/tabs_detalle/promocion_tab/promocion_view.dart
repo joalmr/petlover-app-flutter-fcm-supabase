@@ -13,7 +13,8 @@ class ViewPromocion extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<PromocionVetController>(
       init: PromocionVetController(),
-      builder: (_) => _.cargando.value
+      builder: (_){
+        return _.cargando.value
           ? FadeIn(
               child: Container(
                 child: Center(
@@ -37,6 +38,13 @@ class ViewPromocion extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   itemBuilder: (BuildContext context, int index) {
                     PromocionModel promocion = _.promociones[index];
+                    String descuentoMonto;
+                    if(promocion.discount.toString().split('.')[1]=='00'){
+                      descuentoMonto=promocion.discount.toString().split('.')[0];
+                    }
+                    else{
+                      descuentoMonto=promocion.discount;
+                    }
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Card(
@@ -45,8 +53,7 @@ class ViewPromocion extends StatelessWidget {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, bottom: 8, left: 10, right: 8),
+                                padding: const EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 8),
                                 child: CircleAvatar(
                                   radius: 30,
                                   backgroundColor: colorBlue,
@@ -64,18 +71,17 @@ class ViewPromocion extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 8, bottom: 8, left: 8, right: 10),
+                                padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 10),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       promocion.type == 'Amount'
-                                          ? '-${promocion.discount}'
+                                          ? '-$descuentoMonto'
                                           : promocion.type == 'Percentage'
-                                              ? '${promocion.discount}%'
-                                              : '${promocion.discount}',
+                                              ? '$descuentoMonto%'
+                                              : '$descuentoMonto',
                                       style: TextStyle(
                                         color: promocion.type == 'Total'
                                             ? colorGreen2
@@ -105,7 +111,8 @@ class ViewPromocion extends StatelessWidget {
                       ),
                     );
                   },
-                ),
+                );
+      }
     );
   }
 }

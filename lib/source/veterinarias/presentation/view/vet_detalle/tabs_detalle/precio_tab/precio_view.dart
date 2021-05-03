@@ -20,11 +20,14 @@ class ViewPrecio extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("Precio referencial",
-                        style:
-                            Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
-                    Text("*Sujeto a revisión física de mascota",
-                        style: TextStyle(fontSize: sizeSmallx2)),
+                    Text(
+                      "Precio referencial",
+                      style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2),
+                    ),
+                    Text(
+                      "*Sujeto a revisión física de mascota",
+                      style: TextStyle(fontSize: sizeSmallx2),
+                    ),
                     if (_.vet.prices.length > 0)
                       listaPrecio(_.vet.prices)
                     else
