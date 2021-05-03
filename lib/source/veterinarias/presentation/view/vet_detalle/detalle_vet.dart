@@ -120,35 +120,37 @@ class VetDetallePage extends StatelessWidget {
                               height: 60,
                               width: MediaQuery.of(context).size.width,
                               padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                              child: btnPrimary(
-                                text: 'Reservar servicio',
-                                onPressed: _.reservaClic.value
-                                  ? _.reservar
-                                  : null,
-                              ),
-                              // Row(
-                              //   children: <Widget>[
-                              //     SizedBox(width: MediaQuery.of(context).size.width * 0.025),
-                              //     SizedBox(
-                              //       width: MediaQuery.of(context).size.width * 0.2,
-                              //       child: FloatingActionButton(
-                              //         backgroundColor: Theme.of(context).backgroundColor,
-                              //         child: Icon(Icons.phone, color: colorMain),
-                              //         onPressed: _.llamar,
-                              //       ),
-                              //     ),
-                              //     SizedBox(
-                              //       width: MediaQuery.of(context).size.width * 0.725,
-                              //       child: btnPrimary(
-                              //         text: 'Reservar servicio',
-                              //         onPressed: _.reservaClic.value
-                              //           ? _.reservar
-                              //           : null,
-                              //       ),
-                              //     ),
-                              //     SizedBox(width: MediaQuery.of(context).size.width * 0.05),
-                              //   ],
+                              child: 
+                              // btnPrimary(
+                              //   text: 'Reservar servicio',
+                              //   onPressed: _.reservaClic.value
+                              //     ? _.reservar
+                              //     : null,
                               // ),
+                              Row(
+                                children: <Widget>[
+                                  SizedBox(width: 5),
+                                  SizedBox(
+                                    width: 60,
+                                    child: FloatingActionButton(
+                                      backgroundColor: Theme.of(context).backgroundColor,
+                                      child: Icon(Icons.phone, color: colorMain),
+                                      onPressed: _.llamar,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  
+                                  Expanded(
+                                                                      child: btnPrimary(
+                                      text: 'Reservar servicio',
+                                      onPressed: _.reservaClic.value
+                                        ? _.reservar
+                                        : null,
+                                    ),
+                                  ),
+                                  SizedBox(width: 5),
+                                ],
+                              ),
                             ),
                           ),
                         ],
