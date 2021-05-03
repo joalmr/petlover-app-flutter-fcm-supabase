@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/mascota/service/pet_dead_service.dart';
 import 'package:proypet/source/mascota/service/pet_service.dart';
 

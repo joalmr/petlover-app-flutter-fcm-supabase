@@ -1,6 +1,6 @@
 import 'package:proypet/config/global_variables.dart';
-import 'package:proypet/source/home/model/home_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:proypet/source/home/data/model/home_model.dart';
 
 class SummaryProvider {
   final _url = urlApi;

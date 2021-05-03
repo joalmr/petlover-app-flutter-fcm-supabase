@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/usuario/model/user_model.dart';
 import 'package:proypet/source/usuario/service/user_service.dart';
 import 'package:proypet/utils/regex.dart';

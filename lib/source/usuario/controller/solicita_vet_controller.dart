@@ -2,7 +2,8 @@ import 'package:get/get.dart';
 import 'package:proypet/class/mailing.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
+
 
 class SolicitaVetController extends GetxController {
   final sendMail = Mailing();

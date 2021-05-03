@@ -10,7 +10,7 @@ import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/components/thx_page.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/veterinarias/model/address.dart';
 import 'package:proypet/source/booking/model/booking_set_model.dart';
 import 'package:proypet/source/veterinarias/model/establecimiento_model.dart';

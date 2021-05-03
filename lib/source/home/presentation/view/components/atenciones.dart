@@ -7,8 +7,8 @@ import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/atencion_home_controller.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/atencion_home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/utils/datetime.dart';
 
 class Atenciones extends StatelessWidget {

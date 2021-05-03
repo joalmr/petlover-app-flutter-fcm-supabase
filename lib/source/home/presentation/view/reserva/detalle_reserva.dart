@@ -5,7 +5,7 @@ import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/detalle_reserva_controller.dart';
+import 'package:proypet/source/home/domain/controller/detalle_reserva_controller.dart';
 import 'package:proypet/utils/datetime.dart';
 
 class DetalleReservado extends StatelessWidget {

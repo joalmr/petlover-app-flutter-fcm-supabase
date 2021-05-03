@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'chequeo_preventivo/chequeo_preventivo.dart';
 import 'cumpleanos/cumpleanos.dart';
 import 'marketing/marketing.dart';

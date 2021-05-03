@@ -1,4 +1,4 @@
-import 'package:proypet/source/home/provider/summary_provider.dart';
+import 'package:proypet/source/home/data/provider/summary_provider.dart';
 
 class SummaryService {
   final SummaryProvider summaryProvider = SummaryProvider();

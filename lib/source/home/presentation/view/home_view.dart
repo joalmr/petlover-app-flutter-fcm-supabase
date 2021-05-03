@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:proypet/components/enddrawer/config_drawer.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
+
 
 import 'components/atenciones.dart';
 import 'components/frecuentes.dart';

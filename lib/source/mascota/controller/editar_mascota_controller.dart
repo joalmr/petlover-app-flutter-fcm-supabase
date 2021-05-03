@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/home/controller/home_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/mascota/view/data/sexo_pet.dart';
 import 'package:proypet/source/breeds/model/raza_model.dart';
 import 'package:proypet/source/mascota/service/mascota_service.dart';

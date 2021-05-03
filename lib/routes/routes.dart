@@ -6,7 +6,7 @@ import 'package:proypet/source/auth/presentation/view/forgot_page.dart';
 import 'package:proypet/source/auth/presentation/view/login_page.dart';
 import 'package:proypet/source/auth/presentation/view/onboard.dart';
 import 'package:proypet/source/auth/presentation/view/singup_page.dart';
-import 'package:proypet/source/home/view/reserva/detalle_reserva.dart';
+import 'package:proypet/source/home/presentation/view/reserva/detalle_reserva.dart';
 import 'package:proypet/source/mascota/view/agregar/agregar_mascota.dart';
 import 'package:proypet/source/mascota/view/detalle/components/historial_page.dart';
 import 'package:proypet/source/mascota/view/detalle/detalle_mascota.dart';
