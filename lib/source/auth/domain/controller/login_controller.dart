@@ -148,6 +148,6 @@ class LoginController extends GetxController {
     homeController.getUsuario();
     homeController.getSummary();
     vetsController.getVets();
-    Get.offAllNamed('navInicio');
+    Get.offAllNamed('nav');
   }
 }

@@ -29,7 +29,7 @@ class ReservaList extends StatelessWidget {
                 ? <Widget>[
                     IconButton(
                       icon: Icon(Icons.search),
-                      onPressed: () => Get.toNamed('buscarveterinaria'),
+                      onPressed: () => Get.toNamed('vet/buscar'),
                     ),
                     IconButton(
                       icon: Icon(Icons.filter_list),

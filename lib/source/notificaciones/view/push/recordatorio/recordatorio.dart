@@ -48,7 +48,7 @@ Widget recordatorio(noti) {
                 child: Text('Ir'),
                 onPressed: () {
                   Get.back();
-                  Get.toNamed('navNotifica');
+                  Get.toNamed('nav/notifica');
                 }),
           ],
         ),

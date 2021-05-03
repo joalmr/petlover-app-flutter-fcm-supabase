@@ -42,7 +42,7 @@ Widget btnWIcon({
       style: TextButton.styleFrom(
         padding: EdgeInsets.only(top: 9, bottom: 9, left: 45),
         textStyle: TextStyle(fontWeight: FontWeight.bold),
-        backgroundColor: colorMain,
+        backgroundColor: color,
         primary: Colors.white,
       ),
     ),

@@ -82,7 +82,7 @@ class MascotaDetalleController extends GetxController {
   goToHistory() => _goToHistory();
   _goToHistory() async {
     await _verMiHistoria(mascotaId);
-    Get.toNamed('historialmascota');
+    Get.toNamed('mascota/historial');
   }
 
   Future<void> _verMiHistoria(id) async {

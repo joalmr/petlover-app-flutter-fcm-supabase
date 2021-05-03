@@ -25,8 +25,8 @@ class MiCuentaPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
-          listAcc('editarusuario', 'Editar usuario', Icons.person),
-          listAcc('cambiarpass', 'Cambiar contraseña', Icons.lock),
+          listAcc('micuenta/editar', 'Editar usuario', Icons.person),
+          // listAcc('cambiarpass', 'Cambiar contraseña', Icons.lock),
           InkWell(
             onTap: () => _cerrarSesion(context),
             child: Card(
@@ -105,6 +105,6 @@ class MiCuentaPage extends StatelessWidget {
     _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
     _prefs.notificaAvisoDel(); //limpia notificacion aviso
 
-    Get.offAllNamed('login');
+    Get.offAllNamed('/login');
   }
 }

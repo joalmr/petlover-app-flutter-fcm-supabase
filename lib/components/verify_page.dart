@@ -78,7 +78,7 @@ class VerifyPage extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 15),
                     child: btnSecondary(
                       text: 'Ya validé mi cuenta',
-                      onPressed: () => Get.offNamed('login'),
+                      onPressed: () => Get.offNamed('/login'),
                       color: Colors.white,
                     ),
                   )

@@ -72,7 +72,7 @@ class GlobalController extends GetxController {
     final _tempLat = _prefs.position.toString().split(",")[0];
     final _tempLng = _prefs.position.toString().split(",")[1];
 
-//TODO: firebase
+    //TODO: firebase
     // pushController.firebase();
     if (_prefs.hasUbicacion() && _prefs.hasPosition()) {
       print('==actualizar direccion');

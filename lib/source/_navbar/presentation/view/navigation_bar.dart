@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
+import 'package:proypet/source/_navbar/domain/_navigation_controller.dart';
 import 'package:proypet/source/notificaciones/view/notificaciones_view.dart';
 import 'package:proypet/source/recompensas/view/recompensas_view.dart';
 import 'package:proypet/source/veterinarias/view/veterinarias_view.dart';
-import 'package:proypet/source/_navbar/controller/_navigation_controller.dart';
 import 'package:proypet/source/home/view/home_view.dart';
 
 class NavigationBar extends StatefulWidget {

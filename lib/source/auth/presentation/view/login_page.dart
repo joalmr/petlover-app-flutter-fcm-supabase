@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
                           btnWIcon(
                             texto: 'Ingresar con Google',
                             pathImage: 'images/google.png',
-                            color: Color(0xFFf1f1f1),
+                            color: Color(0xFFe1e1e1),
                             colorText: Colors.black38,
                             colorIcon: Colors.black38,
                             funtion: _.loginGoogle,
@@ -102,7 +102,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 10.0),
                 Center(
                   child: FlatButton(
-                    onPressed: () => Get.toNamed("olvidopass"),
+                    onPressed: () => Get.toNamed("/olvidopass"),
                     child: Text(
                       "Olvidaste tu contraseña?".toUpperCase(),
                       style: TextStyle(
@@ -124,7 +124,7 @@ class LoginPage extends StatelessWidget {
                             .apply(color: colorMain)
                             .copyWith(decoration: TextDecoration.underline),
                       ),
-                      onPressed: () => Get.toNamed("registro"),
+                      onPressed: () => Get.toNamed("/registro"),
                       // style: TextButton.styleFrom(
                       //   padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                       //   primary: colorMain,
@@ -133,15 +133,6 @@ class LoginPage extends StatelessWidget {
                       //   // ),
                       // ),
                     ),
-                    // FlatButton(
-                    //   onPressed: () => Get.toNamed("registro"),
-                    //   child: Text(
-                    //     "Registrarme",
-                    //     style: Get.textTheme.subtitle2
-                    //         .apply(color: colorMain)
-                    //         .copyWith(decoration: TextDecoration.underline),
-                    //   ),
-                    // ),
                   ],
                 ),
               ],

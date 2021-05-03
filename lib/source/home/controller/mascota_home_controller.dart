@@ -6,7 +6,7 @@ class PetHomeController extends GetxController {
   }
 
   Future<void> _agregarMascotaVoid() async {
-    await Get.toNamed('agregarmascota');
+    await Get.toNamed('mascota/agregar');
   }
 
   void detalleMascota(id) {
@@ -14,6 +14,6 @@ class PetHomeController extends GetxController {
   }
 
   Future<void> _detalleMascotaVoid(id) async {
-    await Get.toNamed('detallemascota', arguments: id);
+    await Get.toNamed('mascota', arguments: id);
   }
 }

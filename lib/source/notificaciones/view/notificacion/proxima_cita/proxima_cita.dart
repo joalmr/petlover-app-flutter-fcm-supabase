@@ -19,7 +19,7 @@ _fnEstablecimiento(id) async {
   final establecimientoProvider = EstablishmentService();
   Map veterinaria = await establecimientoProvider.getVet(id);
   if (veterinaria['status'] == 200) {
-    await Get.toNamed('vetdetalle', arguments: veterinaria['establishment'].id);
+    await Get.toNamed('vet', arguments: veterinaria['establishment'].id);
   } else {
     Get.dialog(FadeIn(
       child: SimpleDialog(

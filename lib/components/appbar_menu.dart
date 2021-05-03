@@ -10,13 +10,16 @@ Widget appbar(logo, String texto, List<Widget> acc) {
     title: Row(children: [
       logo != null
           ? Padding(
-              padding:
-                  const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
+              padding: const EdgeInsets.only(top: 5, bottom: 5, right: 5, left: 2),
               child: Center(
-                  child: ClipRRect(
-                      child: Image(
-                          height: 32,
-                          image: AssetImage('images/proypet.png')))))
+                child: ClipRRect(
+                  child: Image(
+                      height: 32,
+                      image: AssetImage('images/proypet.png'),
+                  ),
+                ),
+              ),
+            )
           : SizedBox(width: 0),
       Text(texto)
     ]),
@@ -43,24 +46,24 @@ Widget navbar() {
                 children: [
                   InkWell(
                     child: Text('Inicio', style: TextStyle(color: colorBrown1)),
-                    onTap: () => Get.toNamed('navInicio'),
+                    onTap: () => Get.toNamed('nav'),
                   ),
                   SizedBox(width: 20),
                   InkWell(
                     child: Text('Notificaciones',
                         style: TextStyle(color: colorBrown1)),
-                    onTap: () => Get.toNamed('navNotifica'),
+                    onTap: () => Get.toNamed('nav/notifica'),
                   ),
                   SizedBox(width: 20),
                   InkWell(
                     child: Text('Veterinarias',
                         style: TextStyle(color: colorBrown1)),
-                    onTap: () => Get.toNamed('navLista'),
+                    onTap: () => Get.toNamed('nav/lista'),
                   ),
                   SizedBox(width: 20),
                   InkWell(
                     child: Text('Puntos', style: TextStyle(color: colorBrown1)),
-                    onTap: () => Get.toNamed('navRecompensa'),
+                    onTap: () => Get.toNamed('nav/recompensa'),
                   ),
                 ],
               ),

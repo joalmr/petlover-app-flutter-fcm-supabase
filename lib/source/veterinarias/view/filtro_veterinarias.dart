@@ -91,7 +91,7 @@ class FiltraVets extends StatelessWidget {
                         SizedBox(height: 0.5),
                         btnAltern(
                           text: 'Solicita su ingreso',
-                          onPressed: () => Get.toNamed('solicitaveterinaria'),
+                          onPressed: () => Get.toNamed('help/solicitavet'),
                           color: colorMain, //observado
                         ),
                         FlatButton(

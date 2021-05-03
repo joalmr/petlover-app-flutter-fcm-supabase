@@ -13,7 +13,7 @@ Widget buildVets(EstablishmentModelList vet) {
     margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
     child: InkWell(
       borderRadius: borderRadius,
-      onTap: () => Get.toNamed('vetdetalle', arguments: vet.id),
+      onTap: () => Get.toNamed('vet', arguments: vet.id),
       child: Card(
         child: Row(
           children: [

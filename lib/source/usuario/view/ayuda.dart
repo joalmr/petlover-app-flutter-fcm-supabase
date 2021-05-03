@@ -16,22 +16,22 @@ class AyudaPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         children: [
           listAcc(
-            'faq',
+            'help/faq',
             'Preguntas frecuentes',
             Icons.help,
           ),
           listAcc(
-            'feedback',
+            'help/feedback',
             'Ayudanos a mejorar',
             Icons.feedback,
           ),
           listAcc(
-            'solicitaveterinaria',
+            'help/solicitavet',
             '¿No encuentras tu veterinaria?',
             Icons.add_business,
           ),
           listAcc(
-            'enviarqueja',
+            'help/enviarqueja',
             'Reportar problema',
             Icons.error,
           ),

@@ -18,7 +18,7 @@ class BookingHomeController extends GetxController {
   }
 
   Future<void> _reserva() async {
-    await Get.toNamed('navLista');
+    await Get.toNamed('nav/lista');
   }
 
   void agregarMascota() {
@@ -26,7 +26,7 @@ class BookingHomeController extends GetxController {
   }
 
   Future<void> _agregarMascota() async {
-    await Get.toNamed('agregarmascota');
+    await Get.toNamed('mascota/agregar');
   }
 
   void eliminaAtencion(id) {

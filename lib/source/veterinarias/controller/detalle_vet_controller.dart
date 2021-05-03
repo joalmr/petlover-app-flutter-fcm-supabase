@@ -162,7 +162,7 @@ class VetDetalleController extends GetxController {
       if (mascotasCount) {
         if (!sinTelefono) {
           reservaClic.value = true;
-          Get.toNamed('vetreserva');
+          Get.toNamed('vet/reserva');
         } else {
           reservaClic.value = true;
           Get.dialog(AlertDialog(

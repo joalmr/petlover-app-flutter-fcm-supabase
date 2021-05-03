@@ -66,7 +66,7 @@ class ThxPage extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 15),
                     child: btnSecondary(
                       text: 'Ir a inicio',
-                      onPressed: () => Get.offAllNamed('navInicio'),
+                      onPressed: () => Get.offAllNamed('nav'),
                       color: Colors.white,
                     ),
                   )

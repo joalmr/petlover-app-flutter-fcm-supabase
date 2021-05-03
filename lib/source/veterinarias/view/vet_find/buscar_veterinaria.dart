@@ -76,7 +76,7 @@ class BuscarVeterinaria extends StatelessWidget {
                                 btnAltern(
                                   text: 'Solicita su ingreso',
                                   onPressed: () =>
-                                      Get.toNamed('solicitaveterinaria'),
+                                      Get.toNamed('help/solicitavet'),
                                   color: colorMain, //observado
                                 ),
                                 FlatButton(
@@ -120,7 +120,7 @@ class BuscarVeterinaria extends StatelessWidget {
                             return Card(
                               child: ListTile(
                                 onTap: () => Get.toNamed(
-                                  'vetdetalle',
+                                  'vet',
                                   arguments: _.veterinarias[index].id,
                                 ),
                                 leading: CircleAvatar(

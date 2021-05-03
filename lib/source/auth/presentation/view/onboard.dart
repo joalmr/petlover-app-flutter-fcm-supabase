@@ -49,7 +49,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
             alignment: Alignment.bottomLeft,
             child: FlatButton(
               child: Text("Saltar"),
-              onPressed: () => Get.offAllNamed('login'),
+              onPressed: () => Get.offAllNamed('/login'),
             ),
           ),
           Align(
@@ -61,7 +61,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
                 if (_currentIndex != 2)
                   _controller.next();
                 else
-                  Get.offAllNamed('login');
+                  Get.offAllNamed('/login');
               },
             ),
           )

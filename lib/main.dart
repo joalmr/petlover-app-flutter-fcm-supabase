@@ -12,8 +12,9 @@ import 'config/global_variables.dart';
 
 import 'design/theme/theme.dart';
 import 'design/theme/themeDark.dart';
-import 'source/_navbar/view/navigation_bar.dart';
+
 import 'source/_global/_global_controller.dart';
+import 'source/_navbar/presentation/view/navigation_bar.dart';
 import 'source/veterinarias/controller/filtra_vets_controller.dart';
 import 'source/veterinarias/controller/lista_vets_controller.dart';
 
@@ -59,11 +60,11 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: [
         const Locale('es', 'ES'),
-        const Locale('en', 'US'),
+        // const Locale('en', 'US'),
       ],
       initialRoute: '/',
       defaultTransition: Transition.fadeIn,
-      getPages: getRutas(),
+      getPages: AppRoutes().getRutas(),
       onGenerateRoute: (settings) => GetPageRoute(
         page: () => NavigationBar(currentTabIndex: 0),
       ),
