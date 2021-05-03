@@ -30,7 +30,7 @@ class DetalleRservadoController extends GetxController {
       throw 'No se pudo llamar $url';
   }
 
-//TODO: al parecer no funciona
+//TODO: ya no funciona
   void abreMaps() => _abreMaps();
   _abreMaps() async {
     // final title = argumentos.establishmentName;

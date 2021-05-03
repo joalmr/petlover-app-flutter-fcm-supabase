@@ -143,8 +143,7 @@ class LoginController extends GetxController {
   }
 
   ejecutaFirebase() {
-    //TODO: firebase
-    pushController.firebase();
+    pushController.firebase(); //TODO: firebase
     homeController.getUsuario();
     homeController.getSummary();
     vetsController.getVets();

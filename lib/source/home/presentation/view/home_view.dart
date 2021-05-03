@@ -102,7 +102,6 @@ class HomePage extends StatelessWidget {
                       InkWell(
                         onTap: () => showDialog(
                             context: Get.context,
-                            //TODO: revisar este cambio Flutter 2.0
                             builder: (context) => AlertDialog(
                                   scrollable: true,
                                   content: Column(
