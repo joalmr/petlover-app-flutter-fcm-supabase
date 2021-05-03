@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
 import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 import 'package:proypet/source/auth/data/service/google_sign.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import 'components/list_cuenta.dart';
 
 class MiCuentaPage extends StatelessWidget {
-  final _prefs = new PreferenciasUsuario();
   final loginApi = AuthService();
 
   @override
@@ -97,13 +96,13 @@ class MiCuentaPage extends StatelessWidget {
     FacebookSignInService.signOut();
     GoogleSignInService.signOut();
     loginApi.logOut();
-    _prefs.tokenDel(); //limpia token
-    _prefs.verifyDel(); //limpia verificado
-    _prefs.positionDel(); //limpia gps para lista vets
-    _prefs.ubicacionDel(); //limpia direccion para lista vets
-    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
-    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
-    _prefs.notificaAvisoDel(); //limpia notificacion aviso
+    prefUser.tokenDel(); //limpia token
+    prefUser.verifyDel(); //limpia verificado
+    prefUser.positionDel(); //limpia gps para lista vets
+    prefUser.ubicacionDel(); //limpia direccion para lista vets
+    prefUser.myAddressDel(); //limpia direccion de la ultima reserva realizada
+    prefUser.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
+    prefUser.notificaAvisoDel(); //limpia notificacion aviso
 
     Get.offAllNamed('/login');
   }

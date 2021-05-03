@@ -60,7 +60,7 @@ class Mascotas extends StatelessWidget {
                         child: Stack(
                           children: <Widget>[
                             AspectRatio(
-                              aspectRatio: (mediaAncho < 600) ? 1.5 : 12 / 8,
+                              aspectRatio: (Get.width < 600) ? 1.5 : 12 / 8,
                               child: Swiper(
                                 physics: BouncingScrollPhysics(),
                                 itemCount: _home.mascotas.length,

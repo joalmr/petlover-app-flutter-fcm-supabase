@@ -71,8 +71,7 @@ class DetalleReservado extends StatelessWidget {
                                           fontWeightDelta: 2, color: colorRed),
                                     ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, left: 0),
+                                padding: EdgeInsets.only(top: 10, left: 0),
                                 child: FloatingActionButton(
                                   mini: true,
                                   child: Icon(Icons.phone),
@@ -123,12 +122,12 @@ class DetalleReservado extends StatelessWidget {
                               .toList()
                               .cast<Widget>(),
                         ),
-                        SizedBox(height: 20.0),
-                        btnPrimary(
-                          text: "Ver en mapa",
-                          onPressed: () => _.abreMaps(),
-                        ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 30.0),
+                        // btnPrimary(
+                        //   text: "Ver en mapa",
+                        //   onPressed: () => _.abreMaps(),
+                        // ),
+                        // SizedBox(height: 20.0),
                         Center(
                           child: btnSecondary(
                             text: "Eliminar reserva",

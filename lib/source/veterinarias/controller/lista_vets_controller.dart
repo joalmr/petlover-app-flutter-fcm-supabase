@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/veterinarias/model/establecimiento_short_model.dart';
 import 'package:proypet/source/veterinarias/service/establishment_service.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import 'filtra_vets_controller.dart';
 
@@ -17,7 +17,6 @@ class VeterinariasController extends GetxController {
   RxBool loading = true.obs;
 
   final global = Get.find<GlobalController>();
-  final _prefs = new PreferenciasUsuario();
 
   bool ordena = false;
 
@@ -27,7 +26,7 @@ class VeterinariasController extends GetxController {
   void onInit() {
     super.onInit();
 
-    if (_prefs.hasToken()) {
+    if (prefUser.hasToken()) {
       getVets();
     }
   }

@@ -26,7 +26,6 @@ import 'package:proypet/source/veterinarias/view/vet_detalle/detalle_vet.dart';
 import 'package:proypet/source/veterinarias/view/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
 import 'package:proypet/source/veterinarias/view/vet_find/buscar_veterinaria.dart';
 import 'package:proypet/source/veterinarias/view/vet_reserva/vet_reservar.dart';
-// import 'package:proypet/source/usuario/view/password/cambia_password.dart';
 
 class AppRoutes{
   GetStorage box = GetStorage();
@@ -53,17 +52,17 @@ class AppRoutes{
         page: () => NavigationBar(currentTabIndex: 0),//?nav/inicio
         children: [
           // GetPage(name: 'inicio', page: () => NavigastionBar(currentTabIndex: 0)),
-          GetPage(name: 'notifica', page: () => NavigationBar(currentTabIndex: 1)),
-          GetPage(name: 'lista', page: () => NavigationBar(currentTabIndex: 2)),
-          GetPage(name: 'recompensa', page: () => NavigationBar(currentTabIndex: 3)),
-          GetPage(name: 'notifica', page: () => NavigationBar(currentTabIndex: 4)),
+          GetPage(name: '/notifica', page: () => NavigationBar(currentTabIndex: 1)),
+          GetPage(name: '/lista', page: () => NavigationBar(currentTabIndex: 2)),
+          GetPage(name: '/recompensa', page: () => NavigationBar(currentTabIndex: 3)),
+          GetPage(name: '/notifica', page: () => NavigationBar(currentTabIndex: 4)),
         ],
       ),
       GetPage(
         name: 'micuenta', 
         page: () => MiCuentaPage(),
         children: [
-          GetPage(name: 'editar', page: () => UserPage()),
+          GetPage(name: '/editar', page: () => UserPage()),
         ],
       ),
       GetPage(
@@ -71,8 +70,8 @@ class AppRoutes{
         page: () => MascotaDetallePage(),//?mascota/detalle
         children: [
           // GetPage(name: 'detalle', page: () => MascotaDetallePage()),
-          GetPage(name: 'historial', page: () => HistorialMascota()),
-          GetPage(name: 'agregar', page: () => MascotaAgregarPage()),
+          GetPage(name: '/historial', page: () => HistorialMascota()),
+          GetPage(name: '/agregar', page: () => MascotaAgregarPage()),
         ],
       ),
       GetPage(
@@ -80,18 +79,18 @@ class AppRoutes{
         page: () => VetDetallePage(),//?vet/detalle
         children: [
           // GetPage(name: 'detalle', page: () => VetDetallePage()),
-          GetPage(name: 'reserva', page: () => DataReserva()),
-          GetPage(name: 'buscar', page: () => BuscarVeterinaria()), //?buscarveterinaria
+          GetPage(name: '/reserva', page: () => DataReserva()),
+          GetPage(name: '/buscar', page: () => BuscarVeterinaria()), //?buscarveterinaria
         ],
       ),
       GetPage(
         name: 'help', 
         page: () => AyudaPage(),
         children: [
-          GetPage(name: 'solicitavet', page: () => SolicitaVetPage()),
-          GetPage(name: 'enviarqueja', page: () => QuejaPage()),
-          GetPage(name: 'feedback', page: () => FeedbackPage()),
-          GetPage(name: 'faq', page: () => FaqPage()),
+          GetPage(name: '/solicitavet', page: () => SolicitaVetPage()),
+          GetPage(name: '/enviarqueja', page: () => QuejaPage()),
+          GetPage(name: '/feedback', page: () => FeedbackPage()),
+          GetPage(name: '/faq', page: () => FaqPage()),
           // GetPage(name: 'ayuda', page: () => AyudaPage()),
         ],
       ),
@@ -103,8 +102,17 @@ class AppRoutes{
       GetPage(name: 'canjearpuntos', page: () => CanjearPuntos()),
       GetPage(name: 'sorteopuntos', page: () => SorteoPuntos()),
       //
-      GetPage(name: 'shopproduct', page: () => ShoppingProductPage()),
-      GetPage(name: 'shopcart', page: () => ShopCartPage()),
+      // GetPage(name: 'shopproduct', page: () => ShoppingProductPage()),
+      // GetPage(name: 'shopcart', page: () => ShopCartPage()),
+      //
+      GetPage(
+        name: 'shop', 
+        page: () => MiCuentaPage(),
+        children: [
+          GetPage(name: '/product', page: () => ShoppingProductPage()),
+          GetPage(name: '/cart', page: () => ShopCartPage()),
+        ],
+      ),
     ];
   }
 }

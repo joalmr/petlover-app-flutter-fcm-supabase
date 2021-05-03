@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'package:proypet/routes/routes.dart';
 import 'package:get/get.dart';
 import 'package:proypet/source/home/controller/home_controller.dart';
 import 'config/global_variables.dart';
-
 import 'design/theme/theme.dart';
 import 'design/theme/themeDark.dart';
-
 import 'source/_global/_global_controller.dart';
 import 'source/_navbar/presentation/view/navigation_bar.dart';
 import 'source/veterinarias/controller/filtra_vets_controller.dart';

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:get/get.dart';
 import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 import 'variables_env.dart';
@@ -16,12 +15,13 @@ final String keyMap = environment['keyMap'];
 final String urlName = environment['url'];
 final String urlApi = environment['urlApi'];
 
-final mediaAncho = Get.width;
-final _prefs = new PreferenciasUsuario();
+// final mediaAncho = Get.width;
+
+final prefUser = new PreferenciasUsuario();
 
 headersToken() {
   return {
-    HttpHeaders.authorizationHeader: "Bearer ${_prefs.token}",
+    HttpHeaders.authorizationHeader: "Bearer ${prefUser.token}",
     "X-Requested-With": "XMLHttpRequest",
   };
 }

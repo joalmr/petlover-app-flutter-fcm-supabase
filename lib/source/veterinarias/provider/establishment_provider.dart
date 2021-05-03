@@ -7,12 +7,11 @@ import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class EstablishmentProvider {
   final _url = urlApi;
-  final _prefs = new PreferenciasUsuario();
 
   Future<dynamic> getVets(dynamic filtros) async {
     // establishments/list
     List<EstablishmentModelList> establecimientos = [];
-    if (!_prefs.hasPosition()) {
+    if (!prefUser.hasPosition()) {
       return {
         'code': 211,
         'establecimientos': establecimientos,
@@ -26,8 +25,8 @@ class EstablishmentProvider {
       filtroServicio = "";
     }
 
-    String lat = _prefs.position.split(',')[0];
-    String lng = _prefs.position.split(',')[1];
+    String lat = prefUser.position.split(',')[0];
+    String lng = prefUser.position.split(',')[1];
 
     final url = Uri.parse(
         '$_url/establishments/list?services=$filtroServicio&latitude=$lat&longitude=$lng');
@@ -47,8 +46,8 @@ class EstablishmentProvider {
   }
 
   Future<dynamic> getVet(String idVet) async {
-    String lat = _prefs.position.toString().split(',')[0];
-    String lng = _prefs.position.toString().split(',')[1];
+    String lat = prefUser.position.toString().split(',')[0];
+    String lng = prefUser.position.toString().split(',')[1];
     final url =
         Uri.parse('$_url/establishments/$idVet?latitude=$lat&longitude=$lng');
 

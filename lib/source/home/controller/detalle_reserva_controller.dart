@@ -1,9 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:map_launcher/map_launcher.dart';
-import 'package:proypet/components/form_control/btn_others.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -24,10 +21,7 @@ class DetalleRservadoController extends GetxController {
     argumentos = Get.arguments;
   }
 
-  void llamar() {
-    _launchPhone(argumentos.establishmentPhone);
-  }
-
+  void llamar() => _launchPhone(argumentos.establishmentPhone);
   _launchPhone(String phone) async {
     var url = 'tel:$phone';
     if (await canLaunch(url))
@@ -36,14 +30,11 @@ class DetalleRservadoController extends GetxController {
       throw 'No se pudo llamar $url';
   }
 
-  void abreMaps() {
-    _abreMaps();
-  }
-
 //TODO: al parecer no funciona
+  void abreMaps() => _abreMaps();
   _abreMaps() async {
-    final title = argumentos.establishmentName;
-    final description = argumentos.establishmentAddress;
+    // final title = argumentos.establishmentName;
+    // final description = argumentos.establishmentAddress;
     // final coords = Coords(
     //   argumentos.establishmentLatitude,
     //   argumentos.establishmentLongitude,
@@ -79,10 +70,7 @@ class DetalleRservadoController extends GetxController {
     // );
   }
 
-  alertaEliminar() {
-    _alertaEliminar(argumentos.bookingId);
-  }
-
+  alertaEliminar() => _alertaEliminar(argumentos.bookingId);
   _alertaEliminar(id) {
     return Get.dialog(FadeIn(
       child: AlertDialog(
@@ -104,10 +92,7 @@ class DetalleRservadoController extends GetxController {
     ));
   }
 
-  void eliminaAtencion(id) {
-    _eliminaAtencion(id);
-  }
-
+  void eliminaAtencion(id) => _eliminaAtencion(id);
   Future<void> _eliminaAtencion(id) async {
     var resp = await bookingService.deleteBooking(id);
     if (resp) {

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:proypet/design/styles/styles.dart';
 
 final _textstyle = TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold);
 

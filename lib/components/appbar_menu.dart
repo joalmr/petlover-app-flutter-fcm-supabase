@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
 
 Widget appbar(logo, String texto, List<Widget> acc) {
@@ -29,7 +28,7 @@ Widget appbar(logo, String texto, List<Widget> acc) {
 
 Widget navbar() {
   return PreferredSize(
-    preferredSize: Size(mediaAncho, 1000),
+    preferredSize: Size(Get.width, 1000),
     child: Container(
       color: colorMain,
       child: Padding(

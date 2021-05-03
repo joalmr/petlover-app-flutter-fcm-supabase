@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/notificaciones/model/notificacion_model.dart';
 import 'package:proypet/source/notificaciones/service/notification_service.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 
 class NotificacionController extends GetxController {
   final notificacionService = NotificationService();
-  final _prefs = new PreferenciasUsuario();
 
   NotificacionModel notificationModel;
   RxList<Notificacion> notifications = <Notificacion>[].obs;
@@ -15,7 +14,7 @@ class NotificacionController extends GetxController {
   void onInit() {
     super.onInit();
     getNotificacion();
-    _prefs.notificaAviso = false;
+    prefUser.notificaAviso = false;
   }
 
   Future refresh() => _refresh();

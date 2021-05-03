@@ -18,7 +18,7 @@ class ShoppingPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 15),
               child: InkWell(
-                onTap: () => Get.toNamed("shopcart"),
+                onTap: () => Get.toNamed("shop/cart"),
                 borderRadius: BorderRadius.circular(100),
                 child: AspectRatio(
                   aspectRatio: 1,
@@ -56,32 +56,32 @@ class ShoppingPage extends StatelessWidget {
                     cardShop(
                       image: Icon(Icons.list_alt, color: colorMain),
                       text: 'Shopping',
-                      fn: () => Get.toNamed('shopproduct'),
+                      fn: () => Get.toNamed('shop/product'),
                     ),
                     cardShop(
                       image: Icon(Icons.hail, color: Colors.pinkAccent),
                       text: 'Alimentos',
-                      fn: () => Get.toNamed('shopproduct'),
+                      fn: () => Get.toNamed('shop/product'),
                     ),
                     cardShop(
                       image: Icon(Icons.hail, color: Colors.amberAccent),
                       text: 'Accesorios',
-                      fn: () => Get.toNamed('shopproduct'),
+                      fn: () => Get.toNamed('shop/product'),
                     ),
                     cardShop(
                       image: Icon(Icons.hail, color: Colors.lightBlueAccent),
                       text: 'Higiene',
-                      fn: () => Get.toNamed('shopproduct'),
+                      fn: () => Get.toNamed('shop/product'),
                     ),
                     cardShop(
                       image: Icon(Icons.hail, color: Colors.purpleAccent),
                       text: 'Suplementos',
-                      fn: () => Get.toNamed('shopproduct'),
+                      fn: () => Get.toNamed('shop/product'),
                     ),
                     cardShop(
                       image: Icon(Icons.hail, color: Colors.lightGreenAccent),
                       text: 'Farmacia',
-                      fn: () => Get.toNamed('shopproduct'),
+                      fn: () => Get.toNamed('shop/product'),
                     ),
                   ],
                 ),

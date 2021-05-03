@@ -9,7 +9,6 @@ import 'lista_vets_controller.dart';
 
 class FiltraVetsController extends GetxController {
   final addressService = AddressService();
-  final _prefs = new PreferenciasUsuario();
   final vetC = Get.find<VeterinariasController>();
   final global = Get.find<GlobalController>();
 

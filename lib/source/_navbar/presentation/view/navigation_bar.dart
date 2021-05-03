@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
-import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_navbar/domain/_navigation_controller.dart';
 import 'package:proypet/source/notificaciones/view/notificaciones_view.dart';
@@ -59,7 +58,7 @@ class _NavigationBarState extends State<NavigationBar> {
     return GetBuilder<NavigationController>(
       init: NavigationController(),
       builder: (_) {
-        return mediaAncho < 600
+        return Get.width < 600
             ? Scaffold(
                 body: _kTabPages[currentTabIndex],
                 bottomNavigationBar: BottomNavigationBar(

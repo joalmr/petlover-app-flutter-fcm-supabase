@@ -5,12 +5,10 @@ import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/utils/error.dart';
-import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 
 class AuthProvider {
   final _url = urlApi;
-  final _prefs = new PreferenciasUsuario();
 
   Future<int> loginToken(String email, String password) async {
     final url = Uri.parse('$_url/login');
@@ -20,8 +18,8 @@ class AuthProvider {
 
       if (response.statusCode == 200) {
         final jsonResp = json.decode(response.body);
-        _prefs.token = jsonResp['token'];
-        _prefs.verify = jsonResp['verify'];
+        prefUser.token = jsonResp['token'];
+        prefUser.verify = jsonResp['verify'];
       }
       return response.statusCode;
     } catch (ex) {
@@ -51,8 +49,8 @@ class AuthProvider {
 
       if (response.statusCode == 200) {
         final jsonResp = json.decode(response.body);
-        _prefs.token = jsonResp['token'];
-        _prefs.verify = jsonResp['verify'];
+        prefUser.token = jsonResp['token'];
+        prefUser.verify = jsonResp['verify'];
       }
 
       return response.statusCode;
@@ -78,8 +76,8 @@ class AuthProvider {
 
       if (response.statusCode == 200) {
         final jsonResp = json.decode(response.body);
-        _prefs.token = jsonResp['token'];
-        _prefs.verify = jsonResp['verify'];
+        prefUser.token = jsonResp['token'];
+        prefUser.verify = jsonResp['verify'];
       }
       return response.statusCode;
     } catch (ex) {
@@ -136,13 +134,13 @@ class AuthProvider {
     FacebookSignInService.signOut();
     GoogleSignInService.signOut();
     logOut();
-    _prefs.tokenDel(); //limpia token
-    _prefs.verifyDel(); //limpia verificado
-    _prefs.positionDel(); //limpia gps para lista vets
-    _prefs.ubicacionDel(); //limpia direccion para lista vets
-    _prefs.myAddressDel(); //limpia direccion de la ultima reserva realizada
-    _prefs.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
-    _prefs.notificaAvisoDel(); //limpia notificacion aviso
+    prefUser.tokenDel(); //limpia token
+    prefUser.verifyDel(); //limpia verificado
+    prefUser.positionDel(); //limpia gps para lista vets
+    prefUser.ubicacionDel(); //limpia direccion para lista vets
+    prefUser.myAddressDel(); //limpia direccion de la ultima reserva realizada
+    prefUser.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
+    prefUser.notificaAvisoDel(); //limpia notificacion aviso
 
     Get.offAllNamed('login');
   }

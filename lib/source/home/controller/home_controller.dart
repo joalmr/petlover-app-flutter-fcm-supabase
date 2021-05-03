@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/booking/model/booking_model.dart';
 import 'package:proypet/source/mascota/model/pet_model.dart';
 import 'package:proypet/source/usuario/model/user_model.dart';
@@ -27,8 +28,6 @@ class HomeController extends GetxController {
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
 
-  final _prefs = new PreferenciasUsuario();
-
   void volver() => Get.back();
 
   Future refresh() => _refresh();
@@ -43,7 +42,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
 
-    if (_prefs.hasToken()) {
+    if (prefUser.hasToken()) {
       getUsuario();
       getSummary();
     }

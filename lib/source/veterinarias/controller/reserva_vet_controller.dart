@@ -32,8 +32,6 @@ class ReservaVetController extends GetxController {
   final vetdC = Get.find<VetDetalleController>();
   final bookingService = BookingService();
 
-  final _prefs = new PreferenciasUsuario();
-
   EstablecimientoModel vet;
   List<MascotaModel2> misMascotas;
 
@@ -175,13 +173,13 @@ class ReservaVetController extends GetxController {
   }
 
   direccionInicial() {
-    if (_prefs.hasMyAddressLatLng()) {
-      lat = double.parse(_prefs.myAddressLatLng.split(',')[0]);
-      lng = double.parse(_prefs.myAddressLatLng.split(',')[1]);
+    if (prefUser.hasMyAddressLatLng()) {
+      lat = double.parse(prefUser.myAddressLatLng.split(',')[0]);
+      lng = double.parse(prefUser.myAddressLatLng.split(',')[1]);
       zoomIn = 16.0;
 
-      if (_prefs.hasMyAddress()) {
-        inputDireccionController.text = _prefs.myAddress;
+      if (prefUser.hasMyAddress()) {
+        inputDireccionController.text = prefUser.myAddress;
       }
 
       marcador.add(
@@ -192,7 +190,7 @@ class ReservaVetController extends GetxController {
           onDragEnd: ((value) {
             lat = value.latitude;
             lng = value.longitude;
-            _prefs.myAddressLatLng = "$lat,$lng";
+            prefUser.myAddressLatLng = "$lat,$lng";
           }),
         ),
       );
@@ -254,8 +252,8 @@ class ReservaVetController extends GetxController {
       // lat = latlng.lat;
       // lng = latlng.lng;
 
-      _prefs.myAddressLatLng = "$lat,$lng";
-      _prefs.myAddress = dato.name;
+      prefUser.myAddressLatLng = "$lat,$lng";
+      prefUser.myAddress = dato.name;
 
       marcador.add(
         Marker(
@@ -265,7 +263,7 @@ class ReservaVetController extends GetxController {
           onDragEnd: ((value) {
             lat = value.latitude;
             lng = value.longitude;
-            _prefs.myAddressLatLng = "$lat,$lng";
+            prefUser.myAddressLatLng = "$lat,$lng";
           }),
         ),
       );
@@ -361,7 +359,7 @@ class ReservaVetController extends GetxController {
       booking,
       reservaType,
       deliveryTipo,
-      _prefs.myAddress,
+      prefUser.myAddress,
     );
 
     if (resp) {

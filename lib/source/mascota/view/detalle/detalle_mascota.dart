@@ -62,8 +62,7 @@ class MascotaDetallePage extends StatelessWidget {
                                   height: 120,
                                   padding: EdgeInsets.symmetric(horizontal: 5),
                                   child: AspectRatio(
-                                    aspectRatio:
-                                        (mediaAncho < 600) ? 1 : 12 / 8,
+                                    aspectRatio: (Get.width < 600) ? 1 : 12 / 8,
                                     child: ClipRRect(
                                       borderRadius: borderRadius,
                                       child: Image(

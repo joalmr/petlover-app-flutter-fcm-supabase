@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
 
 Widget appBar(
     {@required String texto, @required List<Widget> acc, bool logo = true}) {
-  if (mediaAncho < 600) {
+  if (Get.width < 600) {
     return AppBar(
       leading: null,
       centerTitle: false,

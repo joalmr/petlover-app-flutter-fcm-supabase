@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/veterinarias/model/establecimiento_short_model.dart';
 import 'package:proypet/source/veterinarias/service/establishment_find_service.dart';
 import 'package:proypet/source/veterinarias/service/establishment_service.dart';
@@ -15,7 +16,6 @@ class BuscarVetController extends GetxController {
   RxList<EstablishmentModelList> veterinarias = <EstablishmentModelList>[].obs;
   RxBool carga = false.obs;
 
-  final _prefs = new PreferenciasUsuario();
   RxBool hasPosition = false.obs;
   // RxString _findText = "".obs;
   // set findText(String value) => _findText.value = value;
@@ -25,7 +25,7 @@ class BuscarVetController extends GetxController {
   void onInit() {
     super.onInit();
     veterinarias.clear();
-    hasPosition.value = _prefs.hasPosition();
+    hasPosition.value = prefUser.hasPosition();
   }
 
   findVet(vetName) {
