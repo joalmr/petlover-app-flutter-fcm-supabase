@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/source/notificaciones/model/notificacion_model.dart';
-import 'package:proypet/source/veterinarias/service/establishment_service.dart';
+import 'package:proypet/source/veterinarias/data/service/establishment_service.dart';
 import 'package:proypet/utils/add_msg.dart';
 
 import '../build_noti.dart';

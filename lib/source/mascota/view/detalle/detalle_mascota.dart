@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/source/mascota/view/components/mascota_drawer.dart';
 import 'package:proypet/components/transition/fadeView.dart';
-import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/mascota/controller/detalle_mascota_controller.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/source/veterinarias/controller/filtra_vets_controller.dart';
-
+import 'package:proypet/source/veterinarias/domain/controller/filtra_vets_controller.dart';
 import 'cardFrecuentes.dart';
 
 final filtros = Get.find<FiltraVetsController>();

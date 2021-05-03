@@ -8,8 +8,8 @@ import 'package:proypet/source/auth/data/service/auth_service.dart';
 import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
-import 'package:proypet/source/veterinarias/controller/lista_vets_controller.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
+import 'package:proypet/source/veterinarias/domain/controller/lista_vets_controller.dart';
 
 
 class LoginController extends GetxController {
@@ -144,7 +144,7 @@ class LoginController extends GetxController {
 
   ejecutaFirebase() {
     //TODO: firebase
-    // pushController.firebase();
+    pushController.firebase();
     homeController.getUsuario();
     homeController.getSummary();
     vetsController.getVets();

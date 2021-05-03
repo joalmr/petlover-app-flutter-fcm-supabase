@@ -140,7 +140,7 @@ class AuthProvider {
     prefUser.ubicacionDel(); //limpia direccion para lista vets
     prefUser.myAddressDel(); //limpia direccion de la ultima reserva realizada
     prefUser.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
-    prefUser.notificaAvisoDel(); //limpia notificacion aviso
+    // prefUser.notificaAvisoDel(); //limpia notificacion aviso
 
     Get.offAllNamed('login');
   }

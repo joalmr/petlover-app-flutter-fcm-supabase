@@ -47,7 +47,7 @@ class SolicitaVetPage extends StatelessWidget {
                         color: colorMain,
                       ),
                       SizedBox(height: 50),
-                      FlatButton(
+                      TextButton(
                         onPressed: () => Share.share(
                             'Hola! Te invito a que seas parte de Proypet❤️ Entérate más en: https://proypet.com/veterinarias',
                             subject: 'Se parte de Proypet'),
@@ -70,11 +70,11 @@ class SolicitaVetPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12.0,
-                          horizontal: 20.0,
-                        ),
-                        shape: shape10,
+                        // padding: EdgeInsets.symmetric(
+                        //   vertical: 12.0,
+                        //   horizontal: 20.0,
+                        // ),
+                        // shape: shape10,
                       ),
                     ],
                   )

@@ -78,11 +78,11 @@ class MascotaDrawer extends StatelessWidget {
         title: null, //Text('Fallecido'),
         content: Text('Lamentamos la perdida de tu ser querido.'),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
               onPressed: () => Get.back(),
               child: Text('Cancelar',
                   style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
-          FlatButton(
+          TextButton(
               onPressed: () => control.falleceMascota(true),
               child: Text('Falleció mi mascota',
                   style: Get.textTheme.subtitle2
@@ -98,12 +98,12 @@ class MascotaDrawer extends StatelessWidget {
         title: null, //Text('Fallecido'),
         content: Text('Cometiste un error?'),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () => Get.back(),
             child: Text('Cancelar',
                 style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
           ),
-          FlatButton(
+          TextButton(
               onPressed: () => control.falleceMascota(false),
               child: Text('Sí, cometí un error',
                   style: Get.textTheme.subtitle2
@@ -119,11 +119,11 @@ class MascotaDrawer extends StatelessWidget {
         title: Text('Eliminar'),
         content: Text('Seguro que desea eliminar a ?'), //${mascota.name}
         actions: <Widget>[
-          FlatButton(
+          TextButton(
               onPressed: () => Get.back(),
               child: Text('Cancelar',
                   style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
-          FlatButton(
+          TextButton(
               onPressed: () => control.eliminaMascota(),
               child: Text('Sí, eliminar',
                   style: Get.textTheme.subtitle2

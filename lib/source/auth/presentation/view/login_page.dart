@@ -101,7 +101,7 @@ class LoginPage extends StatelessWidget {
                       ),
                 SizedBox(height: 10.0),
                 Center(
-                  child: FlatButton(
+                  child: TextButton(
                     onPressed: () => Get.toNamed("/olvidopass"),
                     child: Text(
                       "Olvidaste tu contraseña?".toUpperCase(),
@@ -125,12 +125,6 @@ class LoginPage extends StatelessWidget {
                             .copyWith(decoration: TextDecoration.underline),
                       ),
                       onPressed: () => Get.toNamed("/registro"),
-                      // style: TextButton.styleFrom(
-                      //   padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                      //   primary: colorMain,
-                      //   // textStyle: TextStyle(
-                      //   //   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-                      //   // ),
                       // ),
                     ),
                   ],

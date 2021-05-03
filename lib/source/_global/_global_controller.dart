@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
-import 'package:proypet/source/update/view/update_page.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
+import 'package:proypet/source/update/view/update_page.dart';
 import 'package:proypet/source/update/service/update_service.dart';
 import 'package:proypet/source/usuario/service/address_service.dart';
 
@@ -70,19 +70,18 @@ class GlobalController extends GetxController {
 
   initApp() {
     print('inicia app');
-    //TODO: firebase
-    // pushController.firebase();
+    pushController.firebase(); //TODO: firebase
     
-    // final _tempLat = prefUser.position.toString().split(",")[0];
-    // final _tempLng = prefUser.position.toString().split(",")[1];
+    final _tempLat = prefUser.position.toString().split(",")[0];
+    final _tempLng = prefUser.position.toString().split(",")[1];
 
-    // if (prefUser.hasUbicacion() && prefUser.hasPosition()) {
-    //   print('==actualizar direccion');
-    //   addressService.setAddress(
-    //     prefUser.ubicacion,
-    //     _tempLat,
-    //     _tempLng,
-    //   );
-    // }
+    if (prefUser.hasUbicacion() && prefUser.hasPosition()) {
+      print('==actualizar direccion');
+      addressService.setAddress(
+        prefUser.ubicacion,
+        _tempLat,
+        _tempLng,
+      );
+    }
   }
 }

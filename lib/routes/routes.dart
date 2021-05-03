@@ -22,10 +22,10 @@ import 'package:proypet/source/usuario/view/feedback/feedback.dart';
 import 'package:proypet/source/usuario/view/mi_cuenta.dart';
 import 'package:proypet/source/usuario/view/quejas/queja_view.dart';
 import 'package:proypet/source/usuario/view/solicita_veterinaria/solicitar_veterinaria.dart';
-import 'package:proypet/source/veterinarias/view/vet_detalle/detalle_vet.dart';
-import 'package:proypet/source/veterinarias/view/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
-import 'package:proypet/source/veterinarias/view/vet_find/buscar_veterinaria.dart';
-import 'package:proypet/source/veterinarias/view/vet_reserva/vet_reservar.dart';
+import 'package:proypet/source/veterinarias/presentation/view/vet_detalle/detalle_vet.dart';
+import 'package:proypet/source/veterinarias/presentation/view/vet_detalle/tabs_detalle/comentario_tab/todos_comentarios_view.dart';
+import 'package:proypet/source/veterinarias/presentation/view/vet_find/buscar_veterinaria.dart';
+import 'package:proypet/source/veterinarias/presentation/view/vet_reserva/vet_reservar.dart';
 
 class AppRoutes{
   GetStorage box = GetStorage();
@@ -105,6 +105,7 @@ class AppRoutes{
       // GetPage(name: 'shopproduct', page: () => ShoppingProductPage()),
       // GetPage(name: 'shopcart', page: () => ShopCartPage()),
       //
+      //*inactivas
       GetPage(
         name: 'shop', 
         page: () => MiCuentaPage(),

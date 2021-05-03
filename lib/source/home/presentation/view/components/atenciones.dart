@@ -107,7 +107,7 @@ class Atenciones extends StatelessWidget {
                               ),
                             ),
                           ),
-                          child: FlatButton(
+                          child: TextButton(
                             onPressed: () => _.detalleReservado(atencion),
                             child: ListTile(
                               leading: CircleAvatar(

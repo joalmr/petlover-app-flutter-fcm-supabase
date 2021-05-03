@@ -47,7 +47,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: FlatButton(
+            child: TextButton(
               child: Text("Saltar"),
               onPressed: () => Get.offAllNamed('/login'),
             ),

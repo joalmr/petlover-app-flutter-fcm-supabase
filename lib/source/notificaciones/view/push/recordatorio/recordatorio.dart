@@ -40,11 +40,11 @@ Widget recordatorio(noti) {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text('Omitir'),
               onPressed: () => Get.back(),
             ),
-            FlatButton(
+            TextButton(
                 child: Text('Ir'),
                 onPressed: () {
                   Get.back();

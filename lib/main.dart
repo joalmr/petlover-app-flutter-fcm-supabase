@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,32 +11,17 @@ import 'design/theme/themeDark.dart';
 import 'source/_global/_global_controller.dart';
 import 'source/_navbar/presentation/view/navigation_bar.dart';
 import 'source/home/domain/controller/home_controller.dart';
-import 'source/veterinarias/controller/filtra_vets_controller.dart';
-import 'source/veterinarias/controller/lista_vets_controller.dart';
-
-// //proypet user
-// FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+import 'source/veterinarias/domain/controller/filtra_vets_controller.dart';
+import 'source/veterinarias/domain/controller/lista_vets_controller.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  //TODO: firebase
   await Firebase.initializeApp();
-
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
@@ -57,7 +41,6 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: [
         const Locale('es', 'ES'),
-        // const Locale('en', 'US'),
       ],
       initialRoute: '/',
       defaultTransition: Transition.fadeIn,
@@ -68,3 +51,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+// const Locale('en', 'US'),

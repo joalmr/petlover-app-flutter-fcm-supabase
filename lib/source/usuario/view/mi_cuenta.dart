@@ -75,12 +75,12 @@ class MiCuentaPage extends StatelessWidget {
           titlePadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           content: Text("Desea cerrar sesión?"),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               onPressed: () => Get.back(),
               child: Text('Cancelar',
                   style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () => _outToken(),
               child: Text('Cerrar sesión',
                   style: Get.textTheme.subtitle2
@@ -102,7 +102,7 @@ class MiCuentaPage extends StatelessWidget {
     prefUser.ubicacionDel(); //limpia direccion para lista vets
     prefUser.myAddressDel(); //limpia direccion de la ultima reserva realizada
     prefUser.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
-    prefUser.notificaAvisoDel(); //limpia notificacion aviso
+    // prefUser.notificaAvisoDel(); //limpia notificacion aviso
 
     Get.offAllNamed('/login');
   }
