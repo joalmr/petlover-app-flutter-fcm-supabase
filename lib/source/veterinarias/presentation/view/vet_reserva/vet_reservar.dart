@@ -212,7 +212,7 @@ class DataReserva extends StatelessWidget {
                                           style: TextStyle()),
                                     ],
                                   ),
-                                  style: TextStyle(fontSize: sizeSmallx1),
+                                  style: TextStyle(fontSize: font12),
                                 ),
                                 SizedBox(height: 30.0),
                                 _.servicioReservaLista.length > 0

@@ -122,7 +122,7 @@ class PuntosGanados extends StatelessWidget {
                                         child: Text(
                                           '+${bonificado.points}',
                                           style: TextStyle(
-                                              fontSize: sizeSmallx2,
+                                              fontSize: font10,
                                               fontWeight: FontWeight.bold,
                                               color: colorGray1),
                                         ),

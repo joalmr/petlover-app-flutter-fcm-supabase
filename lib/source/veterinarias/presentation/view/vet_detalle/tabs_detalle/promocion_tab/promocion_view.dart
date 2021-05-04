@@ -84,7 +84,7 @@ class ViewPromocion extends StatelessWidget {
                                               : '$descuentoMonto',
                                       style: TextStyle(
                                         color: promocion.type == 'Total'
-                                            ? colorGreen2
+                                            ? colorMain
                                             : colorRed,
                                         fontWeight: FontWeight.w900,
                                         fontSize: 24,
@@ -96,7 +96,7 @@ class ViewPromocion extends StatelessWidget {
                                           : 'soles',
                                       style: TextStyle(
                                         color: promocion.type == 'Total'
-                                            ? colorGreen2
+                                            ? colorMain
                                             : colorRed,
                                         fontWeight: FontWeight.w900,
                                         fontSize: 10,

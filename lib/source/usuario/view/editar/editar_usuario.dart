@@ -65,7 +65,7 @@ class UserPage extends StatelessWidget {
                         ),
                         Text(
                           'Ingresar su teléfono es útil para que la veterinaria pueda comunicarse con usted.',
-                          style: TextStyle(fontSize: sizeSmallx1),
+                          style: TextStyle(fontSize: font12),
                         ),
                         SizedBox(height: 25.0),
                         Center(

@@ -51,7 +51,7 @@ banio(data) {
         "Recomendación",
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          fontSize: sizeSmallx2,
+          fontSize: font10,
         ),
       ),
       Text(

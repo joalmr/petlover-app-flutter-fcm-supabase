@@ -70,7 +70,7 @@ class AtencionesPage extends StatelessWidget {
                                             formatDateTime(_atencion.createdAt),
                                             style: TextStyle(
                                               color: colorMain,
-                                              fontSize: sizeSmallx1,
+                                              fontSize: font12,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),

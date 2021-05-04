@@ -29,11 +29,6 @@ const MaterialColor colorMain = MaterialColor(
 );
 
 /////////////////
-//
-// final colorGreen = Color(0xFF00A48C);
-final colorGreen2 = Color(0xFF008480);
-final colorGreen3 = Color(0xFF006F80);
-//
 final colorGray1 = Color(0xFFf2f2f2);
 final colorGray2 = Color(0xFFd6d6d6);
 final colorGray3 = Color(0xFFb9b9b9);
@@ -50,6 +45,6 @@ final shape20 =
 final borderRadius = BorderRadius.circular(10.0);
 final borderRadius20 = BorderRadius.circular(20.0);
 //
-final sizeSmallx1 = 12.0;
-final sizeSmallx2 = 10.0;
-final sizeSmallx3 = 8.0;
+final font12 = 12.0;
+final font10 = 10.0;
+final font8 = 8.0;

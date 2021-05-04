@@ -96,7 +96,7 @@ class RecompensasPage extends StatelessWidget {
                                                       'Puntos acumulados',
                                                       style: TextStyle(
                                                           color: Colors.white60,
-                                                          fontSize: sizeSmallx1,
+                                                          fontSize: font12,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     ),

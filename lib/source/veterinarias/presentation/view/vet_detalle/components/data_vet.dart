@@ -50,7 +50,7 @@ class DataVet extends StatelessWidget {
                           SizedBox(width: 5),
                           Text(
                             '${_.vet.distance}km de distancia',
-                            style: TextStyle(fontSize: sizeSmallx2),
+                            style: TextStyle(fontSize: font10),
                           ),
                         ],
                       ),
@@ -61,7 +61,7 @@ class DataVet extends StatelessWidget {
                     ],
                   ),
                   subtitle: Text('${_.vet.address} ',
-                      style: TextStyle(fontSize: sizeSmallx1)),
+                      style: TextStyle(fontSize: font12)),
                   trailing: Stack(
                     children: <Widget>[
                       Container(height: 56.0, width: 60.0),

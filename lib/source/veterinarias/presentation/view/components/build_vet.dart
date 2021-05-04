@@ -47,7 +47,7 @@ Widget buildVets(EstablishmentModelList vet) {
                                 '${vet.distance}km de distancia',
                                 maxLines: 1,
                                 style: TextStyle(
-                                    fontSize: sizeSmallx1,
+                                    fontSize: font12,
                                     color: colorGray3,
                                     fontWeight: FontWeight.w400),
                               ),

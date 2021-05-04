@@ -26,7 +26,7 @@ class ViewPrecio extends StatelessWidget {
                     ),
                     Text(
                       "*Sujeto a revisión física de mascota",
-                      style: TextStyle(fontSize: sizeSmallx2),
+                      style: TextStyle(fontSize: font10),
                     ),
                     if (_.vet.prices.length > 0)
                       listaPrecio(_.vet.prices)
