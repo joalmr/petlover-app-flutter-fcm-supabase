@@ -2,10 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';
 import 'package:proypet/components/form_control/text_from.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -18,7 +18,7 @@ class MascotaEditarPage extends StatelessWidget {
     return GetX<MascotaEditarController>(
       init: MascotaEditarController(),
       builder: (_) => Scaffold(
-        appBar: appbar(null, 'Editar mascota', null),
+        appBar: appBar(texto: 'Editar mascota', acc: null),
         body: _.loading.value
             ? FadeIn(
                 child: Container(

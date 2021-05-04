@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -13,7 +13,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null, 'Editar usuario', null),
+      appBar: appBar(texto: 'Editar usuario', acc: null),
       body: GetX<UsuarioController>(
         init: UsuarioController(),
         builder: (_) {

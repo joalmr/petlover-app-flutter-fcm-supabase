@@ -9,7 +9,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
@@ -87,7 +87,7 @@ class _VetMapaPageState extends State<VetMapaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null, 'Mapa veterinarias', null),
+      appBar: appBar(texto: 'Mapa veterinarias', acc: null),
       body: mapToggle
           ? FadeViewSafeArea(child: _onBody())
           : FadeViewSafeArea(

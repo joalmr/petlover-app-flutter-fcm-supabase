@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/shopping/controller/shopping_controller.dart';
 
@@ -11,7 +11,7 @@ class ShopCartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ShoppingController>(builder: (_) {
       return Scaffold(
-        appBar: appbar(null, "Shopping cart", null),
+        appBar: appBar(texto: "Shopping cart", acc: null),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(

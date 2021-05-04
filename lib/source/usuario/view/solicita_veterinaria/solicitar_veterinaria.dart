@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/usuario/controller/solicita_vet_controller.dart';
 import 'package:share/share.dart';
@@ -15,7 +15,7 @@ class SolicitaVetPage extends StatelessWidget {
         init: SolicitaVetController(),
         builder: (_) {
           return Scaffold(
-            appBar: appbar(null, 'Solicitar Veterinaria', null),
+            appBar: appBar(texto: 'Solicitar Veterinaria', acc: null),
             body: _.envia.value
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,

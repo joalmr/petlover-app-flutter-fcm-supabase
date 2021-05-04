@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/source/mascota/view/components/mascota_drawer.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -27,16 +27,7 @@ class MascotaDetallePage extends StatelessWidget {
         return Scaffold(
           key: _scaffoldKey,
           endDrawer: MascotaDrawer(),
-          appBar: appbar(
-            null,
-            _.loading.value ? '' : _.pet.name ?? '',
-            <Widget>[
-              IconButton(
-                icon: Icon(Icons.menu),
-                onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
-              ),
-            ],
-          ),
+          appBar: appBar(texto: _.loading.value ? '' : _.pet.name ?? '', acc: null),
           body: FadeView(
             child: _.loading.value
                 ? Container(

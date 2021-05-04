@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/source/usuario/controller/password_controller.dart';
 
@@ -10,7 +10,7 @@ class ChangePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null, 'Cambiar contraseña', null),
+      appBar: appBar(texto: 'Cambiar contraseña', acc: null),
       body: FadeViewSafeArea(
         child: GetX<PasswordController>(
             init: PasswordController(),

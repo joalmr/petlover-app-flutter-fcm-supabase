@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/source/mascota/controller/detalle_mascota_controller.dart';
 
 import 'all_histories.dart';
@@ -12,7 +12,7 @@ class HistorialMascota extends StatelessWidget {
       initState: (_) {},
       builder: (_) {
         return Scaffold(
-          appBar: appbar(null, 'Historial de ${_.pet.name}', null),
+          appBar: appBar(texto: 'Historial de ${_.pet.name}', acc: null),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: _.petAllHistory.length == 0

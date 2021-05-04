@@ -1,41 +1,45 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 
 class CanjearPuntos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null, "Tienda puntos", <Widget>[
-        Padding(
-          padding: EdgeInsets.only(right: 15),
-          child: InkWell(
-            onTap: () {},
-            borderRadius: BorderRadius.circular(100),
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Badge(
-                position: BadgePosition.bottomEnd(bottom: 0, end: 0),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Icon(
-                    FontAwesomeIcons.cartPlus,
+      appBar: 
+      appBar(
+        texto:  "Tienda puntos",
+        acc: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 15),
+            child: InkWell(
+              onTap: () {},
+              borderRadius: BorderRadius.circular(100),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Badge(
+                  position: BadgePosition.bottomEnd(bottom: 0, end: 0),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Icon(
+                      FontAwesomeIcons.cartPlus,
+                    ),
                   ),
-                ),
-                badgeContent: Text(
-                  '1',
-                  style: TextStyle(
-                    color: Colors.white,
+                  badgeContent: Text(
+                    '1',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
+                  badgeColor: colorRed,
                 ),
-                badgeColor: colorRed,
               ),
             ),
-          ),
-        )
-      ]),
+          )
+        ],
+      ),
       body: Column(
         children: [
           Expanded(

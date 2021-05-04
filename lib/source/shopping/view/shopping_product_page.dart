@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/shopping/controller/shopping_controller.dart';
 
@@ -11,7 +11,7 @@ class ShoppingProductPage extends StatelessWidget {
     return GetX<ShoppingController>(
       builder: (_) {
         return Scaffold(
-          appBar: appbar(null, "Shopping", <Widget>[
+          appBar: appBar(texto: "Shopping",acc: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 15),
               child: InkWell(

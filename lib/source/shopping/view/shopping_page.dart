@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/shopping/controller/shopping_controller.dart';
 
@@ -14,37 +14,40 @@ class ShoppingPage extends StatelessWidget {
       init: ShoppingController(),
       builder: (_) {
         return Scaffold(
-          appBar: appbar(null, "Shopping", <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 15),
-              child: InkWell(
-                onTap: () => Get.toNamed("shop/cart"),
-                borderRadius: BorderRadius.circular(100),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: _.shopping == 0
-                      ? AspectRatio(
-                          aspectRatio: 1,
-                          child: Icon(Icons.shopping_cart),
-                        )
-                      : Badge(
-                          position: BadgePosition.bottomEnd(bottom: 0, end: 0),
-                          child: AspectRatio(
+          appBar: appBar(
+            texto: "Shopping", 
+            acc: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 15),
+                child: InkWell(
+                  onTap: () => Get.toNamed("shop/cart"),
+                  borderRadius: BorderRadius.circular(100),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: _.shopping == 0
+                        ? AspectRatio(
                             aspectRatio: 1,
                             child: Icon(Icons.shopping_cart),
-                          ),
-                          badgeContent: Text(
-                            '${_.shopping}',
-                            style: TextStyle(
-                              color: Colors.white,
+                          )
+                        : Badge(
+                            position: BadgePosition.bottomEnd(bottom: 0, end: 0),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Icon(Icons.shopping_cart),
                             ),
+                            badgeContent: Text(
+                              '${_.shopping}',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            badgeColor: colorRed,
                           ),
-                          badgeColor: colorRed,
-                        ),
+                  ),
                 ),
-              ),
-            )
-          ]),
+              )
+            ],
+          ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

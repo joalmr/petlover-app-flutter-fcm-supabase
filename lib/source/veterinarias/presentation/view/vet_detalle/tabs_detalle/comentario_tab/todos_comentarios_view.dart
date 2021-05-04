@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
-import 'package:proypet/components/appbar_menu.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/domain/controller/comentario_vet_controller.dart';
@@ -13,7 +13,7 @@ class TodosComentarios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(null, 'Comentarios', null),
+      appBar: appBar(texto: 'Comentarios', acc: null),
       body: FadeViewSafeArea(child: GetX<ComentarioVetController>(
         builder: (_) {
           return Column(

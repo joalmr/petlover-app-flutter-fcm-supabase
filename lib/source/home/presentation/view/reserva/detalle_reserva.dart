@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/components/transition/fadeView.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/detalle_reserva_controller.dart';
@@ -15,7 +15,7 @@ class DetalleReservado extends StatelessWidget {
       init: DetalleRservadoController(),
       builder: (_) {
         return Scaffold(
-          appBar: appbar(null, 'Detalle de reserva', null),
+          appBar: appBar(texto: 'Detalle de reserva', acc: null),
           body: FadeView(
             child: SingleChildScrollView(
               child: Column(

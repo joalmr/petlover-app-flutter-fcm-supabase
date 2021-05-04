@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Widget appBar(
-    {@required String texto, @required List<Widget> acc, bool logo = true}) {
+    {@required String texto, @required List<Widget> acc}) {
   if (Get.width < 600) {
     return AppBar(
       leading: null,
       centerTitle: false,
-      title: Row(children: [Text(texto)]),
+      title: Text(texto),
       actions: acc,
     );
   } else {

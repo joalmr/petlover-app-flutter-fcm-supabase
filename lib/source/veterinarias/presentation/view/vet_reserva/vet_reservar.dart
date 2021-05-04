@@ -3,10 +3,10 @@ import 'package:day_night_time_picker/lib/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';
+import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/domain/controller/reserva_vet_controller.dart';
 import 'components/direccion_reserva.dart';
@@ -22,7 +22,7 @@ class DataReserva extends StatelessWidget {
       init: ReservaVetController(),
       builder: (_) {
         return Scaffold(
-          appBar: appbar(null, 'Reservar servicio', null),
+          appBar: appBar(texto: 'Reservar servicio', acc: null),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

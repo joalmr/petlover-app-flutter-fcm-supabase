@@ -5,6 +5,8 @@ import 'variables_env.dart';
 
 //TODO: cambiar google-services para android
 
+
+
 String versionAndroid = "";
 String versionIOS = "";
 
@@ -14,8 +16,6 @@ final environment = appPruebas ? pruebas : produccion;
 final String keyMap = environment['keyMap'];
 final String urlName = environment['url'];
 final String urlApi = environment['urlApi'];
-
-// final mediaAncho = Get.width;
 
 final prefUser = new PreferenciasUsuario();
 
