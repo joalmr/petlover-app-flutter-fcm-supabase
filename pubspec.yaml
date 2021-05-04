@@ -23,6 +23,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^9.0.0
 
   firebase_messaging: ^9.1.3
   # flutter_local_notifications: ^5.0.0+3
@@ -33,6 +34,8 @@ dependencies:
 
   flutter_config: ^2.0.0 #^1.0.8
   
+  stories_for_flutter: ^0.1.8 #probando
+
   ai_notification_enable: ^1.6.1 #activar notificaciones
   animate_do: ^2.0.0
   badges: ^1.2.0
@@ -47,7 +50,6 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   flutter_svg_provider: ^0.1.9
   flutter_swiper: ^1.1.6 #deprecado
-  font_awesome_flutter: ^9.0.0
   geolocator: ^7.0.3
   geocoder: ^0.2.1
   google_fonts: ^2.0.0

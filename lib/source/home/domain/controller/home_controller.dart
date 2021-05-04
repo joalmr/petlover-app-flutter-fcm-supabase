@@ -3,6 +3,8 @@ import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/booking/model/booking_model.dart';
 import 'package:proypet/source/home/data/service/summary_service.dart';
 import 'package:proypet/source/mascota/model/pet_model.dart';
+import 'package:proypet/source/notificaciones/provider/notification_provider.dart';
+import 'package:proypet/source/notificaciones/service/notification_service.dart';
 import 'package:proypet/source/usuario/model/user_model.dart';
 import 'package:proypet/source/booking/service/booking_service.dart';
 import 'package:proypet/source/mascota/service/pet_service.dart';
@@ -14,6 +16,7 @@ class HomeController extends GetxController {
   final userService = UserService();
   final petService = PetService();
   final bookingService = BookingService();
+  final _notificaService = NotificationService();
 
   Rx<UserModel2> _usuario = UserModel2().obs;
   set usuario(UserModel2 value) => _usuario.value = value;
@@ -23,6 +26,8 @@ class HomeController extends GetxController {
 
   RxList<BookingModel> atenciones = <BookingModel>[].obs;
   RxList<MascotaModel2> mascotas = <MascotaModel2>[].obs;
+
+  RxList<GroupNoti> notificacionesGroup = <GroupNoti>[].obs;
 
   bool get sinAtenciones => atenciones.length == 0;
   bool get sinMascotas => mascotas.length == 0;
@@ -57,8 +62,11 @@ class HomeController extends GetxController {
     }
   }
 
-  void getSummary() {
+  Future<void> getSummary() async {
     _summary();
+    notificacionesGroup.clear();
+    final respGroup = await _notificaService.getNotificacionGroup();
+    notificacionesGroup.addAll(respGroup);
   }
 
   Future<void> _summary() async {

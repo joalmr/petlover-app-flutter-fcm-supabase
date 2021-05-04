@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/notificaciones/model/notificacion_model.dart';
@@ -19,4 +21,69 @@ class NotificationProvider {
     });
     return notificacionModel;
   }
+
+  
+  Future<List<GroupNoti>> getNotificacionGroup() async {
+    List<GroupNoti> groupNoti=[];
+    List<String> idsImg=[];
+
+    final url = Uri.parse('$_url/notifications');
+    final resp = await http.get(
+      url,
+      headers: headersToken(),
+    );
+
+    NotificacionModel notificacionModel = notificacionModelFromJson(resp.body);
+
+    notificacionModel.notifications.forEach((element) {
+      element.message = '${element.message}';
+      
+      if(element.petPicture!=null){
+        GroupNoti temp = new GroupNoti(
+          imgId: element.petPicture,
+          notifications: [element],
+        );
+        
+
+        if(groupNoti.length==0){
+          groupNoti.add(temp);
+          idsImg.add(element.petPicture);
+        }
+        else{
+          if(idsImg.contains(element.petPicture)){
+            int newIndex = idsImg.indexOf(element.petPicture);
+            groupNoti[newIndex].notifications.add(element);
+          }
+          else{
+            groupNoti.add(temp);
+          }
+        }
+      }
+    });
+    
+    return groupNoti;
+  }
+}
+
+GroupNoti groupNotiFromJson(String str) => GroupNoti.fromJson(json.decode(str));
+String groupNotiToJson(GroupNoti data) => json.encode(data.toJson());
+
+class GroupNoti {
+    GroupNoti({
+        this.imgId,
+        this.notifications,
+    });
+
+    String imgId;
+    List<Notificacion> notifications;
+
+    factory GroupNoti.fromJson(Map<String, dynamic> json) => GroupNoti(
+        imgId: json["imgId"],
+        notifications: List<Notificacion>.from(json["notifications"].map((x) => Notificacion.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "imgId": imgId,
+        "notifications": List<dynamic>.from(notifications.map((x) => x.toJson())),
+    };
 }

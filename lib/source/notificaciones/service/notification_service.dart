@@ -6,4 +6,8 @@ class NotificationService {
   getNotificacion() {
     return notificacionProvider.getNotificacion();
   }
+
+  getNotificacionGroup() {
+    return notificacionProvider.getNotificacionGroup();
+  }
 }
