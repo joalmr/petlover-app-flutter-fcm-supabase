@@ -40,7 +40,7 @@ class NotificationProvider {
       element.message = '${element.message}';
       final dateItem = toDateBasic(element.notificationDate);
       final dateDiff = DateTime.now().difference(dateItem);
-      if(element.petPicture!=null&&dateDiff.inDays<7){
+      if(element.petPicture != null && dateDiff.inDays < 7){
         GroupNoti temp = new GroupNoti(
           imgId: element.petPicture,
           notifications: [element],
