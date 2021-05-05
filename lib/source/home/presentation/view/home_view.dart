@@ -29,10 +29,8 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10, right: 10),
                 children: <Widget>[
                   Container(
-                    // height: 95,
                     color: Theme.of(context).scaffoldBackgroundColor,
-                    padding: EdgeInsets.only(
-                        top: 10, bottom: 25, left: 0, right: 10),
+                    padding: EdgeInsets.only(top: 10, bottom: 5, left: 0, right: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -60,12 +58,19 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Mascotas(),
+                  
+                  
+                  Container(
+                    margin: EdgeInsets.only(top:0,bottom:5),
+                    child: Mascotas(),
+                  ),
+
                   _.notificacionesGroup.length>0
                   ? StoriesPet()
                   : SizedBox(height: 0),
+
                   Container(
-                    margin: EdgeInsets.only(top:0,bottom:25),
+                    margin: EdgeInsets.only(top:10,bottom:5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +78,7 @@ class HomePage extends StatelessWidget {
                         Text(' Servicios frecuentes',
                             style: Get.textTheme.headline6
                                 .apply(fontWeightDelta: 2)),
-                        SizedBox(height: 15.0),
+                        SizedBox(height: 10.0),
                         SingleChildScrollView(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
@@ -94,21 +99,26 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 10.0),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                          child: Text("Mis Reservas",
-                              style: Get.textTheme.headline6
-                                  .apply(fontWeightDelta: 2))),
-                      InkWell(
-                        onTap: () => showDialog(
-                            context: Get.context,
-                            builder: (context) => AlertDialog(
+                  // SizedBox(height: 10.0),
+                  Container(
+                    margin: EdgeInsets.only(top:10,bottom:5),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                "Mis Reservas",
+                                style: Get.textTheme.headline6.apply(fontWeightDelta: 2),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () => showDialog(
+                                context: Get.context,
+                                builder: (context) => AlertDialog(
                                   scrollable: true,
                                   content: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Container(
@@ -160,13 +170,17 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                )),
-                        child: Icon(Icons.info_outline,
-                            color: Get.textTheme.subtitle2.color),
-                      ),
-                    ],
+                                ),
+                              ),
+                              child: Icon(Icons.info_outline,
+                                  color: Get.textTheme.subtitle2.color),
+                            ),
+                          ],
+                        ),
+                        Atenciones(),
+                      ],
+                    ),
                   ),
-                  Atenciones(),
                 ],
               ),
             ),
