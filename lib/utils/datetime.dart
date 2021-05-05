@@ -1,16 +1,30 @@
 import 'package:intl/intl.dart';
 
-formatDateTime(DateTime dateTime) {
+String formatDateTime(DateTime dateTime) {
   String formattedDate = DateFormat('dd-MM-yyyy HH:mm').format(dateTime);
   return formattedDate;
 }
 
-formatDate(DateTime dateTime) {
+String formatDate(DateTime dateTime) {
   String formattedDate = DateFormat('dd-MM-yyyy').format(dateTime);
   return formattedDate;
 }
 
-formatTime(DateTime dateTime) {
+String formatDateBasic(DateTime dateTime) {
+  String formattedDate = DateFormat('yyyy-MM-dd').format(dateTime);
+  return formattedDate;
+}
+
+String formatTime(DateTime dateTime) {
   String formattedDate = DateFormat('HH:mm').format(dateTime);
   return formattedDate;
+}
+
+DateTime toDate(String valor) {
+  DateTime tempDate = new DateFormat("dd-MM-yyyy").parse(valor);
+  return tempDate;
+}
+DateTime toDateBasic(String valor) {
+  DateTime tempDate = new DateFormat("yyyy-MM-dd").parse(valor);
+  return tempDate;
 }

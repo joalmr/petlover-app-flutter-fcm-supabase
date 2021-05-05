@@ -1,26 +1,49 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
+import 'storiesDot.dart';
 
-class StoriesPet extends StatelessWidget {
-  final pageController = PageController(
-    initialPage: 0
-  );
+class StoriesPet extends StatefulWidget {
+  @override
+  _StoriesPetState createState() => _StoriesPetState();
+}
+
+class _StoriesPetState extends State<StoriesPet> {
+  int _currentPage = 0;
+  final _pageController = PageController(initialPage: 0);
+  
+  @override
+  void initState() { 
+    super.initState();
+  }
+
+  @override
+  void dispose() { 
+    super.dispose();
+    _currentPage = 0;
+    _pageController.dispose();
+  }
+
+  _onChangePage(int index){
+    setState(() {
+      _currentPage = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetX<HomeController>(
-      builder: (_) {
+      builder: (_home) {
+        print(_currentPage);
         return Container(
           child: SingleChildScrollView(
             child: Row(
               children: [
-                for (var item in _.notificacionesGroup)
+                for (var item in _home.notificacionesGroup)
                   CircleAvatar(
                     radius: 32,
                     child: InkWell(
@@ -44,52 +67,38 @@ class StoriesPet extends StatelessWidget {
                       onTap: (){
                         showGeneralDialog(
                           context: context,
-                          barrierDismissible: true,
+                          // barrierDismissible: true,
+                          // transitionDuration: Duration(milliseconds: 200),
                           barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
                           barrierColor: Theme.of(context).backgroundColor,
-                          transitionDuration: Duration(milliseconds: 200),
                           pageBuilder: (BuildContext context, Animation first, Animation second){
                             return SafeArea(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 2.5),
-                                  Row(children: [
-                                    // i==index-1 ? colorMain :
-                                    for (var i = 0; i < item.notifications.length; i++)
-                                      Container(
-                                        height: 4,
-                                        width: MediaQuery.of(context).size.width/item.notifications.length,
-                                        padding: EdgeInsets.symmetric(horizontal: 2),
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey[300],
-                                          borderRadius: BorderRadius.circular(20),
-                                        ),
-                                      ),
-                                  ],),
                                   Expanded(
                                     child: PageView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemCount: item.notifications.length,
-                                      controller: pageController,
+                                      controller: _pageController,
+                                      onPageChanged: _onChangePage,
                                       itemBuilder: (BuildContext context, int index){
-                                        // Timer(Duration(milliseconds: 2000), (){
-                                        //   pageController.nextPage(
-                                        //     duration: Duration(milliseconds: 200), 
-                                        //     curve: Curves.easeInCubic,
-                                        //   );
-                                        //   if(index==item.notifications.length-1){
-                                        //     Get.back();
-                                        //   }
-                                        // });
                                         if(index==item.notifications.length-1){
-                                          Timer(Duration(milliseconds: 2000), (){
-                                            Get.back();
-                                          });
+                                          Timer(Duration(milliseconds: 4000), ()=>Get.back());
                                         }
                                         final historia = item.notifications[index];
                                         return Scaffold(
                                           body: Column(
                                             children: [
+                                              SizedBox(height: 2.5),
+                                              Row(
+                                                children: [
+                                                  for (var i = 0; i < item.notifications.length; i++)
+                                                    if(i<=index)
+                                                      StoriesDot(isActive: true,length: item.notifications.length)
+                                                    else
+                                                      StoriesDot(isActive: false,length: item.notifications.length)
+                                                ],
+                                              ),
                                               Padding(
                                                 padding: const EdgeInsets.all(8.0),
                                                 child: Row(
@@ -148,51 +157,7 @@ class StoriesPet extends StatelessWidget {
               ],
             ),
           ),
-          
         );
-        // return Stories(
-        //   displayProgress: true,
-        //   highLightColor: colorMain,
-        //   circlePadding: 2.5,
-        //   storyItemList: [
-        //     for (var item in _.notificacionesGroup)
-        //       StoryItem(
-        //         name: "",
-        //         thumbnail: NetworkImage(item.imgId),
-        //         stories: [
-        //           for (var historia in item.notifications)
-        //           Scaffold(
-        //             body: Container(
-        //               child: Column(
-        //                 mainAxisAlignment: MainAxisAlignment.center,
-        //                 children: [
-        //                   CachedNetworkImage(
-        //                     imageUrl: historia.notificationImg,
-        //                     placeholder: (_,__) => Center(child: lottieLoading,),
-        //                   ),
-        //                   SizedBox(height: 20),
-        //                   Padding(
-        //                     padding: const EdgeInsets.symmetric(horizontal: 20),
-        //                     child: Text(historia.message),
-        //                   ),
-        //                   Container(
-        //                     width: double.maxFinite,
-        //                     child: Padding(
-        //                       padding: const EdgeInsets.symmetric(horizontal: 20),
-        //                       child: Text(
-        //                         'Enviado: ${historia.notificationDate}',
-        //                         style: TextStyle(fontSize: 10),
-        //                       ),
-        //                     ),
-        //                   ),
-        //                 ],
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //   ],
-        // );
       },
     );
   }

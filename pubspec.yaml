@@ -34,7 +34,9 @@ dependencies:
 
   flutter_config: ^2.0.0 #^1.0.8
   
-  stories_for_flutter: ^0.1.8 #probando
+  # stories_for_flutter: ^0.1.8 #probando
+  # story_view: 
+  # flutter_stories: ^0.2.1+1
 
   ai_notification_enable: ^1.6.1 #activar notificaciones
   animate_do: ^2.0.0
@@ -66,7 +68,7 @@ dependencies:
   scrollable_positioned_list: ^0.1.10
   select_dialog: ^2.0.0
   share: ^2.0.1
-  simple_autocomplete_formfield: ^0.3.0 #buscar con autocomplete 
+  simple_autocomplete_formfield: ^0.3.0 #buscar con autocomplete
   time_parser: ^1.1.0
   url_launcher: ^6.0.3
   

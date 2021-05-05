@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/notificaciones/model/notificacion_model.dart';
+import 'package:proypet/utils/datetime.dart';
 
 class NotificationProvider {
   final _url = urlApi;
@@ -37,8 +38,9 @@ class NotificationProvider {
 
     notificacionModel.notifications.forEach((element) {
       element.message = '${element.message}';
-      
-      if(element.petPicture!=null){
+      final dateItem = toDateBasic(element.notificationDate);
+      final dateDiff = DateTime.now().difference(dateItem);
+      if(element.petPicture!=null&&dateDiff.inDays<7){
         GroupNoti temp = new GroupNoti(
           imgId: element.petPicture,
           notifications: [element],
