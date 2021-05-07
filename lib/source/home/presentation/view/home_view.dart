@@ -5,10 +5,10 @@ import 'package:proypet/components/enddrawer/config_drawer.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
+import 'package:proypet/source/veterinarias/domain/controller/lista_vets_controller.dart';
 import 'components/atenciones.dart';
 import 'components/frecuentes.dart';
 import 'components/mascota.dart';
-import 'components/stories.dart';
 
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -65,9 +65,9 @@ class HomePage extends StatelessWidget {
                     child: Mascotas(),
                   ),
 
-                  _.notificacionesGroup.length>0
-                  ? StoriesPet()
-                  : SizedBox(height: 0),
+                  // _.notificacionesGroup.length>0
+                  // ? StoriesPet()
+                  // : SizedBox(height: 0),
 
                   Container(
                     margin: EdgeInsets.only(top:10,bottom:5),
@@ -75,24 +75,30 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(' Servicios frecuentes',
-                            style: Get.textTheme.headline6
-                                .apply(fontWeightDelta: 2)),
+                        // Text(' Servicios frecuentes',
+                        //     style: Get.textTheme.headline6
+                        //         .apply(fontWeightDelta: 2)),
                         SizedBox(height: 10.0),
-                        SingleChildScrollView(
+                        Get.find<VeterinariasController>().favoriteVets.length == 0
+                        ? Center(
+                          child: emergenciaHome(true),
+                        )
+                        : SingleChildScrollView(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: <Widget>[
-                              emergenciaHome(),
+                              emergenciaHome(false),
                               SizedBox(width: 15.0),
-                              banioHome(),
-                              SizedBox(width: 15.0),
-                              vacunaHome(),
-                              SizedBox(width: 15.0),
-                              desparasitaHome(),
-                              SizedBox(width: 15.0),
-                              consultaHome(),
+                              for (var item in Get.find<VeterinariasController>().favoriteVets)
+                                Padding(
+                                  padding: EdgeInsets.only(right: 15),
+                                  child: myFavorite(
+                                    item.id,
+                                    item.name,
+                                    item.slides.length==0 ? '' :item.slides.first,
+                                  ),
+                                )
                             ],
                           ),
                         )

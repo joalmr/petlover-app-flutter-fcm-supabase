@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
-import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/home/domain/controller/mascota_home_controller.dart';
 import 'package:proypet/utils/calcula_edad.dart';
+
+import 'stories.dart';
 
 class Mascotas extends StatelessWidget {
   const Mascotas({Key key}) : super(key: key);
@@ -71,41 +72,36 @@ class Mascotas extends StatelessWidget {
                                       child: Stack(
                                         children: <Widget>[
                                           Container(
-                                              height: double.maxFinite,
-                                              width: double.maxFinite,
-                                              foregroundDecoration:
-                                                  BoxDecoration(
-                                                color: Colors.black
-                                                    .withOpacity(0.15),
-                                              ),
-                                              child: Image(
-                                                image:
-                                                    CachedNetworkImageProvider(
-                                                        mascota.picture),
-                                                fit: BoxFit.cover,
-                                              )),
+                                            height: double.maxFinite,
+                                            width: double.maxFinite,
+                                            foregroundDecoration:
+                                                BoxDecoration(
+                                              color: Colors.black
+                                                  .withOpacity(0.15),
+                                            ),
+                                            child: Image(
+                                              image: CachedNetworkImageProvider(mascota.picture),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                           Positioned(
                                             top: 15.0,
                                             left: 10.0,
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(mascota.name,
-                                                    style: Get
-                                                        .textTheme.headline6
-                                                        .apply(
-                                                            color: Colors.white,
-                                                            fontWeightDelta:
-                                                                2)),
+                                                  style: Get.textTheme.headline6
+                                                    .apply(
+                                                      color: Colors.white,
+                                                      fontWeightDelta:2,
+                                                    ),
+                                                ),
                                                 Text(mascota.breedName,
-                                                    style: Get
-                                                        .textTheme.subtitle2
-                                                        .apply(
-                                                            color:
-                                                                Colors.white)),
+                                                  style: Get.textTheme.subtitle2
+                                                      .apply(color: Colors.white),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -113,10 +109,8 @@ class Mascotas extends StatelessWidget {
                                             bottom: 10.0,
                                             left: 10.0,
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: <Widget>[
                                                 RichText(
                                                   text: TextSpan(
@@ -173,23 +167,14 @@ class Mascotas extends StatelessWidget {
                                             child: ClipRRect(
                                               child: CircleAvatar(
                                                 backgroundColor: Colors.white,
-                                                radius: 27.5,
+                                                radius: 32.5,
                                                 child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(2.0),
-                                                    child: mascota.specieId == 2
-                                                        ? Image(
-                                                            image: AssetImage(
-                                                              pathGif(
-                                                                  'perro-kb'),
-                                                            ),
-                                                          )
-                                                        : Image(
-                                                            image: AssetImage(
-                                                              pathGif(
-                                                                  'gato-kb'),
-                                                            ),
-                                                          )),
+                                                    padding: EdgeInsets.all(0),
+                                                    child: StoriesPet(
+                                                      petImgId: mascota.picture, 
+                                                      specieId: mascota.specieId,
+                                                    ),
+                                                ),
                                               ),
                                             ),
                                           ),

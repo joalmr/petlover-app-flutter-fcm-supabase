@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 Widget cardFrecuente({
@@ -6,6 +7,8 @@ Widget cardFrecuente({
   @required String title,
   String subtitle,
   Color color = Colors.black,
+  @required bool urlImg,
+  bool alone = false,
 }) {
   return InkWell(
     borderRadius: BorderRadius.circular(15.0),
@@ -13,7 +16,7 @@ Widget cardFrecuente({
     child: Stack(
       children: <Widget>[
         Container(
-          width: 120.0,
+          width: alone ? double.maxFinite : 120.0,
           height: 100.0,
           padding: EdgeInsets.all(15.0),
           foregroundDecoration: BoxDecoration(
@@ -24,20 +27,25 @@ Widget cardFrecuente({
               borderRadius: BorderRadius.circular(15.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(rootImg),
+                image: urlImg ? CachedNetworkImageProvider(rootImg) : AssetImage(rootImg),
               )),
         ),
         Container(
-          width: 120.0,
+          width: alone ? double.maxFinite : 120.0,
           height: 100.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(title, style: TextStyle(color: Colors.white)),
+              Text(
+                title, 
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
+              ),
               subtitle != null
                   ? Text(
                       subtitle,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 10,

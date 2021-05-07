@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/snackbar.dart';
+import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
@@ -15,6 +16,7 @@ import 'package:proypet/source/usuario/service/user_service.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_model.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_short_model.dart';
 import 'package:proypet/source/veterinarias/data/service/establishment_service.dart';
+import 'package:proypet/utils/preferencias_usuario/preferencias_model.dart';
 import 'package:proypet/utils/regex.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'lista_vets_controller.dart';
@@ -49,13 +51,7 @@ class VetDetalleController extends GetxController {
 
   RxBool favorite = false.obs;
 
-  setFavorite() {
-    if (favorite.value)
-      favorite.value = false;
-    else {
-      favorite.value = true;
-    }
-  }
+  
 
   @override
   void onInit() {
@@ -65,11 +61,38 @@ class VetDetalleController extends GetxController {
     usuario = homeC.usuario;
     telefono = usuario.phone;
     getVet();
+    isFavorite();
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  isFavorite(){
+    if(prefUser.favoritesVets.contains(vetInit)){
+      favorite.value = true;
+    }
+    else{
+      favorite.value = false;
+    }
+  }
+
+  setFavorite() {
+    PreferenciasModel forStorage = new PreferenciasModel();
+    forStorage.favoritesVets = prefUser.favoritesVets;
+
+    if(prefUser.favoritesVets.contains(vetInit)){
+      forStorage.favoritesVets.remove(vetInit);
+      favorite.value = false;
+    }
+    else{
+      forStorage.favoritesVets.add(vetInit);
+      favorite.value = true;
+    }
+
+    prefUser.storageUser = preferenciasModelToJson(forStorage);
+    vetsC.getFavorites();
   }
 
   getVet() => _getVet(vetInit);

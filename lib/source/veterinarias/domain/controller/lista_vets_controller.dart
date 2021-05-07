@@ -9,13 +9,18 @@ import 'filtra_vets_controller.dart';
 class VeterinariasController extends GetxController {
   final vetService = EstablishmentService();
 
-  RxList<EstablishmentModelList> vetLocales = <EstablishmentModelList>[].obs;
-  RxList<EstablishmentModelList> temp = <EstablishmentModelList>[].obs;
+  var vetLocales = <EstablishmentModelList>[].obs;
+  var temp = <EstablishmentModelList>[].obs;
+  
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
   RxBool loading = true.obs;
 
+  var favoriteVets = <EstablishmentModelList>[].obs;
+
   final global = Get.find<GlobalController>();
+
+  // prefUser.favoritesVets
 
   bool ordena = false;
 
@@ -27,6 +32,7 @@ class VeterinariasController extends GetxController {
 
     if (prefUser.hasToken()) {
       getVets();
+      getFavorites();
     }
   }
 
@@ -45,8 +51,21 @@ class VeterinariasController extends GetxController {
     return null;
   }
 
-  getVets() => _getVets();
+  getFavorites() => _getFavorites();
+  _getFavorites() async {
+    var resp = await vetService.getVets([]);
+    final List<EstablishmentModelList> listaVets = resp['establecimientos'];
 
+    favoriteVets.clear();
+
+    listaVets.forEach((element) {
+      if(prefUser.favoritesVets.contains(element.id)){
+        favoriteVets.add(element);
+      }
+    });
+  }
+
+  getVets() => _getVets();
   Future<void> _getVets() async {
     loading.value = true;
     var resp = await vetService.getVets(listaFiltros);

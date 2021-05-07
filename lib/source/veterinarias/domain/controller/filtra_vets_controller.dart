@@ -4,6 +4,7 @@ import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/_global/data/global_repository.dart';
 import 'package:proypet/source/veterinarias/data/model/address.dart';
 import 'package:proypet/source/usuario/service/address_service.dart';
+import 'package:proypet/source/veterinarias/presentation/view/veterinarias_view.dart';
 import 'lista_vets_controller.dart';
 
 class FiltraVetsController extends GetxController {
@@ -95,6 +96,7 @@ class FiltraVetsController extends GetxController {
     tempLat = "";
     tempLng = "";
 
-    Get.offAllNamed('nav/lista');
+    // Get.offAllNamed('nav/lista');
+    Get.to(ReservaList());
   }
 }

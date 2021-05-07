@@ -7,6 +7,7 @@ import 'package:proypet/source/_navbar/domain/_navigation_controller.dart';
 import 'package:proypet/source/home/presentation/view/home_view.dart';
 import 'package:proypet/source/notificaciones/view/notificaciones_view.dart';
 import 'package:proypet/source/recompensas/view/recompensas_view.dart';
+import 'package:proypet/source/veterinarias/presentation/view/main_vet.dart';
 import 'package:proypet/source/veterinarias/presentation/view/veterinarias_view.dart';
 
 
@@ -28,7 +29,7 @@ class _NavigationBarState extends State<NavigationBar> {
     final _kTabPages = <Widget>[
       HomePage(),
       NotificacionesPage(),
-      ReservaList(),
+      MainVet(), //TODO: lista o favoritas
       RecompensasPage(),
       // ShoppingPage(),
     ];

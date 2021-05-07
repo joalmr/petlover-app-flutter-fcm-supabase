@@ -1,5 +1,7 @@
 import 'package:get_storage/get_storage.dart';
 
+import 'preferencias_model.dart';
+
 class PreferenciasUsuario {
   GetStorage box = GetStorage();
 
@@ -48,4 +50,19 @@ class PreferenciasUsuario {
   //tema app
   get themeMode => box.read('theme');
   set themeMode(String value) => box.write('theme', value);
+
+  //veterinaria favorita y otros..
+  get storageUser => box.read('storageUser');
+  set storageUser(String value) => box.write('storageUser', value);
+  storageUserHas() => box.hasData('storageUser');
+  storageUserDel() => box.remove('storageUser');
+  //
+  List<String> get favoritesVets {
+    try{
+      return preferenciasModelFromJson(storageUser).favoritesVets ?? [];
+    }
+    catch(e){
+      return [];
+    }
+  }
 }

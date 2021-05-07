@@ -4,8 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/transition/fadeView.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/domain/controller/detalle_vet_controller.dart';
@@ -21,11 +23,7 @@ class VetDetallePage extends StatelessWidget {
         return DefaultTabController(
           length: 5,
           child: _.cargando.value
-              ? Scaffold(
-                  body: Center(
-                    child: lottieLoading,
-                  ),
-                )
+              ? Scaffold(body: Center(child: lottieLoading))
               : Scaffold(
                   appBar: AppBar(
                     elevation: 0,
@@ -54,37 +52,34 @@ class VetDetallePage extends StatelessWidget {
                               onPressed: () => Get.back(),
                             ),
                           ),
-                          // appPruebas
-                          //     ? Positioned(
-                          //         top: 30,
-                          //         right: 5,
-                          //         child: InkWell(
-                          //           onTap: _.setFavorite,
-                          //           child: Container(
-                          //             height: 45,
-                          //             width: 45,
-                          //             decoration: BoxDecoration(
-                          //               borderRadius:
-                          //                   BorderRadius.circular(100.0),
-                          //               color: colorGray1,
-                          //             ),
-                          //             child: Center(
-                          //               child: _.favorite.value
-                          //                   ? Lottie.asset(
-                          //                       pathLottie('favorite'),
-                          //                       fit: BoxFit.cover,
-                          //                       height: 45,
-                          //                       width: 45,
-                          //                       repeat: false,
-                          //                     )
-                          //                   : BounceInDown(
-                          //                       from: 5,
-                          //                       child: Icon(Icons.favorite)),
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       )
-                          //     : SizedBox(height: 0),
+                          Positioned(
+                            top: 30,
+                            right: 5,
+                            child: InkWell(
+                              onTap: _.setFavorite,
+                              child: Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  color: colorGray1,
+                                ),
+                                child: Center(
+                                  child: _.favorite.value
+                                      ? Lottie.asset(
+                                          pathLottie('favorite'),
+                                          fit: BoxFit.cover,
+                                          height: 45,
+                                          width: 45,
+                                          repeat: false,
+                                        )
+                                      : BounceInDown(
+                                          from: 5,
+                                          child: Icon(Icons.favorite)),
+                                ),
+                              ),
+                            ),
+                          ),
                           Positioned(
                             right: 7.5,
                             bottom: 9.5,
