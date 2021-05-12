@@ -116,18 +116,13 @@ class Mascotas extends StatelessWidget {
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: mascota.weight ==
-                                                                '0'
-                                                            ? '-'
-                                                            : mascota.weight
-                                                                .toString(),
-                                                        style: Get
-                                                            .textTheme.headline4
+                                                        text: mascota.weight == '0'
+                                                            ? '-' : mascota.weight.toString(),
+                                                        style: Get.textTheme.headline4
                                                             .apply(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeightDelta:
-                                                                    2),
+                                                              color: Colors.white,
+                                                              fontWeightDelta: 2,
+                                                            ),
                                                       ),
                                                       TextSpan(text: " kg.")
                                                     ],
@@ -148,14 +143,9 @@ class Mascotas extends StatelessWidget {
                                                                 color: Colors
                                                                     .white))
                                                         : Text(
-                                                            calculateAge(DateTime
-                                                                .parse(mascota
-                                                                    .birthdate)),
-                                                            style: Get.textTheme
-                                                                .subtitle2
-                                                                .apply(
-                                                                    color: Colors
-                                                                        .white))
+                                                            calculateAge(DateTime.parse(mascota.birthdate)),
+                                                            style: Get.textTheme.subtitle2.apply(color: Colors.white),
+                                                        )
                                                   ],
                                                 ),
                                               ],
