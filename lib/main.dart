@@ -9,6 +9,7 @@ import 'config/global_variables.dart';
 import 'design/theme/theme.dart';
 import 'design/theme/themeDark.dart';
 import 'source/_global/_global_controller.dart';
+import 'source/_navbar/domain/_navigation_controller.dart';
 import 'source/_navbar/presentation/view/navigation_bar.dart';
 import 'source/home/domain/controller/home_controller.dart';
 import 'source/veterinarias/domain/controller/filtra_vets_controller.dart';
@@ -36,6 +37,7 @@ class _MyAppState extends State<MyApp> {
     Get.put(GlobalController());
     Get.put(VeterinariasController());
     Get.put(FiltraVetsController());
+    Get.put(NavigationController());
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: appPruebas,

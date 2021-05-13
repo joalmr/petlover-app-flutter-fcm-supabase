@@ -50,12 +50,12 @@ class AppRoutes{
       GetPage(
         name: 'nav', 
         page: () => NavigationBar(currentTabIndex: 0),//?nav/inicio
+        
         children: [
-          // GetPage(name: 'inicio', page: () => NavigastionBar(currentTabIndex: 0)),
-          GetPage(name: '/notifica', page: () => NavigationBar(currentTabIndex: 1)),
+          //? inicio
+          GetPage(name: '/notifica', page: ()=> NavigationBar(currentTabIndex: 1)),
           GetPage(name: '/lista', page: () => NavigationBar(currentTabIndex: 2)),
           GetPage(name: '/recompensa', page: () => NavigationBar(currentTabIndex: 3)),
-          GetPage(name: '/notifica', page: () => NavigationBar(currentTabIndex: 4)),
         ],
       ),
       GetPage(
@@ -108,7 +108,7 @@ class AppRoutes{
       //*inactivas
       GetPage(
         name: 'shop', 
-        page: () => MiCuentaPage(),
+        page: () => MiCuentaPage(), //?cambiar
         children: [
           GetPage(name: '/product', page: () => ShoppingProductPage()),
           GetPage(name: '/cart', page: () => ShopCartPage()),
@@ -117,30 +117,3 @@ class AppRoutes{
     ];
   }
 }
-
-
-
-// GetPage(name: 'navInicio', page: () => NavigationBar(currentTabIndex: 0)),
-// GetPage(name: 'navNotifica', page: () => NavigationBar(currentTabIndex: 1)),
-// GetPage(name: 'navLista', page: () => NavigationBar(currentTabIndex: 2)),
-// GetPage(name: 'navRecompensa', page: () => NavigationBar(currentTabIndex: 3)),
-// GetPage(name: 'navShopping', page: () => NavigationBar(currentTabIndex: 4)),
-
-// GetPage(name: 'registro', page: () => SingupPage()),
-// GetPage(name: 'olvidopass', page: () => ForgotPage()),
-// GetPage(name: 'micuenta', page: () => MiCuentaPage()),
-// GetPage(name: 'editarusuario', page: () => UserPage()),
-// GetPage(name: 'cambiarpass', page: () => ChangePasswordPage()),
-
-// GetPage(name: 'agregarmascota', page: () => MascotaAgregarPage()),
-// GetPage(name: 'detallemascota', page: () => MascotaDetallePage()),
-// GetPage(name: 'detallehistoriamascota', page: () => HistoriaPage()),
-// GetPage(name: 'historialmascota', page: () => HistorialMascota()),
-// GetPage(name: 'vetdetalle', page: () => VetDetallePage()),
-// GetPage(name: 'vetreserva', page: () => DataReserva()),
-
-// GetPage(name: 'solicitaveterinaria', page: () => SolicitaVetPage()),
-// GetPage(name: 'ayuda', page: () => AyudaPage()),
-// GetPage(name: 'enviarqueja', page: () => QuejaPage()),
-// GetPage(name: 'feedback', page: () => FeedbackPage()),
-// GetPage(name: 'faq', page: () => FaqPage()),

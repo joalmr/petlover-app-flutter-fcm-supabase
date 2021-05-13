@@ -18,7 +18,7 @@ class BookingHomeController extends GetxController {
   }
 
   Future<void> _reserva() async {
-    await Get.toNamed('nav/lista');
+    await Get.toNamed('nav/notifica');
   }
 
   void agregarMascota() {

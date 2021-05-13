@@ -96,7 +96,6 @@ class FiltraVetsController extends GetxController {
     tempLat = "";
     tempLng = "";
 
-    // Get.offAllNamed('nav/lista');
     Get.to(ReservaList());
   }
 }

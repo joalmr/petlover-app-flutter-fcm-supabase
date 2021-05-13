@@ -38,27 +38,18 @@ class MascotaDrawer extends StatelessWidget {
                     SizedBox(height: 20.0),
                     Divider(),
                     ListTile(
-                      leading: Icon(Icons.edit,
-                          color: Get.textTheme.subtitle2.color),
-                      title: Text('Editar datos',
-                          style: TextStyle(fontWeight: FontWeight.w400)),
-                      onTap: () =>
-                          Get.to(MascotaEditarPage()), //mascotaData: _.petC.pet
+                      leading: Icon(Icons.edit, color: Get.textTheme.subtitle2.color),
+                      title: Text('Editar datos', style: TextStyle(fontWeight: FontWeight.w400)),
+                      onTap: () => Get.to(MascotaEditarPage()),
                     ),
                     ListTile(
-                      leading: Icon(Icons.bookmark,
-                          color: Get.textTheme.subtitle2.color),
-                      title: Text('Fallecido',
-                          style: TextStyle(fontWeight: FontWeight.w400)),
-                      onTap: () => Get.dialog((_.petC.pet.status != 0)
-                          ? _fallecido(_)
-                          : _errorFallecido(_)),
+                      leading: Icon(Icons.bookmark, color: Get.textTheme.subtitle2.color),
+                      title: Text('Fallecido', style: TextStyle(fontWeight: FontWeight.w400)),
+                      onTap: () => Get.dialog((_.petC.pet.status != 0) ? _fallecido(_) : _errorFallecido(_)),
                     ),
                     ListTile(
                       leading: Icon(Icons.delete_forever, color: colorRed),
-                      title: Text('Eliminar mascota',
-                          style: TextStyle(
-                              color: colorRed, fontWeight: FontWeight.w400)),
+                      title: Text('Eliminar mascota', style: TextStyle(color: colorRed, fontWeight: FontWeight.w400)),
                       onTap: () => Get.dialog(_eliminar(_)),
                     )
                   ],

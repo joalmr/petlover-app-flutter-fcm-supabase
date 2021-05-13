@@ -24,13 +24,12 @@ class HomeController extends GetxController {
 
   RxBool loading = true.obs;
 
-  RxList<BookingModel> atenciones = <BookingModel>[].obs;
-  RxList<MascotaModel2> mascotas = <MascotaModel2>[].obs;
+  var atenciones = <BookingModel>[].obs;
+  var mascotas = <MascotaModel2>[].obs;
+  var notificacionesGroup = <GroupNoti>[].obs;
 
-  RxList<GroupNoti> notificacionesGroup = <GroupNoti>[].obs;
-
-  bool get sinAtenciones => atenciones.length == 0;
-  bool get sinMascotas => mascotas.length == 0;
+  // bool get sinAtenciones => atenciones.length == 0;
+  // bool get sinMascotas => mascotas.length == 0;
 
   void volver() => Get.back();
 
@@ -63,10 +62,14 @@ class HomeController extends GetxController {
   }
 
   Future<void> getSummary() async {
-    _summary();
+    loading.value = true;
+
     notificacionesGroup.clear();
     final respGroup = await _notificaService.getNotificacionGroup();
     notificacionesGroup.addAll(respGroup);
+    await _summary();
+    
+    loading.value = false;
   }
 
   Future<void> _summary() async {
@@ -87,11 +90,8 @@ class HomeController extends GetxController {
             fechaAt.year == now.year) {
           booking.pastDate = true;
         }
-
         atenciones.add(booking);
       });
-
-      loading.value = false;
     } catch (ex) {
       loading.value = false;
       errorInesperado();

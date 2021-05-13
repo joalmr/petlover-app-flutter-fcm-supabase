@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
@@ -8,16 +7,13 @@ import 'package:proypet/source/home/presentation/view/home_view.dart';
 import 'package:proypet/source/notificaciones/view/notificaciones_view.dart';
 import 'package:proypet/source/recompensas/view/recompensas_view.dart';
 import 'package:proypet/source/veterinarias/presentation/view/main_vet.dart';
-import 'package:proypet/source/veterinarias/presentation/view/veterinarias_view.dart';
-
 
 class NavigationBar extends StatefulWidget {
   final int currentTabIndex;
-  NavigationBar({@required this.currentTabIndex});
+  const NavigationBar({@required this.currentTabIndex});
 
   @override
-  _NavigationBarState createState() =>
-      _NavigationBarState(currentTabIndex: currentTabIndex);
+  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: this.currentTabIndex);
 }
 
 class _NavigationBarState extends State<NavigationBar> {
@@ -35,26 +31,11 @@ class _NavigationBarState extends State<NavigationBar> {
     ];
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: Icon(Icons.pets),
-        label: 'Inicio',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_active),
-        label: 'Notificaciones',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.search),
-        label: 'Veterinarias',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.monetization_on),
-        label: 'Puntos',
-      ),
-      // BottomNavigationBarItem(
-      //   icon: Icon(Icons.shopping_cart),
-      //   label: 'Shopping',
-      // ),
+      BottomNavigationBarItem(icon: Icon(Icons.pets), label: 'Inicio'),
+      BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: 'Notificaciones'),
+      BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Veterinarias'),
+      BottomNavigationBarItem(icon: Icon(Icons.monetization_on), label: 'Puntos'),
+      // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
     ];
 
     return GetBuilder<NavigationController>(
@@ -73,7 +54,7 @@ class _NavigationBarState extends State<NavigationBar> {
                   currentIndex: currentTabIndex,
                   type: BottomNavigationBarType.fixed,
                   backgroundColor: Theme.of(context).backgroundColor,
-                  onTap: (int index) => setState(() => currentTabIndex = index),
+                  onTap: (int index)=> setState(() => currentTabIndex = index),
                 ),
               )
             : Scaffold(

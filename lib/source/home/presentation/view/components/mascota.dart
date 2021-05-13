@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
-import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/home/domain/controller/mascota_home_controller.dart';
@@ -23,15 +22,7 @@ class Mascotas extends StatelessWidget {
     return GetX<PetHomeController>(
         init: PetHomeController(),
         builder: (_) {
-          return _home.loading.value
-              ? Container(
-                  height: 250.0,
-                  width: double.infinity,
-                  child: Center(
-                    child: lottieLoading,
-                  ),
-                )
-              : _home.sinMascotas
+          return _home.mascotas.length == 0
                   ? FadeIn(
                       duration: Duration(milliseconds: 500),
                       child: Container(
@@ -42,7 +33,7 @@ class Mascotas extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text('Se parte de la comunidad responsable',
-                                textAlign: TextAlign.center),
+                              textAlign: TextAlign.center),
                             SizedBox(height: 10.0),
                             btnSecondary(
                               text: 'Agregar mascota',
@@ -74,10 +65,8 @@ class Mascotas extends StatelessWidget {
                                           Container(
                                             height: double.maxFinite,
                                             width: double.maxFinite,
-                                            foregroundDecoration:
-                                                BoxDecoration(
-                                              color: Colors.black
-                                                  .withOpacity(0.15),
+                                            foregroundDecoration:BoxDecoration(
+                                              color: Colors.black.withOpacity(0.15),
                                             ),
                                             child: Image(
                                               image: CachedNetworkImageProvider(mascota.picture),
@@ -131,20 +120,14 @@ class Mascotas extends StatelessWidget {
                                                 Row(
                                                   children: <Widget>[
                                                     (mascota.status == 0)
-                                                        ? Icon(Icons.bookmark,
-                                                            color: Colors.white)
-                                                        : Icon(Icons.cake,
-                                                            color:
-                                                                Colors.white),
+                                                        ? Icon(Icons.bookmark, color: Colors.white)
+                                                        : Icon(Icons.cake, color: Colors.white),
                                                     SizedBox(width: 5.0),
                                                     (mascota.status == 0)
-                                                        ? Text("Fallecido",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white))
+                                                        ? Text("Fallecido", style: TextStyle(color: Colors.white))
                                                         : Text(
-                                                            calculateAge(DateTime.parse(mascota.birthdate)),
-                                                            style: Get.textTheme.subtitle2.apply(color: Colors.white),
+                                                          calculateAge(DateTime.parse(mascota.birthdate)),
+                                                          style: Get.textTheme.subtitle2.apply(color: Colors.white),
                                                         )
                                                   ],
                                                 ),
@@ -161,7 +144,7 @@ class Mascotas extends StatelessWidget {
                                                 child: Padding(
                                                     padding: EdgeInsets.all(0),
                                                     child: StoriesPet(
-                                                      petImgId: mascota.picture, 
+                                                      petImgId: mascota.picture,
                                                       specieId: mascota.specieId,
                                                     ),
                                                 ),

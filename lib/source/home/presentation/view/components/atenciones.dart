@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
-import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/atencion_home_controller.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
@@ -18,15 +17,7 @@ class Atenciones extends StatelessWidget {
     return GetX<BookingHomeController>(
       init: BookingHomeController(),
       builder: (_) {
-        return _home.loading.value
-            ? Container(
-                width: double.infinity,
-                height: 100,
-                child: Center(
-                  child: lottieLoading,
-                ),
-              )
-            : _home.sinAtenciones
+        return _home.atenciones.length == 0
                 ? FadeIn(
                     duration: Duration(milliseconds: 500),
                     child: Container(
@@ -39,11 +30,9 @@ class Atenciones extends StatelessWidget {
                               ? InkWell(
                                   borderRadius: borderRadius,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 2, bottom: 2),
+                                    padding: const EdgeInsets.only(top: 2, bottom: 2),
                                     child: Image(
-                                      image:
-                                          AssetImage('images/reserva-gana.png'),
+                                      image: AssetImage('images/reserva-gana.png'),
                                       fit: BoxFit.cover,
                                       height: 220,
                                     ),
@@ -99,8 +88,7 @@ class Atenciones extends StatelessWidget {
                                   ),
                                   btnAltern(
                                     text: 'Sí, eliminar',
-                                    onPressed: () =>
-                                        _.eliminaAtencion(atencion.bookingId),
+                                    onPressed: () => _.eliminaAtencion(atencion.bookingId),
                                     color: colorRed,
                                   ),
                                 ],
@@ -112,8 +100,7 @@ class Atenciones extends StatelessWidget {
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor: Colors.transparent,
-                                backgroundImage: CachedNetworkImageProvider(
-                                    atencion.petPicture),
+                                backgroundImage: CachedNetworkImageProvider(atencion.petPicture),
                                 radius: 25.0,
                               ),
                               title: Text(atencion.establishmentName),
@@ -122,15 +109,13 @@ class Atenciones extends StatelessWidget {
                                     ? atencion.bookingStatus
                                     : '${atencion.bookingStatus} - Vencido',
                                 style: (!atencion.pastDate)
-                                    ? (atencion.bookingStatusId == 3 ||
-                                            atencion.bookingStatusId == 6)
+                                    ? (atencion.bookingStatusId == 3 || atencion.bookingStatusId == 6)
                                         ? TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: colorMain)
                                         : TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color:
-                                                Get.textTheme.subtitle2.color)
+                                            color:Get.textTheme.subtitle2.color)
                                     : TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: colorRed),
@@ -145,14 +130,13 @@ class Atenciones extends StatelessWidget {
                                   ),
                                   Text(
                                     formatTime(atencion.bookingDatetime),
-                                    style: Get.textTheme.subtitle2.apply(
-                                        fontWeightDelta: 2, color: colorMain),
+                                    style: Get.textTheme.subtitle2
+                                      .apply(fontWeightDelta: 2, color: colorMain),
                                     textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 0, vertical: 0),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                             ),
                           ),
                         );

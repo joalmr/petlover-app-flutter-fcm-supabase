@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proypet/components/enddrawer/config_drawer.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/veterinarias/domain/controller/lista_vets_controller.dart';
@@ -25,7 +26,19 @@ class HomePage extends StatelessWidget {
             key: refreshKey,
             onRefresh: _.refresh,
             child: FadeViewSafeArea(
-              child: ListView(
+              child: 
+              _.loading.value ?
+                Center(
+                  child: Container(
+                    height: 250.0,
+                    width: double.infinity,
+                    child: Center(
+                      child: lottieLoading,
+                    ),
+                  ),
+                )
+              :
+              ListView(
                 padding: EdgeInsets.only(left: 10, right: 10),
                 children: <Widget>[
                   Container(
@@ -36,11 +49,8 @@ class HomePage extends StatelessWidget {
                       children: [
                         Text.rich(
                           TextSpan(
-                            style: GoogleFonts.lato(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w300,
-                            ),
-                            text: 'Hola, ', // default text style
+                            style: GoogleFonts.lato(fontSize: 28, fontWeight: FontWeight.w300),
+                            text: 'Hola, ',
                             children: <TextSpan>[
                               TextSpan(
                                 text: _.usuario.name,
@@ -50,58 +60,50 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          icon: Icon(Icons.settings,
-                              color: Get.textTheme.subtitle2.color),
-                          onPressed: () =>
-                              _scaffoldKey.currentState.openEndDrawer(),
-                        )
+                          icon: Icon(Icons.settings, color: Get.textTheme.subtitle2.color),
+                          onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
+                        ),
                       ],
                     ),
                   ),
-                  
-                  
                   Container(
                     margin: EdgeInsets.only(top:0,bottom:5),
                     child: Mascotas(),
                   ),
-
-                  // _.notificacionesGroup.length>0
-                  // ? StoriesPet()
-                  // : SizedBox(height: 0),
-
                   Container(
                     margin: EdgeInsets.only(top:10,bottom:5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        // Text(' Servicios frecuentes',
-                        //     style: Get.textTheme.headline6
-                        //         .apply(fontWeightDelta: 2)),
                         SizedBox(height: 10.0),
                         Get.find<VeterinariasController>().favoriteVets.length == 0
-                        ? Center(
-                          child: emergenciaHome(true),
-                        )
-                        : SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: <Widget>[
-                              emergenciaHome(false),
-                              SizedBox(width: 15.0),
-                              for (var item in Get.find<VeterinariasController>().favoriteVets)
-                                Padding(
-                                  padding: EdgeInsets.only(right: 15),
-                                  child: myFavorite(
-                                    item.id,
-                                    item.name,
-                                    item.slides.length==0 ? '' :item.slides.first,
+                          ? Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                              child: emergenciaHome(true),
+                            ),
+                          )
+                          : SingleChildScrollView(
+                            physics: BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: <Widget>[
+                                emergenciaHome(false),
+                                SizedBox(width: 15.0),
+                                for (var item in Get.find<VeterinariasController>().favoriteVets)
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 15),
+                                    child: myFavorite(
+                                      item.id,
+                                      item.name,
+                                      item.slides.length==0
+                                        ? '' : item.slides.first,
+                                    ),
                                   ),
-                                )
-                            ],
-                          ),
-                        )
+                              ],
+                            ),
+                          )
                       ],
                     ),
                   ),
@@ -115,7 +117,8 @@ class HomePage extends StatelessWidget {
                             Expanded(
                               child: Text(
                                 "Mis Reservas",
-                                style: Get.textTheme.headline6.apply(fontWeightDelta: 2),
+                                style: Get.textTheme.headline6
+                                  .apply(fontWeightDelta: 2),
                               ),
                             ),
                             InkWell(
@@ -179,7 +182,7 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               child: Icon(Icons.info_outline,
-                                  color: Get.textTheme.subtitle2.color),
+                                color: Get.textTheme.subtitle2.color),
                             ),
                           ],
                         ),
