@@ -3,22 +3,23 @@ import 'package:get/get.dart';
 import 'package:proypet/components/appbar_menu.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_navbar/domain/_navigation_controller.dart';
+import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/home/presentation/view/home_view.dart';
 import 'package:proypet/source/notificaciones/view/notificaciones_view.dart';
 import 'package:proypet/source/recompensas/view/recompensas_view.dart';
 import 'package:proypet/source/veterinarias/presentation/view/main_vet.dart';
 
-class NavigationBar extends StatefulWidget {
-  final int currentTabIndex;
-  const NavigationBar({@required this.currentTabIndex});
+class NavigationBar extends StatelessWidget {
+//   final int currentTabIndex;
+//   const NavigationBar({@required this.currentTabIndex});
 
-  @override
-  _NavigationBarState createState() => _NavigationBarState(currentTabIndex: this.currentTabIndex);
-}
+//   @override
+//   _NavigationBarState createState() => _NavigationBarState(currentTabIndex: this.currentTabIndex);
+// }
 
-class _NavigationBarState extends State<NavigationBar> {
-  int currentTabIndex;
-  _NavigationBarState({@required this.currentTabIndex});
+// class _NavigationBarState extends State<NavigationBar> {
+//   int currentTabIndex;
+//   _NavigationBarState({@required this.currentTabIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +39,14 @@ class _NavigationBarState extends State<NavigationBar> {
       // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
     ];
 
-    return GetBuilder<NavigationController>(
-      init: NavigationController(),
+    // final _home = Get.find<HomeController>();
+
+    return GetX<NavigationController>(
+      // init: NavigationController(),
       builder: (_) {
         return Get.width < 600
             ? Scaffold(
-                body: _kTabPages[currentTabIndex],
+                body: _kTabPages[_.currentTabIndex.value],
                 bottomNavigationBar: BottomNavigationBar(
                   iconSize: 28.0,
                   selectedLabelStyle: TextStyle(fontSize: 11.0),
@@ -51,15 +54,15 @@ class _NavigationBarState extends State<NavigationBar> {
                   selectedItemColor: colorMain,
                   unselectedItemColor: Color.fromRGBO(116, 117, 152, 1.0),
                   items: _kBottmonNavBarItems,
-                  currentIndex: currentTabIndex,
+                  currentIndex: _.currentTabIndex.value,
                   type: BottomNavigationBarType.fixed,
                   backgroundColor: Theme.of(context).backgroundColor,
-                  onTap: (int index)=> setState(() => currentTabIndex = index),
+                  onTap: (int index)=> _.currentTabIndex.value=index, //setState(() => currentTabIndex = index),
                 ),
               )
             : Scaffold(
                 appBar: navbar(),
-                body: Container(child: _kTabPages[currentTabIndex]),
+                body: Container(child: _kTabPages[_.currentTabIndex.value]),
               );
       },
     );

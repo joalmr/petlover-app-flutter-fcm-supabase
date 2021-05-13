@@ -37,7 +37,7 @@ class AppRoutes{
       GetPage(
         name: '/',
         page: () => box.hasData('token') && box.hasData('verify')
-            ? NavigationBar(currentTabIndex: 0)
+            ? NavigationBar()
             : OnBoardPage(),
         children: [
           GetPage(name: 'registro', page: () => SingupPage()),
@@ -48,16 +48,19 @@ class AppRoutes{
       ),
       //
       GetPage(
-        name: 'nav', 
-        page: () => NavigationBar(currentTabIndex: 0),//?nav/inicio
-        
-        children: [
-          //? inicio
-          GetPage(name: '/notifica', page: ()=> NavigationBar(currentTabIndex: 1)),
-          GetPage(name: '/lista', page: () => NavigationBar(currentTabIndex: 2)),
-          GetPage(name: '/recompensa', page: () => NavigationBar(currentTabIndex: 3)),
-        ],
+        name: 'nav/:page',
+        page: () => NavigationBar(),
       ),
+      // GetPage(
+      //   name: 'nav', 
+      //   page: () => NavigationBar(currentTabIndex: 0),//?nav/inicio
+      //   children: [
+      //     //? inicio
+      //     GetPage(name: '/notifica', page: ()=> NavigationBar(currentTabIndex: 1)),
+      //     GetPage(name: '/lista', page: () => NavigationBar(currentTabIndex: 2)),
+      //     GetPage(name: '/recompensa', page: () => NavigationBar(currentTabIndex: 3)),
+      //   ],
+      // ),
       GetPage(
         name: 'micuenta', 
         page: () => MiCuentaPage(),

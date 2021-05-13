@@ -142,11 +142,11 @@ class ContentAdd extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
-                      child: btnAltern(
+                      child: Navigator.of(context).canPop() ? btnAltern(
                         text: 'Salir',
                         onPressed: () => Get.back(),
                         color: Get.iconColor, //observado
-                      ),
+                      ) : SizedBox(height: 0),
                     ),
                   ],
                 ),

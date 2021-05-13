@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:proypet/components/enddrawer/config_drawer.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
+import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
+import 'package:proypet/source/_navbar/domain/_navigation_controller.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/veterinarias/domain/controller/lista_vets_controller.dart';
 import 'components/atenciones.dart';
@@ -78,11 +81,34 @@ class HomePage extends StatelessWidget {
                       children: <Widget>[
                         SizedBox(height: 10.0),
                         Get.find<VeterinariasController>().favoriteVets.length == 0
-                          ? Center(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                              child: emergenciaHome(true),
-                            ),
+                          ? 
+                          // Center(
+                          //   child: Padding(
+                          //     padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                          //     child: emergenciaHome(true),
+                          //   ),
+                          // )
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              emergenciaHome(false),
+                              SizedBox(width: 15.0),
+                              InkWell(
+                                onTap: (){
+                                  Get.find<NavigationController>().currentTabIndex.value=2;
+                                },
+                                borderRadius: BorderRadius.circular(10),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Column(
+                                    children: [
+                                      Lottie.asset(pathLottie('buscando_vet'),height: 90),
+                                      Text('Busca veterinarias', style: TextStyle(color: colorMain),)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           )
                           : SingleChildScrollView(
                             physics: BouncingScrollPhysics(),

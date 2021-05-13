@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
       defaultTransition: Transition.fadeIn,
       getPages: AppRoutes().getRutas(),
       onGenerateRoute: (settings) => GetPageRoute(
-        page: () => NavigationBar(currentTabIndex: 0),
+        page: () => NavigationBar(),
       ),
     );
   }

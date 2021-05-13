@@ -28,9 +28,6 @@ class HomeController extends GetxController {
   var mascotas = <MascotaModel2>[].obs;
   var notificacionesGroup = <GroupNoti>[].obs;
 
-  // bool get sinAtenciones => atenciones.length == 0;
-  // bool get sinMascotas => mascotas.length == 0;
-
   void volver() => Get.back();
 
   Future refresh() => _refresh();
@@ -42,12 +39,15 @@ class HomeController extends GetxController {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+    initApp();
+  }
 
+  initApp() async {
     if (prefUser.hasToken()) {
-      getUsuario();
-      getSummary();
+      await getUsuario();
+      await getSummary();
     }
   }
 
@@ -69,6 +69,9 @@ class HomeController extends GetxController {
     notificacionesGroup.addAll(respGroup);
     await _summary();
     
+    if(mascotas.length==0){
+      await Get.offNamed('mascota/agregar');
+    }
     loading.value = false;
   }
 
@@ -93,7 +96,7 @@ class HomeController extends GetxController {
         atenciones.add(booking);
       });
     } catch (ex) {
-      loading.value = false;
+      // loading.value = false;
       errorInesperado();
     }
   }

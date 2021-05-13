@@ -102,6 +102,7 @@ class MiCuentaPage extends StatelessWidget {
     prefUser.ubicacionDel(); //limpia direccion para lista vets
     prefUser.myAddressDel(); //limpia direccion de la ultima reserva realizada
     prefUser.myAddressLatLngDel(); //limpia gps de la ultima reserva realizada
+    prefUser.storageUserDel(); //quita veterinarias favoritas
     // prefUser.notificaAvisoDel(); //limpia notificacion aviso
 
     Get.offAllNamed('/login');
