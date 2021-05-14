@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/home/domain/controller/mascota_home_controller.dart';
 import 'package:proypet/utils/calcula_edad.dart';
-
 import 'stories.dart';
 
 class Mascotas extends StatelessWidget {

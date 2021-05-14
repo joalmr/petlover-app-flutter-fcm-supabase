@@ -16,7 +16,7 @@ class NavigationBar extends StatelessWidget {
     final _kTabPages = <Widget>[
       HomePage(),
       NotificacionesPage(),
-      MainVet(), //TODO: lista o favoritas
+      MainVet(),
       RecompensasPage(),
       // ShoppingPage(),
     ];
@@ -28,8 +28,6 @@ class NavigationBar extends StatelessWidget {
       BottomNavigationBarItem(icon: Icon(Icons.monetization_on), label: 'Puntos'),
       // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
     ];
-
-    // final _home = Get.find<HomeController>();
 
     return GetX<NavigationController>(
       init: NavigationController(),

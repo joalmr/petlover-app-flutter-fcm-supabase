@@ -15,7 +15,6 @@ import 'package:proypet/source/mascota/controller/agregar_mascota_controller.dar
 import 'package:proypet/source/mascota/view/detalle/components/tab_general/card_style.dart';
 
 class ContentAdd extends StatelessWidget {
-  //TODO: buscar mejorar el step creado
   @override
   Widget build(BuildContext context) {
     return GetX<MascotaAgregarController>(
