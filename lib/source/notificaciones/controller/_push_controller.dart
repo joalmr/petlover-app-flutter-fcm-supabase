@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
@@ -9,7 +11,6 @@ import 'package:proypet/source/notificaciones/view/push/buildPushNoti.dart';
 class PushController extends GetxController {
   AuthService loginApi = AuthService();
   final homeC = Get.find<HomeController>();
-  Map<String, dynamic> mensaje;
 
   FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
@@ -32,6 +33,7 @@ class PushController extends GetxController {
   void firebaseToken() {
     _firebaseMessaging.getToken().then((token) {
       print("==firebase token==");
+      print(token);
       loginApi.sendTokenFire(token);
     });
   }
@@ -40,41 +42,35 @@ class PushController extends GetxController {
     FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message) {
       print('getInitialMessage');
       if (message != null) {
-        print(message.data);
-        mensaje = message.data;
-        _push();
+        _push(jsonEncode(message.data));
       }
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('onMessage');
       if (message != null) {
-        print(message.data);
-        mensaje = message.data;
-        _push();
+        _push(jsonEncode(message.data));
       }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('onMessageOpenedApp');
       if (message != null) {
-        print(message.data);
-        mensaje = message.data;
-        _push();
+        _push(jsonEncode(message.data));
       }
     });
   }
 
-  void _push() {
+  void _push(mensaje) {
     if (mensaje != null){
-      _pushVoid();
+      _pushVoid(mensaje);
     }
   }
 
-  Future<void> _pushVoid() async {
-    var mensajePush = mensaje['data']['message'];
-    var tipoPush = mensaje['data']['type'];
-    var dataPush = mensaje['data'];
+  Future<void> _pushVoid(mensaje) async {
+    var dataPush = jsonDecode(mensaje);
+    var mensajePush =  dataPush['message'];
+    var tipoPush = dataPush['type'];
 
     if (tipoPush == "AttentionFinished") {
       homeC.getSummary();

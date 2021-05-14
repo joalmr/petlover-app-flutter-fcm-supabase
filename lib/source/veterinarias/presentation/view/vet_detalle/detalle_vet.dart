@@ -134,9 +134,8 @@ class VetDetallePage extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(width: 10),
-                                  
                                   Expanded(
-                                                                      child: btnPrimary(
+                                    child: btnPrimary(
                                       text: 'Reservar servicio',
                                       onPressed: _.reservaClic.value
                                         ? _.reservar

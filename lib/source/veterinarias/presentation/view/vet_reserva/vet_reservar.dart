@@ -236,13 +236,13 @@ class DataReserva extends StatelessWidget {
                             SizedBox(height: 15.0),
                               _.servicioReservaLista.length > 0
                                 ? btnPrimary(
-                                    text: 'Reservar',
+                                    text: 'Confirmar reserva',
                                     onPressed: _.actBtn.value
                                         ? _.reservarAtencion
                                         : null,
                                   )
                                 : btnPrimary(
-                                    text: 'Reservar',
+                                    text: 'Confirmar reserva',
                                     onPressed: () {},
                                     cargando: true,
                                   ),
