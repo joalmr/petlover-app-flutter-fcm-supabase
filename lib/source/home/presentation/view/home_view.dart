@@ -29,9 +29,8 @@ class HomePage extends StatelessWidget {
             key: refreshKey,
             onRefresh: _.refresh,
             child: FadeViewSafeArea(
-              child: 
-              _.loading.value ?
-                Center(
+              child: _.loading.value 
+              ? Center(
                   child: Container(
                     height: 250.0,
                     width: double.infinity,
@@ -40,8 +39,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 )
-              :
-              ListView(
+              : ListView(
                 padding: EdgeInsets.only(left: 10, right: 10),
                 children: <Widget>[
                   Container(
@@ -82,7 +80,6 @@ class HomePage extends StatelessWidget {
                         SizedBox(height: 10.0),
                         Get.find<VeterinariasController>().favoriteVets.length == 0
                           ? Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               emergenciaHome(false),
                               SizedBox(width: 15.0),
