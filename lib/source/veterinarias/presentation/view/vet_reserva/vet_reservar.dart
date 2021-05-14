@@ -95,6 +95,9 @@ class DataReserva extends StatelessWidget {
                                           text: 'Otro servicio',
                                           style: TextStyle(fontWeight: FontWeight.bold),
                                         ),
+                                        TextSpan(
+                                          text: ' detallelo',
+                                        ),
                                       ],
                                     ),
                                     style: TextStyle(fontSize: font12),
