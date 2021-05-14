@@ -13,6 +13,8 @@ class GlobalController extends GetxController {
   final addressService = AddressService();
   final pushController = PushController();
 
+  var currentTabIndex = 0.obs;
+  
   RxString _ubicacion = ''.obs;
   set ubicacion(String value) => _ubicacion.value = value;
   String get ubicacion => _ubicacion.value;

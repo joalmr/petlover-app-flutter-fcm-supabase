@@ -54,7 +54,7 @@ class MascotaDrawerController extends GetxController {
     bool resp = await petService.deletePet(petC.pet.id);
     if (resp) {
       homeC.getSummary();
-      Get.offAllNamed('nav');
+      Get.offAllNamed('nav/inicio');
     } else
       Get.back();
   }

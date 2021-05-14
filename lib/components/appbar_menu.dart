@@ -22,7 +22,7 @@ Widget navbar() {
                 children: [
                   InkWell(
                     child: Text('Inicio', style: TextStyle(color: colorBrown1)),
-                    onTap: () => Get.toNamed('nav'),
+                    onTap: () => Get.toNamed('nav/inicio'),
                   ),
                   SizedBox(width: 20),
                   InkWell(

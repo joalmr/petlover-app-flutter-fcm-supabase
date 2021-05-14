@@ -97,7 +97,7 @@ class DetalleRservadoController extends GetxController {
     var resp = await bookingService.deleteBooking(id);
     if (resp) {
       homeController.getSummary();
-      await Get.offAllNamed('nav');
+      await Get.offAllNamed('nav/inicio');
     } else {
       mostrarSnackbar("No se eliminó la atención", colorRed);
     }

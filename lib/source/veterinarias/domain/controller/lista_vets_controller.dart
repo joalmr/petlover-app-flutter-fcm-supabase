@@ -95,6 +95,6 @@ class VeterinariasController extends GetxController {
 
   filtra() {
     final f = Get.find<FiltraVetsController>();
-    f.filtrar();
+    f.filtrarSinDir();
   }
 }

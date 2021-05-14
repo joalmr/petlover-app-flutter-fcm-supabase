@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/design/styles/styles.dart';
-import 'package:proypet/source/_navbar/domain/_navigation_controller.dart';
+import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/home/domain/controller/atencion_home_controller.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/utils/datetime.dart';
@@ -31,7 +31,7 @@ class Atenciones extends StatelessWidget {
                               ? InkWell(
                                   borderRadius: borderRadius,
                                   onTap: (){
-                                    Get.find<NavigationController>().currentTabIndex.value=2;
+                                    Get.find<GlobalController>().currentTabIndex.value=2;
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 2, bottom: 2),

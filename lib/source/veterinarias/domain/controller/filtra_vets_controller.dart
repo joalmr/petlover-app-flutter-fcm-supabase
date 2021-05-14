@@ -4,7 +4,6 @@ import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/_global/data/global_repository.dart';
 import 'package:proypet/source/veterinarias/data/model/address.dart';
 import 'package:proypet/source/usuario/service/address_service.dart';
-import 'package:proypet/source/veterinarias/presentation/view/veterinarias_view.dart';
 import 'lista_vets_controller.dart';
 
 class FiltraVetsController extends GetxController {
@@ -73,7 +72,20 @@ class FiltraVetsController extends GetxController {
   }
 
   filtrar() => _filtrar();
-  _filtrar() {
+  _filtrar() async {
+    await _filtrando();
+
+    Get.close(1);
+  }
+
+  filtrarSinDir() => _filtrarSinDir();
+  _filtrarSinDir() async {
+    await _filtrando();
+
+    Get.reload();
+  }
+
+  _filtrando(){
     vetC.listaFiltros.clear();
     vetC.listaFiltros.addAll(listaFiltros);
 
@@ -95,7 +107,5 @@ class FiltraVetsController extends GetxController {
     tempAddress = "";
     tempLat = "";
     tempLng = "";
-
-    Get.to(ReservaList());
   }
 }

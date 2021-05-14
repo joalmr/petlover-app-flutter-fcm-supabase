@@ -49,20 +49,6 @@ class DataReserva extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 0),
-                child: Text(
-                  'Servicio: ${_.textoServicios}',
-                  style: TextStyle(fontSize: 11),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 0),
-                child: Text(
-                  'Fecha: ${_.fechaTimeAt.substring(0, 16)}',
-                  style: TextStyle(fontSize: 11),
-                ),
-              ),
               SizedBox(height: 0),
               Expanded(
                 child: Form(
@@ -77,11 +63,45 @@ class DataReserva extends StatelessWidget {
                         title: Text('Seleccione servicio'),
                         content: Container(
                           width: double.maxFinite,
-                          child: Wrap(
-                            children: _.servicioReservaLista
-                                .map((item) => MisServicioReserva(item))
-                                .toList()
-                                .cast<Widget>(),
+                          child: Column(
+                            children: [
+                              Wrap(
+                                children: _.servicioReservaLista
+                                    .map((item) => MisServicioReserva(item))
+                                    .toList()
+                                    .cast<Widget>(),
+                              ),
+                              SizedBox(height: 5.0),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text('Observación'),
+                                  SizedBox(height: .5),
+                                  TextField(
+                                    enableInteractiveSelection: false,
+                                    controller: _.inputObservacioController,
+                                    textCapitalization: TextCapitalization.sentences,
+                                    keyboardType: TextInputType.multiline,
+                                    decoration: InputDecoration(hintText:'(Opcional)'),
+                                    cursorColor: colorMain,
+                                    onChanged: (value) => _.observacion = value,
+                                  ),
+                                  Text.rich(
+                                    TextSpan(
+                                      text: '*Indique algo que deba saber la veterinaria o si seleccionó ', // default text style
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'Otro servicio',
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    style: TextStyle(fontSize: font12),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -161,74 +181,68 @@ class DataReserva extends StatelessWidget {
                                   )
                                 : SizedBox(height: 0.0),
                             (_.hasDelivery && _.deliveryId != "1")
-                                ? Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      SizedBox(height: 5.0),
-                                      autoDireccion(),
-                                      SizedBox(height: 5.0),
-                                      Container(
-                                        height: 150.0,
-                                        width: double.infinity,
-                                        child: MapaReserva(),
-                                      ),
-                                      SizedBox(height: 10.0),
-                                    ],
-                                  )
-                                : SizedBox(height: 0.0),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text('Observación'),
-                                SizedBox(height: .5),
-                                TextField(
-                                  enableInteractiveSelection: false,
-                                  controller: _.inputObservacioController,
-                                  textCapitalization:
-                                      TextCapitalization.sentences,
-                                  keyboardType: TextInputType.multiline,
-                                  cursorColor: colorMain,
-                                  decoration: InputDecoration(
-                                      hintText:
-                                          'Ingrese observación (opcional)'),
-                                  onChanged: (value) => _.observacion = value,
-                                ),
-                                Text.rich(
-                                  TextSpan(
-                                    text:
-                                        '*Si seleccionó ', // default text style
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'Otro servicio',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      TextSpan(
-                                          text:
-                                              ', especifíquelo en observaciones',
-                                          style: TextStyle()),
-                                    ],
+                              ? Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    SizedBox(height: 5.0),
+                                    autoDireccion(),
+                                    SizedBox(height: 5.0),
+                                    Container(
+                                      height: 150.0,
+                                      width: double.infinity,
+                                      child: MapaReserva(),
+                                    ),
+                                  ],
+                                )
+                              : SizedBox(height: 0.0),
+                            SizedBox(height: 15.0),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                color: colorGray1,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Resumen reserva', 
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                  style: TextStyle(fontSize: font12),
-                                ),
-                                SizedBox(height: 30.0),
-                                _.servicioReservaLista.length > 0
-                                    ? btnPrimary(
-                                        text: 'Confirmar reserva',
-                                        onPressed: _.actBtn.value
-                                            ? _.reservarAtencion
-                                            : null,
-                                      )
-                                    : btnPrimary(
-                                        text: 'Confirmar reserva',
-                                        onPressed: () {},
-                                        cargando: true,
-                                      ),
-                              ],
+                                  Text(
+                                    'Servicio: ${_.textoServicios}',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  Text(
+                                    'Fecha: ${_.fechaTimeAt.substring(0, 16).split(' ')[0]}',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  Text(
+                                    'Hora: ${_.fechaTimeAt.substring(0, 16).split(' ')[1]}',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
                             ),
+                            SizedBox(height: 15.0),
+                              _.servicioReservaLista.length > 0
+                                ? btnPrimary(
+                                    text: 'Reservar',
+                                    onPressed: _.actBtn.value
+                                        ? _.reservarAtencion
+                                        : null,
+                                  )
+                                : btnPrimary(
+                                    text: 'Reservar',
+                                    onPressed: () {},
+                                    cargando: true,
+                                  ),
                           ],
                         ),
                       ),
@@ -260,24 +274,24 @@ class DataReserva extends StatelessWidget {
                       width: Get.width / 2,
                       child: Center(
                         child: _.stepVal == 0
-                            ? SizedBox(height: 0)
-                            : btnAltern(
-                                text: 'Atras',
-                                onPressed: _.stepCancel,
-                                color: colorMain, //observado
-                              ),
+                          ? SizedBox(height: 0)
+                          : btnAltern(
+                              text: 'Atras',
+                              onPressed: _.stepCancel,
+                              color: colorMain, //observado
+                            ),
                       ),
                     ),
                     Container(
                       width: Get.width / 2,
                       child: Center(
                         child: _.stepVal == 2
-                            ? SizedBox(height: 0)
-                            : btnAltern(
-                                text: 'Siguiente',
-                                onPressed: _.stepContinue,
-                                color: colorMain, //observado
-                              ),
+                          ? SizedBox(height: 0)
+                          : btnAltern(
+                              text: 'Siguiente',
+                              onPressed: _.stepContinue,
+                              color: colorMain, //observado
+                            ),
                       ),
                     ),
                   ],
