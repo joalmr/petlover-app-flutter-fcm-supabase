@@ -37,7 +37,7 @@ class UsuarioController extends GetxController {
   }
 
   _cargaValores() {
-    UserModel2 dato = homeC.usuario;
+    UserModel2 dato = homeC.usuario.value;
 
     nombre = dato.name;
     apellido = dato.lastname;

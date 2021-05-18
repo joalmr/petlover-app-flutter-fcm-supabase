@@ -43,7 +43,7 @@ class SolicitaVetController extends GetxController {
     } else {
       String asunto = 'Solicita veterinaria: ${nombre.toUpperCase()}';
       String body = '''
-      <strong>Enviado por ${usuario.name} ${usuario.lastname} | ${usuario.email}</strong>
+      <strong>Enviado por ${usuario.value.name} ${usuario.value.lastname} | ${usuario.value.email}</strong>
       <br/>
       <strong>Nombre:</strong> $nombre
       <br/> 

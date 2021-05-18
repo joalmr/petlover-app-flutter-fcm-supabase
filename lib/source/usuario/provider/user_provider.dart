@@ -9,11 +9,8 @@ class UserProvider {
 
   Future<UserModel2> getUser() async {
     final url = Uri.parse('$_url/profile');
-
     final response = await http.get(url, headers: headersToken());
-
     final jsonData = jsonDecode(response.body);
-
     final datosUsuario = UserModel2.fromJson(jsonData['user']);
 
     return datosUsuario;

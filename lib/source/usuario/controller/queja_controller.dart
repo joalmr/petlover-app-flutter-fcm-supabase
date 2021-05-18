@@ -51,7 +51,7 @@ class QuejaController extends GetxController {
     } else {
       String asunto = quejaArray[int.parse(queja)];
       String body = '''
-      <strong>Enviado por ${usuario.name} ${usuario.lastname} | ${usuario.email}</strong>
+      <strong>Enviado por ${usuario.value.name} ${usuario.value.lastname} | ${usuario.value.email}</strong>
       <br/>
       $descripcion
       ''';

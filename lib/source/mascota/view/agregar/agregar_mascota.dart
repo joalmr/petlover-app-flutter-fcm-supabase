@@ -32,12 +32,12 @@ class MascotaAgregarPage extends StatelessWidget {
             ),
             body: _.loading.value
                 ? FadeIn(
-                    child: Container(
-                      child: Center(
-                        child: lottieLoading,
-                      ),
+                  child: Container(
+                    child: Center(
+                      child: lottieLoading,
                     ),
-                  )
+                  ),
+                )
                 : ContentAdd(),
           );
         });

@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/booking/model/booking_model.dart';
 import 'package:proypet/source/home/data/service/summary_service.dart';
 import 'package:proypet/source/mascota/model/pet_model.dart';
@@ -10,6 +12,7 @@ import 'package:proypet/source/booking/service/booking_service.dart';
 import 'package:proypet/source/mascota/service/pet_service.dart';
 import 'package:proypet/source/usuario/service/user_service.dart';
 import 'package:proypet/utils/error.dart';
+import 'package:proypet/utils/regex.dart';
 
 class HomeController extends GetxController {
   final summaryRepository = SummaryService();
@@ -18,11 +21,13 @@ class HomeController extends GetxController {
   final bookingService = BookingService();
   final _notificaService = NotificationService();
 
-  Rx<UserModel2> _usuario = UserModel2().obs;
-  set usuario(UserModel2 value) => _usuario.value = value;
-  UserModel2 get usuario => _usuario.value;
+  Rx<UserModel2> usuario = UserModel2().obs;
+  // set usuario(UserModel2 value) => _usuario.value = value;
+  // UserModel2 get usuario => _usuario.value;
 
   RxBool loading = true.obs;
+
+  var telefono = "".obs;
 
   var atenciones = <BookingModel>[].obs;
   var mascotas = <MascotaModel2>[].obs;
@@ -46,18 +51,36 @@ class HomeController extends GetxController {
 
   initApp() async {
     if (prefUser.hasToken()) {
-      await getUsuario();
       await getSummary();
+      await getUsuario();
+      
     }
   }
 
   getUsuario() => _getUsuario();
 
   _getUsuario() async {
+    print('**');
     try {
-      usuario = await userService.getUser();
+      usuario.value = await userService.getUser();
     } catch (ex) {
       errorInesperado();
+    }
+  }
+
+  onPhone()=>_onPhone();
+  void _onPhone() async {
+    if (telefono.value!=null && telefono.value.trim()!='') {
+      bool phone = phoneRegex(telefono.value);
+      if (phone) {
+        await userService.editUser(usuario.value.name, usuario.value.lastname, telefono.value);
+        getUsuario();
+        telefono.value='';
+      } else {
+        mostrarSnackbar('Número telefónico inválido', colorRed);
+      }
+    } else {
+      mostrarSnackbar('Número telefónico inválido', colorRed);
     }
   }
 

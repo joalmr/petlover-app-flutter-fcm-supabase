@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 String formatDateTime(DateTime dateTime) {
@@ -27,4 +28,15 @@ DateTime toDate(String valor) {
 DateTime toDateBasic(String valor) {
   DateTime tempDate = new DateFormat("yyyy-MM-dd").parse(valor);
   return tempDate;
+}
+
+String formatDateOut({
+  @required String valor,
+  @required String formatIn,
+  @required String formatOut,
+}) {
+  DateTime tempDate = DateFormat(formatIn).parse(valor);
+  String tempDateString = DateFormat(formatOut).format(tempDate);
+
+  return tempDateString;
 }

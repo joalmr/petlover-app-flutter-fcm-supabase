@@ -13,6 +13,7 @@ import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/mascota/controller/agregar_mascota_controller.dart';
 import 'package:proypet/source/mascota/view/detalle/components/tab_general/card_style.dart';
+import 'package:proypet/utils/datetime.dart';
 
 class ContentAdd extends StatelessWidget {
   @override
@@ -63,11 +64,9 @@ class ContentAdd extends StatelessWidget {
                                       child: Stack(
                                         children: [
                                           ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
+                                            borderRadius: BorderRadius.circular(10),
                                             child: Image(
-                                              image: AssetImage(
-                                                  "images/cat_dog/blue-dog.png"),
+                                              image: AssetImage("images/cat_dog/blue-dog.png"),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -111,8 +110,7 @@ class ContentAdd extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             child: Image(
-                                              image: AssetImage(
-                                                  "images/cat_dog/green-cat.png"),
+                                              image: AssetImage("images/cat_dog/green-cat.png"),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -162,19 +160,17 @@ class ContentAdd extends StatelessWidget {
                             child: Stack(
                               children: <Widget>[
                                 CircleAvatar(
-                                    backgroundImage: _.mostrarFoto(),
-                                    radius: 80.0),
+                                  backgroundImage: _.mostrarFoto(),
+                                  radius: 80.0),
                                 Positioned(
                                   bottom: 1.5,
                                   right: 7.5,
                                   child: CircleAvatar(
                                     backgroundColor: colorMain,
-                                    // radius: 16.0,
                                     child: IconButton(
                                       icon: Icon(
                                         Icons.camera_enhance,
                                         color: Colors.white,
-                                        // size: 18,
                                       ),
                                       onPressed: () => showDialog(
                                           context: Get.context,
@@ -183,14 +179,11 @@ class ContentAdd extends StatelessWidget {
                                               child: SimpleDialog(
                                                 children: <Widget>[
                                                   SimpleDialogOption(
-                                                      child: const Text(
-                                                          'Tomar foto'),
-                                                      onPressed: _.tomarFoto),
+                                                    child: Text('Tomar foto'),
+                                                    onPressed: _.tomarFoto),
                                                   SimpleDialogOption(
-                                                      child: const Text(
-                                                          'Seleccionar foto'),
-                                                      onPressed:
-                                                          _.seleccionarFoto),
+                                                    child: Text('Seleccionar foto'),
+                                                    onPressed:_.seleccionarFoto),
                                                 ],
                                               ),
                                             );
@@ -203,7 +196,6 @@ class ContentAdd extends StatelessWidget {
                           ),
                           SizedBox(height: 20),
                           FormularioText(
-                            // labelText: 'Nombre',
                             hintText: 'Nombre de mascota',
                             valorInicial: _.nombre ?? '',
                             icon: Icons.pets,
@@ -232,7 +224,7 @@ class ContentAdd extends StatelessWidget {
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.only(right: 20),
                                 child: Icon(Icons.keyboard_arrow_down,
-                                    color: colorMain),
+                                  color: colorMain),
                               ),
                             ),
                             onTap: () => _.razasPet(Get.context),
@@ -280,12 +272,12 @@ class ContentAdd extends StatelessWidget {
                               if (_.sinNombreMascota || _.sinFechaMascota) {
                                 if (_.sinNombreMascota)
                                   mostrarSnackbar(
-                                      'Ingrese nombre de la mascota.',
-                                      colorRed);
+                                    'Ingrese nombre de la mascota.',
+                                    colorRed);
                                 if (_.sinFechaMascota)
                                   mostrarSnackbar(
-                                      'Ingrese nacimiento de la mascota.',
-                                      colorRed);
+                                    'Ingrese nacimiento de la mascota.',
+                                    colorRed);
                               } else
                                 _.page = _.page + 1;
                             },
@@ -302,7 +294,7 @@ class ContentAdd extends StatelessWidget {
                   children: [
                     SizedBox(height: Get.height * 0.1),
                     CircleAvatar(
-                        backgroundImage: _.mostrarFoto(), radius: 80.0),
+                      backgroundImage: _.mostrarFoto(), radius: 80.0),
                     SizedBox(height: 10),
                     Text(
                       _.nombre,
@@ -328,7 +320,13 @@ class ContentAdd extends StatelessWidget {
                           size: 16,
                         ),
                         SizedBox(width: 5),
-                        Text(_.fecha),
+                        Text(
+                          formatDateOut(
+                            formatIn: 'yyyy-MM-dd',
+                            formatOut: 'dd-MM-yyyy',
+                            valor: _.fecha.split(' ')[0]
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(height: 10),

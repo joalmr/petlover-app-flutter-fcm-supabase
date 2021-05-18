@@ -51,14 +51,12 @@ class VetDetalleController extends GetxController {
 
   RxBool favorite = false.obs;
 
-  
-
   @override
   void onInit() {
     super.onInit();
     vetInit = Get.arguments;
     traeMascotas();
-    usuario = homeC.usuario;
+    usuario = homeC.usuario.value;
     telefono = usuario.phone;
     getVet();
     isFavorite();
@@ -117,8 +115,7 @@ class VetDetalleController extends GetxController {
     return false;
   }
 
-  traeMascotas() => misMascotas =
-      homeC.mascotas.where((element) => element.status != 0).toList();
+  traeMascotas() => misMascotas = homeC.mascotas.where((element) => element.status != 0).toList();
 
   llamar() => _launchPhone();
 
@@ -131,8 +128,8 @@ class VetDetalleController extends GetxController {
     }
   }
 
-  bool get mascotasCount => misMascotas.length > 0;
-  bool get sinTelefono => telefono.isEmpty; //.isNullOrBlank;
+  // bool get mascotasCount => misMascotas.length > 0;
+  // bool get sinTelefono => telefono.isEmpty; //.isNullOrBlank;
 
   final formKey = GlobalKey<FormState>();
 
@@ -156,16 +153,15 @@ class VetDetalleController extends GetxController {
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [
-          Text(
-              'Hola, disculpa este establecimiento no puede recibir reservas.'),
+          Text('Hola, disculpa este establecimiento no puede recibir reservas.'),
           SizedBox(height: 3),
           Text('Tenemos estas opciones cerca '),
           SizedBox(height: 10),
           vetPremium.length < 1
               ? Center(
                   child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Sin resultados')))
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Sin resultados')))
               : vetPremium.length == 1
                   ? _gotoVet(vetPremium[0])
                   : Column(
@@ -181,50 +177,51 @@ class VetDetalleController extends GetxController {
         ],
       ));
     } else {
-      if (mascotasCount) {
-        if (!sinTelefono) {
+      if (misMascotas.length>0) {
+        if (telefono!=null && telefono.trim()!='') {
           reservaClic.value = true;
           Get.toNamed('vet/reserva');
         } else {
           reservaClic.value = true;
           Get.dialog(AlertDialog(
-            contentPadding:
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             content: Container(
-                height: 220.0,
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 10.0),
-                      Text('Debe ingresar un número de teléfono',
-                          style: Get.textTheme.subtitle2),
-                      SizedBox(height: 10.0),
-                      FormularioText(
-                        hintText: 'Ingrese teléfono',
-                        icon: Icons.phone,
-                        obscureText: false,
-                        onChanged: (value) => telefono = value,
-                        textCap: TextCapitalization.words,
-                        valorInicial: telefono,
-                        boardType: TextInputType.phone,
-                      ),
-                      SizedBox(height: 10.0),
-                      btnPrimary(
-                        text: "Guardar teléfono",
-                        onPressed: _onPhone,
-                      ),
-                      TextButton(
-                        child: Text("Cancelar",
-                            style: TextStyle(color: colorMain)),
-                        onPressed: () {
-                          reservaClic.value = true;
-                          Get.back();
-                        },
-                      )
-                    ],
-                  ),
-                )),
+              height: 220.0,
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 10.0),
+                    Text(
+                      'Debe ingresar un número de teléfono',
+                      style: Get.textTheme.subtitle2,
+                    ),
+                    SizedBox(height: 10.0),
+                    FormularioText(
+                      hintText: 'Ingrese teléfono',
+                      icon: Icons.phone,
+                      obscureText: false,
+                      onChanged: (value) => telefono = value,
+                      textCap: TextCapitalization.words,
+                      valorInicial: telefono,
+                      boardType: TextInputType.phone,
+                    ),
+                    SizedBox(height: 10.0),
+                    btnPrimary(
+                      text: "Guardar teléfono",
+                      onPressed: _onPhone,
+                    ),
+                    TextButton(
+                      child: Text("Cancelar",
+                          style: TextStyle(color: colorMain)),
+                      onPressed: () {
+                        reservaClic.value = true;
+                        Get.back();
+                      },
+                    )
+                  ],
+                ),
+              )),
           ));
         }
       } else {
@@ -237,15 +234,15 @@ class VetDetalleController extends GetxController {
     }
   }
 
-  bool get telCambio => telefono.isEmpty; //.isNullOrBlank;
+  // bool get telCambio => telefono.isEmpty; //.isNullOrBlank;
 
   void _onPhone() async {
-    if (!telCambio) {
+    if (telefono!=null && telefono.trim()!='') {
       bool phone = phoneRegex(telefono);
       if (phone) {
         await userService.editUser(usuario.name, usuario.lastname, telefono);
         homeC.getUsuario();
-        usuario = homeC.usuario;
+        usuario = homeC.usuario.value;
         Get.back();
       } else {
         mostrarSnackbar('Número telefónico inválido', colorRed);
@@ -268,11 +265,10 @@ class VetDetalleController extends GetxController {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           (vetPremium.slides.length > 0)
-              ? Image(
-                  image: CachedNetworkImageProvider(vetPremium.slides.first),
-                  height: 75,
-                )
-              : Image(image: AssetImage("images/vet_prueba.jpg"), height: 75),
+            ? Image(
+              image: CachedNetworkImageProvider(vetPremium.slides.first),
+              height: 75)
+            : Image(image: AssetImage("images/vet_prueba.jpg"), height: 75),
           SizedBox(height: 3),
           Text(vetPremium.name)
         ],

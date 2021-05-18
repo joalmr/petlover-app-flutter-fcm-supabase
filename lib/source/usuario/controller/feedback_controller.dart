@@ -39,7 +39,7 @@ class FeedbackController extends GetxController {
     } else {
       String asunto = 'Feedback';
       String body = '''
-      <strong>Enviado por ${usuario.name} ${usuario.lastname} | ${usuario.email}</strong>
+      <strong>Enviado por ${usuario.value.name} ${usuario.value.lastname} | ${usuario.value.email}</strong>
       <br/>
       ⭐️ $stars estrellas
       <br/>

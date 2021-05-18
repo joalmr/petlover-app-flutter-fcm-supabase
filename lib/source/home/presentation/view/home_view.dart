@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:proypet/components/enddrawer/config_drawer.dart';
+import 'package:proypet/components/form_control/buttons/btn_primary.dart';
+import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/transition/fadeViewSafeArea.dart';
 import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -54,7 +56,7 @@ class HomePage extends StatelessWidget {
                             text: 'Hola, ',
                             children: <TextSpan>[
                               TextSpan(
-                                text: _.usuario.name,
+                                text: _.usuario.value.name,
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -70,6 +72,31 @@ class HomePage extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top:0,bottom:5),
                     child: Mascotas(),
+                  ),
+                  if(_.usuario.value.phone==null||_.usuario.value.phone.trim()=='')
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                    child: Column(
+                      children: <Widget>[
+                        FormularioText(
+                          hintText: 'Ingrese teléfono',
+                          icon: Icons.phone,
+                          obscureText: false,
+                          onChanged: (value) => _.telefono.value = value,
+                          textCap: TextCapitalization.words,
+                          valorInicial: _.telefono.value,
+                          boardType: TextInputType.phone,
+                        ),
+                        Text(
+                          'Ingresar su teléfono es necesario para que la veterinaria pueda comunicarse con usted',
+                          style: TextStyle(fontSize: font12),
+                        ),
+                        btnPrimary(
+                          text: "Guardar teléfono",
+                          onPressed: _.onPhone,
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top:10,bottom:5),
