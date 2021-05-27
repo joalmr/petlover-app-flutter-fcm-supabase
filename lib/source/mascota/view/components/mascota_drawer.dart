@@ -1,9 +1,10 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/mascota/controller/mascota_drawer_controller.dart';
 import 'package:proypet/source/mascota/view/editar/editar_mascota.dart';
+import 'package:proypet/source/mascota/view/eliminar/eliminar_mascota.dart';
+import 'package:proypet/source/mascota/view/fallece/fallece_mascota.dart';
 
 class MascotaDrawer extends StatelessWidget {
   const MascotaDrawer({Key key}) : super(key: key);
@@ -45,12 +46,14 @@ class MascotaDrawer extends StatelessWidget {
                     ListTile(
                       leading: Icon(Icons.bookmark, color: Get.textTheme.subtitle2.color),
                       title: Text('Fallecido', style: TextStyle(fontWeight: FontWeight.w400)),
-                      onTap: () => Get.dialog((_.petC.pet.status != 0) ? _fallecido(_) : _errorFallecido(_)),
+                      onTap: () => Get.to(FalleceMacota()),
+                      //Get.dialog((_.petC.pet.status != 0) ? _fallecido(_) : _errorFallecido(_)),
                     ),
                     ListTile(
                       leading: Icon(Icons.delete_forever, color: colorRed),
                       title: Text('Eliminar mascota', style: TextStyle(color: colorRed, fontWeight: FontWeight.w400)),
-                      onTap: () => Get.dialog(_eliminar(_)),
+                      onTap: () => Get.to(EliminarMascota()),
+                      //Get.dialog(_eliminar(_)),
                     )
                   ],
                 ),
@@ -62,65 +65,65 @@ class MascotaDrawer extends StatelessWidget {
     );
   }
 
-  _fallecido(MascotaDrawerController control) {
-    return FadeIn(
-      child: AlertDialog(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-        title: null, //Text('Fallecido'),
-        content: Text('Lamentamos la perdida de tu ser querido.'),
-        actions: <Widget>[
-          TextButton(
-              onPressed: () => Get.back(),
-              child: Text('Cancelar',
-                  style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
-          TextButton(
-              onPressed: () => control.falleceMascota(true),
-              child: Text('Falleció mi mascota',
-                  style: Get.textTheme.subtitle2
-                      .apply(fontWeightDelta: 2, color: colorRed))),
-        ],
-      ),
-    );
-  }
+  // _fallecido(MascotaDrawerController control) {
+  //   return FadeIn(
+  //     child: AlertDialog(
+  //       contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+  //       title: null, //Text('Fallecido'),
+  //       content: Text('Lamentamos la perdida de tu ser querido.'),
+  //       actions: <Widget>[
+  //         TextButton(
+  //             onPressed: () => Get.back(),
+  //             child: Text('Cancelar',
+  //                 style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
+  //         TextButton(
+  //             onPressed: () => control.falleceMascota(true),
+  //             child: Text('Falleció mi mascota',
+  //                 style: Get.textTheme.subtitle2
+  //                     .apply(fontWeightDelta: 2, color: colorRed))),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  _errorFallecido(MascotaDrawerController control) {
-    return FadeIn(
-      child: AlertDialog(
-        title: null, //Text('Fallecido'),
-        content: Text('Cometiste un error?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Get.back(),
-            child: Text('Cancelar',
-                style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
-          ),
-          TextButton(
-              onPressed: () => control.falleceMascota(false),
-              child: Text('Sí, cometí un error',
-                  style: Get.textTheme.subtitle2
-                      .apply(fontWeightDelta: 2, color: colorMain))),
-        ],
-      ),
-    );
-  }
+  // _errorFallecido(MascotaDrawerController control) {
+  //   return FadeIn(
+  //     child: AlertDialog(
+  //       title: null, //Text('Fallecido'),
+  //       content: Text('Cometiste un error?'),
+  //       actions: <Widget>[
+  //         TextButton(
+  //           onPressed: () => Get.back(),
+  //           child: Text('Cancelar',
+  //               style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2)),
+  //         ),
+  //         TextButton(
+  //             onPressed: () => control.falleceMascota(false),
+  //             child: Text('Sí, cometí un error',
+  //                 style: Get.textTheme.subtitle2
+  //                     .apply(fontWeightDelta: 2, color: colorMain))),
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  _eliminar(MascotaDrawerController control) {
-    return FadeIn(
-      child: AlertDialog(
-        title: Text('Eliminar'),
-        content: Text('Seguro que desea eliminar a ?'), //${mascota.name}
-        actions: <Widget>[
-          TextButton(
-              onPressed: () => Get.back(),
-              child: Text('Cancelar',
-                  style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
-          TextButton(
-              onPressed: () => control.eliminaMascota(),
-              child: Text('Sí, eliminar',
-                  style: Get.textTheme.subtitle2
-                      .apply(fontWeightDelta: 2, color: colorRed))),
-        ],
-      ),
-    );
-  }
+  // _eliminar(MascotaDrawerController control) {
+  //   return FadeIn(
+  //     child: AlertDialog(
+  //       title: Text('Eliminar'),
+  //       content: Text('Seguro que desea eliminar a ?'), //${mascota.name}
+  //       actions: <Widget>[
+  //         TextButton(
+  //             onPressed: () => Get.back(),
+  //             child: Text('Cancelar',
+  //                 style: Get.textTheme.subtitle2.apply(fontWeightDelta: 2))),
+  //         TextButton(
+  //             onPressed: () => control.eliminaMascota(),
+  //             child: Text('Sí, eliminar',
+  //                 style: Get.textTheme.subtitle2
+  //                     .apply(fontWeightDelta: 2, color: colorRed))),
+  //       ],
+  //     ),
+  //   );
+  // }
 }

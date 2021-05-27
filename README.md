@@ -32,8 +32,13 @@ http://tomeko.net/online_tools/hex_to_base64.php
 ## hash produccion fb
 Gx37JCppiXJ0X/opc4vMt3hRLYM= (FUNCIONA PRODUCCION)
 
+## hash pruebas fb
+uE/rDKlAcI/MQfx1i4td8qSIsGk= (FUNCIONA PRUEBAS)
+
 ## sha facebook
 keytool -exportcert -alias upload -keystore /Users/josealonsomassarolando/keystore.jks | openssl sha1 -binary | openssl base64
+
 Sha para Facebook -> clave: peru@123
 
 echo 1B:1D:FB:24:2A:69:89:72:74:5F:FA:29:73:8B:CC:B7:78:51:2D:83 | xxd -r -p | openssl base64
+echo B8:4F:EB:0C:A9:40:70:8F:CC:41:FC:75:8B:8B:5D:F2:A4:88:B0:69 | xxd -r -p | openssl base64

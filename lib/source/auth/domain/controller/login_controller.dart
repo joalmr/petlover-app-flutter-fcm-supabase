@@ -82,6 +82,7 @@ class LoginController extends GetxController {
 
   void loginFacebook() async {
     int result = await FacebookSignInService.signIn();
+    print(result);
     retornos(result);
   }
 
@@ -115,7 +116,11 @@ class LoginController extends GetxController {
   retornos(result) {
     switch (result) {
       case 200:
-        ejecutaFirebase();
+        {
+          //! TODO: no funciona
+          print('fb 200');
+          // ejecutaFirebase();
+        }
         break;
       case 401:
         {

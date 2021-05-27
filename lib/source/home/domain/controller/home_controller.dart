@@ -51,9 +51,8 @@ class HomeController extends GetxController {
 
   initApp() async {
     if (prefUser.hasToken()) {
-      await getSummary();
       await getUsuario();
-      
+      await getSummary(); 
     }
   }
 

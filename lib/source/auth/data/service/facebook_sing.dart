@@ -1,29 +1,26 @@
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 
 import 'auth_service.dart';
 
+//! TODO: no funciona
 class FacebookSignInService {
-  static FacebookLogin _fb = FacebookLogin();
-
-  static Future<int> signIn() async {
+  static Future<int> signIn() async{
     final AuthService repository = AuthService();
     int statusCode;
     try {
-      final result = await _fb.logIn(permissions: [
-        FacebookPermission.publicProfile,
-        FacebookPermission.email,
-      ]);
-
+      final LoginResult result = await FacebookAuth.instance.login();
+      print(result.status);
       switch (result.status) {
-        case FacebookLoginStatus.success:
-          {
-            final fbProfile = await _fb.getUserProfile();
-            final fbEmail = await _fb.getUserEmail();
-
-            var nombre = fbProfile.firstName;
-            var apellido = fbProfile.lastName;
-            var email = fbEmail;
-            var fbId = fbProfile.userId;
+        case LoginStatus.success:
+          { 
+            final userData = await FacebookAuth.instance.getUserData(
+                fields: "first_name,last_name,email,id",
+            );
+            var nombre = userData['first_name'];
+            var apellido = userData['last_name']??'';
+            var email = userData['email'];
+            var fbId = userData['id'];
 
             int respLogin = await repository.loginFb(
               nombre,
@@ -35,10 +32,13 @@ class FacebookSignInService {
             statusCode = respLogin; //200 401 500
           }
           break;
-        case FacebookLoginStatus.cancel:
+        case LoginStatus.cancelled:
           statusCode = 408;
           break;
-        case FacebookLoginStatus.error:
+        case LoginStatus.failed:
+          statusCode = 409;
+          break;
+        case LoginStatus.operationInProgress:
           statusCode = 409;
           break;
       }
@@ -49,6 +49,6 @@ class FacebookSignInService {
   }
 
   static Future signOut() async {
-    await _fb.logOut();
+    await FacebookAuth.instance.logOut();
   }
 }

@@ -14,9 +14,9 @@ import 'source/home/domain/controller/home_controller.dart';
 import 'source/veterinarias/domain/controller/filtra_vets_controller.dart';
 import 'source/veterinarias/domain/controller/lista_vets_controller.dart';
 
-//! el push marketing no se abre
+//! push: probar todos los push
 //! fb login falla
-//! google login se debe revisar
+//! google login falla
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();

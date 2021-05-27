@@ -5,8 +5,6 @@ import 'variables_env.dart';
 
 //TODO: cambiar google-services para android
 
-
-
 String versionAndroid = "";
 String versionIOS = "";
 
