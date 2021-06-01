@@ -22,6 +22,8 @@ class GlobalController extends GetxController {
   bool get hasToken => prefUser.token != null && prefUser.token.trim() != "";
   bool get isVerify => prefUser.verify != null && prefUser.verify.trim() != "";
 
+  // RxString vetGlobal = prefUser.favoritesVets.first.obs;
+
   @override
   void onInit() {
     super.onInit();

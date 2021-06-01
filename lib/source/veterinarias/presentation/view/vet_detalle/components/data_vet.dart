@@ -117,9 +117,7 @@ class DataVet extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 10.0,
-            ),
+            SizedBox(height: 10.0),
             TabBar(
               indicatorColor: colorMain,
               labelStyle: TextStyle(fontWeight: FontWeight.bold),

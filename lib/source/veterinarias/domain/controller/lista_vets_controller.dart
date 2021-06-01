@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/config/global_variables.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
+import 'package:proypet/source/veterinarias/data/model/establecimiento_model.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_short_model.dart';
 import 'package:proypet/source/veterinarias/data/service/establishment_service.dart';
 import 'filtra_vets_controller.dart';
@@ -26,6 +27,10 @@ class VeterinariasController extends GetxController {
 
   ScrollController scrollController = new ScrollController();
 
+  Rx<EstablecimientoModel> _vet = EstablecimientoModel().obs;
+  set vet(EstablecimientoModel value) => _vet.value = value;
+  EstablecimientoModel get vet => _vet.value;
+
   @override
   void onInit() {
     super.onInit();
@@ -40,6 +45,18 @@ class VeterinariasController extends GetxController {
   void onClose() {
     scrollController.dispose();
     super.onClose();
+  }
+
+  //? favorito detalle
+  xGetVet(String idVet) async {
+    await _getVet(idVet);
+    Get.back();
+  }
+  //? favorito detalle
+  getVet(String idVet) => _getVet(idVet);
+  _getVet(String idVet) async {
+    var respVet = await vetService.getVet(idVet);
+    vet = respVet['establishment'];
   }
 
   Future refresh() => _refresh();
@@ -63,6 +80,7 @@ class VeterinariasController extends GetxController {
         favoriteVets.add(element);
       }
     });
+    getVet(favoriteVets.first.id); //? favorito detalle
   }
 
   getVets() => _getVets();

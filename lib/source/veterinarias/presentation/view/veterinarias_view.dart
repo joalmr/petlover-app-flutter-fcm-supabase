@@ -24,17 +24,17 @@ class ReservaList extends StatelessWidget {
           appBar: appBar(
             texto: 'Buscar veterinarias',
             acc: _.gps
-                ? <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () => Get.toNamed('vet/buscar'),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.filter_list),
-                      onPressed: () => Get.to(FiltraVets()),
-                    ),
-                  ]
-                : null,
+              ? <Widget>[
+                IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () => Get.toNamed('vet/buscar'),
+                ),
+                IconButton(
+                  icon: Icon(Icons.filter_list),
+                  onPressed: () => Get.to(FiltraVets()),
+                ),
+              ]
+              : null,
           ),
           body: _.loading.value
               ? Container(

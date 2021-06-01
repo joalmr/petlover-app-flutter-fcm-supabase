@@ -20,8 +20,8 @@ Widget buildVets(EstablishmentModelList vet) {
             Container(
               height: 100,
               child: (vet.slides.length > 0)
-                  ? _swiperVets(vet.slides, true)
-                  : _swiperVets(["images/vet_prueba.jpg"], false),
+                ? _swiperVets(vet.slides, true)
+                : _swiperVets(["images/vet_prueba.jpg"], false),
             ),
             Expanded(
               child: Padding(

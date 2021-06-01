@@ -37,8 +37,8 @@ class VetDetallePage extends StatelessWidget {
                             height: double.maxFinite,
                             width: double.maxFinite,
                             child: (_.vet.slides.length > 0)
-                                ? swiperVets(_.vet.slides, true)
-                                : swiperVets(["images/vet_prueba.jpg"], false),
+                              ? swiperVets(_.vet.slides, true)
+                              : swiperVets(["images/vet_prueba.jpg"], false),
                           ),
                           Positioned(
                             top: 30,
@@ -66,16 +66,16 @@ class VetDetallePage extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: _.favorite.value
-                                      ? Lottie.asset(
-                                          pathLottie('favorite'),
-                                          fit: BoxFit.cover,
-                                          height: 45,
-                                          width: 45,
-                                          repeat: false,
-                                        )
-                                      : BounceInDown(
-                                          from: 5,
-                                          child: Icon(Icons.favorite)),
+                                    ? Lottie.asset(
+                                        pathLottie('favorite'),
+                                        fit: BoxFit.cover,
+                                        height: 45,
+                                        width: 45,
+                                        repeat: false,
+                                      )
+                                    : BounceInDown(
+                                        from: 5,
+                                        child: Icon(Icons.favorite)),
                                 ),
                               ),
                             ),
@@ -115,14 +115,7 @@ class VetDetallePage extends StatelessWidget {
                               height: 60,
                               width: MediaQuery.of(context).size.width,
                               padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                              child: 
-                              // btnPrimary(
-                              //   text: 'Reservar servicio',
-                              //   onPressed: _.reservaClic.value
-                              //     ? _.reservar
-                              //     : null,
-                              // ),
-                              Row(
+                              child: Row(
                                 children: <Widget>[
                                   SizedBox(width: 5),
                                   SizedBox(
