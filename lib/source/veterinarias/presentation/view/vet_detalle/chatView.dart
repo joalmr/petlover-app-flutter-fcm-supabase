@@ -30,10 +30,14 @@ class ChatView extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final message = _.mensajes[index];
                     return Container(
-                      margin: EdgeInsets.all(5),
+                      margin: message.type 
+                        ? EdgeInsets.only(left: 15,top: 5, bottom: 5, right: 5)
+                        : EdgeInsets.only(right: 15,top: 5, bottom: 5, left: 5),
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: message.type 
+                          ? BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25), bottomLeft: Radius.circular(25))
+                          : BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25), bottomRight: Radius.circular(25)),
                         color: message.type ? colorMain.withOpacity(0.5) : colorBlue.withOpacity(0.5)
                       ),
                       child: Text(message.message),
