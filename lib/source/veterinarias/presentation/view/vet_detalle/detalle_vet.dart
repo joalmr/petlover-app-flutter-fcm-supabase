@@ -11,6 +11,7 @@ import 'package:proypet/config/path_variables.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/domain/controller/detalle_vet_controller.dart';
+import 'chatView.dart';
 import 'components/data_vet.dart';
 import 'components/swiper_vet.dart';
 
@@ -122,8 +123,10 @@ class VetDetallePage extends StatelessWidget {
                                     width: 60,
                                     child: FloatingActionButton(
                                       backgroundColor: Theme.of(context).backgroundColor,
-                                      child: Icon(Icons.phone, color: colorMain),
-                                      onPressed: _.llamar,
+                                      child: Icon(Icons.chat_rounded, color: colorMain),
+                                      onPressed: (){
+                                        Get.to(ChatView());
+                                      },
                                     ),
                                   ),
                                   SizedBox(width: 10),

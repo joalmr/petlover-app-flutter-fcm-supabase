@@ -32,6 +32,8 @@ dependencies:
   get_storage: ^2.0.2
   http: ^0.13.2
 
+  supabase: ^0.0.1-dev.17
+
   flutter_config: ^2.0.0 #^1.0.8
   
   # stories_for_flutter: ^0.1.8 #probando

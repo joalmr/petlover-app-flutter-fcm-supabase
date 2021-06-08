@@ -22,10 +22,10 @@ class NavigationBar extends StatelessWidget {
     ];
 
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(icon: Icon(Icons.pets), label: 'Inicio'),
-      BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: 'Notificaciones'),
-      BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Veterinarias'),
-      BottomNavigationBarItem(icon: Icon(Icons.monetization_on), label: 'Puntos'),
+      BottomNavigationBarItem(icon: Icon(Icons.pets_rounded), label: 'Inicio'),
+      BottomNavigationBarItem(icon: Icon(Icons.notifications_active_rounded), label: 'Notificaciones'),
+      BottomNavigationBarItem(icon: Icon(Icons.search_rounded), label: 'Veterinarias'),
+      BottomNavigationBarItem(icon: Icon(Icons.monetization_on_rounded), label: 'Puntos'),
       // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Shopping'),
     ];
 
