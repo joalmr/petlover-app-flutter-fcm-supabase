@@ -35,6 +35,7 @@ class ChatController extends GetxController {
     petloverInt = await _repo.getPetlover();
 
     await openCanal();
+    cargando.value = false;
     subscribe();
   }
 
