@@ -1,9 +1,7 @@
-import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:proypet/_supabase/chatRepo.dart';
 import 'package:proypet/_supabase/model/messageModel.dart';
 import 'package:proypet/config/supabase_global.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:supabase/supabase.dart';
 
 import 'controller/detalle_vet_controller.dart';
@@ -21,12 +19,8 @@ class ChatController extends GetxController {
   int vetInt;
   int petloverInt;
 
-  RealtimeSubscription subscription;
+  // RealtimeSubscription subscription;
   final supabaseClient = SupabaseClient(urlSupa, keySupa);
-
-  final ItemScrollController itemScrollController = ItemScrollController();
-  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
-  int scrollInit = 0;
 
   @override
   Future<void> onInit() async {
@@ -48,14 +42,6 @@ class ChatController extends GetxController {
 
     mensajes.clear();
     mensajes.addAll(response['messages']);
-
-    scrollInit = mensajes.length;
-
-    itemScrollController.scrollTo(
-      index: scrollInit,
-      duration: Duration(milliseconds: 200),
-      curve: Curves.easeInOutCubic,
-    );
   }
 
   addMessage(String message) => _addMessage(message);
@@ -66,7 +52,7 @@ class ChatController extends GetxController {
 
   subscribe(){
     print('subscribe');
-    subscription = supabaseClient
+    supabaseClient
       .from('message')
       .on(
         SupabaseEventTypes.all, 

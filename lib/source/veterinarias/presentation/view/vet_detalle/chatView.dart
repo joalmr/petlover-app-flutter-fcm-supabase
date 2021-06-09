@@ -26,14 +26,10 @@ class ChatView extends StatelessWidget {
               Expanded(
                 child: 
                 _.mensajes.length == 0 
-                ?
-                Icon(Icons.chat_bubble_outline_rounded)
-                :
-                ScrollablePositionedList.builder(
+                ? Icon(Icons.chat_bubble_outline_rounded)
+                : ListView.builder(
                   itemCount: _.mensajes.length,
-                  initialScrollIndex: _.scrollInit,
-                  itemScrollController: _.itemScrollController,
-                  itemPositionsListener: _.itemPositionsListener,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
                   itemBuilder: (BuildContext context, int index) {
                     final message = _.mensajes[index];
                     return Container(

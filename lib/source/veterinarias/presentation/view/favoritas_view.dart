@@ -18,6 +18,7 @@ class FavroiteVets extends StatelessWidget {
             right: 8.0,
             child: SafeArea(
               child: CircleAvatar(
+                backgroundColor: Colors.white,
                 child: IconButton(
                   icon: Icon(Icons.menu), 
                   onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
