@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:proypet/_supabase/chatRepo.dart';
 import 'package:proypet/_supabase/model/messageModel.dart';
@@ -17,7 +18,7 @@ class ChatController extends GetxController {
   RxList<MessageModel> mensajes = <MessageModel>[].obs;
   
   int canalId;
-  int vetInt; 
+  int vetInt;
   int petloverInt;
 
   RealtimeSubscription subscription;
@@ -47,6 +48,14 @@ class ChatController extends GetxController {
 
     mensajes.clear();
     mensajes.addAll(response['messages']);
+
+    scrollInit = mensajes.length;
+
+    itemScrollController.scrollTo(
+      index: scrollInit,
+      duration: Duration(milliseconds: 200),
+      curve: Curves.easeInOutCubic,
+    );
   }
 
   addMessage(String message) => _addMessage(message);

@@ -22,10 +22,6 @@ class ChatApi{
       ])
       .execute();
 
-    print('addPetlover');
-    print(response.status);
-    print(response.data);
-
     final dato = response.data as List;
     return dato.first['id'];
   }
@@ -40,10 +36,6 @@ class ChatApi{
       .eq('user_id', user.id)
       .single()
       .execute();
-
-    print('getPetlover');
-    print(hasPetlover.status);
-    print(hasPetlover.data);
 
     if(hasPetlover.data==null){
       idPetlover = await addPetlover();
@@ -65,10 +57,6 @@ class ChatApi{
         }
       ])
       .execute();
-    
-    print('addEstablishment');
-    print(response.status);
-    print(response.data);
 
     final dato = response.data as List;
     return dato.first['id'];
@@ -83,10 +71,6 @@ class ChatApi{
       .eq('vet_id', uuid)
       .single()
       .execute();
-
-    print('getEstablishment');
-    print(hasVet.status);
-    print(hasVet.data);
 
     if(hasVet.data==null){
       idVet = await addEstablishment(uuid, name);
@@ -109,10 +93,6 @@ class ChatApi{
       ])
       .execute();
 
-    print('addCanal');
-    print(response.status);
-    print(response.data);
-
     final dato = response.data as List;
     return dato.first['id'];
   }
@@ -129,10 +109,6 @@ class ChatApi{
       })
       .single()
       .execute();
-    
-    print('openCanal');
-    print(hasCanal.status);
-    print(hasCanal.data);
 
     if(hasCanal.data==null){
       idCanal = await addCanal(vetInt,petloverInt);
@@ -158,10 +134,6 @@ class ChatApi{
       .eq('canal_id', canalId)
       .execute();
 
-    print('getMessages');
-    print(messages.status);
-    print(messages.data);
-
     if(messages.data!=null){
       final messageList = messages.data as List;
       mensajes = messageList.map((e) => MessageModel.fromJson(e)).toList();
@@ -171,7 +143,7 @@ class ChatApi{
   }
 
   Future<void> addMessage(int canalId, String message) async {
-    final response = await supabaseClient
+    await supabaseClient
       .from('message')
       .insert([
         {
@@ -182,8 +154,5 @@ class ChatApi{
       ])
       .execute();
 
-    print('addMessage');
-    print(response.status);
-    print(response.data);
   }
 }
