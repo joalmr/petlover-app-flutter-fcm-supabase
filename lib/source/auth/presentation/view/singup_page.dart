@@ -127,13 +127,13 @@ class SingupPage extends StatelessWidget {
                                       ? SizedBox(height: 0)
                                       : Column(
                                           children: [
-                                            SizedBox(height: 5),
-                                            btnWIcon(
-                                              texto: 'Registrarme con Facebook',
-                                              icono: FontAwesomeIcons.facebook,
-                                              color: Color(0xFF3b5998),
-                                              funtion: _.signFacebook,
-                                            ),
+                                            // SizedBox(height: 5),
+                                            // btnWIcon(
+                                            //   texto: 'Registrarme con Facebook',
+                                            //   icono: FontAwesomeIcons.facebook,
+                                            //   color: Color(0xFF3b5998),
+                                            //   funtion: _.signFacebook,
+                                            // ),
                                             SizedBox(height: 5),
                                             btnWIcon(
                                               texto: 'Registrarme con Google',

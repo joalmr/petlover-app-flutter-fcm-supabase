@@ -81,13 +81,13 @@ class LoginPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 10.0),
-                          btnWIcon(
-                            texto: 'Ingresar con Facebook',
-                            icono: FontAwesomeIcons.facebook,
-                            color: Color(0xFF3b5998),
-                            funtion: _.loginFacebook,
-                          ),
+                          // SizedBox(height: 10.0),
+                          // btnWIcon(
+                          //   texto: 'Ingresar con Facebook',
+                          //   icono: FontAwesomeIcons.facebook,
+                          //   color: Color(0xFF3b5998),
+                          //   funtion: _.loginFacebook,
+                          // ),
                           SizedBox(height: 5.0),
                           btnWIcon(
                             texto: 'Ingresar con Google',

@@ -5,7 +5,7 @@ import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
-import 'package:proypet/source/auth/data/service/facebook_sing.dart';
+// import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
@@ -15,6 +15,8 @@ import 'package:proypet/source/veterinarias/domain/controller/lista_vets_control
 class LoginController extends GetxController {
   final AuthService repository = AuthService();
 
+  //TODO: sin facebook
+  
   final _email = ''.obs;
   final _password = ''.obs;
   final passwordVisible = false.obs;
@@ -80,11 +82,11 @@ class LoginController extends GetxController {
     }
   }
 
-  void loginFacebook() async {
-    int result = await FacebookSignInService.signIn();
-    print(result);
-    retornos(result);
-  }
+  // void loginFacebook() async {
+  //   int result = await FacebookSignInService.signIn();
+  //   print(result);
+  //   retornos(result);
+  // }
 
   loginGoogle() async {
     int result = await GoogleSignInService.signIn();
