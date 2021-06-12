@@ -10,7 +10,7 @@ emergenciaHome(bool alone) {
     onTap: () {
       filtros.listaFiltros.clear();
       filtros.listaFiltros.addAll([8]);
-      filtros.filtrar();
+      filtros.filtraHome();
     },
     rootImg: 'images/fre-emergencia.jpg',
     title: 'Emergencia',
