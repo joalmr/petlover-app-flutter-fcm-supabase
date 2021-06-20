@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/_global/data/global_repository.dart';
 import 'package:proypet/source/veterinarias/data/model/address.dart';
@@ -92,7 +92,7 @@ class FiltraVetsController extends GetxController {
     Get.reload();
   }
 
-  _filtrando(){
+  _filtrando() {
     vetC.listaFiltros.clear();
     vetC.listaFiltros.addAll(listaFiltros);
 

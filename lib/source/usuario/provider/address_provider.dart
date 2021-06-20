@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 
 class AddressProvider {
   final _url = urlApi;

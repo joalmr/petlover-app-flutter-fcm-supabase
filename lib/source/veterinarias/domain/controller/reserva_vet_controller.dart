@@ -6,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/components/thx_page.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_global/data/global_repository.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
@@ -30,7 +30,7 @@ class ReservaVetController extends GetxController {
   final globalRepo = GlobalRepository();
   final homeC = Get.find<HomeController>();
   final vetdC = Get.find<VetDetalleController>();
-  
+
   EstablecimientoModel vet;
   List<MascotaModel2> misMascotas;
 

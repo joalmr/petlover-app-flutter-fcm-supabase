@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
 import 'package:proypet/source/auth/data/service/facebook_sing.dart';

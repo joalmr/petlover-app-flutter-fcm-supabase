@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/booking/model/booking_set_model.dart';
 import 'package:proypet/source/booking/model/servicio_reserva.dart';
 import '../model/booking_model.dart';

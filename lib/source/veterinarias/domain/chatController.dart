@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:proypet/_supabase/chatRepo.dart';
 import 'package:proypet/_supabase/model/messageModel.dart';
-import 'package:proypet/config/supabase_global.dart';
+import 'package:proypet/config/variables_supabase.dart';
 import 'package:supabase/supabase.dart';
 
 import 'controller/detalle_vet_controller.dart';
@@ -14,7 +14,7 @@ class ChatController extends GetxController {
 
   RxBool cargando = true.obs;
   RxList<MessageModel> mensajes = <MessageModel>[].obs;
-  
+
   int canalId;
   int vetInt;
   int petloverInt;
@@ -25,8 +25,8 @@ class ChatController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    
-    vetInt = await _repo.getEstablishment(vetId,vetName);
+
+    vetInt = await _repo.getEstablishment(vetId, vetName);
     petloverInt = await _repo.getPetlover();
 
     await openCanal();
@@ -37,7 +37,7 @@ class ChatController extends GetxController {
   openCanal() => _openCanal();
 
   _openCanal() async {
-    final response = await _repo.openCanal(vetInt,petloverInt);
+    final response = await _repo.openCanal(vetInt, petloverInt);
     canalId = response['canal_id'];
 
     mensajes.clear();
@@ -50,15 +50,12 @@ class ChatController extends GetxController {
     await _repo.addMessage(canalId, message);
   }
 
-  subscribe(){
+  subscribe() {
     print('subscribe');
     supabaseClient
-      .from('message')
-      .on(
-        SupabaseEventTypes.all, 
-        (payload) => {
-          openCanal()
-      }).subscribe();
+        .from('message')
+        .on(SupabaseEventTypes.all, (payload) => {openCanal()})
+        .subscribe();
 
     // return supabaseClient.removeSubscription(subscription);
   }

@@ -1,11 +1,11 @@
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:http/http.dart' as http;
 import 'model/dataMapModel.dart';
 
 class GlobalApi {
-
-Future<DataMapModel> getLatLngByPlaceId(String placeId) async {
+  Future<DataMapModel> getLatLngByPlaceId(String placeId) async {
     final _urlBase = "maps.googleapis.com";
+
     final url = Uri.https(
       _urlBase,
       '/maps/api/place/details/json',
@@ -21,5 +21,4 @@ Future<DataMapModel> getLatLngByPlaceId(String placeId) async {
 
     return byPlaceId;
   }
-
 }

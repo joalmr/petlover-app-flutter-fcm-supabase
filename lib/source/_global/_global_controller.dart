@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
 import 'package:proypet/source/update/view/update_page.dart';
@@ -14,7 +14,7 @@ class GlobalController extends GetxController {
   final pushController = PushController();
 
   var currentTabIndex = 0.obs;
-  
+
   RxString _ubicacion = ''.obs;
   set ubicacion(String value) => _ubicacion.value = value;
   String get ubicacion => _ubicacion.value;
@@ -75,7 +75,7 @@ class GlobalController extends GetxController {
   initApp() {
     print('inicia app');
     pushController.firebase(); //TODO: firebase
-    
+
     final _tempLat = prefUser.position.toString().split(",")[0];
     final _tempLng = prefUser.position.toString().split(",")[1];
 

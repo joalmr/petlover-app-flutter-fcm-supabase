@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:proypet/components/snackbar.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/booking/model/booking_model.dart';
 import 'package:proypet/source/home/data/service/summary_service.dart';
@@ -52,7 +52,7 @@ class HomeController extends GetxController {
   initApp() async {
     if (prefUser.hasToken()) {
       await getUsuario();
-      await getSummary(); 
+      await getSummary();
     }
   }
 
@@ -67,14 +67,15 @@ class HomeController extends GetxController {
     }
   }
 
-  onPhone()=>_onPhone();
+  onPhone() => _onPhone();
   void _onPhone() async {
-    if (telefono.value!=null && telefono.value.trim()!='') {
+    if (telefono.value != null && telefono.value.trim() != '') {
       bool phone = phoneRegex(telefono.value);
       if (phone) {
-        await userService.editUser(usuario.value.name, usuario.value.lastname, telefono.value);
+        await userService.editUser(
+            usuario.value.name, usuario.value.lastname, telefono.value);
         getUsuario();
-        telefono.value='';
+        telefono.value = '';
       } else {
         mostrarSnackbar('Número telefónico inválido', colorRed);
       }
@@ -90,8 +91,8 @@ class HomeController extends GetxController {
     final respGroup = await _notificaService.getNotificacionGroup();
     notificacionesGroup.addAll(respGroup);
     await _summary();
-    
-    if(mascotas.length==0){
+
+    if (mascotas.length == 0) {
       await Get.offNamed('mascota/agregar');
     }
     loading.value = false;

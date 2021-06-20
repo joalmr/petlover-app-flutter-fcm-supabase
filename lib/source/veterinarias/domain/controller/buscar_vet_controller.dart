@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_short_model.dart';
 import 'package:proypet/source/veterinarias/data/service/establishment_find_service.dart';
 import 'package:proypet/source/veterinarias/data/service/establishment_service.dart';

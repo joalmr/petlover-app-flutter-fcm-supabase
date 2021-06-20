@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_model.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_short_model.dart';
@@ -12,7 +12,7 @@ class VeterinariasController extends GetxController {
 
   var vetLocales = <EstablishmentModelList>[].obs;
   var temp = <EstablishmentModelList>[].obs;
-  
+
   List<int> listaFiltros = [];
   RxInt respVets = 0.obs;
   RxBool loading = true.obs;
@@ -52,6 +52,7 @@ class VeterinariasController extends GetxController {
     await _getVet(idVet);
     Get.back();
   }
+
   //? favorito detalle
   getVet(String idVet) => _getVet(idVet);
   _getVet(String idVet) async {
@@ -76,7 +77,7 @@ class VeterinariasController extends GetxController {
     favoriteVets.clear();
 
     listaVets.forEach((element) {
-      if(prefUser.favoritesVets.contains(element.id)){
+      if (prefUser.favoritesVets.contains(element.id)) {
         favoriteVets.add(element);
       }
     });

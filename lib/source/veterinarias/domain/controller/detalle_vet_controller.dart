@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/text_from.dart';
 import 'package:proypet/components/snackbar.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
@@ -67,11 +67,10 @@ class VetDetalleController extends GetxController {
     super.onClose();
   }
 
-  isFavorite(){
-    if(prefUser.favoritesVets.contains(vetInit)){
+  isFavorite() {
+    if (prefUser.favoritesVets.contains(vetInit)) {
       favorite.value = true;
-    }
-    else{
+    } else {
       favorite.value = false;
     }
   }
@@ -80,11 +79,10 @@ class VetDetalleController extends GetxController {
     PreferenciasModel forStorage = new PreferenciasModel();
     forStorage.favoritesVets = prefUser.favoritesVets;
 
-    if(prefUser.favoritesVets.contains(vetInit)){
+    if (prefUser.favoritesVets.contains(vetInit)) {
       forStorage.favoritesVets.remove(vetInit);
       favorite.value = false;
-    }
-    else{
+    } else {
       forStorage.favoritesVets.add(vetInit);
       favorite.value = true;
     }
@@ -115,7 +113,8 @@ class VetDetalleController extends GetxController {
     return false;
   }
 
-  traeMascotas() => misMascotas = homeC.mascotas.where((element) => element.status != 0).toList();
+  traeMascotas() => misMascotas =
+      homeC.mascotas.where((element) => element.status != 0).toList();
 
   llamar() => _launchPhone();
 
@@ -153,15 +152,16 @@ class VetDetalleController extends GetxController {
       Get.dialog(SimpleDialog(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: [
-          Text('Hola, disculpa este establecimiento no puede recibir reservas.'),
+          Text(
+              'Hola, disculpa este establecimiento no puede recibir reservas.'),
           SizedBox(height: 3),
           Text('Tenemos estas opciones cerca '),
           SizedBox(height: 10),
           vetPremium.length < 1
               ? Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Sin resultados')))
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Sin resultados')))
               : vetPremium.length == 1
                   ? _gotoVet(vetPremium[0])
                   : Column(
@@ -177,51 +177,52 @@ class VetDetalleController extends GetxController {
         ],
       ));
     } else {
-      if (misMascotas.length>0) {
-        if (telefono!=null && telefono.trim()!='') {
+      if (misMascotas.length > 0) {
+        if (telefono != null && telefono.trim() != '') {
           reservaClic.value = true;
           Get.toNamed('vet/reserva');
         } else {
           reservaClic.value = true;
           Get.dialog(AlertDialog(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             content: Container(
-              height: 220.0,
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 10.0),
-                    Text(
-                      'Debe ingresar un número de teléfono',
-                      style: Get.textTheme.subtitle2,
-                    ),
-                    SizedBox(height: 10.0),
-                    FormularioText(
-                      hintText: 'Ingrese teléfono',
-                      icon: Icons.phone,
-                      obscureText: false,
-                      onChanged: (value) => telefono = value,
-                      textCap: TextCapitalization.words,
-                      valorInicial: telefono,
-                      boardType: TextInputType.phone,
-                    ),
-                    SizedBox(height: 10.0),
-                    btnPrimary(
-                      text: "Guardar teléfono",
-                      onPressed: _onPhone,
-                    ),
-                    TextButton(
-                      child: Text("Cancelar",
-                          style: TextStyle(color: colorMain)),
-                      onPressed: () {
-                        reservaClic.value = true;
-                        Get.back();
-                      },
-                    )
-                  ],
-                ),
-              )),
+                height: 220.0,
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 10.0),
+                      Text(
+                        'Debe ingresar un número de teléfono',
+                        style: Get.textTheme.subtitle2,
+                      ),
+                      SizedBox(height: 10.0),
+                      FormularioText(
+                        hintText: 'Ingrese teléfono',
+                        icon: Icons.phone,
+                        obscureText: false,
+                        onChanged: (value) => telefono = value,
+                        textCap: TextCapitalization.words,
+                        valorInicial: telefono,
+                        boardType: TextInputType.phone,
+                      ),
+                      SizedBox(height: 10.0),
+                      btnPrimary(
+                        text: "Guardar teléfono",
+                        onPressed: _onPhone,
+                      ),
+                      TextButton(
+                        child: Text("Cancelar",
+                            style: TextStyle(color: colorMain)),
+                        onPressed: () {
+                          reservaClic.value = true;
+                          Get.back();
+                        },
+                      )
+                    ],
+                  ),
+                )),
           ));
         }
       } else {
@@ -237,7 +238,7 @@ class VetDetalleController extends GetxController {
   // bool get telCambio => telefono.isEmpty; //.isNullOrBlank;
 
   void _onPhone() async {
-    if (telefono!=null && telefono.trim()!='') {
+    if (telefono != null && telefono.trim() != '') {
       bool phone = phoneRegex(telefono);
       if (phone) {
         await userService.editUser(usuario.name, usuario.lastname, telefono);
@@ -265,10 +266,10 @@ class VetDetalleController extends GetxController {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           (vetPremium.slides.length > 0)
-            ? Image(
-              image: CachedNetworkImageProvider(vetPremium.slides.first),
-              height: 75)
-            : Image(image: AssetImage("images/vet_prueba.jpg"), height: 75),
+              ? Image(
+                  image: CachedNetworkImageProvider(vetPremium.slides.first),
+                  height: 75)
+              : Image(image: AssetImage("images/vet_prueba.jpg"), height: 75),
           SizedBox(height: 3),
           Text(vetPremium.name)
         ],

@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:proypet/routes/routes.dart';
 import 'package:get/get.dart';
-import 'config/global_variables.dart';
+import 'config/variables_globales.dart';
 import 'design/theme/theme.dart';
 import 'design/theme/themeDark.dart';
 import 'source/_global/_global_controller.dart';
@@ -21,6 +22,7 @@ main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
+  await dotenv.load(fileName: ".env.example");
   runApp(MyApp());
 }
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:http/http.dart' as http;
 import 'package:proypet/source/usuario/model/user_model.dart';
 

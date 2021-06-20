@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/veterinarias/data/model/address.dart';
 import 'package:proypet/source/veterinarias/domain/controller/reserva_vet_controller.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';

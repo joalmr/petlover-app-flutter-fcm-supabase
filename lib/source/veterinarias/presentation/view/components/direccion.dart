@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/veterinarias/data/model/address.dart';
 import 'package:proypet/source/veterinarias/domain/controller/filtra_vets_controller.dart';
 import 'package:simple_autocomplete_formfield/simple_autocomplete_formfield.dart';
@@ -17,7 +17,8 @@ autocompleteAddress() {
     maxSuggestions: 3,
     onSearch: (filter) async {
       var response = await http.get(
-        Uri.parse("https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter"),
+        Uri.parse(
+            "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$keyMap&language=es&input=$filter"),
       );
       var models = addressFromJson(response.body);
 

@@ -1,7 +1,7 @@
 import 'package:ai_notification_enable/ai_notification_enable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/atencion/view/atencion_view.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
 import 'package:share/share.dart';

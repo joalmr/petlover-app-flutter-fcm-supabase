@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:proypet/config/global_variables.dart';
+import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_model.dart';
 import 'package:proypet/source/veterinarias/data/model/establecimiento_short_model.dart';
 
@@ -57,7 +57,8 @@ class EstablishmentProvider {
     }
 
     final jsonResp = json.decode(resp.body);
-    EstablecimientoModel vets = EstablecimientoModel.fromJson(jsonResp["establishment"]);
+    EstablecimientoModel vets =
+        EstablecimientoModel.fromJson(jsonResp["establishment"]);
 
     return {'status': 200, 'establishment': vets};
   }

@@ -1,26 +1,23 @@
-import 'package:proypet/config/supabase_global.dart';
+import 'package:proypet/config/variables_supabase.dart';
 import 'package:proypet/source/usuario/model/user_model.dart';
 import 'package:proypet/source/usuario/service/user_service.dart';
 import 'package:supabase/supabase.dart';
 
 import 'model/messageModel.dart';
 
-class ChatApi{
+class ChatApi {
   final supabaseClient = SupabaseClient(urlSupa, keySupa);
   final userService = new UserService();
 
   Future<int> addPetlover() async {
     UserModel2 user = await userService.getUser();
-    
-    final response = await supabaseClient
-      .from('petlover')
-      .insert([
-        {
-          'user_id': user.id,
-          'name': '${user.name} ${user.lastname}',
-        }
-      ])
-      .execute();
+
+    final response = await supabaseClient.from('petlover').insert([
+      {
+        'user_id': user.id,
+        'name': '${user.name} ${user.lastname}',
+      }
+    ]).execute();
 
     final dato = response.data as List;
     return dato.first['id'];
@@ -31,16 +28,15 @@ class ChatApi{
     UserModel2 user = await userService.getUser();
 
     final hasPetlover = await supabaseClient
-      .from('petlover')
-      .select()
-      .eq('user_id', user.id)
-      .single()
-      .execute();
+        .from('petlover')
+        .select()
+        .eq('user_id', user.id)
+        .single()
+        .execute();
 
-    if(hasPetlover.data==null){
+    if (hasPetlover.data == null) {
       idPetlover = await addPetlover();
-    }
-    else{
+    } else {
       idPetlover = hasPetlover.data['id'];
     }
 
@@ -48,15 +44,12 @@ class ChatApi{
   }
 
   Future<int> addEstablishment(String uuid, String name) async {
-    final response = await supabaseClient
-      .from('establishment')
-      .insert([
-        {
-          'vet_id': uuid,
-          'name': name,
-        }
-      ])
-      .execute();
+    final response = await supabaseClient.from('establishment').insert([
+      {
+        'vet_id': uuid,
+        'name': name,
+      }
+    ]).execute();
 
     final dato = response.data as List;
     return dato.first['id'];
@@ -66,16 +59,15 @@ class ChatApi{
     int idVet;
 
     final hasVet = await supabaseClient
-      .from('establishment')
-      .select()
-      .eq('vet_id', uuid)
-      .single()
-      .execute();
+        .from('establishment')
+        .select()
+        .eq('vet_id', uuid)
+        .single()
+        .execute();
 
-    if(hasVet.data==null){
+    if (hasVet.data == null) {
       idVet = await addEstablishment(uuid, name);
-    }
-    else{
+    } else {
       idVet = hasVet.data['id'];
     }
 
@@ -83,15 +75,12 @@ class ChatApi{
   }
 
   Future<int> addCanal(int vetInt, int petloverInt) async {
-    final response = await supabaseClient
-      .from('canal')
-      .insert([
-        {
-          'establishment_id': vetInt,
-          'petlover_id': petloverInt,
-        }
-      ])
-      .execute();
+    final response = await supabaseClient.from('canal').insert([
+      {
+        'establishment_id': vetInt,
+        'petlover_id': petloverInt,
+      }
+    ]).execute();
 
     final dato = response.data as List;
     return dato.first['id'];
@@ -101,19 +90,15 @@ class ChatApi{
     int idCanal;
 
     final hasCanal = await supabaseClient
-      .from('canal')
-      .select()
-      .match({
-        'establishment_id': vetInt, 
-        'petlover_id': petloverInt
-      })
-      .single()
-      .execute();
+        .from('canal')
+        .select()
+        .match({'establishment_id': vetInt, 'petlover_id': petloverInt})
+        .single()
+        .execute();
 
-    if(hasCanal.data==null){
-      idCanal = await addCanal(vetInt,petloverInt);
-    }
-    else{
+    if (hasCanal.data == null) {
+      idCanal = await addCanal(vetInt, petloverInt);
+    } else {
       idCanal = hasCanal.data['id'];
     }
 
@@ -127,14 +112,14 @@ class ChatApi{
 
   Future<List<MessageModel>> getMessages(int canalId) async {
     List<MessageModel> mensajes = [];
-    
-    final messages = await supabaseClient
-      .from('message')
-      .select()
-      .eq('canal_id', canalId)
-      .execute();
 
-    if(messages.data!=null){
+    final messages = await supabaseClient
+        .from('message')
+        .select()
+        .eq('canal_id', canalId)
+        .execute();
+
+    if (messages.data != null) {
       final messageList = messages.data as List;
       mensajes = messageList.map((e) => MessageModel.fromJson(e)).toList();
     }
@@ -143,16 +128,12 @@ class ChatApi{
   }
 
   Future<void> addMessage(int canalId, String message) async {
-    await supabaseClient
-      .from('message')
-      .insert([
-        {
-          'canal_id': canalId,
-          'message': message,
-          'type': true,
-        }
-      ])
-      .execute();
-
+    await supabaseClient.from('message').insert([
+      {
+        'canal_id': canalId,
+        'message': message,
+        'type': true,
+      }
+    ]).execute();
   }
 }
