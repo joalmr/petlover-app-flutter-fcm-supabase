@@ -8,7 +8,6 @@ String versionAndroid = "";
 String versionIOS = "";
 
 final bool appPruebas = true;
-// final environment = appPruebas ? pruebas : produccion;
 
 // http://18.188.214.204
 final String keyMap = dotenv.env['KEY_MAP'];

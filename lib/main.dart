@@ -18,11 +18,12 @@ import 'source/veterinarias/domain/controller/lista_vets_controller.dart';
 //! push: probar todos los push
 //! fb login falla
 //! google login falla
-main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env.dev");
   await GetStorage.init();
   await Firebase.initializeApp();
-  await dotenv.load(fileName: ".env.example");
+
   runApp(MyApp());
 }
 

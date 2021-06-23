@@ -99,10 +99,10 @@ class SignController extends GetxController {
     }
   }
 
-  void signFacebook() {
-    final login = LoginController();
-    login.loginFacebook();
-  }
+  // void signFacebook() {
+  //   final login = LoginController();
+  //   login.loginFacebook();
+  // }
 
   void signGoogle() {
     final login = LoginController();

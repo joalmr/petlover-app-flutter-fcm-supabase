@@ -195,19 +195,6 @@ Widget timeline({
                           ],
                         ),
                       ),
-                      // //TODO: quitar antes de publicar
-                      // appPruebas
-                      //     ? Align(
-                      //         widthFactor: double.maxFinite,
-                      //         alignment: Alignment.centerRight,
-                      //         child: IconButton(
-                      //           iconSize: 22,
-                      //           icon: Icon(Icons.help_outline),
-                      //           onPressed: () {},
-                      //           tooltip: 'Ayuda',
-                      //         ),
-                      //       )
-                      //     : SizedBox(height: 0)
                     ],
                   ),
                 ),

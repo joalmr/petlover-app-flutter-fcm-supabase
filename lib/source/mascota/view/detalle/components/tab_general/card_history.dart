@@ -70,19 +70,6 @@ Widget cardHistory(PetHistoryModel history) {
           ),
         ),
         SizedBox(height: 20),
-        // //TODO: quitar antes de publicar
-        // appPruebas
-        //     ? Align(
-        //         widthFactor: double.maxFinite,
-        //         alignment: Alignment.centerRight,
-        //         child: IconButton(
-        //           iconSize: 22,
-        //           icon: Icon(Icons.help_outline),
-        //           onPressed: () {},
-        //           tooltip: 'Ayuda',
-        //         ),
-        //       )
-        //     : SizedBox(height: 0)
       ],
     ),
   );
