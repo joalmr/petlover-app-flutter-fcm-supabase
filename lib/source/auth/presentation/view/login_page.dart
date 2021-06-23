@@ -51,7 +51,8 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 10.0),
                 btnPrimary(
                   text: _.loading.value ? 'Cargando..' : 'Iniciar sesión',
-                  onPressed: _.loading.value ? null : _.getLogin,
+                  onPressed: _.getLogin,
+                  cargando: _.loading.value,
                 ),
                 SizedBox(height: 10.0),
                 Platform.isIOS

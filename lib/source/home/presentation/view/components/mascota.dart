@@ -40,11 +40,12 @@ class Mascotas extends StatelessWidget {
                               Container(
                                 height: double.maxFinite,
                                 width: double.maxFinite,
-                                foregroundDecoration:BoxDecoration(
+                                foregroundDecoration: BoxDecoration(
                                   color: Colors.black.withOpacity(0.15),
                                 ),
                                 child: Image(
-                                  image: CachedNetworkImageProvider(mascota.picture),
+                                  image: CachedNetworkImageProvider(
+                                      mascota.picture),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -55,14 +56,15 @@ class Mascotas extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(mascota.name,
-                                      style: Get.textTheme.headline6
-                                        .apply(
-                                          color: Colors.white,
-                                          fontWeightDelta:2,
-                                        ),
+                                    Text(
+                                      mascota.name,
+                                      style: Get.textTheme.headline6.apply(
+                                        color: Colors.white,
+                                        fontWeightDelta: 2,
+                                      ),
                                     ),
-                                    Text(mascota.breedName,
+                                    Text(
+                                      mascota.breedName,
                                       style: Get.textTheme.subtitle2
                                           .apply(color: Colors.white),
                                     ),
@@ -81,12 +83,13 @@ class Mascotas extends StatelessWidget {
                                         children: [
                                           TextSpan(
                                             text: mascota.weight == '0'
-                                              ? '-' : mascota.weight.toString(),
-                                            style: Get.textTheme.headline4
-                                              .apply(
-                                                color: Colors.white,
-                                                fontWeightDelta: 2,
-                                              ),
+                                                ? '-'
+                                                : mascota.weight.toString(),
+                                            style:
+                                                Get.textTheme.headline4.apply(
+                                              color: Colors.white,
+                                              fontWeightDelta: 2,
+                                            ),
                                           ),
                                           TextSpan(text: " kg.")
                                         ],
@@ -95,15 +98,21 @@ class Mascotas extends StatelessWidget {
                                     Row(
                                       children: <Widget>[
                                         (mascota.status == 0)
-                                          ? Icon(Icons.bookmark, color: Colors.white)
-                                          : Icon(Icons.cake, color: Colors.white),
+                                            ? Icon(Icons.bookmark,
+                                                color: Colors.white)
+                                            : Icon(Icons.cake,
+                                                color: Colors.white),
                                         SizedBox(width: 5.0),
                                         (mascota.status == 0)
-                                          ? Text("Fallecido", style: TextStyle(color: Colors.white))
-                                          : Text(
-                                            calculateAge(DateTime.parse(mascota.birthdate)),
-                                            style: Get.textTheme.subtitle2.apply(color: Colors.white),
-                                          )
+                                            ? Text("Fallecido",
+                                                style: TextStyle(
+                                                    color: Colors.white))
+                                            : Text(
+                                                calculateAge(DateTime.parse(
+                                                    mascota.birthdate)),
+                                                style: Get.textTheme.subtitle2
+                                                    .apply(color: Colors.white),
+                                              )
                                       ],
                                     ),
                                   ],

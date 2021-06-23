@@ -19,7 +19,8 @@ class FnTimeLine extends StatelessWidget {
         int firstYear = dateBornConverted.year;
         int firstMonth = dateBornConverted.month;
 
-        int lastYear = DateTime.now().year; // + 1;
+        int lastYear = DateTime.now().year;
+        int lastMonth = 12;
 
         int todayYear = _.today.year;
         int todayMonth = _.today.month;
@@ -30,7 +31,8 @@ class FnTimeLine extends StatelessWidget {
 
         for (var i = firstYear; i <= lastYear; i++) {
           if (i > firstYear) firstMonth = 1;
-          for (var j = firstMonth; j <= 12; j++) {
+          if (i == lastYear) lastMonth = todayMonth;
+          for (var j = firstMonth; j <= lastMonth; j++) {
             Widget item = Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
