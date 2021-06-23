@@ -7,7 +7,7 @@ import 'package:proypet/utils/preferencias_usuario/preferencias_usuario.dart';
 String versionAndroid = "";
 String versionIOS = "";
 
-final bool appPruebas = true;
+final bool appPruebas = dotenv.env['TEST'] == '1' ? true : false;
 
 // http://18.188.214.204
 final String keyMap = dotenv.env['KEY_MAP'];

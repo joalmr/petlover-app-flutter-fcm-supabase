@@ -7,19 +7,6 @@ Widget btnSecondary({
   @required Function onPressed,
   Color color = colorMain,
 }) {
-  // return ElevatedButton(
-  //   child: Text(text),
-  //   onPressed: onPressed,
-  //   style: ElevatedButton.styleFrom(
-  //     elevation: 0,
-  //     onPrimary: color,
-  //     side: BorderSide(color: color),
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.circular(16.0),
-  //     ),
-  //   ),
-  // );
-
   return TextButton(
     child: Text(text),
     onPressed: onPressed,
@@ -34,3 +21,16 @@ Widget btnSecondary({
     ),
   );
 }
+
+// return ElevatedButton(
+//   child: Text(text),
+//   onPressed: onPressed,
+//   style: ElevatedButton.styleFrom(
+//     elevation: 0,
+//     onPrimary: color,
+//     side: BorderSide(color: color),
+//     shape: RoundedRectangleBorder(
+//       borderRadius: BorderRadius.circular(16.0),
+//     ),
+//   ),
+// );

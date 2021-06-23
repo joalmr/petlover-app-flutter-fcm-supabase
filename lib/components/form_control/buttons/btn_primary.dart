@@ -7,31 +7,6 @@ Widget btnPrimary({
   @required Function onPressed,
   bool cargando = false,
 }) {
-  // return SizedBox(
-  //   width: double.maxFinite,
-  //   child: TextButton(
-  //     child: cargando
-  //         ? Row(
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             crossAxisAlignment: CrossAxisAlignment.center,
-  //             children: [
-  //               CupertinoActivityIndicator(),
-  //               SizedBox(width: 5),
-  //               Text(text),
-  //             ],
-  //           )
-  //         : Text(text),
-  //     //Text(text),
-  //     onPressed: onPressed,
-  //     style: TextButton.styleFrom(
-  //       padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-  //       textStyle: TextStyle(fontWeight: FontWeight.bold),
-  //       backgroundColor: colorMain,
-  //       primary: Colors.white,
-  //     ),
-  //   ),
-  // );
-
   return GestureDetector(
     onTap: cargando ? null : onPressed,
     child: Container(
@@ -64,3 +39,28 @@ Widget btnPrimary({
     ),
   );
 }
+
+// return SizedBox(
+//   width: double.maxFinite,
+//   child: TextButton(
+//     child: cargando
+//         ? Row(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               CupertinoActivityIndicator(),
+//               SizedBox(width: 5),
+//               Text(text),
+//             ],
+//           )
+//         : Text(text),
+//     //Text(text),
+//     onPressed: onPressed,
+//     style: TextButton.styleFrom(
+//       padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+//       textStyle: TextStyle(fontWeight: FontWeight.bold),
+//       backgroundColor: colorMain,
+//       primary: Colors.white,
+//     ),
+//   ),
+// );
