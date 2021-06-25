@@ -357,7 +357,7 @@ class ReservaVetController extends GetxController {
     if (resp) {
       homeC.getSummary();
       PetService().getPet(mascotaId).then(
-            (value) => Get.to(
+            (value) => Get.offAll(
               ThxPage(
                 value.picture,
                 thxReserva[Random().nextInt(thxReserva.length)],
