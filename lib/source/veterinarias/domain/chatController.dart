@@ -54,7 +54,7 @@ class ChatController extends GetxController {
 
   void runSubscription() {
     subscriptionMessage = supabaseClient
-    .from('message:canal_id=eq.$canalId') //TODO: revisar si funciona especifico
+    .from('message') //TODO: revisar si funciona especifico //:canal_id=eq.$canalId
     .on(SupabaseEventTypes.delete, (payload) {
       openCanal();
     })
