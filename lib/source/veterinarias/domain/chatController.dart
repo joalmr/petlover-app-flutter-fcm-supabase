@@ -19,7 +19,7 @@ class ChatController extends GetxController {
   int vetInt;
   int petloverInt;
 
-  // RealtimeSubscription subscription;
+  RealtimeSubscription subscriptionMessage;
   final supabaseClient = SupabaseClient(urlSupa, keySupa);
 
   @override
@@ -29,9 +29,11 @@ class ChatController extends GetxController {
     vetInt = await _repo.getEstablishment(vetId, vetName);
     petloverInt = await _repo.getPetlover();
 
+    runSubscription();
+    
     await openCanal();
     cargando.value = false;
-    subscribe();
+    
   }
 
   openCanal() => _openCanal();
@@ -50,13 +52,16 @@ class ChatController extends GetxController {
     await _repo.addMessage(canalId, message);
   }
 
-  subscribe() {
-    print('subscribe');
-    supabaseClient
-        .from('message')
-        .on(SupabaseEventTypes.all, (payload) => {openCanal()})
-        .subscribe();
-
-    // return supabaseClient.removeSubscription(subscription);
+  void runSubscription() {
+    subscriptionMessage = supabaseClient
+    .from('message:canal_id=eq.$canalId')
+    .on(SupabaseEventTypes.delete, (payload) {
+      openCanal();
+    })
+    .on(SupabaseEventTypes.update, (payload) {
+      openCanal();
+    }).on(SupabaseEventTypes.insert, (payload) {
+      openCanal();
+    }).subscribe();
   }
 }
