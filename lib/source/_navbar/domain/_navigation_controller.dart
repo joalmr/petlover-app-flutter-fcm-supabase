@@ -11,7 +11,7 @@ class NavigationController extends GetxController {
   void onInit() {
     super.onInit();
     
-    pushController.firebaseConfigure(); //TODO: firebase
+    pushController.firebaseConfigure();
 
     page.value = Get.parameters['page'];
 

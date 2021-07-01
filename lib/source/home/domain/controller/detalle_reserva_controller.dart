@@ -30,46 +30,6 @@ class DetalleRservadoController extends GetxController {
       throw 'No se pudo llamar $url';
   }
 
-//TODO: ya no funciona
-  void abreMaps() => _abreMaps();
-  _abreMaps() async {
-    // final title = argumentos.establishmentName;
-    // final description = argumentos.establishmentAddress;
-    // final coords = Coords(
-    //   argumentos.establishmentLatitude,
-    //   argumentos.establishmentLongitude,
-    // );
-    // final availableMaps = await MapLauncher.installedMaps;
-
-    // Get.bottomSheet(
-    //   SafeArea(
-    //     child: SingleChildScrollView(
-    //       child: Container(
-    //         color: Get.theme.backgroundColor,
-    //         child: Wrap(
-    //           children: <Widget>[
-    //             for (var map in availableMaps)
-    //               ListTile(
-    //                 onTap: () => map.showMarker(
-    //                   coords: coords,
-    //                   title: title,
-    //                   description: description,
-    //                 ),
-    //                 title: Text(map.mapName),
-    //                 leading: Image(
-    //                   image: CachedNetworkImageProvider(map.icon),
-    //                   height: 30.0,
-    //                   width: 30.0,
-    //                 ),
-    //               ),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
-  }
-
   alertaEliminar() => _alertaEliminar(argumentos.bookingId);
   _alertaEliminar(id) {
     return Get.dialog(FadeIn(

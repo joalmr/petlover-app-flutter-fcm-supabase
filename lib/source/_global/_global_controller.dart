@@ -74,7 +74,7 @@ class GlobalController extends GetxController {
 
   initApp() {
     print('inicia app');
-    pushController.firebase(); //TODO: firebase
+    pushController.firebase();
 
     final _tempLat = prefUser.position.toString().split(",")[0];
     final _tempLng = prefUser.position.toString().split(",")[1];
