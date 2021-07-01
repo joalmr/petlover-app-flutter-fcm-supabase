@@ -30,7 +30,7 @@ class ChatController extends GetxController {
     petloverInt = await _repo.getPetlover();
 
     runSubscription();
-    
+
     await openCanal();
     cargando.value = false;
     
@@ -54,7 +54,7 @@ class ChatController extends GetxController {
 
   void runSubscription() {
     subscriptionMessage = supabaseClient
-    .from('message:canal_id=eq.$canalId')
+    .from('message:canal_id=eq.$canalId') //TODO: revisar si funciona especifico
     .on(SupabaseEventTypes.delete, (payload) {
       openCanal();
     })
