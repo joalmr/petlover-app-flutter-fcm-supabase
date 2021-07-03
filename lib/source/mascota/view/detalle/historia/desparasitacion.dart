@@ -28,7 +28,7 @@ desparasita(data) {
             ],
           ),
           Text(
-            data["amount"] ?? '-',
+            data["amount"].toString() ?? '-',
             textAlign: TextAlign.right,
             style: TextStyle(fontSize: 12),
           ),
@@ -55,7 +55,7 @@ desparasita(data) {
         ),
       ),
       Text(
-        data["recommendations"] ?? '-',
+        data["recommendations"].toString() ?? '-',
         style: TextStyle(fontSize: 12),
       ),
       SizedBox(height: 10),
