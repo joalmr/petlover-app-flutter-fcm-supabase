@@ -25,7 +25,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^9.0.0
 
-  firebase_messaging: ^9.1.3
+  # firebase_core: ^1.3.0
+  firebase_messaging: ^10.0.3
   # flutter_local_notifications: ^5.0.0+3
 
   get: ^4.1.4
@@ -43,7 +44,7 @@ dependencies:
   # flutter_login_facebook: ^0.4.1 #login con facebook
   # flutter_facebook_auth: ^3.3.3
   flutter_facebook_auth: ^3.3.3-no-nullsafety
-  google_sign_in: ^4.5.9 #login con google
+  google_sign_in: ^5.0.4 #login con google
   #
   ai_notification_enable: ^1.6.1 #activar notificaciones
   animate_do: ^2.0.0
@@ -63,9 +64,9 @@ dependencies:
   geolocator: ^7.0.3
   geocoder: ^0.2.1
   google_fonts: ^2.0.0
-  google_maps_flutter: ^2.0.3
+  google_maps_flutter: ^2.0.6
   # google_sign_in: ^5.0.2
-  image_cropper: ^1.4.0
+  image_cropper: ^1.4.1
   image_picker: ^0.7.4
   intl: ^0.17.0
   lottie: ^1.0.1
