@@ -59,7 +59,6 @@ class HomeController extends GetxController {
   getUsuario() => _getUsuario();
 
   _getUsuario() async {
-    print('**');
     try {
       usuario.value = await userService.getUser();
     } catch (ex) {

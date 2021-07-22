@@ -37,7 +37,9 @@ class VeterinariasController extends GetxController {
 
     if (prefUser.hasToken()) {
       getVets();
-      getFavorites();
+      if (prefUser.favoritesVets.isNotEmpty) {
+        getFavorites();
+      }
     }
   }
 
@@ -56,7 +58,6 @@ class VeterinariasController extends GetxController {
   //? favorito detalle
   getVet(String idVet) => _getVet(idVet);
   _getVet(String idVet) async {
-    print(idVet);
     var respVet = await vetService.getVet(idVet);
     vet = respVet['establishment'];
   }

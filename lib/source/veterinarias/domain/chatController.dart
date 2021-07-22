@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:proypet/_supabase/chatRepo.dart';
 import 'package:proypet/_supabase/model/messageModel.dart';
@@ -22,6 +23,8 @@ class ChatController extends GetxController {
   RealtimeSubscription subscriptionMessage;
   final supabaseClient = SupabaseClient(urlSupa, keySupa);
 
+  ScrollController scrollController = new ScrollController();
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -33,17 +36,20 @@ class ChatController extends GetxController {
 
     await openCanal();
     cargando.value = false;
-    
   }
 
   openCanal() => _openCanal();
-
   _openCanal() async {
     final response = await _repo.openCanal(vetInt, petloverInt);
     canalId = response['canal_id'];
 
     mensajes.clear();
     mensajes.addAll(response['messages']);
+    if (mensajes.length > 0) {
+      if (scrollController.hasClients) {
+        scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      }
+    }
   }
 
   addMessage(String message) => _addMessage(message);
@@ -53,12 +59,10 @@ class ChatController extends GetxController {
   }
 
   void runSubscription() {
-    subscriptionMessage = supabaseClient
-    .from('message')
-    .on(SupabaseEventTypes.delete, (payload) {
+    subscriptionMessage =
+        supabaseClient.from('message').on(SupabaseEventTypes.delete, (payload) {
       openCanal();
-    })
-    .on(SupabaseEventTypes.update, (payload) {
+    }).on(SupabaseEventTypes.update, (payload) {
       openCanal();
     }).on(SupabaseEventTypes.insert, (payload) {
       openCanal();

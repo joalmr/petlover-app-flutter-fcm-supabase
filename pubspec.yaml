@@ -37,12 +37,6 @@ dependencies:
 
   flutter_config: ^2.0.0 #^1.0.8
 
-  # stories_for_flutter: ^0.1.8 #probando
-  # story_view:
-  # flutter_stories: ^0.2.1+1
-
-  # flutter_login_facebook: ^0.4.1 #login con facebook
-  # flutter_facebook_auth: ^3.3.3
   flutter_facebook_auth: ^3.3.3-no-nullsafety
   google_sign_in: ^5.0.5 #login con google
   #

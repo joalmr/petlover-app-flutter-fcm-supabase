@@ -73,19 +73,20 @@ class GlobalController extends GetxController {
   }
 
   initApp() {
-    print('inicia app');
     pushController.firebase();
 
-    final _tempLat = prefUser.position.toString().split(",")[0];
-    final _tempLng = prefUser.position.toString().split(",")[1];
+    if (prefUser.hasPosition()) {
+      final _tempLat = prefUser.position.toString().split(",")[0];
+      final _tempLng = prefUser.position.toString().split(",")[1];
 
-    if (prefUser.hasUbicacion() && prefUser.hasPosition()) {
-      print('==actualizar direccion');
-      addressService.setAddress(
-        prefUser.ubicacion,
-        _tempLat,
-        _tempLng,
-      );
+      if (prefUser.hasUbicacion()) {
+        print('==>actualizar direccion');
+        addressService.setAddress(
+          prefUser.ubicacion,
+          _tempLat,
+          _tempLng,
+        );
+      }
     }
   }
 }

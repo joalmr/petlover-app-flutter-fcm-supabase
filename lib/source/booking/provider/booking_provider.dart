@@ -32,8 +32,6 @@ class BookingProvider {
     final url = Uri.parse('$_url/bookings');
     var bodyData;
 
-    print("==booking");
-
     if (delivery != null) {
       bodyData = {
         "booking_at": booking.bookingAt,

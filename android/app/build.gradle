@@ -48,8 +48,8 @@ android {
         applicationId "com.proypet.user"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 22
-        versionName "1.4.5"
+        versionCode 23
+        versionName "1.5.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

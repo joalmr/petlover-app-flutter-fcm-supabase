@@ -15,8 +15,6 @@ import 'package:proypet/source/veterinarias/domain/controller/lista_vets_control
 class LoginController extends GetxController {
   final AuthService repository = AuthService();
 
-  //TODO: sin facebook
-
   final _email = ''.obs;
   final _password = ''.obs;
   final passwordVisible = false.obs;
@@ -76,7 +74,7 @@ class LoginController extends GetxController {
             colorRed);
       } else {
         final respLogin = await repository.login(email, password);
-        print(respLogin);
+
         retornosWithMail(respLogin);
       }
     }

@@ -16,8 +16,6 @@ import 'source/veterinarias/domain/controller/filtra_vets_controller.dart';
 import 'source/veterinarias/domain/controller/lista_vets_controller.dart';
 
 //! push: probar todos los push
-//! fb login falla
-//! google login falla
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env.dev");

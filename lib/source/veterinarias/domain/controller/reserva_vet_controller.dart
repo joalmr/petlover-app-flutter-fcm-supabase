@@ -108,9 +108,6 @@ class ReservaVetController extends GetxController {
     super.onInit();
     pickedTime = TimeOfDay.now();
 
-    print(pickedTime);
-    print(format.format(DateTime.now()));
-
     vet = vetdC.vet;
     iniciales();
     misMascotas = vetdC.misMascotas;
@@ -166,7 +163,7 @@ class ReservaVetController extends GetxController {
         : digMin = pickedTime.minute.toString();
 
     hora = '$digHora:$digMin';
-    print(hora);
+
     inputHoraController.text = hora;
     fecha = format.format(DateTime.now());
   }

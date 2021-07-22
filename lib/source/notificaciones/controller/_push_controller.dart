@@ -19,7 +19,6 @@ class PushController extends GetxController {
     super.onInit();
   }
 
-
   firebase() => _firebase();
   Future<void> _firebase() async {
     firebasePermiso();
@@ -33,28 +32,26 @@ class PushController extends GetxController {
   void firebaseToken() {
     _firebaseMessaging.getToken().then((token) {
       print("==firebase token==");
-      print(token);
       loginApi.sendTokenFire(token);
     });
   }
 
   void firebaseConfigure() {
-    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message) {
-      print('getInitialMessage');
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage message) {
       if (message != null) {
         _push(jsonEncode(message.data));
       }
     });
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('onMessage');
       if (message != null) {
         _push(jsonEncode(message.data));
       }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('onMessageOpenedApp');
       if (message != null) {
         _push(jsonEncode(message.data));
       }
@@ -62,14 +59,14 @@ class PushController extends GetxController {
   }
 
   void _push(mensaje) {
-    if (mensaje != null){
+    if (mensaje != null) {
       _pushVoid(mensaje);
     }
   }
 
   Future<void> _pushVoid(mensaje) async {
     var dataPush = jsonDecode(mensaje);
-    var mensajePush =  dataPush['message'];
+    var mensajePush = dataPush['message'];
     var tipoPush = dataPush['type'];
 
     if (tipoPush == "AttentionFinished") {

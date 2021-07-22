@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:proypet/design/styles/lottie.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/domain/chatController.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class ChatView extends StatelessWidget {
   final mensaje = TextEditingController();
@@ -28,6 +29,7 @@ class ChatView extends StatelessWidget {
                       child: _.mensajes.length == 0
                           ? Icon(Icons.chat_bubble_outline_rounded)
                           : ListView.builder(
+                              controller: _.scrollController,
                               itemCount: _.mensajes.length,
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               itemBuilder: (BuildContext context, int index) {

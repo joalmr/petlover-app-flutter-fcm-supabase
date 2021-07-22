@@ -7,7 +7,8 @@ bool valFechaHora(fecha, hora) => fecha.trim().isEmpty || hora.trim().isEmpty;
 //fechaTime
 DateTime valFechaTime(fecha, hora) => DateTime.parse(fecha + " " + hora);
 //fechaTimeAt
-String valFechaTimeAt(fechaTime) => DateFormat('yyyy-MM-dd HH:mm:ss').format(fechaTime);
+String valFechaTimeAt(fechaTime) =>
+    DateFormat('yyyy-MM-dd HH:mm:ss').format(fechaTime);
 
 //isDateOk
 bool valIsDateOk(fechaTimeAt, fechaTime) {
@@ -39,19 +40,11 @@ bool valIsHourOk(fechaTime, vet, hora) {
   var horario = vet.schedule;
   var takeHora = horario[textHorario[day]];
 
-  print("valIsHourOk");
-  print(hora);
-  print("time_start");
-  print(takeHora['time_start']);
-  print("time_end");
-  print(takeHora['time_end']);
-  print("attention");
-  print(takeHora['attention']);
-  
-  if(takeHora['time_start'] == null || takeHora['time_end'] == null || takeHora['attention'] == null){
+  if (takeHora['time_start'] == null ||
+      takeHora['time_end'] == null ||
+      takeHora['attention'] == null) {
     return false;
-  }
-  else{
+  } else {
     var time0 = TimeParser.parse(hora);
     var time1 = TimeParser.parse(takeHora['time_start']);
     var time2 = TimeParser.parse(takeHora['time_end']);
@@ -65,14 +58,14 @@ bool valIsHourOk(fechaTime, vet, hora) {
         return true;
       else
         return false;
-    } 
-    else{
+    } else {
       return false;
     }
   }
 }
 
-String valReservarBooking(hasFechaHora, isDateOk, conDelivery, isDeliveryOk, isDayOk, isHourOk) {
+String valReservarBooking(
+    hasFechaHora, isDateOk, conDelivery, isDeliveryOk, isDayOk, isHourOk) {
   if (hasFechaHora) return "error1";
   if (!isDateOk) return "error2";
   if (conDelivery) {
