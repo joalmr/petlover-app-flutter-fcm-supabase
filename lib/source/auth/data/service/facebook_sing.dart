@@ -1,33 +1,28 @@
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
-
 import 'auth_service.dart';
 
-//! TODO: no funciona
 class FacebookSignInService {
-  static Future<int> signIn() async{
+  static Future<int> signIn() async {
     final AuthService repository = AuthService();
-    int statusCode;
+    int statusCode = 401;
     try {
       final LoginResult result = await FacebookAuth.instance.login();
-      print(result.status);
+
       switch (result.status) {
         case LoginStatus.success:
-          { 
+          {
+            final AccessToken accessToken = result.accessToken;
+
             final userData = await FacebookAuth.instance.getUserData(
-                fields: "first_name,last_name,email,id",
+              fields: "first_name,last_name,email,id",
             );
-            var nombre = userData['first_name'];
-            var apellido = userData['last_name']??'';
-            var email = userData['email'];
-            var fbId = userData['id'];
 
             int respLogin = await repository.loginFb(
-              nombre,
-              apellido,
-              email,
-              fbId,
-              result.accessToken.token,
+              userData['first_name'],
+              userData['last_name'] ?? '',
+              userData['email'],
+              userData['id'],
+              accessToken.token,
             );
             statusCode = respLogin; //200 401 500
           }

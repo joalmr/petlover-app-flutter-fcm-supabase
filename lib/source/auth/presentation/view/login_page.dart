@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/btn_others.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
@@ -81,13 +82,15 @@ class LoginPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          // SizedBox(height: 10.0),
-                          // btnWIcon(
-                          //   texto: 'Ingresar con Facebook',
-                          //   icono: FontAwesomeIcons.facebook,
-                          //   color: Color(0xFF3b5998),
-                          //   funtion: _.loginFacebook,
-                          // ),
+                          //! facebook login
+                          SizedBox(height: 10.0),
+                          btnWIcon(
+                            texto: 'Ingresar con Facebook',
+                            icono: FontAwesomeIcons.facebook,
+                            color: Color(0xFF3b5998),
+                            funtion: _.loginFacebook,
+                          ),
+                          //! google login
                           SizedBox(height: 5.0),
                           btnWIcon(
                             texto: 'Ingresar con Google',

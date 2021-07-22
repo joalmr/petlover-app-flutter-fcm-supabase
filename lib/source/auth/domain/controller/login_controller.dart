@@ -5,18 +5,18 @@ import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
+import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 // import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
 import 'package:proypet/source/veterinarias/domain/controller/lista_vets_controller.dart';
 
-
 class LoginController extends GetxController {
   final AuthService repository = AuthService();
 
   //TODO: sin facebook
-  
+
   final _email = ''.obs;
   final _password = ''.obs;
   final passwordVisible = false.obs;
@@ -82,13 +82,14 @@ class LoginController extends GetxController {
     }
   }
 
-  // void loginFacebook() async {
-  //   int result = await FacebookSignInService.signIn();
-  //   print(result);
-  //   retornos(result);
-  // }
+  loginFacebook() => _loginFacebook();
+  _loginFacebook() async {
+    int result = await FacebookSignInService.signIn();
+    retornos(result);
+  }
 
-  loginGoogle() async {
+  loginGoogle() => _loginGoogle();
+  _loginGoogle() async {
     int result = await GoogleSignInService.signIn();
     retornos(result);
   }
@@ -119,9 +120,7 @@ class LoginController extends GetxController {
     switch (result) {
       case 200:
         {
-          //! TODO: no funciona
-          print('fb 200');
-          // ejecutaFirebase();
+          ejecutaFirebase();
         }
         break;
       case 401:
@@ -143,8 +142,10 @@ class LoginController extends GetxController {
         }
         break;
       case 500:
-        Timer(Duration(milliseconds: 500), () => loading.value = false);
-        mostrarSnackbar('Error del servidor, inténtelo más tarde', colorRed);
+        {
+          Timer(Duration(milliseconds: 500), () => loading.value = false);
+          mostrarSnackbar('Error del servidor, inténtelo más tarde', colorRed);
+        }
         break;
     }
   }

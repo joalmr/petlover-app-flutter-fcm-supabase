@@ -38,6 +38,9 @@ uE/rDKlAcI/MQfx1i4td8qSIsGk= (FUNCIONA PRUEBAS)
 ## sha facebook
 keytool -exportcert -alias upload -keystore /Users/josealonsomassarolando/keystore.jks | openssl sha1 -binary | openssl base64
 
+
+
+
 Sha para Facebook -> clave: peru@123
 
 echo 1B:1D:FB:24:2A:69:89:72:74:5F:FA:29:73:8B:CC:B7:78:51:2D:83 | xxd -r -p | openssl base64
