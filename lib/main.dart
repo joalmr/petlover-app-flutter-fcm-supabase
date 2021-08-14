@@ -18,7 +18,7 @@ import 'source/veterinarias/domain/controller/lista_vets_controller.dart';
 //! push: probar todos los push
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env.dev");
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
   await GetStorage.init();
 
