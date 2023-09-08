@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:proypet/components/form_control/buttons/btn_primary.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/ddl_control.dart';

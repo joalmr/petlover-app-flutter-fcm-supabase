@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:proypet/components/form_control/buttons/btn_alternative.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
 import 'package:proypet/components/form_control/text_from.dart';

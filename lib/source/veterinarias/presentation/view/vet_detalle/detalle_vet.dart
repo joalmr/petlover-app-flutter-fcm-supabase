@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -38,8 +37,8 @@ class VetDetallePage extends StatelessWidget {
                             height: double.maxFinite,
                             width: double.maxFinite,
                             child: (_.vet.slides.length > 0)
-                              ? swiperVets(_.vet.slides, true)
-                              : swiperVets(["images/vet_prueba.jpg"], false),
+                                ? swiperVets(_.vet.slides, true)
+                                : swiperVets(["images/vet_prueba.jpg"], false),
                           ),
                           Positioned(
                             top: 30,
@@ -47,8 +46,8 @@ class VetDetallePage extends StatelessWidget {
                             child: IconButton(
                               icon: Icon(
                                 Platform.isIOS
-                                  ? Icons.arrow_back_ios
-                                  : Icons.arrow_back,
+                                    ? Icons.arrow_back_ios
+                                    : Icons.arrow_back,
                               ),
                               onPressed: () => Get.back(),
                             ),
@@ -67,16 +66,15 @@ class VetDetallePage extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: _.favorite.value
-                                    ? Lottie.asset(
-                                        pathLottie('favorite'),
-                                        fit: BoxFit.cover,
-                                        height: 45,
-                                        width: 45,
-                                        repeat: false,
-                                      )
-                                    : BounceInDown(
-                                        from: 5,
-                                        child: Icon(Icons.favorite)),
+                                      ? Lottie.asset(
+                                          pathLottie('favorite'),
+                                          fit: BoxFit.cover,
+                                          height: 45,
+                                          width: 45,
+                                          repeat: false,
+                                        )
+                                      : BounceInDown(
+                                          from: 5, child: Icon(Icons.favorite)),
                                 ),
                               ),
                             ),
@@ -115,16 +113,19 @@ class VetDetallePage extends StatelessWidget {
                             child: Container(
                               height: 60,
                               width: MediaQuery.of(context).size.width,
-                              padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
                               child: Row(
                                 children: <Widget>[
                                   SizedBox(width: 5),
                                   SizedBox(
                                     width: 60,
                                     child: FloatingActionButton(
-                                      backgroundColor: Theme.of(context).backgroundColor,
-                                      child: Icon(Icons.chat_rounded, color: colorMain),
-                                      onPressed: (){
+                                      backgroundColor:
+                                          Theme.of(context).backgroundColor,
+                                      child: Icon(Icons.chat_rounded,
+                                          color: colorMain),
+                                      onPressed: () {
                                         Get.to(ChatView());
                                       },
                                     ),
@@ -134,8 +135,8 @@ class VetDetallePage extends StatelessWidget {
                                     child: btnPrimary(
                                       text: 'Reservar servicio',
                                       onPressed: _.reservaClic.value
-                                        ? _.reservar
-                                        : null,
+                                          ? _.reservar
+                                          : null,
                                     ),
                                   ),
                                   SizedBox(width: 5),

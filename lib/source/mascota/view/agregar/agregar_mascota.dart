@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/design/styles/lottie.dart';
@@ -32,12 +31,12 @@ class MascotaAgregarPage extends StatelessWidget {
             ),
             body: _.loading.value
                 ? FadeIn(
-                  child: Container(
-                    child: Center(
-                      child: lottieLoading,
+                    child: Container(
+                      child: Center(
+                        child: lottieLoading,
+                      ),
                     ),
-                  ),
-                )
+                  )
                 : ContentAdd(),
           );
         });

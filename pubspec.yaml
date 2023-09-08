@@ -23,17 +23,17 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  
-  firebase_core: 
-  firebase_messaging: 
-  
+
+  # firebase_core:
+  # firebase_messaging:
+
   font_awesome_flutter: ^9.0.0
 
   get: ^4.1.4
   get_storage: ^2.0.2
   http: ^0.13.2
 
-  supabase: ^0.0.1-dev.17
+  # supabase: ^0.0.1-dev.17
 
   flutter_config: ^2.0.0 #^1.0.8
 

@@ -1,7 +1,6 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/veterinarias/domain/controller/reserva_vet_controller.dart';
 

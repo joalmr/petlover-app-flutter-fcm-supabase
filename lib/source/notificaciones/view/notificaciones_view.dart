@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
@@ -25,45 +24,46 @@ class NotificacionesPage extends StatelessWidget {
             key: refreshKey,
             onRefresh: _.refresh,
             child: _.loading.value
-              ? FadeViewSafeArea(
-                  child: Container(
-                  child: Center(
-                    child: lottieLoading,
-                  ),
-                ))
-              : FadeViewSafeArea(
-                  child: (_.notifications.length < 1)
-                      ? Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: AspectRatio(
-                                  aspectRatio: 2,
-                                  child: Image(
-                                    image: AssetImage('images/notificacion/noti-img.png'),
-                                    height: 220,
-                                    fit: BoxFit.cover),
+                ? FadeViewSafeArea(
+                    child: Container(
+                    child: Center(
+                      child: lottieLoading,
+                    ),
+                  ))
+                : FadeViewSafeArea(
+                    child: (_.notifications.length < 1)
+                        ? Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  child: AspectRatio(
+                                    aspectRatio: 2,
+                                    child: Image(
+                                        image: AssetImage(
+                                            'images/notificacion/noti-img.png'),
+                                        height: 220,
+                                        fit: BoxFit.cover),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Text("No tienes notificaciones"))
-                            ],
+                                Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text("No tienes notificaciones"))
+                              ],
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: _.notifications.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return notificacionCase(_.notifications[index]);
+                            },
                           ),
-                        )
-                      : ListView.builder(
-                          itemCount: _.notifications.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return notificacionCase(_.notifications[index]);
-                          },
-                        ),
-                ),
+                  ),
           );
         },
       ),

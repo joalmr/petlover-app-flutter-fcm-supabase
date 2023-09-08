@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/navegadores/appbar.dart';
@@ -19,8 +18,7 @@ class AtencionesPage extends StatelessWidget {
         init: AtencionController(),
         builder: (_) {
           return Scaffold(
-            appBar: 
-            appBar(texto: 'Calificar Atenciones', acc: null),
+            appBar: appBar(texto: 'Calificar Atenciones', acc: null),
             body: RefreshIndicator(
               key: refreshKey,
               onRefresh: _.refresh,

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proypet/components/form_control/buttons/btn_secondary.dart';
@@ -24,17 +23,17 @@ class ReservaList extends StatelessWidget {
           appBar: appBar(
             texto: 'Buscar veterinarias',
             acc: _.gps
-              ? <Widget>[
-                IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () => Get.toNamed('vet/buscar'),
-                ),
-                IconButton(
-                  icon: Icon(Icons.filter_list),
-                  onPressed: () => Get.to(FiltraVets()),
-                ),
-              ]
-              : null,
+                ? <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () => Get.toNamed('vet/buscar'),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.filter_list),
+                      onPressed: () => Get.to(FiltraVets()),
+                    ),
+                  ]
+                : null,
           ),
           body: _.loading.value
               ? Container(
@@ -62,11 +61,15 @@ class ReservaList extends StatelessWidget {
                                           right: 20,
                                         ),
                                         child: Row(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           children: [
-                                            Icon(Icons.location_on, color: colorMain, size: 14),
-                                            Text(_.global.ubicacion, style: TextStyle(fontSize: 12)),
+                                            Icon(Icons.location_on,
+                                                color: colorMain, size: 14),
+                                            Text(_.global.ubicacion,
+                                                style: TextStyle(fontSize: 12)),
                                           ],
                                         ),
                                       ),
@@ -90,8 +93,10 @@ class ReservaList extends StatelessWidget {
                                         height: 50.0,
                                         child: Center(
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(vertical: 10.0),
-                                            child: Text("No se encontró veterinarias"),
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 10.0),
+                                            child: Text(
+                                                "No se encontró veterinarias"),
                                           ),
                                         ),
                                       )
@@ -99,8 +104,10 @@ class ReservaList extends StatelessWidget {
                                         child: ListView.builder(
                                           controller: _.scrollController,
                                           itemCount: _.vetLocales.length,
-                                          itemBuilder: (BuildContext context, int index) {
-                                            return buildVets(_.vetLocales[index]);
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return buildVets(
+                                                _.vetLocales[index]);
                                           },
                                         ),
                                       ),
@@ -113,7 +120,8 @@ class ReservaList extends StatelessWidget {
                             child: FloatingActionButton(
                               onPressed: (_.vetLocales.length == 0)
                                   ? null
-                                  : () => Get.to(VetMapaPage(establecimientos:_.vetLocales)),
+                                  : () => Get.to(VetMapaPage(
+                                      establecimientos: _.vetLocales)),
                               child: Icon(Icons.location_on),
                             ),
                           ),

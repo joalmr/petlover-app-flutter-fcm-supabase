@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -27,7 +26,8 @@ class MascotaDetallePage extends StatelessWidget {
         return Scaffold(
           key: _scaffoldKey,
           endDrawer: MascotaDrawer(),
-          appBar: appBar(texto: _.loading.value ? '' : _.pet.name ?? '', acc: null),
+          appBar:
+              appBar(texto: _.loading.value ? '' : _.pet.name ?? '', acc: null),
           body: FadeView(
             child: _.loading.value
                 ? Container(
