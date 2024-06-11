@@ -1,27 +1,27 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:proypet/_supabase/chatRepo.dart';
-import 'package:proypet/_supabase/model/messageModel.dart';
-import 'package:proypet/config/variables_supabase.dart';
-import 'package:supabase/supabase.dart';
+// import 'package:proypet/_supabase/chatRepo.dart';
+// import 'package:proypet/_supabase/model/messageModel.dart';
+// import 'package:proypet/config/variables_supabase.dart';
+// import 'package:supabase/supabase.dart';
 
 import 'controller/detalle_vet_controller.dart';
 
 class ChatController extends GetxController {
-  final _repo = ChatRepo();
+  // final _repo = ChatRepo();
 
   final vetId = Get.find<VetDetalleController>().vet.id;
   final vetName = Get.find<VetDetalleController>().vet.name;
 
   RxBool cargando = true.obs;
-  RxList<MessageModel> mensajes = <MessageModel>[].obs;
+  // RxList<MessageModel> mensajes = <MessageModel>[].obs;
 
   int canalId;
   int vetInt;
   int petloverInt;
 
-  RealtimeSubscription subscriptionMessage;
-  final supabaseClient = SupabaseClient(urlSupa, keySupa);
+  // RealtimeSubscription subscriptionMessage;
+  // final supabaseClient = SupabaseClient(urlSupa, keySupa);
 
   ScrollController scrollController = new ScrollController();
 
@@ -29,43 +29,43 @@ class ChatController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
 
-    vetInt = await _repo.getEstablishment(vetId, vetName);
-    petloverInt = await _repo.getPetlover();
+    // vetInt = await _repo.getEstablishment(vetId, vetName);
+    // petloverInt = await _repo.getPetlover();
 
-    runSubscription();
+    // runSubscription();
 
-    await openCanal();
+    // await openCanal();
     cargando.value = false;
   }
 
-  openCanal() => _openCanal();
-  _openCanal() async {
-    final response = await _repo.openCanal(vetInt, petloverInt);
-    canalId = response['canal_id'];
+  // openCanal() => _openCanal();
+  // _openCanal() async {
+  //   final response = await _repo.openCanal(vetInt, petloverInt);
+  //   canalId = response['canal_id'];
 
-    mensajes.clear();
-    mensajes.addAll(response['messages']);
-    if (mensajes.length > 0) {
-      if (scrollController.hasClients) {
-        scrollController.jumpTo(scrollController.position.maxScrollExtent);
-      }
-    }
-  }
+  //   mensajes.clear();
+  //   mensajes.addAll(response['messages']);
+  //   if (mensajes.length > 0) {
+  //     if (scrollController.hasClients) {
+  //       scrollController.jumpTo(scrollController.position.maxScrollExtent);
+  //     }
+  //   }
+  // }
 
-  addMessage(String message) => _addMessage(message);
+  // addMessage(String message) => _addMessage(message);
 
-  _addMessage(String message) async {
-    await _repo.addMessage(canalId, message);
-  }
+  // _addMessage(String message) async {
+  //   await _repo.addMessage(canalId, message);
+  // }
 
-  void runSubscription() {
-    subscriptionMessage =
-        supabaseClient.from('message').on(SupabaseEventTypes.delete, (payload) {
-      openCanal();
-    }).on(SupabaseEventTypes.update, (payload) {
-      openCanal();
-    }).on(SupabaseEventTypes.insert, (payload) {
-      openCanal();
-    }).subscribe();
-  }
+  // void runSubscription() {
+  //   subscriptionMessage =
+  //       supabaseClient.from('message').on(SupabaseEventTypes.delete, (payload) {
+  //     openCanal();
+  //   }).on(SupabaseEventTypes.update, (payload) {
+  //     openCanal();
+  //   }).on(SupabaseEventTypes.insert, (payload) {
+  //     openCanal();
+  //   }).subscribe();
+  // }
 }

@@ -1,47 +1,25 @@
-# proypet
+# Proypet
 
-## revisar esto para mac
-In addition, you need to add the Background Modes capability to your XCode project (Project > Signing and Capabilties > "+ Capability" button) and select Location Updates.
+### Proypet, la App gratuita que te beneficia por reservar citas en veterinarias.
 
-https://maps.googleapis.com/maps/api/geocode/json?latlng=-12.0166806,-77.09980399999999&key=AIzaSyAIU2POPaS1Lme5BXKIrHBm1Ohicmg9844
+Descubre Proypet, una App gratuita que te ayudará a cuidar mejor de tu mascota, planificar sus citas y te beneficia por reservar servicios de baños, consultas, vacunación, desparasitación y demás servicios en cualquier veterinaria afiliada. 
+Sabemos que tienes problemas en recordar cuando tu mascota necesita una vacuna, desparasitación u otras atenciones, que alguna vez perdiste su cartilla física o no sabes dónde la dejaste, que vas al veterinario y tienes que esperar a que te atiendan porque no separaste una cita o no encuentras un servicio específico en el momento que lo necesitas. 
+Con nuestra App podrás planificar y reservar las citas para tu mascota en veterinarias, tendrás siempre disponible la información en la cartilla digital sin que tu llenes la información, recibirás notificaciones automatizadas sin que tengas que agendar o programar un recordatorio o preocuparte por recordar cuando necesita una atención; gracias a la integración de nuestra tecnología con las veterinarias; además, acumula puntos por cada reserva atendida y registrada por el veterinario y accede a más beneficios. 
 
+¿Cómo funciona? 
+1. Descárgate la APP, regístrate y agrega a tus mascotas.
+2. Encuentra una veterinaria de tu preferencia o por ubicación y reserva un servicio en la fecha que quieras. ¡SIN PAGO POR ADELANTADO!
+3. Recibe la confirmación y listo. Lleva a tu mascota a la veterinaria para que la atiendan en la fecha y hora reservada.
+4. Culminado el servicio la veterinaria registrará la atención, recibirás automáticamente la información de la atención en la cartilla digital de tu mascota y nuestra tecnología se encargará del resto. 
+5. Califica y comparte tu experiencia sobre el servicio recibido.
 
-# despliegue android
-## flutter build appbundle
-
-# despliegue ios 
-## abrir en xcode, esperar q termine da cargar la barra
-## flutter build ios --release
-## product -> archive
-
-## hash prueba fb
-ml9LCje6qhWF4iKHkLhhJDX60yQ= (NO SIRVE)
-
-## sha-1 de produccion
-1B:1D:FB:24:2A:69:89:72:74:5F:FA:29:73:8B:CC:B7:78:51:2D:83
-## sha-256 produccion
-6E:38:81:DA:E9:6F:ED:1C:59:0E:B4:40:70:9B:1F:27:29:F8:C8:B7:94:97:F7:F6:CD:D9:BF:68:00:F2:1B:89
-
-## sha pruebas
-SHA1: B8:4F:EB:0C:A9:40:70:8F:CC:41:FC:75:8B:8B:5D:F2:A4:88:B0:69
-SHA256: 54:17:04:87:A6:24:32:9F:92:19:D4:43:D9:4A:33:3C:83:C2:19:C7:94:69:25:3C:4A:4E:B5:5D:E2:92:A6:42
-
-## convertir sha para facebook produccion
-http://tomeko.net/online_tools/hex_to_base64.php
-
-## hash produccion fb
-Gx37JCppiXJ0X/opc4vMt3hRLYM= (FUNCIONA PRODUCCION)
-
-## hash pruebas fb
-uE/rDKlAcI/MQfx1i4td8qSIsGk= (FUNCIONA PRUEBAS)
-
-## sha facebook
-keytool -exportcert -alias upload -keystore /Users/josealonsomassarolando/keystore.jks | openssl sha1 -binary | openssl base64
-
-
-
-
-Sha para Facebook -> clave: peru@123
-
-echo 1B:1D:FB:24:2A:69:89:72:74:5F:FA:29:73:8B:CC:B7:78:51:2D:83 | xxd -r -p | openssl base64
-echo B8:4F:EB:0C:A9:40:70:8F:CC:41:FC:75:8B:8B:5D:F2:A4:88:B0:69 | xxd -r -p | openssl base64
+Ventajas que ofrece la App de Proypet
+-	Planifica tus citas: Te facilitamos una App para que reserves citas de servicios en cualquier momento del día y separes un cupo de atención para tu mascota en la veterinaria. 
+-	Sin pagos por adelantado: Todas las reservas no implican ningún pago por adelantado. Pagarás al veterinario una vez culminado en servicio. 
+-	Sin cargos por anulación: Si tienes algún inconveniente o no puedas asistir a la reserva, no te preocupes, puedes anular la reserva gratis desde la App. 
+-	Recojo a domicilio: Podrás reservas citas con la modalidad de recojo a domicilio en caso la veterinaria tenga habilitada la opción “Movilidad”, la misma que será visible al momento que reservas un servicio.   
+-	Descubre servicios: Al encontrar una veterinaria, podrás revisar fotos, ubicación, servicios que ofrece, precios referenciales, calificaciones, comentarios, horarios de atención y demás información relevante.
+-	Búsqueda rápida: Encuentra al instante servicios específicos como emergencia 24 horas, servicios frecuentes o utiliza los filtros para encontrar lo que necesitas. 
+-	Cartilla Digital: Ahora toda la información de tu mascota la obtienes de forma automática en la App, no necesitas registrarla en la aplicación, la veterinaria se encargará de todo.
+-	Notificaciones Automatizadas: Recibe notificaciones de recordatorios, alertas y próximas citas, no te preocupes en programarlas, nuestra tecnología lo hará por ti. 
+-	Acumula puntos por cada atención: Cada vez que el veterinario registre la atención en Proypet, no solo recibirás la información en la App, también estarás ganando puntos equivalentes al monto gastado en la reserva.

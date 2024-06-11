@@ -18,6 +18,7 @@ class AttentionProvider {
     return atenciones;
   }
 
+  //TODO: no usar
   Future<bool> calificar(AtencionModel atencion) async {
     final url = Uri.parse('$_url/attentions/${atencion.attentionId}/rate');
 

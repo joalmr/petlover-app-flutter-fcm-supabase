@@ -37,8 +37,8 @@ dependencies:
 
   flutter_config: ^2.0.0 #^1.0.8
 
-  flutter_facebook_auth: ^3.3.3-no-nullsafety
-  google_sign_in: ^5.0.5 #login con google
+  # flutter_facebook_auth: ^3.3.3-no-nullsafety
+  # google_sign_in: ^5.0.5 #login con google
   #
   ai_notification_enable: ^1.6.1 #activar notificaciones
   animate_do: ^2.0.0

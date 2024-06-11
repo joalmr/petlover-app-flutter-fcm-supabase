@@ -73,7 +73,7 @@ class GlobalController extends GetxController {
   }
 
   initApp() {
-    pushController.firebase();
+    // pushController.firebase();
 
     if (prefUser.hasPosition()) {
       final _tempLat = prefUser.position.toString().split(",")[0];

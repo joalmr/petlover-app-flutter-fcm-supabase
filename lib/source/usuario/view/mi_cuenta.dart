@@ -6,8 +6,8 @@ import 'package:proypet/components/navegadores/appbar.dart';
 import 'package:proypet/config/variables_globales.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
-import 'package:proypet/source/auth/data/service/facebook_sing.dart';
-import 'package:proypet/source/auth/data/service/google_sign.dart';
+// import 'package:proypet/source/auth/data/service/facebook_sing.dart';
+// import 'package:proypet/source/auth/data/service/google_sign.dart';
 
 import 'components/list_cuenta.dart';
 
@@ -93,8 +93,8 @@ class MiCuentaPage extends StatelessWidget {
   }
 
   void _outToken() async {
-    FacebookSignInService.signOut();
-    GoogleSignInService.signOut();
+    // FacebookSignInService.signOut();
+    // GoogleSignInService.signOut();
     loginApi.logOut();
     prefUser.tokenDel(); //limpia token
     prefUser.verifyDel(); //limpia verificado

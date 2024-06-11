@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:proypet/config/variables_globales.dart';
-import 'package:proypet/source/auth/data/service/facebook_sing.dart';
-import 'package:proypet/source/auth/data/service/google_sign.dart';
+// import 'package:proypet/source/auth/data/service/facebook_sing.dart';
+// import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/utils/error.dart';
 import 'package:http/http.dart' as http;
 
@@ -131,8 +131,8 @@ class AuthProvider {
   }
 
   void outToken() async {
-    FacebookSignInService.signOut();
-    GoogleSignInService.signOut();
+    // FacebookSignInService.signOut();
+    // GoogleSignInService.signOut();
     logOut();
     prefUser.tokenDel(); //limpia token
     prefUser.verifyDel(); //limpia verificado

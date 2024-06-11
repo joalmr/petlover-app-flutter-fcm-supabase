@@ -10,26 +10,26 @@ class NavigationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    
-    pushController.firebaseConfigure();
+
+    // pushController.firebaseConfigure();
 
     page.value = Get.parameters['page'];
 
     switch (page.value) {
       case 'inicio':
-        Get.find<GlobalController>().currentTabIndex.value=0;
+        Get.find<GlobalController>().currentTabIndex.value = 0;
         break;
       case 'notifica':
-        Get.find<GlobalController>().currentTabIndex.value=1;
+        Get.find<GlobalController>().currentTabIndex.value = 1;
         break;
       case 'lista':
-        Get.find<GlobalController>().currentTabIndex.value=2;
+        Get.find<GlobalController>().currentTabIndex.value = 2;
         break;
       case 'recompensa':
-        Get.find<GlobalController>().currentTabIndex.value=3;
+        Get.find<GlobalController>().currentTabIndex.value = 3;
         break;
       default:
-        Get.find<GlobalController>().currentTabIndex.value=0;
+        Get.find<GlobalController>().currentTabIndex.value = 0;
         break;
     }
   }
@@ -38,7 +38,7 @@ class NavigationController extends GetxController {
 
   Future<bool> onWillPop(BuildContext context) {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null || 
+    if (currentBackPressTime == null ||
         now.difference(currentBackPressTime) > Duration(seconds: 2)) {
       currentBackPressTime = now;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

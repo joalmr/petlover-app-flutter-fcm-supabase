@@ -5,9 +5,9 @@ import 'package:proypet/components/snackbar.dart';
 import 'package:proypet/design/styles/styles.dart';
 import 'package:proypet/source/_global/_global_controller.dart';
 import 'package:proypet/source/auth/data/service/auth_service.dart';
-import 'package:proypet/source/auth/data/service/facebook_sing.dart';
 // import 'package:proypet/source/auth/data/service/facebook_sing.dart';
-import 'package:proypet/source/auth/data/service/google_sign.dart';
+// import 'package:proypet/source/auth/data/service/facebook_sing.dart';
+// import 'package:proypet/source/auth/data/service/google_sign.dart';
 import 'package:proypet/source/home/domain/controller/home_controller.dart';
 import 'package:proypet/source/notificaciones/controller/_push_controller.dart';
 import 'package:proypet/source/veterinarias/domain/controller/lista_vets_controller.dart';
@@ -82,14 +82,14 @@ class LoginController extends GetxController {
 
   loginFacebook() => _loginFacebook();
   _loginFacebook() async {
-    int result = await FacebookSignInService.signIn();
-    retornos(result);
+    // int result = await FacebookSignInService.signIn();
+    // retornos(result);
   }
 
   loginGoogle() => _loginGoogle();
   _loginGoogle() async {
-    int result = await GoogleSignInService.signIn();
-    retornos(result);
+    // int result = await GoogleSignInService.signIn();
+    // retornos(result);
   }
 
   retornosWithMail(result) {
@@ -149,7 +149,7 @@ class LoginController extends GetxController {
   }
 
   ejecutaFirebase() {
-    pushController.firebase(); //TODO: firebase
+    // pushController.firebase();
     homeController.getUsuario();
     homeController.getSummary();
     vetsController.getVets();
