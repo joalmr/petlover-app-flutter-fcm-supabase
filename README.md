@@ -1,9 +1,7 @@
 # Proypet
 
-<!-- ![Petmeals](./assets/1.png) -->
-
 <img src="./assets/1.png" 
-alt="Petmeals" 
+alt="Proypet" 
 width="auto" 
 height="512" 
 />
