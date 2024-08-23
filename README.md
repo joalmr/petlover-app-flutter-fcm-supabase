@@ -3,27 +3,27 @@
 <img src="./assets/1.png" 
 alt="Proypet" 
 width="auto" 
-height="312" 
+height="300" 
 />
 <img src="./assets/2.png" 
 alt="Proypet" 
 width="auto" 
-height="312" 
+height="300" 
 />
 <img src="./assets/3.png" 
 alt="Proypet" 
 width="auto" 
-height="312" 
+height="300" 
 />
 <img src="./assets/4.png" 
 alt="Proypet" 
 width="auto" 
-height="312" 
+height="300" 
 />
 <img src="./assets/5.png" 
 alt="Proypet" 
 width="auto" 
-height="312" 
+height="300" 
 />
 
 ### Proypet, la App gratuita que te beneficia por reservar citas en veterinarias.
