@@ -1,6 +1,11 @@
 # Proypet
 
 ![Petmeals](./assets/1.png)
+<img src="./assets/1.png" 
+alt="Petmeals" 
+width="auto" 
+height="125" 
+/>
 
 ### Proypet, la App gratuita que te beneficia por reservar citas en veterinarias.
 
