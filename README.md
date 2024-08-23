@@ -5,6 +5,11 @@ alt="Proypet"
 width="auto" 
 height="512" 
 />
+<img src="./assets/2.png" 
+alt="Proypet" 
+width="auto" 
+height="512" 
+/>
 
 ### Proypet, la App gratuita que te beneficia por reservar citas en veterinarias.
 
