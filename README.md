@@ -12,8 +12,6 @@
 - 🐶 **Gestión Multimascota**: Administra la información y citas de múltiples mascotas desde una sola cuenta.
 - 🎁 **Beneficios por Reservas**: Obtén recompensas y descuentos al reservar servicios a través de la app.
 
----
-
 ## 🛠️ Tecnologías Utilizadas
 
 - **Flutter** – Framework de desarrollo multiplataforma.
@@ -23,8 +21,6 @@
   - Almacenamiento de archivos.
 - **Firebase Cloud Messaging (FCM)** – Para el envío de notificaciones push.
 - **Provider** – Gestión de estado en Flutter.
-
----
 
 ## 📦 Instalación y Configuración
 
@@ -49,23 +45,17 @@
    flutter run
    ```
 
----
-
 ## 🧠 Aprendizajes y Desafíos
 - Durante el desarrollo de PetLover, se abordaron varios retos técnicos, entre ellos:
 - Integración de Supabase como backend completo, aprovechando sus servicios de autenticación, base de datos y almacenamiento.
 - Implementación de notificaciones push utilizando Firebase Cloud Messaging.
 - Diseño de una arquitectura escalable y mantenible utilizando Provider para la gestión de estado.
 
----
-
 ## 📌 Estado del Proyecto
 Este proyecto se encuentra en desarrollo activo. Se planea implementar las siguientes funcionalidades en futuras versiones:
 - 📍 Integración con mapas para localizar clínicas y servicios cercanos.
 - 🧑‍⚕️ Perfil profesional para veterinarios y groomers.
 - 💬 Chat en tiempo real entre clientes y profesionales.
-
----
 
 ## 🤝 Contribuciones
 ¡Las contribuciones son bienvenidas! Si deseas colaborar, por favor sigue estos pasos:
@@ -77,13 +67,9 @@ Este proyecto se encuentra en desarrollo activo. Se planea implementar las sigui
    5. Abre un Pull Request.
    ```
 
----
-
 ## 📬 Contacto
 Puedes contactarme desde mi portafolio:
 👉 [https://joalmr.vercel.app](https://joalmr.vercel.app)
-
----
 
 ## Proypet
 
