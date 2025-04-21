@@ -71,6 +71,8 @@ Este proyecto se encuentra en desarrollo activo. Se planea implementar las sigui
 Puedes contactarme desde mi portafolio:
 👉 [https://joalmr.vercel.app](https://joalmr.vercel.app)
 
+---
+
 ## Proypet
 
 <img src="./assets/1.png" 
