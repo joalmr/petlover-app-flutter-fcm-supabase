@@ -1,4 +1,93 @@
-# Proypet
+# 🐾 PetLover – App de Gestión Veterinaria
+
+**PetLover** es una aplicación móvil gratuita desarrollada con Flutter, diseñada para ayudar a los dueños de mascotas a gestionar y recordar las citas veterinarias. Permite reservar servicios como baños, consultas, vacunaciones y desparasitaciones en veterinarias afiliadas, ofreciendo beneficios por cada reserva realizada.
+
+![Proypet Partners](assets/images/proypet_partners.png)
+
+---
+
+## 🚀 Características Principales
+
+- 📅 **Agenda de Citas**: Programa y gestiona citas para diversos servicios veterinarios.
+- 🔔 **Recordatorios Automáticos**: Recibe notificaciones push para recordar las próximas citas y tratamientos.
+- 🧾 **Historial Clínico Digital**: Almacena y accede al historial de salud de tu mascota en cualquier momento.
+- 🐶 **Gestión Multimascota**: Administra la información y citas de múltiples mascotas desde una sola cuenta.
+- 🎁 **Beneficios por Reservas**: Obtén recompensas y descuentos al reservar servicios a través de la app.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Flutter** – Framework de desarrollo multiplataforma.
+- **Supabase** – Backend como servicio:
+  - Autenticación de usuarios.
+  - Base de datos PostgreSQL.
+  - Almacenamiento de archivos.
+- **Firebase Cloud Messaging (FCM)** – Para el envío de notificaciones push.
+- **Provider** – Gestión de estado en Flutter.
+
+---
+
+## 📦 Instalación y Configuración
+
+1. Clona este repositorio:
+
+   ```bash
+   git clone https://github.com/joalmr/petlover-app-flutter-fcm-supabase.git
+   cd petlover-app-flutter-fcm-supabase
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   flutter pub get
+   ```
+
+3. Configura las variables de entorno:
+   - Crea un archivo .env en la raíz del proyecto.
+   - Agrega tus credenciales de Supabase y FCM según el formato proporcionado en .env.example.
+
+4. Ejecuta la aplicación:
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 🧠 Aprendizajes y Desafíos
+- Durante el desarrollo de PetLover, se abordaron varios retos técnicos, entre ellos:
+- Integración de Supabase como backend completo, aprovechando sus servicios de autenticación, base de datos y almacenamiento.
+- Implementación de notificaciones push utilizando Firebase Cloud Messaging.
+- Diseño de una arquitectura escalable y mantenible utilizando Provider para la gestión de estado.
+
+---
+
+## 📌 Estado del Proyecto
+Este proyecto se encuentra en desarrollo activo. Se planea implementar las siguientes funcionalidades en futuras versiones:
+- 📍 Integración con mapas para localizar clínicas y servicios cercanos.
+- 🧑‍⚕️ Perfil profesional para veterinarios y groomers.
+- 💬 Chat en tiempo real entre clientes y profesionales.
+
+---
+
+## 🤝 Contribuciones
+¡Las contribuciones son bienvenidas! Si deseas colaborar, por favor sigue estos pasos:
+    ```bash
+    1. Haz un fork del repositorio.
+    2. Crea una nueva rama (git checkout -b feature/nueva-funcionalidad).
+    3. Realiza tus cambios y haz commit (git commit -am 'Agrega nueva funcionalidad').
+    4. Haz push a la rama (git push origin feature/nueva-funcionalidad).
+    5. Abre un Pull Request.
+    ```
+
+---
+
+## 📬 Contacto
+Puedes contactarme desde mi portafolio:
+👉 [https://joalmr.vercel.app](https://joalmr.vercel.app)
+
+---
+
+## Proypet
 
 <img src="./assets/1.png" 
 alt="Proypet" 
@@ -25,29 +114,3 @@ alt="Proypet"
 width="auto" 
 height="282" 
 />
-
-### Proypet, la App gratuita que te beneficia por reservar citas en veterinarias.
-
-Descubre Proypet, una App gratuita que te ayudará a cuidar mejor de tu mascota, planificar sus citas y te beneficia por reservar servicios de baños, consultas, vacunación, desparasitación y demás servicios en cualquier veterinaria afiliada.
-Sabemos que tienes problemas en recordar cuando tu mascota necesita una vacuna, desparasitación u otras atenciones, que alguna vez perdiste su cartilla física o no sabes dónde la dejaste, que vas al veterinario y tienes que esperar a que te atiendan porque no separaste una cita o no encuentras un servicio específico en el momento que lo necesitas.
-Con nuestra App podrás planificar y reservar las citas para tu mascota en veterinarias, tendrás siempre disponible la información en la cartilla digital sin que tu llenes la información, recibirás notificaciones automatizadas sin que tengas que agendar o programar un recordatorio o preocuparte por recordar cuando necesita una atención; gracias a la integración de nuestra tecnología con las veterinarias; además, acumula puntos por cada reserva atendida y registrada por el veterinario y accede a más beneficios.
-
-¿Cómo funciona?
-
-1. Descárgate la APP, regístrate y agrega a tus mascotas.
-2. Encuentra una veterinaria de tu preferencia o por ubicación y reserva un servicio en la fecha que quieras. ¡SIN PAGO POR ADELANTADO!
-3. Recibe la confirmación y listo. Lleva a tu mascota a la veterinaria para que la atiendan en la fecha y hora reservada.
-4. Culminado el servicio la veterinaria registrará la atención, recibirás automáticamente la información de la atención en la cartilla digital de tu mascota y nuestra tecnología se encargará del resto.
-5. Califica y comparte tu experiencia sobre el servicio recibido.
-
-Ventajas que ofrece la App de Proypet
-
-- Planifica tus citas: Te facilitamos una App para que reserves citas de servicios en cualquier momento del día y separes un cupo de atención para tu mascota en la veterinaria.
-- Sin pagos por adelantado: Todas las reservas no implican ningún pago por adelantado. Pagarás al veterinario una vez culminado en servicio.
-- Sin cargos por anulación: Si tienes algún inconveniente o no puedas asistir a la reserva, no te preocupes, puedes anular la reserva gratis desde la App.
-- Recojo a domicilio: Podrás reservas citas con la modalidad de recojo a domicilio en caso la veterinaria tenga habilitada la opción “Movilidad”, la misma que será visible al momento que reservas un servicio.
-- Descubre servicios: Al encontrar una veterinaria, podrás revisar fotos, ubicación, servicios que ofrece, precios referenciales, calificaciones, comentarios, horarios de atención y demás información relevante.
-- Búsqueda rápida: Encuentra al instante servicios específicos como emergencia 24 horas, servicios frecuentes o utiliza los filtros para encontrar lo que necesitas.
-- Cartilla Digital: Ahora toda la información de tu mascota la obtienes de forma automática en la App, no necesitas registrarla en la aplicación, la veterinaria se encargará de todo.
-- Notificaciones Automatizadas: Recibe notificaciones de recordatorios, alertas y próximas citas, no te preocupes en programarlas, nuestra tecnología lo hará por ti.
-- Acumula puntos por cada atención: Cada vez que el veterinario registre la atención en Proypet, no solo recibirás la información en la App, también estarás ganando puntos equivalentes al monto gastado en la reserva.
