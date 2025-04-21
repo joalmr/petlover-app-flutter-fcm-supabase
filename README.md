@@ -2,8 +2,6 @@
 
 **PetLover** es una aplicación móvil gratuita desarrollada con Flutter, diseñada para ayudar a los dueños de mascotas a gestionar y recordar las citas veterinarias. Permite reservar servicios como baños, consultas, vacunaciones y desparasitaciones en veterinarias afiliadas, ofreciendo beneficios por cada reserva realizada.
 
-![Proypet Partners](assets/images/proypet_partners.png)
-
 ---
 
 ## 🚀 Características Principales
